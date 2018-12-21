@@ -1,5 +1,3 @@
-import {Text} from "react-native";
-import React from "react";
 
 /**
  *作者：lorne
@@ -26,7 +24,7 @@ import { connect } from 'react-redux';
 @connect(({${dirName}}) => ({
   ...${dirName},
 }))
-export default class ${titleCase(dirName)} extends Component {
+export default class ${dirName} extends Component {
   
 
   componentDidMount(){
@@ -107,13 +105,6 @@ fs.writeFileSync('service.js', serviceTep);
 
 console.log(`模版${dirName}已创建,请手动增加models`);
 
-function titleCase(str) {
-  const array = str.toLowerCase().split(' ');
-  for (let i = 0; i < array.length; i++) {
-    array[i] = array[i][0].toUpperCase() + array[i].substring(1, array[i].length);
-  }
-  const string = array.join(' ');
-  return string;
-}
+
 
 process.exit(0);
