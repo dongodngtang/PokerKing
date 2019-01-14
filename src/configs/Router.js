@@ -23,4 +23,11 @@ export default class Router {
         Actions.replace(sceneKey,params)
     }
 
+
+    toDetail(){
+        this.push({
+            sceneKey:'Detail'
+        })
+    }
+
 }

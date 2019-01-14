@@ -49,7 +49,7 @@ export const Metrics = {
 }
 
 export const Images = {
-
+ left_back:require('../asserts/left_back.jpg')
 
 }
 

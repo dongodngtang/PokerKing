@@ -9,6 +9,7 @@ import {View,TouchableOpacity,Text,Image} from 'react-native'
 import { Scene, Stack, Tabs } from 'react-native-router-flux'
 import { Images, Styles, Colors } from '../configs/Theme'
 import Home from './Home'
+import Detail from './Detail'
 
 
 
@@ -17,7 +18,14 @@ export const scenes = ()=>{
         <Scene key="Home"
                component={Home}
                {...TopNav({
-                   title:'首页'
+                   title:'首页',
+                   hideLeft:true
+               })}/>
+
+        <Scene key="Detail"
+               component={Detail}
+               {...TopNav({
+                   title:'详情'
                })}/>
     </Scene>
 }
@@ -32,7 +40,7 @@ const TopNav = (props) => {
 export class NavBar extends PureComponent {
 
     render() {
-        const { component, title, rightTitle, onLeft } = this.props;
+        const { component, title, rightTitle, onLeft,hideLeft } = this.props;
 
         let pageMsg = `在page/index查找${component && component.displayName}`;
         return <View style={Styles.navTop}>
@@ -42,10 +50,10 @@ export class NavBar extends PureComponent {
 
                 }}
                 style={Styles.left}>
-                {/*{hideLeft ? null : <Image*/}
-                    {/*style={{ height: 14, width: 18 }}*/}
-                    {/**/}
-                     {/*/>}*/}
+                {hideLeft ? null : <Image
+                    style={{ height: 14, width: 18 }}
+                    source={Images.left_back}
+                     />}
 
             </TouchableOpacity>
 
