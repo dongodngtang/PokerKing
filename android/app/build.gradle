@@ -106,7 +106,17 @@ android {
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
+         manifestPlaceholders = [
+              JPUSH_APPKEY: "2c643e3244a45c9fae519e9b",	        // <--    在此替换你的APPKey
+              JPUSH_CHANNEL: "developer-default",		// <--    应用渠道号, 默认即可
+            ]
     }
+    sourceSets {      // <--   必须添加 sourceSet 这段。因为 JGShareSDK.xml 放在 assets 下，不加上会报错。
+        main {
+            assets.srcDirs = ['assets']
+        }
+      }
+
     splits {
         abi {
             reset()
