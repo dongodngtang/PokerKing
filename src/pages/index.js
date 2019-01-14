@@ -10,6 +10,8 @@ import { Scene, Stack, Tabs } from 'react-native-router-flux'
 import { Images, Styles, Colors } from '../configs/Theme'
 import Home from './Home'
 import Detail from './Detail'
+import Register from './Register'
+import Login from './Login'
 
 
 
@@ -26,6 +28,16 @@ export const scenes = ()=>{
                component={Detail}
                {...TopNav({
                    title:'详情'
+               })}/>
+        <Scene key="Register"
+               component={Register}
+               {...TopNav({
+                   title:'注册'
+               })}/>
+        <Scene key="Login"
+               component={Login}
+               {...TopNav({
+                   title:'资料编辑'
                })}/>
     </Scene>
 }

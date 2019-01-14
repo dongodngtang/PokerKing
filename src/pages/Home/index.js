@@ -21,9 +21,10 @@ export default class Home extends Component {
 
           <Button
               onPress={()=>{
-                router.toDetail()
+                // router.toDetail()
+                  router.toLogin()
               }}
-              title={'跳转到详情'}/>
+              title={'跳转到登录'}/>
       </View>
     )
   }

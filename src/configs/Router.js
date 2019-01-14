@@ -30,4 +30,16 @@ export default class Router {
         })
     }
 
+    toRegister(){
+        this.push({
+            sceneKey:'Register'
+        })
+    }
+
+    toLogin(){
+        this.push({
+            sceneKey:'Login'
+        })
+    }
+
 }
