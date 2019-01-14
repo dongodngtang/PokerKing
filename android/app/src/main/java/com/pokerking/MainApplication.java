@@ -8,12 +8,17 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
+import cn.jiguang.share.android.api.JShareInterface;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class MainApplication extends Application implements ReactApplication {
 
+    // 是否关闭 Log，默认不关闭
+    private static boolean SHUTDOWN_LOG = false;
+    // 是否关闭 toast，默认不关闭
+    private static boolean SHUTDOWN_TOAST = false;
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
     @Override
     public boolean getUseDeveloperSupport() {
@@ -24,7 +29,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new JSharePackage()
+            new JSharePackage(SHUTDOWN_TOAST, SHUTDOWN_LOG)
       );
     }
 
@@ -42,6 +47,7 @@ public class MainApplication extends Application implements ReactApplication {
   @Override
   public void onCreate() {
     super.onCreate();
-    SoLoader.init(this, /* native exopackage */ false);
+    SoLoader.init(this, false);
+    JShareInterface.init(this);
   }
 }
