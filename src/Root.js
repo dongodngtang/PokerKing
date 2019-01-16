@@ -8,6 +8,7 @@ import React, {Component} from 'react';
 import {Router} from 'react-native-router-flux';
 import {scenes} from './pages'
 import RouterO from './configs/Router';
+import Language from './lang/Language'
 
 
 export default class Root extends Component {
@@ -15,6 +16,9 @@ export default class Root extends Component {
         super(props);
         this.router = this.router || new RouterO();
         global.router = this.router;
+
+        this.lang = this.lang || new Language()
+        global.lang = this.lang
 
     }
 

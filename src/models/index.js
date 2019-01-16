@@ -5,7 +5,9 @@
  */
 
 import Home from '../pages/Home/model'
+import common from '../services/common'
 
 export default[
-    Home
+    Home,
+    common
 ]

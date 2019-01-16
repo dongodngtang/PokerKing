@@ -6,7 +6,6 @@
 
 import { create } from 'dva-core';
 import { createLogger } from 'redux-logger';
-import createLoading from 'dva-loading';
 
 let app;
 let store;
@@ -16,7 +15,6 @@ function createApp(opt) {
     // redux日志
     opt.onAction = [createLogger()];
     app = create(opt);
-    app.use(createLoading({}));
 
     if (!global.registered) opt.models.forEach(model => app.model(model));
     global.registered = true;
