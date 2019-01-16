@@ -35,14 +35,14 @@ export default class Register extends Component {
                                 marginLeft: 8,
                                 width: 230,
                                 height: 35,
-                                fontSize: 14,
+                                fontSize: 16,
                                 fontWeight: 'bold',
                                 color: this.state.email_show ? '#444444' : '#F3F3F3'
                             }}
                             maxLength={11}
                             numberOfLines={1}
                             placeholderTextColor={'#CCCCCC'}
-                            placeholder={'用户名'}
+                            placeholder={'用户名（仅可用英文或汉字）'}
                             clearTextOnFocus={true}
                             underlineColorAndroid={'transparent'}
                             onChangeText={txt => {
@@ -61,7 +61,7 @@ export default class Register extends Component {
                             <Text style={{
                                 color: this.state.gender === '性别' ? '#CCCCCC' : '#444444',
                                 marginLeft: 8,
-                                fontSize:14,
+                                fontSize:16,
                                 fontWeight: 'bold',
                             }}>性别</Text>
                             <View style={{flex: 1}}/>
@@ -77,7 +77,7 @@ export default class Register extends Component {
                                 marginLeft: 8,
                                 width: 230,
                                 height: 35,
-                                fontSize: 14,
+                                fontSize: 16,
                                 fontWeight: 'bold',
                                 color: this.state.name_show ? '#444444' : '#F3F3F3'
                             }}
@@ -99,13 +99,11 @@ export default class Register extends Component {
                     </View>
                 </KeyboardAvoidingView>
 
-                <Button
-                    style={styles.confirm_btn}
-                    color="#000000"
-                    onPress={() => {
-                        // router.toRegister()
-                    }}
-                    title={'完成'}/>
+                <TouchableOpacity style={styles.btn} onPress={()=>{
+
+                }}>
+                    <Text style={{color:'#FFE9AD',fontSize:18}}>确定</Text>
+                </TouchableOpacity>
             </View>
         )
     }

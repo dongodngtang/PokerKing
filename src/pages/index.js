@@ -32,7 +32,7 @@ export const scenes = ()=>{
         <Scene key="Register"
                component={Register}
                {...TopNav({
-                   title:'注册'
+                   title:'编辑资料'
                })}/>
         <Scene key="Login"
                component={Login}

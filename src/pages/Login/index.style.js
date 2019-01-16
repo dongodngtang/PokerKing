@@ -15,7 +15,7 @@ export default StyleSheet.create({
         marginBottom: 54
     },
     textView: {
-        width: Metrics.screenWidth - 60,
+        width: Metrics.screenWidth - 34,
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
@@ -26,12 +26,12 @@ export default StyleSheet.create({
     },
     confirm_btn: {
         marginTop: 50,
-        width: Metrics.screenWidth - 60,
+        width: Metrics.screenWidth - 34,
         height: 40,
         backgroundColor: '#939393'
     },
     areaView: {
-        width: Metrics.screenWidth - 60,
+        width: Metrics.screenWidth - 34,
         marginTop: 50,
         flexDirection: 'row',
         alignItems: 'center',
