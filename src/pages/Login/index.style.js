@@ -1,37 +1,54 @@
-
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 import {Metrics} from "../../configs/Theme";
 
 export default StyleSheet.create({
-    container:{
-        flex:1,
-        flexDirection:'column',
-        backgroundColor:'#ececec',
-        alignItems:'center'
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        backgroundColor: '#FFFFFF',
+        alignItems: 'center'
     },
-    textView:{
-        width:Metrics.screenWidth - 60,
-        display:'flex',
-        flexDirection:'row',
-        alignItems:'center',
-        borderBottomColor:'#444444',
-        borderBottomWidth:1,
-        marginTop:10,
-        flexWrap:'nowrap'
+    top_txt: {
+        color: '#444444',
+        fontSize: 22,
+        marginTop: 46,
+        marginBottom: 54
     },
-    confirm_btn:{
-        marginTop:50,
-        width:Metrics.screenWidth - 60,
-        height:40,
-        backgroundColor:'#939393'
+    textView: {
+        width: Metrics.screenWidth - 60,
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderBottomColor: '#ECECEE',
+        borderBottomWidth: 1,
+        marginTop: 15,
+        flexWrap: 'nowrap'
     },
-    areaView:{
-        width:Metrics.screenWidth - 60,
+    confirm_btn: {
+        marginTop: 50,
+        width: Metrics.screenWidth - 60,
+        height: 40,
+        backgroundColor: '#939393'
+    },
+    areaView: {
+        width: Metrics.screenWidth - 60,
         marginTop: 50,
         flexDirection: 'row',
         alignItems: 'center',
-        borderBottomColor:'#444444',
-        borderBottomWidth:1
+        borderBottomColor: '#ECECEE',
+        borderBottomWidth: 1
+    },
+    btn: {
+        width:'90%',
+        marginLeft: 17,
+        marginRight: 17,
+        paddingTop: 17,
+        paddingBottom: 17,
+        backgroundColor: '#212223',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius:2,
+        marginTop:54
     }
 })
 

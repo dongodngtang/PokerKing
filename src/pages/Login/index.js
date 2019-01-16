@@ -27,11 +27,14 @@ export default class Login extends Component {
 
         return (
             <View style={styles.container}>
+
+                <Text style={styles.top_txt}>使用短信验证码登录</Text>
+
                 <TouchableOpacity style={styles.areaView} onPress={() => {
                     this.areaAction && this.areaAction.toggle();
                 }}>
                     <Text
-                        style={{width: 180, marginLeft: 8, height: 28}}>
+                        style={{width: 180, marginLeft: 8, height: 28,fontSize:16,color:'#666666'}}>
                         {`中国（China） (+${this.state.ext})`}
                     </Text>
                     <View style={{flex: 1}}/>
@@ -49,7 +52,7 @@ export default class Login extends Component {
                                 marginLeft: 8,
                                 width: 230,
                                 height: 35,
-                                fontSize: 14,
+                                fontSize: 16,
                                 fontWeight: 'bold',
                                 color: this.state.email_show ? '#444444' : '#F3F3F3'
                             }}
@@ -77,9 +80,9 @@ export default class Login extends Component {
                                 paddingBottom: 0,
                                 paddingLeft: 0,
                                 marginLeft: 8,
-                                width: 200,
+                                width: 160,
                                 height: 35,
-                                fontSize: 14,
+                                fontSize: 16,
                                 fontWeight: 'bold',
                                 color: this.state.name_show ? '#444444' : '#F3F3F3'
                             }}
@@ -98,20 +101,19 @@ export default class Login extends Component {
 
                         />
                         <View style={{flex: 1}}/>
-                        <View style={{height: 22, width: 1, backgroundColor: '#444444', marginRight: 10}}/>
+                        <View style={{height: 22, width: 1, backgroundColor: '#ECECEE', marginRight: 16}}/>
                         <TouchableOpacity style={{marginRight:8}}>
-                            <Text style={{color: '#afbed6', fontSize: 12}}>获取验证码</Text>
+                            <Text style={{color: '#4A90E2', fontSize: 14}}>获取验证码</Text>
                         </TouchableOpacity>
 
                     </View>
                 </KeyboardAvoidingView>
-                <Button
-                    style={styles.confirm_btn}
-                    color="#000000"
-                    onPress={() => {
-                        router.toRegister()
-                    }}
-                    title={'同意并继续'}/>
+
+                <TouchableOpacity style={styles.btn} onPress={()=>{
+                    router.toRegister();
+                }}>
+                    <Text style={{color:'#FFE9AD',fontSize:18}}>登录并继续</Text>
+                </TouchableOpacity>
 
                 <ExtArea
                     ref={ref => this.areaAction = ref}

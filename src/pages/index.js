@@ -37,7 +37,7 @@ export const scenes = ()=>{
         <Scene key="Login"
                component={Login}
                {...TopNav({
-                   title:'资料编辑'
+                   title:'Pokerkinglive'
                })}/>
     </Scene>
 }
@@ -76,7 +76,7 @@ export class NavBar extends PureComponent {
                 }}
                 style={Styles.navTitle}>
                 <Text
-                    style={{ fontSize: 16 }}>{title}</Text>
+                    style={{ fontSize: 18,color:'#FFE9AD' }}>{title}</Text>
 
             </TouchableOpacity>
 
