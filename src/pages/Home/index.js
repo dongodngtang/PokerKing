@@ -12,8 +12,20 @@ export default class Home extends Component {
   
 
   componentDidMount(){
-    const {dispatch} = this.props
+    const {dispatch,navigation} = this.props
       dispatch({type:'Home/effectsDemo'})
+      logMsg(this)
+
+
+  }
+
+  componentWillReceiveProps(newProps){
+      if(newProps.langStr !== this.props.langStr){
+          this.props. navigation.setParams({
+
+              rightTitle:global.lang.t('home_language')
+          })
+      }
   }
 
   render() {

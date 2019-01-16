@@ -85,7 +85,7 @@ export class NavBar extends PureComponent {
                 onPress={() => {
                     this.props.onRight && this.props.onRight()
                 }}
-                style={Styles.left}>
+                style={Styles.right}>
                 {rightTitle ? <Text
                     style={{ fontSize: 14, color:'#FFE9AD' }}>{rightTitle}</Text> : null}
 

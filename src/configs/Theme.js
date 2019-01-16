@@ -103,14 +103,25 @@ export const Styles = {
         borderBottomWidth: 0.5,
     },
     left: {
+        flex: 1,
         height: 44,
-        width: 50,
+        marginLeft:17,
         justifyContent: 'center',
         alignItems: 'center'
     },
     navTitle: {
         flex: 1,
         justifyContent: 'center',
+        alignItems: 'center',
+        alignSelf:'center'
+    },
+    right:{
+        flex: 1,
+        flexDirection:'row',
+        flexWrap:'nowrap',
+        height: 44,
+        marginRight:17,
+        justifyContent: 'flex-end',
         alignItems: 'center'
     }
 }
