@@ -1,4 +1,16 @@
 {
   "app_name":"扑克王发",
-  "home_language":"語言"
+  "home_language":"語言",
+  "cellphone":"手機號碼",
+  "vscode":"驗證碼",
+  "sign_vscode":"使用短信驗證碼登錄",
+  "get_vscode":"獲取驗證碼",
+  "login_continue":"登錄並繼續",
+  "mainland":"大陸",
+  "hong_kong":"香港",
+  "macao":"澳門",
+  "gender":"性別",
+  "username_EC":"用戶名（僅可用英文或漢字）",
+  "mailbox":"郵箱",
+  "determine":"確定"
 }

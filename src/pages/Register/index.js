@@ -14,7 +14,7 @@ export default class Register extends Component {
         email_show: false,
         user_name: '',
         email: '',
-        gender: '性别'
+        gender: global.lang.t('gender')
     }
 
     componentDidMount() {
@@ -42,7 +42,7 @@ export default class Register extends Component {
                             maxLength={11}
                             numberOfLines={1}
                             placeholderTextColor={'#CCCCCC'}
-                            placeholder={'用户名（仅可用英文或汉字）'}
+                            placeholder={global.lang.t('username_EC')}
                             clearTextOnFocus={true}
                             underlineColorAndroid={'transparent'}
                             onChangeText={txt => {
@@ -59,11 +59,11 @@ export default class Register extends Component {
                     <View style={[styles.textView,{paddingTop:10,paddingBottom:10}]}>
                         <TouchableOpacity style={{width:'100%'}}>
                             <Text style={{
-                                color: this.state.gender === '性别' ? '#CCCCCC' : '#444444',
+                                color: this.state.gender === global.lang.t('gender') ? '#CCCCCC' : '#444444',
                                 marginLeft: 8,
                                 fontSize:16,
                                 fontWeight: 'bold',
-                            }}>性别</Text>
+                            }}>{global.lang.t('gender')}</Text>
                             <View style={{flex: 1}}/>
                         </TouchableOpacity>
                     </View>
@@ -84,7 +84,7 @@ export default class Register extends Component {
                             maxLength={11}
                             numberOfLines={1}
                             placeholderTextColor={'#CCCCCC'}
-                            placeholder={'邮箱'}
+                            placeholder={global.lang.t('mailbox')}
                             clearTextOnFocus={true}
                             underlineColorAndroid={'transparent'}
                             onChangeText={txt => {
@@ -102,7 +102,7 @@ export default class Register extends Component {
                 <TouchableOpacity style={styles.btn} onPress={()=>{
 
                 }}>
-                    <Text style={{color:'#FFE9AD',fontSize:18}}>确定</Text>
+                    <Text style={{color:'#FFE9AD',fontSize:18}}>{global.lang.t('determine')}</Text>
                 </TouchableOpacity>
             </View>
         )

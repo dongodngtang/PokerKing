@@ -28,7 +28,7 @@ export default class Login extends Component {
         return (
             <View style={styles.container}>
 
-                <Text style={styles.top_txt}>使用短信验证码登录</Text>
+                <Text style={styles.top_txt}>{global.lang.t('sign_vscode')}</Text>
 
                 <TouchableOpacity style={styles.areaView} onPress={() => {
                     this.areaAction && this.areaAction.toggle();
@@ -59,7 +59,7 @@ export default class Login extends Component {
                             maxLength={11}
                             numberOfLines={1}
                             placeholderTextColor={'#CCCCCC'}
-                            placeholder={'手机号码'}
+                            placeholder={global.lang.t('cellphone')}
                             clearTextOnFocus={true}
                             underlineColorAndroid={'transparent'}
                             onChangeText={txt => {
@@ -89,7 +89,7 @@ export default class Login extends Component {
                             maxLength={11}
                             numberOfLines={1}
                             placeholderTextColor={'#CCCCCC'}
-                            placeholder={'验证码'}
+                            placeholder={global.lang.t('cellphone')}
                             clearTextOnFocus={true}
                             underlineColorAndroid={'transparent'}
                             onChangeText={txt => {
@@ -103,7 +103,7 @@ export default class Login extends Component {
                         <View style={{flex: 1}}/>
                         <View style={{height: 22, width: 1, backgroundColor: '#ECECEE', marginRight: 16}}/>
                         <TouchableOpacity style={{marginRight:8}}>
-                            <Text style={{color: '#4A90E2', fontSize: 14}}>获取验证码</Text>
+                            <Text style={{color: '#4A90E2', fontSize: 14}}>{global.lang.t('get_vscode')}</Text>
                         </TouchableOpacity>
 
                     </View>
@@ -112,7 +112,7 @@ export default class Login extends Component {
                 <TouchableOpacity style={styles.btn} onPress={()=>{
                     router.toRegister();
                 }}>
-                    <Text style={{color:'#FFE9AD',fontSize:18}}>登录并继续</Text>
+                    <Text style={{color:'#FFE9AD',fontSize:18}}>{global.lang.t('login_continue')}</Text>
                 </TouchableOpacity>
 
                 <ExtArea

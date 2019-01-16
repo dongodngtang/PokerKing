@@ -4,9 +4,13 @@ import {
     StyleSheet, Image, Text, KeyboardAvoidingView, FlatList, Modal
 } from 'react-native';
 
-const codes = [{id: 0, name: '大陆', code: '86'}, {id: 1, name: '香港', code: '852'}, {id: 2, name: '澳门', code: '853'}, {
+const codes = [{id: 0, name: 'mainland', code: '86'}, {
+    id: 1,
+    name: 'hong_kong',
+    code: '852'
+}, {id: 2, name: '澳门', code: '853'}, {
     id: 3,
-    name: '台湾',
+    name: 'macao',
     code: '886'
 }];
 
@@ -34,7 +38,7 @@ export default class ExtArea extends Component {
                                   this.props.changed_ext(code);
                                   this.toggle();
                               }}>
-                <Text style={{color: "#666666", fontSize: 14, marginLeft: 17}}>{name}</Text>
+                <Text style={{color: "#666666", fontSize: 14, marginLeft: 17}}>{global.lang.t(name)}</Text>
                 <View style={{flex: 1}}/>
                 <Text style={{color: "#666666", fontSize: 14, marginRight: 17}}>{code}</Text>
             </TouchableOpacity>
@@ -50,9 +54,12 @@ export default class ExtArea extends Component {
 
                 }}
                 visible={this.state.visible}
-                style={{alignItems:'center'}}
+                style={{alignItems: 'center'}}
             >
-                <View style={this.props.type && this.props.type === 'ModalPrompt' ? {width: 300,alignSelf:'center'} : {flex: 1}}>
+                <View style={this.props.type && this.props.type === 'ModalPrompt' ? {
+                    width: 300,
+                    alignSelf: 'center'
+                } : {flex: 1}}>
                     <TouchableOpacity
                         activeOpacity={1}
                         onPress={this.toggle}

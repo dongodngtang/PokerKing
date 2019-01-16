@@ -1,4 +1,16 @@
 {
   "app_name":"扑克王",
-  "home_language":"语言"
+  "home_language":"语言",
+  "cellphone":"手机号码",
+  "vscode":"验证码",
+  "sign_vscode":"使用短信验证码登录",
+  "get_vscode":"获取验证码",
+  "login_continue":"登录并继续",
+  "mainland":"大陆",
+  "hong_kong":"香港",
+  "macao":"澳门",
+  "gender":"性别",
+  "username_EC":"用户名（仅可用英文或汉字）",
+  "mailbox":"邮箱",
+  "determine":"确定"
 }
