@@ -98,6 +98,7 @@ export const Styles = {
         backgroundColor: '#212223',
         flexDirection: 'row',
         alignItems: 'center',
+        justifyContent:'space-between',
         paddingTop: Metrics.statusBarHeight,
         borderBottomColor: Colors._ECE,
         borderBottomWidth: 0.5,
@@ -106,8 +107,7 @@ export const Styles = {
         flex: 1,
         height: 44,
         marginLeft:17,
-        justifyContent: 'center',
-        alignItems: 'center'
+        justifyContent: 'center'
     },
     navTitle: {
         flex: 1,
