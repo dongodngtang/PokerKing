@@ -20,8 +20,9 @@ export const scenes = ()=>{
         <Scene key="Home"
                component={Home}
                {...TopNav({
-                   title:'首页',
-                   hideLeft:true
+                   title:'Pokerkinglive',
+                   hideLeft:true,
+                   rightTitle:'语言'
                })}/>
 
         <Scene key="Detail"
@@ -86,7 +87,7 @@ export class NavBar extends PureComponent {
                 }}
                 style={Styles.left}>
                 {rightTitle ? <Text
-                    style={{ fontSize: 14, color: Colors._02A }}>{rightTitle}</Text> : null}
+                    style={{ fontSize: 14, color:'#FFE9AD' }}>{rightTitle}</Text> : null}
 
             </TouchableOpacity>
 
