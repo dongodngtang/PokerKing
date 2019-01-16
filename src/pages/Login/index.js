@@ -89,7 +89,7 @@ export default class Login extends Component {
                             maxLength={11}
                             numberOfLines={1}
                             placeholderTextColor={'#CCCCCC'}
-                            placeholder={global.lang.t('cellphone')}
+                            placeholder={global.lang.t('vscode')}
                             clearTextOnFocus={true}
                             underlineColorAndroid={'transparent'}
                             onChangeText={txt => {

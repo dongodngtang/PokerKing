@@ -2,7 +2,7 @@
   "app_name":"PokerKing",
   "home_language":"Language",
   "cellphone":"cellphone number",
-  "vscode":"Verification code",
+  "vscode":"verification code",
   "sign_vscode":"Sign in with SMS verification code",
   "get_vscode":"get verification code",
   "login_continue":"Log in and continue",
