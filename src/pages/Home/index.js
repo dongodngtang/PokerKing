@@ -1,35 +1,45 @@
 import React, {Component} from 'react';
-import {View, Text, Button, TouchableOpacity, Image,ScrollView} from 'react-native';
+import {View, Text, Button, TouchableOpacity, Image, ScrollView} from 'react-native';
 import {connect} from 'react-redux';
 import {logMsg} from "../../utils/utils";
 import MainBanner from './MainBanner';
 import styles from './index.style';
 import UltimateFlatList from '../../components/ultimate/UltimateFlatList';
 import {Metrics} from "../../configs/Theme";
+import Picker from 'react-native-wheel-picker'
+import SelectPiker from "../comm/SelectPiker";
 
-@connect(({Home, common}) => ({
-    ...Home,
-    ...common
+@connect(({Home}) => ({
+    ...Home
 }))
 export default class Home extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            selectedItem: 1,
+            itemList: ['English', '简体中文', '繁体中文']
+        };
+        props.navigation.setParams({
+            onRight:()=>{
+                this.selectPiker && this.selectPiker.toggle()
+            }
+        })
+    }
 
 
     componentDidMount() {
         const {dispatch, navigation} = this.props
         dispatch({type: 'Home/effectsDemo'})
         logMsg(this)
+    };
 
+    onPickerSelect=(index)=> {
+        this.setState({
+            selectedItem: index,
+        })
+    };
 
-    }
-
-    componentWillReceiveProps(newProps) {
-        if (newProps.langStr !== this.props.langStr) {
-            this.props.navigation.setParams({
-
-                rightTitle: global.lang.t('home_language')
-            })
-        }
-    }
 
     header = () => {
         return (
@@ -50,7 +60,7 @@ export default class Home extends Component {
                 <View style={styles.right_view}>
                     <Text style={styles.race_content_txt} numberOfLines={2}>TPTS中扑免费专属赛，20万奖池门票等你抢！</Text>
                     <View style={styles.right_bottom_view}>
-                        <Text style={[styles.bottom_txt,{marginRight:10}]}>#中扑网</Text>
+                        <Text style={[styles.bottom_txt, {marginRight: 10}]}>#中扑网</Text>
                         <Text style={styles.bottom_txt}>04-21</Text>
                     </View>
                 </View>
@@ -100,26 +110,18 @@ export default class Home extends Component {
                     />
                 </View>
 
-                <Text>{global.lang.t('app_name')}</Text>
-
-                <Button
-                    onPress={() => {
-                        // router.toDetail()
-                        global.lang.switchLang('en')
-                    }}
-                    title={'切换英文'}/>
-                <Button
-                    onPress={() => {
-                        // router.toDetail()
-                        global.lang.switchLang('zh')
-                    }}
-                    title={'切换中文'}/>
-
                 <Button
                     onPress={() => {
                         router.toLogin()
                     }}
                     title={'跳转到登录'}/>
+
+                <SelectPiker
+                    ref={ref => this.selectPiker = ref}
+                    onPickerSelect={this.onPickerSelect}
+                    selectedItem={this.state.selectedItem}
+                    itemList={this.state.itemList}/>
+
             </ScrollView>
         )
     }

@@ -21,5 +21,6 @@
   "release_refresh": "Release refresh",
   "last_refresh": "Last refresh",
   "hot_race":"Popular information",
-  "more":"More"
+  "more":"More",
+  "cancel":"Cancel"
 }

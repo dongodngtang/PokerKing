@@ -4285,6 +4285,10 @@ react-native-tab-view@^1.0.0:
   dependencies:
     prop-types "^15.6.1"
 
+react-native-wheel-picker@^1.2.0:
+  version "1.2.0"
+  resolved "http://registry.npm.taobao.org/react-native-wheel-picker/download/react-native-wheel-picker-1.2.0.tgz#0503e37b3326856724501679bdf5697e0dd247a6"
+
 react-native@0.57.7:
   version "0.57.7"
   resolved "http://registry.npm.taobao.org/react-native/download/react-native-0.57.7.tgz#5b3af1c43366c41d8d8d2540fea8ce590060bca1"

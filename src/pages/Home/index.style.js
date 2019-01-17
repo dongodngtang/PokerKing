@@ -45,7 +45,8 @@ export default StyleSheet.create({
     },
     hot_race_txt:{
         color:"#4A4A4A",
-        fontSize:16
+        fontSize:16,
+        fontWeight:'bold'
     },
     more_txt:{
         color:"#888888",

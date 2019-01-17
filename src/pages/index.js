@@ -20,9 +20,9 @@ export const scenes = ()=>{
         <Scene key="Home"
                component={Home}
                {...TopNav({
-                   title:'Pokerkinglive',
+                   title:global.lang.t('app_name'),
                    hideLeft:true,
-                   rightTitle:'语言'
+                   rightTitle:global.lang.t('home_language')
                })}/>
 
         <Scene key="Detail"
