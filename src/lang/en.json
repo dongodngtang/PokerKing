@@ -12,5 +12,14 @@
   "gender":"gender",
   "username_EC":"username (English or Chinese only)",
   "mailbox":"mailbox",
-  "determine":"determine"
+  "determine":"determine",
+  "race":"Event",
+  "cash_table":"Cash table",
+  "pull_refresh": "Pull down to refresh",
+  "loading": "Loading...",
+  "no_more": "Already no more！",
+  "release_refresh": "Release refresh",
+  "last_refresh": "Last refresh",
+  "hot_race":"Popular information",
+  "more":"More"
 }

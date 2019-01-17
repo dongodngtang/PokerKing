@@ -12,5 +12,14 @@
   "gender":"性别",
   "username_EC":"用户名（仅可用英文或汉字）",
   "mailbox":"邮箱",
-  "determine":"确定"
+  "determine":"确定",
+  "race":"赛事",
+  "cash_table":"现金桌",
+  "pull_refresh": "下拉刷新",
+  "loading": "加载中...",
+  "no_more": "已经没有啦！",
+  "release_refresh": "释放刷新",
+  "last_refresh": "最后刷新",
+  "hot_race":"热门资讯",
+  "more":"更多"
 }

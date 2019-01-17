@@ -95,7 +95,7 @@ export const Styles = {
     navTop: {
         height: Metrics.navBarHeight,
         width: Metrics.screenWidth,
-        backgroundColor: '#212223',
+        backgroundColor: '#13151C',
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent:'space-between',

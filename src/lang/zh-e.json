@@ -12,5 +12,14 @@
   "gender":"性別",
   "username_EC":"用戶名（僅可用英文或漢字）",
   "mailbox":"郵箱",
-  "determine":"確定"
+  "determine":"確定",
+  "race":"賽事",
+  "cash_table":"現金桌",
+  "pull_refresh": "下拉刷新",
+  "loading": "加載中...",
+  "no_more": "已經沒有啦！",
+  "release_refresh": "釋放刷新",
+  "last_refresh": "最後刷新",
+  "hot_race":"熱門資訊",
+  "more":"更多"
 }
