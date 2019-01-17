@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View,Text,Button} from 'react-native';
 import { connect } from 'react-redux';
 import {logMsg} from "../../utils/utils";
+import MainBanner from './MainBanner';
 
 
 @connect(({Home,common}) => ({
@@ -32,6 +33,7 @@ export default class Home extends Component {
 
     return (
       <View>
+          <MainBanner/>
         <Text>{global.lang.t('app_name')}</Text>
 
           <Button

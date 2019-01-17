@@ -99,9 +99,7 @@ export const Styles = {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent:'space-between',
-        paddingTop: Metrics.statusBarHeight,
-        borderBottomColor: Colors._ECE,
-        borderBottomWidth: 0.5,
+        paddingTop: Metrics.statusBarHeight
     },
     left: {
         flex: 1,
