@@ -73,7 +73,7 @@ export default class SelectPiker extends Component {
                     </View>
                     <Picker style={{width: Metrics.screenWidth}}
                             selectedValue={this.props.selectedItem}
-                            itemStyle={{color: "#888888", fontSize: 16}}
+                            itemStyle={{color: "#444444", fontSize: 17}}
                             onValueChange={(index) => {
                                 this.props.onPickerSelect(index);
                                 this.setState({

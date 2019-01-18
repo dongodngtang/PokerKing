@@ -49,6 +49,7 @@ export const scenes = ()=>{
                })}/>
         <Scene key="Races"
                component={Races}
+               hideNavBar
                {...TopNav({
                    title:'OPC'
                })}/>
