@@ -74,7 +74,9 @@ export default class Home extends Component {
             <ScrollView style={styles.home_view}>
                 <MainBanner/>
                 <View style={styles.active_type_view}>
-                    <TouchableOpacity style={styles.active_btn}>
+                    <TouchableOpacity style={styles.active_btn} onPress={()=>{
+                        router.toRaces();
+                    }}>
                         <Text style={styles.active_txt}>{global.lang.t('race')}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.active_btn}>

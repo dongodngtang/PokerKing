@@ -46,5 +46,10 @@ export default class Router {
             sceneKey:'HotNewsList'
         })
     }
+    toRaces(){
+        this.push({
+            sceneKey:'Races'
+        })
+    }
 
 }

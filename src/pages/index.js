@@ -13,6 +13,7 @@ import Detail from './Detail'
 import Register from './Register'
 import Login from './Login'
 import HotNewsList from './HotNewsList'
+import Races from './Races'
 
 
 
@@ -45,6 +46,11 @@ export const scenes = ()=>{
                component={HotNewsList}
                {...TopNav({
                    title:global.lang.t('hot_race')
+               })}/>
+        <Scene key="Races"
+               component={Races}
+               {...TopNav({
+                   title:'OPC'
                })}/>
     </Scene>
 }
