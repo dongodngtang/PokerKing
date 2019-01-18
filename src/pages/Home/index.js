@@ -8,6 +8,7 @@ import UltimateFlatList from '../../components/ultimate/UltimateFlatList';
 import {Metrics} from "../../configs/Theme";
 import Picker from 'react-native-wheel-picker'
 import SelectPiker from "../comm/SelectPiker";
+import HotItem from "./HotItem";
 
 @connect(({Home}) => ({
     ...Home
@@ -46,7 +47,9 @@ export default class Home extends Component {
             <View style={styles.header_view}>
                 <Text style={styles.hot_race_txt}>{global.lang.t('hot_race')}</Text>
                 <View style={{flex: 1}}/>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={()=>{
+                    router.toHotRaceList();
+                }}>
                     <Text style={styles.more_txt}>{global.lang.t('more')}</Text>
                 </TouchableOpacity>
             </View>
@@ -54,17 +57,7 @@ export default class Home extends Component {
     };
     _renderItem = (item, index) => {
         return (
-            <View style={styles.item_view}>
-                <Image style={styles.race_img}
-                       source={{uri: 'https://cdn-upyun.deshpro.com/kk/uploads/banner/64aaf57f7701d04761cedcc4210a7a65.jpg'}}/>
-                <View style={styles.right_view}>
-                    <Text style={styles.race_content_txt} numberOfLines={2}>TPTS中扑免费专属赛，20万奖池门票等你抢！</Text>
-                    <View style={styles.right_bottom_view}>
-                        <Text style={[styles.bottom_txt, {marginRight: 10}]}>#中扑网</Text>
-                        <Text style={styles.bottom_txt}>04-21</Text>
-                    </View>
-                </View>
-            </View>
+            <HotItem item={item}/>
         )
     };
 

@@ -41,5 +41,10 @@ export default class Router {
             sceneKey:'Login'
         })
     }
+    toHotRaceList(){
+        this.push({
+            sceneKey:'HotRaceList'
+        })
+    }
 
 }

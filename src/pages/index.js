@@ -12,6 +12,7 @@ import Home from './Home'
 import Detail from './Detail'
 import Register from './Register'
 import Login from './Login'
+import HotRaceList from './HotRaceList'
 
 
 
@@ -39,6 +40,11 @@ export const scenes = ()=>{
                component={Login}
                {...TopNav({
                    title:'Pokerkinglive'
+               })}/>
+        <Scene key="HotRaceList"
+               component={HotRaceList}
+               {...TopNav({
+                   title:global.lang.t('hot_race')
                })}/>
     </Scene>
 }
