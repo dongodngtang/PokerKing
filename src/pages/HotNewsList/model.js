@@ -1,7 +1,7 @@
 import * as HotRaceListApi from './service';
 
 export default {
-  namespace: 'HotRaceList',
+  namespace: 'HotNewsList',
   state: {
 
   },

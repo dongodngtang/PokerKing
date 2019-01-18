@@ -43,7 +43,7 @@ export default class Router {
     }
     toHotRaceList(){
         this.push({
-            sceneKey:'HotRaceList'
+            sceneKey:'HotNewsList'
         })
     }
 

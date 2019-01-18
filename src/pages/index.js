@@ -12,7 +12,7 @@ import Home from './Home'
 import Detail from './Detail'
 import Register from './Register'
 import Login from './Login'
-import HotRaceList from './HotRaceList'
+import HotNewsList from './HotNewsList'
 
 
 
@@ -41,8 +41,8 @@ export const scenes = ()=>{
                {...TopNav({
                    title:'Pokerkinglive'
                })}/>
-        <Scene key="HotRaceList"
-               component={HotRaceList}
+        <Scene key="HotNewsList"
+               component={HotNewsList}
                {...TopNav({
                    title:global.lang.t('hot_race')
                })}/>

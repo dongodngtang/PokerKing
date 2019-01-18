@@ -5,10 +5,10 @@ import UltimateFlatList from '../../components/ultimate/UltimateFlatList';
 import {Metrics} from "../../configs/Theme";
 import HotItem from '../Home/HotItem';
 
-@connect(({HotRaceList}) => ({
-  ...HotRaceList,
+@connect(({HotNewsList}) => ({
+  ...HotNewsList,
 }))
-export default class HotRaceList extends Component {
+export default class HotNewsList extends Component {
   
 
   componentDidMount(){
