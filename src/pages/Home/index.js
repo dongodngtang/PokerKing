@@ -5,7 +5,7 @@ import {logMsg} from "../../utils/utils";
 import MainBanner from './MainBanner';
 import styles from './index.style';
 import UltimateFlatList from '../../components/ultimate/UltimateFlatList';
-import {Metrics} from "../../configs/Theme";
+import {Images, Metrics, Styles} from "../../configs/Theme";
 import Picker from 'react-native-wheel-picker'
 import SelectPiker from "../comm/SelectPiker";
 import HotItem from "./HotItem";
@@ -24,6 +24,9 @@ export default class Home extends Component {
         props.navigation.setParams({
             onRight:()=>{
                 this.selectPiker && this.selectPiker.toggle()
+            },
+            onLeft:()=>{
+
             }
         })
     }

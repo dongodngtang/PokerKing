@@ -23,8 +23,10 @@ export const scenes = () => {
                component={Home}
                {...TopNav({
                    title: global.lang.t('app_name'),
-                   hideLeft: true,
-                   rightTitle: global.lang.t('home_language')
+                   rightTitle: global.lang.t('home_language'),
+                   left_definition:true,
+                   left_img:Images.homepage_side,
+                   img_size:{height: 16, width: 20},
                })}/>
 
         <Scene key="Detail"
@@ -42,6 +44,7 @@ export const scenes = () => {
                {...TopNav({
                    left_definition:true,
                    left_img:Images.close,
+                   img_size:{height: 16, width: 16},
                    title: 'Pokerkinglive'
                })}/>
         <Scene key="HotNewsList"
@@ -68,12 +71,12 @@ const TopNav = (props) => {
 export class NavBar extends PureComponent {
 
     left_img=()=>{
-        const {left_definition,left_img,hideLeft} = this.props;
+        const {left_definition,left_img,hideLeft,img_size} = this.props;
         if(hideLeft){
             return null;
         }else if(left_definition){
             return <Image
-                style={{height: 16, width: 16}}
+                style={img_size}
                 source={left_img}
             />
         }else {
@@ -85,7 +88,7 @@ export class NavBar extends PureComponent {
     }
 
     render() {
-        const {left_definition,left_img,component, title, rightTitle, onLeft, hideLeft} = this.props;
+        const {component, title, rightTitle, onLeft, hideLeft} = this.props;
 
         let pageMsg = `在page/index查找${component && component.displayName}`;
         return <View style={Styles.navTop}>
