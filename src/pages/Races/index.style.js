@@ -83,6 +83,19 @@ export default StyleSheet.create({
         width: 23,
         height: 23,
         marginLeft: 20
+    },
+    select_top_view:{
+        backgroundColor:'white',
+        flexDirection:'row',
+        alignItems:'center',
+        paddingTop:8,
+        paddingBottom:8
+    },
+    select_top_txt:{
+        fontSize: 18,
+        color: '#444444',
+        marginLeft: 28,
+        fontWeight:'bold'
     }
 })
 

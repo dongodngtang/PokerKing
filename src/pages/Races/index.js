@@ -5,6 +5,7 @@ import styles from './index.style';
 import {Images, Styles} from "../../configs/Theme";
 import Carousel from 'react-native-snap-carousel';
 import {Metrics} from "../../configs/Theme";
+import RaceModal from './RaceModal';
 
 @connect(({Races}) => ({
     ...Races,
@@ -31,7 +32,10 @@ export default class Races extends Component {
 
                 </TouchableOpacity>
                 <TouchableOpacity
-                    style={Styles.navTitle}>
+                    style={Styles.navTitle}
+                    onPress={() => {
+                        this.raceModal && this.raceModal.toggle();
+                    }}>
                     <Text
                         style={{fontSize: 18, color: '#FFE9AD'}}>OPC</Text>
 
@@ -57,7 +61,7 @@ export default class Races extends Component {
                 </View>
             </View>
         );
-    }
+    };
 
     render() {
         return (
@@ -69,7 +73,7 @@ export default class Races extends Component {
                         ref={(c) => {
                             this._carousel = c
                         }}
-                        data={[1, 2, 3,4,5,6]}
+                        data={[1, 2, 3, 4, 5, 6]}
                         renderItem={this._renderItem}
                         sliderWidth={Metrics.screenWidth}
                         itemWidth={Metrics.screenWidth - 80}
@@ -90,6 +94,8 @@ export default class Races extends Component {
 
 
                     })}
+
+                <RaceModal ref={ref => this.raceModal = ref}/>
             </View>
         )
     }
