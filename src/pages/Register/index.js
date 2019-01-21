@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {View, Text, Button, KeyboardAvoidingView, TextInput, TouchableOpacity} from 'react-native';
+import {View, Text, Button, KeyboardAvoidingView, TextInput, TouchableOpacity,Image} from 'react-native';
 import {connect} from 'react-redux';
 import styles from "../Login/index.style";
+import {Images} from "../../configs/Theme";
 
 
 @connect(({Register}) => ({
@@ -51,13 +52,12 @@ export default class Register extends Component {
                                     email: txt
                                 })
                             }}
-
                         />
 
                     </View>
 
                     <View style={[styles.textView,{paddingTop:10,paddingBottom:10}]}>
-                        <TouchableOpacity style={{width:'100%'}}>
+                        <TouchableOpacity style={{width:'100%',flexDirection:'row',alignItems:'center'}}>
                             <Text style={{
                                 color: this.state.gender === global.lang.t('gender') ? '#CCCCCC' : '#444444',
                                 marginLeft: 8,
@@ -65,6 +65,7 @@ export default class Register extends Component {
                                 fontWeight: 'bold',
                             }}>{global.lang.t('gender')}</Text>
                             <View style={{flex: 1}}/>
+                            <Image style={{width:8,height:16,marginRight:10}} source={Images.is_right}/>
                         </TouchableOpacity>
                     </View>
 
@@ -93,9 +94,9 @@ export default class Register extends Component {
                                     user_name: txt
                                 })
                             }}
-
                         />
-
+                        <View style={{flex: 1}}/>
+                        <Image style={{width:8,height:16,marginRight:10}} source={Images.is_right}/>
                     </View>
                 </KeyboardAvoidingView>
 

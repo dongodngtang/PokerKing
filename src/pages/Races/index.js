@@ -27,7 +27,7 @@ export default class Races extends Component {
                     style={Styles.left}>
                     <Image
                         style={{height: 14, width: 18}}
-                        source={Images.left_back}
+                        source={Images.left}
                     />
 
                 </TouchableOpacity>

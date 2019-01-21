@@ -40,6 +40,7 @@ export const scenes = () => {
         <Scene key="Login"
                component={Login}
                {...TopNav({
+                   left_definition:true,
                    left_img:Images.close,
                    title: 'Pokerkinglive'
                })}/>
@@ -66,8 +67,25 @@ const TopNav = (props) => {
 
 export class NavBar extends PureComponent {
 
+    left_img=()=>{
+        const {left_definition,left_img,hideLeft} = this.props;
+        if(hideLeft){
+            return null;
+        }else if(left_definition){
+            return <Image
+                style={{height: 16, width: 16}}
+                source={left_img}
+            />
+        }else {
+            return <Image
+                style={{height: 14, width: 18}}
+                source={Images.left}
+            />
+        }
+    }
+
     render() {
-        const {left_img, component, title, rightTitle, onLeft, hideLeft} = this.props;
+        const {left_definition,left_img,component, title, rightTitle, onLeft, hideLeft} = this.props;
 
         let pageMsg = `在page/index查找${component && component.displayName}`;
         return <View style={Styles.navTop}>
@@ -77,10 +95,7 @@ export class NavBar extends PureComponent {
 
                 }}
                 style={Styles.left}>
-                {hideLeft ? null : <Image
-                    style={{height: 14, width: 18}}
-                    source={isStrNull(left_img) ? left_img : Images.left}
-                />}
+                {this.left_img()}
 
             </TouchableOpacity>
 
