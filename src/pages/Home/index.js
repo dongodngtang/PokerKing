@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, Button, TouchableOpacity, Image, ScrollView} from 'react-native';
+import {View, Text, Button, TouchableOpacity, Image, ScrollView,ImageBackground} from 'react-native';
 import {connect} from 'react-redux';
 import {logMsg} from "../../utils/utils";
 import MainBanner from './MainBanner';
@@ -88,9 +88,10 @@ export default class Home extends Component {
                         <Text style={styles.active_txt}>{global.lang.t('cash_table')}</Text>
                     </TouchableOpacity>
                 </View>
-                <View style={styles.middle_view}>
-
-                </View>
+                <ImageBackground style={styles.middle_view} source={Images.other_more}>
+                    <Text style={styles.into_poker_txt}>{global.lang.t('into_poker')}</Text>
+                    <Text style={styles.found_beauti_txt}>{global.lang.t('found_beauti')}</Text>
+                </ImageBackground>
 
                 <View style={styles.hot_race_view}>
                     <UltimateFlatList

@@ -81,6 +81,19 @@ export default StyleSheet.create({
     bottom_txt:{
         color:"#AAAAAA",
         fontSize:12
+    },
+    into_poker_txt:{
+        color:"#212223",
+        fontSize:20,
+        fontWeight:'bold',
+        marginTop:18,
+        marginLeft:18
+    },
+    found_beauti_txt:{
+        color:"#CCCCCC",
+        fontSize:14,
+        marginTop:2,
+        marginLeft:18
     }
 
 

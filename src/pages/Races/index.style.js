@@ -23,7 +23,8 @@ export default StyleSheet.create({
         flex: 1,
         flexDirection:'row',
         alignItems: 'center',
-        flexWrap:'nowrap'
+        alignSelf: 'center',
+        justifyContent:'center'
     },
     race_view:{
         flex:1,
