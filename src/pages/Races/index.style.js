@@ -10,7 +10,8 @@ export default StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent:'space-between',
-        paddingTop: Metrics.statusBarHeight
+        paddingTop: Metrics.statusBarHeight,
+        zIndex:999
     },
     left: {
         flex: 1,

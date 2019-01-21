@@ -4,54 +4,55 @@
  *功能：
  */
 
-import React, { PureComponent } from 'react'
-import {View,TouchableOpacity,Text,Image} from 'react-native'
-import { Scene, Stack, Tabs } from 'react-native-router-flux'
-import { Images, Styles, Colors } from '../configs/Theme'
+import React, {PureComponent} from 'react'
+import {View, TouchableOpacity, Text, Image} from 'react-native'
+import {Scene, Stack, Tabs} from 'react-native-router-flux'
+import {Images, Styles, Colors} from '../configs/Theme'
 import Home from './Home'
 import Detail from './Detail'
 import Register from './Register'
 import Login from './Login'
 import HotNewsList from './HotNewsList'
 import Races from './Races'
+import {isStrNull} from "../utils/utils";
 
 
-
-export const scenes = ()=>{
-    return  <Scene key="root">
+export const scenes = () => {
+    return <Scene key="root">
         <Scene key="Home"
                component={Home}
                {...TopNav({
-                   title:global.lang.t('app_name'),
-                   hideLeft:true,
-                   rightTitle:global.lang.t('home_language')
+                   title: global.lang.t('app_name'),
+                   hideLeft: true,
+                   rightTitle: global.lang.t('home_language')
                })}/>
 
         <Scene key="Detail"
                component={Detail}
                {...TopNav({
-                   title:'详情'
+                   title: '详情'
                })}/>
         <Scene key="Register"
                component={Register}
                {...TopNav({
-                   title:'编辑资料'
+                   title: '编辑资料'
                })}/>
         <Scene key="Login"
                component={Login}
                {...TopNav({
-                   title:'Pokerkinglive'
+                   left_img:Images.close,
+                   title: 'Pokerkinglive'
                })}/>
         <Scene key="HotNewsList"
                component={HotNewsList}
                {...TopNav({
-                   title:global.lang.t('hot_race')
+                   title: global.lang.t('hot_race')
                })}/>
         <Scene key="Races"
                component={Races}
                hideNavBar
                {...TopNav({
-                   title:'OPC'
+                   title: 'OPC'
                })}/>
     </Scene>
 }
@@ -66,7 +67,7 @@ const TopNav = (props) => {
 export class NavBar extends PureComponent {
 
     render() {
-        const { component, title, rightTitle, onLeft,hideLeft } = this.props;
+        const {left_img, component, title, rightTitle, onLeft, hideLeft} = this.props;
 
         let pageMsg = `在page/index查找${component && component.displayName}`;
         return <View style={Styles.navTop}>
@@ -77,9 +78,9 @@ export class NavBar extends PureComponent {
                 }}
                 style={Styles.left}>
                 {hideLeft ? null : <Image
-                    style={{ height: 14, width: 18 }}
-                    source={Images.left_back}
-                     />}
+                    style={{height: 14, width: 18}}
+                    source={isStrNull(left_img) ? left_img : Images.left}
+                />}
 
             </TouchableOpacity>
 
@@ -90,7 +91,7 @@ export class NavBar extends PureComponent {
                 }}
                 style={Styles.navTitle}>
                 <Text
-                    style={{ fontSize: 18,color:'#FFE9AD' }}>{title}</Text>
+                    style={{fontSize: 18, color: '#FFE9AD'}}>{title}</Text>
 
             </TouchableOpacity>
 
@@ -100,7 +101,7 @@ export class NavBar extends PureComponent {
                 }}
                 style={Styles.right}>
                 {rightTitle ? <Text
-                    style={{ fontSize: 14, color:'#FFE9AD' }}>{rightTitle}</Text> : null}
+                    style={{fontSize: 14, color: '#FFE9AD'}}>{rightTitle}</Text> : null}
 
             </TouchableOpacity>
 

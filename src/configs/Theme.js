@@ -51,7 +51,24 @@ export const Metrics = {
 export const Images = {
     left_back: require('../asserts/left_back.jpg'),
     is_right: require('../asserts/races/is>.png'),
-    gray_feed: require('../asserts/races/gray_feed.png')
+    gray_feed: require('../asserts/races/gray_feed.png'),
+    bottom: require('../asserts/home/bottom.png'),
+    close: require('../asserts/home/close.png'),
+    feiji: require('../asserts/home/feiji.png'),
+    homepage_side: require('../asserts/home/homepage_side.png'),
+    is_bottom: require('../asserts/home/is_bottom.png'),
+    is_right2: require('../asserts/home/is_right.png'),
+    is_top: require('../asserts/home/is_top.png'),
+    left: require('../asserts/home/left.png'),
+    rili: require('../asserts/home/rili.png'),
+    rili_gray: require('../asserts/home/rili_gray.png'),
+    top: require('../asserts/home/top.png'),
+    wenti: require('../asserts/home/wenti.png'),
+    xiugaiziliao: require('../asserts/home/xiugaiziliao.png'),
+    yduigantanhaoshixin: require('../asserts/home/yduigantanhaoshixin.png'),
+    yijian: require('../asserts/home/yijian.png'),
+    zixun: require('../asserts/home/zixun.png'),
+    ziyuan: require('../asserts/home/ziyuan.png')
 
 }
 
