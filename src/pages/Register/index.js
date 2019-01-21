@@ -65,7 +65,7 @@ export default class Register extends Component {
                                 fontWeight: 'bold',
                             }}>{global.lang.t('gender')}</Text>
                             <View style={{flex: 1}}/>
-                            <Image style={{width:8,height:16,marginRight:10}} source={Images.is_right}/>
+                            <Image style={{width:6,height:16,marginRight:10}} source={Images.is_right}/>
                         </TouchableOpacity>
                     </View>
 
@@ -96,7 +96,7 @@ export default class Register extends Component {
                             }}
                         />
                         <View style={{flex: 1}}/>
-                        <Image style={{width:8,height:16,marginRight:10}} source={Images.is_right}/>
+                        <Image style={{width:6,height:16,marginRight:10}} source={Images.is_right}/>
                     </View>
                 </KeyboardAvoidingView>
 

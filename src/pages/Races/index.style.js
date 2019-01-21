@@ -13,7 +13,7 @@ export default StyleSheet.create({
         paddingTop: Metrics.statusBarHeight,
         zIndex:999
     },
-    left: {
+    left2: {
         flex: 1,
         height: 44,
         marginLeft:17,
@@ -22,7 +22,8 @@ export default StyleSheet.create({
     navTitle: {
         flex: 1,
         flexDirection:'row',
-        alignItems: 'center'
+        alignItems: 'center',
+        flexWrap:'nowrap'
     },
     race_view:{
         flex:1,
@@ -69,8 +70,8 @@ export default StyleSheet.create({
         marginLeft: 30
     },
     personalImg:{
-        width: Metrics.reallySize(8),
-        height: Metrics.reallySize(15),
+        width: Metrics.reallySize(6),
+        height: Metrics.reallySize(16),
         marginRight: 18
     },
     item_view: {

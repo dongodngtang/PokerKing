@@ -52,8 +52,10 @@ export default class Home extends Component {
                 <View style={{flex: 1}}/>
                 <TouchableOpacity onPress={()=>{
                     router.toHotRaceList();
-                }}>
+                }}
+                style={{flexDirection:'row',alignItems:'center'}}>
                     <Text style={styles.more_txt}>{global.lang.t('more')}</Text>
+                    <Image style={{width:6,height:12,marginLeft:8}} source={Images.is_right}/>
                 </TouchableOpacity>
             </View>
         )

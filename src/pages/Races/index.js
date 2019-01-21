@@ -12,6 +12,9 @@ import RaceModal from './RaceModal';
 }))
 export default class Races extends Component {
 
+    state = {
+        list_show: false
+    }
 
     componentDidMount() {
 
@@ -24,7 +27,7 @@ export default class Races extends Component {
                     onPress={() => {
                         router.pop()
                     }}
-                    style={Styles.left}>
+                    style={styles.left2}>
                     <Image
                         style={{height: 14, width: 18}}
                         source={Images.left}
@@ -32,15 +35,16 @@ export default class Races extends Component {
 
                 </TouchableOpacity>
                 <TouchableOpacity
-                    style={Styles.navTitle}
+                    style={styles.navTitle}
                     onPress={() => {
                         this.raceModal && this.raceModal.toggle();
                     }}>
                     <Text
                         style={{fontSize: 18, color: '#FFE9AD'}}>OPC</Text>
-
+                    <Image style={{width: 12, height: 6, marginLeft: 10}}
+                           source={this.state.list_show ? Images.top : Images.bottom}/>
                 </TouchableOpacity>
-                <View style={{flex: 1}}/>
+                <View style={{flex:1}}/>
             </View>
         )
     };
@@ -79,17 +83,17 @@ export default class Races extends Component {
                         itemWidth={Metrics.screenWidth - 80}
                     />
                 </View>
-                {this._item(styles.item_view, Images.gray_feed, styles.img_dy,
+                {this._item(styles.item_view, Images.rili_gray, styles.img_dy,
                     'OPC2019赛程表', () => {
 
 
                     })}
-                {this._item(styles.item_view, Images.gray_feed, styles.img_dy,
+                {this._item(styles.item_view, Images.zixun, styles.img_dy,
                     global.lang.t('race_message'), () => {
 
 
                     })}
-                {this._item(styles.item_view, Images.gray_feed, styles.img_dy,
+                {this._item(styles.item_view, Images.ziyuan, styles.img_dy,
                     global.lang.t('race_news'), () => {
 
 

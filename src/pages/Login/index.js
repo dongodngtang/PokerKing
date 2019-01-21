@@ -38,7 +38,7 @@ export default class Login extends Component {
                         {`中国（China） (+${this.state.ext})`}
                     </Text>
                     <View style={{flex: 1}}/>
-                    <Image style={{width:8,height:16,marginRight:10}} source={Images.is_right}/>
+                    <Image style={{width:6,height:16,marginRight:10}} source={Images.is_right}/>
 
                 </TouchableOpacity>
                 <KeyboardAvoidingView behavior='position' keyboardVerticalOffset={20}>
