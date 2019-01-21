@@ -43,13 +43,15 @@ export const Metrics = {
     screenWidth: width,
     navBarHeight: navBarHeight,
     statusBarHeight: STATUSBAR_HEIGHT,
-    PartHeight:PartHeight,
-    tabBarHeight:tabBarHeight
+    PartHeight: PartHeight,
+    tabBarHeight: tabBarHeight
 
 }
 
 export const Images = {
- left_back:require('../asserts/left_back.jpg')
+    left_back: require('../asserts/left_back.jpg'),
+    is_right: require('../asserts/races/is>.png'),
+    gray_feed: require('../asserts/races/gray_feed.png')
 
 }
 
@@ -98,27 +100,27 @@ export const Styles = {
         backgroundColor: '#13151C',
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent:'space-between',
+        justifyContent: 'space-between',
         paddingTop: Metrics.statusBarHeight
     },
     left: {
         flex: 1,
         height: 44,
-        marginLeft:17,
+        marginLeft: 17,
         justifyContent: 'center'
     },
     navTitle: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        alignSelf:'center'
+        alignSelf: 'center'
     },
-    right:{
+    right: {
         flex: 1,
-        flexDirection:'row',
-        flexWrap:'nowrap',
+        flexDirection: 'row',
+        flexWrap: 'nowrap',
         height: 44,
-        marginRight:17,
+        marginRight: 17,
         justifyContent: 'flex-end',
         alignItems: 'center'
     }

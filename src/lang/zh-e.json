@@ -22,5 +22,13 @@
   "last_refresh": "最後刷新",
   "hot_race":"熱門資訊",
   "more":"更多",
-  "cancel":"取消"
+  "cancel":"取消",
+  "race_time":"距離開賽還有",
+  "day":"天",
+  "time":"時",
+  "minute":"分",
+  "second":"秒",
+  "race_schedule":"賽程表",
+  "race_message":"賽事信息",
+  "race_news":"賽事新聞"
 }

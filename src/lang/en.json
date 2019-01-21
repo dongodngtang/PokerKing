@@ -22,5 +22,13 @@
   "last_refresh": "Last refresh",
   "hot_race":"Popular information",
   "more":"More",
-  "cancel":"Cancel"
+  "cancel":"Cancel",
+  "race_time":"There is also a kickoff",
+  "day":"day",
+  "time":"time",
+  "minute":"minute",
+  "second":"second",
+  "race_schedule":"race schedule",
+  "race_message":"Event information",
+  "race_news":"Event news"
 }

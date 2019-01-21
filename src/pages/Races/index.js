@@ -3,6 +3,8 @@ import {View, Text, TouchableOpacity, Image} from 'react-native';
 import {connect} from 'react-redux';
 import styles from './index.style';
 import {Images, Styles} from "../../configs/Theme";
+import Carousel from 'react-native-snap-carousel';
+import {Metrics} from "../../configs/Theme";
 
 @connect(({Races}) => ({
     ...Races,
@@ -14,8 +16,8 @@ export default class Races extends Component {
 
     }
 
-    topBar=()=>{
-        return(
+    topBar = () => {
+        return (
             <View style={styles.navTop}>
                 <TouchableOpacity
                     onPress={() => {
@@ -37,14 +39,71 @@ export default class Races extends Component {
                 <View style={{flex: 1}}/>
             </View>
         )
+    };
+
+    _renderItem = ({item, index}) => {
+        return (
+            <View style={styles.slide_view}>
+                <View style={styles.slide_top_view}>
+                    <Text style={styles.race_time_txt}>{global.lang.t('race_time')}</Text>
+                    <Text style={styles.race_time_txt}>99天02时23分34秒</Text>
+                </View>
+                <Image
+                    style={styles.slide_img}
+                    source={{uri: "https://cdn-upyun.deshpro.com/kk/uploads/banner/64aaf57f7701d04761cedcc4210a7a65.jpg"}}/>
+                <View style={styles.slide_top_view}>
+                    <Text style={styles.race_time_txt2}>OPC2019</Text>
+                    <Text style={styles.race_time_txt}>2019年3月23日</Text>
+                </View>
+            </View>
+        );
     }
 
     render() {
         return (
-            <View>
+            <View style={styles.race_view}>
                 {this.topBar()}
-                <Text>Races</Text>
+                <View style={styles.carousel_view}>
+                    <Carousel
+                        layout={'default'}
+                        ref={(c) => {
+                            this._carousel = c
+                        }}
+                        data={[1, 2, 3,4,5,6]}
+                        renderItem={this._renderItem}
+                        sliderWidth={Metrics.screenWidth}
+                        itemWidth={Metrics.screenWidth - 80}
+                    />
+                </View>
+                {this._item(styles.item_view, Images.gray_feed, styles.img_dy,
+                    'OPC2019赛程表', () => {
+
+
+                    })}
+                {this._item(styles.item_view, Images.gray_feed, styles.img_dy,
+                    global.lang.t('race_message'), () => {
+
+
+                    })}
+                {this._item(styles.item_view, Images.gray_feed, styles.img_dy,
+                    global.lang.t('race_news'), () => {
+
+
+                    })}
             </View>
         )
     }
+
+    _item = (itemStyle, img, imgStyle, title, onPress) => {
+        const {profile} = this.props;
+        return <TouchableOpacity
+            activeOpacity={1}
+            style={itemStyle} onPress={onPress}>
+            <Image style={imgStyle} source={img}/>
+            <Text style={styles.personalText}>{title}</Text>
+            <View style={{flex: 1}}/>
+
+            <Image style={styles.personalImg} source={Images.is_right}/>
+        </TouchableOpacity>
+    };
 }
