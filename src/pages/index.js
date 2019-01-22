@@ -7,14 +7,15 @@
 import React, {PureComponent} from 'react'
 import {View, TouchableOpacity, Text, Image} from 'react-native'
 import {Scene, Stack, Tabs} from 'react-native-router-flux'
-import {Images, Styles, Colors} from '../configs/Theme'
+import {Images, Styles, Colors} from '../configs/Theme';
+import {isStrNull} from "../utils/utils";
 import Home from './Home'
 import Detail from './Detail'
 import Register from './Register'
 import Login from './Login'
 import HotNewsList from './HotNewsList'
-import Races from './Races'
-import {isStrNull} from "../utils/utils";
+import Races from './Races';
+import RaceNew from './RaceNew';
 
 
 export const scenes = () => {
@@ -59,8 +60,7 @@ export const scenes = () => {
                    title: 'OPC'
                })}/>
         <Scene key="RaceNew"
-               component={Races}
-               hideNavBar
+               component={RaceNew}
                {...TopNav({
                    title:  global.lang.t('race_news')
                })}/>

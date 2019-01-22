@@ -1,8 +1,9 @@
 
 import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
-    home_view:{
-        flex:1
+    raceNew_view:{
+        flex:1,
+        backgroundColor:'#ECECEE'
     },
 })
 

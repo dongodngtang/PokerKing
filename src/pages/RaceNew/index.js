@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View,Text,ScrollView } from 'react-native';
 import { connect } from 'react-redux';
-import styles from "../Home/index.style";
+import styles from "./index.style";
 import UltimateFlatList from '../../components/ultimate/UltimateFlatList';
 import {Metrics} from "../../configs/Theme";
 import HotItem from '../Home/HotItem'
@@ -24,8 +24,9 @@ export default class RaceNew extends Component {
 
   render() {
     return (
-        <View style={styles.home_view}>
+        <View style={styles.raceNew_view}>
             <UltimateFlatList
+                style={{backgroundColor:'white'}}
                 firstLoader={true}
                 ref={(ref) => this.listView = ref}
                 onFetch={this.onFetch}
