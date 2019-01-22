@@ -61,4 +61,10 @@ export default class Router {
         })
     }
 
+    toRaceSchedule() {
+        this.push({
+            sceneKey: 'RaceSchedule'
+        })
+    }
+
 }

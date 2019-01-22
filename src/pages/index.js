@@ -16,6 +16,7 @@ import Login from './Login'
 import HotNewsList from './HotNewsList'
 import Races from './Races';
 import RaceNew from './RaceNew';
+import RaceSchedule from './RaceSchedule';
 
 
 export const scenes = () => {
@@ -63,6 +64,11 @@ export const scenes = () => {
                component={RaceNew}
                {...TopNav({
                    title:  global.lang.t('race_news')
+               })}/>
+        <Scene key="RaceSchedule"
+               component={RaceSchedule}
+               {...TopNav({
+                   title:  global.lang.t('race_schedule')
                })}/>
     </Scene>
 }

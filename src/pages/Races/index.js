@@ -85,8 +85,7 @@ export default class Races extends Component {
                 </View>
                 {this._item(styles.item_view, Images.rili_gray, styles.img_dy,
                     'OPC2019赛程表', () => {
-
-
+                        router.toRaceSchedule();
                     })}
                 {this._item(styles.item_view, Images.zixun, styles.img_dy,
                     global.lang.t('race_message'), () => {
