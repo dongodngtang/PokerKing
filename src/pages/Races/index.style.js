@@ -10,8 +10,7 @@ export default StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent:'space-between',
-        paddingTop: Metrics.statusBarHeight,
-        zIndex:999
+        paddingTop: Metrics.statusBarHeight
     },
     left2: {
         flex: 1,
@@ -88,7 +87,6 @@ export default StyleSheet.create({
         marginLeft: 20
     },
     select_top_view:{
-        backgroundColor:'white',
         flexDirection:'row',
         alignItems:'center',
         paddingTop:8,
@@ -99,6 +97,19 @@ export default StyleSheet.create({
         color: '#444444',
         marginLeft: 28,
         fontWeight:'bold'
+    },
+    select_item_txt:{
+        fontSize: 14,
+        color: '#ECECEE',
+        marginLeft: 28
+    },
+    select_item_view1:{
+        backgroundColor:"#333436",
+        borderLeftWidth:6,
+        borderLeftColor:"#CF1E34"
+    },
+    select_top_view2:{
+        backgroundColor:"#3F4042"
     }
 })
 
