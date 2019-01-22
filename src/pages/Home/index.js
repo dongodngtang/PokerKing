@@ -79,13 +79,17 @@ export default class Home extends Component {
             <ScrollView style={styles.home_view}>
                 <MainBanner/>
                 <View style={styles.active_type_view}>
-                    <TouchableOpacity style={styles.active_btn} onPress={()=>{
+                    <TouchableOpacity onPress={()=>{
                         router.toRaces();
                     }}>
-                        <Text style={styles.active_txt}>{global.lang.t('race')}</Text>
+                        <ImageBackground source={Images.race_img} style={styles.active_btn}>
+                            <Text style={styles.active_txt}>{global.lang.t('race')}</Text>
+                        </ImageBackground>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.active_btn}>
-                        <Text style={styles.active_txt}>{global.lang.t('cash_table')}</Text>
+                    <TouchableOpacity>
+                        <ImageBackground source={Images.xianjinzhuo} style={styles.active_btn}>
+                            <Text style={styles.active_txt}>{global.lang.t('cash_table')}</Text>
+                        </ImageBackground>
                     </TouchableOpacity>
                 </View>
                 <ImageBackground style={styles.middle_view} source={Images.other_more}>
