@@ -95,8 +95,7 @@ export default class Races extends Component {
                     })}
                 {this._item(styles.item_view, Images.ziyuan, styles.img_dy,
                     global.lang.t('race_news'), () => {
-
-
+                        router.toRaceNew();
                     })}
 
                 <RaceModal ref={ref => this.raceModal = ref}/>

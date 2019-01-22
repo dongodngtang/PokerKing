@@ -58,6 +58,12 @@ export const scenes = () => {
                {...TopNav({
                    title: 'OPC'
                })}/>
+        <Scene key="RaceNew"
+               component={Races}
+               hideNavBar
+               {...TopNav({
+                   title:  global.lang.t('race_news')
+               })}/>
     </Scene>
 }
 const TopNav = (props) => {

@@ -5,6 +5,7 @@
  */
 
 import {Actions} from 'react-native-router-flux';
+
 export default class Router {
     popTo({sceneKey, params}) {
         Actions.popTo(sceneKey, {params})
@@ -19,36 +20,44 @@ export default class Router {
         Actions.pop()
     }
 
-    replace({sceneKey, params}){
-        Actions.replace(sceneKey,params)
+    replace({sceneKey, params}) {
+        Actions.replace(sceneKey, params)
     }
 
 
-    toDetail(){
+    toDetail() {
         this.push({
-            sceneKey:'Detail'
+            sceneKey: 'Detail'
         })
     }
 
-    toRegister(){
+    toRegister() {
         this.push({
-            sceneKey:'Register'
+            sceneKey: 'Register'
         })
     }
 
-    toLogin(){
+    toLogin() {
         this.push({
-            sceneKey:'Login'
+            sceneKey: 'Login'
         })
     }
-    toHotRaceList(){
+
+    toHotRaceList() {
         this.push({
-            sceneKey:'HotNewsList'
+            sceneKey: 'HotNewsList'
         })
     }
-    toRaces(){
+
+    toRaces() {
         this.push({
-            sceneKey:'Races'
+            sceneKey: 'Races'
+        })
+    }
+
+    toRaceNew() {
+        this.push({
+            sceneKey: 'RaceNew'
         })
     }
 
