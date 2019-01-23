@@ -6,7 +6,7 @@
 
 import React, {PureComponent} from 'react'
 import {View, TouchableOpacity, Text, Image} from 'react-native'
-import {Scene, Stack, Tabs} from 'react-native-router-flux'
+import {Scene, Drawer, Actions} from 'react-native-router-flux'
 import {Images, Styles, Colors} from '../configs/Theme';
 import {isStrNull} from "../utils/utils";
 import Home from './Home'
@@ -17,19 +17,28 @@ import HotNewsList from './HotNewsList'
 import Races from './Races';
 import RaceNew from './RaceNew';
 import RaceSchedule from './RaceSchedule';
+import DrawerComp from './Home/Drawer'
 
 
 export const scenes = () => {
     return <Scene key="root">
-        <Scene key="Home"
-               component={Home}
-               {...TopNav({
-                   title: global.lang.t('app_name'),
-                   rightTitle: global.lang.t('home_language'),
-                   left_definition:true,
-                   left_img:Images.homepage_side,
-                   img_size:{height: 16, width: 20},
-               })}/>
+        <Drawer
+            hideNavBar
+            key={'HomeDrawer'}
+                contentComponent={DrawerComp}
+                drawerWidth={200}
+                drawerPosition={'left'}>
+            <Scene key="Home"
+                   component={Home}
+                   {...TopNav({
+                       title: global.lang.t('app_name'),
+                       rightTitle: global.lang.t('home_language'),
+                       left_definition:true,
+                       left_img:Images.homepage_side,
+                       img_size:{height: 16, width: 20},
+                   })}/>
+        </Drawer>
+
 
         <Scene key="Detail"
                component={Detail}

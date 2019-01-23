@@ -9,6 +9,7 @@ import {Images, Metrics, Styles} from "../../configs/Theme";
 import Picker from 'react-native-wheel-picker'
 import SelectPiker from "../comm/SelectPiker";
 import HotItem from "./HotItem";
+import {Actions} from "react-native-router-flux";
 
 @connect(({Home}) => ({
     ...Home
@@ -26,7 +27,7 @@ export default class Home extends Component {
                 this.selectPiker && this.selectPiker.toggle()
             },
             onLeft:()=>{
-
+                Actions.drawerOpen()
             }
         })
     }
