@@ -94,8 +94,43 @@ export default StyleSheet.create({
         fontSize:14,
         marginTop:2,
         marginLeft:18
+    },
+    safe_area_view:{
+        alignSelf:'center',
+        marginTop:78,
+        flexDirection:'column',
+        alignItems:'center'
+    },
+    person_img:{
+        width:70,
+        height:70,
+        borderRadius:35,
+        borderWidth:1,
+        borderColor:"#FFE9AD"
+    },
+    person_txt:{
+        color:"#FFFFFF",
+        fontSize:18,
+        marginTop:12
+    },
+    select_btn:{
+        flexDirection:'row',
+        alignItems:'center',
+        marginBottom:32,
+        marginLeft:30
+    },
+    change_img:{
+        width:22,height:22,
+        marginRight:22
+    },
+    wentis:{
+        width:28,height:28,
+        marginRight:18
+    },
+    safe_area_txt:{
+        color:"#ECECEE",
+        fontSize:14
     }
-
 
 
 })
