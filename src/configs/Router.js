@@ -67,4 +67,19 @@ export default class Router {
         })
     }
 
+    toCashTable() {
+        this.push({
+            sceneKey: 'CashTable'
+        })
+    }
+
+    toQueueProcess(type) {
+        this.push({
+            sceneKey: 'QueueProcess',
+            params: {
+                type
+            }
+        })
+    }
+
 }

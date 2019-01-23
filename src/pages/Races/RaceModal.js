@@ -27,7 +27,8 @@ export default class RaceModal extends Component {
         const {name, select} = item;
 
         return (
-            <TouchableOpacity activeOpacity={1} style={[styles.select_top_view,index === 0 ? styles.select_item_view1 : styles.select_top_view2]}>
+            <TouchableOpacity activeOpacity={1}
+                              style={[styles.select_top_view, index === 0 ? styles.select_item_view1 : styles.select_top_view2]}>
                 <Text style={styles.select_item_txt}>EPT2019</Text>
                 <View style={{flex: 1}}/>
                 <Image style={{width: 6, height: 12, marginRight: 17}} source={Images.is_right}/>
@@ -35,20 +36,13 @@ export default class RaceModal extends Component {
     };
 
     render() {
-        return (
-            <Modal
-                animationType={"none"}
-                transparent={true}
-                onRequestClose={() => {
 
-                }}
-                visible={this.state.visible}
-                style={{alignItems: 'center',zIndex:999}}
-            >
+        return (
+            this.state.visible ? <View
+                style={{alignItems: 'center', zIndex: 999, position: 'absolute', marginTop: Metrics.navBarHeight}}>
 
                 <View style={{
-                    width: Metrics.screenWidth,
-                    marginTop: Metrics.navBarHeight
+                    width: Metrics.screenWidth
                 }}>
 
                     <View style={[styles.select_top_view, {backgroundColor: 'white'}]}>
@@ -62,7 +56,8 @@ export default class RaceModal extends Component {
                         renderItem={this._renderItem}/>
 
                 </View>
-            </Modal>
+            </View> : null
+
         )
     }
 }

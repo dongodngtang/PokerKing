@@ -18,6 +18,8 @@ import Races from './Races';
 import RaceNew from './RaceNew';
 import RaceSchedule from './RaceSchedule';
 import DrawerComp from './Home/Drawer'
+import CashTable from './CashTable';
+import QueueProcess from './QueueProcess';
 
 
 export const scenes = () => {
@@ -79,6 +81,17 @@ export const scenes = () => {
                {...TopNav({
                    title:  global.lang.t('race_schedule')
                })}/>
+        <Scene key="CashTable"
+               component={CashTable}
+               {...TopNav({
+                   title:  global.lang.t('cash_table')
+               })}/>
+        <Scene key="QueueProcess"
+               component={QueueProcess}
+               {...TopNav({
+
+               })}/>
+
     </Scene>
 }
 const TopNav = (props) => {
