@@ -39,5 +39,11 @@
   "common_problem":"常见问题",
   "feedback":"意见反馈",
   "recommend":"推荐给朋友",
-  "race_price":"参赛金"
+  "race_price":"参赛金",
+  "race_people":"参赛人数",
+  "start_registration":"开始登记",
+  "end_registration":"结束登记",
+  "end_distance":"距离结束还有",
+  "type":"类型",
+  "starting_chip":"起始筹码"
 }

@@ -39,5 +39,11 @@
   "common_problem":"Common problem",
   "feedback":"Feedback",
   "recommend":"Recommend to friends",
-  "race_price":"Entry fee"
+  "race_price":"Entry fee",
+  "race_people":"Number of participants",
+  "start_registration":"Start registration",
+  "end_registration":"End registration",
+  "end_distance":"At the end of the distance",
+  "type":"Type",
+  "starting_chip":"Starting chip"
 }

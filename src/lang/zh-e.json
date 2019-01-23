@@ -39,5 +39,11 @@
   "common_problem":"常見問題",
   "feedback":"意見反饋",
   "recommend":"推薦給朋友",
-  "race_price":"參賽金"
+  "race_price":"參賽金",
+  "race_people":"參賽人數",
+  "start_registration":"開始登記",
+  "end_registration":"結束登記",
+  "end_distance":"距離結束還有",
+  "type":"類型",
+  "starting_chip":"起始籌碼"
 }

@@ -1,5 +1,7 @@
 
 import { StyleSheet } from 'react-native';
+import {Metrics} from "../../configs/Theme";
+
 export default StyleSheet.create({
     schedule_view:{
         flex:1,
@@ -32,7 +34,8 @@ export default StyleSheet.create({
     },
     top_txt1:{
         color:"#444444",
-        fontSize:14
+        fontSize:14,
+        fontWeight:'bold'
     },
     schedule_middle_view:{
         flexDirection:'row',
@@ -50,6 +53,38 @@ export default StyleSheet.create({
     race_price:{
         color:"#444444",
         fontSize:12
+    },
+    selected_view:{
+        backgroundColor:"#ECECEE",
+        paddingTop:10,
+        paddingBottom:14,
+        paddingLeft:18,
+        paddingRight:18
+    },
+    line:{
+        backgroundColor:"#CCCCCC",
+        height:1,
+        width:Metrics.screenWidth - 36,
+        marginTop:10,
+        marginBottom:12
+    },
+    selected_middle_view:{
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'space-between'
+    },
+    selected_bottom_view:{
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'space-between'
+    },
+    cloumn_view:{
+        flexDirection:'column'
+    },
+    top_txt2:{
+        color:"#888888",
+        fontSize:14,
+        marginTop:4
     }
 
 })
