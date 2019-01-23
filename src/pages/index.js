@@ -18,6 +18,7 @@ import Races from './Races';
 import RaceNew from './RaceNew';
 import RaceSchedule from './RaceSchedule';
 import CashTable from './CashTable';
+import QueueProcess from './QueueProcess';
 
 
 export const scenes = () => {
@@ -75,6 +76,11 @@ export const scenes = () => {
                component={CashTable}
                {...TopNav({
                    title:  global.lang.t('cash_table')
+               })}/>
+        <Scene key="QueueProcess"
+               component={QueueProcess}
+               {...TopNav({
+
                })}/>
 
     </Scene>

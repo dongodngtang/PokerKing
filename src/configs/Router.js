@@ -73,4 +73,13 @@ export default class Router {
         })
     }
 
+    toQueueProcess(type) {
+        this.push({
+            sceneKey: 'QueueProcess',
+            params: {
+                type
+            }
+        })
+    }
+
 }

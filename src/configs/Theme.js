@@ -123,19 +123,16 @@ export const Styles = {
         paddingTop: Metrics.statusBarHeight
     },
     left: {
-        flex: 1,
         height: 44,
         marginLeft: 17,
         justifyContent: 'center'
     },
     navTitle: {
-        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         alignSelf: 'center'
     },
     right: {
-        flex: 1,
         flexDirection: 'row',
         flexWrap: 'nowrap',
         height: 44,
