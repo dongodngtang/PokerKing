@@ -20,6 +20,12 @@ export default class Races extends Component {
 
     }
 
+    change_list_show = () => {
+        this.setState({
+            list_show: !this.state.list_show
+        })
+    };
+
     topBar = () => {
         return (
             <View style={styles.navTop}>
@@ -38,13 +44,14 @@ export default class Races extends Component {
                     style={styles.navTitle}
                     onPress={() => {
                         this.raceModal && this.raceModal.toggle();
+                        this.change_list_show();
                     }}>
                     <Text
                         style={{fontSize: 18, color: '#FFE9AD'}}>OPC</Text>
                     <Image style={{width: 12, height: 6, marginLeft: 10}}
                            source={this.state.list_show ? Images.top : Images.bottom}/>
                 </TouchableOpacity>
-                <View style={{flex:1}}/>
+                <View style={{flex: 1}}/>
             </View>
         )
     };
