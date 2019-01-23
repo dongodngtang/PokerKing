@@ -5,7 +5,7 @@
  */
 
 import React, {PureComponent} from 'react'
-import {View, TouchableOpacity, Text, Image} from 'react-native'
+import {View, TouchableOpacity, Text, Image, StatusBar} from 'react-native'
 import {Scene, Drawer, Actions} from 'react-native-router-flux'
 import {Images, Styles, Colors} from '../configs/Theme';
 import {isStrNull} from "../utils/utils";
@@ -126,6 +126,7 @@ export class NavBar extends PureComponent {
 
         let pageMsg = `在page/index查找${component && component.displayName}`;
         return <View style={Styles.navTop}>
+            <StatusBar barStyle={'light-content'}/>
             <TouchableOpacity
                 onPress={() => {
                     onLeft ? onLeft() : router.pop()
