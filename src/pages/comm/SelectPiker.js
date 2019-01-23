@@ -1,8 +1,5 @@
 import React, {Component} from 'react';
 import {View, Text, Button, TouchableOpacity, Image, Modal} from 'react-native';
-import {connect} from 'react-redux';
-import {logMsg} from "../../utils/utils";
-import UltimateFlatList from '../../components/ultimate/UltimateFlatList';
 import {Metrics} from "../../configs/Theme";
 import Picker from 'react-native-wheel-picker'
 
@@ -35,7 +32,6 @@ export default class SelectPiker extends Component {
             >
                 <View style={{
                     width: Metrics.screenWidth,
-                    height: 200,
                     backgroundColor: 'white',
                     borderWidth: 1,
                     borderColor: "#AAAAAA",
@@ -73,7 +69,7 @@ export default class SelectPiker extends Component {
                     </View>
                     <Picker style={{width: Metrics.screenWidth}}
                             selectedValue={this.props.selectedItem}
-                            itemStyle={{color: "#444444", fontSize: 17}}
+                            itemStyle={{color: "#444444", fontSize: 24,borderWidth:0}}
                             onValueChange={(index) => {
                                 this.props.onPickerSelect(index);
                                 this.setState({
@@ -81,10 +77,11 @@ export default class SelectPiker extends Component {
                                 })
                             }}>
                         {this.props.itemList.map((value, i) => (
-                            <PickerItem label={value} value={i} key={value}/>
+                            <PickerItem label={value} value={i} key={value}
+                                        color={i === this.state.index ? "#444444" : "#888888"}/>
                         ))}
                     </Picker>
-                    <View style={{height: 10}}/>
+                    <View style={{height: 20}}/>
                 </View>
             </Modal>
 

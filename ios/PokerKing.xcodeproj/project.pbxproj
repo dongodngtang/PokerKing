@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -22,6 +23,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		2546F88C5186431DB59E689B /* libRCTJCoreModule.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 63C5A782AB39498DB123EB26 /* libRCTJCoreModule.a */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -35,21 +37,20 @@
 		2D16E6881FA4F8E400B85C8A /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D16E6891FA4F8E400B85C8A /* libReact.a */; };
 		2DCD954D1E0B4F2C00145EB5 /* PokerKingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* PokerKingTests.m */; };
 		2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
-		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
-		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
-		2546F88C5186431DB59E689B /* libRCTJCoreModule.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 63C5A782AB39498DB123EB26 /* libRCTJCoreModule.a */; };
+		3CFDFBFD05594D0B9CBCAF6E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE989FA02A043A18EFAD37B /* Foundation.framework */; };
 		47A9862400264FB9813F2DEC /* libRCTJShareModule.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEB3ED3E48F54CA0B75E55B8 /* libRCTJShareModule.a */; };
-		C88CCF8C6F07487E86394969 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C3CAD069E19B4329A63DA379 /* libz.tbd */; };
-		B5D4BC01D8B74AC9B202D64B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 064B7F0AF69940C29307FE42 /* CoreTelephony.framework */; };
-		ACFEB32A6CFA4F998B77A45E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59844ED279484EB6AC65B35B /* Security.framework */; };
 		47D54EBEE4304D26A7BF77EA /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A97BEA194545D08EEB3BB8 /* CFNetwork.framework */; };
 		5D484D796C6442E48109E264 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39CF69BA1AF949B094ED2CCD /* CoreFoundation.framework */; };
-		916DAB89BE934031BBD0BBF6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 828E408D7FE04D039BEFEB98 /* SystemConfiguration.framework */; };
-		3CFDFBFD05594D0B9CBCAF6E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE989FA02A043A18EFAD37B /* Foundation.framework */; };
 		7619CABFD33F4B01906507A4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1141E285099411184292716 /* UIKit.framework */; };
-		D2E96EF6EE20457AB2FD34C6 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 690A3014F47A4272A83F5143 /* libresolv.tbd */; };
-		B5B7A4C8BC05412C8134C0BE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85A0A96B86A340C49B47C8BD /* CoreGraphics.framework */; };
+		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		8E1839CCDD2B44EF90422A54 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D525A9B5D1C4891BE6B9816 /* CoreLocation.framework */; };
+		916DAB89BE934031BBD0BBF6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 828E408D7FE04D039BEFEB98 /* SystemConfiguration.framework */; };
+		ACFEB32A6CFA4F998B77A45E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59844ED279484EB6AC65B35B /* Security.framework */; };
+		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
+		B5B7A4C8BC05412C8134C0BE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85A0A96B86A340C49B47C8BD /* CoreGraphics.framework */; };
+		B5D4BC01D8B74AC9B202D64B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 064B7F0AF69940C29307FE42 /* CoreTelephony.framework */; };
+		C88CCF8C6F07487E86394969 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C3CAD069E19B4329A63DA379 /* libz.tbd */; };
+		D2E96EF6EE20457AB2FD34C6 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 690A3014F47A4272A83F5143 /* libresolv.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -291,6 +292,20 @@
 			remoteGlobalIDString = 3D3CD9181DE5FBD800167DC4;
 			remoteInfo = "jschelpers-tvOS";
 		};
+		48614C8221F8690E00ADF825 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4C20637AF0D44A9FB50EEBB7 /* RCTJCoreModule.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6212E9B41F3990DC00BDF51A;
+			remoteInfo = RCTJCoreModule;
+		};
+		48614C8521F8690E00ADF825 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE5BAE65032741A4A28AA5F7 /* RCTJShareModule.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 62CBDDCE1F27394300C1C703;
+			remoteInfo = RCTJShareModule;
+		};
 		5E9157321DD0AC6500FF2AA8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */;
@@ -338,6 +353,7 @@
 		00E356EE1AD99517003FC87E /* PokerKingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokerKingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* PokerKingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PokerKingTests.m; sourceTree = "<group>"; };
+		064B7F0AF69940C29307FE42 /* CoreTelephony.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* PokerKing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokerKing.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -351,25 +367,24 @@
 		2D02E47B1E0B4A5D006451C7 /* PokerKing-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PokerKing-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* PokerKing-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PokerKing-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		39CF69BA1AF949B094ED2CCD /* CoreFoundation.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		4C20637AF0D44A9FB50EEBB7 /* RCTJCoreModule.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTJCoreModule.xcodeproj; path = "../node_modules/jcore-react-native/ios/RCTJCoreModule.xcodeproj"; sourceTree = "<group>"; };
+		59844ED279484EB6AC65B35B /* Security.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
+		63C5A782AB39498DB123EB26 /* libRCTJCoreModule.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTJCoreModule.a; sourceTree = "<group>"; };
+		690A3014F47A4272A83F5143 /* libresolv.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
+		6D525A9B5D1C4891BE6B9816 /* CoreLocation.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		6EE989FA02A043A18EFAD37B /* Foundation.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
+		828E408D7FE04D039BEFEB98 /* SystemConfiguration.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		85A0A96B86A340C49B47C8BD /* CoreGraphics.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
-		4C20637AF0D44A9FB50EEBB7 /* RCTJCoreModule.xcodeproj */ = {isa = PBXFileReference; name = "RCTJCoreModule.xcodeproj"; path = "../node_modules/jcore-react-native/ios/RCTJCoreModule.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		63C5A782AB39498DB123EB26 /* libRCTJCoreModule.a */ = {isa = PBXFileReference; name = "libRCTJCoreModule.a"; path = "libRCTJCoreModule.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		CE5BAE65032741A4A28AA5F7 /* RCTJShareModule.xcodeproj */ = {isa = PBXFileReference; name = "RCTJShareModule.xcodeproj"; path = "../node_modules/jshare-react-native/ios/RCTJShareModule.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		DEB3ED3E48F54CA0B75E55B8 /* libRCTJShareModule.a */ = {isa = PBXFileReference; name = "libRCTJShareModule.a"; path = "libRCTJShareModule.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		C3CAD069E19B4329A63DA379 /* libz.tbd */ = {isa = PBXFileReference; name = "libz.tbd"; path = "usr/lib/libz.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
-		064B7F0AF69940C29307FE42 /* CoreTelephony.framework */ = {isa = PBXFileReference; name = "CoreTelephony.framework"; path = "System/Library/Frameworks/CoreTelephony.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
-		59844ED279484EB6AC65B35B /* Security.framework */ = {isa = PBXFileReference; name = "Security.framework"; path = "System/Library/Frameworks/Security.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
-		D7A97BEA194545D08EEB3BB8 /* CFNetwork.framework */ = {isa = PBXFileReference; name = "CFNetwork.framework"; path = "System/Library/Frameworks/CFNetwork.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
-		39CF69BA1AF949B094ED2CCD /* CoreFoundation.framework */ = {isa = PBXFileReference; name = "CoreFoundation.framework"; path = "System/Library/Frameworks/CoreFoundation.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
-		828E408D7FE04D039BEFEB98 /* SystemConfiguration.framework */ = {isa = PBXFileReference; name = "SystemConfiguration.framework"; path = "System/Library/Frameworks/SystemConfiguration.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
-		6EE989FA02A043A18EFAD37B /* Foundation.framework */ = {isa = PBXFileReference; name = "Foundation.framework"; path = "System/Library/Frameworks/Foundation.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
-		C1141E285099411184292716 /* UIKit.framework */ = {isa = PBXFileReference; name = "UIKit.framework"; path = "System/Library/Frameworks/UIKit.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
-		690A3014F47A4272A83F5143 /* libresolv.tbd */ = {isa = PBXFileReference; name = "libresolv.tbd"; path = "usr/lib/libresolv.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
-		85A0A96B86A340C49B47C8BD /* CoreGraphics.framework */ = {isa = PBXFileReference; name = "CoreGraphics.framework"; path = "System/Library/Frameworks/CoreGraphics.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
-		6D525A9B5D1C4891BE6B9816 /* CoreLocation.framework */ = {isa = PBXFileReference; name = "CoreLocation.framework"; path = "System/Library/Frameworks/CoreLocation.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		C1141E285099411184292716 /* UIKit.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		C3CAD069E19B4329A63DA379 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		CE5BAE65032741A4A28AA5F7 /* RCTJShareModule.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTJShareModule.xcodeproj; path = "../node_modules/jshare-react-native/ios/RCTJShareModule.xcodeproj"; sourceTree = "<group>"; };
+		D7A97BEA194545D08EEB3BB8 /* CFNetwork.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		DEB3ED3E48F54CA0B75E55B8 /* libRCTJShareModule.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTJShareModule.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -574,6 +589,31 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		48614C5721F8690800ADF825 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				63C5A782AB39498DB123EB26 /* libRCTJCoreModule.a */,
+				DEB3ED3E48F54CA0B75E55B8 /* libRCTJShareModule.a */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		48614C7D21F8690E00ADF825 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				48614C8321F8690E00ADF825 /* libRCTJCoreModule.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		48614C7F21F8690E00ADF825 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				48614C8621F8690E00ADF825 /* libRCTJShareModule.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		5E91572E1DD0AC6500FF2AA8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -630,6 +670,7 @@
 				00E356EF1AD99517003FC87E /* PokerKingTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
+				48614C5721F8690800ADF825 /* Recovered References */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -744,6 +785,9 @@
 						CreatedOnToolsVersion = 6.2;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
+					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = JAB7AT8F22;
+					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
 						ProvisioningStyle = Automatic;
@@ -786,6 +830,14 @@
 				{
 					ProductGroup = 00C302BC1ABCB91800DB3ED1 /* Products */;
 					ProjectRef = 00C302BB1ABCB91800DB3ED1 /* RCTImage.xcodeproj */;
+				},
+				{
+					ProductGroup = 48614C7D21F8690E00ADF825 /* Products */;
+					ProjectRef = 4C20637AF0D44A9FB50EEBB7 /* RCTJCoreModule.xcodeproj */;
+				},
+				{
+					ProductGroup = 48614C7F21F8690E00ADF825 /* Products */;
+					ProjectRef = CE5BAE65032741A4A28AA5F7 /* RCTJShareModule.xcodeproj */;
 				},
 				{
 					ProductGroup = 78C398B11ACF4ADC00677621 /* Products */;
@@ -1051,6 +1103,20 @@
 			remoteRef = 3DAD3EAE1DF850E9000B6D8A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		48614C8321F8690E00ADF825 /* libRCTJCoreModule.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTJCoreModule.a;
+			remoteRef = 48614C8221F8690E00ADF825 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		48614C8621F8690E00ADF825 /* libRCTJShareModule.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTJShareModule.a;
+			remoteRef = 48614C8521F8690E00ADF825 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1224,9 +1290,19 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/jcore-react-native/ios/RCTJCoreModule",
+					"$(SRCROOT)/../node_modules/jshare-react-native/ios/RCTJShareModule",
+				);
 				INFOPLIST_FILE = PokerKingTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -1234,16 +1310,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PokerKing.app/PokerKing";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/jcore-react-native/ios/RCTJCoreModule",
-					"$(SRCROOT)/../node_modules/jshare-react-native/ios/RCTJShareModule",
-				);
 			};
 			name = Debug;
 		};
@@ -1252,9 +1318,19 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/jcore-react-native/ios/RCTJCoreModule",
+					"$(SRCROOT)/../node_modules/jshare-react-native/ios/RCTJShareModule",
+				);
 				INFOPLIST_FILE = PokerKingTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -1262,16 +1338,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PokerKing.app/PokerKing";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/jcore-react-native/ios/RCTJCoreModule",
-					"$(SRCROOT)/../node_modules/jshare-react-native/ios/RCTJShareModule",
-				);
 			};
 			name = Release;
 		};
@@ -1281,6 +1347,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
+				DEVELOPMENT_TEAM = JAB7AT8F22;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/jcore-react-native/ios/RCTJCoreModule",
+					"$(SRCROOT)/../node_modules/jshare-react-native/ios/RCTJShareModule",
+				);
 				INFOPLIST_FILE = PokerKing/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -1288,14 +1360,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.deshpro.kingpoke;
 				PRODUCT_NAME = PokerKing;
 				VERSIONING_SYSTEM = "apple-generic";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/jcore-react-native/ios/RCTJCoreModule",
-					"$(SRCROOT)/../node_modules/jshare-react-native/ios/RCTJShareModule",
-				);
 			};
 			name = Debug;
 		};
@@ -1304,6 +1371,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JAB7AT8F22;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/jcore-react-native/ios/RCTJCoreModule",
+					"$(SRCROOT)/../node_modules/jshare-react-native/ios/RCTJShareModule",
+				);
 				INFOPLIST_FILE = PokerKing/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -1311,14 +1384,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.deshpro.kingpoke;
 				PRODUCT_NAME = PokerKing;
 				VERSIONING_SYSTEM = "apple-generic";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/jcore-react-native/ios/RCTJCoreModule",
-					"$(SRCROOT)/../node_modules/jshare-react-native/ios/RCTJShareModule",
-				);
 			};
 			name = Release;
 		};
@@ -1334,8 +1402,18 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/jcore-react-native/ios/RCTJCoreModule",
+					"$(SRCROOT)/../node_modules/jshare-react-native/ios/RCTJShareModule",
+				);
 				INFOPLIST_FILE = "PokerKing-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -1345,16 +1423,6 @@
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/jcore-react-native/ios/RCTJCoreModule",
-					"$(SRCROOT)/../node_modules/jshare-react-native/ios/RCTJShareModule",
-				);
 			};
 			name = Debug;
 		};
@@ -1370,8 +1438,18 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/jcore-react-native/ios/RCTJCoreModule",
+					"$(SRCROOT)/../node_modules/jshare-react-native/ios/RCTJShareModule",
+				);
 				INFOPLIST_FILE = "PokerKing-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -1381,16 +1459,6 @@
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/jcore-react-native/ios/RCTJCoreModule",
-					"$(SRCROOT)/../node_modules/jshare-react-native/ios/RCTJShareModule",
-				);
 			};
 			name = Release;
 		};
@@ -1405,8 +1473,18 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/jcore-react-native/ios/RCTJCoreModule",
+					"$(SRCROOT)/../node_modules/jshare-react-native/ios/RCTJShareModule",
+				);
 				INFOPLIST_FILE = "PokerKing-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -1416,16 +1494,6 @@
 				SDKROOT = appletvos;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PokerKing-tvOS.app/PokerKing-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/jcore-react-native/ios/RCTJCoreModule",
-					"$(SRCROOT)/../node_modules/jshare-react-native/ios/RCTJShareModule",
-				);
 			};
 			name = Debug;
 		};
@@ -1440,8 +1508,18 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/jcore-react-native/ios/RCTJCoreModule",
+					"$(SRCROOT)/../node_modules/jshare-react-native/ios/RCTJShareModule",
+				);
 				INFOPLIST_FILE = "PokerKing-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -1451,16 +1529,6 @@
 				SDKROOT = appletvos;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PokerKing-tvOS.app/PokerKing-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/jcore-react-native/ios/RCTJCoreModule",
-					"$(SRCROOT)/../node_modules/jshare-react-native/ios/RCTJShareModule",
-				);
 			};
 			name = Release;
 		};
