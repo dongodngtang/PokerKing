@@ -67,4 +67,10 @@ export default class Router {
         })
     }
 
+    toCashTable() {
+        this.push({
+            sceneKey: 'CashTable'
+        })
+    }
+
 }

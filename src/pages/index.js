@@ -17,6 +17,7 @@ import HotNewsList from './HotNewsList'
 import Races from './Races';
 import RaceNew from './RaceNew';
 import RaceSchedule from './RaceSchedule';
+import CashTable from './CashTable';
 
 
 export const scenes = () => {
@@ -70,6 +71,12 @@ export const scenes = () => {
                {...TopNav({
                    title:  global.lang.t('race_schedule')
                })}/>
+        <Scene key="CashTable"
+               component={CashTable}
+               {...TopNav({
+                   title:  global.lang.t('cash_table')
+               })}/>
+
     </Scene>
 }
 const TopNav = (props) => {
