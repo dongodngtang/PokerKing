@@ -125,6 +125,7 @@ export const Styles = {
     left: {
         height: 44,
         marginLeft: 17,
+        paddingRight:10,
         justifyContent: 'center'
     },
     navTitle: {

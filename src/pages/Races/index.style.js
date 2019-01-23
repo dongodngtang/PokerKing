@@ -16,6 +16,7 @@ export default StyleSheet.create({
         flex: 1,
         height: 44,
         marginLeft:17,
+        paddingRight:10,
         justifyContent: 'center'
     },
     navTitle: {
