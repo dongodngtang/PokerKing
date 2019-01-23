@@ -28,7 +28,7 @@ export default class RaceSchedule extends Component {
         const {carousel_index} = this.state;
         return (
             <View style={carousel_index === index ? styles.item_select_view : styles.item_view}>
-                <Text></Text>
+
             </View>
         )
     }
@@ -42,10 +42,11 @@ export default class RaceSchedule extends Component {
                         ref={(c) => {
                             this._carousel = c
                         }}
-                        data={this.state.data}
+                        data={data2}
                         renderItem={this.carousel_Item}
                         sliderWidth={Metrics.screenWidth}
                         itemWidth={64}
+                        activeSlideAlignment={'start'}
                     />
                 </View>
 

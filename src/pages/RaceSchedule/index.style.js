@@ -12,6 +12,7 @@ export default StyleSheet.create({
         marginBottom:6
     },
     item_select_view:{
+        display:'flex',
         backgroundColor:"#D63649",
         flexDirection:'column',
         alignItems:'center',
@@ -19,6 +20,7 @@ export default StyleSheet.create({
         height:62
     },
     item_view:{
+        display:'flex',
         backgroundColor:"#13151C",
         flexDirection:'column',
         alignItems:'center',
