@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View,Text } from 'react-native';
 import { connect } from 'react-redux';
 import {logMsg} from "../../utils/utils";
-
+import styles from './index.style'
 
 @connect(({QueueProcess}) => ({
   ...QueueProcess,
@@ -23,7 +23,7 @@ export default class QueueProcess extends Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.process_view}>
         <Text>QueueProcess</Text>
       </View>
     )
