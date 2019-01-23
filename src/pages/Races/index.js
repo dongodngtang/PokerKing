@@ -81,7 +81,6 @@ export default class Races extends Component {
                 <View style={styles.carousel_view}>
                     <Carousel
                         loop
-                        autoplay
                         layout={'default'}
                         ref={(c) => {
                             this._carousel = c
