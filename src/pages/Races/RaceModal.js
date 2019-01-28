@@ -39,7 +39,14 @@ export default class RaceModal extends Component {
 
         return (
             this.state.visible ? <View
-                style={{alignItems: 'center', zIndex: 999, position: 'absolute', marginTop: Metrics.navBarHeight}}>
+                style={{
+                    height:Metrics.screenHeight,
+                    alignItems: 'center',
+                    zIndex: 999,
+                    position: 'absolute',
+                    marginTop: Metrics.navBarHeight,
+                    backgroundColor:"#3F4042"
+                }}>
 
                 <View style={{
                     width: Metrics.screenWidth
