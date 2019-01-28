@@ -17,7 +17,8 @@ export default StyleSheet.create({
         flexDirection:'column',
         alignItems:'center',
         width:60,
-        height:62
+        height:62,
+        justifyContent:'center'
     },
     item_view:{
         display:'flex',
@@ -87,6 +88,14 @@ export default StyleSheet.create({
         color:"#888888",
         fontSize:14,
         marginTop:4
+    },
+    day_txt:{
+        color:"#FFFFFF",
+        fontSize:16
+    },
+    week_txt:{
+        color:"#FFFFFF",
+        fontSize:12
     }
 
 })
