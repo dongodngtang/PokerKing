@@ -13,7 +13,8 @@ let data2 = [{id: 0}, {id: 1}, {id: 2}, {id: 3}, {id: 4}, {id: 5}];
 export default class QueueProcess extends Component {
 
     state = {
-        data: []
+        data: [],
+        manila_data: []
     }
 
     constructor(props) {
@@ -33,7 +34,8 @@ export default class QueueProcess extends Component {
             }
         });
         this.setState({
-            data: data2
+            data: data2,
+            manila_data: data2
         });
     }
 
@@ -44,7 +46,7 @@ export default class QueueProcess extends Component {
                 data.forEach((x) => {
                     if (x.id === index) {
                         x.isSelect = true
-                    }else{
+                    } else {
                         x.isSelect = false
                     }
                 });
@@ -58,20 +60,60 @@ export default class QueueProcess extends Component {
                 <Image style={{height: 12, width: 6}} source={Images.is_right}/>
             </TouchableOpacity>
         )
+    };
+
+    _renderItem_manila = ({item, index}) => {
+        const {manila_data} = this.state;
+        return (
+            <TouchableOpacity style={item.isSelect ? styles.selected_manila_item : styles.manila_item_view}
+                              onPress={() => {
+                                  manila_data.forEach((x) => {
+                                      if (x.id === index) {
+                                          x.isSelect = true
+                                      } else {
+                                          x.isSelect = false
+                                      }
+                                  });
+                                  this.setState({
+                                      manila_data: [...manila_data]
+                                  });
+                              }}>
+                <Text style={styles.manila_item_txt}>{index + 1}</Text>
+                <View style={{flex:1}}/>
+                <Text style={[styles.manila_item_txt, {alignSelf: 'center'}]}>Kimi</Text>
+                <View style={{flex:1,marginRight:18}}/>
+            </TouchableOpacity>
+        )
     }
 
     render() {
         return (
-            <View style={styles.process_view}>
-                <FlatList
-                    data={this.state.data}
-                    showsHorizontalScrollIndicator={false}
-                    ItemSeparatorComponent={this._separator}
-                    renderItem={this._renderItem}/>
-            </View>
+            this.props.params.type === 'macao' ?
+                <View style={styles.process_view}>
+                    <FlatList
+                        data={this.state.data}
+                        showsHorizontalScrollIndicator={false}
+                        ItemSeparatorComponent={this._separator}
+                        renderItem={this._renderItem}/>
+                </View> :
+                <View style={styles.manila_process_view}>
+                    <FlatList
+                        style={{backgroundColor: 'white'}}
+                        data={this.state.manila_data}
+                        showsHorizontalScrollIndicator={false}
+                        ItemSeparatorComponent={this._separator_manila}
+                        renderItem={this._renderItem_manila}/>
+                </View>
+
+
         )
     }
 
+    _separator_manila = () => {
+        return (
+            <View style={{height: 1, width: Metrics.screenWidth, backgroundColor: "#ECECEE"}}/>
+        )
+    }
     _separator = () => {
         return (
             <View style={{height: 1, width: Metrics.screenWidth, backgroundColor: "#2D2D2D"}}/>
