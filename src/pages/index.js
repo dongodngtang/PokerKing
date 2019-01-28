@@ -25,6 +25,7 @@ import QueueProcess from './QueueProcess';
 export const scenes = () => {
     return <Scene key="root">
         <Drawer
+            initial
             hideNavBar
             key={'HomeDrawer'}
                 contentComponent={DrawerComp}
@@ -141,7 +142,7 @@ export class NavBar extends PureComponent {
                 activeOpacity={1}
                 onLongPress={() => {
                     if (__DEV__)
-                        showAlert(title, pageMsg)
+                        alert(title+pageMsg)
                 }}
                 style={Styles.navTitle}>
                 <Text
