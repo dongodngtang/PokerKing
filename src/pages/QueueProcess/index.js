@@ -1,14 +1,20 @@
 import React, {Component} from 'react';
-import {View, Text, FlatList, Image} from 'react-native';
+import {View, Text, FlatList, Image, TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
 import {logMsg} from "../../utils/utils";
 import styles from './index.style';
 import {Metrics, Images} from "../../configs/Theme";
 
+let data2 = [{id: 0}, {id: 1}, {id: 2}, {id: 3}, {id: 4}, {id: 5}];
+
 @connect(({QueueProcess}) => ({
     ...QueueProcess,
 }))
 export default class QueueProcess extends Component {
+
+    state = {
+        data: []
+    }
 
     constructor(props) {
         super(props);
@@ -19,17 +25,38 @@ export default class QueueProcess extends Component {
 
 
     componentDidMount() {
-
+        data2.map((item) => {
+            if (item.id === 0) {
+                item.isSelect = true
+            } else {
+                item.isSelect = false
+            }
+        });
+        this.setState({
+            data: data2
+        });
     }
 
-    _renderItem = (item, index) => {
+    _renderItem = ({item, index}) => {
+        const {data} = this.state;
         return (
-            <View style={styles.item_view}>
+            <TouchableOpacity style={item.isSelect ? styles.selected_item : styles.item_view} onPress={() => {
+                data.forEach((x) => {
+                    if (x.id === index) {
+                        x.isSelect = true
+                    }else{
+                        x.isSelect = false
+                    }
+                });
+                this.setState({
+                    data: [...data]
+                });
+            }}>
                 <Text style={styles.item_txt}>50/100NL（3桌）</Text>
                 <View style={{flex: 1}}/>
-                <Text style={styles.item_txt}>{global.lang.t('line_count')}：12</Text>
+                <Text style={[styles.item_txt, {marginRight: 20}]}>{global.lang.t('line_count')}：12</Text>
                 <Image style={{height: 12, width: 6}} source={Images.is_right}/>
-            </View>
+            </TouchableOpacity>
         )
     }
 
@@ -37,7 +64,7 @@ export default class QueueProcess extends Component {
         return (
             <View style={styles.process_view}>
                 <FlatList
-                    data={[1, 2, 3, 4]}
+                    data={this.state.data}
                     showsHorizontalScrollIndicator={false}
                     ItemSeparatorComponent={this._separator}
                     renderItem={this._renderItem}/>
@@ -47,7 +74,7 @@ export default class QueueProcess extends Component {
 
     _separator = () => {
         return (
-            <View style={{height: 1, width: Metrics.screenWidth, backgroundColor: "#3F4042"}}/>
+            <View style={{height: 1, width: Metrics.screenWidth, backgroundColor: "#2D2D2D"}}/>
         )
     }
 }
