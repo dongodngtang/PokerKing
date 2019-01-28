@@ -5,12 +5,10 @@ import {logMsg} from "../../utils/utils";
 import MainBanner from './MainBanner';
 import styles from './index.style';
 import UltimateFlatList from '../../components/ultimate/UltimateFlatList';
-import {Images, Metrics, Styles} from "../../configs/Theme";
-import Picker from 'react-native-wheel-picker'
+import {Images, Metrics} from "../../configs/Theme";
 import SelectPiker from "../comm/SelectPiker";
 import HotItem from "./HotItem";
 import {Actions} from "react-native-router-flux";
-import CashTable from "../CashTable";
 
 @connect(({Home}) => ({
     ...Home
