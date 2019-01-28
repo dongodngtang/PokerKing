@@ -45,5 +45,6 @@
   "end_registration":"結束登記",
   "end_distance":"距離結束還有",
   "type":"類型",
-  "starting_chip":"起始籌碼"
+  "starting_chip":"起始籌碼",
+  "line_count":"排隊人數"
 }

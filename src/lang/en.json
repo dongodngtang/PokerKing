@@ -45,5 +45,6 @@
   "end_registration":"End registration",
   "end_distance":"At the end of the distance",
   "type":"Type",
-  "starting_chip":"Starting chip"
+  "starting_chip":"Starting chip",
+  "line_count":"Number of people queued"
 }

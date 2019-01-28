@@ -45,5 +45,6 @@
   "end_registration":"结束登记",
   "end_distance":"距离结束还有",
   "type":"类型",
-  "starting_chip":"起始筹码"
+  "starting_chip":"起始筹码",
+  "line_count":"排队人数"
 }
