@@ -8,9 +8,9 @@ const codes = [{id: 0, name: 'mainland', code: '86'}, {
     id: 1,
     name: 'hong_kong',
     code: '852'
-}, {id: 2, name: '澳门', code: '853'}, {
+}, {id: 2, name: 'macao', code: '853'}, {
     id: 3,
-    name: 'macao',
+    name: 'taiwan',
     code: '886'
 }];
 
