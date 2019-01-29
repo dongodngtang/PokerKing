@@ -137,7 +137,8 @@ export const Styles = {
         flexDirection: 'row',
         flexWrap: 'nowrap',
         height: 44,
-        marginRight: 17,
+        paddingRight: 17,
+        paddingLeft:10,
         justifyContent: 'flex-end',
         alignItems: 'center'
     }
