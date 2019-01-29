@@ -25,6 +25,7 @@ export default StyleSheet.create({
         backgroundColor:"#13151C",
         flexDirection:'column',
         alignItems:'center',
+        justifyContent:'center',
         width:64,
         height:66
     },
@@ -37,8 +38,7 @@ export default StyleSheet.create({
     },
     top_txt1:{
         color:"#444444",
-        fontSize:14,
-        fontWeight:'bold'
+        fontSize:14
     },
     schedule_middle_view:{
         flexDirection:'row',

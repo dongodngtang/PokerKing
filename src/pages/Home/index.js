@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, Button, TouchableOpacity, Image, ScrollView,ImageBackground} from 'react-native';
+import {View, Text, Button, TouchableOpacity, Image, ScrollView,RefreshControl,ImageBackground} from 'react-native';
 import {connect} from 'react-redux';
 import {logMsg} from "../../utils/utils";
 import MainBanner from './MainBanner';
@@ -76,7 +76,12 @@ export default class Home extends Component {
     render() {
 
         return (
-            <ScrollView style={styles.home_view}>
+            <ScrollView
+                refreshControl={<RefreshControl
+                    refreshing={this.state.isRefreshing}
+                    onRefresh={this._onRefresh}
+                />}
+                style={styles.home_view}>
                 <MainBanner/>
                 <View style={styles.active_type_view}>
                     <TouchableOpacity onPress={()=>{

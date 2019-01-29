@@ -1,11 +1,8 @@
 import React, {Component} from 'react';
 import {View, Text, TouchableOpacity, Image, Modal, FlatList} from 'react-native';
-import {connect} from 'react-redux';
 import styles from './index.style';
 import {Images, Styles} from "../../configs/Theme";
-import Carousel from 'react-native-snap-carousel';
 import {Metrics} from "../../configs/Theme";
-import {logMsg} from "../../utils/utils";
 
 
 export default class RaceModal extends Component {
