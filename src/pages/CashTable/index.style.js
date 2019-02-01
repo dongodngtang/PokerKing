@@ -3,7 +3,8 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
     table_view:{
         flex:1,
-        backgroundColor:'#3F4042'
+        backgroundColor:'#3F4042',
+        alignItems:'center'
     },
     click_btn:{
         paddingTop:16,

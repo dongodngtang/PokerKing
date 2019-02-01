@@ -124,9 +124,9 @@ export const Styles = {
     },
     left: {
         height: 44,
-        marginLeft: 17,
-        paddingRight:10,
-        justifyContent: 'center'
+        justifyContent: 'center',
+        width:60,
+        alignItems:'center'
     },
     navTitle: {
         justifyContent: 'center',
@@ -137,10 +137,9 @@ export const Styles = {
         flexDirection: 'row',
         flexWrap: 'nowrap',
         height: 44,
-        paddingRight: 17,
-        paddingLeft:10,
-        justifyContent: 'flex-end',
-        alignItems: 'center'
+        justifyContent: 'center',
+        alignItems: 'center',
+        width:60
     }
 }
 
