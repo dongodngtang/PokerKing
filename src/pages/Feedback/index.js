@@ -34,7 +34,7 @@ export default class Feedback extends Component {
     render() {
         const {app_list} = this.state;
         return (
-            <ScrollView style={styles.feedback_view}>
+            <View style={styles.feedback_view}>
                 <View style={styles.feedback_view2}>
                     <Text style={styles.answer_question}>{global.lang.t('answer_question')}</Text>
                     <Text style={styles.your_mailbox}>{global.lang.t('your_mailbox')}</Text>
@@ -94,9 +94,9 @@ export default class Feedback extends Component {
                 </View>
 
                 <TouchableOpacity style={styles.bottom_btn}>
-                    <Text style={styles.browse_documents}>{global.lang.t("send_feedback")}</Text>
+                    <Text style={[styles.browse_documents,{fontSize:14}]}>{global.lang.t("send_feedback")}</Text>
                 </TouchableOpacity>
-            </ScrollView>
+            </View>
         )
     }
 }
