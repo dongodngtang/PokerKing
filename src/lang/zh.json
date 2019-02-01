@@ -58,5 +58,13 @@
   "report_problem":"报告问题",
   "upload_photos":"上传照片／屏幕截图",
   "browse_documents":"浏览文件",
-  "send_feedback":"发送反馈"
+  "send_feedback":"发送反馈",
+  "modifyData":"修改资料",
+  "male":"男",
+  "female":"女",
+  "nick":"昵称",
+  "edit_avatar":"头像",
+  "chose_image": "选择图片",
+  "camera": "照相",
+  "pictures": "图库"
 }

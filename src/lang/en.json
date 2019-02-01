@@ -58,5 +58,13 @@
   "report_problem":"Report a problem",
   "upload_photos":"Upload photos/screenshots",
   "browse_documents":"Browse documents",
-  "send_feedback":"send feedback"
+  "send_feedback":"send feedback",
+  "modifyData":"Modify data",
+  "male":"male",
+  "female":"female",
+  "nick":"nick",
+  "edit_avatar":"Avatar",
+  "chose_image": "Select Image",
+  "camera": "camera",
+  "pictures": "Gallery"
 }

@@ -72,8 +72,8 @@ export const Images = {
     ziyuan: require('../asserts/home/ziyuan.png'),
     other_more: require('../asserts/other_more.png'),
     race_img: require('../asserts/race_img.png'),
-    xianjinzhuo: require('../asserts/xianjinzhuo.png')
-
+    xianjinzhuo: require('../asserts/xianjinzhuo.png'),
+    home_avatar:require('../asserts/home/home_avatar.png')
 }
 
 

@@ -21,6 +21,7 @@ import DrawerComp from './Home/Drawer'
 import CashTable from './CashTable';
 import QueueProcess from './QueueProcess';
 import Feedback from './Feedback';
+import ModifyData from './ModifyData';
 
 
 export const scenes = () => {
@@ -95,6 +96,11 @@ export const scenes = () => {
                component={Feedback}
                {...TopNav({
                    title: global.lang.t('feedback')
+               })}/>
+        <Scene key="ModifyData"
+               component={ModifyData}
+               {...TopNav({
+                   title: global.lang.t('modifyData')
                })}/>
 
     </Scene>

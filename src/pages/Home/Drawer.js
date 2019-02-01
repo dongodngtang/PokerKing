@@ -20,7 +20,7 @@ export default class Drawer extends Component {
                 </View>
                 <View style={{height: 58}}/>
                 {this._item(styles.select_btn, Images.xiugaiziliao, styles.change_img, global.lang.t('change_data'), () => {
-
+                    router.toModifyData()
                 })}
                 {this._item(styles.select_btn, Images.wenti, styles.change_img, global.lang.t('common_problem'), () => {
 

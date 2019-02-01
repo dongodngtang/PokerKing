@@ -88,4 +88,10 @@ export default class Router {
         })
     }
 
+    toModifyData() {
+        this.push({
+            sceneKey: 'ModifyData'
+        })
+    }
+
 }
