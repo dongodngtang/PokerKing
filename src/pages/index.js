@@ -20,6 +20,7 @@ import RaceSchedule from './RaceSchedule';
 import DrawerComp from './Home/Drawer'
 import CashTable from './CashTable';
 import QueueProcess from './QueueProcess';
+import Feedback from './Feedback';
 
 
 export const scenes = () => {
@@ -28,17 +29,17 @@ export const scenes = () => {
             initial
             hideNavBar
             key={'HomeDrawer'}
-                contentComponent={DrawerComp}
-                drawerWidth={200}
-                drawerPosition={'left'}>
+            contentComponent={DrawerComp}
+            drawerWidth={200}
+            drawerPosition={'left'}>
             <Scene key="Home"
                    component={Home}
                    {...TopNav({
                        title: global.lang.t('app_name'),
                        rightTitle: global.lang.t('home_language'),
-                       left_definition:true,
-                       left_img:Images.homepage_side,
-                       img_size:{height: 16, width: 20},
+                       left_definition: true,
+                       left_img: Images.homepage_side,
+                       img_size: {height: 16, width: 20},
                    })}/>
         </Drawer>
 
@@ -56,9 +57,9 @@ export const scenes = () => {
         <Scene key="Login"
                component={Login}
                {...TopNav({
-                   left_definition:true,
-                   left_img:Images.close,
-                   img_size:{height: 16, width: 16},
+                   left_definition: true,
+                   left_img: Images.close,
+                   img_size: {height: 16, width: 16},
                    title: 'Pokerkinglive'
                })}/>
         <Scene key="HotNewsList"
@@ -75,22 +76,25 @@ export const scenes = () => {
         <Scene key="RaceNew"
                component={RaceNew}
                {...TopNav({
-                   title:  global.lang.t('race_news')
+                   title: global.lang.t('race_news')
                })}/>
         <Scene key="RaceSchedule"
                component={RaceSchedule}
                {...TopNav({
-                   title:  global.lang.t('race_schedule')
+                   title: global.lang.t('race_schedule')
                })}/>
         <Scene key="CashTable"
                component={CashTable}
                {...TopNav({
-                   title:  global.lang.t('cash_table')
+                   title: global.lang.t('cash_table')
                })}/>
         <Scene key="QueueProcess"
                component={QueueProcess}
+               {...TopNav({})}/>
+        <Scene key="Feedback"
+               component={Feedback}
                {...TopNav({
-
+                   title: global.lang.t('feedback')
                })}/>
 
     </Scene>
@@ -105,16 +109,16 @@ const TopNav = (props) => {
 
 export class NavBar extends PureComponent {
 
-    left_img=()=>{
-        const {left_definition,left_img,hideLeft,img_size} = this.props;
-        if(hideLeft){
+    left_img = () => {
+        const {left_definition, left_img, hideLeft, img_size} = this.props;
+        if (hideLeft) {
             return null;
-        }else if(left_definition){
+        } else if (left_definition) {
             return <Image
                 style={img_size}
                 source={left_img}
             />
-        }else {
+        } else {
             return <Image
                 style={{height: 14, width: 18}}
                 source={Images.left}
@@ -142,7 +146,7 @@ export class NavBar extends PureComponent {
                 activeOpacity={1}
                 onLongPress={() => {
                     if (__DEV__)
-                        alert(title+pageMsg)
+                        alert(title + pageMsg)
                 }}
                 style={Styles.navTitle}>
                 <Text

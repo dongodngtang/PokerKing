@@ -47,5 +47,16 @@
   "end_distance":"At the end of the distance",
   "type":"Type",
   "starting_chip":"Starting chip",
-  "line_count":"Number of people queued"
+  "line_count":"Number of people queued",
+  "answer_question":"We want to know more about how we can create a better gaming experience for you. Please answer the question.",
+  "your_mailbox":"Your mailbox",
+  "poker_TV_app":"What do you think of the Poker TV app？",
+  "not_satisfied":"Not satisfied",
+  "general":"general",
+  "satisfied":"satisfied",
+  "very_satisfied":"Very satisfied",
+  "report_problem":"Report a problem",
+  "upload_photos":"Upload photos/screenshots",
+  "browse_documents":"Browse documents",
+  "send_feedback":"send feedback"
 }

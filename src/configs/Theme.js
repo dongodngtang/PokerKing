@@ -9,6 +9,7 @@
 
 
 import {Dimensions, Platform, StatusBar} from 'react-native';
+import {reallySize} from "../themes/Metrics";
 
 const {height, width} = Dimensions.get('window');
 /**
@@ -39,6 +40,7 @@ export function realSize(size) {
 const PartHeight = height - (Platform.OS === 'android' ? navBarHeight + StatusBar.currentHeight : navBarHeight);
 
 export const Metrics = {
+    reallySize: reallySize,
     screenHeight: height,
     screenWidth: width,
     navBarHeight: navBarHeight,

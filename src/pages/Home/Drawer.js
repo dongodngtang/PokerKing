@@ -26,7 +26,7 @@ export default class Drawer extends Component {
 
                 })}
                 {this._item(styles.select_btn, Images.yijian, styles.change_img, global.lang.t('feedback'), () => {
-
+                        router.toFeedback()
                 })}
                 {this._item(styles.select_btn, Images.feiji, styles.change_img, global.lang.t('recommend'), () => {
 

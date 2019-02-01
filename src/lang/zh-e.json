@@ -47,5 +47,16 @@
   "end_distance":"距離結束還有",
   "type":"類型",
   "starting_chip":"起始籌碼",
-  "line_count":"排隊人數"
+  "line_count":"排隊人數",
+  "answer_question":"我們想更多的了解如何才能為您打造更好的遊戲體驗，請回答一下問題",
+  "your_mailbox":"您的郵箱",
+  "poker_TV_app":"您覺得Poker TV應用程序怎樣？",
+  "not_satisfied":"不滿意",
+  "general":"一般",
+  "satisfied":"滿意",
+  "very_satisfied":"非常滿意",
+  "report_problem":"報告問題",
+  "upload_photos":"上傳照片／屏幕截圖",
+  "browse_documents":"瀏覽文件",
+  "send_feedback":"發送反饋"
 }
