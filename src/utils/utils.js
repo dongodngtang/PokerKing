@@ -7,7 +7,7 @@
  *
  */
 import React from 'react';
-import {Alert} from 'react-native';
+import {Alert,Linking} from 'react-native';
 import _ from 'lodash'
 import moment from 'moment'
 import Toast from '../components/toast';
@@ -18,7 +18,7 @@ let locations = [];//定位城市列表
 export function setLocations(arr) {
   locations = arr;
 }
-
+export let loginUser = null
 
 let following_ids = [];
 
@@ -155,7 +155,12 @@ export function showAlert(title, message) {
     text: '确定',
   }])
 }
-
+export function strNotNull(str) {
+    if (str == undefined || str == null || str.length == 0)
+        return false;
+    else
+        return true;
+}
 
 export function isEmpty(param) {
   return _.isEmpty(param)
@@ -168,4 +173,14 @@ export function isStrNull(str) {
 export function getCurrentDate() {
     return moment();
 }
-
+export function permissionAlert(message) {
+    Alert.alert(global.lang.t('permission_prompt'), message, [
+        {text: global.lang.t('cancel')},
+        {
+            text: global.lang.t('setting'), onPress: () => {
+                Linking.openURL('app-settings:')
+                    .catch(err => console.log('error', err))
+            }
+        }
+    ])
+}

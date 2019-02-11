@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 import styles from './index.style';
 import ExtArea from '../comm/ExtArea';
 import {Images, Metrics} from "../../configs/Theme";
+import {isStrNull,showToast} from "../../utils/utils";
+import {postVerifyCode} from "../../services/accountDao";
 
 @connect(({Login}) => ({
     ...Login,
@@ -15,12 +17,40 @@ export default class Login extends Component {
         vcode_show: false,
         iphone: '',
         vcode: '',
-        ext: '86'
-    }
+        ext: '86',
+        checkAgree:true,
+    };
 
     componentDidMount() {
 
     }
+
+    _next = () => {
+        const {checkAgree,iphone, vcode, ext} = this.state;
+        if (checkAgree) {
+            if (iphone.length > 1 && vcode.length > 1 && isStrNull(ext)) {
+                let body = {
+                    option_type: 'register',
+                    vcode_type: 'mobile',
+                    account: iphone,
+                    vcode: vcode,
+                    ext: ext
+                };
+
+                postVerifyCode(body, data => {
+                    router.toRegister(this.props, iphone, vcode, ext)
+                }, err => {
+                    showToast(err)
+                })
+
+
+            }
+            else
+                showToast(`${global.lang.t('fillWhole')}`);
+        }
+        else
+            showToast(global.lang.t('need_agree'));
+    };
 
 
     render() {
@@ -110,7 +140,7 @@ export default class Login extends Component {
                 </KeyboardAvoidingView>
 
                 <TouchableOpacity style={styles.btn} onPress={()=>{
-                    router.toRegister();
+                    this._next();
                 }}>
                     <Text style={{color:'#FFE9AD',fontSize:18}}>{global.lang.t('login_continue')}</Text>
                 </TouchableOpacity>

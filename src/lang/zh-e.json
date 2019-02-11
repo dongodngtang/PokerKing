@@ -66,5 +66,12 @@
   "edit_avatar":"頭像",
   "chose_image": "選擇圖片",
   "camera": "照相",
-  "pictures": "圖庫"
+  "pictures": "圖庫",
+  "fillWhole":"請填寫完整",
+  "need_agree": "需要同意Pokerkinglive協議",
+  "SERVER_ERROR": "網絡異常",
+  "TIMEOUT_ERROR": "訪問超時，請稍後重試",
+  "NETWORK_ERROR": "網絡異常，請檢查網絡訪問是否授權",
+  "permission_prompt":"權限提示",
+  "setting":"設置"
 }

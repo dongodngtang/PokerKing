@@ -66,5 +66,12 @@
   "edit_avatar":"Avatar",
   "chose_image": "Select Image",
   "camera": "camera",
-  "pictures": "Gallery"
+  "pictures": "Gallery",
+  "fillWhole":"Please complete",
+  "need_agree": "Need to agree to the Pokerkinglive agreement",
+  "SERVER_ERROR": "Network Anomaly",
+  "TIMEOUT_ERROR": "Access timed out, please try again later",
+  "NETWORK_ERROR": "Network exception, please check if network access is authorized",
+  "permission_prompt":"Permission prompt",
+  "setting":"Setting"
 }

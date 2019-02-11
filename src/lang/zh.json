@@ -66,5 +66,12 @@
   "edit_avatar":"头像",
   "chose_image": "选择图片",
   "camera": "照相",
-  "pictures": "图库"
+  "pictures": "图库",
+  "fillWhole": "请填写完整",
+  "need_agree": "需要同意Pokerkinglive协议",
+  "SERVER_ERROR": "网络异常",
+  "TIMEOUT_ERROR": "访问超时，请稍后重试",
+  "NETWORK_ERROR": "网络异常，请检查网络访问是否授权",
+  "permission_prompt":"权限提示",
+  "setting":"设置"
 }
