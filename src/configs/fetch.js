@@ -51,7 +51,7 @@ export function setToken(access_token) {
 
 
 export function get(url, body, resolve, reject) {
-  client.get(url, body).then(res => {
+ return client.get(url, body).then(res => {
     handle(res, resolve, reject)
   }).catch(err => {
     errReject(err)
