@@ -128,7 +128,8 @@ export const Styles = {
         height: 44,
         justifyContent: 'center',
         width:60,
-        alignItems:'center'
+        paddingRight:10,
+        paddingLeft:17
     },
     navTitle: {
         justifyContent: 'center',
@@ -136,12 +137,12 @@ export const Styles = {
         alignSelf: 'center'
     },
     right: {
-        flexDirection: 'row',
+        flexDirection: 'row-reverse',
         flexWrap: 'nowrap',
         height: 44,
-        justifyContent: 'center',
         alignItems: 'center',
-        width:60
+        paddingLeft:17,
+        width:70
     }
 }
 

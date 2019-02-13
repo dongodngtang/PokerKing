@@ -15,7 +15,8 @@ export default StyleSheet.create({
     left2: {
         flex: 1,
         height: 44,
-        marginLeft:17,
+        width:60,
+        paddingLeft:17,
         paddingRight:10,
         justifyContent: 'center'
     },
