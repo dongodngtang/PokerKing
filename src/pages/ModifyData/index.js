@@ -25,9 +25,6 @@ export default class ModifyData extends Component {
         }
     }
 
-    componentWillUnmount() {
-        Picker.hide();
-    }
 
     componentDidMount() {
 
@@ -53,34 +50,7 @@ export default class ModifyData extends Component {
         }
     }
 
-    _showSexPicker = () => {
 
-        Picker.init({
-            pickerConfirmBtnText: global.lang.t('determine'),
-            pickerCancelBtnText: global.lang.t('cancel'),
-            pickerTitleText: '',
-            pickerData: [global.lang.t('male'), global.lang.t('female')],
-            pickerConfirmBtnColor: [224, 187, 117, 1],
-            pickerCancelBtnColor: [102, 102, 102, 1],
-            pickerTitleColor: [20, 20, 20, 1],
-            pickerToolBarBg: [255, 255, 255, 1],
-            pickerBg: [255, 255, 255, 1],
-            pickerToolBarFontSize: 17,
-            pickerFontSize: 21,
-            pickerFontColor: [34, 34, 34, 1],
-            onPickerConfirm: (pickedValue, pickedIndex) => {
-
-            },
-            onPickerCancel: (pickedValue, pickedIndex) => {
-
-
-            },
-            onPickerSelect: (pickedValue, pickedIndex) => {
-
-            }
-        });
-        Picker.show();
-    };
 
 
     selectPhotoTapped = () => {
@@ -145,7 +115,10 @@ export default class ModifyData extends Component {
 
                     <TouchableOpacity activeOpacity={1}
                                       style={styles.item_view}
-                                      onPress={this._showSexPicker}>
+                                      onPress={()=>{
+                                          this.actionGender && this.actionGender.show()
+                                      }}
+                                      >
                         <Text style={styles.text_label}>{global.lang.t('gender')}</Text>
 
                         <View style={{flex: 1}}/>
@@ -162,6 +135,15 @@ export default class ModifyData extends Component {
                     destructiveButtonIndex={2}
                     onPress={this.handlePress}
                 />
+                <ActionSheet
+                    ref={o => this.actionGender = o}
+                    title={'选择性别'}
+                    options={[global.lang.t('cancel'), global.lang.t('male'), global.lang.t('female')]}
+                    cancelButtonIndex={0}
+                    destructiveButtonIndex={2}
+                    onPress={this.handlePress}
+                />
+
             </View>
         )
     }
@@ -185,13 +167,3 @@ export default class ModifyData extends Component {
         }
     };
 }
-
-const picker = {
-    width: 500,
-    height: 500,
-    cropping: true,
-    cropperCircleOverlay: true,
-    compressImageMaxWidth: 800,
-    compressImageMaxHeight: 800,
-    compressImageQuality: 0.5,
-};

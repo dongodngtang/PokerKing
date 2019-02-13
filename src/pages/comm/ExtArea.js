@@ -30,7 +30,7 @@ export default class ExtArea extends Component {
         return <View style={{width: '100%', height: 1, backgroundColor: '#F3F3F3'}}/>
     };
 
-    _renderItem = ({item}) => {
+    _renderItem = (item,index) => {
         const {id, name, code} = item;
         return (
             <TouchableOpacity style={{backgroundColor: 'white', flexDirection: 'row', alignItems: 'center', height: 50}}
@@ -58,23 +58,19 @@ export default class ExtArea extends Component {
             >
                 <View style={this.props.type && this.props.type === 'ModalPrompt' ? {
                     width: 300,
-                    alignSelf: 'center'
+                    alignSelf: 'center',
+                    backgroundColor: 'rgba(0,0,0,0.8)'
                 } : {flex: 1}}>
                     <TouchableOpacity
                         activeOpacity={1}
                         onPress={this.toggle}
                         style={{height: this.props.type && this.props.type === 'ModalPrompt' ? 290 : 110}}/>
-                    <FlatList
-                        style={{}}
-                        data={codes}
-                        showsHorizontalScrollIndicator={false}
-                        ItemSeparatorComponent={this._separator}
-                        renderItem={this._renderItem}
-                        keyExtractor={(item, index) => `extArea${index}`}
-                    />
+
+                    {codes.map(this._renderItem)}
                     <TouchableOpacity
                         activeOpacity={1}
-                        onPress={this.toggle} style={{flex: 1}}/>
+                        onPress={this.toggle} style={{flex: 1,
+                        backgroundColor: 'rgba(0,0,0,0.8)'}}/>
                 </View>
             </Modal>
         )
