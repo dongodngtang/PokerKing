@@ -74,5 +74,8 @@
   "NETWORK_ERROR": "Network exception, please check if network access is authorized",
   "permission_prompt":"Permission prompt",
   "setting":"Setting",
-  "choose_gender":"选择性别"
+  "choose_gender":"Choose gender",
+  "queuing":"On-site queuing",
+  "sands_casino":"Sands Casino",
+  "venetian_casino":"Venetian Casino"
 }

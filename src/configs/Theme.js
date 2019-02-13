@@ -73,7 +73,9 @@ export const Images = {
     other_more: require('../asserts/other_more.png'),
     race_img: require('../asserts/race_img.png'),
     xianjinzhuo: require('../asserts/xianjinzhuo.png'),
-    home_avatar:require('../asserts/home/home_avatar.png')
+    home_avatar:require('../asserts/home/home_avatar.png'),
+    jinsha:require('../asserts/jinsha.png'),
+    weini:require('../asserts/weini.png')
 }
 
 

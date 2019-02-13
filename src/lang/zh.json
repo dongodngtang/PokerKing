@@ -74,5 +74,8 @@
   "NETWORK_ERROR": "网络异常，请检查网络访问是否授权",
   "permission_prompt":"权限提示",
   "setting":"设置",
-  "choose_gender":"选择性别"
+  "choose_gender":"选择性别",
+  "queuing":"现场排队",
+  "sands_casino":"金沙娱乐场",
+  "venetian_casino":"威尼斯人娱乐场"
 }

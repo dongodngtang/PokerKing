@@ -74,5 +74,8 @@
   "NETWORK_ERROR": "網絡異常，請檢查網絡訪問是否授權",
   "permission_prompt":"權限提示",
   "setting":"設置",
-  "choose_gender":"选择性别"
+  "choose_gender":"選擇性別",
+  "sands_casino":"現場排隊",
+  "casino":"金沙娛樂場",
+  "venetian_casino":"威尼斯人娛樂場"
 }
