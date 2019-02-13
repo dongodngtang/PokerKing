@@ -28,7 +28,7 @@ export default class Login extends Component {
     _next = () => {
         const {checkAgree,iphone, vcode, ext} = this.state;
         if (checkAgree) {
-            if (iphone.length > 1 && vcode.length > 1 && isStrNull(ext)) {
+            if (iphone.length > 1 && vcode.length > 1 && !isStrNull(ext)) {
                 let body = {
                     option_type: 'register',
                     vcode_type: 'mobile',

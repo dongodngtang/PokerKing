@@ -3,7 +3,7 @@ import {View, Text, Button, KeyboardAvoidingView, TextInput, TouchableOpacity,Im
 import {connect} from 'react-redux';
 import styles from "../Login/index.style";
 import {Images} from "../../configs/Theme";
-
+import {ActionSheet} from '../../components';
 
 @connect(({Register}) => ({
     ...Register,
@@ -57,7 +57,10 @@ export default class Register extends Component {
                     </View>
 
                     <View style={[styles.textView,{paddingTop:10,paddingBottom:10}]}>
-                        <TouchableOpacity style={{width:'100%',flexDirection:'row',alignItems:'center'}}>
+                        <TouchableOpacity style={{width:'100%',flexDirection:'row',alignItems:'center'}}
+                                          onPress={()=>{
+                                              this.actionGender && this.actionGender.show()
+                                          }}>
                             <Text style={{
                                 color: this.state.gender === global.lang.t('gender') ? '#CCCCCC' : '#444444',
                                 marginLeft: 8,
@@ -104,6 +107,15 @@ export default class Register extends Component {
                 }}>
                     <Text style={{color:'#FFE9AD',fontSize:18}}>{global.lang.t('determine')}</Text>
                 </TouchableOpacity>
+
+                <ActionSheet
+                    ref={o => this.actionGender = o}
+                    title={global.lang.t('choose_gender')}
+                    options={[global.lang.t('cancel'), global.lang.t('male'), global.lang.t('female')]}
+                    cancelButtonIndex={0}
+                    destructiveButtonIndex={2}
+                    onPress={this.handlePress}
+                />
             </View>
         )
     }

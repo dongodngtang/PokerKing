@@ -73,5 +73,6 @@
   "TIMEOUT_ERROR": "Access timed out, please try again later",
   "NETWORK_ERROR": "Network exception, please check if network access is authorized",
   "permission_prompt":"Permission prompt",
-  "setting":"Setting"
+  "setting":"Setting",
+  "choose_gender":"选择性别"
 }

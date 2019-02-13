@@ -73,5 +73,6 @@
   "TIMEOUT_ERROR": "訪問超時，請稍後重試",
   "NETWORK_ERROR": "網絡異常，請檢查網絡訪問是否授權",
   "permission_prompt":"權限提示",
-  "setting":"設置"
+  "setting":"設置",
+  "choose_gender":"选择性别"
 }

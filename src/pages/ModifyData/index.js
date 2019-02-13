@@ -137,7 +137,7 @@ export default class ModifyData extends Component {
                 />
                 <ActionSheet
                     ref={o => this.actionGender = o}
-                    title={'选择性别'}
+                    title={global.lang.t('choose_gender')}
                     options={[global.lang.t('cancel'), global.lang.t('male'), global.lang.t('female')]}
                     cancelButtonIndex={0}
                     destructiveButtonIndex={2}
