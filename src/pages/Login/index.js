@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import styles from './index.style';
 import ExtArea from '../comm/ExtArea';
 import {Images, Metrics} from "../../configs/Theme";
-import {isStrNull,showToast} from "../../utils/utils";
+import {isStrNull, logMsg, showToast} from "../../utils/utils";
 import {postVerifyCode} from "../../services/accountDao";
 
 @connect(({Login}) => ({
@@ -36,12 +36,12 @@ export default class Login extends Component {
                     vcode: vcode,
                     ext: ext
                 };
-
-                postVerifyCode(body, data => {
-                    router.toRegister(this.props, iphone, vcode, ext)
-                }, err => {
-                    showToast(err)
-                })
+                router.toRegister(this.props, iphone, vcode, ext)
+                // postVerifyCode(body, data => {
+                //     router.toRegister(this.props, iphone, vcode, ext)
+                // }, err => {
+                //     showToast(err)
+                // })
 
 
             }
@@ -84,7 +84,7 @@ export default class Login extends Component {
                                 height: 35,
                                 fontSize: 16,
                                 fontWeight: 'bold',
-                                color: this.state.email_show ? '#444444' : '#F3F3F3'
+                                color: this.state.iphone_show ? '#444444' : '#F3F3F3'
                             }}
                             maxLength={11}
                             numberOfLines={1}
@@ -114,7 +114,7 @@ export default class Login extends Component {
                                 height: 35,
                                 fontSize: 16,
                                 fontWeight: 'bold',
-                                color: this.state.name_show ? '#444444' : '#F3F3F3'
+                                color: this.state.vcode_show ? '#444444' : '#F3F3F3'
                             }}
                             maxLength={11}
                             numberOfLines={1}

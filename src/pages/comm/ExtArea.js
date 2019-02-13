@@ -30,10 +30,11 @@ export default class ExtArea extends Component {
         return <View style={{width: '100%', height: 1, backgroundColor: '#F3F3F3'}}/>
     };
 
-    _renderItem = (item,index) => {
+    _renderItem = (item, index) => {
         const {id, name, code} = item;
         return (
-            <TouchableOpacity style={{backgroundColor: 'white', flexDirection: 'row', alignItems: 'center', height: 50}}
+            <TouchableOpacity key={index}
+                              style={{backgroundColor: 'white', flexDirection: 'row', alignItems: 'center', height: 50}}
                               onPress={() => {
                                   this.props.changed_ext(code);
                                   this.toggle();
@@ -69,8 +70,10 @@ export default class ExtArea extends Component {
                     {codes.map(this._renderItem)}
                     <TouchableOpacity
                         activeOpacity={1}
-                        onPress={this.toggle} style={{flex: 1,
-                        backgroundColor: 'rgba(0,0,0,0.8)'}}/>
+                        onPress={this.toggle} style={{
+                        flex: 1,
+                        backgroundColor: 'rgba(0,0,0,0.8)'
+                    }}/>
                 </View>
             </Modal>
         )
