@@ -13,8 +13,10 @@ export default class NotData extends Component {
         return (
             <View style={{
                 flex: 1,
+                width:Metrics.screenWidth,
                 backgroundColor: this.props.backgroundColor,
                 flexDirection:'column',
+                justifyContent:'center',
                 alignItems: 'center'
             }}>
                 <Image style={{height: 75, width: 72}}

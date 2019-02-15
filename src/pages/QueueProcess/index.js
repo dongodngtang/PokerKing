@@ -60,7 +60,7 @@ export default class QueueProcess extends Component {
                 });
                 router.toQueueList(item, this.props.params.item.id);
             }}>
-                <Text style={styles.item_txt}>{`${small_blind}/${big_blind}NL（${table_numbers}桌）`}</Text>
+                <Text style={styles.item_txt}>{`${small_blind}/${big_blind}NL（${table_numbers}${global.lang.t('table')}）`}</Text>
                 <View style={{flex: 1}}/>
                 <Text
                     style={[styles.item_txt, {marginRight: 20}]}>{global.lang.t('line_count')}：{cash_queue_members_count}</Text>

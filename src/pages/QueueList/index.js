@@ -13,7 +13,14 @@ import NotData from "../comm/NotData";
 export default class QueueList extends Component {
     state = {
         cash_queue_members: []
-    }
+    };
+
+    constructor(props) {
+        super(props);
+        props.navigation.setParams({
+            title: `${this.props.params.item.small_blind}/${this.props.params.item.big_blind}NL（${this.props.params.item.cash_queue_members_count}${global.lang.t('table')}）`
+        })
+    };
 
     componentDidMount() {
         const {item, cash_game_id} = this.props.params;
@@ -32,11 +39,11 @@ export default class QueueList extends Component {
     };
 
     _renderItem = ({item, index}) => {
-        const {manila_data} = this.state;
+        const {cash_queue_members} = this.state;
         return (
             <TouchableOpacity style={item.isSelect ? styles.selected_manila_item : styles.manila_item_view}
                               onPress={() => {
-                                  manila_data.forEach((x) => {
+                                  cash_queue_members.forEach((x) => {
                                       if (x.id === index) {
                                           x.isSelect = true
                                       } else {
@@ -44,12 +51,12 @@ export default class QueueList extends Component {
                                       }
                                   });
                                   this.setState({
-                                      manila_data: [...manila_data]
+                                      cash_queue_members: [...cash_queue_members]
                                   });
                               }}>
                 <Text style={styles.manila_item_txt}>{index + 1}</Text>
                 <View style={{flex: 1}}/>
-                <Text style={[styles.manila_item_txt, {alignSelf: 'center'}]}>Kimi</Text>
+                <Text style={[styles.manila_item_txt, {alignSelf: 'center'}]}>{item.nickname}</Text>
                 <View style={{flex: 1, marginRight: 18}}/>
             </TouchableOpacity>
         )
