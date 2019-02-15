@@ -49,10 +49,6 @@ export default class RaceModal extends Component {
                     width: Metrics.screenWidth
                 }}>
 
-                    <View style={[styles.select_top_view, {backgroundColor: 'white'}]}>
-                        <Text style={styles.select_top_txt}>EPT2019</Text>
-                    </View>
-
                     <FlatList
                         data={[1, 2, 3, 4]}
                         showsHorizontalScrollIndicator={false}
