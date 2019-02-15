@@ -36,7 +36,7 @@ export default class ExtArea extends Component {
             <TouchableOpacity key={index}
                               style={{backgroundColor: 'white', flexDirection: 'row', alignItems: 'center', height: 50}}
                               onPress={() => {
-                                  this.props.changed_ext(code);
+                                  this.props.changed_ext(code,global.lang.t(name));
                                   this.toggle();
                               }}>
                 <Text style={{color: "#666666", fontSize: 14, marginLeft: 17}}>{global.lang.t(name)}</Text>

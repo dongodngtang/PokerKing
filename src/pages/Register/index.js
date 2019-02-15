@@ -4,19 +4,24 @@ import {connect} from 'react-redux';
 import styles from "../Login/index.style";
 import {Images} from "../../configs/Theme";
 import {ActionSheet} from '../../components';
+import {register} from "../../services/accountDao";
 
 @connect(({Register}) => ({
     ...Register,
 }))
 export default class Register extends Component {
-
-    state = {
-        name_show: false,
-        email_show: false,
-        user_name: '',
-        email: '',
-        gender: global.lang.t('gender')
+    constructor(props){
+        super(props)
+        this.state = {
+            name_show: false,
+            email_show: false
+        }
+        this.user_name = ''
+        this.email = ''
+        this.gender= global.lang.t('gender')
     }
+
+
 
     componentDidMount() {
 
@@ -48,9 +53,7 @@ export default class Register extends Component {
                             underlineColorAndroid={'transparent'}
                             onChangeText={txt => {
                                 this.state.email_show = true;
-                                this.setState({
-                                    email: txt
-                                })
+                                this.email = txt
                             }}
                         />
 
@@ -93,9 +96,7 @@ export default class Register extends Component {
                             underlineColorAndroid={'transparent'}
                             onChangeText={txt => {
                                 this.state.name_show = true;
-                                this.setState({
-                                    user_name: txt
-                                })
+                                this.user_name = txt
                             }}
                         />
                         <View style={{flex: 1}}/>
@@ -103,6 +104,13 @@ export default class Register extends Component {
                 </KeyboardAvoidingView>
 
                 <TouchableOpacity style={styles.btn} onPress={()=>{
+                    let body = this.props.params
+
+                    register(body,ret=>{
+
+                    },err=>{
+
+                    })
 
                 }}>
                     <Text style={{color:'#FFE9AD',fontSize:18}}>{global.lang.t('determine')}</Text>

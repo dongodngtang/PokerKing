@@ -32,9 +32,10 @@ export default class Router {
         })
     }
 
-    toRegister() {
+    toRegister(param) {
         this.push({
-            sceneKey: 'Register'
+            sceneKey: 'Register',
+            params:param
         })
     }
 

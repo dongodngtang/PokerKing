@@ -8,3 +8,21 @@ export function postCode(body, resolve, reject) {
         resolve(ret.data);
     }, reject);
 }
+
+export function verify(body, resolve, reject) {
+    get(api.verify,body,ret=>{
+        resolve(ret.data)
+    },reject)
+}
+
+export function register(body, resolve, reject) {
+    post(api.register,body,ret=>{
+        resolve(ret.date)
+    },reject)
+}
+
+export function login(body, resolve, reject) {
+    post(api.login,body,ret=>{
+        resolve(ret.date)
+    },reject)
+}

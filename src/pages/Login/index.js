@@ -5,7 +5,7 @@ import styles from './index.style';
 import ExtArea from '../comm/ExtArea';
 import {Images, Metrics, Colors} from "../../configs/Theme";
 import {isStrNull, logMsg, showToast, strNotNull, checkPhone} from "../../utils/utils";
-import {postVerifyCode, postCode} from "../../services/accountDao";
+import {verify, postCode,register,login} from "../../services/accountDao";
 import CountDownButton from '../../components/CountDownButton'
 
 @connect(({Login}) => ({
@@ -17,9 +17,8 @@ export default class Login extends Component {
         iphone: '',
         vcode: '',
         ext: '86',
-        checkAgree: true,
-        getCodeDisable: false,
-        canNextDisable: true,
+        areaName:'中国（China）',
+        codeType:''
     };
 
     componentDidMount() {
@@ -27,35 +26,52 @@ export default class Login extends Component {
     }
 
     _next = () => {
-        const {checkAgree, iphone, vcode, ext} = this.state;
-        if (checkAgree) {
-            if (iphone.length > 1 && vcode.length > 1 && !isStrNull(ext)) {
-                let body = {
-                    option_type: 'register',
-                    vcode_type: 'mobile',
-                    account: iphone,
-                    vcode: vcode,
-                    ext: ext
-                };
-                router.toRegister(this.props, iphone, vcode, ext)
-                // postVerifyCode(body, data => {
-                //     router.toRegister(this.props, iphone, vcode, ext)
-                // }, err => {
-                //     showToast(err)
-                // })
+        const {iphone, vcode, ext,codeType} = this.state;
+        if (iphone.length > 1 && vcode.length > 1 && !isStrNull(ext)) {
+            // 查询该账户是否被注册过¶
+            verify({
+                account:iphone,
+                country_code:ext
+            },ret=>{
+                if(ret && ret.exist && ret.exist === 1){
+                    // 登录
+                    login({
+                        type:'vcode',
+                        mobile:iphone,
+                        vcode,
+                        country_code:ext
+                    },ret=>{
+
+                    },err=>{
+
+                    })
+                }else{
+                    // 注册
+                    router.toRegister({
+                        type:'mobile',
+                        mobile:iphone,
+                        vcode,
+                        country_code:ext
+                    })
 
 
-            }
-            else
-                showToast(`${global.lang.t('fillWhole')}`);
+                }
+
+            },err=>{
+
+            })
+
+
+
         }
         else
-            showToast(global.lang.t('need_agree'));
+            showToast(`${global.lang.t('fillWhole')}`);
     };
 
 
     render() {
-        const {getCodeDisable, iphone, vcode, ext} = this.state;
+        const {iphone, vcode, ext,areaName} = this.state;
+
         return (
             <View style={styles.container}>
 
@@ -66,7 +82,7 @@ export default class Login extends Component {
                 }}>
                     <Text
                         style={{width: 180, marginLeft: 8, height: 28, fontSize: 16, color: '#666666'}}>
-                        {`中国（China） (+${this.state.ext})`}
+                        {`${areaName} (+${this.state.ext})`}
                     </Text>
                     <View style={{flex: 1}}/>
                     <Image style={{width: 6, height: 16, marginRight: 10}} source={Images.is_right}/>
@@ -177,16 +193,11 @@ export default class Login extends Component {
         )
     }
 
-    _can_get_code = () => {
-        this.setState({
-            getCodeDisable: false
-        });
-    };
 
-
-    changed_ext = (code) => {
+    changed_ext = (code,name) => {
         this.setState({
-            ext: code
+            ext: code,
+            areaName:name
         })
     }
 }
