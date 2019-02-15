@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import styles from './index.style';
 import ExtArea from '../comm/ExtArea';
 import {Images, Metrics, Colors} from "../../configs/Theme";
-import {isStrNull, logMsg, showToast, strNotNull, checkPhone} from "../../utils/utils";
+import {isStrNull, logMsg, showToast} from "../../utils/utils";
 import {verify, postCode,register,login} from "../../services/accountDao";
 import CountDownButton from '../../components/CountDownButton'
 
@@ -13,20 +13,25 @@ import CountDownButton from '../../components/CountDownButton'
 }))
 export default class Login extends Component {
 
-    state = {
-        iphone: '',
-        vcode: '',
-        ext: '86',
-        areaName:'中国（China）',
-        codeType:''
-    };
+    constructor(props){
+        super(props)
+        this.state = {
+            ext: '86',
+            areaName:'中国（China）'
+        };
+        this.iphone = ''
+        this.vcode = ''
+    }
 
     componentDidMount() {
 
     }
 
     _next = () => {
-        const {iphone, vcode, ext,codeType} = this.state;
+
+        const { ext} = this.state;
+        let iphone = this.iphone
+        let vcode = this.vcode
         if (iphone.length > 1 && vcode.length > 1 && !isStrNull(ext)) {
             // 查询该账户是否被注册过¶
             verify({
@@ -41,7 +46,7 @@ export default class Login extends Component {
                         vcode,
                         country_code:ext
                     },ret=>{
-
+                        this.props.navigation.popToTop()
                     },err=>{
 
                     })
@@ -53,7 +58,6 @@ export default class Login extends Component {
                         vcode,
                         country_code:ext
                     })
-
 
                 }
 
@@ -70,8 +74,7 @@ export default class Login extends Component {
 
 
     render() {
-        const {iphone, vcode, ext,areaName} = this.state;
-
+        const { ext,areaName} = this.state;
         return (
             <View style={styles.container}>
 
@@ -102,16 +105,13 @@ export default class Login extends Component {
                                 fontSize: 16,
                                 color: '#444444'
                             }}
-                            maxLength={11}
                             numberOfLines={1}
                             placeholderTextColor={'#CCCCCC'}
                             placeholder={global.lang.t('cellphone')}
                             clearTextOnFocus={true}
                             underlineColorAndroid={'transparent'}
                             onChangeText={txt => {
-                                this.setState({
-                                    iphone: txt
-                                })
+                              this.iphone = txt
                             }}
 
                         />
@@ -130,16 +130,14 @@ export default class Login extends Component {
                                 fontSize: 16,
                                 color: '#444444'
                             }}
-                            maxLength={11}
+                            maxLength={6}
                             numberOfLines={1}
                             placeholderTextColor={'#CCCCCC'}
                             placeholder={global.lang.t('vscode')}
                             clearTextOnFocus={true}
                             underlineColorAndroid={'transparent'}
                             onChangeText={txt => {
-                                this.setState({
-                                    vcode: txt
-                                })
+                               this.vcode = txt
                             }}
 
                         />
@@ -156,6 +154,7 @@ export default class Login extends Component {
                             textStyle={styles.down_txt}
                             enable
                             onClick={counting => {
+                                let iphone = this.iphone
                                 if (isStrNull(iphone)) {
                                     showToast(global.lang.t('please_input_phone'))
                                     return
@@ -172,10 +171,6 @@ export default class Login extends Component {
                                 })
 
                             }}/>
-                        {/*<TouchableOpacity style={{marginRight: 8}}>*/}
-                            {/**/}
-                            {/*<Text style={{color: '#4A90E2', fontSize: 14}}>{global.lang.t('get_vscode')}</Text>*/}
-                        {/*</TouchableOpacity>*/}
 
                     </View>
                 </KeyboardAvoidingView>

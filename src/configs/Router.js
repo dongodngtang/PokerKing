@@ -26,6 +26,7 @@ export default class Router {
     }
 
 
+
     toDetail() {
         this.push({
             sceneKey: 'Detail'

@@ -5,6 +5,8 @@ import styles from "../Login/index.style";
 import {Images} from "../../configs/Theme";
 import {ActionSheet} from '../../components';
 import {register} from "../../services/accountDao";
+import ImagePicker from "react-native-image-crop-picker";
+import {logMsg} from "../../utils/utils";
 
 @connect(({Register}) => ({
     ...Register,
@@ -14,16 +16,25 @@ export default class Register extends Component {
         super(props)
         this.state = {
             name_show: false,
-            email_show: false
+            email_show: false,
+            genderTxt:global.lang.t('gender')
         }
         this.user_name = ''
         this.email = ''
-        this.gender= global.lang.t('gender')
+        this.gender= 0
     }
 
 
 
-    componentDidMount() {
+    _getGender =(gender)=> {
+        logMsg(gender)
+        if(gender !== 0){
+            this.gender = gender
+            this.setState({
+                genderTxt:gender === 1?global.lang.t('male'):global.lang.t('female')
+            })
+        }
+
 
     }
 
@@ -43,17 +54,16 @@ export default class Register extends Component {
                                 height: 35,
                                 fontSize: 16,
                                 fontWeight: 'bold',
-                                color: this.state.email_show ? '#444444' : '#F3F3F3'
+                                color:'#444444'
                             }}
-                            maxLength={11}
                             numberOfLines={1}
                             placeholderTextColor={'#CCCCCC'}
                             placeholder={global.lang.t('username_EC')}
                             clearTextOnFocus={true}
                             underlineColorAndroid={'transparent'}
                             onChangeText={txt => {
-                                this.state.email_show = true;
-                                this.email = txt
+                                this.user_name = txt
+
                             }}
                         />
 
@@ -65,11 +75,11 @@ export default class Register extends Component {
                                               this.actionGender && this.actionGender.show()
                                           }}>
                             <Text style={{
-                                color: this.state.gender === global.lang.t('gender') ? '#CCCCCC' : '#444444',
+                                color: this.state.genderTxt === global.lang.t('gender') ? '#CCCCCC' : '#444444',
                                 marginLeft: 8,
                                 fontSize:16,
                                 fontWeight: 'bold',
-                            }}>{global.lang.t('gender')}</Text>
+                            }}>{this.state.genderTxt}</Text>
                             <View style={{flex: 1}}/>
                             <Image style={{width:6,height:16,marginRight:10}} source={Images.is_right}/>
                         </TouchableOpacity>
@@ -86,17 +96,15 @@ export default class Register extends Component {
                                 height: 35,
                                 fontSize: 16,
                                 fontWeight: 'bold',
-                                color: this.state.name_show ? '#444444' : '#F3F3F3'
+                                color: '#444444'
                             }}
-                            maxLength={11}
                             numberOfLines={1}
                             placeholderTextColor={'#CCCCCC'}
                             placeholder={global.lang.t('mailbox')}
                             clearTextOnFocus={true}
                             underlineColorAndroid={'transparent'}
                             onChangeText={txt => {
-                                this.state.name_show = true;
-                                this.user_name = txt
+                                this.email = txt
                             }}
                         />
                         <View style={{flex: 1}}/>
@@ -105,9 +113,11 @@ export default class Register extends Component {
 
                 <TouchableOpacity style={styles.btn} onPress={()=>{
                     let body = this.props.params
-
+                    body.nickname = this.user_name
+                    body.gender = this.gender
+                    body.email = this.email
                     register(body,ret=>{
-
+                        this.props.navigation.popToTop()
                     },err=>{
 
                     })
@@ -122,7 +132,7 @@ export default class Register extends Component {
                     options={[global.lang.t('cancel'), global.lang.t('male'), global.lang.t('female')]}
                     cancelButtonIndex={0}
                     destructiveButtonIndex={2}
-                    onPress={this.handlePress}
+                    onPress={this._getGender}
                 />
             </View>
         )
