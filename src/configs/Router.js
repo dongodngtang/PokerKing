@@ -100,11 +100,12 @@ export default class Router {
             sceneKey: 'SwitchApi'
         })
     }
-    toQueueList(item){
+    toQueueList(item,cash_game_id){
         this.push({
             sceneKey: 'QueueList',
             params:{
-                item
+                item,
+                cash_game_id
             }
         })
     }

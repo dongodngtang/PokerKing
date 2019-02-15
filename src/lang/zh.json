@@ -83,5 +83,6 @@
   "get_vcode": "获取验证码",
   "mobile_code_send": "已发送到手机，注意查看短信",
   "please_input_phone": "请输入手机号",
-  "please_input_code": "请输入验证码"
+  "please_input_code": "请输入验证码",
+  "load_no_data":"暂无更多内容"
 }

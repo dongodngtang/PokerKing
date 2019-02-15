@@ -83,5 +83,6 @@
   "get_vcode": "獲取驗證碼",
   "mobile_code_send": "已發送到手機，注意查看短信",
   "please_input_phone": "請輸入手機號",
-  "please_input_code": "請輸入驗證碼"
+  "please_input_code": "請輸入驗證碼",
+  "load_no_data":"暫無更多內容"
 }

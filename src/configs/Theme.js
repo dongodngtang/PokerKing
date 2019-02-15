@@ -76,7 +76,8 @@ export const Images = {
     home_avatar:require('../asserts/home/home_avatar.png'),
     jinsha:require('../asserts/jinsha.png'),
     weini:require('../asserts/weini.png'),
-    close_block:require('../asserts/close.png')
+    close_block:require('../asserts/close.png'),
+    load_no_data:require('../asserts/load/load_no_data.png')
 }
 
 

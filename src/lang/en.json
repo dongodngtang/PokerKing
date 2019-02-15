@@ -83,5 +83,6 @@
   "get_vcode": "get verification code",
   "mobile_code_send": "Sent to mobile phone, pay attention to view SMS",
   "please_input_phone": "Please enter phone number",
-  "please_input_code": "please enter verification code"
+  "please_input_code": "please enter verification code",
+  "load_no_data":"No more content"
 }

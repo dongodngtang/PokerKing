@@ -1,18 +1,28 @@
 import React, {Component} from 'react';
-import {View, Text, FlatList,TouchableOpacity} from 'react-native';
+import {View, Text, FlatList, TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
 import styles from './index.style'
 import {Metrics} from "../../configs/Theme";
-
+import {getCashQueuesNumber} from "../../services/cashTableDao";
+import {isEmptyObject, logMsg} from "../../utils/utils";
+import NotData from "../comm/NotData";
 
 @connect(({QueueList}) => ({
     ...QueueList,
 }))
 export default class QueueList extends Component {
-
+    state = {
+        cash_queue_members: []
+    }
 
     componentDidMount() {
-
+        const {item, cash_game_id} = this.props.params;
+        getCashQueuesNumber({cash_game_id: cash_game_id, cash_queue_id: item.cash_game_id}, data => {
+            logMsg("cash_queue_members", data);
+            this.setState({
+                cash_queue_members: data.items
+            })
+        })
     }
 
     _separator = () => {
@@ -46,11 +56,15 @@ export default class QueueList extends Component {
     };
 
     render() {
+        const {cash_queue_members} = this.state;
+        if (isEmptyObject(cash_queue_members)) {
+            return <NotData backgroundColor={"#ECECEE"}/>
+        }
         return (
             <View style={styles.list_view}>
                 <FlatList
                     style={{backgroundColor: 'white'}}
-                    data={this.state.manila_data}
+                    data={cash_queue_members}
                     showsHorizontalScrollIndicator={false}
                     ItemSeparatorComponent={this._separator}
                     renderItem={this._renderItem}/>

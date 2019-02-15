@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {View, Text, FlatList, Image, TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
-import {logMsg} from "../../utils/utils";
+import {isEmptyObject, logMsg} from "../../utils/utils";
 import styles from './index.style';
 import {Metrics, Images} from "../../configs/Theme";
 import {getCashQueues} from '../../services/cashTableDao'
-
+import NotData from '../comm/NotData'
 
 @connect(({QueueProcess}) => ({
     ...QueueProcess,
@@ -58,7 +58,7 @@ export default class QueueProcess extends Component {
                 this.setState({
                     cash_queues: [...cash_queues]
                 });
-                router.toQueueList(item);
+                router.toQueueList(item, this.props.params.item.id);
             }}>
                 <Text style={styles.item_txt}>{`${small_blind}/${big_blind}NL（${table_numbers}桌）`}</Text>
                 <View style={{flex: 1}}/>
@@ -72,6 +72,9 @@ export default class QueueProcess extends Component {
 
     render() {
         const {cash_queues} = this.state;
+        if (isEmptyObject(cash_queues)) {
+            return <NotData backgroundColor={"#3F4042"}/>
+        }
         return (
             <View style={styles.process_view}>
                 <FlatList
