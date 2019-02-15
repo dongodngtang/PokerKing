@@ -21,7 +21,6 @@ export default StyleSheet.create({
         alignItems: 'center',
         borderBottomColor: '#ECECEE',
         borderBottomWidth: 1,
-        marginTop: 15,
         flexWrap: 'nowrap'
     },
     confirm_btn: {
@@ -49,6 +48,10 @@ export default StyleSheet.create({
         alignItems: 'center',
         borderRadius:4,
         marginTop:54
+    },
+    down_txt: {
+        fontSize: 14,
+        color: '#4A90E2'
     }
 })
 

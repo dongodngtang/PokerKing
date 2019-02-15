@@ -77,5 +77,11 @@
   "choose_gender":"選擇性別",
   "sands_casino":"現場排隊",
   "casino":"金沙娛樂場",
-  "venetian_casino":"威尼斯人娛樂場"
+  "venetian_casino":"威尼斯人娛樂場",
+  "complete_information":"請填寫完整的信息",
+  "show_put_phone": "請輸入有效的手機號碼！",
+  "get_vcode": "獲取驗證碼",
+  "mobile_code_send": "已發送到手機，注意查看短信",
+  "please_input_phone": "請輸入手機號",
+  "please_input_code": "請輸入驗證碼"
 }

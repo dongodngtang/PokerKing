@@ -1,23 +1,54 @@
 /**
  * Created by lorne on 2016/12/27.
- */
-import Storage from 'react-native-storage';
-import { AsyncStorage } from 'react-native';
+ */import Storage from 'react-native-storage';
+import {AsyncStorage} from 'react-native';
 
-var storage = new Storage({
-    // 最大容量，默认值1000条数据循环存储
+let storage = new Storage({
+    // maximum capacity, default 1000
     size: 1000,
 
-    // 存储引擎：对于RN使用AsyncStorage，对于web使用window.localStorage
-    // 如果不指定则数据只会保存在内存中，重启后即丢失
+    // Use AsyncStorage for RN, or window.localStorage for web.
+    // If not set, data would be lost after reload.
     storageBackend: AsyncStorage,
 
-    // 数据过期时间，默认一整天（1000 * 3600 * 24 毫秒），设为null则永不过期
-    defaultExpires:null,
+    // expire time, default 1 day(1000 * 3600 * 24 milliseconds).
+    // can be null, which means never expire.
+    defaultExpires: null,
 
-    // 读写时在内存中缓存数据。默认启用。
+    // cache data in the memory. default is true.
     enableCache: true,
 
+    // if data was not found in storage or expired,
+    // the corresponding sync method will be invoked and return
+    // the latest data.
+    sync: {
+        // we'll talk about the details later.
+    }
 });
 
 global.storage = storage;
+
+export function save(key, value) {
+    storage.save({
+        key: key,   // Note: Do not use underscore("_") in key!
+        data: value,
+    });
+}
+
+export function load(key) {
+    storage.load({
+        key: key
+    }).then(ret => {
+
+    }).catch(err => {
+        switch (err.name) {
+            case 'NotFoundError':
+                // TODO;
+                break;
+            case 'ExpiredError':
+                // TODO
+                break;
+        }
+    })
+
+}

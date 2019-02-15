@@ -77,5 +77,11 @@
   "choose_gender":"Choose gender",
   "queuing":"On-site queuing",
   "sands_casino":"Sands Casino",
-  "venetian_casino":"Venetian Casino"
+  "venetian_casino":"Venetian Casino",
+  "complete_information":"Please complete the information",
+  "show_put_phone": "Please enter a valid phone number！",
+  "get_vcode": "get verification code",
+  "mobile_code_send": "Sent to mobile phone, pay attention to view SMS",
+  "please_input_phone": "Please enter phone number",
+  "please_input_code": "please enter verification code"
 }

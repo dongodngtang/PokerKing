@@ -75,7 +75,8 @@ export const Images = {
     xianjinzhuo: require('../asserts/xianjinzhuo.png'),
     home_avatar:require('../asserts/home/home_avatar.png'),
     jinsha:require('../asserts/jinsha.png'),
-    weini:require('../asserts/weini.png')
+    weini:require('../asserts/weini.png'),
+    close_block:require('../asserts/close.png')
 }
 
 
@@ -99,6 +100,10 @@ export const Colors = {
     _B5B: "#B5B5B5",//二级内容
     _D8D: "#D8D8D8",//三级内容
     _00B: "#00BD70",//主颜色
+    _BBBB: '#BBBBBB',
+    _E5E5: '#E5E5E5',
+    txt_666: '#666666',
+    _E54: '#E54A2E',
 }
 
 export const Styles = {

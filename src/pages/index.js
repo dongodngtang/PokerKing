@@ -22,7 +22,7 @@ import CashTable from './CashTable';
 import QueueProcess from './QueueProcess';
 import Feedback from './Feedback';
 import ModifyData from './ModifyData';
-
+import SwitchApi from './SwitchApi';
 
 export const scenes = () => {
     return <Scene key="root">
@@ -101,6 +101,11 @@ export const scenes = () => {
                component={ModifyData}
                {...TopNav({
                    title: global.lang.t('modifyData')
+               })}/>
+        <Scene key="SwitchApi"
+               component={SwitchApi}
+               {...TopNav({
+                   title: '切换环境'
                })}/>
 
     </Scene>

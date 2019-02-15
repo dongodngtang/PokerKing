@@ -184,3 +184,15 @@ export function permissionAlert(message) {
         }
     ])
 }
+var myreg = /^\d{5,20}$/;
+export function checkPhone(phone, ext) {
+    if (!strNotNull(ext)) {
+        showToast(global.lang.t('complete_information'))
+    } else if (phone != null && phone != undefined) {
+        if (!myreg.test(phone.trim())) {
+            showToast(`${global.lang.t('show_put_phone')}`);
+            return false;
+        }
+        return true;
+    }
+}

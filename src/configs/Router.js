@@ -5,6 +5,7 @@
  */
 
 import {Actions} from 'react-native-router-flux';
+import SwitchApi from "../pages/SwitchApi";
 
 export default class Router {
     popTo({sceneKey, params}) {
@@ -94,4 +95,9 @@ export default class Router {
         })
     }
 
+    toSwitchApi(){
+        this.push({
+            sceneKey: 'SwitchApi'
+        })
+    }
 }

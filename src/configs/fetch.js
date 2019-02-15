@@ -18,11 +18,7 @@ let TAG = 'Http:';
 // define the api
 const client = create({
   baseURL: api.production,
-  timeout: 20000,
-  headers: {
-    'X-DP-APP-KEY': '467109f4b44be6398c17f6c058dfa7ee',
-    'X-DP-CLIENT-IP': '192.168.2.231'
-  },
+  timeout: 20000
 });
 
 if (__DEV__) {
@@ -37,8 +33,25 @@ if (__DEV__) {
   })
 }
 
+export function initBaseUrl() {
+    storage.load({
+        key: 'BaseApiType'
+    }).then(ret => {
+        if(ret === 'test')
+            client.setBaseURL(api.test)
+        else
+            client.setBaseURL(api.production)
+    }).catch(err => {
+
+    })
+}
+
 export function setBaseUrl(type) {
   logMsg('当前环境为：'+type)
+    storage.save({
+        key: 'BaseApiType',   // Note: Do not use underscore("_") in key!
+        data: type,
+    });
   if(type === 'test')
   client.setBaseURL(api.test)
   else

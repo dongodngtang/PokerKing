@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import {View, Text, Button, TextInput, KeyboardAvoidingView, TouchableOpacity,Image} from 'react-native';
+import {View, Text, Button, TextInput, KeyboardAvoidingView, TouchableOpacity, Image} from 'react-native';
 import {connect} from 'react-redux';
 import styles from './index.style';
 import ExtArea from '../comm/ExtArea';
-import {Images, Metrics} from "../../configs/Theme";
-import {isStrNull, logMsg, showToast} from "../../utils/utils";
-import {postVerifyCode} from "../../services/accountDao";
+import {Images, Metrics, Colors} from "../../configs/Theme";
+import {isStrNull, logMsg, showToast, strNotNull, checkPhone} from "../../utils/utils";
+import {postVerifyCode, postCode} from "../../services/accountDao";
+import CountDownButton from '../../components/CountDownButton'
 
 @connect(({Login}) => ({
     ...Login,
@@ -13,12 +14,12 @@ import {postVerifyCode} from "../../services/accountDao";
 export default class Login extends Component {
 
     state = {
-        iphone_show: false,
-        vcode_show: false,
         iphone: '',
         vcode: '',
         ext: '86',
-        checkAgree:true,
+        checkAgree: true,
+        getCodeDisable: false,
+        canNextDisable: true,
     };
 
     componentDidMount() {
@@ -26,7 +27,7 @@ export default class Login extends Component {
     }
 
     _next = () => {
-        const {checkAgree,iphone, vcode, ext} = this.state;
+        const {checkAgree, iphone, vcode, ext} = this.state;
         if (checkAgree) {
             if (iphone.length > 1 && vcode.length > 1 && !isStrNull(ext)) {
                 let body = {
@@ -54,7 +55,7 @@ export default class Login extends Component {
 
 
     render() {
-
+        const {getCodeDisable, iphone, vcode, ext} = this.state;
         return (
             <View style={styles.container}>
 
@@ -64,11 +65,11 @@ export default class Login extends Component {
                     this.areaAction && this.areaAction.toggle();
                 }}>
                     <Text
-                        style={{width: 180, marginLeft: 8, height: 28,fontSize:16,color:'#666666'}}>
+                        style={{width: 180, marginLeft: 8, height: 28, fontSize: 16, color: '#666666'}}>
                         {`中国（China） (+${this.state.ext})`}
                     </Text>
                     <View style={{flex: 1}}/>
-                    <Image style={{width:6,height:16,marginRight:10}} source={Images.is_right}/>
+                    <Image style={{width: 6, height: 16, marginRight: 10}} source={Images.is_right}/>
 
                 </TouchableOpacity>
                 <KeyboardAvoidingView behavior='position' keyboardVerticalOffset={20}>
@@ -81,10 +82,9 @@ export default class Login extends Component {
                                 paddingLeft: 0,
                                 marginLeft: 8,
                                 width: 230,
-                                height: 35,
+                                height: 50,
                                 fontSize: 16,
-                                fontWeight: 'bold',
-                                color: this.state.iphone_show ? '#444444' : '#F3F3F3'
+                                color: '#444444'
                             }}
                             maxLength={11}
                             numberOfLines={1}
@@ -93,7 +93,6 @@ export default class Login extends Component {
                             clearTextOnFocus={true}
                             underlineColorAndroid={'transparent'}
                             onChangeText={txt => {
-                                this.state.iphone_show = true;
                                 this.setState({
                                     iphone: txt
                                 })
@@ -113,8 +112,7 @@ export default class Login extends Component {
                                 width: 160,
                                 height: 35,
                                 fontSize: 16,
-                                fontWeight: 'bold',
-                                color: this.state.vcode_show ? '#444444' : '#F3F3F3'
+                                color: '#444444'
                             }}
                             maxLength={11}
                             numberOfLines={1}
@@ -123,7 +121,6 @@ export default class Login extends Component {
                             clearTextOnFocus={true}
                             underlineColorAndroid={'transparent'}
                             onChangeText={txt => {
-                                this.state.vcode_show = true;
                                 this.setState({
                                     vcode: txt
                                 })
@@ -132,17 +129,45 @@ export default class Login extends Component {
                         />
                         <View style={{flex: 1}}/>
                         <View style={{height: 22, width: 1, backgroundColor: '#ECECEE', marginRight: 16}}/>
-                        <TouchableOpacity style={{marginRight:8}}>
-                            <Text style={{color: '#4A90E2', fontSize: 14}}>{global.lang.t('get_vscode')}</Text>
-                        </TouchableOpacity>
+                        <CountDownButton
+                            disableBg={'#F3F3F3'}
+                            disableColor={'#747474'}
+                            style={{
+                                marginRight: 8,
+                                height: 50,
+                                backgroundColor: 'white'
+                            }}
+                            textStyle={styles.down_txt}
+                            enable
+                            onClick={counting => {
+                                if (isStrNull(iphone)) {
+                                    showToast(global.lang.t('please_input_phone'))
+                                    return
+                                }
+                                postCode({
+                                    mobile: iphone,
+                                    country_code: ext,
+                                    option_type: 'login',
+                                    vcode_type: "mobile",
+                                }, data => {
+                                    counting(true)
+                                }, err => {
+                                    showToast(err)
+                                })
+
+                            }}/>
+                        {/*<TouchableOpacity style={{marginRight: 8}}>*/}
+                            {/**/}
+                            {/*<Text style={{color: '#4A90E2', fontSize: 14}}>{global.lang.t('get_vscode')}</Text>*/}
+                        {/*</TouchableOpacity>*/}
 
                     </View>
                 </KeyboardAvoidingView>
 
-                <TouchableOpacity style={styles.btn} onPress={()=>{
+                <TouchableOpacity style={styles.btn} onPress={() => {
                     this._next();
                 }}>
-                    <Text style={{color:'#FFE9AD',fontSize:18}}>{global.lang.t('login_continue')}</Text>
+                    <Text style={{color: '#FFE9AD', fontSize: 18}}>{global.lang.t('login_continue')}</Text>
                 </TouchableOpacity>
 
                 <ExtArea
@@ -151,6 +176,13 @@ export default class Login extends Component {
             </View>
         )
     }
+
+    _can_get_code = () => {
+        this.setState({
+            getCodeDisable: false
+        });
+    };
+
 
     changed_ext = (code) => {
         this.setState({

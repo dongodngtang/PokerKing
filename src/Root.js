@@ -10,6 +10,8 @@ import {scenes} from './pages'
 import RouterO from './configs/Router';
 import Language from './lang/Language'
 import {connect} from 'react-redux';
+import './configs/StorageConfig'
+import {initBaseUrl} from "./configs/fetch";
 
 @connect(({ common}) => ({
       ...common
@@ -22,6 +24,8 @@ export default class Root extends Component {
 
         this.lang = this.lang || new Language()
         global.lang = this.lang
+
+        initBaseUrl()
 
     }
 
