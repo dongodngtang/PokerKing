@@ -11,8 +11,6 @@ import {ActionSheet} from '../../components';
 export default class Register extends Component {
 
     state = {
-        name_show: false,
-        email_show: false,
         user_name: '',
         email: '',
         gender: global.lang.t('gender')
@@ -35,10 +33,9 @@ export default class Register extends Component {
                                 paddingLeft: 0,
                                 marginLeft: 8,
                                 width: 230,
-                                height: 35,
+                                height: 50,
                                 fontSize: 16,
-                                fontWeight: 'bold',
-                                color: this.state.email_show ? '#444444' : '#F3F3F3'
+                                color: '#444444'
                             }}
                             maxLength={11}
                             numberOfLines={1}
@@ -47,16 +44,15 @@ export default class Register extends Component {
                             clearTextOnFocus={true}
                             underlineColorAndroid={'transparent'}
                             onChangeText={txt => {
-                                this.state.email_show = true;
                                 this.setState({
-                                    email: txt
+                                    user_name: txt
                                 })
                             }}
                         />
 
                     </View>
 
-                    <View style={[styles.textView,{paddingTop:10,paddingBottom:10}]}>
+                    <View style={[styles.textView,{height:50}]}>
                         <TouchableOpacity style={{width:'100%',flexDirection:'row',alignItems:'center'}}
                                           onPress={()=>{
                                               this.actionGender && this.actionGender.show()
@@ -64,8 +60,7 @@ export default class Register extends Component {
                             <Text style={{
                                 color: this.state.gender === global.lang.t('gender') ? '#CCCCCC' : '#444444',
                                 marginLeft: 8,
-                                fontSize:16,
-                                fontWeight: 'bold',
+                                fontSize:16
                             }}>{global.lang.t('gender')}</Text>
                             <View style={{flex: 1}}/>
                             <Image style={{width:6,height:16,marginRight:10}} source={Images.is_right}/>
@@ -80,10 +75,9 @@ export default class Register extends Component {
                                 paddingLeft: 0,
                                 marginLeft: 8,
                                 width: 230,
-                                height: 35,
+                                height: 50,
                                 fontSize: 16,
-                                fontWeight: 'bold',
-                                color: this.state.name_show ? '#444444' : '#F3F3F3'
+                                color: '#444444'
                             }}
                             maxLength={11}
                             numberOfLines={1}
@@ -92,9 +86,8 @@ export default class Register extends Component {
                             clearTextOnFocus={true}
                             underlineColorAndroid={'transparent'}
                             onChangeText={txt => {
-                                this.state.name_show = true;
                                 this.setState({
-                                    user_name: txt
+                                    mail: txt
                                 })
                             }}
                         />
