@@ -51,9 +51,8 @@ export default class Register extends Component {
                                 paddingLeft: 0,
                                 marginLeft: 8,
                                 width: 230,
-                                height: 35,
+                                height: 50,
                                 fontSize: 16,
-                                fontWeight: 'bold',
                                 color:'#444444'
                             }}
                             numberOfLines={1}
@@ -69,7 +68,7 @@ export default class Register extends Component {
 
                     </View>
 
-                    <View style={[styles.textView,{paddingTop:10,paddingBottom:10}]}>
+                    <View style={[styles.textView,{height:50}]}>
                         <TouchableOpacity style={{width:'100%',flexDirection:'row',alignItems:'center'}}
                                           onPress={()=>{
                                               this.actionGender && this.actionGender.show()
@@ -93,10 +92,9 @@ export default class Register extends Component {
                                 paddingLeft: 0,
                                 marginLeft: 8,
                                 width: 230,
-                                height: 35,
+                                height: 50,
                                 fontSize: 16,
-                                fontWeight: 'bold',
-                                color: '#444444'
+                                color:'#444444'
                             }}
                             numberOfLines={1}
                             placeholderTextColor={'#CCCCCC'}
