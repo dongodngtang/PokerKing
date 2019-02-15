@@ -9,6 +9,9 @@ const api = {
     cash_games:"cash_games",//现金桌列表
     cash_queues:cash_queues,//现金桌排队进程列表
     cash_queues_number:cash_queues_number,//现金桌排队进程报名人列表
+    verify:'account/verify',//查询该账户是否被注册过
+    register:'account/register',//用户注册
+    login:'account/login'
 }
 
 function cash_queues(body){

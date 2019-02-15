@@ -4,8 +4,8 @@ import {connect} from 'react-redux';
 import styles from './index.style';
 import ExtArea from '../comm/ExtArea';
 import {Images, Metrics, Colors} from "../../configs/Theme";
-import {isStrNull, logMsg, showToast, strNotNull, checkPhone} from "../../utils/utils";
-import {postCode} from "../../services/accountDao";
+import {isStrNull, logMsg, showToast} from "../../utils/utils";
+import {verify, postCode,register,login} from "../../services/accountDao";
 import CountDownButton from '../../components/CountDownButton'
 
 @connect(({Login}) => ({
@@ -13,49 +13,68 @@ import CountDownButton from '../../components/CountDownButton'
 }))
 export default class Login extends Component {
 
-    state = {
-        iphone: '',
-        vcode: '',
-        ext: '86',
-        checkAgree: true,
-        getCodeDisable: false,
-        canNextDisable: true,
-    };
+    constructor(props){
+        super(props)
+        this.state = {
+            ext: '86',
+            areaName:'中国（China）'
+        };
+        this.iphone = ''
+        this.vcode = ''
+    }
 
     componentDidMount() {
 
     }
 
     _next = () => {
-        const {checkAgree, iphone, vcode, ext} = this.state;
-        if (checkAgree) {
-            if (iphone.length > 1 && vcode.length > 1 && !isStrNull(ext)) {
-                let body = {
-                    option_type: 'register',
-                    vcode_type: 'mobile',
-                    account: iphone,
-                    vcode: vcode,
-                    ext: ext
-                };
-                router.toRegister(this.props, iphone, vcode, ext)
-                // postVerifyCode(body, data => {
-                //     router.toRegister(this.props, iphone, vcode, ext)
-                // }, err => {
-                //     showToast(err)
-                // })
+
+        const { ext} = this.state;
+        let iphone = this.iphone
+        let vcode = this.vcode
+        if (iphone.length > 1 && vcode.length > 1 && !isStrNull(ext)) {
+            // 查询该账户是否被注册过¶
+            verify({
+                account:iphone,
+                country_code:ext
+            },ret=>{
+                if(ret && ret.exist && ret.exist === 1){
+                    // 登录
+                    login({
+                        type:'vcode',
+                        mobile:iphone,
+                        vcode,
+                        country_code:ext
+                    },ret=>{
+                        this.props.navigation.popToTop()
+                    },err=>{
+
+                    })
+                }else{
+                    // 注册
+                    router.toRegister({
+                        type:'mobile',
+                        mobile:iphone,
+                        vcode,
+                        country_code:ext
+                    })
+
+                }
+
+            },err=>{
+
+            })
 
 
-            }
-            else
-                showToast(`${global.lang.t('fillWhole')}`);
+
         }
         else
-            showToast(global.lang.t('need_agree'));
+            showToast(`${global.lang.t('fillWhole')}`);
     };
 
 
     render() {
-        const {getCodeDisable, iphone, vcode, ext} = this.state;
+        const { ext,areaName} = this.state;
         return (
             <View style={styles.container}>
 
@@ -66,7 +85,7 @@ export default class Login extends Component {
                 }}>
                     <Text
                         style={{width: 180, marginLeft: 8, height: 28, fontSize: 16, color: '#666666'}}>
-                        {`中国（China） (+${this.state.ext})`}
+                        {`${areaName} (+${this.state.ext})`}
                     </Text>
                     <View style={{flex: 1}}/>
                     <Image style={{width: 6, height: 16, marginRight: 10}} source={Images.is_right}/>
@@ -86,16 +105,13 @@ export default class Login extends Component {
                                 fontSize: 16,
                                 color: '#444444'
                             }}
-                            maxLength={11}
                             numberOfLines={1}
                             placeholderTextColor={'#CCCCCC'}
                             placeholder={global.lang.t('cellphone')}
                             clearTextOnFocus={true}
                             underlineColorAndroid={'transparent'}
                             onChangeText={txt => {
-                                this.setState({
-                                    iphone: txt
-                                })
+                              this.iphone = txt
                             }}
 
                         />
@@ -114,16 +130,14 @@ export default class Login extends Component {
                                 fontSize: 16,
                                 color: '#444444'
                             }}
-                            maxLength={11}
+                            maxLength={6}
                             numberOfLines={1}
                             placeholderTextColor={'#CCCCCC'}
                             placeholder={global.lang.t('vscode')}
                             clearTextOnFocus={true}
                             underlineColorAndroid={'transparent'}
                             onChangeText={txt => {
-                                this.setState({
-                                    vcode: txt
-                                })
+                               this.vcode = txt
                             }}
 
                         />
@@ -140,6 +154,7 @@ export default class Login extends Component {
                             textStyle={styles.down_txt}
                             enable
                             onClick={counting => {
+                                let iphone = this.iphone
                                 if (isStrNull(iphone)) {
                                     showToast(global.lang.t('please_input_phone'))
                                     return
@@ -156,10 +171,6 @@ export default class Login extends Component {
                                 })
 
                             }}/>
-                        {/*<TouchableOpacity style={{marginRight: 8}}>*/}
-                            {/**/}
-                            {/*<Text style={{color: '#4A90E2', fontSize: 14}}>{global.lang.t('get_vscode')}</Text>*/}
-                        {/*</TouchableOpacity>*/}
 
                     </View>
                 </KeyboardAvoidingView>
@@ -177,16 +188,11 @@ export default class Login extends Component {
         )
     }
 
-    _can_get_code = () => {
-        this.setState({
-            getCodeDisable: false
-        });
-    };
 
-
-    changed_ext = (code) => {
+    changed_ext = (code,name) => {
         this.setState({
-            ext: code
+            ext: code,
+            areaName:name
         })
     }
 }

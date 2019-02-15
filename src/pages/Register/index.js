@@ -4,19 +4,37 @@ import {connect} from 'react-redux';
 import styles from "../Login/index.style";
 import {Images} from "../../configs/Theme";
 import {ActionSheet} from '../../components';
+import {register} from "../../services/accountDao";
+import ImagePicker from "react-native-image-crop-picker";
+import {logMsg} from "../../utils/utils";
 
 @connect(({Register}) => ({
     ...Register,
 }))
 export default class Register extends Component {
-
-    state = {
-        user_name: '',
-        email: '',
-        gender: global.lang.t('gender')
+    constructor(props){
+        super(props)
+        this.state = {
+            name_show: false,
+            email_show: false,
+            genderTxt:global.lang.t('gender')
+        }
+        this.user_name = ''
+        this.email = ''
+        this.gender= 0
     }
 
-    componentDidMount() {
+
+
+    _getGender =(gender)=> {
+        logMsg(gender)
+        if(gender !== 0){
+            this.gender = gender
+            this.setState({
+                genderTxt:gender === 1?global.lang.t('male'):global.lang.t('female')
+            })
+        }
+
 
     }
 
@@ -33,35 +51,35 @@ export default class Register extends Component {
                                 paddingLeft: 0,
                                 marginLeft: 8,
                                 width: 230,
-                                height: 50,
+                                height: 35,
                                 fontSize: 16,
-                                color: '#444444'
+                                fontWeight: 'bold',
+                                color:'#444444'
                             }}
-                            maxLength={11}
                             numberOfLines={1}
                             placeholderTextColor={'#CCCCCC'}
                             placeholder={global.lang.t('username_EC')}
                             clearTextOnFocus={true}
                             underlineColorAndroid={'transparent'}
                             onChangeText={txt => {
-                                this.setState({
-                                    user_name: txt
-                                })
+                                this.user_name = txt
+
                             }}
                         />
 
                     </View>
 
-                    <View style={[styles.textView,{height:50}]}>
+                    <View style={[styles.textView,{paddingTop:10,paddingBottom:10}]}>
                         <TouchableOpacity style={{width:'100%',flexDirection:'row',alignItems:'center'}}
                                           onPress={()=>{
                                               this.actionGender && this.actionGender.show()
                                           }}>
                             <Text style={{
-                                color: this.state.gender === global.lang.t('gender') ? '#CCCCCC' : '#444444',
+                                color: this.state.genderTxt === global.lang.t('gender') ? '#CCCCCC' : '#444444',
                                 marginLeft: 8,
-                                fontSize:16
-                            }}>{global.lang.t('gender')}</Text>
+                                fontSize:16,
+                                fontWeight: 'bold',
+                            }}>{this.state.genderTxt}</Text>
                             <View style={{flex: 1}}/>
                             <Image style={{width:6,height:16,marginRight:10}} source={Images.is_right}/>
                         </TouchableOpacity>
@@ -75,20 +93,18 @@ export default class Register extends Component {
                                 paddingLeft: 0,
                                 marginLeft: 8,
                                 width: 230,
-                                height: 50,
+                                height: 35,
                                 fontSize: 16,
+                                fontWeight: 'bold',
                                 color: '#444444'
                             }}
-                            maxLength={11}
                             numberOfLines={1}
                             placeholderTextColor={'#CCCCCC'}
                             placeholder={global.lang.t('mailbox')}
                             clearTextOnFocus={true}
                             underlineColorAndroid={'transparent'}
                             onChangeText={txt => {
-                                this.setState({
-                                    mail: txt
-                                })
+                                this.email = txt
                             }}
                         />
                         <View style={{flex: 1}}/>
@@ -96,6 +112,15 @@ export default class Register extends Component {
                 </KeyboardAvoidingView>
 
                 <TouchableOpacity style={styles.btn} onPress={()=>{
+                    let body = this.props.params
+                    body.nickname = this.user_name
+                    body.gender = this.gender
+                    body.email = this.email
+                    register(body,ret=>{
+                        this.props.navigation.popToTop()
+                    },err=>{
+
+                    })
 
                 }}>
                     <Text style={{color:'#FFE9AD',fontSize:18}}>{global.lang.t('determine')}</Text>
@@ -107,7 +132,7 @@ export default class Register extends Component {
                     options={[global.lang.t('cancel'), global.lang.t('male'), global.lang.t('female')]}
                     cancelButtonIndex={0}
                     destructiveButtonIndex={2}
-                    onPress={this.handlePress}
+                    onPress={this._getGender}
                 />
             </View>
         )

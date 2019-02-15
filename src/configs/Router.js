@@ -26,15 +26,17 @@ export default class Router {
     }
 
 
+
     toDetail() {
         this.push({
             sceneKey: 'Detail'
         })
     }
 
-    toRegister() {
+    toRegister(param) {
         this.push({
-            sceneKey: 'Register'
+            sceneKey: 'Register',
+            params:param
         })
     }
 

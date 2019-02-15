@@ -11,6 +11,8 @@ import {Alert,Linking} from 'react-native';
 import _ from 'lodash'
 import moment from 'moment'
 import Toast from '../components/toast';
+import {setToken} from "../configs/fetch";
+import api from "../configs/api";
 
 export const YYYYMMDD = 'YYYY-MM-DD'
 
@@ -173,26 +175,28 @@ export function isStrNull(str) {
 export function getCurrentDate() {
     return moment();
 }
-export function permissionAlert(message) {
-    Alert.alert(global.lang.t('permission_prompt'), message, [
-        {text: global.lang.t('cancel')},
-        {
-            text: global.lang.t('setting'), onPress: () => {
-                Linking.openURL('app-settings:')
-                    .catch(err => console.log('error', err))
-            }
-        }
-    ])
+
+global.loginUser = {}
+export function storageLoginUser(loginUser) {
+    logMsg('登录用户数据',loginUser)
+    global.storage.save({
+        key:'LoginUser',
+        data:loginUser
+    })
+    setToken(loginUser.access_token?loginUser.access_token:'')
+    global.loginUser = loginUser
+
 }
-var myreg = /^\d{5,20}$/;
-export function checkPhone(phone, ext) {
-    if (!strNotNull(ext)) {
-        showToast(global.lang.t('complete_information'))
-    } else if (phone != null && phone != undefined) {
-        if (!myreg.test(phone.trim())) {
-            showToast(`${global.lang.t('show_put_phone')}`);
-            return false;
-        }
-        return true;
-    }
+
+
+export function initLoginUser() {
+    storage.load({
+        key: 'LoginUser'
+    }).then(ret => {
+        storageLoginUser(ret)
+    }).catch(err => {
+
+    })
 }
+
+

@@ -13,7 +13,7 @@ let dispatch;
 
 function createApp(opt) {
     // redux日志
-    opt.onAction = [createLogger()];
+    // opt.onAction = [createLogger()];
     app = create(opt);
 
     if (!global.registered) opt.models.forEach(model => app.model(model));

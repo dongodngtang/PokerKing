@@ -12,6 +12,7 @@ import Language from './lang/Language'
 import {connect} from 'react-redux';
 import './configs/StorageConfig'
 import {initBaseUrl} from "./configs/fetch";
+import {initLoginUser} from "./utils/utils";
 
 @connect(({ common}) => ({
       ...common
@@ -26,6 +27,7 @@ export default class Root extends Component {
         global.lang = this.lang
 
         initBaseUrl()
+        initLoginUser()
 
     }
 
