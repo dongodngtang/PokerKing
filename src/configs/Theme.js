@@ -129,10 +129,10 @@ export const Styles = {
         backgroundColor: '#13151C',
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between',
         paddingTop: Metrics.statusBarHeight
     },
     left: {
+        flex:1,
         height: 44,
         justifyContent: 'center',
         width:60,
@@ -140,11 +140,13 @@ export const Styles = {
         paddingLeft:17
     },
     navTitle: {
+        flex:1,
         justifyContent: 'center',
         alignItems: 'center',
         alignSelf: 'center'
     },
     right: {
+        flex:1,
         flexDirection: 'row-reverse',
         flexWrap: 'nowrap',
         height: 44,

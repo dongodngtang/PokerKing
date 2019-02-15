@@ -9,7 +9,6 @@ export default StyleSheet.create({
         backgroundColor: '#13151C',
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent:'space-between',
         paddingTop: Metrics.statusBarHeight
     },
     left2: {

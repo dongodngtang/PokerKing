@@ -159,6 +159,7 @@ export class NavBar extends PureComponent {
 
             </TouchableOpacity>
 
+
             <TouchableOpacity
                 activeOpacity={1}
                 onLongPress={() => {
@@ -167,7 +168,7 @@ export class NavBar extends PureComponent {
                 }}
                 style={Styles.navTitle}>
                 <Text
-                    style={{fontSize: 18, color: '#FFE9AD'}}>{title}</Text>
+                    style={{fontSize: 18, color: '#FFE9AD',alignSelf:'center'}}>{title}</Text>
 
             </TouchableOpacity>
 

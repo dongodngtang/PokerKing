@@ -19,7 +19,7 @@ export default class QueueProcess extends Component {
     constructor(props) {
         super(props);
         props.navigation.setParams({
-            title: `${global.lang.t(this.props.params.type)}${global.lang.t('queue_process')}`
+            title: `${global.lang.t('queue_process')}`
         })
     }
 
