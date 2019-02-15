@@ -10,7 +10,7 @@ export function getCashGames(resolve, reject) {
 }
 /*现金桌排队进程列表*/
 export function getCashQueues(body,resolve, reject) {
-    get(api.cash_queues, body, ret => {
+    get(api.cash_queues(body), body, ret => {
         resolve(ret.data)
     }, reject)
 }

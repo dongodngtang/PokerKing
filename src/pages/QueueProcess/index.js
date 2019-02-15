@@ -63,7 +63,7 @@ export default class QueueProcess extends Component {
                 <Text style={styles.item_txt}>{`${small_blind}/${big_blind}NL（${table_numbers}桌）`}</Text>
                 <View style={{flex: 1}}/>
                 <Text
-                    style={[styles.item_txt, {marginRight: 20}]}>{global.lang.t('line_count')}：${cash_queue_members_count}</Text>
+                    style={[styles.item_txt, {marginRight: 20}]}>{global.lang.t('line_count')}：{cash_queue_members_count}</Text>
                 <Image style={{height: 12, width: 6}} source={Images.is_right}/>
             </TouchableOpacity>
         )

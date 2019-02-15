@@ -30,7 +30,7 @@ export default class CashTable extends Component {
         )
     };
 
-    _renderItem=(item,index)=>{
+    _renderItem=({item,index})=>{
         return(
             <TouchableOpacity key={index} activeOpacity={1} onPress={() => {
                 router.toQueueProcess(item)
