@@ -6,7 +6,13 @@ const api = {
     //production 用来发布正式生产环境
     production: 'http://pokerking_api.deshpro.com/v1',
     v_codes: 'account/v_codes',//获取验证码
+    cash_games:"cash_games",//现金桌列表
+    cash_queues:cash_queues,//现金桌排队进程列表
 }
 
+function cash_queues(body){
+    const {cash_game_id} = body;
+    return `cash_games/${cash_game_id}/cash_queues`;
+}
 
 export default api

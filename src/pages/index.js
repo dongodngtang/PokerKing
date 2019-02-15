@@ -23,6 +23,7 @@ import QueueProcess from './QueueProcess';
 import Feedback from './Feedback';
 import ModifyData from './ModifyData';
 import SwitchApi from './SwitchApi';
+import QueueList from './QueueList'
 
 export const scenes = () => {
     return <Scene key="root">
@@ -106,6 +107,11 @@ export const scenes = () => {
                component={SwitchApi}
                {...TopNav({
                    title: '切换环境'
+               })}/>
+        <Scene key="QueueList"
+               component={QueueList}
+               {...TopNav({
+
                })}/>
 
     </Scene>

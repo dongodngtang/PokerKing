@@ -5,7 +5,7 @@ import styles from './index.style';
 import ExtArea from '../comm/ExtArea';
 import {Images, Metrics, Colors} from "../../configs/Theme";
 import {isStrNull, logMsg, showToast, strNotNull, checkPhone} from "../../utils/utils";
-import {postVerifyCode, postCode} from "../../services/accountDao";
+import {postCode} from "../../services/accountDao";
 import CountDownButton from '../../components/CountDownButton'
 
 @connect(({Login}) => ({

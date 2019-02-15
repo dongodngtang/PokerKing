@@ -74,11 +74,11 @@ export default class Router {
         })
     }
 
-    toQueueProcess(type) {
+    toQueueProcess(item) {
         this.push({
             sceneKey: 'QueueProcess',
             params: {
-                type
+                item
             }
         })
     }
@@ -98,6 +98,14 @@ export default class Router {
     toSwitchApi(){
         this.push({
             sceneKey: 'SwitchApi'
+        })
+    }
+    toQueueList(item){
+        this.push({
+            sceneKey: 'QueueList',
+            params:{
+                item
+            }
         })
     }
 }
