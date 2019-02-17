@@ -55,6 +55,8 @@ export default class ModifyData extends Component {
                 putProfile(edit,ret=>{
                     showToast('修改成功')
                     router.pop()
+                },err=>{
+                    router.pop()
                 })
 
             }
