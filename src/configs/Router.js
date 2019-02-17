@@ -6,6 +6,7 @@
 
 import {Actions} from 'react-native-router-flux';
 import SwitchApi from "../pages/SwitchApi";
+import EventDetail from "../pages/EventDetail";
 
 export default class Router {
     popTo({sceneKey, params}) {
@@ -115,6 +116,14 @@ export default class Router {
     toInfoDetail(info) {
         this.push({
             sceneKey: 'InfoDetail',
+            params: {
+                info
+            }
+        })
+    }
+    toEventDetail(info) {
+        this.push({
+            sceneKey: 'EventDetail',
             params: {
                 info
             }

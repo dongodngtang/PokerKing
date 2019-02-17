@@ -13,7 +13,11 @@ export default class HotItem extends Component {
         return (
             <TouchableOpacity style={styles.item_view}
                               onPress={() => {
-                                  router.toInfoDetail(this.props.item)
+                                  if(this.props.type && this.props.type === 'event'){
+                                      router.toEventDetail(this.props.item)
+                                  }else{
+                                      router.toInfoDetail(this.props.item)
+                                  }
                               }}>
                 <Image style={styles.race_img}
                        source={isStrNull(image) ? Images.empty_bg : {uri: `${base_url}${image}`}}/>

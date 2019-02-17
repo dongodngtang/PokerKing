@@ -25,6 +25,7 @@ import ModifyData from './ModifyData';
 import SwitchApi from './SwitchApi';
 import QueueList from './QueueList'
 import InfoDetail from "./InfoDetail";
+import EventDetail from "./EventDetail";
 
 export const scenes = () => {
     return <Scene key="root">
@@ -118,7 +119,10 @@ export const scenes = () => {
                component={InfoDetail}
                {...TopNav({
                })}/>
-
+        <Scene key="EventDetail"
+               component={EventDetail}
+               {...TopNav({
+               })}/>
     </Scene>
 }
 const TopNav = (props) => {
