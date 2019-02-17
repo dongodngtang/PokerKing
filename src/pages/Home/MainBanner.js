@@ -12,7 +12,6 @@ import {logMsg} from "../../utils/utils";
 import {getBaseUrl} from "../../configs/fetch";
 
 
-
 const Height = Metrics.reallySize(164)
 export default class MainBanner extends Component {
 
@@ -20,14 +19,14 @@ export default class MainBanner extends Component {
         let base_url = "";
         const {home_banners} = this.props;
         let base_urls = getBaseUrl();
-        if(base_urls.indexOf('test') !== -1){
+        if (base_urls.indexOf('test') !== -1) {
             base_url = "http://test.pokerking_cms.deshpro.com";
-        }else{
+        } else {
             base_url = "http://pokerking_cms.deshpro.com";
         }
         if (home_banners && home_banners.length > 0)
             return (
-                <View style={{height: Height,marginTop:-1}}>
+                <View style={{height: Height, marginTop: -1}}>
                     <Swiper
                         activeDotStyle={stylesM.activeDot}
                         dotStyle={stylesM.dot}
@@ -36,8 +35,16 @@ export default class MainBanner extends Component {
                         {home_banners.map((item, key) => {
                             return <TouchableOpacity
                                 key={`banner${item.source_id}`}
-                                activeOpacity={1}>
-                                <Image style={{height: Height, width: '100%'}} source={{uri: `${base_url}${item.image}`}}/>
+                                activeOpacity={1}
+                                onPress={() => {
+                                    if (item.source_type === 'info') {
+                                        router.toInfoDetail(item)
+                                    } else if (item.source_type === 'event_info') {
+                                        router.toEventDetail(item)
+                                    }
+                                }}>
+                                <Image style={{height: Height, width: '100%'}}
+                                       source={{uri: `${base_url}${item.image}`}}/>
                             </TouchableOpacity>
 
                         })}
