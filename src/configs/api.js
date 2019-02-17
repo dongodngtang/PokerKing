@@ -16,7 +16,10 @@ const api = {
     login:'account/login',//登陆
     verify_vcode:'account/verify_vcode',//检查该验证码是否正确
     profile:_profile,
-    uploadAvatar:uploadAvatar
+    uploadAvatar:uploadAvatar,
+    homne_banners:'homepage_banners',//获取首页banners
+    info_list:'infos',//获取热门资讯列表
+    info_detail:info_detail,//获取热门资讯详情
 }
 
 
@@ -26,6 +29,11 @@ function uploadAvatar() {
 
 function _profile() {
     return `account/users/${getUserId()}/profile`
+}
+
+function info_detail(body){
+    const {id} = body;
+    return `infos/${id}`;
 }
 
 function cash_queues(body){

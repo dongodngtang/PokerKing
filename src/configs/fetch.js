@@ -46,6 +46,10 @@ export function initBaseUrl() {
     })
 }
 
+export function getBaseUrl(){
+    return client.getBaseURL();
+}
+
 export function setBaseUrl(type) {
   logMsg('当前环境为：'+type)
     storage.save({

@@ -26,7 +26,6 @@ export default class Router {
     }
 
 
-
     toDetail() {
         this.push({
             sceneKey: 'Detail'
@@ -36,7 +35,7 @@ export default class Router {
     toRegister(param) {
         this.push({
             sceneKey: 'Register',
-            params:param
+            params: param
         })
     }
 
@@ -97,17 +96,27 @@ export default class Router {
         })
     }
 
-    toSwitchApi(){
+    toSwitchApi() {
         this.push({
             sceneKey: 'SwitchApi'
         })
     }
-    toQueueList(item,cash_game_id){
+
+    toQueueList(item, cash_game_id) {
         this.push({
             sceneKey: 'QueueList',
-            params:{
+            params: {
                 item,
                 cash_game_id
+            }
+        })
+    }
+
+    toInfoDetail(info) {
+        this.push({
+            sceneKey: 'InfoDetail',
+            params: {
+                info
             }
         })
     }

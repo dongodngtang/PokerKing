@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import UltimateFlatList from '../../components/ultimate/UltimateFlatList';
 import {Metrics} from "../../configs/Theme";
 import HotItem from '../Home/HotItem';
+import {initLoginUser, logMsg} from "../../utils/utils";
+import {getInfoList} from "../../services/accountDao";
 
 @connect(({HotNewsList}) => ({
   ...HotNewsList,
@@ -51,8 +53,19 @@ export default class HotNewsList extends Component {
 
     onFetch = (page = 1, startFetch, abortFetch) => {
         try {
+            initLoginUser(() => {
+                getInfoList({
+                    page,
+                    page_size: 20
+                }, data => {
+                    logMsg("InfoList:", data)
+                    startFetch(data.infos, 18)
+                }, err => {
+                    logMsg("reject:", err)
+                    abortFetch()
+                })
+            })
 
-            startFetch([1, 2, 3,4,5], 16)
         } catch (err) {
             abortFetch();
         }

@@ -203,7 +203,7 @@ export function initLoginUser(callback) {
         storageLoginUser(ret)
         callback && callback()
     }).catch(err => {
-
+        callback && callback()
     })
 }
 
