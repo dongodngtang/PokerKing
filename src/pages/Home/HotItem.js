@@ -10,7 +10,9 @@ export default class HotItem extends Component {
     render(){
         const {id,image,title,source,created_at} = this.props.item;
         return(
-            <View style={styles.item_view}>
+            <TouchableOpacity style={styles.item_view} onPress={()=>{
+                router.toInfoDetail(this.props.item)
+            }}>
                 <Image style={styles.race_img}
                        source={{uri: `${base_url}${image}`}}/>
                 <View style={styles.right_view}>
@@ -20,7 +22,7 @@ export default class HotItem extends Component {
                         <Text style={styles.bottom_txt}>{convertDate(created_at,'MM-DD')}</Text>
                     </View>
                 </View>
-            </View>
+            </TouchableOpacity>
         )
     }
 }

@@ -24,6 +24,7 @@ import Feedback from './Feedback';
 import ModifyData from './ModifyData';
 import SwitchApi from './SwitchApi';
 import QueueList from './QueueList'
+import InfoDetail from "./InfoDetail";
 
 export const scenes = () => {
     return <Scene key="root">
@@ -112,6 +113,10 @@ export const scenes = () => {
                component={QueueList}
                {...TopNav({
 
+               })}/>
+        <Scene key="InfoDetail"
+               component={InfoDetail}
+               {...TopNav({
                })}/>
 
     </Scene>

@@ -15,6 +15,12 @@ const api = {
     verify_vcode:'account/verify_vcode',//检查该验证码是否正确
     homne_banners:'homepage_banners',//获取首页banners
     info_list:'infos',//获取热门资讯列表
+    info_detail:info_detail,//获取热门资讯详情
+}
+
+function info_detail(body){
+    const {id} = body;
+    return `infos/${id}`;
 }
 
 function cash_queues(body){

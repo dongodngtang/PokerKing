@@ -29,6 +29,12 @@ export function getInfoList(body,resolve, reject) {
         resolve(ret.data)
     },reject)
 }
+/*获取热门资讯详情*/
+export function getInfoDetail(body,resolve, reject) {
+    get(api.info_detail(),body,ret=>{
+        resolve(ret.data)
+    },reject)
+}
 
 export function register(body, resolve, reject) {
     post(api.register,body,ret=>{
