@@ -149,7 +149,7 @@ export const Styles = {
     left: {
         height: 44,
         justifyContent: 'center',
-        width:60,
+        width:70,
         paddingRight:10,
         paddingLeft:17
     },
