@@ -132,7 +132,6 @@ export const Styles = {
         paddingTop: Metrics.statusBarHeight
     },
     left: {
-        flex:1,
         height: 44,
         justifyContent: 'center',
         width:60,
@@ -146,7 +145,6 @@ export const Styles = {
         alignSelf: 'center'
     },
     right: {
-        flex:1,
         flexDirection: 'row-reverse',
         flexWrap: 'nowrap',
         height: 44,

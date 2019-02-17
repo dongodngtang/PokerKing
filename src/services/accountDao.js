@@ -56,7 +56,7 @@ export function getInfoList(body,resolve, reject) {
 }
 /*获取热门资讯详情*/
 export function getInfoDetail(body,resolve, reject) {
-    get(api.info_detail(),body,ret=>{
+    get(api.info_detail(body),body,ret=>{
         resolve(ret.data)
     },reject)
 }
@@ -100,6 +100,13 @@ export function putProfile(body, resolve, reject) {
 export function uploadAvatar(body, resolve, reject) {
     put(api.uploadAvatar(),body,ret=>{
         // dva.getDispatch()({type:'common/setProfile',params:ret.data})
+        resolve(ret.data)
+    },reject)
+}
+
+/*用户反馈*/
+export function postFeedBacks(body, resolve, reject) {
+    post(api.feed_backs,body,ret=>{
         resolve(ret.data)
     },reject)
 }
