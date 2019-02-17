@@ -87,6 +87,12 @@ export function convertDate(date, format) {
   return moment(date).format(format)
 }
 
+//UTC 时间转化
+export function utcDate(utc, formate) {
+    if (strNotNull(utc))
+        return moment.unix(utc).format(formate)
+}
+
 export function unix_format(timestamp, time_format) {
   return moment.unix(timestamp).format(time_format)
 }
