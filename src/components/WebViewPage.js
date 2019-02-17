@@ -7,8 +7,7 @@ import {
     Text, TouchableOpacity, ActivityIndicator, Image,
     Linking, Clipboard, Modal, PanResponder, Animated, ToastAndroid
 } from 'react-native';
-import {Colors, Images} from '../configs/Theme';
-import theme from '../Themes/theme';
+import {Colors, Images,Metrics} from '../configs/Theme';
 
 export default class WebViewPage extends Component {
 
@@ -47,10 +46,6 @@ export default class WebViewPage extends Component {
                         toValue: 0,
                         duration: 300
                     }).start(() => this.animationFlag = true);
-                    // Animated.timing(this.state.toolbarTopValue, {
-                    //     toValue: 0,
-                    //     duration: 300
-                    // }).start();
                 }
                 if (y < -this.moveYThreshold && this.animationFlag) {  //drag up
                     if (this.state.bottomInfoBarBottomValue === -50) return;
@@ -59,10 +54,7 @@ export default class WebViewPage extends Component {
                         toValue: -50,
                         duration: 300
                     }).start(() => this.anilag = true);
-                    // Animated.timing(this.state.toolbarTopValue, {
-                    //     toValue: -theme.toolbar.height,
-                    //     duration: 300
-                    // }).start();
+
                 }
             }
         });
@@ -107,21 +99,6 @@ export default class WebViewPage extends Component {
         );
     }
 
-    _btnOnPressCallback = (id) => {
-        if (id === 1) {
-            this.webView.goBack();
-        } else if (id === 2) {
-            this.webView.goForward();
-        } else if (id === 3) {
-            this.webView.reload();
-        } else if (id === 4) {
-            Linking.canOpenURL(this.props.params.url).then(supported => {
-                if (supported) {
-                    Linking.openURL(this.props.params.url);
-                }
-            });
-        }
-    };
 
 
     _renderLoading = () => {
@@ -202,8 +179,8 @@ const styles = StyleSheet.create({
     },
     toolbar: {
         position: 'absolute',
-        width: theme.screenWidth,
-        marginTop: theme.toolbar.paddingTop,
+        width: Metrics.screenWidth,
+        marginTop: Metrics.toolbar.paddingTop,
         zIndex: 1
     },
     webView: {
@@ -212,7 +189,7 @@ const styles = StyleSheet.create({
     bottomInfoBar: {
         position: 'absolute',
         height: 50,
-        width: theme.screenWidth,
+        width: Metrics.screenWidth,
         flexDirection: 'row',
         alignItems: 'center',
         zIndex: 1,
@@ -222,13 +199,13 @@ const styles = StyleSheet.create({
     moreContentContainerBackground: {
         position: 'absolute',
         top: 0,
-        width: theme.screenWidth,
-        height: theme.screenHeight
+        width: Metrics.screenWidth,
+        height: Metrics.screenHeight
     },
     moreContentContainer: {
         position: 'absolute',
         right: 5,
-        top: theme.toolbar.height,
+        top: Metrics.toolbar.height,
         width: 150,
         height: 160,
         borderRadius: 5,

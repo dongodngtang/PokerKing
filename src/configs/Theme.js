@@ -46,8 +46,15 @@ export const Metrics = {
     navBarHeight: navBarHeight,
     statusBarHeight: STATUSBAR_HEIGHT,
     PartHeight: PartHeight,
-    tabBarHeight: tabBarHeight
-
+    tabBarHeight: tabBarHeight,
+    toolbar: {
+        height: 44,
+        paddingTop: Platform.Version >= 21 ? 20 : 0,
+        //barColor: favoriteColor,
+        titleColor: 'white',
+        titleSize: 18,
+        textBtnSize: 15
+    }
 }
 
 export const Images = {
@@ -78,7 +85,13 @@ export const Images = {
     weini:require('../asserts/weini.png'),
     close_block:require('../asserts/close.png'),
     load_no_data:require('../asserts/load/load_no_data.png'),
-    empty_bg:require('../asserts/empty_ticket.png')
+    empty_bg:require('../asserts/empty_ticket.png'),
+    web_left:require('../asserts/web_left.png'),
+    web_right:require('../asserts/web_right.png'),
+    web_refresh:require('../asserts/web_refresh.png'),
+    web_page:require('../asserts/web_page.png')
+
+
 }
 
 
@@ -106,6 +119,7 @@ export const Colors = {
     _E5E5: '#E5E5E5',
     txt_666: '#666666',
     _E54: '#E54A2E',
+    _CCC: '#CCCCCC',
 }
 
 export const Styles = {

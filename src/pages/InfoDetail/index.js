@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import styles from './index.style';
 import {getInfoDetail} from '../../services/accountDao'
 import {logMsg} from "../../utils/utils";
-import Html from 'react-native-render-html';
+import RenderHtml from '../comm/RenderHtml';
 import {Metrics} from "../../configs/Theme";
 
 const stylesheet = {
@@ -59,10 +59,8 @@ export default class InfoDetail extends Component {
                     paddingBottom: 80,
                     width:Metrics.screenWidth - 36
                 }}>
-                    <HTMLView
-                        value={info_detail.description}
-                        stylesheet={stylesheet}
-                    />
+                    <RenderHtml
+                        html={info_detail.description}/>
                 </View>
             </ScrollView>
         )

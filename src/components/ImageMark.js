@@ -3,7 +3,7 @@
  */
 import React, {Component} from 'react';
 import {ActivityIndicator, TouchableOpacity, View, Image, Platform} from 'react-native';
-import {Metrics} from '../Themes/index';
+import {Metrics} from '../configs/Theme';
 import PropTypes from 'prop-types';
 import { util,strNotNull} from '../utils/utils';
 
