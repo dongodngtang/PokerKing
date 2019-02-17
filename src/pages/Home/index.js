@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, Button, TouchableOpacity, Image, ScrollView, RefreshControl, ImageBackground} from 'react-native';
 import {connect} from 'react-redux';
-import {initLoginUser, isEmptyObject, logMsg} from "../../utils/utils";
+import { isEmptyObject, logMsg} from "../../utils/utils";
 import MainBanner from './MainBanner';
 import styles from './index.style';
 import UltimateFlatList from '../../components/ultimate/UltimateFlatList';
@@ -9,7 +9,7 @@ import {Images, Metrics} from "../../configs/Theme";
 import SelectPiker from "../comm/SelectPiker";
 import HotItem from "./HotItem";
 import {Actions} from "react-native-router-flux";
-import {getHomeBanners, getInfoList} from '../../services/accountDao'
+import {getHomeBanners, getInfoList,initLoginUser} from '../../services/accountDao'
 
 @connect(({Home}) => ({
     ...Home
@@ -44,19 +44,12 @@ export default class Home extends Component {
     };
 
     componentDidMount() {
-        // const {dispatch, navigation} = this.props
-        // dispatch({type: 'Home/effectsDemo'})
-        // logMsg(this)
+
         setTimeout(() => {
             if (isEmptyObject(global.loginUser)) {
                 router.toLogin()
             }
         }, 1000);
-
-        initLoginUser(() => {
-            this.homeBanners();
-        })
-
 
     };
 
@@ -69,41 +62,7 @@ export default class Home extends Component {
 
     header = () => {
         return (
-            <View style={styles.header_view}>
-                <Text style={styles.hot_race_txt}>{global.lang.t('hot_race')}</Text>
-                <View style={{flex: 1}}/>
-                <TouchableOpacity onPress={() => {
-                    router.toHotRaceList();
-                }}
-                                  style={{flexDirection: 'row', alignItems: 'center'}}>
-                    <Text style={styles.more_txt}>{global.lang.t('more')}</Text>
-                    <Image style={{width: 6, height: 12, marginLeft: 8}} source={Images.is_right}/>
-                </TouchableOpacity>
-            </View>
-        )
-    };
-    _renderItem = (item, index) => {
-        return (
-            <HotItem item={item}/>
-        )
-    };
-
-    _separator = () => {
-        return (
-            <View
-                style={{height: 1, backgroundColor: "#ECECEE", width: Metrics.screenWidth - 34, alignSelf: 'center'}}/>
-        )
-    }
-
-    render() {
-
-        return (
-            <ScrollView
-                refreshControl={<RefreshControl
-                    refreshing={this.state.isRefreshing}
-                    onRefresh={this._onRefresh}
-                />}
-                style={styles.home_view}>
+            <View>
                 <MainBanner home_banners={this.state.home_banners}/>
                 <View style={styles.active_type_view}>
                     <TouchableOpacity onPress={() => {
@@ -125,6 +84,43 @@ export default class Home extends Component {
                     <Text style={styles.into_poker_txt}>{global.lang.t('into_poker')}</Text>
                     <Text style={styles.found_beauti_txt}>{global.lang.t('found_beauti')}</Text>
                 </ImageBackground>
+
+
+                <View style={styles.header_view}>
+                    <Text style={styles.hot_race_txt}>{global.lang.t('hot_race')}</Text>
+                    <View style={{flex: 1}}/>
+                    <TouchableOpacity onPress={() => {
+                        router.toHotRaceList();
+                    }}
+                                      style={{flexDirection: 'row', alignItems: 'center'}}>
+                        <Text style={styles.more_txt}>{global.lang.t('more')}</Text>
+                        <Image style={{width: 6, height: 12, marginLeft: 8}} source={Images.is_right}/>
+                    </TouchableOpacity>
+                </View>
+            </View>
+
+
+        )
+    };
+    _renderItem = (item, index) => {
+        return (
+            <HotItem item={item}/>
+        )
+    };
+
+    _separator = () => {
+        return (
+            <View
+                style={{height: 1, backgroundColor: "#ECECEE", width: Metrics.screenWidth - 34, alignSelf: 'center'}}/>
+        )
+    }
+
+    render() {
+
+        return (
+            <View
+                style={styles.home_view}>
+
 
                 <View style={styles.hot_race_view}>
                     <UltimateFlatList
@@ -150,13 +146,14 @@ export default class Home extends Component {
                     selectedItem={this.state.selectedItem}
                     itemList={this.state.itemList}/>
 
-            </ScrollView>
+            </View>
         )
     }
 
     onFetch = (page = 1, startFetch, abortFetch) => {
         try {
             initLoginUser(() => {
+                this.homeBanners()
                 getInfoList({
                     page,
                     page_size: 20
