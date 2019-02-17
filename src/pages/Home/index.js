@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {View, Text, Button, TouchableOpacity, Image, ScrollView,RefreshControl,ImageBackground} from 'react-native';
+import {View, Text, Button, TouchableOpacity, Image, ScrollView, RefreshControl, ImageBackground} from 'react-native';
 import {connect} from 'react-redux';
-import {isEmptyObject, logMsg} from "../../utils/utils";
+import {initLoginUser, isEmptyObject, logMsg} from "../../utils/utils";
 import MainBanner from './MainBanner';
 import styles from './index.style';
 import UltimateFlatList from '../../components/ultimate/UltimateFlatList';
@@ -9,6 +9,7 @@ import {Images, Metrics} from "../../configs/Theme";
 import SelectPiker from "../comm/SelectPiker";
 import HotItem from "./HotItem";
 import {Actions} from "react-native-router-flux";
+import {getHomeBanners} from '../../services/accountDao'
 
 @connect(({Home}) => ({
     ...Home
@@ -19,32 +20,46 @@ export default class Home extends Component {
         super(props);
         this.state = {
             selectedItem: 1,
-            itemList: ['English', '简体中文', '繁体中文']
+            itemList: ['English', '简体中文', '繁体中文'],
+            home_banners: []
         };
         props.navigation.setParams({
-            onRight:()=>{
+            onRight: () => {
                 this.selectPiker && this.selectPiker.toggle()
             },
-            onLeft:()=>{
+            onLeft: () => {
                 Actions.drawerOpen()
             }
         })
     }
 
+    homeBanners=()=>{
+        getHomeBanners(data => {
+            logMsg("home_banners", data);
+            this.setState({
+                home_banners: data.banners
+            })
+        });
+    };
 
     componentDidMount() {
         // const {dispatch, navigation} = this.props
         // dispatch({type: 'Home/effectsDemo'})
         // logMsg(this)
+        setTimeout(() => {
+            if (isEmptyObject(global.loginUser)) {
+                router.toLogin()
+            }
+        }, 1000);
 
-        setTimeout(()=>{
-            if(isEmptyObject(global.loginUser))
-            router.toLogin()
-        },1000)
+        initLoginUser(()=>{
+            this.homeBanners()
+        })
+
 
     };
 
-    onPickerSelect=(index)=> {
+    onPickerSelect = (index) => {
         this.setState({
             selectedItem: index,
         })
@@ -56,12 +71,12 @@ export default class Home extends Component {
             <View style={styles.header_view}>
                 <Text style={styles.hot_race_txt}>{global.lang.t('hot_race')}</Text>
                 <View style={{flex: 1}}/>
-                <TouchableOpacity onPress={()=>{
+                <TouchableOpacity onPress={() => {
                     router.toHotRaceList();
                 }}
-                style={{flexDirection:'row',alignItems:'center'}}>
+                                  style={{flexDirection: 'row', alignItems: 'center'}}>
                     <Text style={styles.more_txt}>{global.lang.t('more')}</Text>
-                    <Image style={{width:6,height:12,marginLeft:8}} source={Images.is_right}/>
+                    <Image style={{width: 6, height: 12, marginLeft: 8}} source={Images.is_right}/>
                 </TouchableOpacity>
             </View>
         )
@@ -88,16 +103,16 @@ export default class Home extends Component {
                     onRefresh={this._onRefresh}
                 />}
                 style={styles.home_view}>
-                <MainBanner/>
+                <MainBanner home_banners={this.state.home_banners}/>
                 <View style={styles.active_type_view}>
-                    <TouchableOpacity onPress={()=>{
+                    <TouchableOpacity onPress={() => {
                         router.toRaces();
                     }}>
                         <ImageBackground source={Images.race_img} style={styles.active_btn}>
                             <Text style={styles.active_txt}>{global.lang.t('race')}</Text>
                         </ImageBackground>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={()=>{
+                    <TouchableOpacity onPress={() => {
                         router.toCashTable();
                     }}>
                         <ImageBackground source={Images.xianjinzhuo} style={styles.active_btn}>

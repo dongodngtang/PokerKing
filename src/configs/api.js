@@ -13,6 +13,7 @@ const api = {
     register:'account/register',//用户注册
     login:'account/login',//登陆
     verify_vcode:'account/verify_vcode',//检查该验证码是否正确
+    homne_banners:'homepage_banners',//获取首页banners
 }
 
 function cash_queues(body){

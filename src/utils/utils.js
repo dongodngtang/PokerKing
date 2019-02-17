@@ -189,13 +189,14 @@ export function storageLoginUser(loginUser) {
 }
 
 
-export function initLoginUser() {
+export function initLoginUser(callback) {
     storage.load({
         key: 'LoginUser'
     }).then(ret => {
         storageLoginUser(ret)
+        callback && callback()
     }).catch(err => {
-
+        callback && callback()
     })
 }
 

@@ -16,6 +16,12 @@ export function verify(body, resolve, reject) {
     },reject)
 }
 
+export function getHomeBanners(resolve, reject) {
+    get(api.homne_banners,{},ret=>{
+        resolve(ret.data)
+    },reject)
+}
+
 export function register(body, resolve, reject) {
     post(api.register,body,ret=>{
 
