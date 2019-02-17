@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text,ScrollView} from 'react-native';
 import {connect} from 'react-redux';
 import styles from './index.style';
 import {getInfoDetail} from '../../services/accountDao'
@@ -33,9 +33,9 @@ export default class InfoDetail extends Component {
     render() {
         const {info_detail} = this.state;
         return (
-            <View style={styles.detail_view}>
+            <ScrollView style={styles.detail_view}>
 
-            </View>
+            </ScrollView>
         )
     }
 }
