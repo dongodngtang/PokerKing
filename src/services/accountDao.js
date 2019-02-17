@@ -30,3 +30,9 @@ export function login(body, resolve, reject) {
         resolve(ret.data)
     },reject)
 }
+
+export function verify_code(body, resolve, reject) {
+    post(api.verify_vcode,body,ret=>{
+        resolve(ret.data)
+    },reject)
+}

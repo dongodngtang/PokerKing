@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, Button, TouchableOpacity, Image, ScrollView,RefreshControl,ImageBackground} from 'react-native';
 import {connect} from 'react-redux';
-import {logMsg} from "../../utils/utils";
+import {isEmptyObject, logMsg} from "../../utils/utils";
 import MainBanner from './MainBanner';
 import styles from './index.style';
 import UltimateFlatList from '../../components/ultimate/UltimateFlatList';
@@ -33,9 +33,15 @@ export default class Home extends Component {
 
 
     componentDidMount() {
-        const {dispatch, navigation} = this.props
-        dispatch({type: 'Home/effectsDemo'})
-        logMsg(this)
+        // const {dispatch, navigation} = this.props
+        // dispatch({type: 'Home/effectsDemo'})
+        // logMsg(this)
+
+        setTimeout(()=>{
+            if(isEmptyObject(global.loginUser))
+            router.toLogin()
+        },1000)
+
     };
 
     onPickerSelect=(index)=> {
@@ -121,12 +127,6 @@ export default class Home extends Component {
                         emptyView={() => <View/>}
                     />
                 </View>
-
-                <Button
-                    onPress={() => {
-                        router.toLogin()
-                    }}
-                    title={'跳转到登录'}/>
 
                 <SelectPiker
                     ref={ref => this.selectPiker = ref}

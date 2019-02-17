@@ -11,7 +11,8 @@ const api = {
     cash_queues_number:cash_queues_number,//现金桌排队进程报名人列表
     verify:'account/verify',//查询该账户是否被注册过
     register:'account/register',//用户注册
-    login:'account/login'
+    login:'account/login',//登陆
+    verify_vcode:'account/verify_vcode',//检查该验证码是否正确
 }
 
 function cash_queues(body){

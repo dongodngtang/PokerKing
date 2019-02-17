@@ -5,7 +5,7 @@ import styles from './index.style';
 import ExtArea from '../comm/ExtArea';
 import {Images, Metrics, Colors} from "../../configs/Theme";
 import {isStrNull, logMsg, showToast} from "../../utils/utils";
-import {verify, postCode,register,login} from "../../services/accountDao";
+import {verify, postCode, register, login, verify_code} from "../../services/accountDao";
 import CountDownButton from '../../components/CountDownButton'
 
 @connect(({Login}) => ({
@@ -33,40 +33,46 @@ export default class Login extends Component {
         let iphone = this.iphone
         let vcode = this.vcode
         if (iphone.length > 1 && vcode.length > 1 && !isStrNull(ext)) {
-            // 查询该账户是否被注册过¶
-            verify({
+            //核查验证码是否正确
+            verify_code({
                 account:iphone,
-                country_code:ext
-            },ret=>{
-                if(ret && ret.exist && ret.exist === 1){
-                    // 登录
-                    login({
-                        type:'vcode',
-                        mobile:iphone,
-                        vcode,
-                        country_code:ext
-                    },ret=>{
-                        this.props.navigation.popToTop()
-                    },err=>{
+                country_code:ext,
+                option_type:'login',
+                vcode_type:'mobile',
+                vcode:vcode
+            },res=>{
+                // 查询该账户是否被注册过¶
+                verify({
+                    account:iphone,
+                    country_code:ext
+                },ret=>{
+                    if(ret && ret.exist && ret.exist === 1){
+                        // 登录
+                        login({
+                            type:'vcode',
+                            mobile:iphone,
+                            vcode,
+                            country_code:ext
+                        },ret=>{
+                            this.props.navigation.popToTop()
+                        },err=>{
 
-                    })
-                }else{
-                    // 注册
-                    router.toRegister({
-                        type:'mobile',
-                        mobile:iphone,
-                        vcode,
-                        country_code:ext
-                    })
+                        })
+                    }else{
+                        // 注册
+                        router.toRegister({
+                            type:'mobile',
+                            mobile:iphone,
+                            vcode,
+                            country_code:ext
+                        })
 
-                }
+                    }
 
-            },err=>{
+                },err=>{
 
+                })
             })
-
-
-
         }
         else
             showToast(`${global.lang.t('fillWhole')}`);
