@@ -47,10 +47,12 @@ export default class ModifyData extends Component {
 
         props.navigation.setParams({
             onLeft:()=>{
-                putProfile({
-                    nickname:this.inputNick,
-                    gender:this.gender
-                },ret=>{
+                let edit = {}
+                if(profile.nickname !== this.inputNick){
+                    edit.nickname = this.inputNick
+                }
+                edit.gender = this.gender
+                putProfile(edit,ret=>{
                     showToast('修改成功')
                     router.pop()
                 })
