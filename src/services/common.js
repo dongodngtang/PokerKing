@@ -1,5 +1,6 @@
 
 import {logMsg} from "../utils/utils";
+import {getProfile} from "./accountDao";
 
 /**
  *作者：lorne
@@ -22,6 +23,13 @@ export default {
                     langStr: _.params,
                 } });
         },
+        * setProfile(_,{call,put}){
+
+            yield put({type:'save',payload:{
+                profile:_.params
+            }})
+
+        }
     },
 
     reducers: {

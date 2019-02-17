@@ -3,6 +3,7 @@ package com.pokerking;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.reactnative.ivpusic.imagepicker.PickerPackage;
 import com.microsoft.codepush.react.CodePush;
 import com.beefe.picker.PickerViewPackage;
 import cn.jiguang.share.reactnative.JSharePackage;
@@ -37,6 +38,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new PickerPackage(),
             new CodePush(getResources().getString(R.string.reactNativeCodePush_androidDeploymentKey), getApplicationContext(), BuildConfig.DEBUG),
             new PickerViewPackage(),
             new JSharePackage(SHUTDOWN_TOAST, SHUTDOWN_LOG)

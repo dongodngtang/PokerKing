@@ -23,7 +23,9 @@ export default StyleSheet.create({
     },
     text_value: {
         color: "#666666",
-        fontSize: Metrics.reallySize(15)
+        fontSize: Metrics.reallySize(15),
+        height:40,
+        flex:1
     }
 })
 

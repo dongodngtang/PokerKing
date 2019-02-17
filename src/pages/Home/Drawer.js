@@ -9,14 +9,23 @@ import {Button, Text, SafeAreaView, View, Image, TouchableOpacity} from 'react-n
 import {Actions} from 'react-native-router-flux';
 import styles from './index.style';
 import {Images} from "../../configs/Theme";
+import {connect} from 'react-redux';
+import {isEmptyObject, isStrNull} from "../../utils/utils";
 
+@connect(({common}) => ({
+    ...common
+}))
 export default class Drawer extends Component {
     render() {
+
+        const {profile} = this.props
+        let avatar = isEmptyObject(profile)?Images.race_img:isStrNull(profile.avatar)?Images.race_img:{uri:'http://test.pokerking_api.deshpro.com'+profile.avatar}
+        let nick_name = isEmptyObject(profile)?'登录':profile.nickname
         return (
             <SafeAreaView style={{flex: 1, backgroundColor: "#212223"}}>
                 <View style={styles.safe_area_view}>
-                    <Image source={Images.race_img} style={styles.person_img}/>
-                    <Text style={styles.person_txt}>WW</Text>
+                    <Image source={avatar} style={styles.person_img}/>
+                    <Text style={styles.person_txt}>{nick_name}</Text>
                 </View>
                 <View style={{height: 58}}/>
                 {this._item(styles.select_btn, Images.xiugaiziliao, styles.change_img, global.lang.t('change_data'), () => {
