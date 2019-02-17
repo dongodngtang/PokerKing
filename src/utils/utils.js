@@ -21,7 +21,7 @@ export function setLocations(arr) {
 export let loginUser = null
 
 let following_ids = [];
-
+export const util = _;
 
 export function showToast(msg) {
   if (!isStrNull(msg)) {

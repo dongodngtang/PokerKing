@@ -129,4 +129,24 @@ export default class Router {
             }
         })
     }
+
+    toImageGalleryPage(images, index) {
+        this.push({
+            name: 'ImageGallery',
+            params: {
+                images: images,
+                index: index
+            }
+        })
+    }
+
+    toWebViewPage(props, url) {
+        this.push({
+            name: 'WebViewPage',
+            params: {
+                url: url
+            }
+
+        })
+    }
 }

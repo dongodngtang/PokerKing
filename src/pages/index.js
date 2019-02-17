@@ -26,6 +26,7 @@ import SwitchApi from './SwitchApi';
 import QueueList from './QueueList'
 import InfoDetail from "./InfoDetail";
 import EventDetail from "./EventDetail";
+import WebViewPage from "../components/WebViewPage";
 
 export const scenes = () => {
     return <Scene key="root">
@@ -121,6 +122,10 @@ export const scenes = () => {
                })}/>
         <Scene key="EventDetail"
                component={EventDetail}
+               {...TopNav({
+               })}/>
+        <Scene key="WebViewPage"
+               component={WebViewPage}
                {...TopNav({
                })}/>
     </Scene>
