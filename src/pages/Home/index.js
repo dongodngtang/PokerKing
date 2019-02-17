@@ -9,7 +9,7 @@ import {Images, Metrics} from "../../configs/Theme";
 import SelectPiker from "../comm/SelectPiker";
 import HotItem from "./HotItem";
 import {Actions} from "react-native-router-flux";
-import {getHomeBanners,getInfoList} from '../../services/accountDao'
+import {getHomeBanners, getInfoList} from '../../services/accountDao'
 
 @connect(({Home}) => ({
     ...Home
@@ -21,7 +21,8 @@ export default class Home extends Component {
         this.state = {
             selectedItem: 1,
             itemList: ['English', '简体中文', '繁体中文'],
-            home_banners: []
+            home_banners: [],
+            info_list: []
         };
         props.navigation.setParams({
             onRight: () => {
@@ -33,7 +34,7 @@ export default class Home extends Component {
         })
     }
 
-    homeBanners=()=>{
+    homeBanners = () => {
         getHomeBanners(data => {
             logMsg("home_banners", data);
             this.setState({
@@ -52,7 +53,7 @@ export default class Home extends Component {
             }
         }, 1000);
 
-        initLoginUser(()=>{
+        initLoginUser(() => {
             this.homeBanners();
         })
 
@@ -155,7 +156,7 @@ export default class Home extends Component {
 
     onFetch = (page = 1, startFetch, abortFetch) => {
         try {
-            initLoginUser(()=>{
+            initLoginUser(() => {
                 getInfoList({
                     page,
                     page_size: 20
