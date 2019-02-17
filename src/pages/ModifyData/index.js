@@ -43,8 +43,6 @@ export default class ModifyData extends Component {
             nickname:this.inputNick
         }
 
-
-
         props.navigation.setParams({
             onLeft:()=>{
                 let edit = {}
@@ -53,7 +51,6 @@ export default class ModifyData extends Component {
                 }
                 edit.gender = this.gender
                 putProfile(edit,ret=>{
-                    showToast('修改成功')
                     router.pop()
                 },err=>{
                     router.pop()

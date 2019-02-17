@@ -1,7 +1,32 @@
 import api from '../configs/api'
 import {get, post, put, setBaseUrl, setToken} from '../configs/fetch'
-import {isEmpty, logMsg, showToast, storageLoginUser} from '../utils/utils';
+import {isEmpty, logMsg, isEmptyObject} from '../utils/utils';
 import dva from '../utils/dva'
+
+global.loginUser = null
+export function storageLoginUser(loginUser) {
+    logMsg('登录用户数据',loginUser)
+    global.storage.save({
+        key:'LoginUser',
+        data:loginUser
+    })
+    setToken(loginUser.access_token?loginUser.access_token:'')
+    global.loginUser = loginUser
+    getProfile()
+
+}
+
+export function initLoginUser(callback) {
+    storage.load({
+        key: 'LoginUser'
+    }).then(ret => {
+        if(isEmptyObject(global.loginUser))
+            storageLoginUser(ret)
+        callback && callback()
+    }).catch(err => {
+        callback && callback()
+    })
+}
 
 /*发送验证码*/
 export function postCode(body, resolve, reject) {
@@ -74,7 +99,7 @@ export function putProfile(body, resolve, reject) {
 
 export function uploadAvatar(body, resolve, reject) {
     put(api.uploadAvatar(),body,ret=>{
-        dva.getDispatch()({type:'common/setProfile',params:ret.data})
+        // dva.getDispatch()({type:'common/setProfile',params:ret.data})
         resolve(ret.data)
     },reject)
 }

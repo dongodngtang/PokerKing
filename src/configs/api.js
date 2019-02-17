@@ -20,6 +20,7 @@ const api = {
     homne_banners:'homepage_banners',//获取首页banners
     info_list:'infos',//获取热门资讯列表
     info_detail:info_detail,//获取热门资讯详情
+    main_events:'main_events/recent_events',
     feed_backs:"feedbacks",//用户反馈
     event_list:event_list,//获取主赛的新闻列表
 }

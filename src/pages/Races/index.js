@@ -6,6 +6,8 @@ import {Images, Styles} from "../../configs/Theme";
 import Carousel from 'react-native-snap-carousel';
 import {Metrics} from "../../configs/Theme";
 import RaceModal from './RaceModal';
+import {mainEvents} from "../../services/eventsDao";
+import {logMsg} from "../../utils/utils";
 
 @connect(({Races}) => ({
     ...Races,
@@ -17,7 +19,9 @@ export default class Races extends Component {
     }
 
     componentDidMount() {
-
+        mainEvents(data=>{
+            logMsg('主赛',data)
+        })
     }
 
     change_list_show = () => {

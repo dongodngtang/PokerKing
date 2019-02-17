@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import UltimateFlatList from '../../components/ultimate/UltimateFlatList';
 import {Metrics} from "../../configs/Theme";
 import HotItem from '../Home/HotItem';
-import {initLoginUser, logMsg} from "../../utils/utils";
-import {getInfoList} from "../../services/accountDao";
+import { logMsg} from "../../utils/utils";
+import {getInfoList,initLoginUser} from "../../services/accountDao";
 
 @connect(({HotNewsList}) => ({
   ...HotNewsList,
