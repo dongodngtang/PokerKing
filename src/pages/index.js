@@ -27,6 +27,7 @@ import QueueList from './QueueList'
 import InfoDetail from "./InfoDetail";
 import EventDetail from "./EventDetail";
 import WebViewPage from "../components/WebViewPage";
+import ImageGallery from "../components/ImageGallery";
 
 export const scenes = () => {
     return <Scene key="root">
@@ -128,6 +129,9 @@ export const scenes = () => {
                component={WebViewPage}
                {...TopNav({
                })}/>
+        <Scene key="ImageGallery"
+               component={ImageGallery}
+               hideNavBar/>
     </Scene>
 }
 const TopNav = (props) => {

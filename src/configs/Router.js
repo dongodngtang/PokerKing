@@ -15,7 +15,7 @@ export default class Router {
 
     push({sceneKey, params}) {
         Actions.push(sceneKey, {params})
-        console.log('当前界面类名：' + Actions.currentScene)
+        console.log('当前界面类名：' + sceneKey)
     }
 
     pop() {
@@ -132,7 +132,7 @@ export default class Router {
 
     toImageGalleryPage(images, index) {
         this.push({
-            name: 'ImageGallery',
+            sceneKey: 'ImageGallery',
             params: {
                 images: images,
                 index: index
@@ -142,7 +142,7 @@ export default class Router {
 
     toWebViewPage(props, url) {
         this.push({
-            name: 'WebViewPage',
+            sceneKey: 'WebViewPage',
             params: {
                 url: url
             }

@@ -5,7 +5,7 @@ import React, {Component} from 'react';
 import {ActivityIndicator, TouchableOpacity, View, Image, Platform} from 'react-native';
 import {Metrics} from '../configs/Theme';
 import PropTypes from 'prop-types';
-import { util,strNotNull} from '../utils/utils';
+import {util, strNotNull, logMsg} from '../utils/utils';
 
 
 export default class ImageMark extends Component {
@@ -45,7 +45,6 @@ export default class ImageMark extends Component {
     }
 
     imageClick = (source) => {
-
         if (strNotNull(source)) {
             let index = 0;
 
