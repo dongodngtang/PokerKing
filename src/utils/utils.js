@@ -83,7 +83,7 @@ export function convertDate(date, format) {
   return moment(date).format(format)
 }
 
-export function unix_format(timestamp, time_format) {
+export function unix_format(timestamp, time_format = YYYYMMDD) {
   return moment.unix(timestamp).format(time_format)
 }
 
