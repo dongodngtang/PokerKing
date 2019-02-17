@@ -1,3 +1,5 @@
+import {getUserId, isEmptyObject} from "../utils/utils";
+
 const api = {
     //内部测试
     dev: 'http://192.168.2.10:3000/v1/',
@@ -13,6 +15,13 @@ const api = {
     register:'account/register',//用户注册
     login:'account/login',//登陆
     verify_vcode:'account/verify_vcode',//检查该验证码是否正确
+    profile:_profile
+}
+
+
+
+function _profile() {
+    return `account/users/${getUserId()}/profile`
 }
 
 function cash_queues(body){

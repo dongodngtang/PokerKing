@@ -13,6 +13,8 @@ import moment from 'moment'
 import Toast from '../components/toast';
 import {setToken} from "../configs/fetch";
 import api from "../configs/api";
+import {getProfile} from "../services/accountDao";
+
 
 export const YYYYMMDD = 'YYYY-MM-DD'
 
@@ -185,15 +187,21 @@ export function storageLoginUser(loginUser) {
     })
     setToken(loginUser.access_token?loginUser.access_token:'')
     global.loginUser = loginUser
+    getProfile()
 
 }
 
+export function getUserId() {
+    return isEmptyObject(global.loginUser)?'':global.loginUser.user_id
+}
 
-export function initLoginUser() {
+
+export function initLoginUser(callback) {
     storage.load({
         key: 'LoginUser'
     }).then(ret => {
         storageLoginUser(ret)
+        callback && callback()
     }).catch(err => {
 
     })
