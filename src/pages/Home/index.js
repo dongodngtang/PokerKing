@@ -9,7 +9,7 @@ import {Images, Metrics} from "../../configs/Theme";
 import SelectPiker from "../comm/SelectPiker";
 import HotItem from "./HotItem";
 import {Actions} from "react-native-router-flux";
-import {getHomeBanners} from '../../services/accountDao'
+import {getHomeBanners,getInfoList} from '../../services/accountDao'
 
 @connect(({Home}) => ({
     ...Home
@@ -53,7 +53,7 @@ export default class Home extends Component {
         }, 1000);
 
         initLoginUser(()=>{
-            this.homeBanners()
+            this.homeBanners();
         })
 
 
@@ -155,8 +155,19 @@ export default class Home extends Component {
 
     onFetch = (page = 1, startFetch, abortFetch) => {
         try {
+            initLoginUser(()=>{
+                getInfoList({
+                    page,
+                    page_size: 20
+                }, data => {
+                    logMsg("InfoList:", data)
+                    startFetch(data.infos, 18)
+                }, err => {
+                    logMsg("reject:", err)
+                    abortFetch()
+                })
+            })
 
-            startFetch([1, 2, 3], 16)
         } catch (err) {
             abortFetch();
         }

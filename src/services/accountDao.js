@@ -16,8 +16,16 @@ export function verify(body, resolve, reject) {
     },reject)
 }
 
+/*获取首页banner*/
 export function getHomeBanners(resolve, reject) {
     get(api.homne_banners,{},ret=>{
+        resolve(ret.data)
+    },reject)
+}
+
+/*获取热门资讯列表*/
+export function getInfoList(body,resolve, reject) {
+    get(api.info_list,body,ret=>{
         resolve(ret.data)
     },reject)
 }
