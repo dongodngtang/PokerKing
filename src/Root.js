@@ -27,7 +27,6 @@ export default class Root extends Component {
         global.lang = this.lang
 
         initBaseUrl()
-        initLoginUser()
 
     }
 

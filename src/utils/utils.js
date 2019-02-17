@@ -178,7 +178,7 @@ export function getCurrentDate() {
     return moment();
 }
 
-global.loginUser = {}
+global.loginUser = null
 export function storageLoginUser(loginUser) {
     logMsg('登录用户数据',loginUser)
     global.storage.save({
@@ -200,6 +200,7 @@ export function initLoginUser(callback) {
     storage.load({
         key: 'LoginUser'
     }).then(ret => {
+        if(isEmptyObject(global.loginUser))
         storageLoginUser(ret)
         callback && callback()
     }).catch(err => {
