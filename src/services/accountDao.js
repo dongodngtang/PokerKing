@@ -78,3 +78,10 @@ export function uploadAvatar(body, resolve, reject) {
         resolve(ret.data)
     },reject)
 }
+
+/*用户反馈*/
+export function postFeedBacks(body, resolve, reject) {
+    post(api.feed_backs,body,ret=>{
+        resolve(ret.data)
+    },reject)
+}

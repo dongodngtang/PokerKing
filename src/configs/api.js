@@ -20,6 +20,7 @@ const api = {
     homne_banners:'homepage_banners',//获取首页banners
     info_list:'infos',//获取热门资讯列表
     info_detail:info_detail,//获取热门资讯详情
+    feed_backs:"feedbacks",//用户反馈
 }
 
 

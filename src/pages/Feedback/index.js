@@ -1,35 +1,71 @@
 import React, {Component} from 'react';
 import {View, Text, ScrollView, TextInput, Button, TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
-import styles from './index.style'
+import styles from './index.style';
+import {postFeedBacks} from '../../services/accountDao'
+import {logMsg, showToast, strNotNull,isStrNull} from "../../utils/utils";
 
 @connect(({Feedback}) => ({
     ...Feedback,
 }))
 export default class Feedback extends Component {
 
-    state = {
-        mailbox: "",
-        app_list: [{id: 0, isSelect: false, name: global.lang.t('not_satisfied')}, {
-            id: 1,
-            isSelect: false,
-            name: global.lang.t('general')
-        }, {
-            id: 2,
-            isSelect: false,
-            name: global.lang.t('satisfied')
-        }, {
-            id: 3,
-            isSelect: true,
-            name: global.lang.t('very_satisfied')
-        }],
-        report_problem: ""
+    constructor(props) {
+        super(props)
+        this.state = {
+            app_list: [{id: 0, isSelect: false, name: global.lang.t('not_satisfied')}, {
+                id: 1,
+                isSelect: false,
+                name: global.lang.t('general')
+            }, {
+                id: 2,
+                isSelect: false,
+                name: global.lang.t('satisfied')
+            }, {
+                id: 3,
+                isSelect: true,
+                name: global.lang.t('very_satisfied')
+            }],
+        };
+        this.mailbox = '';
+        this.report_problem = ''
     }
 
 
     componentDidMount() {
 
-    }
+    };
+
+    _check = () => {
+        const {app_list} = this.state;
+        let sense = 3;
+        app_list.forEach((x) => {
+            if (x.isSelect === true) {
+                sense = x.id
+            }
+        });
+        if(isStrNull(this.mailbox)){
+            showToast("请填写邮箱")
+        }else if(isStrNull(this.report_problem)){
+            showToast("请填写报告问题")
+        }else {
+            let body = {
+                image: [],
+                content: this.report_problem,
+                email: this.mailbox,
+                sense: sense
+            };
+
+            logMsg("feedbacks_body",body)
+            postFeedBacks(body,data=>{
+                logMsg("feedbacks",data)
+                showToast('提交成功');
+                router.pop();
+            },err=>{
+                showToast(err)
+            })
+        }
+    };
 
     render() {
         const {app_list} = this.state;
@@ -40,8 +76,8 @@ export default class Feedback extends Component {
                     <Text style={styles.your_mailbox}>{global.lang.t('your_mailbox')}</Text>
                     <TextInput
                         underlineColorAndroid={'transparent'}
-                        onChangeText={mailbox => {
-                            this.setState({mailbox})
+                        onChangeText={txt => {
+                            this.mailbox = txt
                         }}
                         style={styles.input}/>
                     <Text style={[styles.your_mailbox, {
@@ -78,7 +114,7 @@ export default class Feedback extends Component {
                     <TextInput
                         underlineColorAndroid={'transparent'}
                         onChangeText={report_problem => {
-                            this.setState({report_problem})
+                            this.report_problem = report_problem
                         }}
                         multiline={true}
                         style={[styles.input, {height: 112}]}/>
@@ -93,8 +129,10 @@ export default class Feedback extends Component {
                     </TouchableOpacity>
                 </View>
 
-                <TouchableOpacity style={styles.bottom_btn}>
-                    <Text style={[styles.browse_documents,{fontSize:14}]}>{global.lang.t("send_feedback")}</Text>
+                <TouchableOpacity style={styles.bottom_btn} onPress={() => {
+                    this._check()
+                }}>
+                    <Text style={[styles.browse_documents, {fontSize: 14}]}>{global.lang.t("send_feedback")}</Text>
                 </TouchableOpacity>
             </View>
         )
