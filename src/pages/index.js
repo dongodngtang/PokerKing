@@ -173,7 +173,7 @@ export class NavBar extends PureComponent {
                 }}
                 style={Styles.navTitle}>
                 <Text
-                    style={{fontSize: 18, color: '#FFE9AD',alignSelf:'center'}}>{title}</Text>
+                    style={{fontSize: 18, color: '#FFE9AD',alignSelf:'center'}} numberOfLines={1}>{title}</Text>
 
             </TouchableOpacity>
 

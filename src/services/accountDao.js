@@ -31,7 +31,7 @@ export function getInfoList(body,resolve, reject) {
 }
 /*获取热门资讯详情*/
 export function getInfoDetail(body,resolve, reject) {
-    get(api.info_detail(),body,ret=>{
+    get(api.info_detail(body),body,ret=>{
         resolve(ret.data)
     },reject)
 }
