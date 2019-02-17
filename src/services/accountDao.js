@@ -47,6 +47,7 @@ export function getProfile(resolve,reject) {
 
 export function putProfile(body, resolve, reject) {
     put(api.profile(),body,ret=>{
+        dva.getDispatch()({type:'common/setProfile',params:ret.data})
         resolve(ret.data)
     },reject)
 }

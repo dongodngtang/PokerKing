@@ -4,9 +4,9 @@ import {connect} from 'react-redux';
 import styles from './index.style';
 import ImagePicker from 'react-native-image-crop-picker';
 import {Images} from "../../configs/Theme";
-import {isStrNull, getCurrentDate, isEmptyObject} from "../../utils/utils";
+import {isStrNull, getCurrentDate, isEmptyObject, showToast} from "../../utils/utils";
 import {ActionSheet} from '../../components';
-import {uploadAvatar} from "../../services/accountDao";
+import {putProfile, uploadAvatar} from "../../services/accountDao";
 
 const picker = {
     width: 500,
@@ -31,13 +31,32 @@ export default class ModifyData extends Component {
         let avatar = isEmptyObject(profile)?Images.home_avatar:isStrNull(profile.avatar)?Images.home_avatar
             :{uri:"http://test.pokerking_api.deshpro.com"+profile.avatar}
 
-        let genderTxt = profile.gender === 1?global.lang.t('male'):global.lang.t('female')
-        if(profile.gender === 0)
-            genderTxt = ''
+        let genderTxt = profile.gender === '1'?global.lang.t('male'):global.lang.t('female')
+        if(profile.gender === '0')
+            genderTxt = global.lang.t('gender')
+
+        this.inputNick = profile?profile.nickname:''
+        this.gender = profile.gender
         this.state = {
             avatar,
-            genderTxt:genderTxt
+            genderTxt:genderTxt,
+            nickname:this.inputNick
         }
+
+
+
+        props.navigation.setParams({
+            onLeft:()=>{
+                putProfile({
+                    nickname:this.inputNick,
+                    gender:this.gender
+                },ret=>{
+                    showToast('修改成功')
+                    router.pop()
+                })
+
+            }
+        })
     }
 
     _getGender =(gender)=> {
@@ -77,7 +96,7 @@ export default class ModifyData extends Component {
     };
 
     render() {
-        const {avatar,genderTxt} = this.state
+        const {avatar,genderTxt,nickname} = this.state
         return (
             <View style={styles.modifyData_view}>
                 <View style={{paddingLeft: 20, paddingRight: 17, backgroundColor: "#FFFFFF"}}>
@@ -116,16 +135,12 @@ export default class ModifyData extends Component {
                                    returnKeyType={'done'}
                                    placeholderTextColor={"#666666"}
                                    underlineColorAndroid='transparent'
-                            // onChangeText={text => {
-                            //     const edit = profile;
-                            //     edit.nick_name = text;
-                            //
-                            //
-                            // }}
-                            // placeholder={profile.nick_name ? '请输入昵称' : ''}
-                            // defaultValue={profile.nick_name}
+                             onChangeText={text => {
+                                 this.inputNick = text
+                             }}
+                             placeholder={nickname}
                                    testID="input_nick"/>
-                        <View style={{flex: 1}}/>
+
                         <Image style={{height: 20, width: 10}}
                                source={Images.is_right}/>
 
@@ -139,7 +154,7 @@ export default class ModifyData extends Component {
                                           this.actionGender && this.actionGender.show()
                                       }}
                                       >
-                        <Text style={styles.text_label}>{global.lang.t('gender')}</Text>
+                        <Text style={styles.text_label}>{this.state.genderTxt}</Text>
 
                         <View style={{flex: 1}}/>
                         <Image style={{height: 20, width: 10}}
