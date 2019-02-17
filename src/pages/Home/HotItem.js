@@ -10,7 +10,9 @@ export default class HotItem extends Component {
     render(){
         const {id,image,title,source,created_at} = this.props.item;
         return(
-            <TouchableOpacity style={styles.item_view} onPress={()=>{
+            <TouchableOpacity style={styles.item_view}
+                              onPress={()=>{
+                logMsg("toInfoDetail")
                 router.toInfoDetail(this.props.item)
             }}>
                 <Image style={styles.race_img}
