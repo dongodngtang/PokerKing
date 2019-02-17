@@ -2,52 +2,71 @@ import React, {Component} from 'react';
 import {View, Text, TextInput, TouchableOpacity, Image} from 'react-native';
 import {connect} from 'react-redux';
 import styles from './index.style';
-import {Metrics} from "../../configs/Theme";
-import Picker from 'react-native-picker';
 import ImagePicker from 'react-native-image-crop-picker';
 import {Images} from "../../configs/Theme";
-import {isStrNull, getCurrentDate} from "../../utils/utils";
+import {isStrNull, getCurrentDate, isEmptyObject} from "../../utils/utils";
 import {ActionSheet} from '../../components';
+import {uploadAvatar} from "../../services/accountDao";
 
-@connect(({ModifyData}) => ({
+const picker = {
+    width: 500,
+    height: 500,
+    cropping: true,
+    cropperCircleOverlay: true,
+    compressImageMaxWidth: 800,
+    compressImageMaxHeight: 800,
+    compressImageQuality: 0.5,
+};
+
+@connect(({ModifyData,common}) => ({
     ...ModifyData,
+    ...common
 }))
 export default class ModifyData extends Component {
 
-    _getGender(gender) {
-        switch (gender) {
-            case 0:
-                return global.lang.t('male');
-            case 1:
-                return global.lang.t('female');
-            default:
-                return '';
+    constructor(props){
+        super(props)
+
+        const {profile} = props
+        let avatar = isEmptyObject(profile)?Images.home_avatar:isStrNull(profile.avatar)?Images.home_avatar
+            :{uri:"http://test.pokerking_api.deshpro.com"+profile.avatar}
+
+        let genderTxt = profile.gender === 1?global.lang.t('male'):global.lang.t('female')
+        if(profile.gender === 0)
+            genderTxt = ''
+        this.state = {
+            avatar,
+            genderTxt:genderTxt
         }
     }
 
-
-    componentDidMount() {
-
+    _getGender =(gender)=> {
+        if(gender !== 0){
+            this.gender = gender
+            this.setState({
+                genderTxt:gender === 1?global.lang.t('male'):global.lang.t('female')
+            })
+        }
     }
 
     _update = (image) => {
-        const {postAvatar} = this.props;
         let formData = new FormData();
         let file = {
             uri: image.path,
-            type: 'image/jpeg',
-            name: this._fileName(image.fileName)
+            name: this._fileName(image.path)
         };
         formData.append("avatar", file);
-        postAvatar(formData);
+        uploadAvatar(formData,ret=>{
+            this.setState({
+                avatar:{uri:"http://test.pokerking_api.deshpro.com"+ret.avatar}
+            })
+        });
     }
 
-    _fileName = (filename) => {
-        if (isStrNull(filename)) {
-            return filename;
-        } else {
-            return getCurrentDate() + '.jpg'
-        }
+    _fileName = (o) => {
+        let pos=o.lastIndexOf("/")
+        return o.substring(pos+1);
+
     }
 
 
@@ -58,6 +77,7 @@ export default class ModifyData extends Component {
     };
 
     render() {
+        const {avatar,genderTxt} = this.state
         return (
             <View style={styles.modifyData_view}>
                 <View style={{paddingLeft: 20, paddingRight: 17, backgroundColor: "#FFFFFF"}}>
@@ -76,7 +96,7 @@ export default class ModifyData extends Component {
                                 height: 64, width: 64,
                                 borderRadius: 32
                             }}
-                                   source={Images.home_avatar}
+                                   source={avatar}
                             />
                         </View>
 
@@ -141,7 +161,7 @@ export default class ModifyData extends Component {
                     options={[global.lang.t('cancel'), global.lang.t('male'), global.lang.t('female')]}
                     cancelButtonIndex={0}
                     destructiveButtonIndex={2}
-                    onPress={this.handlePress}
+                    onPress={this._getGender}
                 />
 
             </View>

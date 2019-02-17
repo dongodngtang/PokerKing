@@ -50,3 +50,10 @@ export function putProfile(body, resolve, reject) {
         resolve(ret.data)
     },reject)
 }
+
+export function uploadAvatar(body, resolve, reject) {
+    put(api.uploadAvatar(),body,ret=>{
+        dva.getDispatch()({type:'common/setProfile',params:ret.data})
+        resolve(ret.data)
+    },reject)
+}

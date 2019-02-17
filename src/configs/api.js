@@ -15,10 +15,14 @@ const api = {
     register:'account/register',//用户注册
     login:'account/login',//登陆
     verify_vcode:'account/verify_vcode',//检查该验证码是否正确
-    profile:_profile
+    profile:_profile,
+    uploadAvatar:uploadAvatar
 }
 
 
+function uploadAvatar() {
+    return `account/users/${getUserId()}/avatar`
+}
 
 function _profile() {
     return `account/users/${getUserId()}/profile`
