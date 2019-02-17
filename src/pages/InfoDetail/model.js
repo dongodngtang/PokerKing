@@ -1,4 +1,4 @@
-import * as infoDetailApi from './service';
+import * as InfoDetailApi from './service';
 
 export default {
   namespace: 'InfoDetail',
@@ -8,7 +8,7 @@ export default {
 
   effects: {
     * effectsDemo(_, { call, put }) {
-      const { statusCode, data } = yield call(infoDetailApi.demo, {});
+      const { statusCode, data } = yield call(InfoDetailApi.demo, {});
       if (statusCode === 200) {
         yield put({ type: 'save',
           payload: {
