@@ -61,7 +61,6 @@ export default class ModifyData extends Component {
                     router.pop();
                     if (profile.nickname !== this.inputNick || profile.email !== this.inputMail ||
                         this.state.gender_modify || this.state.avatar_modify) {
-                        showToast(global.lang.t('successfully_modified'))
                     }
                 }, err => {
                     router.pop()
