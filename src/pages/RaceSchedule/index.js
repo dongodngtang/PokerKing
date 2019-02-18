@@ -122,7 +122,7 @@ export default class RaceSchedule extends Component {
                         });
                     }}>
                         <Text style={[styles.top_txt1, {marginRight: 20}]}>{global.lang.t('race')}{event_num}</Text>
-                        <Text style={styles.time_txt}>{utcDate(begin_time, 'YYYY/MM/DD mm-ss')}</Text>
+                        <Text style={styles.time_txt}>{utcDate(begin_time, 'YYYY/MM/DD MM:ss')}</Text>
                         <View style={{flex: 1}}/>
                         <Image style={{width: 12, height: 6}}
                                source={item.isSelect ? Images.is_top : Images.is_bottom}/>
