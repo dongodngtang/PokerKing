@@ -56,7 +56,7 @@ export default class RaceNew extends Component {
         try {
 
             getMainEventList({
-                event_id: 1,
+                event_id: this.props.params.event_id,
                 page,
                 page_size: 20
             }, data => {

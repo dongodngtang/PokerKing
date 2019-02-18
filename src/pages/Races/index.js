@@ -15,12 +15,18 @@ import {logMsg} from "../../utils/utils";
 export default class Races extends Component {
 
     state = {
-        list_show: false
+        list_show: false,
+        events:[],
+        recent_event:{}
     }
 
     componentDidMount() {
         mainEvents(data=>{
             logMsg('主赛',data)
+            this.setState({
+                events:data.events,
+                recent_event:data.recent_event
+            })
         })
     }
 
@@ -79,6 +85,7 @@ export default class Races extends Component {
     };
 
     render() {
+        const {recent_event} = this.state;
         return (
             <View style={styles.race_view}>
                 {this.topBar()}
@@ -97,7 +104,7 @@ export default class Races extends Component {
                 </View>
                 {this._item(styles.item_view, Images.rili_gray, styles.img_dy,
                     'OPC2019赛程表', () => {
-                        router.toRaceSchedule();
+                        router.toRaceSchedule(recent_event.id);
                     })}
                 {this._item(styles.item_view, Images.zixun, styles.img_dy,
                     global.lang.t('race_message'), () => {
@@ -106,7 +113,7 @@ export default class Races extends Component {
                     })}
                 {this._item(styles.item_view, Images.ziyuan, styles.img_dy,
                     global.lang.t('race_news'), () => {
-                        router.toRaceNew();
+                        router.toRaceNew(recent_event.id);
                     })}
 
                 <RaceModal ref={ref => this.raceModal = ref}/>

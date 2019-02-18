@@ -16,3 +16,9 @@ export function getSchedulesDates(body,resolve, reject) {
         resolve(ret.data)
     },reject)
 }
+/*获取某个日期的赛程*/
+export function getSchedulesEvents(body,resolve, reject) {
+    get(api.schedules_events(body),body,ret=>{
+        resolve(ret.data)
+    },reject)
+}

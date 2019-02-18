@@ -58,15 +58,21 @@ export default class Router {
         })
     }
 
-    toRaceNew() {
+    toRaceNew(event_id) {
         this.push({
-            sceneKey: 'RaceNew'
+            sceneKey: 'RaceNew',
+            params:{
+                event_id
+            }
         })
     }
 
-    toRaceSchedule() {
+    toRaceSchedule(event_id) {
         this.push({
-            sceneKey: 'RaceSchedule'
+            sceneKey: 'RaceSchedule',
+            params:{
+                event_id
+            }
         })
     }
 
