@@ -62,7 +62,7 @@ export default class Home extends Component {
 
     header = () => {
         return (
-            <View>
+            <View style={{backgroundColor:'white'}}>
                 <MainBanner home_banners={this.state.home_banners}/>
                 <View style={styles.active_type_view}>
                     <TouchableOpacity onPress={() => {
@@ -104,7 +104,9 @@ export default class Home extends Component {
     };
     _renderItem = (item, index) => {
         return (
-            <HotItem item={item}/>
+            <View style={{backgroundColor:'white'}}>
+                <HotItem item={item}/>
+            </View>
         )
     };
 
@@ -122,23 +124,21 @@ export default class Home extends Component {
                 style={styles.home_view}>
 
 
-                <View style={styles.hot_race_view}>
-                    <UltimateFlatList
-                        header={this.header}
-                        firstLoader={true}
-                        ref={(ref) => this.listView = ref}
-                        onFetch={this.onFetch}
-                        separator={this._separator}
-                        keyExtractor={(item, index) => `hot_race${index}`}
-                        item={this._renderItem}
-                        refreshableTitlePull={global.lang.t('pull_refresh')}
-                        refreshableTitleRelease={global.lang.t('release_refresh')}
-                        dateTitle={global.lang.t('last_refresh')}
-                        allLoadedText={global.lang.t('no_more')}
-                        waitingSpinnerText={global.lang.t('loading')}
-                        emptyView={() => <View/>}
-                    />
-                </View>
+                <UltimateFlatList
+                    header={this.header}
+                    firstLoader={true}
+                    ref={(ref) => this.listView = ref}
+                    onFetch={this.onFetch}
+                    separator={this._separator}
+                    keyExtractor={(item, index) => `hot_race${index}`}
+                    item={this._renderItem}
+                    refreshableTitlePull={global.lang.t('pull_refresh')}
+                    refreshableTitleRelease={global.lang.t('release_refresh')}
+                    dateTitle={global.lang.t('last_refresh')}
+                    allLoadedText={global.lang.t('no_more')}
+                    waitingSpinnerText={global.lang.t('loading')}
+                    emptyView={() => <View/>}
+                />
 
                 <SelectPiker
                     ref={ref => this.selectPiker = ref}
