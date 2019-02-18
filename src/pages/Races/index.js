@@ -7,7 +7,7 @@ import Carousel from 'react-native-snap-carousel';
 import {Metrics} from "../../configs/Theme";
 import RaceModal from './RaceModal';
 import {mainEvents} from "../../services/eventsDao";
-import {logMsg, utcDate,getAvatar} from "../../utils/utils";
+import {logMsg, utcDate, getAvatar} from "../../utils/utils";
 
 @connect(({Races}) => ({
     ...Races,
@@ -19,14 +19,17 @@ export default class Races extends Component {
         events: [],
         recent_event: {},
         all_events: []
-    }
+    };
 
     componentDidMount() {
         mainEvents(data => {
             logMsg('主赛', data);
             let events_obj = [];
             events_obj.push(data.recent_event);
-            events_obj.push(data.events)
+            data.events.map(item => {
+                events_obj.push(item)
+            });
+            logMsg("events_obj",events_obj)
             this.setState({
                 events: data.events,
                 recent_event: data.recent_event,
@@ -66,17 +69,17 @@ export default class Races extends Component {
                         this.change_list_show();
                     }}>
                     <Text
-                        style={{fontSize: 18, color: '#FFE9AD'}}>OPC</Text>
+                        style={{fontSize: 18, color: '#FFE9AD'}}  numberOfLines={1}>{this.state.recent_event.name}</Text>
                     <Image style={{width: 12, height: 6, marginLeft: 10}}
                            source={this.state.list_show ? Images.top : Images.bottom}/>
                 </TouchableOpacity>
-                <View style={{flex: 1}}/>
+                <View style={{width:35}}/>
             </View>
         )
     };
 
     _renderItem = ({item, index}) => {
-        const {name,logo,begin_time,end_time,description} = item;
+        const {name, logo, begin_time, end_time, description} = item;
         return (
             <View style={styles.slide_view}>
                 <View style={styles.slide_top_view}>
@@ -88,7 +91,7 @@ export default class Races extends Component {
                     source={{uri: getAvatar(logo)}}/>
                 <View style={styles.slide_top_view}>
                     <Text style={styles.race_time_txt2}>{name}</Text>
-                    <Text style={styles.race_time_txt}>{utcDate(begin_time,'YYYY.MM.DD')}</Text>
+                    <Text style={styles.race_time_txt}>{utcDate(begin_time, 'YYYY.MM.DD')}</Text>
                 </View>
             </View>
         );
