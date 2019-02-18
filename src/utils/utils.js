@@ -12,7 +12,6 @@ import _ from 'lodash'
 import moment from 'moment'
 import Toast from '../components/toast';
 import {Images} from "../configs/Theme";
-import dva from './dva'
 
 export const YYYYMMDD = 'YYYY-MM-DD'
 
@@ -161,7 +160,7 @@ export function moneyFormat(num) {
     return result;
 }
 
-export function getAvatar(img) {
+export function getBg(img) {
     if(strNotNull(img)){
         return img
     }else{
@@ -169,7 +168,12 @@ export function getAvatar(img) {
     }
 }
 
-export function shareTo(params) {
-    dva.getDispatch()({type:'Home/showModal',params:{showModal:true,type:'ShareModal'}})
+
+export function getAvatar(img) {
+    if(strNotNull(img)){
+        return img
+    }else{
+        return Images.default_bg
+    }
 }
 

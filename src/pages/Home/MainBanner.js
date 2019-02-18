@@ -8,7 +8,7 @@ import {
 
 import Swiper from 'react-native-swiper';
 import {Metrics} from '../../themes';
-import {getAvatar, logMsg} from "../../utils/utils";
+import {getBg, logMsg} from "../../utils/utils";
 import {getBaseUrl} from "../../configs/fetch";
 
 
@@ -37,7 +37,7 @@ export default class MainBanner extends Component {
                                     }
                                 }}>
                                 <Image style={{height: Height, width: '100%'}}
-                                       source={{uri: getAvatar(item.image)}}/>
+                                       source={{uri: getBg(item.image)}}/>
                             </TouchableOpacity>
 
                         })}

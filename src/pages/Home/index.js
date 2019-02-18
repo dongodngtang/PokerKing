@@ -23,7 +23,8 @@ export default class Home extends Component {
             selectedItem: 1,
             itemList: ['English', '简体中文', '繁体中文'],
             home_banners: [],
-            info_list: []
+            info_list: [],
+            isRefreshing:false
         };
         props.navigation.setParams({
             onRight: () => {
@@ -34,16 +35,22 @@ export default class Home extends Component {
             }
         })
         this.count = 0
-    }
+    };
+
+    _onRefresh = () => {
+        this.setState({isRefreshing: true});
+        setTimeout(() => {
+            this.listView && this.listView.refresh();
+            this.setState({isRefreshing: false});
+        }, 1000)
+    };
 
     componentDidMount() {
-
         setTimeout(() => {
             if (isEmptyObject(global.loginUser)) {
                 router.toLogin()
             }
         }, 1000);
-
     };
 
     onPickerSelect = (index) => {
@@ -55,41 +62,16 @@ export default class Home extends Component {
 
     header = () => {
         return (
-            <View style={{backgroundColor:'white'}}>
-                <MainBanner home_banners={this.state.home_banners}/>
-                <View style={styles.active_type_view}>
-                    <TouchableOpacity onPress={() => {
-                        router.toRaces();
-                    }}>
-                        <ImageBackground source={Images.race_img} style={styles.active_btn}>
-                            <Text style={styles.active_txt}>{global.lang.t('race')}</Text>
-                        </ImageBackground>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => {
-                        router.toCashTable();
-                    }}>
-                        <ImageBackground source={Images.xianjinzhuo} style={styles.active_btn}>
-                            <Text style={styles.active_txt}>{global.lang.t('cash_table')}</Text>
-                        </ImageBackground>
-                    </TouchableOpacity>
-                </View>
-                <ImageBackground style={styles.middle_view} source={Images.other_more}>
-                    <Text style={styles.into_poker_txt}>{global.lang.t('into_poker')}</Text>
-                    <Text style={styles.found_beauti_txt}>{global.lang.t('found_beauti')}</Text>
-                </ImageBackground>
-
-
-                <View style={styles.header_view}>
-                    <Text style={styles.hot_race_txt}>{global.lang.t('hot_race')}</Text>
-                    <View style={{flex: 1}}/>
-                    <TouchableOpacity onPress={() => {
-                        router.toHotRaceList();
-                    }}
-                                      style={{flexDirection: 'row', alignItems: 'center'}}>
-                        <Text style={styles.more_txt}>{global.lang.t('more')}</Text>
-                        <Image style={{width: 6, height: 12, marginLeft: 8}} source={Images.is_right}/>
-                    </TouchableOpacity>
-                </View>
+            <View style={styles.header_view}>
+                <Text style={styles.hot_race_txt}>{global.lang.t('hot_race')}</Text>
+                <View style={{flex: 1}}/>
+                <TouchableOpacity onPress={() => {
+                    router.toHotRaceList();
+                }}
+                                  style={{flexDirection: 'row', alignItems: 'center'}}>
+                    <Text style={styles.more_txt}>{global.lang.t('more')}</Text>
+                    <Image style={{width: 6, height: 12, marginLeft: 8}} source={Images.is_right}/>
+                </TouchableOpacity>
             </View>
 
 
@@ -114,9 +96,34 @@ export default class Home extends Component {
         logMsg(this)
         const {customModal} = this.props
         return (
-            <View
-                style={styles.home_view}>
+            <ScrollView
+                style={styles.home_view}
+                refreshControl={<RefreshControl
+                    refreshing={this.state.isRefreshing}
+                    onRefresh={this._onRefresh}
+                />}>
 
+                <MainBanner home_banners={this.state.home_banners}/>
+                <View style={styles.active_type_view}>
+                    <TouchableOpacity onPress={() => {
+                        router.toRaces();
+                    }}>
+                        <ImageBackground source={Images.race_img} style={styles.active_btn}>
+                            <Text style={styles.active_txt}>{global.lang.t('race')}</Text>
+                        </ImageBackground>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => {
+                        router.toCashTable();
+                    }}>
+                        <ImageBackground source={Images.xianjinzhuo} style={styles.active_btn}>
+                            <Text style={styles.active_txt}>{global.lang.t('cash_table')}</Text>
+                        </ImageBackground>
+                    </TouchableOpacity>
+                </View>
+                <ImageBackground style={styles.middle_view} source={Images.other_more}>
+                    <Text style={styles.into_poker_txt}>{global.lang.t('into_poker')}</Text>
+                    <Text style={styles.found_beauti_txt}>{global.lang.t('found_beauti')}</Text>
+                </ImageBackground>
 
                 <UltimateFlatList
                     header={this.header}
@@ -140,9 +147,7 @@ export default class Home extends Component {
                     itemList={this.state.itemList}/>
 
                 {customModal?<CustomModal {...customModal}/>:null}
-
-
-            </View>
+            </ScrollView>
         )
     }
 

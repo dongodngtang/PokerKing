@@ -80,19 +80,20 @@ export const Images = {
     other_more: require('../asserts/other_more.png'),
     race_img: require('../asserts/race_img.png'),
     xianjinzhuo: require('../asserts/xianjinzhuo.png'),
-    home_avatar:require('../asserts/home/home_avatar.png'),
-    jinsha:require('../asserts/jinsha.png'),
-    weini:require('../asserts/weini.png'),
-    close_block:require('../asserts/close.png'),
-    load_no_data:require('../asserts/load/load_no_data.png'),
-    empty_bg:require('../asserts/empty_ticket.png'),
-    web_left:require('../asserts/web_left.png'),
-    web_right:require('../asserts/web_right.png'),
-    web_refresh:require('../asserts/web_refresh.png'),
-    web_page:require('../asserts/web_page.png'),
-    shuhcu:require('../asserts/shuhcu.png'),
-    jiegou:require('../asserts/jiegou.png'),
+    home_avatar: require('../asserts/home/home_avatar.png'),
+    jinsha: require('../asserts/jinsha.png'),
+    weini: require('../asserts/weini.png'),
+    close_block: require('../asserts/close.png'),
+    load_no_data: require('../asserts/load/load_no_data.png'),
+    empty_bg: require('../asserts/empty_ticket.png'),
+    web_left: require('../asserts/web_left.png'),
+    web_right: require('../asserts/web_right.png'),
+    web_refresh: require('../asserts/web_refresh.png'),
+    web_page: require('../asserts/web_page.png'),
+    shuhcu: require('../asserts/shuhcu.png'),
+    jiegou: require('../asserts/jiegou.png'),
     right_gray: require('../asserts/right_gray.png'),
+    default_bg: require('../asserts/default_bg.png')
 
 
 }
@@ -152,12 +153,12 @@ export const Styles = {
     left: {
         height: 44,
         justifyContent: 'center',
-        width:70,
-        paddingRight:10,
-        paddingLeft:17
+        width: 70,
+        paddingRight: 10,
+        paddingLeft: 17
     },
     navTitle: {
-        flex:1,
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         alignSelf: 'center'
@@ -167,8 +168,8 @@ export const Styles = {
         flexWrap: 'nowrap',
         height: 44,
         alignItems: 'center',
-        paddingLeft:17,
-        width:90
+        paddingLeft: 17,
+        width: 90
     }
 }
 

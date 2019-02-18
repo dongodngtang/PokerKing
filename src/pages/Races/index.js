@@ -7,7 +7,7 @@ import Carousel from 'react-native-snap-carousel';
 import {Metrics} from "../../configs/Theme";
 import RaceModal from './RaceModal';
 import {mainEvents} from "../../services/eventsDao";
-import {logMsg, utcDate, getAvatar, shareTo} from "../../utils/utils";
+import {logMsg, utcDate, getBg} from "../../utils/utils";
 
 @connect(({Races}) => ({
     ...Races,
@@ -92,7 +92,7 @@ export default class Races extends Component {
                 </View>
                 <Image
                     style={styles.slide_img}
-                    source={{uri: getAvatar(logo)}}/>
+                    source={{uri: getBg(logo)}}/>
                 <View style={styles.slide_top_view}>
                     <Text style={styles.race_time_txt2}>{name}</Text>
                     <Text style={styles.race_time_txt}>{utcDate(begin_time, 'YYYY.MM.DD')}</Text>
@@ -120,13 +120,13 @@ export default class Races extends Component {
                     />
                 </View>
                 {this._item(styles.item_view, Images.rili_gray, styles.img_dy,
-                    this.state.recent_event.name, () => {
+                    `${this.state.recent_event.name}${global.lang.t('race_schedule')}`, () => {
                         router.toRaceSchedule(recent_event.id);
                     })}
                 {this._item(styles.item_view, Images.zixun, styles.img_dy,
                     global.lang.t('race_message'), () => {
 
-                    shareTo()
+
                     })}
                 {this._item(styles.item_view, Images.ziyuan, styles.img_dy,
                     global.lang.t('race_news'), () => {

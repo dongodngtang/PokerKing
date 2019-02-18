@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import styles from './index.style';
 import ImagePicker from 'react-native-image-crop-picker';
 import {Images} from "../../configs/Theme";
-import {isStrNull, getCurrentDate, isEmptyObject, showToast, logMsg} from "../../utils/utils";
+import {isStrNull, getCurrentDate, isEmptyObject, getAvatar, logMsg} from "../../utils/utils";
 import {ActionSheet} from '../../components';
 import {putProfile, uploadAvatar} from "../../services/accountDao";
 
@@ -124,15 +124,16 @@ export default class ModifyData extends Component {
                         }}>
                             <Image style={{
                                 height: 64, width: 64,
-                                borderRadius: 32
+                                borderRadius: 32,
+                                borderColor:"#ECECEE",borderWidth:4
                             }}
-                                   source={avatar}
+                                   source={getAvatar(avatar)}
                             />
                         </View>
 
 
                         <Image style={{height: 20, width: 10}}
-                               source={Images.is_right}/>
+                               source={Images.right_gray}/>
 
 
                     </TouchableOpacity>
@@ -153,7 +154,7 @@ export default class ModifyData extends Component {
                                    testID="input_nick"/>
 
                         <Image style={{height: 20, width: 10}}
-                               source={Images.is_right}/>
+                               source={Images.right_gray}/>
 
                     </View>
 
@@ -170,7 +171,7 @@ export default class ModifyData extends Component {
 
                         <View style={{flex: 1}}/>
                         <Image style={{height: 20, width: 10}}
-                               source={Images.is_right}/>
+                               source={Images.right_gray}/>
                     </TouchableOpacity>
 
                     <View style={styles.line2}/>
@@ -190,7 +191,7 @@ export default class ModifyData extends Component {
                                    testID="input_mailbox"/>
 
                         <Image style={{height: 20, width: 10}}
-                               source={Images.is_right}/>
+                               source={Images.right_gray}/>
 
                     </View>
                 </View>
