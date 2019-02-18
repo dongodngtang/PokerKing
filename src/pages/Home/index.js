@@ -35,19 +35,9 @@ export default class Home extends Component {
         this.count = 0
     }
 
-    homeBanners = () => {
-        getHomeBanners(data => {
-            logMsg("home_banners", data);
-            this.setState({
-                home_banners: data.banners
-            })
-        });
-    };
-
     componentDidMount() {
 
         setTimeout(() => {
-            this.homeBanners()
             if (isEmptyObject(global.loginUser)) {
                 router.toLogin()
             }
@@ -128,7 +118,6 @@ export default class Home extends Component {
 
                 <UltimateFlatList
                     header={this.header}
-                    firstLoader={true}
                     ref={(ref) => this.listView = ref}
                     onFetch={this.onFetch}
                     separator={this._separator}
@@ -155,20 +144,24 @@ export default class Home extends Component {
     onFetch = (page = 1, startFetch, abortFetch) => {
         try {
             initLoginUser(() => {
-                if(this.count>0){
-                    this.homeBanners()
-                }
-                this.count++
-                getInfoList({
-                    page,
-                    page_size: 20
-                }, data => {
-                    logMsg("InfoList:", data)
-                    startFetch(data.infos, 18)
-                }, err => {
-                    logMsg("reject:", err)
-                    abortFetch()
-                })
+
+
+                getHomeBanners(data => {
+                    this.setState({
+                        home_banners: data.banners
+                    })
+                    getInfoList({
+                        page,
+                        page_size: 20
+                    }, data => {
+                        logMsg("InfoList:", data)
+                        startFetch(data.infos, 18)
+                    }, err => {
+                        logMsg("reject:", err)
+                        abortFetch()
+                    })
+
+                });
             })
 
         } catch (err) {
