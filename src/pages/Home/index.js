@@ -32,6 +32,7 @@ export default class Home extends Component {
                 Actions.drawerOpen()
             }
         })
+        this.count = 0
     }
 
     homeBanners = () => {
@@ -50,6 +51,9 @@ export default class Home extends Component {
                 router.toLogin()
             }
         }, 1000);
+        initLoginUser(()=>{
+            this.homeBanners()
+        })
 
     };
 
@@ -153,7 +157,10 @@ export default class Home extends Component {
     onFetch = (page = 1, startFetch, abortFetch) => {
         try {
             initLoginUser(() => {
-                this.homeBanners()
+                if(this.count>0){
+                    this.homeBanners()
+                }
+                this.count++
                 getInfoList({
                     page,
                     page_size: 20
