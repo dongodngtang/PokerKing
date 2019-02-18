@@ -99,5 +99,7 @@
   "day2":"日",
   "structure":"結構",
   "enter_information":"如何輸入信息",
-  "add_calendar":"將比賽添加到日曆"
+  "add_calendar":"將比賽添加到日曆",
+  "refresh_again":"出錯了, 重新刷新下吧",
+  "add_schedule":"添加日程成功"
 }

@@ -184,7 +184,7 @@ export default class RaceSchedule extends Component {
                             }
                             AddCalendarEvent.presentEventCreatingDialog(eventConfig)
                                 .then((eventInfo: { calendarItemIdentifier: string, eventIdentifier: string }) => {
-                                    showToast('添加日程成功')
+                                    showToast(global.lang.t('add_schedule'))
                                     console.log(JSON.stringify(eventInfo));
                                 })
                                 .catch((error: string) => {
@@ -194,7 +194,7 @@ export default class RaceSchedule extends Component {
                         }}
                         style={styles.calendar_view} activeOpacity={1}>
                         <Image style={{width:24,height:24,marginRight:16}} source={Images.jiegou}/>
-                        <Text style={styles.problem_txt}>{global.lang.t('enter_information')}</Text>
+                        <Text style={styles.problem_txt}>{global.lang.t('add_calendar')}</Text>
                     </TouchableOpacity>
 
                 </View> : null}
