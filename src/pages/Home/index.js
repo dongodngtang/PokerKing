@@ -22,8 +22,7 @@ export default class Home extends Component {
             selectedItem: 1,
             itemList: ['English', '简体中文', '繁体中文'],
             home_banners: [],
-            info_list: [],
-            isRefreshing:false
+            info_list: []
         };
         props.navigation.setParams({
             onRight: () => {
@@ -36,34 +35,14 @@ export default class Home extends Component {
         this.count = 0
     }
 
-    homeBanners = () => {
-        getHomeBanners(data => {
-            logMsg("home_banners", data);
-            this.setState({
-                home_banners: data.banners
-            })
-        });
-    };
+    componentDidMount() {
 
-    _onRefresh = () => {
-        this.setState({isRefreshing: true});
         setTimeout(() => {
-            this._getData();
-            this.setState({isRefreshing: false});
-        }, 1000)
-    };
-
-    _getData=()=>{
-        setTimeout(() => {
-            this.homeBanners()
             if (isEmptyObject(global.loginUser)) {
                 router.toLogin()
             }
         }, 1000);
-    }
 
-    componentDidMount() {
-        this._getData()
     };
 
     onPickerSelect = (index) => {
@@ -75,45 +54,7 @@ export default class Home extends Component {
 
     header = () => {
         return (
-            <View style={styles.header_view}>
-                <Text style={styles.hot_race_txt}>{global.lang.t('hot_race')}</Text>
-                <View style={{flex: 1}}/>
-                <TouchableOpacity onPress={() => {
-                    router.toHotRaceList();
-                }}
-                                  style={{flexDirection: 'row', alignItems: 'center'}}>
-                    <Text style={styles.more_txt}>{global.lang.t('more')}</Text>
-                    <Image style={{width: 6, height: 12, marginLeft: 8}} source={Images.is_right}/>
-                </TouchableOpacity>
-            </View>
-
-        )
-    };
-    _renderItem = (item, index) => {
-        return (
             <View style={{backgroundColor:'white'}}>
-                <HotItem item={item}/>
-            </View>
-        )
-    };
-
-    _separator = () => {
-        return (
-            <View
-                style={{height: 1, backgroundColor: "#ECECEE", width: Metrics.screenWidth - 34, alignSelf: 'center'}}/>
-        )
-    }
-
-    render() {
-
-        return (
-            <ScrollView
-                style={styles.home_view}
-                refreshControl={<RefreshControl
-                    refreshing={this.state.isRefreshing}
-                    onRefresh={this._onRefresh}
-                />}>
-
                 <MainBanner home_banners={this.state.home_banners}/>
                 <View style={styles.active_type_view}>
                     <TouchableOpacity onPress={() => {
@@ -136,9 +77,47 @@ export default class Home extends Component {
                     <Text style={styles.found_beauti_txt}>{global.lang.t('found_beauti')}</Text>
                 </ImageBackground>
 
+
+                <View style={styles.header_view}>
+                    <Text style={styles.hot_race_txt}>{global.lang.t('hot_race')}</Text>
+                    <View style={{flex: 1}}/>
+                    <TouchableOpacity onPress={() => {
+                        router.toHotRaceList();
+                    }}
+                                      style={{flexDirection: 'row', alignItems: 'center'}}>
+                        <Text style={styles.more_txt}>{global.lang.t('more')}</Text>
+                        <Image style={{width: 6, height: 12, marginLeft: 8}} source={Images.is_right}/>
+                    </TouchableOpacity>
+                </View>
+            </View>
+
+
+        )
+    };
+    _renderItem = (item, index) => {
+        return (
+            <View style={{backgroundColor:'white'}}>
+                <HotItem item={item}/>
+            </View>
+        )
+    };
+
+    _separator = () => {
+        return (
+            <View
+                style={{height: 1, backgroundColor: "#ECECEE", width: Metrics.screenWidth - 34, alignSelf: 'center'}}/>
+        )
+    }
+
+    render() {
+
+        return (
+            <View
+                style={styles.home_view}>
+
+
                 <UltimateFlatList
                     header={this.header}
-                    firstLoader={true}
                     ref={(ref) => this.listView = ref}
                     onFetch={this.onFetch}
                     separator={this._separator}
@@ -158,27 +137,29 @@ export default class Home extends Component {
                     selectedItem={this.state.selectedItem}
                     itemList={this.state.itemList}/>
 
-            </ScrollView>
+            </View>
         )
     }
 
     onFetch = (page = 1, startFetch, abortFetch) => {
         try {
             initLoginUser(() => {
-                if(this.count>0){
-                    this.homeBanners()
-                }
-                this.count++
-                getInfoList({
-                    page,
-                    page_size: 20
-                }, data => {
-                    logMsg("InfoList:", data)
-                    startFetch(data.infos, 18)
-                }, err => {
-                    logMsg("reject:", err)
-                    abortFetch()
-                })
+                getHomeBanners(data => {
+                    this.setState({
+                        home_banners: data.banners
+                    })
+                    getInfoList({
+                        page,
+                        page_size: 20
+                    }, data => {
+                        logMsg("InfoList:", data)
+                        startFetch(data.infos, 18)
+                    }, err => {
+                        logMsg("reject:", err)
+                        abortFetch()
+                    })
+
+                });
             })
 
         } catch (err) {

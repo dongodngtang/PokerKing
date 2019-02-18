@@ -85,21 +85,20 @@ export function verify_code(body, resolve, reject) {
 export function getProfile(resolve,reject) {
     get(api.profile(),{},ret=>{
         resolve && resolve(ret.data)
-        dva.getDispatch()({type:'common/setProfile',params:ret.data})
+        dva.getDispatch()({type:'Home/setProfile',params:ret.data})
 
     },reject)
 }
 
 export function putProfile(body, resolve, reject) {
     put(api.profile(),body,ret=>{
-        dva.getDispatch()({type:'common/setProfile',params:ret.data})
+        dva.getDispatch()({type:'Home/setProfile',params:ret.data})
         resolve(ret.data)
     },reject)
 }
 
 export function uploadAvatar(body, resolve, reject) {
     put(api.uploadAvatar(),body,ret=>{
-        // dva.getDispatch()({type:'common/setProfile',params:ret.data})
         resolve(ret.data)
     },reject)
 }

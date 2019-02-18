@@ -18,9 +18,9 @@ const picker = {
     compressImageQuality: 0.5,
 };
 
-@connect(({ModifyData, common}) => ({
+@connect(({ModifyData,Home}) => ({
     ...ModifyData,
-    ...common
+    ...Home
 }))
 export default class ModifyData extends Component {
 
@@ -61,7 +61,6 @@ export default class ModifyData extends Component {
                     router.pop();
                     if (profile.nickname !== this.inputNick || profile.email !== this.inputMail ||
                         this.state.gender_modify || this.state.avatar_modify) {
-                        showToast(global.lang.t('successfully_modified'))
                     }
                 }, err => {
                     router.pop()
@@ -90,7 +89,7 @@ export default class ModifyData extends Component {
         formData.append("avatar", file);
         uploadAvatar(formData, ret => {
             this.setState({
-                avatar: {uri: "http://test.pokerking_api.deshpro.com" + ret.avatar},
+                avatar: {uri:ret.avatar},
                 avatar_modify: true
             })
         });
