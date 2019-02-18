@@ -13,9 +13,9 @@ export default class HotItem extends Component {
             <TouchableOpacity style={styles.item_view}
                               onPress={() => {
                                   if (this.props.type && this.props.type === 'event') {
-                                      router.toEventDetail(this.props.item, this.props.event_id)
+                                      router.toEventDetail(id, this.props.event_id)
                                   } else {
-                                      router.toInfoDetail(this.props.item)
+                                      router.toInfoDetail(id)
                                   }
                               }}>
                 <Image style={styles.race_img}
