@@ -7,7 +7,7 @@ import Carousel from 'react-native-snap-carousel';
 import {Metrics} from "../../configs/Theme";
 import RaceModal from './RaceModal';
 import {mainEvents} from "../../services/eventsDao";
-import {logMsg, utcDate, getAvatar} from "../../utils/utils";
+import {logMsg, utcDate, getBg} from "../../utils/utils";
 
 @connect(({Races}) => ({
     ...Races,
@@ -92,7 +92,7 @@ export default class Races extends Component {
                 </View>
                 <Image
                     style={styles.slide_img}
-                    source={{uri: getAvatar(logo)}}/>
+                    source={{uri: getBg(logo)}}/>
                 <View style={styles.slide_top_view}>
                     <Text style={styles.race_time_txt2}>{name}</Text>
                     <Text style={styles.race_time_txt}>{utcDate(begin_time, 'YYYY.MM.DD')}</Text>

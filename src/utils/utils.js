@@ -160,11 +160,20 @@ export function moneyFormat(num) {
     return result;
 }
 
-export function getAvatar(img) {
+export function getBg(img) {
     if(strNotNull(img)){
         return img
     }else{
         return Images.empty_bg
+    }
+}
+
+
+export function getAvatar(img) {
+    if(strNotNull(img)){
+        return img
+    }else{
+        return Images.default_bg
     }
 }
 
