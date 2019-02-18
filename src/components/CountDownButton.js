@@ -22,7 +22,7 @@ export default class CountDownButton extends React.Component {
         super(props)
         this.state = {
             timerCount: this.props.timerCount || 60,
-            timerTitle: this.props.timerTitle || '获取验证码',
+            timerTitle: this.props.timerTitle || global.lang.t('get_vcode'),
             counting: false,
             selfEnable: true,
         };
@@ -55,7 +55,7 @@ export default class CountDownButton extends React.Component {
                 this.interval && clearInterval(this.interval);
                 this.setState({
                     timerCount: codeTime,
-                    timerTitle: timerTitle || '获取验证码',
+                    timerTitle: timerTitle || global.lang.t('get_vcode'),
                     counting: false,
                     selfEnable: true
                 })
