@@ -70,7 +70,6 @@ export default class RaceSchedule extends Component {
 
     render() {
         const {schedules_dates} = this.state;
-        logMsg(schedules_dates)
         return (
             <ScrollView style={styles.schedule_view}>
                 <View style={styles.carousels_view}>
@@ -110,10 +109,10 @@ export default class RaceSchedule extends Component {
         return (
             <View>
                 <View style={styles.item_view2}>
-                    <Text style={styles.top_txt1}>#1 NL Hold'em-reezeout(1)</Text>
+                    <Text style={styles.top_txt1}>#{name}</Text>
                     <TouchableOpacity style={styles.schedule_middle_view} activeOpacity={1} onPress={() => {
                         schedules_events.forEach((x) => {
-                            if (x.id === index) {
+                            if (x.id === item.id) {
                                 x.isSelect = !x.isSelect
                             }
                         });
@@ -128,22 +127,25 @@ export default class RaceSchedule extends Component {
                                source={item.isSelect ? Images.is_top : Images.is_bottom}/>
                     </TouchableOpacity>
                     <View style={styles.schedule_bottom_view}>
-                        <Text style={styles.top_txt1}>NL Hold'em-reezeout…</Text>
+                        <Text style={[styles.top_txt1,{width:'65%'}]} numberOfLines={1} >{name}</Text>
                         <View style={{flex: 1}}/>
                         <Text style={styles.race_price}>{global.lang.t('race_price')}{buy_in}</Text>
                     </View>
                 </View>
                 {item.isSelect ? <View style={styles.selected_view}>
-                    <Text style={styles.top_txt1}>{global.lang.t("race_people")}</Text>
+                    <View style={{flexDirection:'row',alignItems:'center'}}>
+                        <Text style={styles.top_txt1}>{global.lang.t("race_people")}</Text>
+                        <Text style={{color:"#888888",fontSize:14,marginRight:8}}>{entries}</Text>
+                    </View>
                     <View style={styles.line}/>
                     <View style={styles.selected_middle_view}>
                         <View style={styles.cloumn_view}>
                             <Text style={styles.top_txt1}>{global.lang.t("start_registration")}</Text>
-                            <Text style={styles.top_txt2}>12月12日14:00</Text>
+                            <Text style={styles.top_txt2}>{utcDate(reg_open, 'YY/MM/DD MM:ss')}</Text>
                         </View>
                         <View style={styles.cloumn_view}>
                             <Text style={styles.top_txt1}>{global.lang.t("end_registration")}</Text>
-                            <Text style={styles.top_txt2}>12月12日14:00</Text>
+                            <Text style={styles.top_txt2}>{utcDate(reg_close, 'YY/MM/DD MM:ss')}</Text>
                         </View>
                         <View style={styles.cloumn_view}>
                             <Text style={styles.top_txt1}>{global.lang.t("end_distance")}</Text>
@@ -158,7 +160,7 @@ export default class RaceSchedule extends Component {
                         </View>
                         <View style={styles.cloumn_view}>
                             <Text style={styles.top_txt1}>{global.lang.t("starting_chip")}</Text>
-                            <Text style={styles.top_txt2}>50，000</Text>
+                            <Text style={styles.top_txt2}>{starting_stack}</Text>
                         </View>
                     </View>
 
