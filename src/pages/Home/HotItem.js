@@ -5,7 +5,6 @@ import {logMsg, convertDate, isStrNull,utcDate} from "../../utils/utils";
 import styles from './index.style';
 import {Images} from "../../configs/Theme";
 
-const base_url = "http://test.pokerking_cms.deshpro.com";
 export default class HotItem extends Component {
 
     render() {
@@ -20,7 +19,7 @@ export default class HotItem extends Component {
                                   }
                               }}>
                 <Image style={styles.race_img}
-                       source={isStrNull(image) ? Images.empty_bg : {uri: `${base_url}${image}`}}/>
+                       source={isStrNull(image) ? Images.empty_bg : {uri: image}}/>
                 <View style={styles.right_view}>
                     <Text style={styles.race_content_txt} numberOfLines={2}>{title}</Text>
                     {this.props.type && this.props.type === 'event' ? <View style={styles.right_bottom_view}>
