@@ -5,7 +5,7 @@ import styles from './index.style';
 import Carousel from 'react-native-snap-carousel';
 import {Images, Metrics, realSize} from "../../configs/Theme";
 import UltimateFlatList from '../../components/ultimate/UltimateFlatList';
-import {logMsg, utcDate} from "../../utils/utils";
+import {isEmptyObject, logMsg, utcDate} from "../../utils/utils";
 import moment from 'moment';
 import {getSchedulesDates, getSchedulesEvents} from '../../services/raceDao'
 
@@ -165,6 +165,9 @@ export default class RaceSchedule extends Component {
 
     onFetch = (page = 1, startFetch, abortFetch) => {
         const {schedules_dates} = this.state;
+        if(isEmptyObject(schedules_dates)){
+            return;
+        }
         try {
             schedules_dates.forEach((item) => {
                 if (item.isSelect) {
