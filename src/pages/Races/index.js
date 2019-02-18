@@ -116,7 +116,7 @@ export default class Races extends Component {
                         router.toRaceNew(recent_event.id);
                     })}
 
-                <RaceModal ref={ref => this.raceModal = ref}/>
+                <RaceModal ref={ref => this.raceModal = ref} />
             </View>
         )
     }

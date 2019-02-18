@@ -25,6 +25,7 @@ const api = {
     event_list:event_list,//获取主赛的新闻列表,
     schedules_dates:schedules_dates,//获取赛程的所有日期
     schedules_events:schedules_events,//获取某个日期的赛程
+    event_detail:event_detail,//获取主赛的新闻详情
 }
 
 
@@ -34,6 +35,11 @@ function uploadAvatar() {
 
 function _profile() {
     return `account/users/${getUserId()}/profile`
+}
+
+function event_detail(body){
+    const {event_id,id} = body;
+    return `main_events/${event_id}/infos/${id}`;
 }
 
 function schedules_events(body){
