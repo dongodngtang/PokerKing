@@ -1,18 +1,27 @@
 import React, {Component} from 'react';
-import {View, Text, Image, TouchableOpacity, ScrollView,FlatList} from 'react-native';
+import {View, Text, Image, TouchableOpacity, ScrollView, FlatList} from 'react-native';
 import {connect} from 'react-redux';
 import styles from './index.style';
 import Carousel from 'react-native-snap-carousel';
 import {Images, Metrics, realSize} from "../../configs/Theme";
 import UltimateFlatList from '../../components/ultimate/UltimateFlatList';
 import {logMsg} from "../../utils/utils";
-import moment from 'moment'
+import moment from 'moment';
+import {getSchedulesDates} from '../../services/raceDao'
 
-let data2 = [{id: 0,date:'2019-01-28'}, {id: 1,
-    date:'2019-01-28'}, {id: 2,date:'2019-01-28'}, {id: 3,
-    date:'2019-01-28'}, {id: 4,
-    date:'2019-01-28'}, {id: 5,
-    date:'2019-01-28'}];
+let data2 = [{id: 0, date: '2019-01-28'}, {
+    id: 1,
+    date: '2019-01-28'
+}, {id: 2, date: '2019-01-28'}, {
+    id: 3,
+    date: '2019-01-28'
+}, {
+    id: 4,
+    date: '2019-01-28'
+}, {
+    id: 5,
+    date: '2019-01-28'
+}];
 
 @connect(({RaceSchedule}) => ({
     ...RaceSchedule,
@@ -22,34 +31,43 @@ export default class RaceSchedule extends Component {
     state = {
         carousel_index: 0,
         data: [],
-
-    }
+        schedules_dates: []
+    };
 
 
     componentDidMount() {
+        getSchedulesDates({event_id: 1}, data => {
+            logMsg("schedules_dates", data);
+            this.setState({
+                schedules_dates: data.dates
+            })
+        }, err => {
+            logMsg("schedules_dates_err", err)
+        })
     }
 
     carousel_Item = ({item, index}) => {
         const {carousel_index} = this.state;
-        let week = moment(item.date).format('e')
-        let day = moment(item.date).format('DD')
+        let week = moment(item).format('E');
+        let day = moment(item).format('MM-DD');
         return (
             <View style={carousel_index === index ? styles.item_select_view : styles.item_view}>
                 <Text style={styles.day_txt}>{day}</Text>
-                <Text style={styles.week_txt}>{week}</Text>
+                <Text style={styles.week_txt}>{global.lang.t('week')}{week}</Text>
             </View>
         )
     }
 
     render() {
+        const {schedules_dates} = this.state;
         return (
             <ScrollView style={styles.schedule_view}>
                 <View style={styles.carousels_view}>
                     <FlatList
-                        keyExtractor={(item,index)=>`date_${index}`}
+                        keyExtractor={(item, index) => `date_${index}`}
                         horizontal
-                        data={data2}
-                        ItemSeparatorComponent={()=><View style={{width:realSize(5),height:realSize(66)}}/>}
+                        data={schedules_dates}
+                        ItemSeparatorComponent={() => <View style={{width: realSize(5), height: realSize(66)}}/>}
                         renderItem={this.carousel_Item}
                         showsHorizontalScrollIndicator={false}
                     />

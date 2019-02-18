@@ -9,3 +9,10 @@ export function getMainEventList(body,resolve, reject) {
         resolve(ret.data)
     },reject)
 }
+
+/*获取赛程的所有日期*/
+export function getSchedulesDates(body,resolve, reject) {
+    get(api.schedules_dates(body),body,ret=>{
+        resolve(ret.data)
+    },reject)
+}
