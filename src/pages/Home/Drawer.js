@@ -12,8 +12,8 @@ import {Images} from "../../configs/Theme";
 import {connect} from 'react-redux';
 import {isEmptyObject, isStrNull} from "../../utils/utils";
 
-@connect(({common}) => ({
-    ...common
+@connect(({Home}) => ({
+    ...Home
 }))
 export default class Drawer extends Component {
     render() {

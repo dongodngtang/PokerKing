@@ -18,9 +18,9 @@ const picker = {
     compressImageQuality: 0.5,
 };
 
-@connect(({ModifyData, common}) => ({
+@connect(({ModifyData,Home}) => ({
     ...ModifyData,
-    ...common
+    ...Home
 }))
 export default class ModifyData extends Component {
 
@@ -90,7 +90,7 @@ export default class ModifyData extends Component {
         formData.append("avatar", file);
         uploadAvatar(formData, ret => {
             this.setState({
-                avatar: {uri: "http://test.pokerking_api.deshpro.com" + ret.avatar},
+                avatar: {uri:ret.avatar},
                 avatar_modify: true
             })
         });
