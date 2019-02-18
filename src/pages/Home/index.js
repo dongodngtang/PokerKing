@@ -47,13 +47,11 @@ export default class Home extends Component {
     componentDidMount() {
 
         setTimeout(() => {
+            this.homeBanners()
             if (isEmptyObject(global.loginUser)) {
                 router.toLogin()
             }
         }, 1000);
-        initLoginUser(()=>{
-            this.homeBanners()
-        })
 
     };
 

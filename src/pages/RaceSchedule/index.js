@@ -4,9 +4,10 @@ import {connect} from 'react-redux';
 import styles from './index.style';
 import {Images, Metrics, realSize} from "../../configs/Theme";
 import UltimateFlatList from '../../components/ultimate/UltimateFlatList';
-import {isEmptyObject, logMsg, utcDate,moneyFormat} from "../../utils/utils";
+import {isEmptyObject, logMsg, utcDate, moneyFormat, showToast} from "../../utils/utils";
 import moment from 'moment';
 import {getSchedulesDates, getSchedulesEvents} from '../../services/raceDao'
+import * as AddCalendarEvent from 'react-native-add-calendar-event';
 
 @connect(({RaceSchedule}) => ({
     ...RaceSchedule,
@@ -172,7 +173,26 @@ export default class RaceSchedule extends Component {
                         <Image style={{width:26,height:26,marginRight:14}} source={Images.shuhcu}/>
                         <Text style={styles.problem_txt}>{global.lang.t('enter_information')}</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.calendar_view} activeOpacity={1}>
+                    <TouchableOpacity
+                        onPress={()=>{
+                            let s = utcDate(begin_time,'YYYY-MM-DDTHH:mm:ss.SSS[Z]');
+                            let eventConfig = {
+                                title:name,
+                                startDate:s,
+                                endDate:s,
+                                allDay:true
+                            }
+                            AddCalendarEvent.presentEventCreatingDialog(eventConfig)
+                                .then((eventInfo: { calendarItemIdentifier: string, eventIdentifier: string }) => {
+                                    showToast('添加日程成功')
+                                    console.log(JSON.stringify(eventInfo));
+                                })
+                                .catch((error: string) => {
+                                    // handle error such as when user rejected permissions
+                                    console.warn(error);
+                                });
+                        }}
+                        style={styles.calendar_view} activeOpacity={1}>
                         <Image style={{width:24,height:24,marginRight:16}} source={Images.jiegou}/>
                         <Text style={styles.problem_txt}>{global.lang.t('enter_information')}</Text>
                     </TouchableOpacity>

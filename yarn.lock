@@ -4541,6 +4541,11 @@ react-lifecycles-compat@^3, react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "http://registry.npm.taobao.org/react-lifecycles-compat/download/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
 
+react-native-add-calendar-event@^2.3.0:
+  version "2.3.0"
+  resolved "http://registry.npm.taobao.org/react-native-add-calendar-event/download/react-native-add-calendar-event-2.3.0.tgz#4992c7c65bbceb641b451a4a50530fc164711476"
+  integrity sha1-SZLHxlu862QbRRpKUFMPwWRxFHY=
+
 react-native-code-push@^5.5.2:
   version "5.5.2"
   resolved "http://registry.npm.taobao.org/react-native-code-push/download/react-native-code-push-5.5.2.tgz#b394e8f92f8bc4d184d73ff8d066406def24c1e8"
