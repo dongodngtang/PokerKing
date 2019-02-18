@@ -85,5 +85,6 @@
   "please_input_phone": "請輸入手機號",
   "please_input_code": "請輸入驗證碼",
   "load_no_data":"暫無更多內容",
-  "table":"桌"
+  "table":"桌",
+  "successfully_modified":"修改成功"
 }

@@ -85,5 +85,6 @@
   "please_input_phone": "Please enter phone number",
   "please_input_code": "please enter verification code",
   "load_no_data":"No more content",
-  "table":"table"
+  "table":"table",
+  "successfully_modified":"Successfully modified"
 }
