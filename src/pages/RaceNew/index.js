@@ -19,7 +19,7 @@ export default class RaceNew extends Component {
 
     _renderItem = (item, index) => {
         return (
-            <HotItem item={item} type={'event'}/>
+            <HotItem item={item} type={'event'} event_id={this.props.params.event_id}/>
         )
     };
 

@@ -35,6 +35,7 @@ export default class QueueProcess extends Component {
                 } else {
                     item.isSelect = false
                 }
+                item.id = index
             });
             this.setState({
                 cash_queues: queues
@@ -49,11 +50,7 @@ export default class QueueProcess extends Component {
         return (
             <TouchableOpacity style={item.isSelect ? styles.selected_item : styles.item_view} onPress={() => {
                 cash_queues.forEach((x) => {
-                    if (x.id === index) {
-                        x.isSelect = true
-                    } else {
-                        x.isSelect = false
-                    }
+                    x.isSelect = item.id === x.id
                 });
                 this.setState({
                     cash_queues: [...cash_queues]

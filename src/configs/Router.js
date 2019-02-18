@@ -127,11 +127,12 @@ export default class Router {
             }
         })
     }
-    toEventDetail(info) {
+    toEventDetail(info,event_id) {
         this.push({
             sceneKey: 'EventDetail',
             params: {
-                info
+                info,
+                event_id
             }
         })
     }
