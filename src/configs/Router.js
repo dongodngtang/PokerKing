@@ -6,6 +6,7 @@
 
 import {Actions} from 'react-native-router-flux';
 import SwitchApi from "../pages/SwitchApi";
+import EventDetail from "../pages/EventDetail";
 
 export default class Router {
     popTo({sceneKey, params}) {
@@ -14,7 +15,7 @@ export default class Router {
 
     push({sceneKey, params}) {
         Actions.push(sceneKey, {params})
-        console.log('当前界面类名：' + Actions.currentScene)
+        console.log('当前界面类名：' + sceneKey)
     }
 
     pop() {
@@ -57,15 +58,21 @@ export default class Router {
         })
     }
 
-    toRaceNew() {
+    toRaceNew(event_id) {
         this.push({
-            sceneKey: 'RaceNew'
+            sceneKey: 'RaceNew',
+            params:{
+                event_id
+            }
         })
     }
 
-    toRaceSchedule() {
+    toRaceSchedule(event_id) {
         this.push({
-            sceneKey: 'RaceSchedule'
+            sceneKey: 'RaceSchedule',
+            params:{
+                event_id
+            }
         })
     }
 
@@ -112,12 +119,41 @@ export default class Router {
         })
     }
 
-    toInfoDetail(info) {
+    toInfoDetail(id) {
         this.push({
             sceneKey: 'InfoDetail',
             params: {
-                info
+                id
             }
+        })
+    }
+    toEventDetail(id,event_id) {
+        this.push({
+            sceneKey: 'EventDetail',
+            params: {
+                id,
+                event_id
+            }
+        })
+    }
+
+    toImageGalleryPage(images, index) {
+        this.push({
+            sceneKey: 'ImageGallery',
+            params: {
+                images: images,
+                index: index
+            }
+        })
+    }
+
+    toWebViewPage(props, url) {
+        this.push({
+            sceneKey: 'WebViewPage',
+            params: {
+                url: url
+            }
+
         })
     }
 }

@@ -85,5 +85,21 @@
   "please_input_phone": "Please enter phone number",
   "please_input_code": "please enter verification code",
   "load_no_data":"No more content",
-  "table":"table"
+  "table":"table",
+  "successfully_modified":"Successfully modified",
+  "week1":"Monday",
+  "week2":"Tuesday",
+  "week3":"Wednesday",
+  "week4":"Thursday",
+  "week5":"Friday",
+  "week6":"Saturday",
+  "week7":"Sunday",
+  "year":"year",
+  "month":"month",
+  "day2":"day",
+  "structure":"structure",
+  "enter_information":"How to enter information",
+  "add_calendar":"Add a match to the calendar",
+  "refresh_again":"Something went wrong, refresh it again",
+  "add_schedule":"Add schedule success"
 }

@@ -1,22 +1,22 @@
 import React, {Component} from 'react';
 import {View, Text, ScrollView} from 'react-native';
 import {connect} from 'react-redux';
-import styles from './index.style';
-import {getInfoDetail} from '../../services/accountDao'
 import {isEmptyObject, logMsg} from "../../utils/utils";
-import RenderHtml from '../comm/RenderHtml';
+import styles from "./index.style";
+import {getEventDetail} from '../../services/raceDao'
 import {Metrics} from "../../configs/Theme";
-import NotData from '../comm/NotData'
+import RenderHtml from '../comm/RenderHtml';
+import NotData from "../comm/NotData";
 
-@connect(({InfoDetail}) => ({
-    ...InfoDetail,
+@connect(({EventDetail}) => ({
+    ...EventDetail,
 }))
-export default class InfoDetail extends Component {
+export default class EventDetail extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            info_detail: {}
+            event_detail: {}
         };
         props.navigation.setParams({
             // title: this.props.params.info.title
@@ -24,18 +24,18 @@ export default class InfoDetail extends Component {
     }
 
     componentDidMount() {
-        const {id} = this.props.params;
-        getInfoDetail({id: id}, data => {
-            logMsg("info_detail", data);
+        const {id, event_id} = this.props.params;
+        getEventDetail({event_id: event_id, id: id},data=>{
+            logMsg("event_detail",data)
             this.setState({
-                info_detail: data.info
+                event_detail:data.info
             })
         })
     }
 
     render() {
-        const {info_detail} = this.state;
-        if(isEmptyObject(info_detail)){
+        const {event_detail} = this.state;
+        if(isEmptyObject(event_detail)){
             return <NotData backgroundColor={'#FFFFFF'}/>
         }
         return (
@@ -48,7 +48,7 @@ export default class InfoDetail extends Component {
                     width:Metrics.screenWidth - 36
                 }}>
                     <RenderHtml
-                        html={info_detail.description}/>
+                        html={event_detail.description}/>
                 </View>
             </ScrollView>
         )

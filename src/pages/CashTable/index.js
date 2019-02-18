@@ -26,7 +26,7 @@ export default class CashTable extends Component {
     }
     _separator=()=>{
         return (
-            <View style={{height:3,width:Metrics.screenWidth}}/>
+            <View style={{height:4,width:Metrics.screenWidth}}/>
         )
     };
 

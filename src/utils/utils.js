@@ -11,6 +11,7 @@ import {Alert,Linking} from 'react-native';
 import _ from 'lodash'
 import moment from 'moment'
 import Toast from '../components/toast';
+import {Images} from "../configs/Theme";
 
 export const YYYYMMDD = 'YYYY-MM-DD'
 
@@ -21,7 +22,7 @@ export function setLocations(arr) {
 export let loginUser = null
 
 let following_ids = [];
-
+export const util = _;
 
 export function showToast(msg) {
   if (!isStrNull(msg)) {
@@ -83,7 +84,13 @@ export function convertDate(date, format) {
   return moment(date).format(format)
 }
 
-export function unix_format(timestamp, time_format = YYYYMMDD) {
+//UTC 时间转化
+export function utcDate(utc, formate) {
+    if (strNotNull(utc))
+        return moment.unix(utc).format(formate)
+}
+
+export function unix_format(timestamp, time_format) {
   return moment.unix(timestamp).format(time_format)
 }
 
@@ -105,46 +112,6 @@ export function getLocations() {
 export function fileName(path) {
   let index = path.lastIndexOf('/')
   return path.substr(index + 1)
-}
-
-
-/*时间 1小时前*/
-export function getDateDiff(dateTimeStamp) {
-
-  var minute = 1000 * 60;
-  var hour = minute * 60;
-  var day = hour * 24;
-  var halfamonth = day * 15;
-  var month = day * 30;
-  var now = new Date().getTime();
-
-  var diffValue = now - dateTimeStamp * 1000;
-  if (diffValue < 0) {
-    return;
-  }
-  var monthC = diffValue / month;
-  var weekC = diffValue / (7 * day);
-  var dayC = diffValue / day;
-  var hourC = diffValue / hour;
-  var minC = diffValue / minute;
-  let result = '';
-  if (monthC >= 1) {
-    result = "" + parseInt(monthC) + '月前';
-  }
-  else if (weekC >= 1) {
-    result = "" + parseInt(weekC) + '周前';
-  }
-  else if (dayC >= 1) {
-    result = "" + parseInt(dayC) + '天前';
-  }
-  else if (hourC >= 1) {
-    result = "" + parseInt(hourC) + '小时前';
-  }
-  else if (minC >= 1) {
-    result = "" + parseInt(minC) + '分钟前';
-  } else
-    result = '刚刚';
-  return result;
 }
 
 export function showAlert(title, message) {
@@ -180,5 +147,33 @@ export function getUserId() {
     return isEmptyObject(global.loginUser)?'':global.loginUser.user_id
 }
 
+/*金额千分转换*/
+export function moneyFormat(num) {
+    var num = (num || 0).toString(), result = '';
+    while (num.length > 3) {
+        result = ',' + num.slice(-3) + result;
+        num = num.slice(0, num.length - 3);
+    }
+    if (num) {
+        result = num + result;
+    }
+    return result;
+}
 
+export function getBg(img) {
+    if(strNotNull(img)){
+        return img
+    }else{
+        return Images.empty_bg
+    }
+}
+
+
+export function getAvatar(img) {
+    if(strNotNull(img)){
+        return img
+    }else{
+        return Images.default_bg
+    }
+}
 

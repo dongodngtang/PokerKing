@@ -25,7 +25,10 @@ export default class RaceModal extends Component {
 
         return (
             <TouchableOpacity activeOpacity={1}
-                              style={[styles.select_top_view, index === 0 ? styles.select_item_view1 : styles.select_top_view2]}>
+                              style={[styles.select_top_view, index === 0 ? styles.select_item_view1 : styles.select_top_view2]}
+            onPress={()=>{
+
+            }}>
                 <Text style={styles.select_item_txt}>EPT2019</Text>
                 <View style={{flex: 1}}/>
                 <Image style={{width: 6, height: 12, marginRight: 17}} source={Images.is_right}/>

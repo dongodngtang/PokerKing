@@ -10,6 +10,7 @@ import SelectPiker from "../comm/SelectPiker";
 import HotItem from "./HotItem";
 import {Actions} from "react-native-router-flux";
 import {getHomeBanners, getInfoList,initLoginUser} from '../../services/accountDao'
+import CustomModal from "../../components/CustomModal";
 
 @connect(({Home}) => ({
     ...Home
@@ -22,7 +23,8 @@ export default class Home extends Component {
             selectedItem: 1,
             itemList: ['English', '简体中文', '繁体中文'],
             home_banners: [],
-            info_list: []
+            info_list: [],
+            isRefreshing:false
         };
         props.navigation.setParams({
             onRight: () => {
@@ -32,25 +34,23 @@ export default class Home extends Component {
                 Actions.drawerOpen()
             }
         })
-    }
+        this.count = 0
+    };
 
-    homeBanners = () => {
-        getHomeBanners(data => {
-            logMsg("home_banners", data);
-            this.setState({
-                home_banners: data.banners
-            })
-        });
+    _onRefresh = () => {
+        this.setState({isRefreshing: true});
+        setTimeout(() => {
+            this.listView && this.listView.refresh();
+            this.setState({isRefreshing: false});
+        }, 1000)
     };
 
     componentDidMount() {
-
         setTimeout(() => {
             if (isEmptyObject(global.loginUser)) {
                 router.toLogin()
             }
         }, 1000);
-
     };
 
     onPickerSelect = (index) => {
@@ -62,7 +62,47 @@ export default class Home extends Component {
 
     header = () => {
         return (
-            <View>
+            <View style={styles.header_view}>
+                <Text style={styles.hot_race_txt}>{global.lang.t('hot_race')}</Text>
+                <View style={{flex: 1}}/>
+                <TouchableOpacity onPress={() => {
+                    router.toHotRaceList();
+                }}
+                                  style={{flexDirection: 'row', alignItems: 'center'}}>
+                    <Text style={styles.more_txt}>{global.lang.t('more')}</Text>
+                    <Image style={{width: 6, height: 12, marginLeft: 8}} source={Images.is_right}/>
+                </TouchableOpacity>
+            </View>
+
+
+        )
+    };
+    _renderItem = (item, index) => {
+        return (
+            <View style={{backgroundColor:'white'}}>
+                <HotItem item={item}/>
+            </View>
+        )
+    };
+
+    _separator = () => {
+        return (
+            <View
+                style={{height: 1, backgroundColor: "#ECECEE", width: Metrics.screenWidth - 34, alignSelf: 'center'}}/>
+        )
+    }
+
+    render() {
+        logMsg(this)
+        const {customModal} = this.props
+        return (
+            <ScrollView
+                style={styles.home_view}
+                refreshControl={<RefreshControl
+                    refreshing={this.state.isRefreshing}
+                    onRefresh={this._onRefresh}
+                />}>
+
                 <MainBanner home_banners={this.state.home_banners}/>
                 <View style={styles.active_type_view}>
                     <TouchableOpacity onPress={() => {
@@ -85,60 +125,20 @@ export default class Home extends Component {
                     <Text style={styles.found_beauti_txt}>{global.lang.t('found_beauti')}</Text>
                 </ImageBackground>
 
-
-                <View style={styles.header_view}>
-                    <Text style={styles.hot_race_txt}>{global.lang.t('hot_race')}</Text>
-                    <View style={{flex: 1}}/>
-                    <TouchableOpacity onPress={() => {
-                        router.toHotRaceList();
-                    }}
-                                      style={{flexDirection: 'row', alignItems: 'center'}}>
-                        <Text style={styles.more_txt}>{global.lang.t('more')}</Text>
-                        <Image style={{width: 6, height: 12, marginLeft: 8}} source={Images.is_right}/>
-                    </TouchableOpacity>
-                </View>
-            </View>
-
-
-        )
-    };
-    _renderItem = (item, index) => {
-        return (
-            <HotItem item={item}/>
-        )
-    };
-
-    _separator = () => {
-        return (
-            <View
-                style={{height: 1, backgroundColor: "#ECECEE", width: Metrics.screenWidth - 34, alignSelf: 'center'}}/>
-        )
-    }
-
-    render() {
-
-        return (
-            <View
-                style={styles.home_view}>
-
-
-                <View style={styles.hot_race_view}>
-                    <UltimateFlatList
-                        header={this.header}
-                        firstLoader={true}
-                        ref={(ref) => this.listView = ref}
-                        onFetch={this.onFetch}
-                        separator={this._separator}
-                        keyExtractor={(item, index) => `hot_race${index}`}
-                        item={this._renderItem}
-                        refreshableTitlePull={global.lang.t('pull_refresh')}
-                        refreshableTitleRelease={global.lang.t('release_refresh')}
-                        dateTitle={global.lang.t('last_refresh')}
-                        allLoadedText={global.lang.t('no_more')}
-                        waitingSpinnerText={global.lang.t('loading')}
-                        emptyView={() => <View/>}
-                    />
-                </View>
+                <UltimateFlatList
+                    header={this.header}
+                    ref={(ref) => this.listView = ref}
+                    onFetch={this.onFetch}
+                    separator={this._separator}
+                    keyExtractor={(item, index) => `hot_race${index}`}
+                    item={this._renderItem}
+                    refreshableTitlePull={global.lang.t('pull_refresh')}
+                    refreshableTitleRelease={global.lang.t('release_refresh')}
+                    dateTitle={global.lang.t('last_refresh')}
+                    allLoadedText={global.lang.t('no_more')}
+                    waitingSpinnerText={global.lang.t('loading')}
+                    emptyView={() => <View/>}
+                />
 
                 <SelectPiker
                     ref={ref => this.selectPiker = ref}
@@ -146,24 +146,30 @@ export default class Home extends Component {
                     selectedItem={this.state.selectedItem}
                     itemList={this.state.itemList}/>
 
-            </View>
+                {customModal?<CustomModal {...customModal}/>:null}
+            </ScrollView>
         )
     }
 
     onFetch = (page = 1, startFetch, abortFetch) => {
         try {
             initLoginUser(() => {
-                this.homeBanners()
-                getInfoList({
-                    page,
-                    page_size: 20
-                }, data => {
-                    logMsg("InfoList:", data)
-                    startFetch(data.infos, 18)
-                }, err => {
-                    logMsg("reject:", err)
-                    abortFetch()
-                })
+                getHomeBanners(data => {
+                    this.setState({
+                        home_banners: data.banners
+                    })
+                    getInfoList({
+                        page,
+                        page_size: 20
+                    }, data => {
+                        logMsg("InfoList:", data)
+                        startFetch(data.infos, 18)
+                    }, err => {
+                        logMsg("reject:", err)
+                        abortFetch()
+                    })
+
+                });
             })
 
         } catch (err) {

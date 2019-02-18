@@ -37,11 +37,11 @@ export default StyleSheet.create({
         paddingTop:12,
         paddingBottom:10,
         flexDirection:'row',
-        marginLeft:17,
-        marginRight:17,
+        paddingLeft:17,
+        paddingRight:17,
         borderBottomWidth:1,
-        borderBottomColor:'#ECECEE'
-
+        borderBottomColor:'#ECECEE',
+        backgroundColor:'white'
     },
     hot_race_txt:{
         color:"#4A4A4A",

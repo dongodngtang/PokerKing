@@ -3,6 +3,7 @@ package com.pokerking;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.vonovak.AddCalendarEventPackage;
 import com.reactnative.ivpusic.imagepicker.PickerPackage;
 import com.microsoft.codepush.react.CodePush;
 import com.beefe.picker.PickerViewPackage;
@@ -38,6 +39,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new AddCalendarEventPackage(),
             new PickerPackage(),
             new CodePush(getResources().getString(R.string.reactNativeCodePush_androidDeploymentKey), getApplicationContext(), BuildConfig.DEBUG),
             new PickerViewPackage(),

@@ -85,5 +85,21 @@
   "please_input_phone": "请输入手机号",
   "please_input_code": "请输入验证码",
   "load_no_data":"暂无更多内容",
-  "table":"桌"
+  "table":"桌",
+  "successfully_modified":"修改成功",
+  "week1":"星期一",
+  "week2":"星期二",
+  "week3":"星期三",
+  "week4":"星期四",
+  "week5":"星期五",
+  "week6":"星期六",
+  "week7":"星期日",
+  "year":"年",
+  "month":"月",
+  "day2":"日",
+  "structure":"结构",
+  "enter_information":"如何输入信息",
+  "add_calendar":"将比赛添加到日历",
+  "refresh_again":"出错了, 重新刷新下吧",
+  "add_schedule":"添加日程成功"
 }

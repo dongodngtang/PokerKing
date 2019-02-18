@@ -16,6 +16,19 @@ export default {
                 topData: data,
             } });
     },
+      * setProfile(_,{call,put}){
+
+          yield put({type:'save',payload:{
+                  profile:_.params
+              }})
+
+      },
+      * showModal(_,{call,put}){
+          yield put({type:'save',payload:{
+                  customModal:_.params
+              }})
+
+      }
   },
 
   reducers: {

@@ -44,11 +44,7 @@ export default class QueueList extends Component {
             <TouchableOpacity style={item.isSelect ? styles.selected_manila_item : styles.manila_item_view}
                               onPress={() => {
                                   cash_queue_members.forEach((x) => {
-                                      if (x.id === index) {
-                                          x.isSelect = true
-                                      } else {
-                                          x.isSelect = false
-                                      }
+                                      x.isSelect = item.id ===x.id
                                   });
                                   this.setState({
                                       cash_queue_members: [...cash_queue_members]

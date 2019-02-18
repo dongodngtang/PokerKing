@@ -85,5 +85,21 @@
   "please_input_phone": "請輸入手機號",
   "please_input_code": "請輸入驗證碼",
   "load_no_data":"暫無更多內容",
-  "table":"桌"
+  "table":"桌",
+  "successfully_modified":"修改成功",
+  "week1":"星期一",
+  "week2":"星期二",
+  "week3":"星期三",
+  "week4":"星期四",
+  "week5":"星期五",
+  "week6":"星期六",
+  "week7":"星期日",
+  "year":"年",
+  "month":"月",
+  "day2":"日",
+  "structure":"結構",
+  "enter_information":"如何輸入信息",
+  "add_calendar":"將比賽添加到日曆",
+  "refresh_again":"出錯了, 重新刷新下吧",
+  "add_schedule":"添加日程成功"
 }
