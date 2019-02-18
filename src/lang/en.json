@@ -96,5 +96,8 @@
   "week7":"Sunday",
   "year":"year",
   "month":"month",
-  "day2":"day"
+  "day2":"day",
+  "structure":"structure",
+  "enter_information":"How to enter information",
+  "add_calendar":"Add a match to the calendar"
 }

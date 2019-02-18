@@ -59,27 +59,28 @@ export default StyleSheet.create({
     },
     selected_view:{
         backgroundColor:"#ECECEE",
-        paddingTop:10,
-        paddingBottom:14,
-        paddingLeft:18,
-        paddingRight:18
+        paddingTop:10
     },
     line:{
         backgroundColor:"#CCCCCC",
         height:1,
         width:Metrics.screenWidth - 36,
         marginTop:10,
-        marginBottom:12
+        marginBottom:12,
+        alignSelf:'center'
     },
     selected_middle_view:{
         flexDirection:'row',
         alignItems:'center',
-        justifyContent:'space-between'
+        justifyContent:'space-between',
+        marginLeft:17,marginRight:17
     },
     selected_bottom_view:{
         flexDirection:'row',
         alignItems:'center',
-        justifyContent:'space-between'
+        justifyContent:'space-between',
+        marginLeft:17,marginRight:17,
+        paddingBottom:14
     },
     cloumn_view:{
         flexDirection:'column'
@@ -96,6 +97,41 @@ export default StyleSheet.create({
     week_txt:{
         color:"#FFFFFF",
         fontSize:12
+    },
+    structure_view:{
+        height:40,
+        backgroundColor:'white',
+        flexDirection:'row',
+        alignItems:'center',
+        paddingLeft:17,
+        paddingRight:17
+    },
+    structure_txt:{
+        color:"#444444",
+        fontSize:14
+    },
+    problem_view:{
+        marginTop:4,
+        backgroundColor:'white',
+        paddingTop:12,
+        paddingBottom:7,
+        flexDirection:'row',
+        alignItems:'center',
+        paddingLeft:17,
+        paddingRight:17
+    },
+    calendar_view:{
+        backgroundColor:'white',
+        paddingBottom:26,
+        flexDirection:'row',
+        alignItems:'center',
+        paddingLeft:17,
+        paddingRight:17,
+        paddingTop:7
+    },
+    problem_txt:{
+        color:"#888888",
+        fontSize:14
     }
 
 })

@@ -89,7 +89,10 @@ export const Images = {
     web_left:require('../asserts/web_left.png'),
     web_right:require('../asserts/web_right.png'),
     web_refresh:require('../asserts/web_refresh.png'),
-    web_page:require('../asserts/web_page.png')
+    web_page:require('../asserts/web_page.png'),
+    shuhcu:require('../asserts/shuhcu.png'),
+    jiegou:require('../asserts/jiegou.png'),
+    right_gray: require('../asserts/right_gray.png'),
 
 
 }

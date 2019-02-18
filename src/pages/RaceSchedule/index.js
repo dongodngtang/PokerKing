@@ -132,7 +132,7 @@ export default class RaceSchedule extends Component {
                     </View>
                 </View>
                 {item.isSelect ? <View style={styles.selected_view}>
-                    <View style={{flexDirection:'row',alignItems:'center'}}>
+                    <View style={{flexDirection:'row',alignItems:'center',marginLeft:17,marginRight:17}}>
                         <Text style={[styles.top_txt1,{marginRight:8}]}>{global.lang.t("race_people")}</Text>
                         <Text style={{color:"#888888",fontSize:14}}>{entries}</Text>
                     </View>
@@ -162,6 +162,20 @@ export default class RaceSchedule extends Component {
                             <Text style={styles.top_txt2}>{moneyFormat(starting_stack)}</Text>
                         </View>
                     </View>
+
+                    <View style={styles.structure_view}>
+                        <Text style={styles.structure_txt}>{global.lang.t('structure')}</Text>
+                        <View style={{flex:1}}/>
+                        <Image style={{width:6,height:12}} source={Images.right_gray}/>
+                    </View>
+                    <TouchableOpacity style={styles.problem_view} activeOpacity={1}>
+                        <Image style={{width:26,height:26,marginRight:14}} source={Images.shuhcu}/>
+                        <Text style={styles.problem_txt}>{global.lang.t('enter_information')}</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.calendar_view} activeOpacity={1}>
+                        <Image style={{width:24,height:24,marginRight:16}} source={Images.jiegou}/>
+                        <Text style={styles.problem_txt}>{global.lang.t('enter_information')}</Text>
+                    </TouchableOpacity>
 
                 </View> : null}
             </View>
@@ -201,7 +215,7 @@ export default class RaceSchedule extends Component {
     _separator = () => {
         return (
             <View
-                style={{height: 6, backgroundColor: "#ECECEE", width: Metrics.screenWidth}}/>
+                style={{height: 4, backgroundColor: "#ECECEE", width: Metrics.screenWidth}}/>
         )
     }
 }

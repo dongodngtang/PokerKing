@@ -96,5 +96,8 @@
   "week7":"星期日",
   "year":"年",
   "month":"月",
-  "day2":"日"
+  "day2":"日",
+  "structure":"结构",
+  "enter_information":"如何输入信息",
+  "add_calendar":"将比赛添加到日历"
 }
