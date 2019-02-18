@@ -16,6 +16,7 @@
     "moment": "^2.23.0",
     "react": "16.6.1",
     "react-native": "0.57.7",
+    "react-native-add-calendar-event": "^2.3.0",
     "react-native-code-push": "^5.5.2",
     "react-native-fs": "^2.13.3",
     "react-native-image-crop-picker": "^0.22.0",
