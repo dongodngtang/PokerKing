@@ -165,7 +165,7 @@ export const Styles = {
         height: 44,
         alignItems: 'center',
         paddingLeft:17,
-        width:70
+        width:90
     }
 }
 
