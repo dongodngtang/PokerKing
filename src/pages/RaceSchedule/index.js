@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {View, Text, Image, TouchableOpacity, ScrollView, FlatList} from 'react-native';
 import {connect} from 'react-redux';
 import styles from './index.style';
-import Carousel from 'react-native-snap-carousel';
 import {Images, Metrics, realSize} from "../../configs/Theme";
 import UltimateFlatList from '../../components/ultimate/UltimateFlatList';
 import {isEmptyObject, logMsg, utcDate,moneyFormat} from "../../utils/utils";
