@@ -89,11 +89,7 @@ export default class Feedback extends Component {
                             return (
                                 <TouchableOpacity key={index} onPress={() => {
                                     app_list.forEach((x) => {
-                                        if (x.id === index) {
-                                            x.isSelect = true
-                                        } else {
-                                            x.isSelect = false
-                                        }
+                                        x.isSelect = item.id ===x.id
                                     });
                                     this.setState({
                                         app_list: [...app_list]

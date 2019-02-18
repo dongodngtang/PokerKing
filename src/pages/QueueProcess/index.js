@@ -29,8 +29,8 @@ export default class QueueProcess extends Component {
         getCashQueues({cash_game_id: item.id}, data => {
             logMsg("cash_queues", data)
             let queues = data.items;
-            queues.map((item) => {
-                if (item.id === 0) {
+            queues.map((item,index) => {
+                if (index === 0) {
                     item.isSelect = true
                 } else {
                     item.isSelect = false

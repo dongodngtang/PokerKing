@@ -14,29 +14,37 @@ import {getSchedulesDates, getSchedulesEvents} from '../../services/raceDao'
 }))
 export default class RaceSchedule extends Component {
 
-    state = {
-        schedules_dates: [],
-        schedules_events: []
-    };
+    constructor(props){
+        super(props)
+
+        this.state = {
+            schedules_dates: [],
+            schedules_events: []
+        }
+    }
 
 
     componentDidMount() {
         getSchedulesDates({event_id: this.props.params.event_id}, data => {
             let dates = [];
             data.dates.map((item,index) => {
-                if (index === 0) {
-                    dates.push({id: index, date: item, isSelect: true})
-                } else {
-                    dates.push({id: index, date: item, isSelect: false})
-                }
+                dates.push({id: index, date: item, isSelect: index===0})
             });
             logMsg("schedules_dates", dates);
             this.setState({
                 schedules_dates: dates
             })
+            this.ultRefresh()
         }, err => {
             logMsg("schedules_dates_err", err)
         })
+    }
+
+
+    ultRefresh = ()=>{
+        setTimeout(()=>{
+            this.listView && this.listView.refresh()
+        },500)
     }
 
     carousel_Item = ({item, index}) => {
@@ -47,15 +55,12 @@ export default class RaceSchedule extends Component {
             <TouchableOpacity style={item.isSelect ? styles.item_select_view : styles.item_view}
                               onPress={() => {
                                   schedules_dates.forEach((x) => {
-                                      if (x.id === index) {
-                                          x.isSelect = true;
-                                      } else {
-                                          x.isSelect = false
-                                      }
+                                      x.isSelect = item.id ===x.id
                                   });
                                   this.setState({
                                       schedules_dates: [...schedules_dates]
                                   });
+                                  this.ultRefresh()
                               }}>
                 <Text style={styles.day_txt}>{day}</Text>
                 <Text style={styles.week_txt}>{global.lang.t('week')}{week}</Text>
@@ -65,6 +70,7 @@ export default class RaceSchedule extends Component {
 
     render() {
         const {schedules_dates} = this.state;
+        logMsg(schedules_dates)
         return (
             <ScrollView style={styles.schedule_view}>
                 <View style={styles.carousels_view}>
@@ -80,7 +86,6 @@ export default class RaceSchedule extends Component {
 
                 <View style={{backgroundColor: 'white'}}>
                     <UltimateFlatList
-                        firstLoader={true}
                         ref={(ref) => this.listView = ref}
                         onFetch={this.onFetch}
                         separator={this._separator}
@@ -99,7 +104,7 @@ export default class RaceSchedule extends Component {
         )
     }
 
-    _renderItem = ({item, index}) => {
+    _renderItem = (item, index) => {
         const {schedules_events} = this.state;
         const {name, event_type, event_num, buy_in, entries, starting_stack, schedule_pdf, begin_time, reg_open, reg_close} = item;
         return (
