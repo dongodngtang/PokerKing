@@ -100,5 +100,6 @@
   "structure":"structure",
   "enter_information":"How to enter information",
   "add_calendar":"Add a match to the calendar",
-  "refresh_again":"Something went wrong, refresh it again"
+  "refresh_again":"Something went wrong, refresh it again",
+  "add_schedule":"Add schedule success"
 }
