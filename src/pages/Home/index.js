@@ -144,8 +144,6 @@ export default class Home extends Component {
     onFetch = (page = 1, startFetch, abortFetch) => {
         try {
             initLoginUser(() => {
-
-
                 getHomeBanners(data => {
                     this.setState({
                         home_banners: data.banners

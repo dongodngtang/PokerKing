@@ -23,13 +23,6 @@ export default {
                     langStr: _.params,
                 } });
         },
-        * setProfile(_,{call,put}){
-
-            yield put({type:'save',payload:{
-                profile:_.params
-            }})
-
-        }
     },
 
     reducers: {
