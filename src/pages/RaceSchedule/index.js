@@ -5,7 +5,7 @@ import styles from './index.style';
 import Carousel from 'react-native-snap-carousel';
 import {Images, Metrics, realSize} from "../../configs/Theme";
 import UltimateFlatList from '../../components/ultimate/UltimateFlatList';
-import {isEmptyObject, logMsg, utcDate} from "../../utils/utils";
+import {isEmptyObject, logMsg, utcDate,moneyFormat} from "../../utils/utils";
 import moment from 'moment';
 import {getSchedulesDates, getSchedulesEvents} from '../../services/raceDao'
 
@@ -63,7 +63,7 @@ export default class RaceSchedule extends Component {
                                   this.ultRefresh()
                               }}>
                 <Text style={styles.day_txt}>{day}</Text>
-                <Text style={styles.week_txt}>{global.lang.t('week')}{week}</Text>
+                <Text style={styles.week_txt}>{global.lang.t(`week${week}`)}</Text>
             </TouchableOpacity>
         )
     }
@@ -134,8 +134,8 @@ export default class RaceSchedule extends Component {
                 </View>
                 {item.isSelect ? <View style={styles.selected_view}>
                     <View style={{flexDirection:'row',alignItems:'center'}}>
-                        <Text style={styles.top_txt1}>{global.lang.t("race_people")}</Text>
-                        <Text style={{color:"#888888",fontSize:14,marginRight:8}}>{entries}</Text>
+                        <Text style={[styles.top_txt1,{marginRight:8}]}>{global.lang.t("race_people")}</Text>
+                        <Text style={{color:"#888888",fontSize:14}}>{entries}</Text>
                     </View>
                     <View style={styles.line}/>
                     <View style={styles.selected_middle_view}>
@@ -160,7 +160,7 @@ export default class RaceSchedule extends Component {
                         </View>
                         <View style={styles.cloumn_view}>
                             <Text style={styles.top_txt1}>{global.lang.t("starting_chip")}</Text>
-                            <Text style={styles.top_txt2}>{starting_stack}</Text>
+                            <Text style={styles.top_txt2}>{moneyFormat(starting_stack)}</Text>
                         </View>
                     </View>
 

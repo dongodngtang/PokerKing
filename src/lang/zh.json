@@ -87,5 +87,14 @@
   "load_no_data":"暂无更多内容",
   "table":"桌",
   "successfully_modified":"修改成功",
-  "week":"星期"
+  "week1":"星期一",
+  "week2":"星期二",
+  "week3":"星期三",
+  "week4":"星期四",
+  "week5":"星期五",
+  "week6":"星期六",
+  "week7":"星期日",
+  "year":"年",
+  "month":"月",
+  "day2":"日"
 }

@@ -87,5 +87,14 @@
   "load_no_data":"No more content",
   "table":"table",
   "successfully_modified":"Successfully modified",
-  "week":"week"
+  "week1":"Monday",
+  "week2":"Tuesday",
+  "week3":"Wednesday",
+  "week4":"Thursday",
+  "week5":"Friday",
+  "week6":"Saturday",
+  "week7":"Sunday",
+  "year":"year",
+  "month":"month",
+  "day2":"day"
 }
