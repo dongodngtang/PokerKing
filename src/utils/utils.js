@@ -11,6 +11,7 @@ import {Alert,Linking} from 'react-native';
 import _ from 'lodash'
 import moment from 'moment'
 import Toast from '../components/toast';
+import {Images} from "../configs/Theme";
 
 export const YYYYMMDD = 'YYYY-MM-DD'
 
@@ -159,5 +160,11 @@ export function moneyFormat(num) {
     return result;
 }
 
-
+export function getAvatar(img) {
+    if(strNotNull(img)){
+        return img
+    }else{
+        return Images.empty_bg
+    }
+}
 

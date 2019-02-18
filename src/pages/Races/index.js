@@ -7,7 +7,7 @@ import Carousel from 'react-native-snap-carousel';
 import {Metrics} from "../../configs/Theme";
 import RaceModal from './RaceModal';
 import {mainEvents} from "../../services/eventsDao";
-import {logMsg} from "../../utils/utils";
+import {logMsg, utcDate,getAvatar} from "../../utils/utils";
 
 @connect(({Races}) => ({
     ...Races,
@@ -16,19 +16,28 @@ export default class Races extends Component {
 
     state = {
         list_show: false,
-        events:[],
-        recent_event:{}
+        events: [],
+        recent_event: {},
+        all_events: []
     }
 
     componentDidMount() {
-        mainEvents(data=>{
-            logMsg('主赛',data)
+        mainEvents(data => {
+            logMsg('主赛', data);
+            let events_obj = [];
+            events_obj.push(data.recent_event);
+            events_obj.push(data.events)
             this.setState({
-                events:data.events,
-                recent_event:data.recent_event
+                events: data.events,
+                recent_event: data.recent_event,
+                all_events: events_obj
             })
         })
     }
+
+    change_recent_event = (event) => {
+
+    };
 
     change_list_show = () => {
         this.setState({
@@ -67,6 +76,7 @@ export default class Races extends Component {
     };
 
     _renderItem = ({item, index}) => {
+        const {name,logo,begin_time,end_time,description} = item;
         return (
             <View style={styles.slide_view}>
                 <View style={styles.slide_top_view}>
@@ -75,10 +85,10 @@ export default class Races extends Component {
                 </View>
                 <Image
                     style={styles.slide_img}
-                    source={{uri: "https://cdn-upyun.deshpro.com/kk/uploads/banner/64aaf57f7701d04761cedcc4210a7a65.jpg"}}/>
+                    source={{uri: getAvatar(logo)}}/>
                 <View style={styles.slide_top_view}>
-                    <Text style={styles.race_time_txt2}>OPC2019</Text>
-                    <Text style={styles.race_time_txt}>2019年3月23日</Text>
+                    <Text style={styles.race_time_txt2}>{name}</Text>
+                    <Text style={styles.race_time_txt}>{utcDate(begin_time,'YYYY.MM.DD')}</Text>
                 </View>
             </View>
         );
@@ -96,7 +106,7 @@ export default class Races extends Component {
                         ref={(c) => {
                             this._carousel = c
                         }}
-                        data={[1, 2, 3, 4, 5, 6]}
+                        data={this.state.all_events}
                         renderItem={this._renderItem}
                         sliderWidth={Metrics.screenWidth}
                         itemWidth={Metrics.screenWidth - 80}
@@ -116,7 +126,7 @@ export default class Races extends Component {
                         router.toRaceNew(recent_event.id);
                     })}
 
-                <RaceModal ref={ref => this.raceModal = ref} />
+                <RaceModal ref={ref => this.raceModal = ref}/>
             </View>
         )
     }
