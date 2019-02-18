@@ -29,7 +29,7 @@ export default class ModifyData extends Component {
 
         const {profile} = props
         let avatar = isEmptyObject(profile) ? Images.home_avatar : isStrNull(profile.avatar) ? Images.home_avatar
-            : {uri: "http://test.pokerking_api.deshpro.com" + profile.avatar}
+            : {uri: profile.avatar}
 
         let genderTxt = profile.gender === '1' ? global.lang.t('male') : global.lang.t('female')
         if (profile.gender === '0')

@@ -19,7 +19,7 @@ export default class Drawer extends Component {
     render() {
 
         const {profile} = this.props
-        let avatar = isEmptyObject(profile)?Images.race_img:isStrNull(profile.avatar)?Images.race_img:{uri:'http://test.pokerking_api.deshpro.com'+profile.avatar}
+        let avatar = isEmptyObject(profile)?Images.race_img:isStrNull(profile.avatar)?Images.race_img:{uri:profile.avatar}
         let nick_name = isEmptyObject(profile)?'登录':profile.nickname
         return (
             <SafeAreaView style={{flex: 1, backgroundColor: "#212223"}}>
