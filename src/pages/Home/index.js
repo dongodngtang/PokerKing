@@ -10,6 +10,7 @@ import SelectPiker from "../comm/SelectPiker";
 import HotItem from "./HotItem";
 import {Actions} from "react-native-router-flux";
 import {getHomeBanners, getInfoList,initLoginUser} from '../../services/accountDao'
+import CustomModal from "../../components/CustomModal";
 
 @connect(({Home}) => ({
     ...Home
@@ -110,7 +111,8 @@ export default class Home extends Component {
     }
 
     render() {
-
+        logMsg(this)
+        const {customModal} = this.props
         return (
             <View
                 style={styles.home_view}>
@@ -136,6 +138,9 @@ export default class Home extends Component {
                     onPickerSelect={this.onPickerSelect}
                     selectedItem={this.state.selectedItem}
                     itemList={this.state.itemList}/>
+
+                {customModal?<CustomModal {...customModal}/>:null}
+
 
             </View>
         )

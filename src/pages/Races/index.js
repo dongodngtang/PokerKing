@@ -7,7 +7,7 @@ import Carousel from 'react-native-snap-carousel';
 import {Metrics} from "../../configs/Theme";
 import RaceModal from './RaceModal';
 import {mainEvents} from "../../services/eventsDao";
-import {logMsg, utcDate, getAvatar} from "../../utils/utils";
+import {logMsg, utcDate, getAvatar, shareTo} from "../../utils/utils";
 
 @connect(({Races}) => ({
     ...Races,
@@ -126,7 +126,7 @@ export default class Races extends Component {
                 {this._item(styles.item_view, Images.zixun, styles.img_dy,
                     global.lang.t('race_message'), () => {
 
-
+                    shareTo()
                     })}
                 {this._item(styles.item_view, Images.ziyuan, styles.img_dy,
                     global.lang.t('race_news'), () => {
