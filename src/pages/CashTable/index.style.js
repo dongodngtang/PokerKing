@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
     table_view:{
         flex:1,
-        backgroundColor:'#ECECEE',
+        backgroundColor:'#444444',
         alignItems:'center'
     },
     click_btn:{
@@ -22,9 +22,9 @@ export default StyleSheet.create({
         alignSelf:'center'
     },
     jinsha:{
-        marginTop:6,
+
         width:Metrics.screenWidth,
-        height:85
+        height:170
     },
     txt_view:{
         flexDirection:'column',
