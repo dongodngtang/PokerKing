@@ -120,7 +120,7 @@ export default class Races extends Component {
                     />
                 </View>
                 {this._item(styles.item_view, Images.rili_gray, styles.img_dy,
-                    this.state.recent_event.name, () => {
+                    `${this.state.recent_event.name}${global.lang.t('race_schedule')}`, () => {
                         router.toRaceSchedule(recent_event.id);
                     })}
                 {this._item(styles.item_view, Images.zixun, styles.img_dy,
