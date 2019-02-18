@@ -38,8 +38,12 @@ export default class Races extends Component {
         })
     }
 
-    change_recent_event = (event) => {
-
+    change_recent_event = (events,recent_event,events_obj) => {
+        this.setState({
+            events: events,
+            recent_event: recent_event,
+            all_events: events_obj
+        })
     };
 
     change_list_show = () => {
@@ -116,7 +120,7 @@ export default class Races extends Component {
                     />
                 </View>
                 {this._item(styles.item_view, Images.rili_gray, styles.img_dy,
-                    `OPC2019${global.lang.t('race_schedule')}`, () => {
+                    this.state.recent_event.name, () => {
                         router.toRaceSchedule(recent_event.id);
                     })}
                 {this._item(styles.item_view, Images.zixun, styles.img_dy,
@@ -129,7 +133,7 @@ export default class Races extends Component {
                         router.toRaceNew(recent_event.id);
                     })}
 
-                <RaceModal ref={ref => this.raceModal = ref}/>
+                <RaceModal ref={ref => this.raceModal = ref} change_recent_event={this.change_recent_event}/>
             </View>
         )
     }
