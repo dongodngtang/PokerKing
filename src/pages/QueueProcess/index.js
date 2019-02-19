@@ -35,7 +35,6 @@ export default class QueueProcess extends Component {
                 } else {
                     item.isSelect = false
                 }
-                item.id = index
             });
             this.setState({
                 cash_queues: queues

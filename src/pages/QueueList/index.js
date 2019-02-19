@@ -26,8 +26,12 @@ export default class QueueList extends Component {
         const {id, cash_game_id} = this.props.params.item;
         getCashQueuesNumber({cash_game_id: cash_game_id, cash_queue_id: id}, data => {
             logMsg("cash_queue_members", data);
+            let members = data.items;
+            members.map((item,index)=>{
+                item.isSelect = index === 0;
+            });
             this.setState({
-                cash_queue_members: data.items
+                cash_queue_members:members
             })
         })
     }
