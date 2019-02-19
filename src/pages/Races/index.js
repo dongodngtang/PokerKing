@@ -97,7 +97,7 @@ export default class Races extends Component {
 
     _renderItem = ({item, index}) => {
         return <Card
-            item={item}/>
+            item={item} recent_event={this.state.recent_event}/>
     };
 
     render() {
@@ -199,7 +199,7 @@ class Card extends Component {
 
         return (
             <TouchableOpacity style={styles.slide_view} onPress={()=>{
-
+                router.toRaceMessage(this.props.recent_event.description)
             }}>
                 <View style={styles.slide_top_view}>
                     <Text style={styles.race_time_txt}>{global.lang.t('race_time')}</Text>
