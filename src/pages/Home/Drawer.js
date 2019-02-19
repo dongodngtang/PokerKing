@@ -24,7 +24,7 @@ export default class Drawer extends Component {
         return (
             <SafeAreaView style={{flex: 1, backgroundColor: "#212223"}}>
                 <View style={styles.safe_area_view}>
-                    <Image source={avatar} style={getAvatar(styles.person_img)}/>
+                    <Image source={getAvatar(avatar)} style={styles.person_img}/>
                     <Text style={styles.person_txt}>{nick_name}</Text>
                 </View>
                 <View style={{height: 58}}/>

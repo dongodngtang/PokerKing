@@ -8,7 +8,8 @@ import {
 
 import Swiper from 'react-native-swiper';
 import {Metrics} from '../../themes';
-import {getBg, logMsg} from "../../utils/utils";
+import {getAvatar, getBg, logMsg} from "../../utils/utils";
+import ImageLoad from "../../components/ImageLoad";
 
 
 const Height = Metrics.reallySize(164)
@@ -36,7 +37,7 @@ export default class MainBanner extends Component {
                                     }
                                 }}>
                                 <Image style={{height: Height, width: '100%'}}
-                                       source={{uri: getBg(item.image)}}/>
+                                       source={getBg(item.image)}/>
                             </TouchableOpacity>
 
                         })}

@@ -163,7 +163,7 @@ export function moneyFormat(num) {
 
 export function getBg(img) {
     if(strNotNull(img)){
-        return img
+        return {uri:img}
     }else{
         return Images.empty_bg
     }

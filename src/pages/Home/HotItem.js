@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, Button, TouchableOpacity, Image, ScrollView} from 'react-native';
 import {connect} from 'react-redux';
-import {logMsg, convertDate, strNotNull, utcDate,isStrNull} from "../../utils/utils";
+import {logMsg, convertDate, strNotNull, utcDate, isStrNull, getBg} from "../../utils/utils";
 import styles from './index.style';
 import {Images} from "../../configs/Theme";
 
@@ -19,7 +19,7 @@ export default class HotItem extends Component {
                                   }
                               }}>
                 <Image style={styles.race_img}
-                       source={isStrNull(image) ? Images.empty_bg : {uri: image}}/>
+                       source={getBg(image)}/>
                 <View style={styles.right_view}>
                     <Text style={styles.race_content_txt} numberOfLines={2}>{title}</Text>
                     {this.props.type && this.props.type === 'event' ? <View style={styles.right_bottom_view}>

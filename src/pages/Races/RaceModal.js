@@ -31,7 +31,7 @@ export default class RaceModal extends Component {
                                   this.props.change_recent_event(item);
                                   setTimeout(() => {
                                       this.toggle()
-                                  }, 1000);
+                                  }, 100);
                               }}>
                 <Text style={[styles.select_item_txt, {marginLeft: item.id === id ? 22 : 28}]}>{name}</Text>
                 <View style={{flex: 1}}/>

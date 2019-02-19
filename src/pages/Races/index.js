@@ -8,6 +8,7 @@ import {Metrics} from "../../configs/Theme";
 import RaceModal from './RaceModal';
 import {mainEvents} from "../../services/eventsDao";
 import {getBg, logMsg, unix_format, getRemainTime, isStrNull} from "../../utils/utils";
+import ImageLoad from "../../components/ImageLoad";
 
 @connect(({Races}) => ({
     ...Races,
@@ -204,7 +205,7 @@ class Card extends Component {
                 </View>
                 <Image
                     style={styles.slide_img}
-                    source={{uri: getBg(logo)}}/>
+                    source={getBg(logo)}/>
                 <View style={styles.slide_top_view}>
                     <Text style={styles.race_time_txt2}>{name}</Text>
                     <Text style={styles.race_time_txt}>{race_start_time}</Text>
