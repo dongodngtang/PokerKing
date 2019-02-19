@@ -31,7 +31,6 @@ export default StyleSheet.create({
     },
     item_view2:{
         paddingTop:16,
-        paddingBottom:16,
         marginLeft:18,
         marginRight:18,
         flexDirection:'column'

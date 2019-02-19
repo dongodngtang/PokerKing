@@ -133,6 +133,7 @@ export default class RaceSchedule extends Component {
     _renderItem = (item, index) => {
         const {schedules_events} = this.state;
         const {name, event_type, event_num, buy_in, entries, starting_stack, schedule_pdf, begin_time, reg_open, reg_close} = item;
+        this.counting(reg_open * 1000,reg_close * 1000);
         return (
             <View>
                 <View style={styles.item_view2}>
@@ -176,7 +177,7 @@ export default class RaceSchedule extends Component {
                         </View>
                         <View style={styles.cloumn_view}>
                             <Text style={styles.top_txt1}>{global.lang.t("end_distance")}</Text>
-                            <Text style={styles.top_txt2}>{this.counting(reg_close * 1000,reg_open * 1000)}</Text>
+                            <Text style={styles.top_txt2}>{this.state.countTime}</Text>
                         </View>
                     </View>
                     <View style={styles.line}/>
