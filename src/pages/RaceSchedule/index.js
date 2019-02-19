@@ -192,11 +192,13 @@ export default class RaceSchedule extends Component {
                         </View>
                     </View>
 
-                    <View style={styles.structure_view}>
+                    <TouchableOpacity style={styles.structure_view} onPress={()=>{
+                        router.toStructure(schedule_pdf)
+                    }}>
                         <Text style={styles.structure_txt}>{global.lang.t('structure')}</Text>
                         <View style={{flex:1}}/>
                         <Image style={{width:6,height:12}} source={Images.right_gray}/>
-                    </View>
+                    </TouchableOpacity>
                     <TouchableOpacity style={styles.problem_view} activeOpacity={1}>
                         <Image style={{width:26,height:26,marginRight:14}} source={Images.shuhcu}/>
                         <Text style={styles.problem_txt}>{global.lang.t('enter_information')}</Text>

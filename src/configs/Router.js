@@ -7,6 +7,7 @@
 import {Actions} from 'react-native-router-flux';
 import SwitchApi from "../pages/SwitchApi";
 import EventDetail from "../pages/EventDetail";
+import Structure from "../pages/Structure";
 
 export default class Router {
     popTo({sceneKey, params}) {
@@ -151,6 +152,15 @@ export default class Router {
             sceneKey: 'WebViewPage',
             params: {
                 url: url
+            }
+
+        })
+    }
+    toStructure(pdf) {
+        this.push({
+            sceneKey: 'Structure',
+            params: {
+                pdf
             }
 
         })

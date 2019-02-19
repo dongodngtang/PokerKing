@@ -26,6 +26,7 @@ import SwitchApi from './SwitchApi';
 import QueueList from './QueueList'
 import InfoDetail from "./InfoDetail";
 import EventDetail from "./EventDetail";
+import Structure from './Structure';
 import WebViewPage from "../components/WebViewPage";
 import ImageGallery from "../components/ImageGallery";
 
@@ -132,6 +133,12 @@ export const scenes = () => {
         <Scene key="ImageGallery"
                component={ImageGallery}
                hideNavBar/>
+        <Scene key="Structure"
+               component={Structure}
+               {...TopNav({
+                   title: global.lang.t('structure')
+               })}
+               />
     </Scene>
 }
 const TopNav = (props) => {
