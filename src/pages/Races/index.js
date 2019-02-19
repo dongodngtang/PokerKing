@@ -7,7 +7,7 @@ import Carousel from 'react-native-snap-carousel';
 import {Metrics} from "../../configs/Theme";
 import RaceModal from './RaceModal';
 import {mainEvents} from "../../services/eventsDao";
-import {getBg, logMsg, unix_format,getRemainTime} from "../../utils/utils";
+import {getBg, logMsg, unix_format, getRemainTime, isStrNull} from "../../utils/utils";
 
 @connect(({Races}) => ({
     ...Races,
@@ -24,25 +24,34 @@ export default class Races extends Component {
     componentDidMount() {
         mainEvents(data => {
             logMsg('主赛', data);
-            let events_obj = [];
-            events_obj.push(data.recent_event);
+            let all = [];
+            all.push(data.recent_event);
             data.events.map(item => {
-                events_obj.push(item)
+                if (item.id !== data.recent_event.id) {
+                    all.push(item);
+                }
             });
-            logMsg("events_obj", events_obj)
             this.setState({
                 events: data.events,
                 recent_event: data.recent_event,
-                all_events: events_obj
+                all_events: all
             })
         })
     }
 
-    change_recent_event = (events, recent_event, events_obj) => {
+    change_recent_event = (recent_event) => {
+        const {events} = this.state;
+        let all = [];
+        all.push(recent_event);
+        events.map(item => {
+            if (item.id !== recent_event.id) {
+                all.push(item);
+            }
+        });
+        logMsg("dhsjdjsksdsd",all)
         this.setState({
-            events: events,
             recent_event: recent_event,
-            all_events: events_obj
+            all_events: all
         })
     };
 
@@ -90,11 +99,11 @@ export default class Races extends Component {
     };
 
     render() {
-        const {events, recent_event} = this.state
+        const {events, recent_event, all_events} = this.state;
         return (
             <View style={styles.race_view}>
                 {this.topBar()}
-                {events && events.length > 0 ? <View style={styles.carousel_view}>
+                {all_events && all_events.length > 0 ? <View style={styles.carousel_view}>
                     <Carousel
                         loop
                         layout={'default'}
@@ -105,11 +114,16 @@ export default class Races extends Component {
                         renderItem={this._renderItem}
                         sliderWidth={Metrics.screenWidth}
                         itemWidth={Metrics.screenWidth - 80}
+                        onSnapToItem={(index) => {
+                            let selectedEvent = all_events[index];
+                            logMsg('滚动到了', selectedEvent);
+                            this.change_recent_event(selectedEvent)
+                        }}
                     />
                 </View> : null}
 
                 {this._item(styles.item_view, Images.rili_gray, styles.img_dy,
-                    `${this.state.recent_event.name}${global.lang.t('race_schedule')}`, () => {
+                    `${isStrNull(recent_event.name) ? '' : recent_event.name}${global.lang.t('race_schedule')}`, () => {
                         router.toRaceSchedule(recent_event.id);
                     })}
                 {this._item(styles.item_view, Images.zixun, styles.img_dy,
@@ -122,7 +136,8 @@ export default class Races extends Component {
                         router.toRaceNew(recent_event.id);
                     })}
 
-                <RaceModal ref={ref => this.raceModal = ref} change_recent_event={this.change_recent_event}/>
+                <RaceModal ref={ref => this.raceModal = ref} recent_event={recent_event} events={events}
+                           change_recent_event={this.change_recent_event}/>
             </View>
         )
     }
@@ -173,8 +188,6 @@ class Card extends Component {
             }
         }, 1000)
     }
-
-
 
 
     render() {

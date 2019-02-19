@@ -21,15 +21,16 @@ export default class RaceModal extends Component {
     };
 
     _renderItem = ({item, index}) => {
-        const {name, select} = item;
-
+        const {name} = item;
+        const {id} = this.props.recent_event;
         return (
             <TouchableOpacity activeOpacity={1}
-                              style={[styles.select_top_view, index === 0 ? styles.select_item_view1 : styles.select_top_view2]}
-            onPress={()=>{
-
-            }}>
-                <Text style={styles.select_item_txt}>EPT2019</Text>
+                              style={[styles.select_top_view, item.id === id ? styles.select_item_view1 : styles.select_top_view2]}
+                              onPress={() => {
+                                  this.props.change_recent_event(item);
+                                  this.toggle()
+                              }}>
+                <Text style={[styles.select_item_txt, {marginLeft: item.id === id ? 22 : 28}]}>{name}</Text>
                 <View style={{flex: 1}}/>
                 <Image style={{width: 6, height: 12, marginRight: 17}} source={Images.is_right}/>
             </TouchableOpacity>)
@@ -40,12 +41,12 @@ export default class RaceModal extends Component {
         return (
             this.state.visible ? <View
                 style={{
-                    height:Metrics.screenHeight,
+                    height: Metrics.screenHeight,
                     alignItems: 'center',
                     zIndex: 999,
                     position: 'absolute',
                     marginTop: Metrics.navBarHeight,
-                    backgroundColor:"#3F4042"
+                    backgroundColor: "#3F4042"
                 }}>
 
                 <View style={{
@@ -53,7 +54,7 @@ export default class RaceModal extends Component {
                 }}>
 
                     <FlatList
-                        data={[1, 2, 3, 4]}
+                        data={this.props.events}
                         showsHorizontalScrollIndicator={false}
                         ItemSeparatorComponent={this._separator}
                         renderItem={this._renderItem}/>

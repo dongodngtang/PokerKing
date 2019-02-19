@@ -100,8 +100,7 @@ export default StyleSheet.create({
     },
     select_item_txt:{
         fontSize: 14,
-        color: '#ECECEE',
-        marginLeft: 28
+        color: '#ECECEE'
     },
     select_item_view1:{
         backgroundColor:"#333436",
