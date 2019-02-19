@@ -12,6 +12,7 @@ import _ from 'lodash'
 import moment from 'moment'
 import Toast from '../components/toast';
 import {Images} from "../configs/Theme";
+import dva from "./dva";
 
 export const YYYYMMDD = 'YYYY-MM-DD'
 
@@ -177,3 +178,6 @@ export function getAvatar(img) {
     }
 }
 
+export function shareTo(params) {
+    dva.getDispatch()({type: 'Home/showModal', params: {showModal: true, type: 'ShareModal'}})
+}
