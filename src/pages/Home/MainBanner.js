@@ -9,7 +9,6 @@ import {
 import Swiper from 'react-native-swiper';
 import {Metrics} from '../../themes';
 import {getBg, logMsg} from "../../utils/utils";
-import {getBaseUrl} from "../../configs/fetch";
 
 
 const Height = Metrics.reallySize(164)
@@ -31,9 +30,9 @@ export default class MainBanner extends Component {
                                 activeOpacity={1}
                                 onPress={() => {
                                     if (item.source_type === 'info') {
-                                        router.toInfoDetail(item)
+                                        router.toInfoDetail(item.source_id)
                                     } else if (item.source_type === 'event_info') {
-                                        router.toEventDetail(item)
+                                        router.toEventDetail(item.source_id,0)
                                     }
                                 }}>
                                 <Image style={{height: Height, width: '100%'}}

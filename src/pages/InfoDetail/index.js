@@ -19,12 +19,12 @@ export default class InfoDetail extends Component {
             info_detail: {}
         };
         props.navigation.setParams({
-            title: this.props.params.info.title
+            // title: this.props.params.info.title
         })
     }
 
     componentDidMount() {
-        const {id} = this.props.params.info;
+        const {id} = this.props.params;
         getInfoDetail({id: id}, data => {
             logMsg("info_detail", data);
             this.setState({

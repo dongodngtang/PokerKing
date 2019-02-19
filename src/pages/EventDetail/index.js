@@ -19,13 +19,13 @@ export default class EventDetail extends Component {
             event_detail: {}
         };
         props.navigation.setParams({
-            title: this.props.params.info.title
+            // title: this.props.params.info.title
         })
     }
 
     componentDidMount() {
-        const {info, event_id} = this.props.params;
-        getEventDetail({event_id: event_id, id: info.id},data=>{
+        const {id, event_id} = this.props.params;
+        getEventDetail({event_id: event_id, id: id},data=>{
             logMsg("event_detail",data)
             this.setState({
                 event_detail:data.info

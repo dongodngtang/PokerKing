@@ -119,19 +119,19 @@ export default class Router {
         })
     }
 
-    toInfoDetail(info) {
+    toInfoDetail(id) {
         this.push({
             sceneKey: 'InfoDetail',
             params: {
-                info
+                id
             }
         })
     }
-    toEventDetail(info,event_id) {
+    toEventDetail(id,event_id) {
         this.push({
             sceneKey: 'EventDetail',
             params: {
-                info,
+                id,
                 event_id
             }
         })
