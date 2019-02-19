@@ -165,4 +165,13 @@ export default class Router {
 
         })
     }
+    toRaceMessage(description) {
+        this.push({
+            sceneKey: 'RaceMessage',
+            params: {
+                description
+            }
+
+        })
+    }
 }

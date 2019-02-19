@@ -9,6 +9,7 @@ import RaceModal from './RaceModal';
 import {mainEvents} from "../../services/eventsDao";
 import {getBg, logMsg, unix_format, getRemainTime, isStrNull} from "../../utils/utils";
 import ImageLoad from "../../components/ImageLoad";
+import RaceMessage from "../RaceMessage";
 
 @connect(({Races}) => ({
     ...Races,
@@ -131,8 +132,7 @@ export default class Races extends Component {
                     })}
                 {this._item(styles.item_view, Images.zixun, styles.img_dy,
                     global.lang.t('race_message'), () => {
-
-
+                        router.toRaceMessage(recent_event.description)
                     })}
                 {this._item(styles.item_view, Images.ziyuan, styles.img_dy,
                     global.lang.t('race_news'), () => {
@@ -198,7 +198,9 @@ class Card extends Component {
         let race_start_time = unix_format(begin_time, 'YYYY年MM月DD日')
 
         return (
-            <View style={styles.slide_view}>
+            <TouchableOpacity style={styles.slide_view} onPress={()=>{
+
+            }}>
                 <View style={styles.slide_top_view}>
                     <Text style={styles.race_time_txt}>{global.lang.t('race_time')}</Text>
                     <Text style={styles.race_time_txt}>{this.state.countTime}</Text>
@@ -210,7 +212,7 @@ class Card extends Component {
                     <Text style={styles.race_time_txt2}>{name}</Text>
                     <Text style={styles.race_time_txt}>{race_start_time}</Text>
                 </View>
-            </View>
+            </TouchableOpacity>
         )
     }
 

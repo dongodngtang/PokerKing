@@ -29,6 +29,7 @@ import EventDetail from "./EventDetail";
 import Structure from './Structure';
 import WebViewPage from "../components/WebViewPage";
 import ImageGallery from "../components/ImageGallery";
+import RaceMessage from "./RaceMessage";
 
 export const scenes = () => {
     return <Scene key="root">
@@ -137,6 +138,12 @@ export const scenes = () => {
                component={Structure}
                {...TopNav({
                    title: global.lang.t('structure')
+               })}
+               />
+        <Scene key="RaceMessage"
+               component={RaceMessage}
+               {...TopNav({
+                   title: global.lang.t('race_message')
                })}
                />
     </Scene>
