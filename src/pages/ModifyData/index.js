@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import styles from './index.style';
 import ImagePicker from 'react-native-image-crop-picker';
 import {Images} from "../../configs/Theme";
-import {isStrNull, getCurrentDate, isEmptyObject, getAvatar, logMsg} from "../../utils/utils";
+import {isStrNull, getCurrentDate, isEmptyObject, getAvatar, logMsg, showToast} from "../../utils/utils";
 import {ActionSheet} from '../../components';
 import {putProfile, uploadAvatar} from "../../services/accountDao";
 
@@ -61,6 +61,7 @@ export default class ModifyData extends Component {
                     router.pop();
                     if (profile.nickname !== this.inputNick || profile.email !== this.inputMail ||
                         this.state.gender_modify || this.state.avatar_modify) {
+                        showToast(global.lang.t('successfully_modified'))
                     }
                 }, err => {
                     router.pop()
