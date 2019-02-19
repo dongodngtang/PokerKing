@@ -181,3 +181,18 @@ export function getAvatar(img) {
 export function shareTo(params) {
     dva.getDispatch()({type: 'Home/showModal', params: {showModal: true, type: 'ShareModal'}})
 }
+
+export function getRemainTime(endTime){
+    let t = endTime - Date.parse(new Date())
+    let seconds = Math.floor((t / 1000) % 60)
+    let minutes = Math.floor((t / 1000 / 60) % 60)
+    let hours = Math.floor((t / (1000 * 60 * 60)) % 24)
+    let days = Math.floor(t / (1000 * 60 * 60 * 24))
+    return {
+        'total': t,
+        'days': days,
+        'hours': hours,
+        'minutes': minutes,
+        'seconds': seconds
+    }
+};

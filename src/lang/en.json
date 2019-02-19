@@ -101,5 +101,7 @@
   "enter_information":"How to enter information",
   "add_calendar":"Add a match to the calendar",
   "refresh_again":"Something went wrong, refresh it again",
-  "add_schedule":"Add schedule success"
+  "add_schedule":"Add schedule success",
+  "processing":"processing",
+  "over":"over"
 }

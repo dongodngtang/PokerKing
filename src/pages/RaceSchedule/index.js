@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import styles from './index.style';
 import {Images, Metrics, realSize} from "../../configs/Theme";
 import UltimateFlatList from '../../components/ultimate/UltimateFlatList';
-import {isEmptyObject, logMsg, utcDate, moneyFormat, showToast} from "../../utils/utils";
+import {isEmptyObject, logMsg, utcDate, moneyFormat, showToast, getRemainTime} from "../../utils/utils";
 import moment from 'moment';
 import {getSchedulesDates, getSchedulesEvents} from '../../services/raceDao'
 import * as AddCalendarEvent from 'react-native-add-calendar-event';
@@ -19,8 +19,35 @@ export default class RaceSchedule extends Component {
 
         this.state = {
             schedules_dates: [],
-            schedules_events: []
+            schedules_events: [],
+            countTime: ''
         }
+    };
+
+    counting = (startTime, endTime) => {
+        this.intervalTimer = setInterval(() => {
+            // 得到剩余时间
+            let remainTime = getRemainTime(startTime)
+
+            // 倒计时
+            if (remainTime.total > 0) {
+                let countTime = `${remainTime.days}${global.lang.t('day')}${remainTime.hours}${global.lang.t('time')}${remainTime.minutes}${global.lang.t('minute')}${remainTime.seconds}${global.lang.t('second')}`
+                this.setState({
+                    countTime
+                })
+                //倒计时结束
+            } else if (remainTime.total <= 0) {
+                clearInterval(this.intervalTimer);
+                let toEndTime = getRemainTime(endTime)
+                let raceStatus = global.lang.t('processing')
+                if (toEndTime.total < 0) {
+                    raceStatus = global.lang.t('over')
+                }
+                this.setState({
+                    countTime: raceStatus
+                })
+            }
+        }, 1000)
     }
 
 
@@ -149,7 +176,7 @@ export default class RaceSchedule extends Component {
                         </View>
                         <View style={styles.cloumn_view}>
                             <Text style={styles.top_txt1}>{global.lang.t("end_distance")}</Text>
-                            <Text style={styles.top_txt2}>12天2时23分</Text>
+                            <Text style={styles.top_txt2}>{this.counting(reg_close * 1000,reg_open * 1000)}</Text>
                         </View>
                     </View>
                     <View style={styles.line}/>

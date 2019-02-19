@@ -7,7 +7,7 @@ import Carousel from 'react-native-snap-carousel';
 import {Metrics} from "../../configs/Theme";
 import RaceModal from './RaceModal';
 import {mainEvents} from "../../services/eventsDao";
-import {logMsg, unix_format} from "../../utils/utils";
+import {getBg, logMsg, unix_format,getRemainTime} from "../../utils/utils";
 
 @connect(({Races}) => ({
     ...Races,
@@ -29,7 +29,7 @@ export default class Races extends Component {
             data.events.map(item => {
                 events_obj.push(item)
             });
-            logMsg("events_obj",events_obj)
+            logMsg("events_obj", events_obj)
             this.setState({
                 events: data.events,
                 recent_event: data.recent_event,
@@ -38,7 +38,7 @@ export default class Races extends Component {
         })
     }
 
-    change_recent_event = (events,recent_event,events_obj) => {
+    change_recent_event = (events, recent_event, events_obj) => {
         this.setState({
             events: events,
             recent_event: recent_event,
@@ -73,11 +73,12 @@ export default class Races extends Component {
                         this.change_list_show();
                     }}>
                     <Text
-                        style={{fontSize: 18, color: '#FFE9AD'}}  numberOfLines={1}>{this.state.recent_event.name}</Text>
+                        style={{fontSize: 18, color: '#FFE9AD'}}
+                        numberOfLines={1}>{this.state.recent_event.name}</Text>
                     <Image style={{width: 12, height: 6, marginLeft: 10}}
                            source={this.state.list_show ? Images.top : Images.bottom}/>
                 </TouchableOpacity>
-                <View style={{width:35}}/>
+                <View style={{width: 35}}/>
             </View>
         )
     };
@@ -85,15 +86,15 @@ export default class Races extends Component {
 
     _renderItem = ({item, index}) => {
         return <Card
-        item={item}/>
+            item={item}/>
     };
 
     render() {
-        const {events,recent_event} = this.state
+        const {events, recent_event} = this.state
         return (
             <View style={styles.race_view}>
                 {this.topBar()}
-                {events && events.length>0?<View style={styles.carousel_view}>
+                {events && events.length > 0 ? <View style={styles.carousel_view}>
                     <Carousel
                         loop
                         layout={'default'}
@@ -105,10 +106,10 @@ export default class Races extends Component {
                         sliderWidth={Metrics.screenWidth}
                         itemWidth={Metrics.screenWidth - 80}
                     />
-                </View>:null}
+                </View> : null}
 
                 {this._item(styles.item_view, Images.rili_gray, styles.img_dy,
-                    this.state.recent_event.name, () => {
+                    `${this.state.recent_event.name}${global.lang.t('race_schedule')}`, () => {
                         router.toRaceSchedule(recent_event.id);
                     })}
                 {this._item(styles.item_view, Images.zixun, styles.img_dy,
@@ -141,58 +142,44 @@ export default class Races extends Component {
 }
 
 
-class Card extends Component{
+class Card extends Component {
 
     state = {
-        countTime:''
+        countTime: ''
     }
 
-    counting = (startTime,endTime)=>{
+    counting = (startTime, endTime) => {
         this.intervalTimer = setInterval(() => {
             // 得到剩余时间
-            let remainTime = this.getRemainTime(startTime)
+            let remainTime = getRemainTime(startTime)
 
             // 倒计时
-            if ( remainTime.total > 0) {
-                let countTime = `${remainTime.days}天${remainTime.hours}时${remainTime.minutes}分${remainTime.seconds}秒`
+            if (remainTime.total > 0) {
+                let countTime = `${remainTime.days}${global.lang.t('day')}${remainTime.hours}${global.lang.t('time')}${remainTime.minutes}${global.lang.t('minute')}${remainTime.seconds}${global.lang.t('second')}`
                 this.setState({
                     countTime
                 })
                 //倒计时结束
             } else if (remainTime.total <= 0) {
                 clearInterval(this.intervalTimer);
-                let toEndTime = this.getRemainTime(endTime)
-                let raceStatus = '进行中'
-                if(toEndTime.total<0){
-                    raceStatus = '已结束'
+                let toEndTime = getRemainTime(endTime)
+                let raceStatus = global.lang.t('processing')
+                if (toEndTime.total < 0) {
+                    raceStatus = global.lang.t('over')
                 }
                 this.setState({
-                    countTime:raceStatus
+                    countTime: raceStatus
                 })
             }
         }, 1000)
     }
 
-    getRemainTime = (endTime) => {
-        let t = endTime - Date.parse(new Date())
-        let seconds = Math.floor((t / 1000) % 60)
-        let minutes = Math.floor((t / 1000 / 60) % 60)
-        let hours = Math.floor((t / (1000 * 60 * 60)) % 24)
-        let days = Math.floor(t / (1000 * 60 * 60 * 24))
-        return {
-            'total': t,
-            'days': days,
-            'hours': hours,
-            'minutes': minutes,
-            'seconds': seconds
-        }
-    }
 
 
 
-    render(){
-        const {begin_time,end_time,id,logo,name} = this.props.item
-        let race_start_time = unix_format(begin_time,'YYYY年MM月DD日')
+    render() {
+        const {begin_time, end_time, id, logo, name} = this.props.item
+        let race_start_time = unix_format(begin_time, 'YYYY年MM月DD日')
 
         return (
             <View style={styles.slide_view}>
@@ -202,7 +189,7 @@ class Card extends Component{
                 </View>
                 <Image
                     style={styles.slide_img}
-                    source={{uri: "https://cdn-upyun.deshpro.com/kk/uploads/banner/64aaf57f7701d04761cedcc4210a7a65.jpg"}}/>
+                    source={{uri: getBg(logo)}}/>
                 <View style={styles.slide_top_view}>
                     <Text style={styles.race_time_txt2}>{name}</Text>
                     <Text style={styles.race_time_txt}>{race_start_time}</Text>
@@ -211,12 +198,12 @@ class Card extends Component{
         )
     }
 
-    componentDidMount(){
-        const {begin_time,end_time} = this.props.item
-        this.counting(begin_time*1000,end_time*1000)
+    componentDidMount() {
+        const {begin_time, end_time} = this.props.item
+        this.counting(begin_time * 1000, end_time * 1000)
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         this.intervalTimer && clearInterval(this.intervalTimer);
     }
 }

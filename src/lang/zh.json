@@ -101,5 +101,7 @@
   "enter_information":"如何输入信息",
   "add_calendar":"将比赛添加到日历",
   "refresh_again":"出错了, 重新刷新下吧",
-  "add_schedule":"添加日程成功"
+  "add_schedule":"添加日程成功",
+  "processing":"进行中",
+  "over":"已结束"
 }
