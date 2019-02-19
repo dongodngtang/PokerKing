@@ -30,6 +30,7 @@ export default class QueueList extends Component {
             members.map((item,index)=>{
                 item.isSelect = index === 0;
             });
+            logMsg("djskdjksdsdjks",members)
             this.setState({
                 cash_queue_members:members
             })
