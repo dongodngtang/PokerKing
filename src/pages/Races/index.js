@@ -117,7 +117,9 @@ export default class Races extends Component {
                         onSnapToItem={(index) => {
                             let selectedEvent = all_events[index];
                             logMsg('滚动到了', selectedEvent);
-                            this.change_recent_event(selectedEvent)
+                            this.setState({
+                                recent_event: selectedEvent
+                            })
                         }}
                     />
                 </View> : null}

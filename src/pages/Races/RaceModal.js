@@ -3,6 +3,7 @@ import {View, Text, TouchableOpacity, Image, Modal, FlatList} from 'react-native
 import styles from './index.style';
 import {Images, Styles} from "../../configs/Theme";
 import {Metrics} from "../../configs/Theme";
+import {isEmptyObject} from "../../utils/utils";
 
 
 export default class RaceModal extends Component {
@@ -28,7 +29,9 @@ export default class RaceModal extends Component {
                               style={[styles.select_top_view, item.id === id ? styles.select_item_view1 : styles.select_top_view2]}
                               onPress={() => {
                                   this.props.change_recent_event(item);
-                                  this.toggle()
+                                  setTimeout(() => {
+                                      this.toggle()
+                                  }, 1000);
                               }}>
                 <Text style={[styles.select_item_txt, {marginLeft: item.id === id ? 22 : 28}]}>{name}</Text>
                 <View style={{flex: 1}}/>
