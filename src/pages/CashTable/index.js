@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import styles from './index.style';
 import {Images} from "../../configs/Theme";
 import {getCashGames} from "../../services/cashTableDao";
-import {isEmpty, isEmptyObject, logMsg} from "../../utils/utils";
+import {getBg, isEmpty, isEmptyObject, logMsg} from "../../utils/utils";
 import {Metrics} from "../../configs/Theme";
 
 @connect(({CashTable}) => ({
@@ -35,7 +35,7 @@ export default class CashTable extends Component {
             <TouchableOpacity key={index} activeOpacity={1} onPress={() => {
                 router.toQueueProcess(item)
             }}>
-                <ImageBackground source={Images.jinsha} style={[styles.jinsha, {
+                <ImageBackground source={getBg(item.name)} style={[styles.jinsha, {
                     flexDirection: "row-reverse",
                     alignItems: 'center'
                 }]}>

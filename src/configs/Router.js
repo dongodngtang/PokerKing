@@ -109,12 +109,11 @@ export default class Router {
         })
     }
 
-    toQueueList(item, cash_game_id) {
+    toQueueList(item) {
         this.push({
             sceneKey: 'QueueList',
             params: {
-                item,
-                cash_game_id
+                item
             }
         })
     }

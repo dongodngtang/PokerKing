@@ -55,7 +55,7 @@ export default class QueueProcess extends Component {
                 this.setState({
                     cash_queues: [...cash_queues]
                 });
-                router.toQueueList(item, this.props.params.item.id);
+                router.toQueueList(item);
             }}>
                 <Text style={styles.item_txt}>{`${small_blind}/${big_blind}NL（${table_numbers}${global.lang.t('table')}）`}</Text>
                 <View style={{flex: 1}}/>

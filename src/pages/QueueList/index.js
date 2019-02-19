@@ -23,8 +23,8 @@ export default class QueueList extends Component {
     };
 
     componentDidMount() {
-        const {item, cash_game_id} = this.props.params;
-        getCashQueuesNumber({cash_game_id: cash_game_id, cash_queue_id: item.cash_game_id}, data => {
+        const {id, cash_game_id} = this.props.params.item;
+        getCashQueuesNumber({cash_game_id: cash_game_id, cash_queue_id: id}, data => {
             logMsg("cash_queue_members", data);
             this.setState({
                 cash_queue_members: data.items
