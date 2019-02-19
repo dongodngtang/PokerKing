@@ -93,7 +93,6 @@ export default class Home extends Component {
     }
 
     render() {
-        logMsg(this)
         const {customModal} = this.props
         return (
             <ScrollView

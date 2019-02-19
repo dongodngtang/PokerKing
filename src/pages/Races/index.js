@@ -16,23 +16,35 @@ export default class Races extends Component {
 
     state = {
         list_show: false,
-        events:[],
-        recent_event:{}
-    }
+        events: [],
+        recent_event: {},
+        all_events: []
+    };
 
     componentDidMount() {
-        mainEvents(data=>{
-            const {events,recent_event} = data
-
+        mainEvents(data => {
+            logMsg('主赛', data);
+            let events_obj = [];
+            events_obj.push(data.recent_event);
+            data.events.map(item => {
+                events_obj.push(item)
+            });
+            logMsg("events_obj",events_obj)
             this.setState({
-                events,
-                recent_event
+                events: data.events,
+                recent_event: data.recent_event,
+                all_events: events_obj
             })
-
-
-            logMsg('主赛',data)
         })
     }
+
+    change_recent_event = (events,recent_event,events_obj) => {
+        this.setState({
+            events: events,
+            recent_event: recent_event,
+            all_events: events_obj
+        })
+    };
 
     change_list_show = () => {
         this.setState({
@@ -41,8 +53,6 @@ export default class Races extends Component {
     };
 
     topBar = () => {
-        const {recent_event} = this.state
-        let name = recent_event?recent_event.name:''
         return (
             <View style={styles.navTop}>
                 <TouchableOpacity
@@ -63,11 +73,11 @@ export default class Races extends Component {
                         this.change_list_show();
                     }}>
                     <Text
-                        style={{fontSize: 18, color: '#FFE9AD'}}>{name}</Text>
+                        style={{fontSize: 18, color: '#FFE9AD'}}  numberOfLines={1}>{this.state.recent_event.name}</Text>
                     <Image style={{width: 12, height: 6, marginLeft: 10}}
                            source={this.state.list_show ? Images.top : Images.bottom}/>
                 </TouchableOpacity>
-                <View style={styles.left2}/>
+                <View style={{width:35}}/>
             </View>
         )
     };
@@ -79,7 +89,7 @@ export default class Races extends Component {
     };
 
     render() {
-        const {events} = this.state
+        const {events,recent_event} = this.state
         return (
             <View style={styles.race_view}>
                 {this.topBar()}
@@ -90,7 +100,7 @@ export default class Races extends Component {
                         ref={(c) => {
                             this._carousel = c
                         }}
-                        data={events}
+                        data={this.state.all_events}
                         renderItem={this._renderItem}
                         sliderWidth={Metrics.screenWidth}
                         itemWidth={Metrics.screenWidth - 80}
@@ -98,8 +108,8 @@ export default class Races extends Component {
                 </View>:null}
 
                 {this._item(styles.item_view, Images.rili_gray, styles.img_dy,
-                    'OPC2019赛程表', () => {
-                        router.toRaceSchedule();
+                    this.state.recent_event.name, () => {
+                        router.toRaceSchedule(recent_event.id);
                     })}
                 {this._item(styles.item_view, Images.zixun, styles.img_dy,
                     global.lang.t('race_message'), () => {
@@ -108,12 +118,10 @@ export default class Races extends Component {
                     })}
                 {this._item(styles.item_view, Images.ziyuan, styles.img_dy,
                     global.lang.t('race_news'), () => {
-                        router.toRaceNew();
+                        router.toRaceNew(recent_event.id);
                     })}
 
-                <RaceModal
-                    data={events}
-                    ref={ref => this.raceModal = ref}/>
+                <RaceModal ref={ref => this.raceModal = ref} change_recent_event={this.change_recent_event}/>
             </View>
         )
     }
