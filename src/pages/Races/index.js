@@ -81,7 +81,7 @@ export default class Races extends Component {
                     style={styles.navTitle}
                     onPress={() => {
                         this.raceModal && this.raceModal.toggle();
-                        this.change_list_show();
+                        this.change_list_show()
                     }}>
                     <Text
                         style={{fontSize: 18, color: '#FFE9AD'}}
@@ -140,7 +140,8 @@ export default class Races extends Component {
                     })}
 
                 <RaceModal ref={ref => this.raceModal = ref} recent_event={recent_event} events={events}
-                           change_recent_event={this.change_recent_event}/>
+                           change_recent_event={this.change_recent_event}
+                           change_list_show={this.change_list_show}/>
             </View>
         )
     }

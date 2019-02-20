@@ -29,6 +29,7 @@ export default class RaceModal extends Component {
                               style={[styles.select_top_view, item.id === id ? styles.select_item_view1 : styles.select_top_view2]}
                               onPress={() => {
                                   this.props.change_recent_event(item);
+                                  this.props.change_list_show();
                                   setTimeout(() => {
                                       this.toggle()
                                   }, 100);
