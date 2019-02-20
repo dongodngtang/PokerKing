@@ -45,6 +45,7 @@ export default class Register extends Component {
                 <KeyboardAvoidingView behavior='position' keyboardVerticalOffset={20}>
                     <View style={[styles.textView, {marginTop: 30}]}>
                         <TextInput
+                            restrict="a-zA-Z\^{'[\u4e00-\u9fa5]'}"
                             style={{
                                 paddingTop: 0,
                                 paddingBottom: 0,
