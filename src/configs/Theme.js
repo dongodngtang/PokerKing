@@ -93,7 +93,8 @@ export const Images = {
     shuhcu: require('../asserts/shuhcu.png'),
     jiegou: require('../asserts/jiegou.png'),
     right_gray: require('../asserts/right_gray.png'),
-    default_bg: require('../asserts/default_bg.png')
+    default_bg: require('../asserts/default_bg.png'),
+    delete_img:require('../asserts/delete.png')
 
 
 }
