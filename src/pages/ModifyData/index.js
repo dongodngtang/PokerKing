@@ -64,7 +64,7 @@ export default class ModifyData extends Component {
                         showToast(global.lang.t('successfully_modified'))
                     }
                 }, err => {
-                    router.pop()
+
                 })
 
             }

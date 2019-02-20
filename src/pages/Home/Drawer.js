@@ -11,6 +11,7 @@ import styles from './index.style';
 import {Images} from "../../configs/Theme";
 import {connect} from 'react-redux';
 import {isEmptyObject, isStrNull, getAvatar} from "../../utils/utils";
+import {storageLoginUser} from "../../services/accountDao";
 
 @connect(({Home}) => ({
     ...Home
@@ -51,6 +52,9 @@ export default class Drawer extends Component {
                 })}
                 {this._item(styles.select_btn, Images.feiji, styles.change_img, global.lang.t('recommend'), () => {
 
+                })}
+                {this._item(styles.select_btn, Images.feiji, styles.change_img,'退出登录', () => {
+                    storageLoginUser({})
                 })}
             </SafeAreaView>
         )

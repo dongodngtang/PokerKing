@@ -10,7 +10,7 @@
 import {create, SERVER_ERROR, TIMEOUT_ERROR, NETWORK_ERROR} from 'apisauce';
 import api from './api'
 import {isStrNull, logMsg, showToast} from "../utils/utils";
-
+import dva from '../utils/dva'
 
 let TAG = 'Http:';
 
@@ -63,7 +63,12 @@ export function setBaseUrl(type) {
 }
 
 export function setToken(access_token) {
-  client.setHeader('x-access-token', access_token)
+    if(isStrNull(access_token)){
+        delete client.headers['x-access-token']
+    }else{
+        client.setHeader('x-access-token', access_token)
+    }
+
 }
 
 
@@ -119,11 +124,24 @@ function errReject(res) {
   logMsg('错误', res)
   const {status, problem, data, ok} = res;
   if (status === 401) {
-    setToken('')
-    showToast('用户登录过期')
+      setLoginEmpty()
+
   } else {
     showToast(problem)
   }
+}
+
+ function setLoginEmpty() {
+    logMsg('退出登录用户')
+    global.storage.save({
+        key:'LoginUser',
+        data:{}
+    })
+    setToken('')
+    global.loginUser = {}
+    dva.getDispatch()({type:'Home/setProfile',params:{}})
+     showToast('用户登录过期')
+     router.toLogin()
 }
 
 

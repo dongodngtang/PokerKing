@@ -83,11 +83,16 @@ export function verify_code(body, resolve, reject) {
 }
 
 export function getProfile(resolve,reject) {
-    get(api.profile(),{},ret=>{
-        resolve && resolve(ret.data)
-        dva.getDispatch()({type:'Home/setProfile',params:ret.data})
+    if(global.loginUser && global.loginUser.user_id){
+        get(api.profile(),{},ret=>{
+            resolve && resolve(ret.data)
+            dva.getDispatch()({type:'Home/setProfile',params:ret.data})
 
-    },reject)
+        },reject)
+    }else{
+        dva.getDispatch()({type:'Home/setProfile',params:{}})
+    }
+
 }
 
 export function putProfile(body, resolve, reject) {
