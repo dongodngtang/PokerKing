@@ -50,7 +50,6 @@ export default StyleSheet.create({
         width: Metrics.screenWidth - 34,
         height: Metrics.reallySize(40),
         borderRadius: 4,
-        marginTop:55,
         marginBottom:34,
         backgroundColor:"#212223",
         alignSelf:'center',
