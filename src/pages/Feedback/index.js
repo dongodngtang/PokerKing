@@ -158,7 +158,7 @@ export default class Feedback extends Component {
                                     // Alert.alert(e.message ? e.message : e);
                                 });
                             } else if (images && images.length >= 3) {
-                                showToast('最多上传3张图片')
+                                showToast(global.lang.t(''))
                             }
 
                         }}
@@ -198,7 +198,7 @@ export default class Feedback extends Component {
                                 });
 
                             }}>
-                                <Image style={{height: 72, width: 72}} source={Images.empty_bg}/>
+                                <Image style={{height: 72, width: 72}} source={Images.add_image}/>
                             </TouchableOpacity> : null}
 
                     </View>

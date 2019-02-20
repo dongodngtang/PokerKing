@@ -104,5 +104,6 @@
   "add_schedule":"添加日程成功",
   "processing":"進行中",
   "over":"已結束",
-  "login":"登錄"
+  "login":"登錄",
+  "upload_up":"最多上傳3張圖片"
 }

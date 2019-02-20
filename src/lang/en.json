@@ -104,5 +104,6 @@
   "add_schedule":"Add schedule success",
   "processing":"processing",
   "over":"over",
-  "login":"Log in"
+  "login":"Log in",
+  "upload_up":"Upload up to 3 images"
 }
