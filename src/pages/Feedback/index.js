@@ -187,17 +187,15 @@ export default class Feedback extends Component {
                         })}
                         {images.length > 0 && images.length < 3 ?
                             <TouchableOpacity style={{height: 72, width: 72}} onPress={() => {
-                                if (images && images.length > 0 && images.length < 3) {
-                                    ImagePicker.openPicker(picker).then(image => {
-                                        images.push(image.path)
-                                        this.setState({
-                                            images
-                                        })
+                                ImagePicker.openPicker(picker).then(image => {
+                                    images.push(image.path)
+                                    this.setState({
+                                        images
+                                    })
 
-                                    }).catch(e => {
-                                        // Alert.alert(e.message ? e.message : e);
-                                    });
-                                }
+                                }).catch(e => {
+                                    // Alert.alert(e.message ? e.message : e);
+                                });
 
                             }}>
                                 <Image style={{height: 72, width: 72}} source={Images.empty_bg}/>
