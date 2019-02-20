@@ -33,13 +33,21 @@ export default class Drawer extends Component {
                 </TouchableOpacity>
                 <View style={{height: 58}}/>
                 {this._item(styles.select_btn, Images.xiugaiziliao, styles.change_img, global.lang.t('change_data'), () => {
-                    router.toModifyData()
+                    if(isEmptyObject(profile)){
+                        router.toLogin();
+                    }else{
+                        router.toModifyData()
+                    }
                 })}
                 {this._item(styles.select_btn, Images.wenti, styles.change_img, global.lang.t('common_problem'), () => {
                     router.toSwitchApi()
                 })}
                 {this._item(styles.select_btn, Images.yijian, styles.change_img, global.lang.t('feedback'), () => {
-                    router.toFeedback()
+                    if(isEmptyObject(profile)){
+                        router.toLogin();
+                    }else{
+                        router.toFeedback();
+                    }
                 })}
                 {this._item(styles.select_btn, Images.feiji, styles.change_img, global.lang.t('recommend'), () => {
 
