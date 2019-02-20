@@ -89,8 +89,8 @@ export default StyleSheet.create({
     select_top_view:{
         flexDirection:'row',
         alignItems:'center',
-        paddingTop:8,
-        paddingBottom:8
+        paddingTop:12,
+        paddingBottom:12
     },
     select_top_txt:{
         fontSize: 18,
