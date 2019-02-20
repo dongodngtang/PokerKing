@@ -104,14 +104,14 @@ export default class Home extends Component {
 
                 <MainBanner home_banners={this.state.home_banners}/>
                 <View style={styles.active_type_view}>
-                    <TouchableOpacity onPress={() => {
+                    <TouchableOpacity activeOpacity={1}  onPress={() => {
                         router.toRaces();
                     }}>
                         <ImageBackground source={Images.race_img} style={styles.active_btn}>
                             <Text style={styles.active_txt}>{global.lang.t('race')}</Text>
                         </ImageBackground>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => {
+                    <TouchableOpacity activeOpacity={1}  onPress={() => {
                         router.toCashTable();
                     }}>
                         <ImageBackground source={Images.xianjinzhuo} style={styles.active_btn}>
