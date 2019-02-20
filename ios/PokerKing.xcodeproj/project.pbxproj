@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -12,6 +13,8 @@
 		00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302DC1ABCB9D200DB3ED1 /* libRCTNetwork.a */; };
 		00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
 		00E356F31AD99517003FC87E /* PokerKingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* PokerKingTests.m */; };
+		09D7D628C90740F3B497965B /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 898341FA1562472BB88A6D7A /* libRNFetchBlob.a */; };
+		0AFC500E192F4650BB9A74C9 /* libRNAddCalendarEvent.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B7673AC400A14B8D97C521DA /* libRNAddCalendarEvent.a */; };
 		11D1A2F320CAFA9E000508D9 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
@@ -56,10 +59,8 @@
 		C88CCF8C6F07487E86394969 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C3CAD069E19B4329A63DA379 /* libz.tbd */; };
 		D2E96EF6EE20457AB2FD34C6 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 690A3014F47A4272A83F5143 /* libresolv.tbd */; };
 		D34317367DB3431DA5DFECDD /* libRCTBEEPickerManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73FBE01B4F3F4FEC891E2631 /* libRCTBEEPickerManager.a */; };
-		E161144E2E024FABB050C576 /* libimageCropPicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5826D7E3065E44FBB3342CE1 /* libimageCropPicker.a */; };
-		0AFC500E192F4650BB9A74C9 /* libRNAddCalendarEvent.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B7673AC400A14B8D97C521DA /* libRNAddCalendarEvent.a */; };
-		09D7D628C90740F3B497965B /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 898341FA1562472BB88A6D7A /* libRNFetchBlob.a */; };
 		D998E136EEBC4BE1A80586D3 /* libRCTPdf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 778E316FCAFE4888B7B18FB2 /* libRCTPdf.a */; };
+		E161144E2E024FABB050C576 /* libimageCropPicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5826D7E3065E44FBB3342CE1 /* libimageCropPicker.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -329,6 +330,27 @@
 			remoteGlobalIDString = 3D3CD9181DE5FBD800167DC4;
 			remoteInfo = "jschelpers-tvOS";
 		};
+		484FD6F4221C13F5007F116F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8C5F0BC47570407AB0657B63 /* RCTPdf.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 20D8E03F1C8E946C00039823;
+			remoteInfo = RCTPdf;
+		};
+		484FD6F7221C13F5007F116F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3BE1B1026A1C4F9DAADA11BD /* RNAddCalendarEvent.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNAddCalendarEvent;
+		};
+		484FD6FA221C13F5007F116F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BADD521346D541E0BD5EB771 /* RNFetchBlob.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A15C300E1CD25C330074CB35;
+			remoteInfo = RNFetchBlob;
+		};
 		48614C8221F8690E00ADF825 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4C20637AF0D44A9FB50EEBB7 /* RCTJCoreModule.xcodeproj */;
@@ -424,6 +446,7 @@
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FE4B1BBA160479193E576A3 /* CodePush.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = CodePush.xcodeproj; path = "../node_modules/react-native-code-push/ios/CodePush.xcodeproj"; sourceTree = "<group>"; };
 		39CF69BA1AF949B094ED2CCD /* CoreFoundation.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		3BE1B1026A1C4F9DAADA11BD /* RNAddCalendarEvent.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNAddCalendarEvent.xcodeproj; path = "../node_modules/react-native-add-calendar-event/ios/RNAddCalendarEvent.xcodeproj"; sourceTree = "<group>"; };
 		4C20637AF0D44A9FB50EEBB7 /* RCTJCoreModule.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTJCoreModule.xcodeproj; path = "../node_modules/jcore-react-native/ios/RCTJCoreModule.xcodeproj"; sourceTree = "<group>"; };
 		5826D7E3065E44FBB3342CE1 /* libimageCropPicker.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libimageCropPicker.a; sourceTree = "<group>"; };
 		59844ED279484EB6AC65B35B /* Security.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -433,11 +456,16 @@
 		6D525A9B5D1C4891BE6B9816 /* CoreLocation.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		6EE989FA02A043A18EFAD37B /* Foundation.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		73FBE01B4F3F4FEC891E2631 /* libRCTBEEPickerManager.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTBEEPickerManager.a; sourceTree = "<group>"; };
+		778E316FCAFE4888B7B18FB2 /* libRCTPdf.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTPdf.a; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		828E408D7FE04D039BEFEB98 /* SystemConfiguration.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		85A0A96B86A340C49B47C8BD /* CoreGraphics.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		898341FA1562472BB88A6D7A /* libRNFetchBlob.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFetchBlob.a; sourceTree = "<group>"; };
+		8C5F0BC47570407AB0657B63 /* RCTPdf.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTPdf.xcodeproj; path = "../node_modules/react-native-pdf/ios/RCTPdf.xcodeproj"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
+		B7673AC400A14B8D97C521DA /* libRNAddCalendarEvent.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNAddCalendarEvent.a; sourceTree = "<group>"; };
+		BADD521346D541E0BD5EB771 /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFetchBlob.xcodeproj; path = "../node_modules/rn-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; };
 		C1141E285099411184292716 /* UIKit.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C3CAD069E19B4329A63DA379 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		C945D6C85E7545DBA433AFB9 /* RCTBEEPickerManager.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTBEEPickerManager.xcodeproj; path = "../node_modules/react-native-picker/ios/RCTBEEPickerManager.xcodeproj"; sourceTree = "<group>"; };
@@ -445,12 +473,6 @@
 		D7A97BEA194545D08EEB3BB8 /* CFNetwork.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		DEB3ED3E48F54CA0B75E55B8 /* libRCTJShareModule.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTJShareModule.a; sourceTree = "<group>"; };
 		FFC10DB93DA64344985F5121 /* imageCropPicker.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = imageCropPicker.xcodeproj; path = "../node_modules/react-native-image-crop-picker/ios/imageCropPicker.xcodeproj"; sourceTree = "<group>"; };
-		3BE1B1026A1C4F9DAADA11BD /* RNAddCalendarEvent.xcodeproj */ = {isa = PBXFileReference; name = "RNAddCalendarEvent.xcodeproj"; path = "../node_modules/react-native-add-calendar-event/ios/RNAddCalendarEvent.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		B7673AC400A14B8D97C521DA /* libRNAddCalendarEvent.a */ = {isa = PBXFileReference; name = "libRNAddCalendarEvent.a"; path = "libRNAddCalendarEvent.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		BADD521346D541E0BD5EB771 /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; name = "RNFetchBlob.xcodeproj"; path = "../node_modules/rn-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		898341FA1562472BB88A6D7A /* libRNFetchBlob.a */ = {isa = PBXFileReference; name = "libRNFetchBlob.a"; path = "libRNFetchBlob.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		8C5F0BC47570407AB0657B63 /* RCTPdf.xcodeproj */ = {isa = PBXFileReference; name = "RCTPdf.xcodeproj"; path = "../node_modules/react-native-pdf/ios/RCTPdf.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		778E316FCAFE4888B7B18FB2 /* libRCTPdf.a */ = {isa = PBXFileReference; name = "libRCTPdf.a"; path = "libRCTPdf.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -688,6 +710,30 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		484FD6ED221C13F4007F116F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				484FD6FB221C13F5007F116F /* libRNFetchBlob.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		484FD6EF221C13F4007F116F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				484FD6F8221C13F5007F116F /* libRNAddCalendarEvent.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		484FD6F1221C13F4007F116F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				484FD6F5221C13F5007F116F /* libRCTPdf.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		48614C5721F8690800ADF825 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -696,6 +742,9 @@
 				73FBE01B4F3F4FEC891E2631 /* libRCTBEEPickerManager.a */,
 				239355CF8D604352A13004AB /* libCodePush.a */,
 				5826D7E3065E44FBB3342CE1 /* libimageCropPicker.a */,
+				B7673AC400A14B8D97C521DA /* libRNAddCalendarEvent.a */,
+				898341FA1562472BB88A6D7A /* libRNFetchBlob.a */,
+				778E316FCAFE4888B7B18FB2 /* libRCTPdf.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -971,6 +1020,10 @@
 					ProjectRef = 00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */;
 				},
 				{
+					ProductGroup = 484FD6F1221C13F4007F116F /* Products */;
+					ProjectRef = 8C5F0BC47570407AB0657B63 /* RCTPdf.xcodeproj */;
+				},
+				{
 					ProductGroup = 139105B71AF99BAD00B5F7CC /* Products */;
 					ProjectRef = 139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */;
 				},
@@ -989,6 +1042,14 @@
 				{
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+				},
+				{
+					ProductGroup = 484FD6EF221C13F4007F116F /* Products */;
+					ProjectRef = 3BE1B1026A1C4F9DAADA11BD /* RNAddCalendarEvent.xcodeproj */;
+				},
+				{
+					ProductGroup = 484FD6ED221C13F4007F116F /* Products */;
+					ProjectRef = BADD521346D541E0BD5EB771 /* RNFetchBlob.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1252,6 +1313,27 @@
 			fileType = archive.ar;
 			path = libjschelpers.a;
 			remoteRef = 3DAD3EAE1DF850E9000B6D8A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		484FD6F5221C13F5007F116F /* libRCTPdf.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTPdf.a;
+			remoteRef = 484FD6F4221C13F5007F116F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		484FD6F8221C13F5007F116F /* libRNAddCalendarEvent.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNAddCalendarEvent.a;
+			remoteRef = 484FD6F7221C13F5007F116F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		484FD6FB221C13F5007F116F /* libRNFetchBlob.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNFetchBlob.a;
+			remoteRef = 484FD6FA221C13F5007F116F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		48614C8321F8690E00ADF825 /* libRCTJCoreModule.a */ = {
