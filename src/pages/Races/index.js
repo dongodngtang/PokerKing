@@ -198,7 +198,7 @@ class Card extends Component {
         let race_start_time = unix_format(begin_time, 'YYYY年MM月DD日')
 
         return (
-            <TouchableOpacity style={styles.slide_view} onPress={()=>{
+            <TouchableOpacity activeOpacity={1}  style={styles.slide_view} onPress={()=>{
                 router.toRaceMessage(this.props.recent_event.description)
             }}>
                 <View style={styles.slide_top_view}>

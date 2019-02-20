@@ -103,5 +103,6 @@
   "refresh_again":"Something went wrong, refresh it again",
   "add_schedule":"Add schedule success",
   "processing":"processing",
-  "over":"over"
+  "over":"over",
+  "login":"Log in"
 }
