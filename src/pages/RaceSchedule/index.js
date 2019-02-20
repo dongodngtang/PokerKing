@@ -262,7 +262,9 @@ class SelectPart extends Component {
                         }
                         AddCalendarEvent.presentEventCreatingDialog(eventConfig)
                             .then((eventInfo: { calendarItemIdentifier: string, eventIdentifier: string }) => {
-                                showToast(global.lang.t('add_schedule'))
+                                if(eventInfo.action === 'SAVED'){
+                                    showToast(global.lang.t('add_schedule'))
+                                }
                                 console.log(JSON.stringify(eventInfo));
                             })
                             .catch((error: string) => {
