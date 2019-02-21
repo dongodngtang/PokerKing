@@ -50,7 +50,6 @@ export default class Races extends Component {
                 all.push(item);
             }
         });
-        logMsg("dhsjdjsksdsd",all)
         this.setState({
             recent_event: recent_event,
             all_events: all
@@ -128,7 +127,7 @@ export default class Races extends Component {
 
                 {this._item(styles.item_view, Images.rili_gray, styles.img_dy,
                     `${isStrNull(recent_event.name) ? '' : recent_event.name}${global.lang.t('race_schedule')}`, () => {
-                        router.toRaceSchedule(recent_event.id);
+                        router.toRaceSchedule(recent_event);
                     })}
                 {this._item(styles.item_view, Images.zixun, styles.img_dy,
                     global.lang.t('race_message'), () => {
@@ -195,11 +194,11 @@ class Card extends Component {
 
 
     render() {
-        const {begin_time, end_time, id, logo, name} = this.props.item
-        let race_start_time = unix_format(begin_time, 'YYYY年MM月DD日')
+        const {begin_time, end_time, id, logo, name} = this.props.item;
+        let race_start_time = unix_format(begin_time, `YYYY/MM/DD`);
 
         return (
-            <TouchableOpacity activeOpacity={1}  style={styles.slide_view} onPress={()=>{
+            <TouchableOpacity activeOpacity={1} style={styles.slide_view} onPress={() => {
                 router.toRaceMessage(this.props.recent_event.description)
             }}>
                 <View style={styles.slide_top_view}>

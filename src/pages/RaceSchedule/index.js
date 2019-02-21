@@ -25,7 +25,7 @@ export default class RaceSchedule extends Component {
 
 
     componentDidMount() {
-        getSchedulesDates({event_id: this.props.params.event_id}, data => {
+        getSchedulesDates({event_id: this.props.params.event.id}, data => {
             let dates = [];
             data.dates.map((item, index) => {
                 dates.push({id: index, date: item, isSelect: index === 0})
@@ -132,7 +132,7 @@ export default class RaceSchedule extends Component {
                         <Text style={styles.race_price}>{global.lang.t('race_price')}{buy_in}</Text>
                     </View>
                 </View>
-                {item.isSelect ? <SelectPart item={item}/> : null}
+                {item.isSelect ? <SelectPart item={item} description={this.props.params.event.description}/> : null}
             </View>
 
         )
@@ -147,7 +147,7 @@ export default class RaceSchedule extends Component {
             schedules_dates.forEach((item) => {
                 if (item.isSelect) {
                     getSchedulesEvents({
-                        event_id: this.props.params.event_id,
+                        event_id: this.props.params.event.id,
                         date: moment(item.date).format('YYYY-MM-DD')
                     }, data => {
                         logMsg("SchedulesEvents", data);
@@ -206,7 +206,7 @@ class SelectPart extends Component {
         }, 1000)
     }
     render() {
-        const {name, event_type, event_num, buy_in, entries, starting_stack, schedule_pdf, begin_time, reg_open, reg_close} = this.props.item;;
+        const {name, event_type, event_num, buy_in, entries, starting_stack, schedule_pdf, begin_time, reg_open, reg_close} = this.props.item;
         return (
             <View style={styles.selected_view}>
                 <View style={{flexDirection: 'row', alignItems: 'center', marginLeft: 17, marginRight: 17}}>
@@ -247,7 +247,9 @@ class SelectPart extends Component {
                     <View style={{flex: 1}}/>
                     <Image style={{width: 6, height: 12}} source={Images.right_gray}/>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.problem_view} activeOpacity={1}>
+                <TouchableOpacity style={styles.problem_view} activeOpacity={1} onPress={()=>{
+                    router.toRaceMessage(this.props.description)
+                }}>
                     <Image style={{width: 26, height: 26, marginRight: 14}} source={Images.shuhcu}/>
                     <Text style={styles.problem_txt}>{global.lang.t('enter_information')}</Text>
                 </TouchableOpacity>

@@ -195,4 +195,4 @@ export function getRemainTime(endTime){
         'minutes': minutes,
         'seconds': seconds
     }
-};
+}

@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import {View, Text, ScrollView, TextInput, Platform, TouchableOpacity} from 'react-native';
+import {View, Text, ScrollView, TextInput, Platform, TouchableOpacity, Image} from 'react-native';
 import {connect} from 'react-redux';
 import styles from './index.style';
 import {postFeedBacks} from '../../services/accountDao'
-import {logMsg, showToast, strNotNull,isStrNull,fileName} from "../../utils/utils";
+import {logMsg, showToast, strNotNull, isStrNull, fileName} from "../../utils/utils";
 import ImagePicker from 'react-native-image-crop-picker';
 import ImageLoad from "../../components/ImageLoad";
+import {Images} from "../../configs/Theme";
 
 const picker = {
     compressImageMaxWidth: 800,
@@ -34,7 +35,7 @@ export default class Feedback extends Component {
                 isSelect: true,
                 name: global.lang.t('very_satisfied')
             }],
-            images:[]
+            images: []
         };
         this.mailbox = '';
         this.report_problem = ''
@@ -46,52 +47,52 @@ export default class Feedback extends Component {
     };
 
     _check = () => {
-        const {app_list,images} = this.state;
+        const {app_list, images} = this.state;
         let sense = 3;
         app_list.forEach((x) => {
             if (x.isSelect === true) {
                 sense = x.id
             }
         });
-        if(isStrNull(this.mailbox)){
+        if (isStrNull(this.mailbox)) {
             showToast("请填写邮箱")
-        }else if(isStrNull(this.report_problem)){
+        } else if (isStrNull(this.report_problem)) {
             showToast("请填写报告问题")
-        }else {
+        } else {
             let formData = new FormData();
 
-             images.forEach(img=>{
+            images.forEach(img => {
                 let item = {
                     uri: img,
                     name: fileName(img)
                 }
-                formData.append('images[]',item)
+                formData.append('images[]', item)
             })
 
 
-            formData.append('content',this.report_problem)
-            formData.append('email',this.mailbox)
-            formData.append('sense',sense)
+            formData.append('content', this.report_problem)
+            formData.append('email', this.mailbox)
+            formData.append('sense', sense)
 
 
-            postFeedBacks(formData,data=>{
-                logMsg("feedbacks",data)
+            postFeedBacks(formData, data => {
+                logMsg("feedbacks", data)
                 showToast('提交成功');
                 router.pop();
-            },err=>{
+            }, err => {
                 showToast(err)
             })
         }
     };
 
- localFilePath =(path)=> {
+    localFilePath = (path) => {
         if (Platform.OS === 'android')
             return 'file://' + path;
         return path;
     }
 
     render() {
-        const {app_list,images} = this.state;
+        const {app_list, images} = this.state;
         return (
             <View style={styles.feedback_view}>
                 <View style={styles.feedback_view2}>
@@ -112,7 +113,7 @@ export default class Feedback extends Component {
                             return (
                                 <TouchableOpacity key={index} onPress={() => {
                                     app_list.forEach((x) => {
-                                        x.isSelect = item.id ===x.id
+                                        x.isSelect = item.id === x.id
                                     });
                                     this.setState({
                                         app_list: [...app_list]
@@ -144,8 +145,9 @@ export default class Feedback extends Component {
                     }]}>{global.lang.t('upload_photos')}</Text>
 
                     <TouchableOpacity
-                        onPress={()=>{
-                            if(images && images.length<3){
+                        activeOpacity={1}
+                        onPress={() => {
+                            if (images && images.length < 1) {
                                 ImagePicker.openPicker(picker).then(image => {
                                     images.push(image.path)
                                     this.setState({
@@ -155,8 +157,8 @@ export default class Feedback extends Component {
                                 }).catch(e => {
                                     // Alert.alert(e.message ? e.message : e);
                                 });
-                            }else{
-                                showToast('最多上传3张图片')
+                            } else if (images && images.length >= 3) {
+                                showToast(global.lang.t(''))
                             }
 
                         }}
@@ -164,22 +166,40 @@ export default class Feedback extends Component {
                         <Text style={styles.browse_documents}>{global.lang.t('browse_documents')}</Text>
                     </TouchableOpacity>
 
-                    <View style={{height:80,flexDirection:'row',alignItems: 'center',marginTop:5}}>
-                        {images.length>0 && images.map((img,index)=>{
+                    <View style={{height: 80, flexDirection: 'row', alignItems: 'center', marginTop: 5}}>
+                        {images.length > 0 && images.map((img, index) => {
                             return <View style={{marginRight: 10}}
-                            key={`img_${index}`}>
-                                <Text onPress={()=>{
-                                    delete images[index]
+                                         key={`img_${index}`}>
+                                <TouchableOpacity activeOpacity={1}
+                                                  style={{position: 'absolute', right: -5, top: -5, zIndex: 999}}
+                                                  onPress={() => {
+                                                      delete images[index];
+                                                      this.setState({
+                                                          images
+                                                      })
+                                                  }}>
+                                    <Image style={{width: 22, height: 22}} source={Images.delete_img}/>
+                                </TouchableOpacity>
+                                <ImageLoad style={{height: 72, width: 72}}
+                                           source={{uri: this.localFilePath(img)}}/>
+
+                            </View>
+                        })}
+                        {images.length > 0 && images.length < 3 ?
+                            <TouchableOpacity style={{height: 72, width: 72}} onPress={() => {
+                                ImagePicker.openPicker(picker).then(image => {
+                                    images.push(image.path)
                                     this.setState({
                                         images
                                     })
-                                }}
-                                    style={{position:'absolute',right:-5,top:-5}}>删除</Text>
-                                <ImageLoad style={{height:70,width: 60}}
-                                source={{uri:this.localFilePath(img)}}/>
-                            </View>
-                        })}
 
+                                }).catch(e => {
+                                    // Alert.alert(e.message ? e.message : e);
+                                });
+
+                            }}>
+                                <Image style={{height: 72, width: 72}} source={Images.add_image}/>
+                            </TouchableOpacity> : null}
 
                     </View>
                 </View>
