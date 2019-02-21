@@ -6,7 +6,9 @@ import {Images} from "../../configs/Theme";
 import {ActionSheet} from '../../components';
 import {register} from "../../services/accountDao";
 import ImagePicker from "react-native-image-crop-picker";
-import {logMsg} from "../../utils/utils";
+import {isStrNull, logMsg, showToast} from "../../utils/utils";
+
+const reg = /[^a-zA-Z]+/;
 
 @connect(({Register}) => ({
     ...Register,
@@ -17,18 +19,19 @@ export default class Register extends Component {
         this.state = {
             name_show: false,
             email_show: false,
-            genderTxt:global.lang.t('gender')
+            genderTxt:global.lang.t('gender'),
+            nickStr:''
         }
         this.user_name = ''
         this.email = ''
-        this.gender= 0
+        this.gender= -1
     }
 
 
 
     _getGender =(gender)=> {
         logMsg(gender)
-        if(gender !== 0){
+        if(gender !== -1){
             this.gender = gender
             this.setState({
                 genderTxt:gender === 1?global.lang.t('male'):global.lang.t('female')
@@ -38,6 +41,10 @@ export default class Register extends Component {
 
     }
 
+     trimNumber = (str)=> {
+        return str.replace(/\d+/g,'');
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -45,7 +52,6 @@ export default class Register extends Component {
                 <KeyboardAvoidingView behavior='position' keyboardVerticalOffset={20}>
                     <View style={[styles.textView, {marginTop: 30}]}>
                         <TextInput
-                            restrict="a-zA-Z\^{'[\u4e00-\u9fa5]'}"
                             style={{
                                 paddingTop: 0,
                                 paddingBottom: 0,
@@ -62,6 +68,7 @@ export default class Register extends Component {
                             clearTextOnFocus={true}
                             underlineColorAndroid={'transparent'}
                             onChangeText={txt => {
+
                                 this.user_name = txt
 
                             }}
@@ -111,19 +118,32 @@ export default class Register extends Component {
                 </KeyboardAvoidingView>
 
                 <TouchableOpacity style={styles.btn} onPress={()=>{
-                    let body = this.props.params
-                    body.nickname = this.user_name
-                    body.gender = this.gender
-                    body.email = this.email
-                    register(body,ret=>{
-                        this.props.navigation.popToTop()
-                    },err=>{
+                    let body = this.props.params;
+                    body.nickname = this.user_name;
+                    body.gender = this.gender;
+                    body.email = this.email;
+                    if (isStrNull(this.user_name)) {
+                        showToast(global.lang.t('input_nick_name'))
+                    }else if (this.gender === -1){
+                        showToast(global.lang.t('select_gender'))
+                    }else if (isStrNull(this.email)){
+                        showToast(global.lang.t('input_email'))
+                    }else{
+                        if (reg.test(this.user_name)) {
+                            showToast(global.lang.t('nick_name_english'));
+                        }else{
+                            register(body,ret=>{
+                                this.props.navigation.popToTop()
+                            },err=>{
 
-                    })
-
+                            })
+                        }
+                    }
                 }}>
                     <Text style={{color:'#FFE9AD',fontSize:18}}>{global.lang.t('determine')}</Text>
                 </TouchableOpacity>
+
+                <Text style={{color:'#AAAAAA',fontSize:14,position:'absolute',bottom:70}}>{global.lang.t('prompt')}</Text>
 
                 <ActionSheet
                     ref={o => this.actionGender = o}

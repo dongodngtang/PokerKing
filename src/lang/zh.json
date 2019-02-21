@@ -106,5 +106,9 @@
   "over":"已结束",
   "login":"登录",
   "upload_up":"最多上传3张图片",
-  "prompt":"提示：用户名是唯一使用，编辑完成后将不可修改"
+  "prompt":"提示：用户名是唯一使用，编辑完成后将不可修改",
+  "nick_name_english":"昵称只能输入英文",
+  "input_nick_name":"昵称不能为空",
+  "select_gender":"性别不能为空",
+  "input_email":"邮箱不能为空"
 }

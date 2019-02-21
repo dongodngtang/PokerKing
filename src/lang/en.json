@@ -106,5 +106,9 @@
   "over":"over",
   "login":"login",
   "upload_up":"upload no more than 3 photos",
-  "prompt":"Reminder: Username cannot be changed."
+  "prompt":"Reminder: Username cannot be changed.",
+  "nick_name_english":"Nickname can only be entered in English",
+  "input_nick_name":"昵称不能为空",
+  "select_gender":"性别不能为空",
+  "input_email":"邮箱不能为空"
 }
