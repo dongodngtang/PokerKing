@@ -12,6 +12,7 @@ import Language from './lang/Language'
 import {connect} from 'react-redux';
 import './configs/StorageConfig'
 import {initBaseUrl} from "./configs/fetch";
+import SplashScreen from 'react-native-splash-screen'
 
 @connect(({ common}) => ({
       ...common
@@ -27,6 +28,10 @@ export default class Root extends Component {
 
         initBaseUrl()
 
+    }
+
+    componentDidMount() {
+        SplashScreen.hide();
     }
 
     render() {

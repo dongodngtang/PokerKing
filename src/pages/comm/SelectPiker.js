@@ -67,7 +67,7 @@ export default class SelectPiker extends Component {
                             <Text style={{color: "#444444", fontSize: 18}}>{global.lang.t('cancel')}</Text>
                         </TouchableOpacity>
                     </View>
-                    <Picker style={{width: Metrics.screenWidth}}
+                    <Picker style={{width: Metrics.screenWidth,height: 180}}
                             selectedValue={this.props.selectedItem}
                             itemStyle={{color: "#444444", fontSize: 20,borderWidth:0}}
                             onValueChange={(index) => {
