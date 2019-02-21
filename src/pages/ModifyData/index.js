@@ -139,25 +139,25 @@ export default class ModifyData extends Component {
 
                     </TouchableOpacity>
                     <View style={styles.line2}/>
-                    <View style={styles.item_view}>
+                    {/*<View style={styles.item_view}>*/}
 
-                        <Text style={styles.text_label}>{global.lang.t('nick')}</Text>
-                        <TextInput style={[styles.text_value, {marginRight: 17}]}
-                                   clearTextOnFocus={true}
-                                   maxLength={8}
-                                   returnKeyType={'done'}
-                                   placeholderTextColor={"#666666"}
-                                   underlineColorAndroid='transparent'
-                                   onChangeText={text => {
-                                       this.inputNick = text
-                                   }}
-                                   placeholder={nickname}
-                                   testID="input_nick"/>
+                        {/*<Text style={styles.text_label}>{global.lang.t('nick')}</Text>*/}
+                        {/*<TextInput style={[styles.text_value, {marginRight: 17}]}*/}
+                                   {/*clearTextOnFocus={true}*/}
+                                   {/*maxLength={8}*/}
+                                   {/*returnKeyType={'done'}*/}
+                                   {/*placeholderTextColor={"#666666"}*/}
+                                   {/*underlineColorAndroid='transparent'*/}
+                                   {/*onChangeText={text => {*/}
+                                       {/*this.inputNick = text*/}
+                                   {/*}}*/}
+                                   {/*placeholder={nickname}*/}
+                                   {/*testID="input_nick"/>*/}
 
-                        <Image style={{height: 20, width: 10}}
-                               source={Images.right_gray}/>
+                        {/*<Image style={{height: 20, width: 10}}*/}
+                               {/*source={Images.right_gray}/>*/}
 
-                    </View>
+                    {/*</View>*/}
 
                     <View style={styles.line2}/>
 
