@@ -24,14 +24,14 @@ export default class Register extends Component {
         }
         this.user_name = ''
         this.email = ''
-        this.gender= -1
+        this.gender= 0
     }
 
 
 
     _getGender =(gender)=> {
         logMsg(gender)
-        if(gender !== -1){
+        if(gender !== 0){
             this.gender = gender
             this.setState({
                 genderTxt:gender === 1?global.lang.t('male'):global.lang.t('female')
@@ -124,7 +124,7 @@ export default class Register extends Component {
                     body.email = this.email;
                     if (isStrNull(this.user_name)) {
                         showToast(global.lang.t('input_nick_name'))
-                    }else if (this.gender === -1){
+                    }else if (this.gender === 0){
                         showToast(global.lang.t('select_gender'))
                     }else if (isStrNull(this.email)){
                         showToast(global.lang.t('input_email'))
