@@ -105,5 +105,6 @@
   "processing":"processing",
   "over":"over",
   "login":"Log in",
-  "upload_up":"Upload up to 3 images"
+  "upload_up":"Upload up to 3 images",
+  "prompt":"Hint: Username is the only one that will not be modified after editing"
 }
