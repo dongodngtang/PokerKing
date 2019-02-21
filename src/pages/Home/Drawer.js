@@ -33,7 +33,7 @@ export default class Drawer extends Component {
                     <Text style={styles.person_txt}>{nick_name}</Text>
                 </TouchableOpacity>
                 <View style={{height: 58}}/>
-                {this._item(styles.select_btn, Images.xiugaiziliao, styles.change_img, global.lang.t('change_data'), () => {
+                {this._item(styles.select_btn, Images.xiugaiziliao, styles.change_img, global.lang.t('modifyData'), () => {
                     if(isEmptyObject(profile)){
                         router.toLogin();
                     }else{
