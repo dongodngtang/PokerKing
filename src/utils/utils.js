@@ -196,3 +196,15 @@ export function getRemainTime(endTime){
         'seconds': seconds
     }
 }
+
+export function alertOrder(str, callback) {
+    Alert.alert(str, '', [{
+        text: `${global.lang.t('cancel')}`, onPress: () => {
+
+        }
+    }, {
+        text: `${global.lang.t('determine')}`, onPress: () => {
+            callback()
+        }
+    }])
+}

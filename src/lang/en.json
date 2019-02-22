@@ -121,5 +121,7 @@
   "FAQ_reply4":"完整详情请参阅盲注结构页面。",
   "FAQ_title5":"Pokerkinglive扑克王现场赛事由哪些比赛项目？",
   "FAQ_reply5":"所有主赛事均为无限注德州扑克，单各分站和扑克室还提供其他许多牌局类型。",
-  "save":"Save"
+  "save":"Save",
+  "drop_out":"Exit",
+  "is_drop_out":"confirm exit?"
 }
