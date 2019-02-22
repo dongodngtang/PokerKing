@@ -1,5 +1,8 @@
 
 import { StyleSheet } from 'react-native';
+import {Metrics} from "../../configs/Theme";
+import {mul} from "../../utils/utils";
+
 export default StyleSheet.create({
     home_view:{
         flex:1
@@ -14,8 +17,8 @@ export default StyleSheet.create({
         justifyContent:'space-between'
     },
     active_btn:{
-        width:168,
-        height:168,
+        width:Number(mul(Metrics.screenWidth , 0.448)),
+        height:Number(mul(Metrics.screenHeight , 0.2069)),
         alignItems:'center',
         justifyContent:'center',
         backgroundColor:"#13151C",

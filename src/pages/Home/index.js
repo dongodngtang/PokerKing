@@ -93,7 +93,8 @@ export default class Home extends Component {
     }
 
     render() {
-        const {customModal} = this.props
+        const {customModal} = this.props;
+
         return (
             <ScrollView
                 style={styles.home_view}

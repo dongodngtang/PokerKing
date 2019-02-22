@@ -208,3 +208,66 @@ export function alertOrder(str, callback) {
         }
     }])
 }
+
+/**
+ * 乘法精度问题
+ * @param num1
+ * @param num2
+ * @returns {number}
+ */
+export function mul(num1, num2) {
+    let m = 0, s1 = num1.toString(), s2 = num2.toString();
+    try {
+        m += s1.split(".")[1].length
+    } catch (e) {
+    }
+    try {
+        m += s2.split(".")[1].length
+    } catch (e) {
+    }
+    return Number(s1.replace(".", "")) * Number(s2.replace(".", "")) / Math.pow(10, m)
+}
+
+export function div(a, b) {
+    var c, d, e = 0,
+        f = 0;
+    try {
+        e = a.toString().split(".")[1].length;
+    } catch (g) {
+    }
+    try {
+        f = b.toString().split(".")[1].length;
+    } catch (g) {
+    }
+    return c = Number(a.toString().replace(".", "")), d = Number(b.toString().replace(".", "")), mul(c / d, Math.pow(10, f - e));
+}
+
+export function add(a, b) {
+    var c, d, e;
+    try {
+        c = a.toString().split(".")[1].length;
+    } catch (f) {
+        c = 0;
+    }
+    try {
+        d = b.toString().split(".")[1].length;
+    } catch (f) {
+        d = 0;
+    }
+    return e = Math.pow(10, Math.max(c, d)), (mul(a, e) + mul(b, e)) / e;
+}
+
+export function sub(a, b) {
+    var c, d, e;
+    try {
+        c = a.toString().split(".")[1].length;
+    } catch (f) {
+        c = 0;
+    }
+    try {
+        d = b.toString().split(".")[1].length;
+    } catch (f) {
+        d = 0;
+    }
+    return e = Math.pow(10, Math.max(c, d)), (mul(a, e) - mul(b, e)) / e;
+}
