@@ -138,7 +138,7 @@ export default class ModifyData extends Component {
 
 
                     </TouchableOpacity>
-                    <View style={styles.line2}/>
+                    {/*<View style={styles.line2}/>*/}
                     {/*<View style={styles.item_view}>*/}
 
                         {/*<Text style={styles.text_label}>{global.lang.t('nick')}</Text>*/}
