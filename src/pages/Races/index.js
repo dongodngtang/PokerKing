@@ -194,12 +194,13 @@ class Card extends Component {
 
 
     render() {
+        const {description} = this.props.recent_event;
         const {begin_time, end_time, id, logo, name} = this.props.item;
         let race_start_time = unix_format(begin_time, `YYYY/MM/DD`);
 
         return (
             <TouchableOpacity activeOpacity={1} style={styles.slide_view} onPress={() => {
-                router.toRaceMessage(this.props.recent_event.description)
+                router.toRaceMessage(description)
             }}>
                 <View style={styles.slide_top_view}>
                     <Text style={styles.race_time_txt}>{global.lang.t('race_time')}</Text>
