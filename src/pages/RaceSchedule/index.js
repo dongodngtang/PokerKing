@@ -8,6 +8,7 @@ import {isEmptyObject, logMsg, utcDate, moneyFormat, showToast, getRemainTime} f
 import moment from 'moment';
 import {getSchedulesDates, getSchedulesEvents} from '../../services/raceDao'
 import * as AddCalendarEvent from 'react-native-add-calendar-event';
+import NotData from "../comm/NotData";
 
 @connect(({RaceSchedule}) => ({
     ...RaceSchedule,
@@ -70,6 +71,9 @@ export default class RaceSchedule extends Component {
 
     render() {
         const {schedules_dates} = this.state;
+        if(isEmptyObject(schedules_dates)){
+            return <NotData/>
+        }
         return (
             <ScrollView style={styles.schedule_view}>
                 <View style={styles.carousels_view}>
@@ -141,7 +145,7 @@ export default class RaceSchedule extends Component {
     onFetch = (page = 1, startFetch, abortFetch) => {
         const {schedules_dates} = this.state;
         if (isEmptyObject(schedules_dates)) {
-            return;
+            return <NotData/>
         }
         try {
             schedules_dates.forEach((item) => {
