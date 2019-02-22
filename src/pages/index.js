@@ -30,6 +30,7 @@ import Structure from './Structure';
 import WebViewPage from "../components/WebViewPage";
 import ImageGallery from "../components/ImageGallery";
 import RaceMessage from "./RaceMessage";
+import FAQ from "./FAQ";
 
 export const scenes = () => {
     return <Scene key="root">
@@ -116,21 +117,16 @@ export const scenes = () => {
                })}/>
         <Scene key="QueueList"
                component={QueueList}
-               {...TopNav({
-
-               })}/>
+               {...TopNav({})}/>
         <Scene key="InfoDetail"
                component={InfoDetail}
-               {...TopNav({
-               })}/>
+               {...TopNav({})}/>
         <Scene key="EventDetail"
                component={EventDetail}
-               {...TopNav({
-               })}/>
+               {...TopNav({})}/>
         <Scene key="WebViewPage"
                component={WebViewPage}
-               {...TopNav({
-               })}/>
+               {...TopNav({})}/>
         <Scene key="ImageGallery"
                component={ImageGallery}
                hideNavBar/>
@@ -139,13 +135,19 @@ export const scenes = () => {
                {...TopNav({
                    title: global.lang.t('structure')
                })}
-               />
+        />
         <Scene key="RaceMessage"
                component={RaceMessage}
                {...TopNav({
                    title: global.lang.t('race_message')
                })}
-               />
+        />
+        <Scene key="FAQ"
+               component={FAQ}
+               {...TopNav({
+                   title: global.lang.t('common_problem')
+               })}
+        />
     </Scene>
 }
 const TopNav = (props) => {
@@ -200,7 +202,7 @@ export class NavBar extends PureComponent {
                 }}
                 style={Styles.navTitle}>
                 <Text
-                    style={{fontSize: 18, color: '#FFE9AD',alignSelf:'center'}} numberOfLines={1}>{title}</Text>
+                    style={{fontSize: 18, color: '#FFE9AD', alignSelf: 'center'}} numberOfLines={1}>{title}</Text>
 
             </TouchableOpacity>
 

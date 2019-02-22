@@ -174,4 +174,10 @@ export default class Router {
 
         })
     }
+    toFAQ() {
+        this.push({
+            sceneKey: 'FAQ'
+
+        })
+    }
 }

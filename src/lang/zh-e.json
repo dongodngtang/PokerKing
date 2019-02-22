@@ -110,5 +110,15 @@
   "nick_name_english":"用戶名只能輸入英文",
   "input_nick_name":"用戶名不能為空",
   "select_gender":"性别不能為空",
-  "input_email":"郵箱不能為空"
+  "input_email":"郵箱不能為空",
+  "FAQ_title1":"Pokerkinglive登录问题？",
+  "FAQ_reply1":"APP账号为您所使用的手机号，登录页面点击“获取验证码”平台将会发送登陆密码至您所使用的手机上。",
+  "FAQ_title2":"用户名问题？",
+  "FAQ_reply2":"为了方便管理现场比赛排队秩序，用户名将是唯一性，并且不可更改。",
+  "FAQ_title3":"Pokerkinglive扑克王现场赛事何时何地举行？",
+  "FAQ_reply3":"请查看Pokerkinglive扑克王现场赛事主页，点击链接查看所有现场巡回赛和当地扑克室。",
+  "FAQ_title4":"Pokerkinglive扑克王现场赛事采用什么样的盲注结构？",
+  "FAQ_reply4":"完整详情请参阅盲注结构页面。",
+  "FAQ_title5":"Pokerkinglive扑克王现场赛事由哪些比赛项目？",
+  "FAQ_reply5":"所有主赛事均为无限注德州扑克，单各分站和扑克室还提供其他许多牌局类型。"
 }
