@@ -16,6 +16,11 @@ export default StyleSheet.create({
         marginLeft:18,
         width:'80%'
     },
+    txt2:{
+        color:"#444444",
+        fontSize:14,
+        lineHeight:20
+    },
     image:{
        width:12,
        height:22,

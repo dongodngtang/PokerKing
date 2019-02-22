@@ -23,7 +23,7 @@ export default class FAQ extends Component {
     };
 
     componentDidMount() {
-        let question = questions;
+        let question = this.questions;
         question.map(item => {
             item.isSelect = false
         })
@@ -53,16 +53,25 @@ export default class FAQ extends Component {
     };
 
     _renderItem = ({item, index}) => {
+        const {faq_questions} = this.state;
         const {title, question} = item;
         return (
             <View>
-                <TouchableOpacity style={styles.faq_view} activeOpacity={1}>
+                <TouchableOpacity style={[styles.faq_view, {backgroundColor: item.isSelect ? '#ECECEE' : "white"}]}
+                                  activeOpacity={1} onPress={() => {
+                    faq_questions.forEach((x) => {
+                        x.isSelect = item.id === x.id
+                    });
+                    this.setState({
+                        faq_questions: [...faq_questions]
+                    });
+                }}>
                     <Text style={styles.txt}>{title}</Text>
                     <View style={{flex: 1}}/>
-                    <Image style={styles.image} source={Images.right_gray}/>
+                    <Image style={styles.image} source={item.isSelect ?Images.is_bottom:Images.right_gray}/>
                 </TouchableOpacity>
-                {item.isSelect ? <View>
-
+                {item.isSelect ? <View style={{marginLeft:18,marginRight:18,marginBottom:26}}>
+                    <Text style={styles.txt2}>{question}</Text>
                 </View> : null}
             </View>
         )
