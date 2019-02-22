@@ -18,7 +18,7 @@ const picker = {
     compressImageQuality: 0.5,
 };
 
-@connect(({ModifyData,Home}) => ({
+@connect(({ModifyData, Home}) => ({
     ...ModifyData,
     ...Home
 }))
@@ -49,6 +49,9 @@ export default class ModifyData extends Component {
 
         props.navigation.setParams({
             onLeft: () => {
+                router.pop();
+            },
+            onRight: () => {
                 let edit = {}
                 if (profile.nickname !== this.inputNick) {
                     edit.nickname = this.inputNick
@@ -68,7 +71,8 @@ export default class ModifyData extends Component {
                 })
 
             }
-        })
+        });
+
     }
 
     _getGender = (gender) => {
@@ -90,7 +94,7 @@ export default class ModifyData extends Component {
         formData.append("avatar", file);
         uploadAvatar(formData, ret => {
             this.setState({
-                avatar: {uri:ret.avatar},
+                avatar: {uri: ret.avatar},
                 avatar_modify: true
             })
         });
@@ -126,7 +130,7 @@ export default class ModifyData extends Component {
                             <Image style={{
                                 height: 64, width: 64,
                                 borderRadius: 32,
-                                borderColor:"#ECECEE",borderWidth:4
+                                borderColor: "#ECECEE", borderWidth: 4
                             }}
                                    source={getAvatar(avatar)}
                             />
@@ -141,21 +145,21 @@ export default class ModifyData extends Component {
                     {/*<View style={styles.line2}/>*/}
                     {/*<View style={styles.item_view}>*/}
 
-                        {/*<Text style={styles.text_label}>{global.lang.t('nick')}</Text>*/}
-                        {/*<TextInput style={[styles.text_value, {marginRight: 17}]}*/}
-                                   {/*clearTextOnFocus={true}*/}
-                                   {/*maxLength={8}*/}
-                                   {/*returnKeyType={'done'}*/}
-                                   {/*placeholderTextColor={"#666666"}*/}
-                                   {/*underlineColorAndroid='transparent'*/}
-                                   {/*onChangeText={text => {*/}
-                                       {/*this.inputNick = text*/}
-                                   {/*}}*/}
-                                   {/*placeholder={nickname}*/}
-                                   {/*testID="input_nick"/>*/}
+                    {/*<Text style={styles.text_label}>{global.lang.t('nick')}</Text>*/}
+                    {/*<TextInput style={[styles.text_value, {marginRight: 17}]}*/}
+                    {/*clearTextOnFocus={true}*/}
+                    {/*maxLength={8}*/}
+                    {/*returnKeyType={'done'}*/}
+                    {/*placeholderTextColor={"#666666"}*/}
+                    {/*underlineColorAndroid='transparent'*/}
+                    {/*onChangeText={text => {*/}
+                    {/*this.inputNick = text*/}
+                    {/*}}*/}
+                    {/*placeholder={nickname}*/}
+                    {/*testID="input_nick"/>*/}
 
-                        {/*<Image style={{height: 20, width: 10}}*/}
-                               {/*source={Images.right_gray}/>*/}
+                    {/*<Image style={{height: 20, width: 10}}*/}
+                    {/*source={Images.right_gray}/>*/}
 
                     {/*</View>*/}
 
