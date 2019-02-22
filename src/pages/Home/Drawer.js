@@ -20,7 +20,7 @@ export default class Drawer extends Component {
     render() {
 
         const {profile} = this.props
-        let avatar = isEmptyObject(profile) ? Images.race_img : isStrNull(profile.avatar) ? Images.race_img : {uri: profile.avatar}
+        let avatar = isEmptyObject(profile) ? Images.default_bg : isStrNull(profile.avatar) ? Images.default_bg : {uri: profile.avatar}
         let nick_name = isEmptyObject(profile) ? global.lang.t('login') : profile.nickname;
         return (
             <SafeAreaView style={{flex: 1, backgroundColor: "#212223"}}>
