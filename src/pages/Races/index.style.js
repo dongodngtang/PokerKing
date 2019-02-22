@@ -55,7 +55,8 @@ export default StyleSheet.create({
     },
     race_time_txt2:{
         color:"#FFE9AD",
-        fontSize:16
+        fontSize:16,
+        width:'55%'
     },
     slide_img:{
         marginTop:10,

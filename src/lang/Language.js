@@ -12,6 +12,7 @@ export default class Language {
     langObj = require('./zh.json')
 
     constructor(){
+        global.localLanguage = 'zh'
 
     }
 
@@ -23,7 +24,7 @@ export default class Language {
         }else {
             this.langObj = require('./zh.json')
         }
-
+        global.localLanguage = language
         dva.getDispatch()({type:'common/switchLang',params:language})
 
     }

@@ -125,5 +125,17 @@
   "drop_out":"Exit",
   "is_drop_out":"confirm exit?",
   "input_question":"Please enter your e-mail question",
-  "successfully":"successfully Submitted"
+  "successfully":"successfully Submitted",
+  "month01":"January",
+  "month02":"February",
+  "month03":"March",
+  "month04":"April",
+  "month05":"May",
+  "month06":"June",
+  "month07":"July",
+  "month08":"August",
+  "month09":"September",
+  "month10":"October",
+  "month11":"November",
+  "month12":"December"
 }
