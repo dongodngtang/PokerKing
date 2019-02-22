@@ -30,10 +30,24 @@ export default class SelectPiker extends Component {
                 visible={this.state.visible}
                 style={{alignItems: 'center'}}
             >
+                <TouchableOpacity style={{flex:1}} onPress={()=>{
+                    const {index} = this.state;
+                    if (index === 0) {
+                        global.lang.switchLang('en')
+                    } else if (index === 1) {
+                        global.lang.switchLang('zh')
+                    } else if (index === 2) {
+                        global.lang.switchLang('zh-e')
+                    } else {
+                        global.lang.switchLang('zh')
+                    }
+                    this.toggle();
+                }}/>
+
                 <View style={{
                     width: Metrics.screenWidth,
                     backgroundColor: 'white',
-                    borderWidth: 1,
+                    borderWidth: 0.5,
                     borderColor: "#AAAAAA",
                     position: 'absolute',
                     bottom: 0
