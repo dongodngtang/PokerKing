@@ -42,7 +42,6 @@ export default class Drawer extends Component {
                 })}
                 {this._item(styles.select_btn, Images.wenti, styles.change_img, global.lang.t('common_problem'), () => {
                     router.toFAQ();
-                    // router.toSwitchApi()
                 })}
                 {this._item(styles.select_btn, Images.yijian, styles.change_img, global.lang.t('feedback'), () => {
                     if(isEmptyObject(profile)){
@@ -52,7 +51,7 @@ export default class Drawer extends Component {
                     }
                 })}
                 {this._item(styles.select_btn, Images.feiji, styles.change_img, global.lang.t('recommend'), () => {
-
+                    router.toSwitchApi()
                 })}
                 {this._item(styles.select_btn, Images.feiji, styles.change_img,'退出登录', () => {
                     storageLoginUser({})
