@@ -68,7 +68,7 @@ export default class FAQ extends Component {
                 }}>
                     <Text style={styles.txt}>{title}</Text>
                     <View style={{flex: 1}}/>
-                    <Image style={styles.image} source={item.isSelect ?Images.is_bottom:Images.right_gray}/>
+                    <Image style={styles.image} source={item.isSelect ?Images.question_bottom:Images.right_gray}/>
                 </TouchableOpacity>
                 {item.isSelect ? <View style={{marginLeft:18,marginRight:18,marginBottom:26}}>
                     <Text style={styles.txt2}>{question}</Text>
