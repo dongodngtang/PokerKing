@@ -123,5 +123,7 @@
   "FAQ_reply5":"所有主赛事均为无限注德州扑克，单各分站和扑克室还提供其他许多牌局类型。",
   "save":"保存",
   "drop_out":"退出",
-  "is_drop_out":"确认退出?"
+  "is_drop_out":"确认退出?",
+  "input_question":"报告问题不能为空",
+  "successfully":"提交成功"
 }
