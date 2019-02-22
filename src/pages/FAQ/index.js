@@ -60,9 +60,7 @@ export default class FAQ extends Component {
                 <TouchableOpacity style={[styles.faq_view, {backgroundColor: item.isSelect ? '#ECECEE' : "white"}]}
                                   activeOpacity={1} onPress={() => {
                     faq_questions.forEach((x) => {
-                        if (x.id === item.id) {
-                            x.isSelect = !x.isSelect
-                        }
+                        x.isSelect = item.id === x.id
                     });
                     this.setState({
                         faq_questions: [...faq_questions]
