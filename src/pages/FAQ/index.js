@@ -60,7 +60,9 @@ export default class FAQ extends Component {
                 <TouchableOpacity style={[styles.faq_view, {backgroundColor: item.isSelect ? '#ECECEE' : "white"}]}
                                   activeOpacity={1} onPress={() => {
                     faq_questions.forEach((x) => {
-                        x.isSelect = item.id === x.id
+                        if (x.id === item.id) {
+                            x.isSelect = !x.isSelect
+                        }
                     });
                     this.setState({
                         faq_questions: [...faq_questions]
@@ -68,9 +70,10 @@ export default class FAQ extends Component {
                 }}>
                     <Text style={styles.txt}>{title}</Text>
                     <View style={{flex: 1}}/>
-                    <Image style={styles.image} source={item.isSelect ?Images.question_bottom:Images.right_gray}/>
+                    <Image style={item.isSelect ? styles.image2 : styles.image}
+                           source={item.isSelect ? Images.question_bottom : Images.right_gray}/>
                 </TouchableOpacity>
-                {item.isSelect ? <View style={{marginLeft:18,marginRight:18,marginBottom:26}}>
+                {item.isSelect ? <View style={{marginLeft: 18, marginRight: 18, marginBottom: 26}}>
                     <Text style={styles.txt2}>{question}</Text>
                 </View> : null}
             </View>

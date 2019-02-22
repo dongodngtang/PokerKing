@@ -25,6 +25,12 @@ export default StyleSheet.create({
        width:12,
        height:22,
         marginRight:18
+    },
+    image2:{
+        height:12,
+        width:22,
+        marginRight:18
     }
+
 })
 
