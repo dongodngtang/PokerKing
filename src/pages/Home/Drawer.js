@@ -54,7 +54,7 @@ export default class Drawer extends Component {
                     router.toSwitchApi()
                 })}
 
-                <TouchableOpacity
+                {isEmptyObject(profile)?null: <TouchableOpacity
                     activeOpacity={1}
                     style={{alignSelf:'center',position:'absolute',bottom:100}} onPress={() => {
                     alertOrder(global.lang.t('is_drop_out'), () => {
@@ -62,7 +62,8 @@ export default class Drawer extends Component {
                     });
                 }}>
                     <Text style={styles.safe_area_txt}>{global.lang.t('drop_out')}</Text>
-                </TouchableOpacity>
+                </TouchableOpacity>}
+
 
             </SafeAreaView>
         )

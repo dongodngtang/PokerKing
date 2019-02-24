@@ -83,9 +83,19 @@ export default StyleSheet.create({
         borderBottomWidth:1
     },
     img_dy: {
-        width: 23,
-        height: 23,
+        width: 26,
+        height: 24,
+        marginLeft: 18
+    },
+    img_dy1: {
+        width: 24,
+        height: 22,
         marginLeft: 20
+    },
+    img_dy2: {
+        width: 28,
+        height: 26,
+        marginLeft: 16
     },
     select_top_view:{
         flexDirection:'row',
