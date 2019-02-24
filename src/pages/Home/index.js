@@ -11,10 +11,12 @@ import HotItem from "./HotItem";
 import {Actions} from "react-native-router-flux";
 import {getHomeBanners, getInfoList,initLoginUser} from '../../services/accountDao'
 import CustomModal from "../../components/CustomModal";
+import codePush from "react-native-code-push";
 
 @connect(({Home}) => ({
     ...Home
 }))
+@codePush
 export default class Home extends Component {
 
     constructor(props) {
@@ -51,6 +53,11 @@ export default class Home extends Component {
                 router.toLogin()
             }
         }, 1000);
+        codePush.disallowRestart()
+        codePush.sync({
+            updateDialog: false,
+            installMode: codePush.InstallMode.ON_NEXT_RESUME
+        })
     };
 
     onPickerSelect = (index) => {
