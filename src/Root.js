@@ -13,6 +13,7 @@ import {connect} from 'react-redux';
 import './configs/StorageConfig'
 import {initBaseUrl} from "./configs/fetch";
 import SplashScreen from 'react-native-splash-screen'
+import JShareModule from 'jshare-react-native';
 
 @connect(({ common}) => ({
       ...common
@@ -32,6 +33,7 @@ export default class Root extends Component {
 
     componentDidMount() {
         SplashScreen.hide();
+        JShareModule.setup()
     }
 
     render() {
