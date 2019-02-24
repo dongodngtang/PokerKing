@@ -5,6 +5,7 @@
  */
 
 import React, {Component} from 'react';
+import {Platform} from 'react-native'
 import {Router} from 'react-native-router-flux';
 import {scenes} from './pages'
 import RouterO from './configs/Router';
@@ -33,6 +34,7 @@ export default class Root extends Component {
 
     componentDidMount() {
         SplashScreen.hide();
+        if(Platform.OS ==='ios')
         JShareModule.setup()
     }
 
