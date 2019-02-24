@@ -12,9 +12,9 @@
             <!--AppId="QQ 的 AppId"-->
             <!--AppKey="QQ 的 AppKey"/>-->
 
-    <!--<Wechat-->
-            <!--AppId="微信的 AppId"-->
-            <!--AppSecret="微信的 AppSectet"/>-->
+    <Wechat
+            AppId="wx1d6a241d90da227c"
+            AppSecret="64e49ab346754e644ae6a30e22153709"/>
 
     <!--<Facebook-->
             <!--AppId="facebook 的 appId"-->

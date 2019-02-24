@@ -5,13 +5,13 @@
 	<key>appKey</key>
 	<string>a1703c14b186a68a66ef86c1</string>
 	<key>channel</key>
-	<string></string>
+	<string>appleStore</string>
 	<key>advertisingId</key>
 	<string></string>
 	<key>isProduction</key>
 	<true/>
 	<key>wechatAppId</key>
-	<string>wxc40e16f3ba6ebabc</string>
+	<string>wx1d6a241d90da227c</string>
 	<key>wechatAppSecret</key>
 	<string>dcad950cd0633a27e353477c4ec12e7a</string>
 	<key>qqAppId</key>
