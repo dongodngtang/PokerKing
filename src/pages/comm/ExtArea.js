@@ -3,6 +3,7 @@ import {
     TouchableOpacity, View, TextInput,
     StyleSheet, Image, Text, KeyboardAvoidingView, FlatList, Modal
 } from 'react-native';
+import * as Animatable from 'react-native-animatable';
 
 const codes = [{id: 0, name: 'mainland', code: '86'}, {
     id: 1,
@@ -67,7 +68,10 @@ export default class ExtArea extends Component {
                         onPress={this.toggle}
                         style={{height: this.props.type && this.props.type === 'ModalPrompt' ? 290 : 110}}/>
 
-                    {codes.map(this._renderItem)}
+                    <Animatable.View animation={'fadeInDown'}>
+                        {codes.map(this._renderItem)}
+                    </Animatable.View>
+
                     <TouchableOpacity
                         activeOpacity={1}
                         onPress={this.toggle} style={{
