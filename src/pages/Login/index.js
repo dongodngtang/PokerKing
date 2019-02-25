@@ -8,6 +8,7 @@ import {isStrNull, logMsg, showToast} from "../../utils/utils";
 import {verify, postCode, register, login, verify_code} from "../../services/accountDao";
 import CountDownButton from '../../components/CountDownButton'
 import TopMenu from "../../components/dropdown/TopMenu";
+import SelectPiker from "../comm/SelectPiker";
 
 
 @connect(({Login}) => ({
@@ -19,13 +20,26 @@ export default class Login extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            selectedItem: 1,
+            itemList: ['English', '简体中文', '繁体中文'],
             ext: '86',
             areaName: global.lang.t('mainland'),
             data: {}
         };
         this.iphone = ''
         this.vcode = ''
-    }
+        props.navigation.setParams({
+            onRight: () => {
+                this.selectPiker && this.selectPiker.toggle()
+            }
+        })
+    };
+
+    onPickerSelect = (index) => {
+        this.setState({
+            selectedItem: index,
+        })
+    };
 
     componentDidMount() {
 
@@ -203,6 +217,12 @@ export default class Login extends Component {
                 </TouchableOpacity>
 
                 <TopMenu config={CONFIG} onSelectMenu={this.onSelectMenu}/>
+
+                <SelectPiker
+                    ref={ref => this.selectPiker = ref}
+                    onPickerSelect={this.onPickerSelect}
+                    selectedItem={this.state.selectedItem}
+                    itemList={this.state.itemList}/>
             </View>
         )
     };
