@@ -133,6 +133,7 @@ export default class Register extends Component {
                             showToast(global.lang.t('nick_name_english'));
                         }else{
                             register(body,ret=>{
+                                global.lang.t('login_success')
                                 this.props.navigation.popToTop()
                             },err=>{
 

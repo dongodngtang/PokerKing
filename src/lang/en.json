@@ -151,5 +151,6 @@
   "beauti_text12":"HK$ 500/1000 – Min/Max Buy In:  100K-No Max",
   "beauti_text13":"Rake",
   "beauti_text14":"HK$ 25/50 – 5% Cap 250",
-  "beauti_text15":"HK$ 50/100 or Above– 5% Cap 500"
+  "beauti_text15":"HK$ 50/100 or Above– 5% Cap 500",
+  "login_success":"login successful"
 }
