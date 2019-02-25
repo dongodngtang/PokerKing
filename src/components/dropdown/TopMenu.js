@@ -272,7 +272,7 @@ export default class TopMenu extends Component {
                 zIndex: 999,
                 flex: 1,
                 height: 50,
-                borderBottomWidth:0.5,
+                borderBottomWidth:1,
                 borderBottomColor:"#ECECEE"
             }}>
                 <View style={styles.topMenu}>
