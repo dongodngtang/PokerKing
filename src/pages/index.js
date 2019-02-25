@@ -31,6 +31,7 @@ import WebViewPage from "../components/WebViewPage";
 import ImageGallery from "../components/ImageGallery";
 import RaceMessage from "./RaceMessage";
 import FAQ from "./FAQ";
+import FoundBeauti from "./FoundBeauti";
 
 export const scenes = () => {
     return <Scene key="root">
@@ -148,6 +149,12 @@ export const scenes = () => {
                component={FAQ}
                {...TopNav({
                    title: global.lang.t('common_problem')
+               })}
+        />
+        <Scene key="FoundBeauti"
+               component={FoundBeauti}
+               {...TopNav({
+                   title: global.lang.t('into_poker')
                })}
         />
     </Scene>

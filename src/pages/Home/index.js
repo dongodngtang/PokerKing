@@ -14,6 +14,7 @@ import CustomModal from "../../components/CustomModal";
 import codePush from "react-native-code-push";
 import ShareToast from "../comm/ShareToast";
 import NotData from "../comm/NotData";
+import FoundBeauti from "../FoundBeauti";
 
 @connect(({Home}) => ({
     ...Home
@@ -137,10 +138,14 @@ export default class Home extends Component {
                         </ImageBackground>
                     </TouchableOpacity>
                 </View>
-                <ImageBackground style={styles.middle_view} source={Images.other_more}>
-                    <Text style={styles.into_poker_txt}>{global.lang.t('into_poker')}</Text>
-                    <Text style={styles.found_beauti_txt}>{global.lang.t('found_beauti')}</Text>
-                </ImageBackground>
+                <TouchableOpacity activeOpacity={1} onPress={()=>{
+                    router.toFoundBeauti()
+                }}>
+                    <ImageBackground style={styles.middle_view} source={Images.other_more}>
+                        <Text style={styles.into_poker_txt}>{global.lang.t('into_poker')}</Text>
+                        <Text style={styles.found_beauti_txt}>{global.lang.t('found_beauti')}</Text>
+                    </ImageBackground>
+                </TouchableOpacity>
 
                 <UltimateFlatList
                     header={this.header}

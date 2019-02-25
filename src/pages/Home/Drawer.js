@@ -19,7 +19,6 @@ import {storageLoginUser} from "../../services/accountDao";
 export default class Drawer extends Component {
 
     render() {
-        logMsg("dhsjjdks",Metrics.screenHeight)
         const {profile} = this.props
         let avatar = isEmptyObject(profile) ? Images.default_bg : isStrNull(profile.avatar) ? Images.default_bg : {uri: profile.avatar}
         let nick_name = isEmptyObject(profile) ? global.lang.t('login') : profile.nickname;

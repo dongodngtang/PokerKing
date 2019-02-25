@@ -180,4 +180,10 @@ export default class Router {
 
         })
     }
+    toFoundBeauti() {
+        this.push({
+            sceneKey: 'FoundBeauti'
+
+        })
+    }
 }
