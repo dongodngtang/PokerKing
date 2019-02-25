@@ -101,7 +101,7 @@ export default class Login extends Component {
             <View style={styles.container}>
 
                 <Text style={styles.top_txt}>{global.lang.t('sign_vscode')}</Text>
-
+                <TopMenu config={CONFIG} onSelectMenu={this.onSelectMenu}/>
                 <View style={styles.areaView}>
                     {/*<Text*/}
                         {/*style={{width: 180, marginLeft: 8, height: 28, fontSize: 16, color: '#666666'}}>*/}
@@ -109,8 +109,7 @@ export default class Login extends Component {
                     {/*</Text>*/}
                     {/*<View style={{flex: 1}}/>*/}
                     {/*<Image style={{width: 6, height: 16, marginRight: 10}} source={Images.is_right}/>*/}
-                    <TopMenu
-                        style={styles.top_container} config={CONFIG} onSelectMenu={this.onSelectMenu}/>
+
                 </View>
                 <KeyboardAvoidingView behavior='position' keyboardVerticalOffset={20}>
                     <View style={styles.textView}>
