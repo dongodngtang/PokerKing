@@ -8,17 +8,18 @@ import React, {Component} from 'react'
 import {Button, Text, SafeAreaView, View, Image, TouchableOpacity} from 'react-native'
 import {Actions} from 'react-native-router-flux';
 import styles from './index.style';
-import {Images} from "../../configs/Theme";
+import {Images, Metrics} from "../../configs/Theme";
 import {connect} from 'react-redux';
-import {isEmptyObject, isStrNull, getAvatar, alertOrder} from "../../utils/utils";
+import {isEmptyObject, isStrNull, getAvatar, alertOrder, logMsg, mul} from "../../utils/utils";
 import {storageLoginUser} from "../../services/accountDao";
 
 @connect(({Home}) => ({
     ...Home
 }))
 export default class Drawer extends Component {
-    render() {
 
+    render() {
+        logMsg("dhsjjdks",Metrics.screenHeight)
         const {profile} = this.props
         let avatar = isEmptyObject(profile) ? Images.default_bg : isStrNull(profile.avatar) ? Images.default_bg : {uri: profile.avatar}
         let nick_name = isEmptyObject(profile) ? global.lang.t('login') : profile.nickname;
@@ -56,7 +57,7 @@ export default class Drawer extends Component {
 
                 {isEmptyObject(profile)?null: <TouchableOpacity
                     activeOpacity={1}
-                    style={{alignSelf:'center',position:'absolute',bottom:100}} onPress={() => {
+                    style={{alignSelf:'center',position:'absolute',bottom:Number(mul(Metrics.screenHeight , 0.1478))}} onPress={() => {
                     alertOrder(global.lang.t('is_drop_out'), () => {
                         storageLoginUser({})
                     });
