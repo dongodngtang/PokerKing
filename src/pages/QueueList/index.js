@@ -18,7 +18,7 @@ export default class QueueList extends Component {
     constructor(props) {
         super(props);
         props.navigation.setParams({
-            title: `${this.props.params.item.small_blind}/${this.props.params.item.big_blind}NL（${this.props.params.item.cash_queue_members_count}${global.lang.t('table')}）`
+            title: `${this.props.params.item.small_blind}/${this.props.params.item.big_blind}NL（${this.props.params.item.table_numbers}${global.lang.t('table')}）`
         })
     };
 
@@ -30,7 +30,6 @@ export default class QueueList extends Component {
             members.map((item,index)=>{
                 item.isSelect = index === 0;
             });
-            logMsg("djskdjksdsdjks",members)
             this.setState({
                 cash_queue_members:members
             })
