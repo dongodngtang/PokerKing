@@ -289,7 +289,7 @@ export default class TopMenu extends Component {
 const styles = StyleSheet.create({
 
     scroll: {flex: 1, backgroundColor: '#fff'},
-    bgContainer: {position: 'absolute', top: 50, width: width, height: height},
+    bgContainer: {position: 'absolute',top: 50, width: width - 34,},
     bg: {backgroundColor: 'rgba(0,0,0,0.8)'},
     content: {
         position: 'absolute',
