@@ -72,7 +72,7 @@ export default class Login extends Component {
                             vcode,
                             country_code: ext
                         }, ret => {
-                            showToast('登录成功')
+                            showToast(global.lang.t('login_success'))
                             this.props.navigation.popToTop()
                         }, err => {
 
