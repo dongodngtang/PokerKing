@@ -7,17 +7,21 @@ import {Images, Metrics, Colors} from "../../configs/Theme";
 import {isStrNull, logMsg, showToast} from "../../utils/utils";
 import {verify, postCode, register, login, verify_code} from "../../services/accountDao";
 import CountDownButton from '../../components/CountDownButton'
+import TopMenu from "../../components/dropdown/TopMenu";
+
 
 @connect(({Login}) => ({
     ...Login,
 }))
 export default class Login extends Component {
 
-    constructor(props){
+
+    constructor(props) {
         super(props)
         this.state = {
             ext: '86',
-            areaName:'中国（China）'
+            areaName: global.lang.t('mainland'),
+            data: {}
         };
         this.iphone = ''
         this.vcode = ''
@@ -29,47 +33,47 @@ export default class Login extends Component {
 
     _next = () => {
 
-        const { ext} = this.state;
+        const {ext} = this.state;
         let iphone = this.iphone
         let vcode = this.vcode
         if (iphone.length > 1 && vcode.length > 1 && !isStrNull(ext)) {
             //核查验证码是否正确
             verify_code({
-                account:iphone,
-                country_code:ext,
-                option_type:'login',
-                vcode_type:'mobile',
-                vcode:vcode
-            },res=>{
+                account: iphone,
+                country_code: ext,
+                option_type: 'login',
+                vcode_type: 'mobile',
+                vcode: vcode
+            }, res => {
                 // 查询该账户是否被注册过¶
                 verify({
-                    account:iphone,
-                    country_code:ext
-                },ret=>{
-                    if(ret && ret.exist && ret.exist === 1){
+                    account: iphone,
+                    country_code: ext
+                }, ret => {
+                    if (ret && ret.exist && ret.exist === 1) {
                         // 登录
                         login({
-                            type:'vcode',
-                            mobile:iphone,
+                            type: 'vcode',
+                            mobile: iphone,
                             vcode,
-                            country_code:ext
-                        },ret=>{
+                            country_code: ext
+                        }, ret => {
                             this.props.navigation.popToTop()
-                        },err=>{
+                        }, err => {
 
                         })
-                    }else{
+                    } else {
                         // 注册
                         router.toRegister({
-                            type:'mobile',
-                            mobile:iphone,
+                            type: 'mobile',
+                            mobile: iphone,
                             vcode,
-                            country_code:ext
+                            country_code: ext
                         })
 
                     }
 
-                },err=>{
+                }, err => {
 
                 })
             })
@@ -80,23 +84,34 @@ export default class Login extends Component {
 
 
     render() {
-        const { ext,areaName} = this.state;
+        const CONFIG = [
+            {
+                type: 'subtitle',
+                selectedIndex: 0,
+                data: [
+                    {title: global.lang.t('mainland'), subtitle: '86'},
+                    {title: global.lang.t('hong_kong'), subtitle: '852'},
+                    {title: global.lang.t('macao'), subtitle: '853'},
+                    {title: global.lang.t('taiwan'), subtitle: '886'}
+                ]
+            }
+        ];
+        const {ext, areaName} = this.state;
         return (
             <View style={styles.container}>
 
                 <Text style={styles.top_txt}>{global.lang.t('sign_vscode')}</Text>
 
-                <TouchableOpacity style={styles.areaView} onPress={() => {
-                    this.areaAction && this.areaAction.toggle();
-                }}>
-                    <Text
-                        style={{width: 180, marginLeft: 8, height: 28, fontSize: 16, color: '#666666'}}>
-                        {`${areaName} (+${this.state.ext})`}
-                    </Text>
-                    <View style={{flex: 1}}/>
-                    <Image style={{width: 6, height: 16, marginRight: 10}} source={Images.is_right}/>
-
-                </TouchableOpacity>
+                <View style={styles.areaView}>
+                    {/*<Text*/}
+                        {/*style={{width: 180, marginLeft: 8, height: 28, fontSize: 16, color: '#666666'}}>*/}
+                        {/*{`${areaName} (+${this.state.ext})`}*/}
+                    {/*</Text>*/}
+                    {/*<View style={{flex: 1}}/>*/}
+                    {/*<Image style={{width: 6, height: 16, marginRight: 10}} source={Images.is_right}/>*/}
+                    <TopMenu
+                        style={styles.top_container} config={CONFIG} onSelectMenu={this.onSelectMenu}/>
+                </View>
                 <KeyboardAvoidingView behavior='position' keyboardVerticalOffset={20}>
                     <View style={styles.textView}>
                         <TextInput
@@ -117,7 +132,7 @@ export default class Login extends Component {
                             clearTextOnFocus={true}
                             underlineColorAndroid={'transparent'}
                             onChangeText={txt => {
-                              this.iphone = txt
+                                this.iphone = txt
                             }}
 
                         />
@@ -143,7 +158,7 @@ export default class Login extends Component {
                             clearTextOnFocus={true}
                             underlineColorAndroid={'transparent'}
                             onChangeText={txt => {
-                               this.vcode = txt
+                                this.vcode = txt
                             }}
 
                         />
@@ -186,19 +201,30 @@ export default class Login extends Component {
                 }}>
                     <Text style={{color: '#FFE9AD', fontSize: 18}}>{global.lang.t('login_continue')}</Text>
                 </TouchableOpacity>
-
-                <ExtArea
-                    ref={ref => this.areaAction = ref}
-                    changed_ext={this.changed_ext}/>
             </View>
         )
-    }
+    };
+
+    onSelectMenu = (index, subindex, data) => {
+        this.setState({
+            ext: data.subtitle,
+            areaName: data.title
+        });
+    };
+
+    // renderContent=()=>{
+    //     return (
+    //         <TouchableOpacity >
+    //             <Text style={styles.text}>index:{this.state.index} subindex:{this.state.subindex} title:{this.state.data.title}</Text>
+    //         </TouchableOpacity>
+    //     );
+    // };
 
 
-    changed_ext = (code,name) => {
+    changed_ext = (code, name) => {
         this.setState({
             ext: code,
-            areaName:name
+            areaName: name
         })
     }
 }
