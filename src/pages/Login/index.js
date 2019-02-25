@@ -110,8 +110,7 @@ export default class Login extends Component {
                     {/*</Text>*/}
                     {/*<View style={{flex: 1}}/>*/}
                     {/*<Image style={{width: 6, height: 16, marginRight: 10}} source={Images.is_right}/>*/}
-                    <TopMenu
-                        style={styles.top_container} config={CONFIG} onSelectMenu={this.onSelectMenu}/>
+
                 </View>
                 <KeyboardAvoidingView behavior='position' keyboardVerticalOffset={20}>
                     <View style={styles.textView}>
@@ -202,6 +201,8 @@ export default class Login extends Component {
                 }}>
                     <Text style={{color: '#FFE9AD', fontSize: 18}}>{global.lang.t('login_continue')}</Text>
                 </TouchableOpacity>
+
+                <TopMenu config={CONFIG} onSelectMenu={this.onSelectMenu}/>
             </View>
         )
     };

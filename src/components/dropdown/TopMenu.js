@@ -10,7 +10,7 @@ import {
     TouchableWithoutFeedback,
     TouchableHighlight,
     ART,
-    View,Image
+    View, Image
 } from 'react-native';
 import {Images, Metrics} from "../../configs/Theme";
 import {logMsg} from "../../utils/utils";
@@ -65,9 +65,9 @@ const TopMenuItem = (props) => {
         <TouchableWithoutFeedback onPress={onPress}>
             <View style={styles.item}>
                 <Text
-                    style={props.selected ? styles.menuTextHigh : styles.menuText}>{`${props.label.title}+(${props.label.ext})`}</Text>
+                    style={props.selected ? styles.menuTextHigh : styles.menuText}>{`${props.label.title}（+${props.label.ext}）`}</Text>
                 <View style={{flex: 1}}/>
-                <Image style={{width: 6, height: 16, marginRight: 10}} source={Images.is_right}/>
+                <Image style={{width: 6, height: 16}} source={Images.is_right}/>
             </View>
         </TouchableWithoutFeedback>
     );
@@ -264,7 +264,17 @@ export default class TopMenu extends Component {
         }
         console.log(list);
         return (
-            <View style={{flex: 1,height:50}}>
+            <View style={{
+                width: Metrics.screenWidth - 34,
+                backgroundColor: "white",
+                marginTop: 125,
+                position: 'absolute',
+                zIndex: 999,
+                flex: 1,
+                height: 50,
+                borderBottomWidth:1,
+                borderBottomColor:"#ECECEE"
+            }}>
                 <View style={styles.topMenu}>
                     {this.state.top.map((t, index) => {
                         return <TopMenuItem
@@ -289,7 +299,7 @@ export default class TopMenu extends Component {
 const styles = StyleSheet.create({
 
     scroll: {flex: 1, backgroundColor: '#fff'},
-    bgContainer: {position: 'absolute',top: 50, width: width - 34,},
+    bgContainer: {position: 'absolute', top: 50, width: width - 34,},
     bg: {backgroundColor: 'rgba(0,0,0,0.8)'},
     content: {
         position: 'absolute',
@@ -320,7 +330,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between'
     },
-    tableItemText: {fontWeight: '300', fontSize: 14,color: '#666666'},
+    tableItemText: {fontWeight: '300', fontSize: 14, color: '#666666'},
     row: {
         flexDirection: 'row'
     },
@@ -331,13 +341,13 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     menuTextHigh: {
-        marginLeft:10,
+        marginLeft: 10,
         marginRight: 3,
         fontSize: 16,
         color: '#666666'
     },
     menuText: {
-        marginLeft:10,
+        marginLeft: 10,
         marginRight: 3,
         fontSize: 16,
         color: '#666666'
