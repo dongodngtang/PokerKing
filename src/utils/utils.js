@@ -179,7 +179,7 @@ export function getAvatar(img) {
 }
 
 export function shareTo(params) {
-    dva.getDispatch()({type: 'Home/showModal', params: {showModal: true, type: 'ShareModal'}})
+    dva.getDispatch()({type: 'Home/showShare', params:params})
 }
 
 export function getRemainTime(endTime){
