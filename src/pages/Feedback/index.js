@@ -66,6 +66,8 @@ export default class Feedback extends Component {
                     uri: img,
                     name: fileName(img)
                 }
+                if(Platform.OS === 'android')
+                    item.type = 'image/jpeg'
                 formData.append('images[]', item)
             })
 

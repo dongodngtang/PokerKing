@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, TextInput, TouchableOpacity, Image} from 'react-native';
+import {View, Text, TextInput, TouchableOpacity, Image, Platform} from 'react-native';
 import {connect} from 'react-redux';
 import styles from './index.style';
 import ImagePicker from 'react-native-image-crop-picker';
@@ -91,6 +91,8 @@ export default class ModifyData extends Component {
             uri: image.path,
             name: this._fileName(image.path)
         };
+        if(Platform.OS === 'android')
+            file.type = 'image/jpeg'
         formData.append("avatar", file);
         uploadAvatar(formData, ret => {
             this.setState({
