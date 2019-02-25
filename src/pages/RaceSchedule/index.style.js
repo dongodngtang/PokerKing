@@ -95,7 +95,7 @@ export default StyleSheet.create({
     },
     week_txt:{
         color:"#FFFFFF",
-        fontSize:12
+        fontSize:11
     },
     structure_view:{
         height:40,

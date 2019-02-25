@@ -10,7 +10,7 @@ import {Actions} from 'react-native-router-flux';
 import styles from './index.style';
 import {Images} from "../../configs/Theme";
 import {connect} from 'react-redux';
-import {isEmptyObject, isStrNull, getAvatar} from "../../utils/utils";
+import {isEmptyObject, isStrNull, getAvatar, alertOrder} from "../../utils/utils";
 import {storageLoginUser} from "../../services/accountDao";
 
 @connect(({Home}) => ({
@@ -24,8 +24,8 @@ export default class Drawer extends Component {
         let nick_name = isEmptyObject(profile) ? global.lang.t('login') : profile.nickname;
         return (
             <SafeAreaView style={{flex: 1, backgroundColor: "#212223"}}>
-                <TouchableOpacity style={styles.safe_area_view} activeOpacity={1} onPress={()=>{
-                    if(isEmptyObject(profile)){
+                <TouchableOpacity style={styles.safe_area_view} activeOpacity={1} onPress={() => {
+                    if (isEmptyObject(profile)) {
                         router.toLogin();
                     }
                 }}>
@@ -34,28 +34,37 @@ export default class Drawer extends Component {
                 </TouchableOpacity>
                 <View style={{height: 58}}/>
                 {this._item(styles.select_btn, Images.xiugaiziliao, styles.change_img, global.lang.t('modifyData'), () => {
-                    if(isEmptyObject(profile)){
+                    if (isEmptyObject(profile)) {
                         router.toLogin();
-                    }else{
+                    } else {
                         router.toModifyData()
                     }
                 })}
                 {this._item(styles.select_btn, Images.wenti, styles.change_img, global.lang.t('common_problem'), () => {
-                    router.toSwitchApi()
+                    router.toFAQ();
                 })}
                 {this._item(styles.select_btn, Images.yijian, styles.change_img, global.lang.t('feedback'), () => {
-                    if(isEmptyObject(profile)){
+                    if (isEmptyObject(profile)) {
                         router.toLogin();
-                    }else{
+                    } else {
                         router.toFeedback();
                     }
                 })}
                 {this._item(styles.select_btn, Images.feiji, styles.change_img, global.lang.t('recommend'), () => {
+                    router.toSwitchApi()
+                })}
 
-                })}
-                {this._item(styles.select_btn, Images.feiji, styles.change_img,'退出登录', () => {
-                    storageLoginUser({})
-                })}
+                {isEmptyObject(profile)?null: <TouchableOpacity
+                    activeOpacity={1}
+                    style={{alignSelf:'center',position:'absolute',bottom:100}} onPress={() => {
+                    alertOrder(global.lang.t('is_drop_out'), () => {
+                        storageLoginUser({})
+                    });
+                }}>
+                    <Text style={styles.safe_area_txt}>{global.lang.t('drop_out')}</Text>
+                </TouchableOpacity>}
+
+
             </SafeAreaView>
         )
     }

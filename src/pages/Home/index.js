@@ -11,10 +11,13 @@ import HotItem from "./HotItem";
 import {Actions} from "react-native-router-flux";
 import {getHomeBanners, getInfoList,initLoginUser} from '../../services/accountDao'
 import CustomModal from "../../components/CustomModal";
+import codePush from "react-native-code-push";
+import ShareToast from "../comm/ShareToast";
 
 @connect(({Home}) => ({
     ...Home
 }))
+@codePush
 export default class Home extends Component {
 
     constructor(props) {
@@ -51,6 +54,11 @@ export default class Home extends Component {
                 router.toLogin()
             }
         }, 1000);
+        codePush.disallowRestart()
+        codePush.sync({
+            updateDialog: false,
+            installMode: codePush.InstallMode.ON_NEXT_RESUME
+        })
     };
 
     onPickerSelect = (index) => {
@@ -93,7 +101,8 @@ export default class Home extends Component {
     }
 
     render() {
-        const {customModal} = this.props
+        const {shareParam} = this.props
+        logMsg(this.props)
         return (
             <ScrollView
                 style={styles.home_view}
@@ -153,7 +162,15 @@ export default class Home extends Component {
                     selectedItem={this.state.selectedItem}
                     itemList={this.state.itemList}/>
 
-                {customModal?<CustomModal {...customModal}/>:null}
+                {!isEmptyObject(shareParam) ? <ShareToast hiddenShareAction={() => {
+                    this.props.dispatch({type:'Home/closeShare'})
+                }}
+
+                                                           shareTitle={shareParam.shareTitle}
+                                                           shareText={shareParam.shareText}
+                                                           shareLink={shareParam.shareLink}
+                                                           shareImage={shareParam.shareImage}
+                                                           shareType={shareParam.shareType}/> : null}
             </ScrollView>
         )
     }

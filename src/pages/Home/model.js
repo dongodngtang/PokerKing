@@ -1,4 +1,5 @@
 import * as HomeApi from './service';
+import {logMsg} from "../../utils/utils";
 
 export default {
   namespace: 'Home',
@@ -23,10 +24,17 @@ export default {
               }})
 
       },
-      * showModal(_,{call,put}){
+      * showShare(_,{call,put}){
+          logMsg(_)
           yield put({type:'save',payload:{
-                  customModal:_.params
+                  shareParam:_.params
               }})
+
+      },
+      * closeShare(_,{call,put}){
+          yield put({type:'save',payload:{
+              shareParam:null
+          }})
 
       }
   },

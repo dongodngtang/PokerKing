@@ -55,9 +55,9 @@ export default class Feedback extends Component {
             }
         });
         if (isStrNull(this.mailbox)) {
-            showToast("请填写邮箱")
+            showToast(global.lang.t('input_email'))
         } else if (isStrNull(this.report_problem)) {
-            showToast("请填写报告问题")
+            showToast(global.lang.t('input_question'))
         } else {
             let formData = new FormData();
 
@@ -147,7 +147,13 @@ export default class Feedback extends Component {
                     <TouchableOpacity
                         activeOpacity={1}
                         onPress={() => {
-                            if (images && images.length < 1) {
+                            let count = 0
+                            images.forEach(item=>{
+                                if(strNotNull(item)){
+                                    count++
+                                }
+                            })
+                            if (count < 3) {
                                 ImagePicker.openPicker(picker).then(image => {
                                     images.push(image.path)
                                     this.setState({
@@ -157,8 +163,8 @@ export default class Feedback extends Component {
                                 }).catch(e => {
                                     // Alert.alert(e.message ? e.message : e);
                                 });
-                            } else if (images && images.length >= 3) {
-                                showToast(global.lang.t(''))
+                            } else {
+                                showToast(global.lang.t('upload_up'))
                             }
 
                         }}
@@ -174,6 +180,7 @@ export default class Feedback extends Component {
                                                   style={{position: 'absolute', right: -5, top: -5, zIndex: 999}}
                                                   onPress={() => {
                                                       delete images[index];
+
                                                       this.setState({
                                                           images
                                                       })
@@ -185,21 +192,7 @@ export default class Feedback extends Component {
 
                             </View>
                         })}
-                        {images.length > 0 && images.length < 3 ?
-                            <TouchableOpacity style={{height: 72, width: 72}} onPress={() => {
-                                ImagePicker.openPicker(picker).then(image => {
-                                    images.push(image.path)
-                                    this.setState({
-                                        images
-                                    })
 
-                                }).catch(e => {
-                                    // Alert.alert(e.message ? e.message : e);
-                                });
-
-                            }}>
-                                <Image style={{height: 72, width: 72}} source={Images.add_image}/>
-                            </TouchableOpacity> : null}
 
                     </View>
                 </View>

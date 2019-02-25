@@ -94,8 +94,11 @@ export const Images = {
     jiegou: require('../asserts/jiegou.png'),
     right_gray: require('../asserts/right_gray.png'),
     default_bg: require('../asserts/default_bg.png'),
-    delete_img:require('../asserts/delete.png'),
-    add_image:require('../asserts/add_image.png')
+    delete_img: require('../asserts/delete.png'),
+    add_image: require('../asserts/add_image.png'),
+    question_bottom: require('../asserts/question_bottom.png'),
+    icon_share_wechat:require('../asserts/share/icon_share_wechat.png'),
+    icon_share_wxcircle:require('../asserts/share/icon_share_wxcircle.png')
 
 
 }
@@ -145,7 +148,7 @@ export const Styles = {
         backgroundColor: '#ECECEC'
     },
     navTop: {
-        height: Metrics.navBarHeight,
+        height: isIphoneX ? Metrics.navBarHeight + 10 : Metrics.navBarHeight,
         width: Metrics.screenWidth,
         backgroundColor: '#13151C',
         flexDirection: 'row',

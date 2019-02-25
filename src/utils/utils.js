@@ -179,7 +179,7 @@ export function getAvatar(img) {
 }
 
 export function shareTo(params) {
-    dva.getDispatch()({type: 'Home/showModal', params: {showModal: true, type: 'ShareModal'}})
+    dva.getDispatch()({type: 'Home/showShare', params:params})
 }
 
 export function getRemainTime(endTime){
@@ -195,4 +195,16 @@ export function getRemainTime(endTime){
         'minutes': minutes,
         'seconds': seconds
     }
+}
+
+export function alertOrder(str, callback) {
+    Alert.alert(str, '', [{
+        text: `${global.lang.t('cancel')}`, onPress: () => {
+
+        }
+    }, {
+        text: `${global.lang.t('determine')}`, onPress: () => {
+            callback()
+        }
+    }])
 }

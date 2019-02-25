@@ -125,7 +125,7 @@ export default class Races extends Component {
                     />
                 </View> : null}
 
-                {this._item(styles.item_view, Images.rili_gray, styles.img_dy,
+                {this._item(styles.item_view, Images.rili_gray, styles.img_dy1,
                     `${isStrNull(recent_event.name) ? '' : recent_event.name}${global.lang.t('race_schedule')}`, () => {
                         router.toRaceSchedule(recent_event);
                     })}
@@ -133,7 +133,7 @@ export default class Races extends Component {
                     global.lang.t('race_message'), () => {
                         router.toRaceMessage(recent_event.description)
                     })}
-                {this._item(styles.item_view, Images.ziyuan, styles.img_dy,
+                {this._item(styles.item_view, Images.ziyuan, styles.img_dy2,
                     global.lang.t('race_news'), () => {
                         router.toRaceNew(recent_event.id);
                     })}
@@ -196,7 +196,10 @@ class Card extends Component {
     render() {
         const {description} = this.props.recent_event;
         const {begin_time, end_time, id, logo, name} = this.props.item;
-        let race_start_time = unix_format(begin_time, `YYYY/MM/DD`);
+        let month = unix_format(begin_time, `MM`);
+
+        let race_start_time = global.localLanguage === 'en' ? `${global.lang.t(`month${month}`)}`+unix_format(begin_time,` MM,YYYY`) :
+            unix_format(begin_time, `YYYY${global.lang.t('year')}MM${global.lang.t('month')}DD${global.lang.t('day2')}`);
 
         return (
             <TouchableOpacity activeOpacity={1} style={styles.slide_view} onPress={() => {
