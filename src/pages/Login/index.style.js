@@ -50,11 +50,6 @@ export default StyleSheet.create({
     down_txt: {
         fontSize: 14,
         color: '#4A90E2'
-    },
-    top_container: {
-        width:Metrics.screenWidth - 34,
-        backgroundColor: '#FFFFFF',
-        zIndex:999
-    },
+    }
 })
 

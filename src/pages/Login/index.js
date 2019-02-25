@@ -101,7 +101,7 @@ export default class Login extends Component {
             <View style={styles.container}>
 
                 <Text style={styles.top_txt}>{global.lang.t('sign_vscode')}</Text>
-                <TopMenu config={CONFIG} onSelectMenu={this.onSelectMenu}/>
+
                 <View style={styles.areaView}>
                     {/*<Text*/}
                         {/*style={{width: 180, marginLeft: 8, height: 28, fontSize: 16, color: '#666666'}}>*/}
@@ -200,6 +200,8 @@ export default class Login extends Component {
                 }}>
                     <Text style={{color: '#FFE9AD', fontSize: 18}}>{global.lang.t('login_continue')}</Text>
                 </TouchableOpacity>
+
+                <TopMenu config={CONFIG} onSelectMenu={this.onSelectMenu}/>
             </View>
         )
     };
