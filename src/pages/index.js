@@ -67,6 +67,7 @@ export const scenes = () => {
                component={Login}
                {...TopNav({
                    left_definition: true,
+                   rightTitle: global.lang.t('home_language'),
                    left_img: Images.close,
                    img_size: {height: 16, width: 16},
                    title: 'Pokerkinglive'
