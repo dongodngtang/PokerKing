@@ -99,7 +99,7 @@ export default class RaceSchedule extends Component {
                         dateTitle={global.lang.t('last_refresh')}
                         allLoadedText={global.lang.t('no_more')}
                         waitingSpinnerText={global.lang.t('loading')}
-                        emptyView={() => <View/>}
+                        emptyView={() => <NotData/>}
                     />
                 </View>
 

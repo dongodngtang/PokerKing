@@ -13,6 +13,7 @@ import {getHomeBanners, getInfoList,initLoginUser} from '../../services/accountD
 import CustomModal from "../../components/CustomModal";
 import codePush from "react-native-code-push";
 import ShareToast from "../comm/ShareToast";
+import NotData from "../comm/NotData";
 
 @connect(({Home}) => ({
     ...Home
@@ -153,7 +154,7 @@ export default class Home extends Component {
                     dateTitle={global.lang.t('last_refresh')}
                     allLoadedText={global.lang.t('no_more')}
                     waitingSpinnerText={global.lang.t('loading')}
-                    emptyView={() => <View/>}
+                    emptyView={() => <NotData/>}
                 />
 
                 <SelectPiker

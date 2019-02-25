@@ -7,6 +7,7 @@ import {Metrics} from "../../configs/Theme";
 import HotItem from '../Home/HotItem';
 import {getMainEventList} from '../../services/raceDao'
 import {logMsg} from "../../utils/utils";
+import NotData from "../comm/NotData";
 
 @connect(({RaceNew}) => ({
     ...RaceNew,
@@ -39,7 +40,7 @@ export default class RaceNew extends Component {
                     dateTitle={global.lang.t('last_refresh')}
                     allLoadedText={global.lang.t('no_more')}
                     waitingSpinnerText={global.lang.t('loading')}
-                    emptyView={() => <View/>}
+                    emptyView={() => <NotData/>}
                 />
             </View>
         )

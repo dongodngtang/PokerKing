@@ -6,6 +6,7 @@ import {Metrics} from "../../configs/Theme";
 import HotItem from '../Home/HotItem';
 import { logMsg} from "../../utils/utils";
 import {getInfoList,initLoginUser} from "../../services/accountDao";
+import NotData from "../comm/NotData";
 
 @connect(({HotNewsList}) => ({
   ...HotNewsList,
@@ -45,7 +46,7 @@ export default class HotNewsList extends Component {
               dateTitle={global.lang.t('last_refresh')}
               allLoadedText={global.lang.t('no_more')}
               waitingSpinnerText={global.lang.t('loading')}
-              emptyView={() => <View/>}
+              emptyView={() => <NotData/>}
           />
       </View>
     )
