@@ -6,13 +6,14 @@ import {
     View,
     Image,
     TouchableOpacity,
-    Dimensions
+    Dimensions,
+    Clipboard
 } from 'react-native';
 import JShareModule from "jshare-react-native";
 
 const DEVICE_WIDTH = Dimensions.get('window').width;
 import {
-    strNotNull, showToast
+    strNotNull, showToast, logMsg
 } from '../../utils/utils';
 import fs from 'react-native-fs';
 import ImageResizer from 'react-native-image-resizer';
@@ -54,9 +55,8 @@ export default class ShareItem extends Component {
         }else if (platform === "Twitter") {
 
 
-        }else if (platform === "copy") {
-
-
+        }else if (platform === "copy_link") {
+            Clipboard.setString(this.props.shareLink)
         }
 
 

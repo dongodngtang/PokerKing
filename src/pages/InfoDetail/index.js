@@ -7,6 +7,7 @@ import {isEmptyObject, logMsg, shareTo} from "../../utils/utils";
 import RenderHtml from '../comm/RenderHtml';
 import {Metrics} from "../../configs/Theme";
 import NotData from '../comm/NotData'
+import {getBaseUrl} from "../../configs/fetch";
 
 @connect(({InfoDetail}) => ({
     ...InfoDetail,
@@ -22,12 +23,12 @@ export default class InfoDetail extends Component {
         props.navigation.setParams({
             onRight: () => {
                 let param = {
+                    shareLink: `${getBaseUrl()}/infos/${this.props.params.id} `,
                     shareTitle: '【澳门旅行APP】下载后免费抽奖，最高可获得iPhone XS！',
                     shareText: '在这里，可以随时随地找美食、定酒店！更有幸运大转盘——百万大奖等你拿！',
-                    shareImage: 'http://kkh5.deshpro.com/images/default_img.png',
-                    shareLink: "https://kkh5.deshpro.com/loadApp"
+                    shareImage: 'http://kkh5.deshpro.com/images/default_img.png'
                 };
-              shareTo(param)
+                shareTo(param)
                 logMsg('分享')
 
             }
@@ -49,7 +50,7 @@ export default class InfoDetail extends Component {
 
     render() {
         const {info_detail} = this.state;
-        if(isEmptyObject(info_detail)){
+        if (isEmptyObject(info_detail)) {
             return <NotData backgroundColor={'#FFFFFF'}/>
         }
         return (
@@ -59,7 +60,7 @@ export default class InfoDetail extends Component {
                     marginLeft: 18,
                     marginRight: 18,
                     paddingBottom: 80,
-                    width:Metrics.screenWidth - 36
+                    width: Metrics.screenWidth - 36
                 }}>
                     <RenderHtml
                         html={info_detail.description}/>

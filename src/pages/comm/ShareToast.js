@@ -58,7 +58,7 @@ export default class ShareToast extends Component {
                 name: 'Twitter',
             },
             {
-                platform: "copy",
+                platform: "copy_link",
                 icon: Images.fuzhi,
                 name: global.lang.t('fuzhi'),
             }
