@@ -86,6 +86,7 @@ export default class ShareToast extends Component {
                               style={[{backgroundColor: "#eaeff3"}, {width: DEVICE_WIDTH - 40}]}
                               numColumns={4}
                               bounces={false}
+                              ItemSeparatorComponent={this._separator}
                               keyExtractor={(item, index) => index}
                               renderItem={(item) => {
                                   return (
@@ -115,6 +116,9 @@ export default class ShareToast extends Component {
             </Modal>
         )
     }
+    _separator=()=>{
+        return <View style={{height:15}}/>
+    }
 }
 const styles = StyleSheet.create({
     container: {
@@ -125,7 +129,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     hideView: {
-        height: DEVICE_HEIGHT - (DEVICE_WIDTH) / 4 - 180,
+        height: DEVICE_HEIGHT - (DEVICE_WIDTH) / 4 - 220,
         width: DEVICE_WIDTH,
         backgroundColor: "rgba(58,58,58,0.5)"
     },
@@ -133,7 +137,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         width: DEVICE_WIDTH,
-        height: 80,
+        height: 60,
         backgroundColor: "#eaeff3",
     },
     closeView: {
