@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>Pokerkinglive</string>
+	<string>扑克王</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -113,8 +113,6 @@
 	<string>需要您的同意访问相册，用以设置头像、分享图片等功能</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>需要您的同意访问语音，用以语音聊天等功能</string>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
