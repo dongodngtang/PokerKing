@@ -140,5 +140,10 @@
   "beauti_text13":"服务费",
   "beauti_text14":"港币25/50 – 5% 封顶 250",
   "beauti_text15":"港币50/100 或以上– 5% 封顶500",
-  "login_success":"登录成功"
+  "login_success":"登录成功",
+  "weixin":"微信",
+  "friend_circle":"朋友圈",
+  "fuzhi":"复制链接",
+  "choice_platform":"选择要分享到的平台",
+  "unInstall_wechat":"未安装微信客户端"
 }

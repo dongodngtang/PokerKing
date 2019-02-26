@@ -44,19 +44,17 @@ export default class ShareItem extends Component {
             JShareModule.isWeChatInstalled((isInstalled) => {
                 if (isInstalled !== true) {
                     isAllowShare = false;
-                    showToast("未安装微信客户端");
+                    showToast(global.lang.t('unInstall_wechat'));
                 }
             });
         }
-        else if (platform === "qq") {
-            JShareModule.isQQInstalled((isInstalled) => {
-                if (isInstalled !== true) {
-                    isAllowShare = false;
-                    showToast("未安装QQ客户端");
-                }
-            });
-        }
-        else if (platform === "favorites") {
+        else if (platform === "facebook") {
+
+
+        }else if (platform === "Twitter") {
+
+
+        }else if (platform === "copy") {
 
 
         }

@@ -17,31 +17,6 @@ const DEVICE_HEIGHT = Dimensions.get('window').height;
 const DEVICE_WIDTH = Dimensions.get('window').width;
 
 
-///分享平台列表
-let shareList = [
-    {
-        platform: "wechat_session",
-        icon: Images.icon_share_wechat,
-        name: "微信",
-    },
-    {
-        platform: "wechat_timeLine",
-        icon: Images.icon_share_wxcircle,
-        name: "朋友圈",
-    },
-    // {
-    //     platform: "qq",
-    //     icon: Images.icon_share_qq,
-    //     name: "QQ",
-    // },
-    // {
-    //     platform: "sina_weibo",
-    //     icon: Images.icon_share_sina,
-    //     name: "微博",
-    // },
-];
-
-
 export default class ShareToast extends Component {
     static props = {
         hiddenShareAction: null,//关闭弹窗回调
@@ -60,7 +35,34 @@ export default class ShareToast extends Component {
     };
 
     render() {
-
+///分享平台列表
+        let shareList = [
+            {
+                platform: "wechat_session",
+                icon: Images.icon_share_wechat,
+                name: global.lang.t('weixin'),
+            },
+            {
+                platform: "wechat_timeLine",
+                icon: Images.icon_share_wxcircle,
+                name: global.lang.t('friend_circle'),
+            },
+            {
+                platform: "facebook",
+                icon: Images.facebook,
+                name: 'Facebook',
+            },
+            {
+                platform: "Twitter",
+                icon: Images.twitter,
+                name: 'Twitter',
+            },
+            {
+                platform: "copy",
+                icon: Images.fuzhi,
+                name: global.lang.t('fuzhi'),
+            }
+        ];
 
         return (
             <Modal
@@ -75,7 +77,7 @@ export default class ShareToast extends Component {
 
                 {/*标题*/}
                 <View style={styles.titleView}>
-                    <Text style={{fontSize: 16}}>选择要分享到的平台</Text>
+                    <Text style={{fontSize: 16}}>{global.lang.t('choice_platform')}</Text>
                 </View>
 
                 {/*分享平台*/}
@@ -131,7 +133,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         width: DEVICE_WIDTH,
-        height: 90,
+        height: 80,
         backgroundColor: "#eaeff3",
     },
     closeView: {
