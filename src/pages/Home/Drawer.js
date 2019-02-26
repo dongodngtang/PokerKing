@@ -54,8 +54,15 @@ export default class Drawer extends Component {
                 {this._item(styles.select_btn, Images.feiji, styles.change_img, global.lang.t('recommend'), () => {
                     Clipboard.setString(`${getBaseUrl()}/loadApp`);
                     showToast(global.lang.t("copy_download"))
-                    // router.toSwitchApi()
                 })}
+
+                <TouchableOpacity
+                    activeOpacity={1}
+                    style={{alignSelf:'center'}} onPress={() => {
+                    router.toSwitchApi()
+                }}>
+                    <Text style={styles.safe_area_txt}>切换环境</Text>
+                </TouchableOpacity>
 
                 {isEmptyObject(profile)?null: <TouchableOpacity
                     activeOpacity={1}
