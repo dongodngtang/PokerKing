@@ -23,7 +23,7 @@ export default class InfoDetail extends Component {
         props.navigation.setParams({
             onRight: () => {
                 let param = {
-                    shareLink: `${getBaseUrl()}/infos/${this.props.params.id} `,
+                    shareLink: `${getBaseUrl()}/infos/${this.props.params.id}`,
                     shareTitle: '【澳门旅行APP】下载后免费抽奖，最高可获得iPhone XS！',
                     shareText: '在这里，可以随时随地找美食、定酒店！更有幸运大转盘——百万大奖等你拿！',
                     shareImage: 'http://kkh5.deshpro.com/images/default_img.png'

@@ -146,5 +146,6 @@
   "fuzhi":"复制链接",
   "choice_platform":"选择要分享到的平台",
   "unInstall_wechat":"未安装微信客户端",
-  "copy_success":"复制成功"
+  "copy_success":"复制成功",
+  "copy_download":"复制下载链接成功"
 }

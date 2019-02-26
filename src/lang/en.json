@@ -158,5 +158,6 @@
   "fuzhi":"Copy Link",
   "choice_platform":"Choose which platform to share",
   "unInstall_wechat":"WeChat client is not installed",
-  "copy_success":"Successful copy"
+  "copy_success":"Successful copy",
+  "copy_download":"Copy download link successfully"
 }

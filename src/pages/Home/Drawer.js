@@ -5,13 +5,14 @@
  */
 
 import React, {Component} from 'react'
-import {Button, Text, SafeAreaView, View, Image, TouchableOpacity} from 'react-native'
+import {Button, Text, SafeAreaView, View, Image, TouchableOpacity, Clipboard} from 'react-native'
 import {Actions} from 'react-native-router-flux';
 import styles from './index.style';
 import {Images, Metrics} from "../../configs/Theme";
 import {connect} from 'react-redux';
-import {isEmptyObject, isStrNull, getAvatar, alertOrder, logMsg, mul} from "../../utils/utils";
+import {isEmptyObject, isStrNull, getAvatar, alertOrder, logMsg, mul, showToast} from "../../utils/utils";
 import {storageLoginUser} from "../../services/accountDao";
+import {getBaseUrl} from "../../configs/fetch";
 
 @connect(({Home}) => ({
     ...Home
@@ -51,7 +52,9 @@ export default class Drawer extends Component {
                     }
                 })}
                 {this._item(styles.select_btn, Images.feiji, styles.change_img, global.lang.t('recommend'), () => {
-                    router.toSwitchApi()
+                    Clipboard.setString(`${getBaseUrl()}/loadApp`);
+                    showToast(global.lang.t("copy_download"))
+                    // router.toSwitchApi()
                 })}
 
                 {isEmptyObject(profile)?null: <TouchableOpacity
