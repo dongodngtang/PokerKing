@@ -52,7 +52,6 @@ export default class ExtArea extends Component {
     }
 
     render() {
-        logMsg("djskdjskdjs",top)
         return (
             <Modal
                 animationType={"none"}
