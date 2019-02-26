@@ -60,6 +60,12 @@ export default class SelectPiker extends Component {
                         alignItems: 'center'
                     }}>
                         <TouchableOpacity onPress={() => {
+                            this.toggle();
+                        }}>
+                            <Text style={{color: "#444444", fontSize: 18}}>{global.lang.t('cancel')}</Text>
+                        </TouchableOpacity>
+                        <View style={{flex: 1}}/>
+                        <TouchableOpacity onPress={() => {
                             const {index} = this.state;
                             if (index === 0) {
                                 global.lang.switchLang('en')
@@ -74,12 +80,7 @@ export default class SelectPiker extends Component {
                         }}>
                             <Text style={{color: "#444444", fontSize: 18}}>{global.lang.t('determine')}</Text>
                         </TouchableOpacity>
-                        <View style={{flex: 1}}/>
-                        <TouchableOpacity onPress={() => {
-                            this.toggle();
-                        }}>
-                            <Text style={{color: "#444444", fontSize: 18}}>{global.lang.t('cancel')}</Text>
-                        </TouchableOpacity>
+
                     </View>
                     <Picker style={{width: Metrics.screenWidth,height: 180}}
                             selectedValue={this.props.selectedItem}
