@@ -7,7 +7,6 @@ import {Images, Metrics, Colors} from "../../configs/Theme";
 import {isStrNull, logMsg, showToast} from "../../utils/utils";
 import {verify, postCode, register, login, verify_code} from "../../services/accountDao";
 import CountDownButton from '../../components/CountDownButton'
-import TopMenu from "../../components/dropdown/TopMenu";
 import SelectPiker from "../comm/SelectPiker";
 
 
@@ -23,8 +22,7 @@ export default class Login extends Component {
             selectedItem: 1,
             itemList: ['English', '简体中文', '繁体中文'],
             ext: '86',
-            areaName: global.lang.t('mainland'),
-            data: {}
+            areaName: global.lang.t('mainland')
         };
         this.iphone = ''
         this.vcode = ''
@@ -99,33 +97,23 @@ export default class Login extends Component {
 
 
     render() {
-        const CONFIG = [
-            {
-                type: 'subtitle',
-                selectedIndex: 0,
-                data: [
-                    {title: global.lang.t('mainland'), subtitle: '86'},
-                    {title: global.lang.t('hong_kong'), subtitle: '852'},
-                    {title: global.lang.t('macao'), subtitle: '853'},
-                    {title: global.lang.t('taiwan'), subtitle: '886'}
-                ]
-            }
-        ];
         const {ext, areaName} = this.state;
         return (
             <View style={styles.container}>
 
                 <Text style={styles.top_txt}>{global.lang.t('sign_vscode')}</Text>
 
-                <View style={styles.areaView}>
-                    {/*<Text*/}
-                        {/*style={{width: 180, marginLeft: 8, height: 28, fontSize: 16, color: '#666666'}}>*/}
-                        {/*{`${areaName} (+${this.state.ext})`}*/}
-                    {/*</Text>*/}
-                    {/*<View style={{flex: 1}}/>*/}
-                    {/*<Image style={{width: 6, height: 16, marginRight: 10}} source={Images.is_right}/>*/}
+                <TouchableOpacity style={styles.areaView} onPress={() => {
+                    this.areaAction && this.areaAction.toggle();
+                }}>
+                    <Text
+                        style={{width: 180, marginLeft: 8, height: 28, fontSize: 16, color: '#666666'}}>
+                        {`${areaName} (+${this.state.ext})`}
+                    </Text>
+                    <View style={{flex: 1}}/>
+                    <Image style={{width: 6, height: 16, marginRight: 10}} source={Images.is_right}/>
 
-                </View>
+                </TouchableOpacity>
                 <KeyboardAvoidingView behavior='position' keyboardVerticalOffset={20}>
                     <View style={styles.textView}>
                         <TextInput
@@ -216,7 +204,9 @@ export default class Login extends Component {
                     <Text style={{color: '#FFE9AD', fontSize: 18}}>{global.lang.t('login_continue')}</Text>
                 </TouchableOpacity>
 
-                <TopMenu config={CONFIG} onSelectMenu={this.onSelectMenu}/>
+                <ExtArea
+                    ref={ref => this.areaAction = ref}
+                    changed_ext={this.changed_ext}/>
 
                 <SelectPiker
                     ref={ref => this.selectPiker = ref}
@@ -233,15 +223,6 @@ export default class Login extends Component {
             areaName: data.title
         });
     };
-
-    // renderContent=()=>{
-    //     return (
-    //         <TouchableOpacity >
-    //             <Text style={styles.text}>index:{this.state.index} subindex:{this.state.subindex} title:{this.state.data.title}</Text>
-    //         </TouchableOpacity>
-    //     );
-    // };
-
 
     changed_ext = (code, name) => {
         this.setState({

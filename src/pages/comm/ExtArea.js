@@ -4,6 +4,8 @@ import {
     StyleSheet, Image, Text, KeyboardAvoidingView, FlatList, Modal
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
+import {Metrics} from "../../configs/Theme";
+import {logMsg, mul} from "../../utils/utils";
 
 const codes = [{id: 0, name: 'mainland', code: '86'}, {
     id: 1,
@@ -14,6 +16,8 @@ const codes = [{id: 0, name: 'mainland', code: '86'}, {
     name: 'taiwan',
     code: '886'
 }];
+const height = Metrics.screenHeight;
+const top = Number(mul(height, 0.2315));
 
 export default class ExtArea extends Component {
 
@@ -40,7 +44,7 @@ export default class ExtArea extends Component {
                                   this.props.changed_ext(code,global.lang.t(name));
                                   this.toggle();
                               }}>
-                <Text style={{color: "#666666", fontSize: 14, marginLeft: 17}}>{global.lang.t(name)}</Text>
+                <Text style={{color: "#666666", fontSize: 14, marginLeft: 10}}>{global.lang.t(name)}</Text>
                 <View style={{flex: 1}}/>
                 <Text style={{color: "#666666", fontSize: 14, marginRight: 17}}>{code}</Text>
             </TouchableOpacity>
@@ -48,6 +52,7 @@ export default class ExtArea extends Component {
     }
 
     render() {
+        logMsg("djskdjskdjs",top)
         return (
             <Modal
                 animationType={"none"}
@@ -58,11 +63,7 @@ export default class ExtArea extends Component {
                 visible={this.state.visible}
                 style={{alignItems: 'center'}}
             >
-                <View style={this.props.type && this.props.type === 'ModalPrompt' ? {
-                    width: 300,
-                    alignSelf: 'center',
-                    backgroundColor: 'rgba(0,0,0,0.8)'
-                } : {flex: 1}}>
+                <View style={{width:Metrics.screenWidth - 34,marginTop:top,alignSelf:'center'}}>
                     <TouchableOpacity
                         activeOpacity={1}
                         onPress={this.toggle}

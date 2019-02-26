@@ -33,7 +33,9 @@ export default StyleSheet.create({
         width: Metrics.screenWidth - 34,
         marginTop: 50,
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
+        borderBottomColor: '#ECECEE',
+        borderBottomWidth: 1
     },
     btn: {
         width:'90%',
