@@ -30,8 +30,7 @@ export default class InfoDetail extends Component {
               shareTo(param)
                 logMsg('分享')
 
-            },
-            rightTitle:'分享'
+            }
         })
     }
 

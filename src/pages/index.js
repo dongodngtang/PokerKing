@@ -123,10 +123,18 @@ export const scenes = () => {
                {...TopNav({})}/>
         <Scene key="InfoDetail"
                component={InfoDetail}
-               {...TopNav({})}/>
+               {...TopNav({
+                   right_img_show: true,
+                   right_img: Images.share_img,
+                   right_img_size: {height: 19, width: 19}
+               })}/>
         <Scene key="EventDetail"
                component={EventDetail}
-               {...TopNav({})}/>
+               {...TopNav({
+                   right_img_show: true,
+                   right_img: Images.share_img,
+                   right_img_size: {height: 19, width: 19}
+               })}/>
         <Scene key="WebViewPage"
                component={WebViewPage}
                {...TopNav({})}/>
@@ -184,10 +192,23 @@ export class NavBar extends PureComponent {
                 source={Images.left}
             />
         }
+    };
+
+    left_content = () => {
+        const {rightTitle, right_img_show, right_img, right_img_size} = this.props;
+        if (rightTitle) {
+            return <Text
+                style={{fontSize: 14, color: '#FFE9AD'}}>{rightTitle}</Text>
+        } else if (right_img_show) {
+            return <Image
+                style={right_img_size}
+                source={right_img}
+            />
+        }
     }
 
     render() {
-        const {component, title, rightTitle, onLeft, hideLeft} = this.props;
+        const {component, title, rightTitle, onLeft, hideLeft, right_img} = this.props;
 
         let pageMsg = `在page/index查找${component && component.displayName}`;
         return <View style={Styles.navTop}>
@@ -220,8 +241,7 @@ export class NavBar extends PureComponent {
                     this.props.onRight && this.props.onRight()
                 }}
                 style={Styles.right}>
-                {rightTitle ? <Text
-                    style={{fontSize: 14, color: '#FFE9AD'}}>{rightTitle}</Text> : null}
+                {this.left_content()}
 
             </TouchableOpacity>
 
