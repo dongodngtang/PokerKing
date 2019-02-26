@@ -227,8 +227,9 @@ export class NavBar extends PureComponent {
             <TouchableOpacity
                 activeOpacity={1}
                 onLongPress={() => {
-                    if (__DEV__)
-                        alert(title + pageMsg)
+                    // if (__DEV__)
+                    //     alert(title + pageMsg)
+
                 }}
                 style={Styles.navTitle}>
                 <Text
