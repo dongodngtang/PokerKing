@@ -56,7 +56,8 @@ export default class ShareItem extends Component {
 
 
         }else if (platform === "copy_link") {
-            Clipboard.setString(this.props.shareLink)
+            Clipboard.setString(this.props.shareLink);
+            showToast(global.lang.t('copy_success'))
         }
 
 

@@ -157,5 +157,6 @@
   "friend_circle":"Moments",
   "fuzhi":"Copy Link",
   "choice_platform":"Choose which platform to share",
-  "unInstall_wechat":"WeChat client is not installed"
+  "unInstall_wechat":"WeChat client is not installed",
+  "copy_success":"Successful copy"
 }
