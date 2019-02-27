@@ -17,7 +17,7 @@ import {getBaseUrl} from "../configs/fetch";
 
 export const YYYYMMDD = 'YYYY-MM-DD';
 
-const HOST = 'https://test.h5.pokerking.deshpro.com';
+const HOST = 'http://test.h5.pokerking.deshpro.com';
 const THOST = 'https://h5.pokerking.deshpro.com';
 
 let locations = [];//定位城市列表
