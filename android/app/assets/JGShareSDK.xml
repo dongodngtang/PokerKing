@@ -13,18 +13,18 @@
             <!--AppKey="QQ 的 AppKey"/>-->
 
     <Wechat
-            AppId="wx1d6a241d90da227c"
-            AppSecret="64e49ab346754e644ae6a30e22153709"/>
+            AppId="wx9fc007e24c660e23"
+            AppSecret="8489d05daafee188011e165550024066"/>
 
     <!--<Facebook-->
             <!--AppId="facebook 的 appId"-->
             <!--AppName="facebook 后台填写的名称"-->
     <!--/>-->
 
-    <!--<Twitter-->
-            <!--ConsumerKey="twitter 的 ConsumerKey"-->
-            <!--ConsumerSecret="twitter 的 ConsumerSecret"-->
-    <!--/>-->
+    <Twitter
+            ConsumerKey="lJzTuN1Z5VUo2XPA05LRrYvMj"
+            ConsumerSecret="wBxojvMd31HHSrbOofaoVd1ftdAFFwYSZgb3pMlxJ7F0OdlyPt"
+    />
 
 
 
