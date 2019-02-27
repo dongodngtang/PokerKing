@@ -3,7 +3,7 @@ import {View, Text, ScrollView} from 'react-native';
 import {connect} from 'react-redux';
 import styles from './index.style';
 import {getInfoDetail} from '../../services/accountDao'
-import {isEmptyObject, logMsg, shareTo} from "../../utils/utils";
+import {isEmptyObject, logMsg, shareHost, shareTo} from "../../utils/utils";
 import RenderHtml from '../comm/RenderHtml';
 import {Metrics} from "../../configs/Theme";
 import NotData from '../comm/NotData'
@@ -29,7 +29,7 @@ export default class InfoDetail extends Component {
                 title: data.info.title,
                 onRight: () => {
                     let param = {
-                        shareLink: `${getBaseUrl()}/infos/${this.props.params.id}`,
+                        shareLink: `${shareHost()}/infos/${this.props.params.id}`,
                         shareTitle: data.info.title,
                         shareText: data.info.description,
                         shareImage: data.info.image

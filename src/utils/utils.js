@@ -13,8 +13,12 @@ import moment from 'moment'
 import Toast from '../components/toast';
 import {Images} from "../configs/Theme";
 import dva from "./dva";
+import {getBaseUrl} from "../configs/fetch";
 
-export const YYYYMMDD = 'YYYY-MM-DD'
+export const YYYYMMDD = 'YYYY-MM-DD';
+
+const HOST = 'https://test.h5.pokerking.deshpro.com/';
+const THOST = 'https://h5.pokerking.deshpro.com/';
 
 let locations = [];//定位城市列表
 export function setLocations(arr) {
@@ -36,6 +40,13 @@ export function showToast(msg) {
     });
   }
 }
+export function shareHost() {
+    if (getBaseUrl() === 'test')
+        return HOST;
+    else
+        return THOST;
+}
+
 
 export function isEmptyObject(e) {
   var t;

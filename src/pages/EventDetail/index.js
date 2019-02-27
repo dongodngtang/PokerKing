@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, ScrollView} from 'react-native';
 import {connect} from 'react-redux';
-import {isEmptyObject, logMsg, shareTo} from "../../utils/utils";
+import {isEmptyObject, logMsg, shareHost, shareTo} from "../../utils/utils";
 import styles from "./index.style";
 import {getEventDetail} from '../../services/raceDao'
 import {Metrics} from "../../configs/Theme";
@@ -32,7 +32,7 @@ export default class EventDetail extends Component {
                         shareTitle: data.info.title,
                         shareText: data.info.description,
                         shareImage: data.info.image,
-                        shareLink: `${getBaseUrl()}/main_events/${this.props.params.event_id}/infos/${this.props.params.id}`
+                        shareLink: `${shareHost()}/main_events/${this.props.params.event_id}/infos/${this.props.params.id}`
                     };
                     shareTo(param)
                     logMsg('分享')
