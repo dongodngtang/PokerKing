@@ -10,7 +10,7 @@ import {Actions} from 'react-native-router-flux';
 import styles from './index.style';
 import {Images, Metrics} from "../../configs/Theme";
 import {connect} from 'react-redux';
-import {isEmptyObject, isStrNull, getAvatar, alertOrder, logMsg, mul, showToast} from "../../utils/utils";
+import {isEmptyObject, isStrNull, getAvatar, alertOrder, logMsg, mul, showToast, shareHost} from "../../utils/utils";
 import {storageLoginUser} from "../../services/accountDao";
 import {getBaseUrl} from "../../configs/fetch";
 
@@ -52,7 +52,7 @@ export default class Drawer extends Component {
                     }
                 })}
                 {this._item(styles.select_btn, Images.feiji, styles.change_img, global.lang.t('recommend'), () => {
-                    Clipboard.setString(`${getBaseUrl()}/loadApp`);
+                    Clipboard.setString(`${shareHost()}/loadApp`);
                     showToast(global.lang.t("copy_download"))
                 })}
 
