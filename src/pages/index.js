@@ -32,6 +32,7 @@ import ImageGallery from "../components/ImageGallery";
 import RaceMessage from "./RaceMessage";
 import FAQ from "./FAQ";
 import FoundBeauti from "./FoundBeauti";
+import ProtocolPage from "./ProtocolPage";
 
 export const scenes = () => {
     return <Scene key="root">
@@ -164,6 +165,12 @@ export const scenes = () => {
                component={FoundBeauti}
                {...TopNav({
                    title: global.lang.t('into_poker')
+               })}
+        />
+        <Scene key="ProtocolPage"
+               component={ProtocolPage}
+               {...TopNav({
+                   title: global.lang.t('protocol')
                })}
         />
     </Scene>

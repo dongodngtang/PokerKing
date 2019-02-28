@@ -8,6 +8,7 @@ import {Actions} from 'react-native-router-flux';
 import SwitchApi from "../pages/SwitchApi";
 import EventDetail from "../pages/EventDetail";
 import Structure from "../pages/Structure";
+import ProtocolPage from "../pages/ProtocolPage";
 
 export default class Router {
     popTo({sceneKey, params}) {
@@ -183,6 +184,12 @@ export default class Router {
     toFoundBeauti() {
         this.push({
             sceneKey: 'FoundBeauti'
+
+        })
+    }
+    toProtocolPage() {
+        this.push({
+            sceneKey: 'ProtocolPage'
 
         })
     }

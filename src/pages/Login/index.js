@@ -206,15 +206,30 @@ export default class Login extends Component {
                     <Text style={{color: '#FFE9AD', fontSize: 18}}>{global.lang.t('login_continue')}</Text>
                 </TouchableOpacity>
 
+                <TouchableOpacity
+                    style={{marginTop: 36, alignSelf: 'center', flexDirection: 'row', alignItems: 'center'}}
+                    onPress={() => {
+                        router.toProtocolPage()
+                    }}>
+                    <Text style={{color: "#AAAAAA", fontSize: 12}}>{global.lang.t('protocol1')}</Text>
+                    <Text style={{
+                        color: "##444444",
+                        fontSize: 12,
+                        marginLeft: 8
+                    }}>{`《${global.lang.t('protocol2')}》`}</Text>
+                </TouchableOpacity>
+
                 <ExtArea
                     ref={ref => this.areaAction = ref}
                     changed_ext={this.changed_ext}/>
+
 
                 <SelectPiker
                     ref={ref => this.selectPiker = ref}
                     onPickerSelect={this.onPickerSelect}
                     selectedItem={this.state.selectedItem}
                     itemList={this.state.itemList}/>
+
             </View>
         )
     };

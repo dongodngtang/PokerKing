@@ -147,5 +147,8 @@
   "choice_platform":"選擇要分享到的平台",
   "unInstall_wechat":"未安裝微信客戶端",
   "copy_success":"複製成功",
-  "copy_download":"複製下載鏈接成功"
+  "copy_download":"複製下載鏈接成功",
+  "protocol1":"進入Pokerkinglive代表你已同意",
+  "protocol2":"用戶註冊協議",
+  "protocol":"Pokerkinglive協議"
 }

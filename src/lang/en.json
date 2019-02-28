@@ -159,5 +159,8 @@
   "choice_platform":"Choose which platform to share",
   "unInstall_wechat":"WeChat client is not installed",
   "copy_success":"Successful copy",
-  "copy_download":"Copy download link successfully"
+  "copy_download":"Copy download link successfully",
+  "protocol1":"Entering Pokerkinglive means you have agreed",
+  "protocol2":"User registration agreement",
+  "protocol":"Pokerkinglive agreement"
 }
