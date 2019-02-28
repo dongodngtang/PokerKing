@@ -131,8 +131,7 @@ export default class Feedback extends Component {
                         })}
                     </View>
                     <Text style={[styles.your_mailbox, {
-                        marginTop: 26,
-                        paddingTop:0
+                        marginTop: 26
                     }]}>{global.lang.t('report_problem')}</Text>
                     <TextInput
                         underlineColorAndroid={'transparent'}
@@ -140,7 +139,7 @@ export default class Feedback extends Component {
                             this.report_problem = report_problem
                         }}
                         multiline={true}
-                        style={[styles.input, {height: 112}]}/>
+                        style={[styles.input, {height: 112,paddingTop:2}]}/>
 
                     <Text style={[styles.your_mailbox, {
                         marginTop: 28,
