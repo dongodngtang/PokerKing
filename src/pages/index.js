@@ -50,6 +50,7 @@ export const scenes = () => {
                        left_definition: true,
                        left_img: Images.homepage_side,
                        img_size: {height: 16, width: 20},
+                       middle_title: true
                    })}/>
         </Drawer>
 
@@ -208,7 +209,7 @@ export class NavBar extends PureComponent {
     }
 
     render() {
-        const {component, title, rightTitle, onLeft, hideLeft, right_img} = this.props;
+        const {component, title, rightTitle, onLeft, hideLeft, middle_title} = this.props;
 
         let pageMsg = `在page/index查找${component && component.displayName}`;
         return <View style={Styles.navTop}>
@@ -229,7 +230,9 @@ export class NavBar extends PureComponent {
                 onLongPress={() => {
                     // if (__DEV__)
                     //     alert(title + pageMsg)
-
+                    if (middle_title) {
+                        router.toSwitchApi();
+                    }
                 }}
                 style={Styles.navTitle}>
                 <Text

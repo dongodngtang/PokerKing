@@ -56,14 +56,6 @@ export default class Drawer extends Component {
                     showToast(global.lang.t("copy_download"))
                 })}
 
-                <TouchableOpacity
-                    activeOpacity={1}
-                    style={{alignSelf:'center'}} onPress={() => {
-                    router.toSwitchApi()
-                }}>
-                    <Text style={styles.safe_area_txt}>切换环境</Text>
-                </TouchableOpacity>
-
                 {isEmptyObject(profile)?null: <TouchableOpacity
                     activeOpacity={1}
                     style={{alignSelf:'center',position:'absolute',bottom:Number(mul(Metrics.screenHeight , 0.1478))}} onPress={() => {
