@@ -60,6 +60,10 @@ export default class ModifyData extends Component {
                     edit.email = this.inputMail
                 }
                 edit.gender = this.gender
+
+                if(this.state.avatar && this.state.avatar.uri && !this.state.avatar.uri.includes("http")){
+                    this._update(this.state.avatar.uri)
+                }
                 putProfile(edit, ret => {
                     router.pop();
                     if (profile.nickname !== this.inputNick || profile.email !== this.inputMail ||
@@ -69,6 +73,7 @@ export default class ModifyData extends Component {
                 }, err => {
 
                 })
+
 
             }
         });
@@ -85,11 +90,11 @@ export default class ModifyData extends Component {
         }
     }
 
-    _update = (image) => {
+    _update = (path) => {
         let formData = new FormData();
         let file = {
-            uri: image.path,
-            name: this._fileName(image.path)
+            uri: path,
+            name: this._fileName(path)
         };
         if(Platform.OS === 'android')
             file.type = 'image/jpeg'
@@ -228,14 +233,18 @@ export default class ModifyData extends Component {
         switch (i) {
             case 1:
                 ImagePicker.openCamera(picker).then(image => {
-                    this._update(image)
+                   this.setState({
+                       avatar:{uri:image.path}
+                   })
                 }).catch(e => {
                     // Alert.alert(e.message ? e.message : e);
                 });
                 break;
             case 2: {
                 ImagePicker.openPicker(picker).then(image => {
-                    this._update(image)
+                    this.setState({
+                        avatar:{uri:image.path}
+                    })
                 }).catch(e => {
                     // Alert.alert(e.message ? e.message : e);
                 });

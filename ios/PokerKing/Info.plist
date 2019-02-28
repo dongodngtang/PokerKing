@@ -97,6 +97,8 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+    	<string>需要您的同意，才能使用相机，该权限将用于更换头像</string>
 	<key>NSAppleMusicUsageDescription</key>
 	<string>需要您的同意访问媒体库，用以设置头像、分享图片等功能</string>
 	<key>NSCalendarsUsageDescription</key>

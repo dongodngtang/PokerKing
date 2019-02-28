@@ -42,17 +42,16 @@ export default class Races extends Component {
     }
 
     change_recent_event = (recent_event) => {
-        const {events} = this.state;
-        let all = [];
-        all.push(recent_event);
-        events.map(item => {
-            if (item.id !== recent_event.id) {
-                all.push(item);
-            }
+        const {all_events} = this.state;
+
+
+        all_events.forEach((item,index) => {
+          if(item.id === recent_event.id){
+              this._carousel && this._carousel.snapToItem(index)
+          }
         });
         this.setState({
-            recent_event: recent_event,
-            all_events: all
+            recent_event: recent_event
         })
     };
 
