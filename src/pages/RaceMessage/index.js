@@ -41,7 +41,7 @@ export default class RaceMessage extends Component {
                     width: Metrics.screenWidth - 36
                 }}>
                     <RenderHtml
-                        html={event_info.description}/>
+                        html={description}/>
                 </View>
             </ScrollView>
         )

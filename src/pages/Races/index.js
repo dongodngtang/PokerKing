@@ -130,7 +130,7 @@ export default class Races extends Component {
                     })}
                 {this._item(styles.item_view, Images.zixun, styles.img_dy,
                     global.lang.t('race_message'), () => {
-                        router.toRaceMessage(recent_event.description)
+                        router.toRaceMessage(recent_event.id)
                     })}
                 {this._item(styles.item_view, Images.ziyuan, styles.img_dy2,
                     global.lang.t('race_news'), () => {
@@ -191,7 +191,7 @@ class Card extends Component {
         }, 1000)
     };
 
-    debouncePress = onPress => (id) => {
+    debouncePress =(id) => {
         const clickTime = Date.now()
         if (!this.lastClickTime ||
             Math.abs(this.lastClickTime - clickTime) > 1000) {
@@ -211,7 +211,7 @@ class Card extends Component {
 
         return (
             <TouchableOpacity activeOpacity={1} style={styles.slide_view} onPress={() => {
-                this.debouncePress(this.props.onPress,id);
+                this.debouncePress(id);
             }}>
                 <View style={styles.slide_top_view}>
                     <Text style={styles.race_time_txt}>{global.lang.t('race_time')}</Text>
