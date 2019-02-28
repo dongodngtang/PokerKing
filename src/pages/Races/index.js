@@ -98,6 +98,15 @@ export default class Races extends Component {
             item={item} recent_event={this.state.recent_event}/>
     };
 
+    debouncePress =(id) => {
+        const clickTime = Date.now()
+        if (!this.lastClickTime ||
+            Math.abs(this.lastClickTime - clickTime) > 1000) {
+            this.lastClickTime = clickTime
+            router.toRaceMessage(id)
+        }
+    }
+
     render() {
         const {events, recent_event, all_events} = this.state;
         return (
@@ -130,7 +139,7 @@ export default class Races extends Component {
                     })}
                 {this._item(styles.item_view, Images.zixun, styles.img_dy,
                     global.lang.t('race_message'), () => {
-                        router.toRaceMessage(recent_event.id)
+                        this.debouncePress(recent_event.id)
                     })}
                 {this._item(styles.item_view, Images.ziyuan, styles.img_dy2,
                     global.lang.t('race_news'), () => {

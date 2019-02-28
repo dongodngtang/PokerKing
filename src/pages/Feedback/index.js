@@ -131,7 +131,8 @@ export default class Feedback extends Component {
                         })}
                     </View>
                     <Text style={[styles.your_mailbox, {
-                        marginTop: 26
+                        marginTop: 26,
+                        paddingTop:0
                     }]}>{global.lang.t('report_problem')}</Text>
                     <TextInput
                         underlineColorAndroid={'transparent'}
