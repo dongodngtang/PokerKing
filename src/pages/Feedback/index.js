@@ -138,6 +138,8 @@ export default class Feedback extends Component {
                         onChangeText={report_problem => {
                             this.report_problem = report_problem
                         }}
+                        blurOnSubmit
+                        textAlignVertical={'top'}
                         multiline={true}
                         style={[styles.input, {height: 112,paddingTop:2}]}/>
 

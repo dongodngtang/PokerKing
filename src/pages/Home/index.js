@@ -51,11 +51,7 @@ export default class Home extends Component {
     };
 
     componentDidMount() {
-        setTimeout(() => {
-            if (isEmptyObject(global.loginUser)) {
-                router.toLogin()
-            }
-        }, 1000);
+
         codePush.disallowRestart()
         codePush.sync({
             updateDialog: false,
@@ -193,7 +189,7 @@ export default class Home extends Component {
                         page_size: 20
                     }, data => {
                         logMsg("InfoList:", data)
-                        startFetch(data.infos, 18)
+                        startFetch(data.infos, 20)
                     }, err => {
                         logMsg("reject:", err)
                         abortFetch()
