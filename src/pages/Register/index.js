@@ -117,6 +117,8 @@ export default class Register extends Component {
                     </View>
                 </KeyboardAvoidingView>
 
+                <Text style={{color:'#AAAAAA',fontSize:12,marginTop:40}}>{global.lang.t('prompt')}</Text>
+
                 <TouchableOpacity style={styles.btn} onPress={()=>{
                     let body = this.props.params;
                     body.nickname = this.user_name;
@@ -143,8 +145,6 @@ export default class Register extends Component {
                 }}>
                     <Text style={{color:'#FFE9AD',fontSize:18}}>{global.lang.t('determine')}</Text>
                 </TouchableOpacity>
-
-                <Text style={{color:'#AAAAAA',fontSize:14,position:'absolute',bottom:70}}>{global.lang.t('prompt')}</Text>
 
                 <ActionSheet
                     ref={o => this.actionGender = o}

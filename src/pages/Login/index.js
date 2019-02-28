@@ -213,7 +213,7 @@ export default class Login extends Component {
                     }}>
                     <Text style={{color: "#AAAAAA", fontSize: 12}}>{global.lang.t('protocol1')}</Text>
                     <Text style={{
-                        color: "##444444",
+                        color: "#444444",
                         fontSize: 12,
                         marginLeft: 8
                     }}>{`《${global.lang.t('protocol2')}》`}</Text>
