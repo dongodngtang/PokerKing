@@ -189,6 +189,15 @@ class Card extends Component {
                 })
             }
         }, 1000)
+    };
+
+    debouncePress = onPress => (id) => {
+        const clickTime = Date.now()
+        if (!this.lastClickTime ||
+            Math.abs(this.lastClickTime - clickTime) > 1000) {
+            this.lastClickTime = clickTime
+            router.toRaceMessage(id)
+        }
     }
 
 
@@ -202,7 +211,7 @@ class Card extends Component {
 
         return (
             <TouchableOpacity activeOpacity={1} style={styles.slide_view} onPress={() => {
-                router.toRaceMessage(id)
+                this.debouncePress(this.props.onPress,id);
             }}>
                 <View style={styles.slide_top_view}>
                     <Text style={styles.race_time_txt}>{global.lang.t('race_time')}</Text>

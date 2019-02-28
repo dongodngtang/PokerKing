@@ -117,6 +117,7 @@ export default class Login extends Component {
                 <KeyboardAvoidingView behavior='position' keyboardVerticalOffset={20}>
                     <View style={styles.textView}>
                         <TextInput
+                            returnKeyType={'done'}
                             keyboardType={'numeric'}
                             style={{
                                 paddingTop: 0,
@@ -142,6 +143,7 @@ export default class Login extends Component {
                     </View>
                     <View style={styles.textView}>
                         <TextInput
+                            returnKeyType={'done'}
                             keyboardType={'numeric'}
                             style={{
                                 paddingTop: 0,
