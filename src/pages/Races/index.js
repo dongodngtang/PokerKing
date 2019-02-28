@@ -193,8 +193,8 @@ class Card extends Component {
 
 
     render() {
-        const {description} = this.props.recent_event;
-        const {begin_time, end_time, id, logo, name} = this.props.item;
+        const {description,id} = this.props.recent_event;
+        const {begin_time, end_time,logo, name} = this.props.item;
         let month = unix_format(begin_time, `MM`);
 
         let race_start_time = global.localLanguage === 'en' ? `${global.lang.t(`month${month}`)}`+unix_format(begin_time,` MM,YYYY`) :
@@ -202,7 +202,7 @@ class Card extends Component {
 
         return (
             <TouchableOpacity activeOpacity={1} style={styles.slide_view} onPress={() => {
-                router.toRaceMessage(description)
+                router.toRaceMessage(id)
             }}>
                 <View style={styles.slide_top_view}>
                     <Text style={styles.race_time_txt}>{global.lang.t('race_time')}</Text>

@@ -165,11 +165,11 @@ export default class Router {
 
         })
     }
-    toRaceMessage(description) {
+    toRaceMessage(id) {
         this.push({
             sceneKey: 'RaceMessage',
             params: {
-                description
+                id
             }
 
         })

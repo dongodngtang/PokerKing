@@ -7,3 +7,8 @@ export function mainEvents(resolve, reject) {
         resolve(ret.data)
     },reject)
 }
+export function getEventInfo(body,resolve, reject) {
+    get(api.event_info(body),{},ret=>{
+        resolve(ret.data)
+    },reject)
+}
