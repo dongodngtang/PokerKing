@@ -210,7 +210,7 @@ class SelectPart extends Component {
         }, 1000)
     }
     render() {
-        const {name, event_type, event_num, buy_in, entries, starting_stack, schedule_pdf, begin_time, reg_open, reg_close} = this.props.item;
+        const {id,name, event_type, event_num, buy_in, entries, starting_stack, schedule_pdf, begin_time, reg_open, reg_close} = this.props.item;
         return (
             <View style={styles.selected_view}>
                 <View style={{flexDirection: 'row', alignItems: 'center', marginLeft: 17, marginRight: 17}}>
@@ -252,7 +252,7 @@ class SelectPart extends Component {
                     <Image style={{width: 6, height: 12}} source={Images.right_gray}/>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.problem_view} activeOpacity={1} onPress={()=>{
-                    router.toRaceMessage(this.props.description)
+                    router.toRaceMessage(id)
                 }}>
                     <Image style={{width: 26, height: 26, marginRight: 14}} source={Images.shuhcu}/>
                     <Text style={styles.problem_txt}>{global.lang.t('enter_information')}</Text>
