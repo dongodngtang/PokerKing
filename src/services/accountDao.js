@@ -104,6 +104,7 @@ export function putProfile(body, resolve, reject) {
 
 export function uploadAvatar(body, resolve, reject) {
     put(api.uploadAvatar(),body,ret=>{
+        dva.getDispatch()({type:'Home/setProfile',params:ret.data})
         resolve(ret.data)
     },reject)
 }
