@@ -202,8 +202,8 @@ class Card extends Component {
 
 
     render() {
-        const {description,id} = this.props.recent_event;
-        const {begin_time, end_time,logo, name} = this.props.item;
+        const {description} = this.props.recent_event;
+        const {begin_time, end_time,id,logo, name} = this.props.item;
         let month = unix_format(begin_time, `MM`);
 
         let race_start_time = global.localLanguage === 'en' ? `${global.lang.t(`month${month}`)}`+unix_format(begin_time,` MM,YYYY`) :
