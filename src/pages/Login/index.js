@@ -44,7 +44,6 @@ export default class Login extends Component {
     }
 
     _next = () => {
-
         const {ext} = this.state;
         let iphone = this.iphone
         let vcode = this.vcode
@@ -207,16 +206,15 @@ export default class Login extends Component {
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    style={{marginTop: 36, alignSelf: 'center', flexDirection: 'row', alignItems: 'center'}}
+                    style={{marginLeft:17,marginRight:17,marginTop: 36, alignSelf: 'center', flexDirection: 'row', alignItems: 'center'}}
                     onPress={() => {
                         router.toProtocolPage()
                     }}>
-                    <Text style={{color: "#AAAAAA", fontSize: 12}}>{global.lang.t('protocol1')}</Text>
-                    <Text style={{
+                    <Text style={{color: "#AAAAAA", fontSize: 12}}>{global.lang.t('protocol1')}<Text style={{
                         color: "#444444",
                         fontSize: 12,
                         marginLeft: 8
-                    }}>{`《${global.lang.t('protocol2')}》`}</Text>
+                    }}>{`《${global.lang.t('protocol2')}》`}</Text></Text>
                 </TouchableOpacity>
 
                 <ExtArea
