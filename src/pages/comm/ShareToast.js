@@ -37,21 +37,21 @@ export default class ShareToast extends Component {
     render() {
 ///分享平台列表
         let shareList = [
-            {
-                platform: "wechat_session",
-                icon: Images.icon_share_wechat,
-                name: global.lang.t('weixin'),
-            },
-            {
-                platform: "wechat_timeLine",
-                icon: Images.icon_share_wxcircle,
-                name: global.lang.t('friend_circle'),
-            },
-            {
-                platform: "facebook",
-                icon: Images.facebook,
-                name: 'Facebook',
-            },
+            // {
+            //     platform: "wechat_session",
+            //     icon: Images.icon_share_wechat,
+            //     name: global.lang.t('weixin'),
+            // },
+            // {
+            //     platform: "wechat_timeLine",
+            //     icon: Images.icon_share_wxcircle,
+            //     name: global.lang.t('friend_circle'),
+            // },
+            // {
+            //     platform: "facebook",
+            //     icon: Images.facebook,
+            //     name: 'Facebook',
+            // },
             {
                 platform: "Twitter",
                 icon: Images.twitter,
@@ -111,7 +111,7 @@ export default class ShareToast extends Component {
                 {/*取消分享*/}
                 <TouchableOpacity onPress={this.hiddenShare}>
                     <View style={styles.closeView}>
-                        <Text style={{fontSize: 15}}>取消分享</Text>
+                        <Text style={{fontSize: 15}}>{global.lang.t('cancel_share')}</Text>
                     </View>
                 </TouchableOpacity>
             </Modal>
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     hideView: {
-        height: DEVICE_HEIGHT - (DEVICE_WIDTH) / 4 - 250,
+        height: DEVICE_HEIGHT - (DEVICE_WIDTH) / 4 - 180,
         width: DEVICE_WIDTH,
         backgroundColor: "rgba(58,58,58,0.5)"
     },
