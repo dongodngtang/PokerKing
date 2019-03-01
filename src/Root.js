@@ -42,8 +42,6 @@ export default class Root extends Component {
             JShareModule.setup()
         }
 
-        JShareModule.setup(true)
-
         if (Platform.OS === 'android') {
             BackHandler.addEventListener('hardwareBackPress', this.onBackAndroid)
         }
