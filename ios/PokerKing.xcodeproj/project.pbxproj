@@ -47,6 +47,7 @@
 		3CFDFBFD05594D0B9CBCAF6E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE989FA02A043A18EFAD37B /* Foundation.framework */; };
 		47A9862400264FB9813F2DEC /* libRCTJShareModule.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEB3ED3E48F54CA0B75E55B8 /* libRCTJShareModule.a */; };
 		47D54EBEE4304D26A7BF77EA /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A97BEA194545D08EEB3BB8 /* CFNetwork.framework */; };
+		4854EDBF222924A70070CE89 /* RCTJShareConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4854EDBE222924A70070CE89 /* RCTJShareConfig.plist */; };
 		487A70F12223C62C003AC798 /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 487A70EE2223C616003AC798 /* libART.a */; };
 		4F7AF82E8D1543EAB4B6AB77 /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC5DF6C54830493B8C7DCA19 /* libRNFS.a */; };
 		5D484D796C6442E48109E264 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39CF69BA1AF949B094ED2CCD /* CoreFoundation.framework */; };
@@ -494,6 +495,7 @@
 		2FE4B1BBA160479193E576A3 /* CodePush.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = CodePush.xcodeproj; path = "../node_modules/react-native-code-push/ios/CodePush.xcodeproj"; sourceTree = "<group>"; };
 		39CF69BA1AF949B094ED2CCD /* CoreFoundation.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		3BE1B1026A1C4F9DAADA11BD /* RNAddCalendarEvent.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNAddCalendarEvent.xcodeproj; path = "../node_modules/react-native-add-calendar-event/ios/RNAddCalendarEvent.xcodeproj"; sourceTree = "<group>"; };
+		4854EDBE222924A70070CE89 /* RCTJShareConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RCTJShareConfig.plist; sourceTree = "<group>"; };
 		487A70E82223C616003AC798 /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "../node_modules/react-native/Libraries/ART/ART.xcodeproj"; sourceTree = "<group>"; };
 		4C20637AF0D44A9FB50EEBB7 /* RCTJCoreModule.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTJCoreModule.xcodeproj; path = "../node_modules/jcore-react-native/ios/RCTJCoreModule.xcodeproj"; sourceTree = "<group>"; };
 		5826D7E3065E44FBB3342CE1 /* libimageCropPicker.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libimageCropPicker.a; sourceTree = "<group>"; };
@@ -689,6 +691,7 @@
 		13B07FAE1A68108700A75B9A /* PokerKing */ = {
 			isa = PBXGroup;
 			children = (
+				4854EDBE222924A70070CE89 /* RCTJShareConfig.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -1557,6 +1560,7 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				4854EDBF222924A70070CE89 /* RCTJShareConfig.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

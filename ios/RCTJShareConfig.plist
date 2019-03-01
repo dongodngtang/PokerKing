@@ -6,33 +6,14 @@
 	<string>a1703c14b186a68a66ef86c1</string>
 	<key>channel</key>
 	<string>appleStore</string>
-	<key>advertisingId</key>
-	<string></string>
-	<key>isProduction</key>
-	<true/>
 	<key>wechatAppId</key>
 	<string>wx9fc007e24c660e23</string>
 	<key>wechatAppSecret</key>
 	<string>8489d05daafee188011e165550024066</string>
-	<key>qqAppId</key>
-	<string>1105864531</string>
-	<key>qqAppKey</key>
-	<string>glFYjkHQGSOCJHMC</string>
-	<key>sinaWeiboAppKey</key>
-	<string>374535501</string>
-	<key>sinaWeiboAppSecret</key>
-	<string>baccd12c166f1df96736b51ffbf600a2</string>
-	<key>sinaRedirectUri</key>
-	<string>https://www.jiguang.cn</string>
-	<key>facebookAppId</key>
-	<string>177776412817787</string>
-	<key>facebookDisplayName</key>
-	<string>HuminiOS</string>
 	<key>twitterConsumerKey</key>
-    string>lJzTuN1Z5VUo2XPA05LRrYvMj</string>
-    <key>twitterConsumerSecret</key>
-    <string>wBxojvMd31HHSrbOofaoVd1ftdAFFwYSZgb3pMlxJ7F0OdlyPt</string>
-	<key>isSupportWebSina</key>
-	<true/>
+     <string>lJzTuN1Z5VUo2XPA05LRrYvMj</string>
+     <key>twitterConsumerSecret</key>
+     <string>wBxojvMd31HHSrbOofaoVd1ftdAFFwYSZgb3pMlxJ7F0OdlyPt</string>
+
 </dict>
 </plist>

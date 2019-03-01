@@ -38,8 +38,12 @@ export default class Root extends Component {
 
     componentDidMount() {
         SplashScreen.hide();
-        if(Platform.OS ==='ios')
-        JShareModule.setup()
+        if(Platform.OS ==='ios'){
+            JShareModule.setup()
+        }
+
+        JShareModule.setup(true)
+
         if (Platform.OS === 'android') {
             BackHandler.addEventListener('hardwareBackPress', this.onBackAndroid)
         }
