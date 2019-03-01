@@ -37,16 +37,16 @@ export default class ShareToast extends Component {
     render() {
 ///分享平台列表
         let shareList = [
-            // {
-            //     platform: "wechat_session",
-            //     icon: Images.icon_share_wechat,
-            //     name: global.lang.t('weixin'),
-            // },
-            // {
-            //     platform: "wechat_timeLine",
-            //     icon: Images.icon_share_wxcircle,
-            //     name: global.lang.t('friend_circle'),
-            // },
+            {
+                platform: "wechat_session",
+                icon: Images.icon_share_wechat,
+                name: global.lang.t('weixin'),
+            },
+            {
+                platform: "wechat_timeLine",
+                icon: Images.icon_share_wxcircle,
+                name: global.lang.t('friend_circle'),
+            },
             // {
             //     platform: "facebook",
             //     icon: Images.facebook,
