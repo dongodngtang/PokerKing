@@ -118,7 +118,7 @@ export const scenes = () => {
         <Scene key="SwitchApi"
                component={SwitchApi}
                {...TopNav({
-                   title: '切换环境'
+                   title: '关于版本'
                })}/>
         <Scene key="QueueList"
                component={QueueList}
