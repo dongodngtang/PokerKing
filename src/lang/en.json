@@ -162,5 +162,7 @@
   "copy_download":"Copy download link successfully",
   "protocol1":"Entering Pokerkinglive means you have agreed",
   "protocol2":"User registration agreement",
-  "protocol":"Pokerkinglive agreement"
+  "protocol":"Pokerkinglive agreement",
+  "unInstall_facebook":"未安装FaceBook客户端",
+  "unInstall_twitter":"未安装Twitter客户端"
 }

@@ -136,9 +136,21 @@ android {
                         keyPassword MYAPP_RELEASE_KEY_PASSWORD
                     }
                 }
+
+                 debug {
+                                    if (project.hasProperty('MYAPP_RELEASE_STORE_FILE')) {
+                                        storeFile file(MYAPP_RELEASE_STORE_FILE)
+                                        storePassword MYAPP_RELEASE_STORE_PASSWORD
+                                        keyAlias MYAPP_RELEASE_KEY_ALIAS
+                                        keyPassword MYAPP_RELEASE_KEY_PASSWORD
+                                    }
+                                }
             }
 
     buildTypes {
+     debug {
+                signingConfig signingConfigs.debug
+            }
         release {
             signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds

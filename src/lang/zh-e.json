@@ -150,5 +150,7 @@
   "copy_download":"複製下載鏈接成功",
   "protocol1":"進入Pokerkinglive代表你已同意",
   "protocol2":"用戶註冊協議",
-  "protocol":"Pokerkinglive協議"
+  "protocol":"Pokerkinglive協議",
+  "unInstall_facebook":"未安装FaceBook客户端",
+  "unInstall_twitter":"未安装Twitter客户端"
 }
