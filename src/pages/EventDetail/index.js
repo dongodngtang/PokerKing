@@ -30,7 +30,7 @@ export default class EventDetail extends Component {
                 onRight: () => {
                     let param = {
                         shareTitle: data.info.title,
-                        shareText: data.info.description,
+                        shareText: 'Pokerkinglive',
                         shareImage: data.info.image,
                         shareLink: `${shareHost()}/main_events/${this.props.params.event_id}/infos/${this.props.params.id}`
                     };
