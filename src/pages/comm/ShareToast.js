@@ -53,9 +53,9 @@ export default class ShareToast extends Component {
                 name: 'Facebook',
             },
             {
-                platform: "Twitter",
+                platform: "twitter",
                 icon: Images.twitter,
-                name: 'Twitter',
+                name: 'twitter',
             },
             {
                 platform: "copy_link",

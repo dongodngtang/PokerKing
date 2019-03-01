@@ -57,7 +57,7 @@ export default class ShareItem extends Component {
                     showToast(global.lang.t('unInstall_facebook'));
                 }
             });
-        }else if (platform === "Twitter") {
+        }else if (platform === "twitter") {
             JShareModule.isTwitterInstalled((isInstalled) => {
                 if (isInstalled !== true) {
                     isAllowShare = false;
@@ -77,7 +77,7 @@ export default class ShareItem extends Component {
             let unix = new Date() / 1000;
             let savePath = rootPath + `/${unix}temp_share.jpg`;
 
-            console.log(this.props.shareImage);
+            console.log('分享信息',this);
 
 
             if (strNotNull(this.props.shareImage)) {
