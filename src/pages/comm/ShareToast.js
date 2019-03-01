@@ -30,7 +30,6 @@ export default class ShareToast extends Component {
 
     ///关闭分享弹窗
     hiddenShare = () => {
-        if (this.props.hiddenShareAction === null) return;
         this.props.hiddenShareAction && this.props.hiddenShareAction();
     };
 
@@ -96,7 +95,6 @@ export default class ShareToast extends Component {
                                                      this.hiddenShare()
 
                                                  }}
-                                                 shareClick={this.props.shareClick}
                                                  shareTitle={this.props.shareTitle}
                                                  shareText={this.props.shareText}
                                                  shareLink={this.props.shareLink}

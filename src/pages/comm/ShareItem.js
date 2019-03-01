@@ -13,7 +13,7 @@ import JShareModule from "jshare-react-native";
 
 const DEVICE_WIDTH = Dimensions.get('window').width;
 import {
-    strNotNull, showToast, logMsg
+    strNotNull, showToast, logMsg, getCurrentDate
 } from '../../utils/utils';
 import * as fs from 'react-native-fs';
 import ImageResizer from 'react-native-image-resizer';
@@ -34,7 +34,7 @@ export default class ShareItem extends Component {
 
 
     //分享
-    shareAction = async () => {
+    shareAction = () => {
         let item = this.props.item;
         //是否允许分享
         let isAllowShare = true;
@@ -43,8 +43,9 @@ export default class ShareItem extends Component {
         if (platform === "wechat_session" || platform === "wechat_timeLine") {
             //检查是否安装微信客户端
             JShareModule.isWeChatInstalled((isInstalled) => {
-                if (isInstalled !== true) {
-                    isAllowShare = false;
+                if (isInstalled) {
+                   this.allowShare()
+                }else{
                     showToast(global.lang.t('unInstall_wechat'));
                 }
             });
@@ -52,15 +53,17 @@ export default class ShareItem extends Component {
         else if (platform === "facebook") {
 
             JShareModule.isFacebookInstalled((isInstalled) => {
-                if (isInstalled !== true) {
-                    isAllowShare = false;
+                if (isInstalled) {
+                    this.allowShare()
+                }else{
                     showToast(global.lang.t('unInstall_facebook'));
                 }
             });
         }else if (platform === "twitter") {
             JShareModule.isTwitterInstalled((isInstalled) => {
-                if (isInstalled !== true) {
-                    isAllowShare = false;
+                if (isInstalled) {
+                    this.allowShare()
+                }else{
                     showToast(global.lang.t('unInstall_twitter'));
                 }
             });
@@ -71,97 +74,49 @@ export default class ShareItem extends Component {
         }
 
 
-        if (isAllowShare) {
-
-            let rootPath = fs.DocumentDirectoryPath;
-            let unix = new Date() / 1000;
-            let savePath = rootPath + `/${unix}temp_share.jpg`;
-
-            console.log('分享信息',this);
-
-
-            if (strNotNull(this.props.shareImage)) {
-                fs.downloadFile({
-                    fromUrl: this.props.shareImage,
-                    toFile: savePath
-                }).promise.then(resp => {
-                    if (resp.statusCode === 200) {
-                        if (Platform.OS === 'ios') {
-                            ImageResizer
-                                .createResizedImage(savePath, 100, 100, 'JPEG', 0.7)
-                                .then((response) => {
-                                    this.shareUrl(item.platform, response.path)
-                                }).catch((err) => {
-                                console.log('ImageResizer错误', err)
-                            });
-                        } else {
-                            this.shareUrl(item.platform, savePath)
-                        }
-
-
-                    }
-                });
-            } else {
-                if(platform !== "favorites")
-                this.shareUrl(item.platform, '')
-            }
-
-
-        }
-
 
     };
 
-    // shareUrl = (platform, imagePath) => {
-    //     let message = {
-    //         platform: platform,
-    //         type: "link",
-    //         url: this.props.shareLink,
-    //         title: this.props.shareTitle,
-    //         text: this.props.shareText,
-    //         imagePath: imagePath,
-    //     };
-    //     console.log('分享参数', message);
-    //     if (Platform.OS === 'android' && platform === 'wechat_timeLine') {
-    //         WeChat.shareToTimeline({
-    //             thumbImage: "file://" + imagePath,
-    //             type: 'news',
-    //             webpageUrl: this.props.shareLink,
-    //             description: this.props.shareText,
-    //             title: this.props.shareTitle
-    //         }).then(data => {
-    //             console.log('分享成功', data);
-    //             this._share_success()
-    //         }).catch(err => {
-    //             console.log('分享失败', err);
-    //         })
-    //     } else if (Platform.OS === 'android' && platform === 'wechat_session') {
-    //         WeChat.shareToSession({
-    //             thumbImage: "file://" + imagePath,
-    //             type: 'news',
-    //             webpageUrl: this.props.shareLink,
-    //             description: this.props.shareText,
-    //             title: this.props.shareTitle
-    //         }).then(data => {
-    //             console.log('分享成功', data);
-    //             this._share_success()
-    //
-    //         }).catch(err => {
-    //             console.log('分享失败', err);
-    //         })
-    //     } else {
-    //         JShareModule.share(message, (map) => {
-    //             console.log('分享成功', map);
-    //             this._share_success()
-    //         }, (map) => {
-    //             console.log('分享失败', map);
-    //         });
-    //
-    //     }
-    //
-    //     if (this.props.itemClick === null) return;
-    //     this.props.itemClick();
-    // };
+    allowShare = ()=>{
+        let item = this.props.item;
+
+        let rootPath = fs.DocumentDirectoryPath;
+        let unix = getCurrentDate();
+        let savePath = rootPath + `/${unix}temp_share.jpg`;
+
+
+
+
+        if (strNotNull(this.props.shareImage)) {
+
+            fs.downloadFile({
+                fromUrl: this.props.shareImage,
+                toFile: savePath
+            }).promise.then(resp => {
+
+                if (resp.statusCode === 200) {
+                    if (Platform.OS === 'ios') {
+                        ImageResizer
+                            .createResizedImage(savePath, 100, 100, 'JPEG', 0.7)
+                            .then((response) => {
+                                this.shareUrl(item.platform, response.path)
+                            }).catch((err) => {
+                            console.log('ImageResizer错误', err)
+                        });
+                    } else {
+                        this.shareUrl(item.platform, savePath)
+                    }
+
+
+                }
+            }).catch(err=>{
+
+            });
+        } else {
+                this.shareUrl(item.platform, '')
+        }
+    }
+
     shareUrl = (platform, imagePath) => {
         let message = {
             platform: platform,
