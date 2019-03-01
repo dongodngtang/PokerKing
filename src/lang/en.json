@@ -163,5 +163,7 @@
   "protocol1":"Entering Pokerkinglive means you have agreed",
   "protocol2":"User registration agreement",
   "protocol":"Pokerkinglive agreement",
-  "cancel_share":"Cancel sharing"
+  "cancel_share":"Cancel sharing",
+  "unInstall_facebook":"FaceBook client not installed",
+  "unInstall_twitter":"Twitter client not installed"
 }

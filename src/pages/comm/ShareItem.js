@@ -15,7 +15,7 @@ const DEVICE_WIDTH = Dimensions.get('window').width;
 import {
     strNotNull, showToast, logMsg
 } from '../../utils/utils';
-import fs from 'react-native-fs';
+import * as fs from 'react-native-fs';
 import ImageResizer from 'react-native-image-resizer';
 
 
@@ -51,9 +51,19 @@ export default class ShareItem extends Component {
         }
         else if (platform === "facebook") {
 
-
+            JShareModule.isFacebookInstalled((isInstalled) => {
+                if (isInstalled !== true) {
+                    isAllowShare = false;
+                    showToast(global.lang.t('unInstall_facebook'));
+                }
+            });
         }else if (platform === "Twitter") {
-
+            JShareModule.isTwitterInstalled((isInstalled) => {
+                if (isInstalled !== true) {
+                    isAllowShare = false;
+                    showToast(global.lang.t('unInstall_twitter'));
+                }
+            });
 
         }else if (platform === "copy_link") {
             Clipboard.setString(this.props.shareLink);

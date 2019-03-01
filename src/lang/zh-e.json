@@ -151,5 +151,7 @@
   "protocol1":"進入Pokerkinglive代表你已同意",
   "protocol2":"用戶註冊協議",
   "protocol":"Pokerkinglive協議",
-  "cancel_share":"取消分享"
+  "cancel_share":"取消分享",
+  "unInstall_facebook":"未安裝FaceBook客戶端",
+  "unInstall_twitter":"未安裝Twitter客戶端"
 }
