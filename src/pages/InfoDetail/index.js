@@ -31,7 +31,7 @@ export default class InfoDetail extends Component {
                     let param = {
                         shareLink: `${shareHost()}/infos/${this.props.params.id}`,
                         shareTitle: data.info.title,
-                        shareText: 'Pokerkinglive',
+                        shareText: data.info.title,
                         shareImage: data.info.image
                     };
                     shareTo(param)
