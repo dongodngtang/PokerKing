@@ -1799,7 +1799,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.deshpro.kingpoke;
+				PRODUCT_BUNDLE_IDENTIFIER = com.deshpro;
 				PRODUCT_NAME = PokerKing;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1833,7 +1833,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.deshpro.kingpoke;
+				PRODUCT_BUNDLE_IDENTIFIER = com.deshpro;
 				PRODUCT_NAME = PokerKing;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
