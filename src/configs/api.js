@@ -4,9 +4,9 @@ const api = {
     //内部测试
     dev: 'https://192.168.2.10:3000/v1/',
     //test分支用来发布版本  test_ci_at用来跑自动化测试
-    test: 'https://test.pokerking_api.deshpro.com/v1',
+    test: 'http://test.pokerking_api.deshpro.com/v1',
     //production 用来发布正式生产环境
-    production: 'https://api.pokerkinglive.com/v1',
+    production: 'http://cms.pokerkinglive.com/v1',
     v_codes: 'account/v_codes',//获取验证码
     cash_games:"cash_games",//现金桌列表
     cash_queues:cash_queues,//现金桌排队进程列表
