@@ -10,7 +10,10 @@ import {Actions} from 'react-native-router-flux';
 import styles from './index.style';
 import {Images, Metrics} from "../../configs/Theme";
 import {connect} from 'react-redux';
-import {isEmptyObject, isStrNull, getAvatar, alertOrder, logMsg, mul, showToast, shareHost} from "../../utils/utils";
+import {
+    isEmptyObject, isStrNull, getAvatar, alertOrder, logMsg, mul, showToast, shareHost,
+    shareTo
+} from "../../utils/utils";
 import {storageLoginUser} from "../../services/accountDao";
 import {getBaseUrl} from "../../configs/fetch";
 
@@ -52,8 +55,15 @@ export default class Drawer extends Component {
                     }
                 })}
                 {this._item(styles.select_btn, Images.feiji, styles.change_img, global.lang.t('recommend'), () => {
-                    Clipboard.setString(`${shareHost()}/loadApp`);
-                    showToast(global.lang.t("copy_download"))
+                    // Clipboard.setString(`${shareHost()}/loadApp`);
+                    // showToast(global.lang.t("copy_download"))
+                    let param = {
+                        shareTitle: 'Pokerkinglive',
+                        shareText: 'Pokerkinglive',
+                        shareImage: 'http://cdn-upyun.deshpro.com/deshpro_public/pokerking2.png',
+                        shareLink: `${shareHost()}/loadApp`
+                    };
+                    shareTo(param)
                 })}
 
                 {isEmptyObject(profile)?null: <TouchableOpacity
