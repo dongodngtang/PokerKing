@@ -8,6 +8,8 @@ import {isStrNull, logMsg, showToast} from "../../utils/utils";
 import {verify, postCode, register, login, verify_code} from "../../services/accountDao";
 import CountDownButton from '../../components/CountDownButton'
 import SelectPiker from "../comm/SelectPiker";
+import CountryPicker,{getAllCountries} from 'react-native-country-picker-modal'
+import DeviceInfo from 'react-native-device-info'
 
 
 @connect(({Login}) => ({
@@ -18,11 +20,29 @@ export default class Login extends Component {
 
     constructor(props) {
         super(props)
+        let userLocaleCountryCode = DeviceInfo.getDeviceCountry()
+        const userCountryData = getAllCountries()
+            .filter(country => country.cca2 === userLocaleCountryCode)
+            .pop()
+        let callingCode = null
+        let areaName = 'China'
+        let cca2 = userLocaleCountryCode
+        if (!cca2 || !userCountryData) {
+            cca2 = 'CN'
+            callingCode = '86'
+        } else {
+            logMsg('善良的看法',userCountryData)
+            callingCode = userCountryData.callingCode
+            areaName = userCountryData.name.common
+        }
+
+
         this.state = {
             selectedItem: 1,
             itemList: ['English', '简体中文', '繁体中文'],
-            ext: '86',
-            areaName: global.lang.t('mainland')
+            ext: callingCode,
+            areaName:areaName,
+            cca2: cca2,
         };
         this.iphone = ''
         this.vcode = ''
@@ -103,8 +123,26 @@ export default class Login extends Component {
                 <Text style={styles.top_txt}>{global.lang.t('sign_vscode')}</Text>
 
                 <TouchableOpacity style={styles.areaView} onPress={() => {
-                    this.areaAction && this.areaAction.toggle();
+                    this.areaAction && this.areaAction.openModal();
                 }}>
+                    <CountryPicker
+                        styles={{touchFlag:{
+                                marginBottom: 12
+                            }
+                        }}
+                        ref={ref => this.areaAction = ref}
+                        filterable
+                        closeable
+                        onChange={value => {
+                            logMsg(value)
+                            this.setState({ areaName: value.name,
+                                ext: value.callingCode ,
+                                cca2: value.cca2})
+                        }}
+                        cca2={this.state.cca2}
+                        translation="eng"
+                    />
+
                     <Text
                         style={{width: 180, marginLeft: 8, height: 28, fontSize: 16, color: '#666666'}}>
                         {`${areaName} (+${this.state.ext})`}
@@ -217,16 +255,13 @@ export default class Login extends Component {
                     }}>{`《${global.lang.t('protocol2')}》`}</Text></Text>
                 </TouchableOpacity>
 
-                <ExtArea
-                    ref={ref => this.areaAction = ref}
-                    changed_ext={this.changed_ext}/>
-
 
                 <SelectPiker
                     ref={ref => this.selectPiker = ref}
                     onPickerSelect={this.onPickerSelect}
                     selectedItem={this.state.selectedItem}
                     itemList={this.state.itemList}/>
+
 
             </View>
         )
