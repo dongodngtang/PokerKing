@@ -31,7 +31,6 @@ export default class Login extends Component {
             cca2 = 'CN'
             callingCode = '86'
         } else {
-            logMsg('善良的看法',userCountryData)
             callingCode = userCountryData.callingCode
             areaName = userCountryData.name.common
         }
