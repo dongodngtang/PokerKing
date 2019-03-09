@@ -192,7 +192,7 @@ export default class ModifyData extends Component {
                         <Text style={styles.text_label}>{global.lang.t('mailbox')}</Text>
                         <TextInput style={[styles.text_value, {marginRight: 17}]}
                                    clearTextOnFocus={true}
-                                   maxLength={20}
+                                   maxLength={25}
                                    returnKeyType={'done'}
                                    placeholderTextColor={"#666666"}
                                    underlineColorAndroid='transparent'
