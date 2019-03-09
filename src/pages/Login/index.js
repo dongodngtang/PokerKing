@@ -24,7 +24,7 @@ export default class Login extends Component {
         const userCountryData = getAllCountries()
             .filter(country => country.cca2 === userLocaleCountryCode)
             .pop()
-        let callingCode = null
+        let callingCode = '86'
         let areaName = 'China'
         let cca2 = userLocaleCountryCode
         if (!cca2 || !userCountryData) {
