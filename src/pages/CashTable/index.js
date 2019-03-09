@@ -35,7 +35,7 @@ export default class CashTable extends Component {
             <TouchableOpacity key={index} activeOpacity={1} onPress={() => {
                 router.toQueueProcess(item)
             }}>
-                <ImageBackground source={getBg(item.name)} style={[styles.jinsha, {
+                <ImageBackground source={getBg(item.image)} style={[styles.jinsha, {
                     flexDirection: "row-reverse",
                     alignItems: 'center'
                 }]}>
