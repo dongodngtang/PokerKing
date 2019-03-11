@@ -197,7 +197,7 @@ class Card extends Component {
                     countTime: raceStatus
                 })
             }
-        }, 1000)
+        }, 100)
     };
 
     debouncePress =(id) => {
