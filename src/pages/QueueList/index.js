@@ -17,6 +17,10 @@ export default class QueueList extends Component {
     constructor(props) {
         super(props);
         props.navigation.setParams({
+            onLeft: () => {
+                this.props.params.refresh();
+                router.pop();
+            },
             title: `${this.props.params.item.small_blind}/${this.props.params.item.big_blind}NL（${this.props.params.item.table_numbers}${global.lang.t('table')}）`
         })
     };

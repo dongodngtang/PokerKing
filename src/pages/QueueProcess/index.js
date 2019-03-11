@@ -25,6 +25,11 @@ export default class QueueProcess extends Component {
 
 
     componentDidMount() {
+        this.getCash()
+
+    };
+
+    getCash=()=>{
         const {item} = this.props.params;
         getCashQueues({cash_game_id: item.id}, data => {
             logMsg("cash_queues", data)
@@ -40,8 +45,11 @@ export default class QueueProcess extends Component {
                 cash_queues: queues
             });
         });
+    };
 
-    }
+    _onRefresh=()=>{
+        this.getCash();
+    };
 
     _renderItem = ({item, index}) => {
         const {cash_game_id, small_blind, big_blind, table_numbers, cash_queue_members_count, created_at} = item;
@@ -54,7 +62,7 @@ export default class QueueProcess extends Component {
                 this.setState({
                     cash_queues: [...cash_queues]
                 });
-                router.toQueueList(item);
+                router.toQueueList(item,this._onRefresh);
             }}>
                 <Text style={styles.item_txt}>{`${small_blind}/${big_blind}NL（${table_numbers}${global.lang.t('table')}）`}</Text>
                 <View style={{flex: 1}}/>
