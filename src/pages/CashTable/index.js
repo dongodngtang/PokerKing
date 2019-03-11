@@ -3,34 +3,25 @@ import {View, Text, TouchableOpacity, Image, ImageBackground,FlatList} from 'rea
 import {connect} from 'react-redux';
 import styles from './index.style';
 import {Images} from "../../configs/Theme";
-import {getCashGames} from "../../services/cashTableDao";
+import {getCashGames, getCashQueuesNumber} from "../../services/cashTableDao";
 import {getBg, isEmpty, isEmptyObject, logMsg} from "../../utils/utils";
 import {Metrics} from "../../configs/Theme";
+import UltimateFlatList from '../../components/ultimate/UltimateFlatList';
+import NotData from "../comm/NotData";
+import {initLoginUser} from "../../services/accountDao";
 
 @connect(({CashTable}) => ({
     ...CashTable,
 }))
 export default class CashTable extends Component {
 
-    state = {
-        cash_games: []
-    };
-
-    componentDidMount() {
-        getCashGames(data => {
-            logMsg("cash_games", data);
-            this.setState({
-                cash_games: data.items
-            })
-        })
-    }
     _separator=()=>{
         return (
             <View style={{height:4,width:Metrics.screenWidth}}/>
         )
     };
 
-    _renderItem=({item,index})=>{
+    _renderItem=(item,index)=>{
         return(
             <TouchableOpacity key={index} activeOpacity={1} onPress={() => {
                 router.toQueueProcess(item)
@@ -49,23 +40,45 @@ export default class CashTable extends Component {
     };
 
     render() {
-        const {cash_games} = this.state;
-        if(isEmptyObject(cash_games)){
-            return(
-                <View style={styles.table_view}/>
-            )
-        }
         return (
             <View style={styles.table_view}>
 
-                <FlatList
-                    data={cash_games}
-                    showsHorizontalScrollIndicator={false}
-                    ItemSeparatorComponent={this._separator}
-                    renderItem={this._renderItem}
+                <UltimateFlatList
+                    firstLoader={true}
+                    ref={(ref) => this.listView = ref}
+                    onFetch={this.onFetch}
+                    separator={this._separator}
                     keyExtractor={(item, index) => `cashTable${index}`}
+                    item={this._renderItem}
+                    refreshableTitlePull={global.lang.t('pull_refresh')}
+                    refreshableTitleRelease={global.lang.t('release_refresh')}
+                    dateTitle={global.lang.t('last_refresh')}
+                    allLoadedText={''}
+                    waitingSpinnerText={global.lang.t('loading')}
+                    emptyView={() => <NotData/>}
                 />
+
             </View>
         )
     }
+
+    onFetch = (page = 1, startFetch, abortFetch) => {
+        try {
+            initLoginUser(() => {
+                getCashGames({
+                    page,
+                    page_size: 20
+                }, data => {
+                    logMsg("cash_games:", data);
+                    startFetch(data.data.items, 18)
+                }, err => {
+                    logMsg("reject:", err)
+                    abortFetch()
+                })
+            })
+
+        } catch (err) {
+            abortFetch();
+        }
+    };
 }
