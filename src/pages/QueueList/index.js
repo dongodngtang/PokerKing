@@ -17,10 +17,6 @@ export default class QueueList extends Component {
     constructor(props) {
         super(props);
         props.navigation.setParams({
-            onLeft: () => {
-                this.props.params.refresh();
-                router.pop();
-            },
             title: `${this.props.params.item.small_blind}/${this.props.params.item.big_blind}NL（${this.props.params.item.table_numbers}${global.lang.t('table')}）`
         })
     };
@@ -75,11 +71,7 @@ export default class QueueList extends Component {
                     cash_queue_id: id
                 }, data => {
                     logMsg("cash_queue_members:", data);
-                    let members = data.items;
-                    members.map((item,index)=>{
-                        item.isSelect = index === 0;
-                    });
-                    startFetch(members, 18)
+                    startFetch(data.items, 18)
                 }, err => {
                     logMsg("reject:", err)
                     abortFetch()

@@ -13,6 +13,7 @@ export default class NotData extends Component {
         return (
             <View style={{
                 flex: 1,
+                height:Metrics.screenHeight - Metrics.navBarHeight,
                 width:Metrics.screenWidth,
                 backgroundColor: this.props.backgroundColor,
                 flexDirection:'column',

@@ -4,16 +4,18 @@ import {connect} from 'react-redux';
 import {isEmptyObject, logMsg} from "../../utils/utils";
 import styles from './index.style';
 import {Metrics, Images} from "../../configs/Theme";
-import {getCashQueues} from '../../services/cashTableDao'
-import NotData from '../comm/NotData'
+import {getCashQueues, getCashQueuesNumber} from '../../services/cashTableDao'
+import NotData from '../comm/NotData';
+import UltimateFlatList from '../../components/ultimate/UltimateFlatList';
+import {initLoginUser} from "../../services/accountDao";
 
 @connect(({QueueProcess}) => ({
     ...QueueProcess,
 }))
 export default class QueueProcess extends Component {
 
-    state = {
-        cash_queues: []
+    state={
+        cash_queues:[]
     }
 
     constructor(props) {
@@ -24,34 +26,11 @@ export default class QueueProcess extends Component {
     }
 
 
-    componentDidMount() {
-        this.getCash()
-
-    };
-
-    getCash=()=>{
-        const {item} = this.props.params;
-        getCashQueues({cash_game_id: item.id}, data => {
-            logMsg("cash_queues", data)
-            let queues = data.items;
-            queues.map((item,index) => {
-                if (index === 0) {
-                    item.isSelect = true
-                } else {
-                    item.isSelect = false
-                }
-            });
-            this.setState({
-                cash_queues: queues
-            });
-        });
-    };
-
     _onRefresh=()=>{
-        this.getCash();
+        this.listView && this.listView.refresh()
     };
 
-    _renderItem = ({item, index}) => {
+    _renderItem = (item, index) => {
         const {cash_game_id, small_blind, big_blind, table_numbers, cash_queue_members_count, created_at} = item;
         const {cash_queues} = this.state;
         return (
@@ -62,7 +41,7 @@ export default class QueueProcess extends Component {
                 this.setState({
                     cash_queues: [...cash_queues]
                 });
-                router.toQueueList(item,this._onRefresh);
+                router.toQueueList(item);
             }}>
                 <Text style={styles.item_txt}>{`${small_blind}/${big_blind}NL（${table_numbers}${global.lang.t('table')}）`}</Text>
                 <View style={{flex: 1}}/>
@@ -75,21 +54,55 @@ export default class QueueProcess extends Component {
 
 
     render() {
-        const {cash_queues} = this.state;
-        if (isEmptyObject(cash_queues)) {
-            return <NotData backgroundColor={"#3F4042"}/>
-        }
         return (
             <View style={styles.process_view}>
-                <FlatList
-                    data={cash_queues}
-                    showsHorizontalScrollIndicator={false}
-                    ItemSeparatorComponent={this._separator}
-                    renderItem={this._renderItem}/>
+                <UltimateFlatList
+                    firstLoader={true}
+                    ref={(ref) => this.listView = ref}
+                    onFetch={this.onFetch}
+                    separator={this._separator}
+                    keyExtractor={(item, index) => `hot_race${index}`}
+                    item={this._renderItem}
+                    refreshableTitlePull={global.lang.t('pull_refresh')}
+                    refreshableTitleRelease={global.lang.t('release_refresh')}
+                    dateTitle={global.lang.t('last_refresh')}
+                    allLoadedText={''}
+                    waitingSpinnerText={global.lang.t('loading')}
+                    emptyView={() => <NotData/>}
+                />
             </View>
 
         )
-    }
+    };
+
+    onFetch = (page = 1, startFetch, abortFetch) => {
+        const {item} = this.props.params;
+        try {
+            initLoginUser(() => {
+                getCashQueues({
+                    page,
+                    page_size: 20,
+                    cash_game_id: item.id
+                }, data => {
+                    logMsg("cash_queues:", data);
+                    let members = data.items;
+                    members.map((item,index)=>{
+                        item.isSelect = index === 0;
+                    });
+                    this.setState({
+                        cash_queues:members
+                    })
+                    startFetch(members, 18)
+                }, err => {
+                    logMsg("reject:", err)
+                    abortFetch()
+                })
+            })
+
+        } catch (err) {
+            abortFetch();
+        }
+    };
 
     _separator = () => {
         return (

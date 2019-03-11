@@ -111,12 +111,11 @@ export default class Router {
         })
     }
 
-    toQueueList(item,refresh) {
+    toQueueList(item) {
         this.push({
             sceneKey: 'QueueList',
             params: {
-                item,
-                refresh
+                item
             }
         })
     }
