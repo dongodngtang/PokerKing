@@ -13,9 +13,6 @@ import {getInfoList, initLoginUser} from "../../services/accountDao";
     ...QueueList,
 }))
 export default class QueueList extends Component {
-    state = {
-        cash_queue_members: []
-    };
 
     constructor(props) {
         super(props);
@@ -31,17 +28,8 @@ export default class QueueList extends Component {
     };
 
     _renderItem = (item, index) => {
-        const {cash_queue_members} = this.state;
         return (
-            <TouchableOpacity style={item.isSelect ? styles.selected_manila_item : styles.manila_item_view}
-                              onPress={() => {
-                                  cash_queue_members.forEach((x) => {
-                                      x.isSelect = item.id ===x.id
-                                  });
-                                  this.setState({
-                                      cash_queue_members: [...cash_queue_members]
-                                  });
-                              }}>
+            <TouchableOpacity activeOpacity={1} style={index === 0 ? styles.selected_manila_item : styles.manila_item_view}>
                 <Text style={styles.manila_item_txt}>{index + 1}</Text>
                 <View style={{flex: 1}}/>
                 <Text style={[styles.manila_item_txt, {alignSelf: 'center'}]}>{item.nickname}</Text>
@@ -87,9 +75,6 @@ export default class QueueList extends Component {
                     members.map((item,index)=>{
                         item.isSelect = index === 0;
                     });
-                    this.setState({
-                        cash_queue_members:members
-                    })
                     startFetch(members, 18)
                 }, err => {
                     logMsg("reject:", err)
