@@ -76,14 +76,14 @@ export default class ShareToast extends Component {
 
                 {/*标题*/}
                 <View style={styles.titleView}>
-                    <Text style={{fontSize: 16}}>{global.lang.t('choice_platform')}</Text>
+                    {/*<Text style={{fontSize: 16}}>{global.lang.t('choice_platform')}</Text>*/}
                 </View>
 
                 {/*分享平台*/}
-                <View style={[{backgroundColor: "#eaeff3"}, {flex: 1}, {width: DEVICE_WIDTH}, {alignItems: "center"}]}>
+                <View style={[{backgroundColor: "#ECECEE"}, {flex: 1}, {width: DEVICE_WIDTH}, {alignItems: "center"}]}>
                     <FlatList data={shareList}
-                              style={[{backgroundColor: "#eaeff3"}, {width: DEVICE_WIDTH - 40}]}
-                              numColumns={4}
+                              style={[{backgroundColor: "#ECECEE"}, {width: DEVICE_WIDTH - 40}]}
+                              numColumns={5}
                               bounces={false}
                               showsVerticalScrollIndicator={false}
                               ItemSeparatorComponent={this._separator}
@@ -109,7 +109,7 @@ export default class ShareToast extends Component {
                 {/*取消分享*/}
                 <TouchableOpacity onPress={this.hiddenShare}>
                     <View style={styles.closeView}>
-                        <Text style={{fontSize: 15}}>{global.lang.t('cancel_share')}</Text>
+                        <Text style={{fontSize: 15}}>{global.lang.t('cancel')}</Text>
                     </View>
                 </TouchableOpacity>
             </Modal>
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     hideView: {
-        height: DEVICE_HEIGHT - (DEVICE_WIDTH) / 4 - 180,
+        height: DEVICE_HEIGHT - (DEVICE_WIDTH) / 5 - 140,
         width: DEVICE_WIDTH,
         backgroundColor: "rgba(58,58,58,0.5)"
     },
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         width: DEVICE_WIDTH,
-        height: 60,
+        height: 34,
         backgroundColor: "#eaeff3",
     },
     closeView: {

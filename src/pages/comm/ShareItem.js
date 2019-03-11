@@ -159,28 +159,28 @@ export default class ShareItem extends Component {
 }
 const styles = StyleSheet.create({
     container: {
-        width: (DEVICE_WIDTH - 40) / 4,
-        height: (DEVICE_WIDTH - 40) / 4,
+        width: (DEVICE_WIDTH - 40) / 5,
+        height: (DEVICE_WIDTH - 40) / 5,
         alignItems: "center",
         justifyContent: "center",
     },
     subView: {
-        width: (DEVICE_WIDTH - 90) / 4,
-        height: (DEVICE_WIDTH - 90) / 4,
+        width: (DEVICE_WIDTH - 90) / 5,
+        height: (DEVICE_WIDTH - 90) / 5,
         alignItems: "center",
         justifyContent: "center",
     },
     imageSuper: {
-        width: (DEVICE_WIDTH - 140) / 4,
-        height: (DEVICE_WIDTH - 140) / 4,
-        backgroundColor: "white",
+        width: (DEVICE_WIDTH - 140) / 5,
+        height: (DEVICE_WIDTH - 140) / 5,
+
         borderRadius: 4,
         alignItems: "center",
         justifyContent: "center",
     },
     image: {
-        width: 40,
-        height: 40,
+        width: 28,
+        height: 28,
     },
     text: {
         marginTop: 10,
