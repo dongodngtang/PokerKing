@@ -26,7 +26,7 @@ export default StyleSheet.create({
     },
     active_txt:{
         color:"#FFE9AD",
-        fontSize:30
+        fontSize:24
     },
     middle_view:{
         backgroundColor:'white',
@@ -87,7 +87,7 @@ export default StyleSheet.create({
     },
     into_poker_txt:{
         color:"#212223",
-        fontSize:20,
+        fontSize:17,
         fontWeight:'bold',
         marginTop:18,
         marginLeft:18

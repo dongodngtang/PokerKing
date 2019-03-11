@@ -93,10 +93,10 @@ export default class SelectPiker extends Component {
                             }}>
                         {this.props.itemList.map((value, i) => (
                             <PickerItem label={value} value={i} key={value}
-                                        color={i === this.state.index ? "#444444" : "#888888"}/>
+                                        color={i === this.state.index ? "#333333" : "#888888"}/>
                         ))}
                     </Picker>
-                    <View style={{height: 20}}/>
+                    <View style={{height: 40}}/>
                 </View>
             </Modal>
 

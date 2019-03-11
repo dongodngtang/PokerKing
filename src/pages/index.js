@@ -206,7 +206,7 @@ export class NavBar extends PureComponent {
         const {rightTitle, right_img_show, right_img, right_img_size} = this.props;
         if (rightTitle) {
             return <Text
-                style={{fontSize: 14, color: '#FFE9AD'}}>{rightTitle}</Text>
+                style={{fontSize: 15, color: '#FFE9AD'}}>{rightTitle}</Text>
         } else if (right_img_show) {
             return <Image
                 style={right_img_size}
