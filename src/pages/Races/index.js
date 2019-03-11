@@ -70,7 +70,7 @@ export default class Races extends Component {
                     }}
                     style={styles.left2}>
                     <Image
-                        style={{height: 14, width: 18}}
+                        style={{height: 17, width: 9}}
                         source={Images.left}
                     />
 

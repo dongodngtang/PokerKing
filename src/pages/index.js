@@ -196,7 +196,7 @@ export class NavBar extends PureComponent {
             />
         } else {
             return <Image
-                style={{height: 14, width: 18}}
+                style={{height: 17, width: 9}}
                 source={Images.left}
             />
         }
