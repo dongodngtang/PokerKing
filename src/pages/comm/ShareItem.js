@@ -184,6 +184,7 @@ const styles = StyleSheet.create({
     },
     text: {
         marginTop: 10,
-        fontSize: 15,
+        fontSize: 14,
+        color:"#444444"
     }
 });

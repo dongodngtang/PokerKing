@@ -109,7 +109,7 @@ export default class ShareToast extends Component {
                 {/*取消分享*/}
                 <TouchableOpacity onPress={this.hiddenShare}>
                     <View style={styles.closeView}>
-                        <Text style={{fontSize: 15}}>{global.lang.t('cancel')}</Text>
+                        <Text style={{fontSize: 14,color:"#444444"}}>{global.lang.t('cancel')}</Text>
                     </View>
                 </TouchableOpacity>
             </Modal>
