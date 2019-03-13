@@ -85,8 +85,8 @@ export default class Home extends Component {
     };
     _renderItem = (item, index) => {
         return (
-            <View style={{backgroundColor:'white'}}>
-                <HotItem item={item}/>
+            <View style={{backgroundColor:'#252527'}}>
+                <HotItem item={item} type={'hot'}/>
             </View>
         )
     };
@@ -94,7 +94,7 @@ export default class Home extends Component {
     _separator = () => {
         return (
             <View
-                style={{height: 1, backgroundColor: "#ECECEE", width: Metrics.screenWidth - 34, alignSelf: 'center'}}/>
+                style={{height: 1, backgroundColor: "#484848", width: Metrics.screenWidth - 34, alignSelf: 'center'}}/>
         )
     }
 
@@ -134,14 +134,14 @@ export default class Home extends Component {
                         </ImageBackground>
                     </TouchableOpacity>
                 </View>
-                <TouchableOpacity activeOpacity={1} onPress={()=>{
-                    router.toFoundBeauti()
-                }}>
-                    <ImageBackground style={styles.middle_view} source={Images.other_more}>
-                        <Text style={styles.into_poker_txt}>{global.lang.t('into_poker')}</Text>
-                        <Text style={styles.found_beauti_txt}>{global.lang.t('found_beauti')}</Text>
-                    </ImageBackground>
-                </TouchableOpacity>
+                {/*<TouchableOpacity activeOpacity={1} onPress={()=>{*/}
+                    {/*router.toFoundBeauti()*/}
+                {/*}}>*/}
+                    {/*<ImageBackground style={styles.middle_view} source={Images.other_more}>*/}
+                        {/*<Text style={styles.into_poker_txt}>{global.lang.t('into_poker')}</Text>*/}
+                        {/*<Text style={styles.found_beauti_txt}>{global.lang.t('found_beauti')}</Text>*/}
+                    {/*</ImageBackground>*/}
+                {/*</TouchableOpacity>*/}
 
                 <UltimateFlatList
                     header={this.header}

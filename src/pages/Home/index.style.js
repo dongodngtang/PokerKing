@@ -5,7 +5,8 @@ import {mul} from "../../utils/utils";
 
 export default StyleSheet.create({
     home_view:{
-        flex:1
+        flex:1,
+        backgroundColor:'#252527'
     },
     active_type_view:{
         marginLeft:10,
@@ -43,11 +44,11 @@ export default StyleSheet.create({
         paddingLeft:17,
         paddingRight:17,
         borderBottomWidth:1,
-        borderBottomColor:'#ECECEE',
-        backgroundColor:'white'
+        borderBottomColor:'#484848',
+        backgroundColor:'#252527'
     },
     hot_race_txt:{
-        color:"#4A4A4A",
+        color:"#ECECEE",
         fontSize:16,
         fontWeight:'bold'
     },
