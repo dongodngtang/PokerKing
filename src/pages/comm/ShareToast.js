@@ -75,7 +75,7 @@ export default class ShareToast extends Component {
                 </TouchableOpacity>
 
                 {/*标题*/}
-                <View style={styles.titleView}>
+                <View style={[styles.titleView,{backgroundColor: "#ECECEE"}]}>
                     {/*<Text style={{fontSize: 16}}>{global.lang.t('choice_platform')}</Text>*/}
                 </View>
 
