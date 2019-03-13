@@ -39,7 +39,7 @@ export default StyleSheet.create({
         backgroundColor:'white'
     },
     header_view:{
-        paddingTop:12,
+        paddingTop:10,
         paddingBottom:10,
         flexDirection:'row',
         paddingLeft:17,
