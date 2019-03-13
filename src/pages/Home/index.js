@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, Button, TouchableOpacity, Image, ScrollView, RefreshControl, ImageBackground} from 'react-native';
 import {connect} from 'react-redux';
-import { isEmptyObject, logMsg} from "../../utils/utils";
+import {isEmptyObject, logMsg} from "../../utils/utils";
 import MainBanner from './MainBanner';
 import styles from './index.style';
 import UltimateFlatList from '../../components/ultimate/UltimateFlatList';
@@ -9,7 +9,7 @@ import {Images, Metrics} from "../../configs/Theme";
 import SelectPiker from "../comm/SelectPiker";
 import HotItem from "./HotItem";
 import {Actions} from "react-native-router-flux";
-import {getHomeBanners, getInfoList,initLoginUser} from '../../services/accountDao'
+import {getHomeBanners, getInfoList, initLoginUser} from '../../services/accountDao'
 import CustomModal from "../../components/CustomModal";
 import codePush from "react-native-code-push";
 import ShareToast from "../comm/ShareToast";
@@ -29,7 +29,7 @@ export default class Home extends Component {
             itemList: ['English', '简体中文', '繁体中文'],
             home_banners: [],
             info_list: [],
-            isRefreshing:false
+            isRefreshing: false
         };
         props.navigation.setParams({
             onRight: () => {
@@ -85,7 +85,7 @@ export default class Home extends Component {
     };
     _renderItem = (item, index) => {
         return (
-            <View style={{backgroundColor:'#252527'}}>
+            <View style={{backgroundColor: '#252527'}}>
                 <HotItem item={item} type={'hot'}/>
             </View>
         )
@@ -111,36 +111,40 @@ export default class Home extends Component {
 
                 <MainBanner home_banners={this.state.home_banners}/>
                 <View style={styles.active_type_view}>
-                    <TouchableOpacity activeOpacity={1}  onPress={() => {
-                        if(isEmptyObject(global.loginUser)){
+                    <TouchableOpacity activeOpacity={1} onPress={() => {
+                        if (isEmptyObject(global.loginUser)) {
                             router.toLogin();
-                        }else{
+                        } else {
                             router.toRaces();
                         }
                     }}>
                         <ImageBackground source={Images.race_img} style={styles.active_btn}>
+                            <Image source={Images.home_race}
+                                   style={{width: Metrics.reallySize(49), height: Metrics.reallySize(57)}}/>
                             <Text style={styles.active_txt}>{global.lang.t('race')}</Text>
                         </ImageBackground>
                     </TouchableOpacity>
-                    <TouchableOpacity activeOpacity={1}  onPress={() => {
-                        if(isEmptyObject(global.loginUser)){
+                    <TouchableOpacity activeOpacity={1} onPress={() => {
+                        if (isEmptyObject(global.loginUser)) {
                             router.toLogin();
-                        }else{
+                        } else {
                             router.toCashTable();
                         }
                     }}>
                         <ImageBackground source={Images.xianjinzhuo} style={styles.active_btn}>
+                            <Image source={Images.home_cash}
+                                   style={{width: Metrics.reallySize(57), height: Metrics.reallySize(57)}}/>
                             <Text style={styles.active_txt}>{global.lang.t('cash_table')}</Text>
                         </ImageBackground>
                     </TouchableOpacity>
                 </View>
                 {/*<TouchableOpacity activeOpacity={1} onPress={()=>{*/}
-                    {/*router.toFoundBeauti()*/}
+                {/*router.toFoundBeauti()*/}
                 {/*}}>*/}
-                    {/*<ImageBackground style={styles.middle_view} source={Images.other_more}>*/}
-                        {/*<Text style={styles.into_poker_txt}>{global.lang.t('into_poker')}</Text>*/}
-                        {/*<Text style={styles.found_beauti_txt}>{global.lang.t('found_beauti')}</Text>*/}
-                    {/*</ImageBackground>*/}
+                {/*<ImageBackground style={styles.middle_view} source={Images.other_more}>*/}
+                {/*<Text style={styles.into_poker_txt}>{global.lang.t('into_poker')}</Text>*/}
+                {/*<Text style={styles.found_beauti_txt}>{global.lang.t('found_beauti')}</Text>*/}
+                {/*</ImageBackground>*/}
                 {/*</TouchableOpacity>*/}
 
                 <UltimateFlatList
@@ -165,14 +169,14 @@ export default class Home extends Component {
                     itemList={this.state.itemList}/>
 
                 {!isEmptyObject(shareParam) ? <ShareToast hiddenShareAction={() => {
-                    this.props.dispatch({type:'Home/closeShare'})
+                    this.props.dispatch({type: 'Home/closeShare'})
                 }}
 
-                                                           shareTitle={shareParam.shareTitle}
-                                                           shareText={shareParam.shareText}
-                                                           shareLink={shareParam.shareLink}
-                                                           shareImage={shareParam.shareImage}
-                                                           shareType={shareParam.shareType}/> : null}
+                                                          shareTitle={shareParam.shareTitle}
+                                                          shareText={shareParam.shareText}
+                                                          shareLink={shareParam.shareLink}
+                                                          shareImage={shareParam.shareImage}
+                                                          shareType={shareParam.shareType}/> : null}
             </ScrollView>
         )
     }

@@ -102,7 +102,9 @@ export const Images = {
     share_img: require('../asserts/share.png'),
     facebook:require('../asserts/share/facebook.png'),
     fuzhi:require('../asserts/share/fuzhi.png'),
-    twitter:require('../asserts/share/tuite.png')
+    twitter:require('../asserts/share/tuite.png'),
+    home_race:require('../asserts/home/home_race.png'),
+    home_cash:require('../asserts/home/home_cash.png')
 
 }
 

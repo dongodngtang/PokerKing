@@ -20,14 +20,16 @@ export default StyleSheet.create({
     active_btn:{
         width:Number(mul(Metrics.screenWidth , 0.448)),
         height:Number(mul(Metrics.screenHeight , 0.2069)),
-        alignItems:'center',
-        justifyContent:'center',
         backgroundColor:"#13151C",
-        borderRadius:6
+        borderRadius:6,
+        flexDirection:'column',
+        alignItems:'center',
+        justifyContent:'center'
     },
     active_txt:{
         color:"#FFE9AD",
-        fontSize:24
+        fontSize:24,
+        marginTop:17
     },
     middle_view:{
         backgroundColor:'white',
