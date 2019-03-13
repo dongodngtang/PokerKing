@@ -104,7 +104,8 @@ export const Images = {
     fuzhi:require('../asserts/share/fuzhi.png'),
     twitter:require('../asserts/share/tuite.png'),
     home_race:require('../asserts/home/home_race.png'),
-    home_cash:require('../asserts/home/home_cash.png')
+    home_cash:require('../asserts/home/home_cash.png'),
+    about:require('../asserts/about.png')
 
 }
 

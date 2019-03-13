@@ -54,6 +54,11 @@ export default class Drawer extends Component {
                         router.toFeedback();
                     }
                 })}
+
+                {this._item(styles.select_btn, Images.about, styles.change_img_about, global.lang.t('about'), () => {
+                    router.toFoundBeauti();
+                })}
+
                 {this._item(styles.select_btn, Images.feiji, styles.change_img, global.lang.t('recommend'), () => {
                     // Clipboard.setString(`${shareHost()}/loadApp`);
                     // showToast(global.lang.t("copy_download"))

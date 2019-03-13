@@ -129,6 +129,10 @@ export default StyleSheet.create({
         width:22,height:22,
         marginRight:22
     },
+    change_img_about:{
+        width:20,height:22,
+        marginRight:22
+    },
     wentis:{
         width:28,height:28,
         marginRight:18
