@@ -9,8 +9,8 @@ export default StyleSheet.create({
         backgroundColor:'#252527'
     },
     active_type_view:{
-        marginLeft:6,
-        marginRight:6,
+        marginLeft:17,
+        marginRight:17,
         paddingTop:12,
         paddingBottom:12,
         flexDirection:'row',
@@ -18,8 +18,8 @@ export default StyleSheet.create({
         justifyContent:'space-between'
     },
     active_btn:{
-        width:Number(mul(Metrics.screenWidth , 0.4826)),
-        height:Number(mul(Metrics.screenHeight , 0.2167)),
+        width:Number(mul(Metrics.screenWidth , 0.437)),
+        height:Number(mul(Metrics.screenHeight , 0.190)),
         borderRadius:6,
         flexDirection:'column',
         alignItems:'center',

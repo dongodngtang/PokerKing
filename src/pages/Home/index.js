@@ -117,7 +117,7 @@ export default class Home extends Component {
                             router.toRaces();
                         }
                     }}>
-                        <ImageBackground source={Images.race_img} style={styles.active_btn}>
+                        <ImageBackground source={Images.race_bg2} style={styles.active_btn}>
                             <Image source={Images.home_race}
                                    style={{width: Metrics.reallySize(49), height: Metrics.reallySize(57)}}/>
                             <Text style={styles.active_txt}>{global.lang.t('race')}</Text>
@@ -130,7 +130,7 @@ export default class Home extends Component {
                             router.toCashTable();
                         }
                     }}>
-                        <ImageBackground source={Images.xianjinzhuo} style={styles.active_btn}>
+                        <ImageBackground source={Images.race_bg2} style={styles.active_btn}>
                             <Image source={Images.home_cash}
                                    style={{width: Metrics.reallySize(57), height: Metrics.reallySize(57)}}/>
                             <Text style={styles.active_txt}>{global.lang.t('cash_table')}</Text>

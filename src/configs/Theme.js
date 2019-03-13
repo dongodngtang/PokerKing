@@ -105,7 +105,8 @@ export const Images = {
     twitter:require('../asserts/share/tuite.png'),
     home_race:require('../asserts/home/home_race.png'),
     home_cash:require('../asserts/home/home_cash.png'),
-    about:require('../asserts/about.png')
+    about:require('../asserts/about.png'),
+    race_bg2:require('../asserts/race_bg2.png')
 
 }
 
