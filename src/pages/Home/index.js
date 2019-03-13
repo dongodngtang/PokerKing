@@ -99,8 +99,7 @@ export default class Home extends Component {
     }
 
     render() {
-        const {shareParam} = this.props
-        logMsg(Metrics.screenHeight)
+        const {shareParam} = this.props;
         return (
             <ScrollView
                 style={styles.home_view}
