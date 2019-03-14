@@ -23,7 +23,6 @@ export default StyleSheet.create({
     active_btn:{
         width:Number(mul(WIDTH , 0.437)),
         height:Number(mul(HEIGHT , 0.190)),
-        borderRadius:6,
         flexDirection:'column',
         alignItems:'center',
         justifyContent:'center'
