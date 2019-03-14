@@ -5,6 +5,8 @@ import {logMsg, convertDate, strNotNull, utcDate, isStrNull, getBg, mul} from ".
 import styles from './index.style';
 import {Images, Metrics} from "../../configs/Theme";
 
+const WIDTH = Metrics.screenWidth;
+
 export default class HotItem extends Component {
 
     render() {
@@ -22,7 +24,10 @@ export default class HotItem extends Component {
                 <Image style={styles.race_img}
                        source={getBg(image)}/>
                 <View style={styles.right_view}>
-                    <Text style={[styles.race_content_txt, {color: type && type === 'hot' ? '#DDDDDD' : "#444444"}]}
+                    <Text style={[styles.race_content_txt, {
+                        maxWidth: Number(mul(WIDTH, 0.58)),
+                        color: type && type === 'hot' ? '#DDDDDD' : "#444444"
+                    }]}
                           numberOfLines={2}>{title}</Text>
                     {this.props.type && this.props.type === 'event' ? <View style={styles.right_bottom_view}>
                         <Text style={styles.bottom_txt}>{utcDate(created_at, 'YYYY/MM/DD MM:ss')}</Text>
@@ -30,7 +35,7 @@ export default class HotItem extends Component {
                         {strNotNull(source) ?
                             <Text numberOfLines={1} style={[styles.bottom_txt, {
                                 marginRight: 10,
-                                maxWidth: Number(mul(Metrics.screenWidth,0.4))
+                                maxWidth: Number(mul(WIDTH, 0.4))
                             }]}>#{source}</Text> : null}
                         <Text style={styles.bottom_txt}>{utcDate(created_at, 'MM-DD')}</Text>
                     </View>}

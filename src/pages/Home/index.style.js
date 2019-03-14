@@ -3,6 +3,9 @@ import { StyleSheet } from 'react-native';
 import {Metrics} from "../../configs/Theme";
 import {mul} from "../../utils/utils";
 
+const WIDTH = Metrics.screenWidth;
+const HEIGHT = Metrics.screenHeight;
+
 export default StyleSheet.create({
     home_view:{
         flex:1,
@@ -18,8 +21,8 @@ export default StyleSheet.create({
         justifyContent:'space-between'
     },
     active_btn:{
-        width:Number(mul(Metrics.screenWidth , 0.437)),
-        height:Number(mul(Metrics.screenHeight , 0.190)),
+        width:Number(mul(WIDTH , 0.437)),
+        height:Number(mul(HEIGHT , 0.190)),
         borderRadius:6,
         flexDirection:'column',
         alignItems:'center',
@@ -71,14 +74,12 @@ export default StyleSheet.create({
         alignSelf:'center'
     },
     right_view:{
-
         flexDirection:'column',
         justifyContent:'space-between'
     },
     race_content_txt:{
         color:"#444444",
-        fontSize:16,
-        width:'65%'
+        fontSize:16
     },
     right_bottom_view:{
         flexDirection:'row'
