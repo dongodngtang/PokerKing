@@ -16,6 +16,9 @@ import ShareToast from "../comm/ShareToast";
 import NotData from "../comm/NotData";
 import FoundBeauti from "../FoundBeauti";
 
+const WIDTH = Metrics.screenWidth;
+const HEIGHT = Metrics.screenHeight;
+
 @connect(({Home}) => ({
     ...Home
 }))
