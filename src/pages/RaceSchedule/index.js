@@ -136,7 +136,7 @@ export default class RaceSchedule extends Component {
                         <Text style={styles.race_price}>{global.lang.t('race_price')}{buy_in}</Text>
                     </View>
                 </View>
-                {item.isSelect ? <SelectPart item={item} description={this.props.params.event.description}/> : null}
+                {item.isSelect ? <SelectPart item={item} event={this.props.params.event} /> : null}
             </View>
 
         )
@@ -207,10 +207,11 @@ class SelectPart extends Component {
                     countTime: raceStatus
                 })
             }
-        }, 1000)
+        }, 500)
     }
     render() {
-        const {id,name, event_type, event_num, buy_in, entries, starting_stack, schedule_pdf, begin_time, reg_open, reg_close} = this.props.item;
+        const {name, event_type, event_num, buy_in, entries, starting_stack, schedule_pdf, begin_time, reg_open, reg_close} = this.props.item;
+        const {id,description} = this.props.event;
         return (
             <View style={styles.selected_view}>
                 <View style={{flexDirection: 'row', alignItems: 'center', marginLeft: 17, marginRight: 17}}>
@@ -252,6 +253,7 @@ class SelectPart extends Component {
                     <Image style={{width: 6, height: 12}} source={Images.right_gray}/>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.problem_view} activeOpacity={1} onPress={()=>{
+
                     router.toRaceMessage(id)
                 }}>
                     <Image style={{width: 26, height: 26, marginRight: 14}} source={Images.shuhcu}/>
