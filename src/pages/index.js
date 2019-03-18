@@ -78,7 +78,7 @@ export const scenes = () => {
         <Scene key="HotNewsList"
                component={HotNewsList}
                {...TopNav({
-                   title: global.lang.t('hot_race')
+                   title: global.lang.t('news')
                })}/>
         <Scene key="Races"
                component={Races}

@@ -26,7 +26,7 @@ export default class FoundBeauti extends Component {
               paddingBottom: 80,
               width:Metrics.screenWidth - 36
           }}>
-              <Text style={styles.txt}>{global.lang.t('beauti_text1')}</Text>
+              <Text style={[styles.txt,{alignSelf:'center'}]}>{global.lang.t('beauti_text1')}</Text>
               <Text style={[styles.txt,{marginTop:10}]}>{global.lang.t('beauti_text2')}</Text>
               <Text style={[styles.txt,{marginTop:10}]}>{global.lang.t('beauti_text3')}</Text>
               <Text style={[styles.txt,{marginTop:10}]}>{global.lang.t('beauti_text4')}</Text>

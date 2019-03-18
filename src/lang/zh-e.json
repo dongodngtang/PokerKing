@@ -15,7 +15,7 @@
   "mailbox":"郵箱",
   "determine":"確定",
   "race":"賽事",
-  "cash_table":"現金桌",
+  "cash_table":"遊戲桌",
   "pull_refresh": "下拉刷新",
   "loading": "加載中...",
   "no_more": "已經沒有啦！",
@@ -154,5 +154,6 @@
   "cancel_share":"取消分享",
   "unInstall_facebook":"未安裝FaceBook客戶端",
   "unInstall_twitter":"未安裝Twitter客戶端",
-  "about":"走進撲克王"
+  "about":"走進撲克王",
+  "news":"資訊"
 }

@@ -15,7 +15,7 @@
   "mailbox":"Email",
   "determine":"Confirm",
   "race":"Tournament",
-  "cash_table":"Cash Table",
+  "cash_table":"Game Table",
   "pull_refresh": "Earlier Articles",
   "loading": "Loading...",
   "no_more": " No More！",
@@ -166,5 +166,6 @@
   "cancel_share":"Cancel sharing",
   "unInstall_facebook":"FaceBook client not installed",
   "unInstall_twitter":"Twitter client not installed",
-  "about":"About PokerKing"
+  "about":"About PokerKing",
+  "news":"News"
 }

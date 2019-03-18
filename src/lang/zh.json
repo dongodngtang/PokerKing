@@ -15,7 +15,7 @@
   "mailbox":"邮箱",
   "determine":"确定",
   "race":"赛事",
-  "cash_table":"现金桌",
+  "cash_table":"游戏桌",
   "pull_refresh": "下拉刷新",
   "loading": "加载中...",
   "no_more": "已经没有啦！",
@@ -154,7 +154,8 @@
   "cancel_share":"取消分享",
   "unInstall_facebook":"未安装FaceBook客户端",
   "unInstall_twitter":"未安装Twitter客户端",
-  "about":"走进扑克王"
+  "about":"走进扑克王",
+  "news":"资讯"
 }
 
 
