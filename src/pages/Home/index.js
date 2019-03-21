@@ -120,11 +120,12 @@ export default class Home extends Component {
                             router.toRaces();
                         }
                     }}>
-                        <ImageBackground source={Images.race_bg2} style={styles.active_btn}>
-                            <Image source={Images.home_race}
-                                   style={{width: Metrics.reallySize(49), height: Metrics.reallySize(57)}}/>
-                            <Text style={styles.active_txt}>{global.lang.t('race')}</Text>
-                        </ImageBackground>
+                        <Image source={Images.touanament_bg} style={styles.active_btn}/>
+                        {/*<ImageBackground source={Images.touanament_bg} style={styles.active_btn}>*/}
+                            {/*<Image source={Images.home_race}*/}
+                                   {/*style={{width: Metrics.reallySize(49), height: Metrics.reallySize(57)}}/>*/}
+                            {/*<Text style={styles.active_txt}>{global.lang.t('race')}</Text>*/}
+                        {/*</ImageBackground>*/}
                     </TouchableOpacity>
                     <TouchableOpacity activeOpacity={1} onPress={() => {
                         if (isEmptyObject(global.loginUser)) {
@@ -133,11 +134,12 @@ export default class Home extends Component {
                             router.toCashTable();
                         }
                     }}>
-                        <ImageBackground source={Images.race_bg2} style={styles.active_btn}>
-                            <Image source={Images.home_cash}
-                                   style={{width: Metrics.reallySize(57), height: Metrics.reallySize(57)}}/>
-                            <Text style={styles.active_txt}>{global.lang.t('cash_table')}</Text>
-                        </ImageBackground>
+                        <Image source={Images.cash_bg} style={styles.active_btn}/>
+                        {/*<ImageBackground source={Images.cash_bg} style={styles.active_btn}>*/}
+                            {/*<Image source={Images.home_cash}*/}
+                                   {/*style={{width: Metrics.reallySize(57), height: Metrics.reallySize(57)}}/>*/}
+                            {/*<Text style={styles.active_txt}>{global.lang.t('cash_table')}</Text>*/}
+                        {/*</ImageBackground>*/}
                     </TouchableOpacity>
                 </View>
                 {/*<TouchableOpacity activeOpacity={1} onPress={()=>{*/}
