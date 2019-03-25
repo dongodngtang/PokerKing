@@ -24,14 +24,19 @@ export default StyleSheet.create({
         width:Number(mul(WIDTH , 0.437)),
         height:Number(mul(WIDTH , 0.427)),
         borderRadius:Metrics.reallySize(10),
+        backgroundColor:"#13151c",
         flexDirection:'column',
         alignItems:'center',
         justifyContent:'center'
     },
+    touanament_img:{
+        width:Number(mul(WIDTH , 0.25)),
+        height:Number(mul(WIDTH , 0.25))
+    },
     active_txt:{
-        color:"#FFE9AD",
-        fontSize:24,
-        marginTop:17
+        color:"#D9C27A",
+        fontSize:18,
+        marginTop:10
     },
     middle_view:{
         backgroundColor:'white',

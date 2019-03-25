@@ -119,12 +119,11 @@ export default class Home extends Component {
                         } else {
                             router.toRaces();
                         }
-                    }}>
-                        <Image source={Images.touanament_bg} style={styles.active_btn}/>
+                    }} style={styles.active_btn}>
                         {/*<ImageBackground source={Images.touanament_bg} style={styles.active_btn}>*/}
-                            {/*<Image source={Images.home_race}*/}
-                                   {/*style={{width: Metrics.reallySize(49), height: Metrics.reallySize(57)}}/>*/}
-                            {/*<Text style={styles.active_txt}>{global.lang.t('race')}</Text>*/}
+                            <Image source={Images.touanament_bg}
+                                   style={styles.touanament_img}/>
+                            <Text style={styles.active_txt}>{global.lang.t('race')}</Text>
                         {/*</ImageBackground>*/}
                     </TouchableOpacity>
                     <TouchableOpacity activeOpacity={1} onPress={() => {
@@ -133,12 +132,11 @@ export default class Home extends Component {
                         } else {
                             router.toCashTable();
                         }
-                    }}>
-                        <Image source={Images.cash_bg} style={styles.active_btn}/>
+                    }} style={styles.active_btn}>
                         {/*<ImageBackground source={Images.cash_bg} style={styles.active_btn}>*/}
-                            {/*<Image source={Images.home_cash}*/}
-                                   {/*style={{width: Metrics.reallySize(57), height: Metrics.reallySize(57)}}/>*/}
-                            {/*<Text style={styles.active_txt}>{global.lang.t('cash_table')}</Text>*/}
+                            <Image source={Images.cash_bg}
+                                   style={styles.touanament_img}/>
+                            <Text style={styles.active_txt}>{global.lang.t('cash_table')}</Text>
                         {/*</ImageBackground>*/}
                     </TouchableOpacity>
                 </View>
