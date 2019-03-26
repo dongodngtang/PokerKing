@@ -17,6 +17,9 @@ import {
 import {storageLoginUser} from "../../services/accountDao";
 import {getBaseUrl} from "../../configs/fetch";
 
+const  HEIGHT = Metrics.screenHeight;
+const BAR_HEIGHT = Metrics.navBarHeight;
+
 @connect(({Home}) => ({
     ...Home
 }))
@@ -73,7 +76,7 @@ export default class Drawer extends Component {
 
                 {isEmptyObject(profile)?null: <TouchableOpacity
                     activeOpacity={1}
-                    style={{alignSelf:'center',position:'absolute',bottom:Number(mul(Metrics.screenHeight , 0.1))}} onPress={() => {
+                    style={{alignSelf:'center',position:'absolute',bottom:Number(mul(HEIGHT, 0.1))}} onPress={() => {
                     alertOrder(global.lang.t('is_drop_out'), () => {
                         storageLoginUser({})
                     });

@@ -44,6 +44,7 @@ export default class Home extends Component {
         props.navigation.setParams({
             onRight: () => {
                 this.selectPiker && this.selectPiker.toggle()
+                this.drawer && this.drawer.close()
             },
             onLeft: () => {
                 this.drawer && this.drawer.toggle()
@@ -116,7 +117,7 @@ export default class Home extends Component {
                 type="static"
                 content={<ControlPanel
                                  profile={this.props.profile}/>}
-                openDrawerOffset={100}
+                openDrawerOffset={185}
                 tweenHandler={Drawer.tweenPresets.parallax}>
                 <ScrollView
                     style={styles.home_view}

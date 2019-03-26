@@ -133,14 +133,17 @@ export default class Races extends Component {
                     />
                 </View> : null}
 
-                {this._item(styles.item_view, Images.rili_gray, styles.img_dy1,
-                    `${isStrNull(recent_event.name) ? '' : recent_event.name}${global.lang.t('race_schedule')}`, () => {
-                        router.toRaceSchedule(recent_event);
-                    })}
+
                 {this._item(styles.item_view, Images.zixun, styles.img_dy,
                     global.lang.t('race_message'), () => {
                         this.debouncePress(recent_event.id)
                     })}
+
+                {this._item(styles.item_view, Images.rili_gray, styles.img_dy1,
+                    `${isStrNull(recent_event.name) ? '' : recent_event.name}${global.lang.t('race_schedule')}`, () => {
+                        router.toRaceSchedule(recent_event);
+                    })}
+
                 {this._item(styles.item_view, Images.ziyuan, styles.img_dy2,
                     global.lang.t('race_news'), () => {
                         router.toRaceNew(recent_event.id);
