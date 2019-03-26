@@ -15,9 +15,16 @@ import codePush from "react-native-code-push";
 import ShareToast from "../comm/ShareToast";
 import NotData from "../comm/NotData";
 import FoundBeauti from "../FoundBeauti";
+import ControlPanel from "./Drawer";
+import Drawer from 'react-native-drawer'
 
 const WIDTH = Metrics.screenWidth;
 const HEIGHT = Metrics.screenHeight;
+
+const drawerStyles = {
+    drawer: { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
+    main: {paddingLeft: 3},
+}
 
 @connect(({Home}) => ({
     ...Home
@@ -39,7 +46,7 @@ export default class Home extends Component {
                 this.selectPiker && this.selectPiker.toggle()
             },
             onLeft: () => {
-                Actions.drawerOpen()
+                this.drawer && this.drawer.toggle()
             }
         })
         this.count = 0
@@ -104,82 +111,93 @@ export default class Home extends Component {
     render() {
         const {shareParam} = this.props;
         return (
-            <ScrollView
-                style={styles.home_view}
-                refreshControl={<RefreshControl
-                    refreshing={this.state.isRefreshing}
-                    onRefresh={this._onRefresh}
-                />}>
+            <Drawer
+                ref={ref=>this.drawer = ref}
+                type="static"
+                content={<ControlPanel
+                                 profile={this.props.profile}/>}
+                openDrawerOffset={100}
+                tweenHandler={Drawer.tweenPresets.parallax}>
+                <ScrollView
+                    style={styles.home_view}
+                    refreshControl={<RefreshControl
+                        refreshing={this.state.isRefreshing}
+                        onRefresh={this._onRefresh}
+                    />}>
 
-                <MainBanner home_banners={this.state.home_banners}/>
-                <View style={styles.active_type_view}>
-                    <TouchableOpacity activeOpacity={1} onPress={() => {
-                        if (isEmptyObject(global.loginUser)) {
-                            router.toLogin();
-                        } else {
-                            router.toRaces();
-                        }
-                    }} style={styles.active_btn}>
-                        {/*<ImageBackground source={Images.touanament_bg} style={styles.active_btn}>*/}
+                    <MainBanner home_banners={this.state.home_banners}/>
+                    <View style={styles.active_type_view}>
+                        <TouchableOpacity activeOpacity={1} onPress={() => {
+                            if (isEmptyObject(global.loginUser)) {
+                                router.toLogin();
+                            } else {
+                                router.toRaces();
+                            }
+                        }} style={styles.active_btn}>
+                            {/*<ImageBackground source={Images.touanament_bg} style={styles.active_btn}>*/}
                             <Image source={Images.touanament_bg}
                                    style={styles.touanament_img}/>
                             <Text style={styles.active_txt}>{global.lang.t('race')}</Text>
-                        {/*</ImageBackground>*/}
-                    </TouchableOpacity>
-                    <TouchableOpacity activeOpacity={1} onPress={() => {
-                        if (isEmptyObject(global.loginUser)) {
-                            router.toLogin();
-                        } else {
-                            router.toCashTable();
-                        }
-                    }} style={styles.active_btn}>
-                        {/*<ImageBackground source={Images.cash_bg} style={styles.active_btn}>*/}
+                            {/*</ImageBackground>*/}
+                        </TouchableOpacity>
+                        <TouchableOpacity activeOpacity={1} onPress={() => {
+                            if (isEmptyObject(global.loginUser)) {
+                                router.toLogin();
+                            } else {
+                                router.toCashTable();
+                            }
+                        }} style={styles.active_btn}>
+                            {/*<ImageBackground source={Images.cash_bg} style={styles.active_btn}>*/}
                             <Image source={Images.cash_bg}
                                    style={styles.touanament_img}/>
                             <Text style={styles.active_txt}>{global.lang.t('cash_table')}</Text>
-                        {/*</ImageBackground>*/}
-                    </TouchableOpacity>
-                </View>
-                {/*<TouchableOpacity activeOpacity={1} onPress={()=>{*/}
-                {/*router.toFoundBeauti()*/}
-                {/*}}>*/}
-                {/*<ImageBackground style={styles.middle_view} source={Images.other_more}>*/}
-                {/*<Text style={styles.into_poker_txt}>{global.lang.t('into_poker')}</Text>*/}
-                {/*<Text style={styles.found_beauti_txt}>{global.lang.t('found_beauti')}</Text>*/}
-                {/*</ImageBackground>*/}
-                {/*</TouchableOpacity>*/}
+                            {/*</ImageBackground>*/}
+                        </TouchableOpacity>
+                    </View>
+                    {/*<TouchableOpacity activeOpacity={1} onPress={()=>{*/}
+                    {/*router.toFoundBeauti()*/}
+                    {/*}}>*/}
+                    {/*<ImageBackground style={styles.middle_view} source={Images.other_more}>*/}
+                    {/*<Text style={styles.into_poker_txt}>{global.lang.t('into_poker')}</Text>*/}
+                    {/*<Text style={styles.found_beauti_txt}>{global.lang.t('found_beauti')}</Text>*/}
+                    {/*</ImageBackground>*/}
+                    {/*</TouchableOpacity>*/}
 
-                <UltimateFlatList
-                    header={this.header}
-                    ref={(ref) => this.listView = ref}
-                    onFetch={this.onFetch}
-                    separator={this._separator}
-                    keyExtractor={(item, index) => `hot_race${index}`}
-                    item={this._renderItem}
-                    refreshableTitlePull={global.lang.t('pull_refresh')}
-                    refreshableTitleRelease={global.lang.t('release_refresh')}
-                    dateTitle={global.lang.t('last_refresh')}
-                    allLoadedText={global.lang.t('no_more')}
-                    waitingSpinnerText={global.lang.t('loading')}
-                    emptyView={() => <NotData/>}
-                />
+                    <UltimateFlatList
+                        header={this.header}
+                        ref={(ref) => this.listView = ref}
+                        onFetch={this.onFetch}
+                        separator={this._separator}
+                        keyExtractor={(item, index) => `hot_race${index}`}
+                        item={this._renderItem}
+                        refreshableTitlePull={global.lang.t('pull_refresh')}
+                        refreshableTitleRelease={global.lang.t('release_refresh')}
+                        dateTitle={global.lang.t('last_refresh')}
+                        allLoadedText={global.lang.t('no_more')}
+                        waitingSpinnerText={global.lang.t('loading')}
+                        emptyView={() => <NotData/>}
+                    />
 
-                <SelectPiker
-                    ref={ref => this.selectPiker = ref}
-                    onPickerSelect={this.onPickerSelect}
-                    selectedItem={this.state.selectedItem}
-                    itemList={this.state.itemList}/>
+                    <SelectPiker
+                        ref={ref => this.selectPiker = ref}
+                        onPickerSelect={this.onPickerSelect}
+                        selectedItem={this.state.selectedItem}
+                        itemList={this.state.itemList}/>
 
-                {!isEmptyObject(shareParam) ? <ShareToast hiddenShareAction={() => {
-                    this.props.dispatch({type: 'Home/closeShare'})
-                }}
+                    {!isEmptyObject(shareParam) ? <ShareToast hiddenShareAction={() => {
+                        this.props.dispatch({type: 'Home/closeShare'})
+                    }}
 
-                                                          shareTitle={shareParam.shareTitle}
-                                                          shareText={shareParam.shareText}
-                                                          shareLink={shareParam.shareLink}
-                                                          shareImage={shareParam.shareImage}
-                                                          shareType={shareParam.shareType}/> : null}
-            </ScrollView>
+                                                              shareTitle={shareParam.shareTitle}
+                                                              shareText={shareParam.shareText}
+                                                              shareLink={shareParam.shareLink}
+                                                              shareImage={shareParam.shareImage}
+                                                              shareType={shareParam.shareType}/> : null}
+
+                </ScrollView>
+
+
+            </Drawer>
         )
     }
 

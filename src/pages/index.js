@@ -36,24 +36,18 @@ import ProtocolPage from "./ProtocolPage";
 
 export const scenes = () => {
     return <Scene key="root">
-        <Drawer
-            initial
-            hideNavBar
-            key={'HomeDrawer'}
-            contentComponent={DrawerComp}
-            drawerWidth={200}
-            drawerPosition={'left'}>
-            <Scene key="Home"
-                   component={Home}
-                   {...TopNav({
-                       title: global.lang.t('app_name'),
-                       rightTitle: global.lang.t('home_language'),
-                       left_definition: true,
-                       left_img: Images.homepage_side,
-                       img_size: {height: 16, width: 20},
-                       middle_title: true
-                   })}/>
-        </Drawer>
+        
+        <Scene key="Home"
+               initial
+               component={Home}
+               {...TopNav({
+                   title: global.lang.t('app_name'),
+                   rightTitle: global.lang.t('home_language'),
+                   left_definition: true,
+                   left_img: Images.homepage_side,
+                   img_size: {height: 16, width: 20},
+                   middle_title: true
+               })}/>
 
 
         <Scene key="Detail"
