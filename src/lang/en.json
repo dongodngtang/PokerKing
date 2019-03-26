@@ -29,7 +29,7 @@
   "time":"H ",
   "minute":"M ",
   "second":"S",
-  "race_schedule":"schedule",
+  "race_schedule":"Event Status",
   "race_message":"Event information",
   "race_news":"Event news",
   "into_poker":"PokerKing Club",
