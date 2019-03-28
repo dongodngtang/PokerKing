@@ -22,12 +22,12 @@ export default class CashTable extends Component {
     };
 
     getLang=(item)=>{
-        const {imag_en_e,image_en, image} = item;
+        const {image_complex,image_en, image} = item;
         let lang = global.localLanguage;
         if(lang === 'en'){
             return image_en
         }else if(lang === 'zh-e'){
-            return imag_en_e
+            return image_complex
         }else {
             return image
         }
