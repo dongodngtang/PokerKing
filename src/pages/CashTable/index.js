@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, TouchableOpacity, Image, ImageBackground,FlatList} from 'react-native';
+import {View, Text, TouchableOpacity, Image, ImageBackground, FlatList} from 'react-native';
 import {connect} from 'react-redux';
 import styles from './index.style';
 import {Images} from "../../configs/Theme";
@@ -15,24 +15,26 @@ import {initLoginUser} from "../../services/accountDao";
 }))
 export default class CashTable extends Component {
 
-    _separator=()=>{
+    _separator = () => {
         return (
-            <View style={{height:4,width:Metrics.screenWidth}}/>
+            <View style={{height: 4, width: Metrics.screenWidth}}/>
         )
     };
 
-    _renderItem=(item,index)=>{
-        return(
+    _renderItem = (item, index) => {
+        const {image_en, image} = item;
+        let lang = global.global.localLanguage;
+        return (
             <TouchableOpacity key={index} activeOpacity={1} onPress={() => {
                 router.toQueueProcess(item)
             }}>
-                <ImageBackground source={getBg(item.image)} style={[styles.jinsha, {
+                <ImageBackground source={getBg(lang === 'en' ? item.image_en : item.image)} style={[styles.jinsha, {
                     flexDirection: "row-reverse",
                     alignItems: 'center'
                 }]}>
                     {/*<View style={styles.txt_view}>*/}
-                        {/*<Text style={styles.txt1}>{global.lang.t('sands_casino')}</Text>*/}
-                        {/*<Text style={styles.txt2}>{global.lang.t('queuing')}></Text>*/}
+                    {/*<Text style={styles.txt1}>{global.lang.t('sands_casino')}</Text>*/}
+                    {/*<Text style={styles.txt2}>{global.lang.t('queuing')}></Text>*/}
                     {/*</View>*/}
                 </ImageBackground>
             </TouchableOpacity>

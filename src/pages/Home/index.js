@@ -22,7 +22,7 @@ const WIDTH = Metrics.screenWidth;
 const HEIGHT = Metrics.screenHeight;
 
 const drawerStyles = {
-    drawer: { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
+    drawer: {shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
     main: {paddingLeft: 3},
 }
 
@@ -113,10 +113,10 @@ export default class Home extends Component {
         const {shareParam} = this.props;
         return (
             <Drawer
-                ref={ref=>this.drawer = ref}
+                ref={ref => this.drawer = ref}
                 type="static"
                 content={<ControlPanel
-                                 profile={this.props.profile}/>}
+                    profile={this.props.profile}/>}
                 openDrawerOffset={185}
                 tweenHandler={Drawer.tweenPresets.parallax}>
                 <ScrollView
@@ -210,6 +210,7 @@ export default class Home extends Component {
                         home_banners: data.banners
                     })
                     getInfoList({
+                        status: 'hot',
                         page,
                         page_size: 20
                     }, data => {
