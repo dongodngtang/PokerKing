@@ -32,10 +32,23 @@ export default class HotItem extends Component {
                     {this.props.type && this.props.type === 'event' ? <View style={styles.right_bottom_view}>
                         <Text style={styles.bottom_txt}>{utcDate(created_at, 'YYYY/MM/DD MM:ss')}</Text>
                     </View> : <View style={styles.right_bottom_view}>
+                        {this.props.type && this.props.type === 'hot_list' ?
+                            <View style={{
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                width: Metrics.reallySize(34),
+                                height: Metrics.reallySize(18),
+                                borderRadius: 3,
+                                borderWidth: 1,
+                                borderColor: "#EA5163",
+                                marginRight: 10
+                            }}>
+                                <Text style={{color: "#EA5163", fontSize: 12}}>{global.lang.t('hot')}</Text>
+                            </View> : null}
                         {strNotNull(source) ?
                             <Text numberOfLines={1} style={[styles.bottom_txt, {
                                 marginRight: 10,
-                                maxWidth: Number(mul(WIDTH, 0.4))
+                                maxWidth: this.props.type && this.props.type === 'hot_list' ? Number(mul(WIDTH, 0.32)) : Number(mul(WIDTH, 0.4))
                             }]}>#{source}</Text> : null}
                         <Text style={styles.bottom_txt}>{utcDate(created_at, 'MM-DD')}</Text>
                     </View>}

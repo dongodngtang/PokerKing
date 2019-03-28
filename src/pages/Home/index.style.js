@@ -87,7 +87,8 @@ export default StyleSheet.create({
         fontSize:16
     },
     right_bottom_view:{
-        flexDirection:'row'
+        flexDirection:'row',
+        alignItems:'center'
     },
     bottom_txt:{
         color:"#AAAAAA",

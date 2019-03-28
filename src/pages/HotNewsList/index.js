@@ -27,7 +27,7 @@ export default class HotNewsList extends Component {
 
     _renderItem = (item, index) => {
         return (
-            <HotItem item={item}/>
+            <HotItem item={item} type={'hot_list'}/>
         )
     };
 

@@ -167,5 +167,6 @@
   "unInstall_facebook":"FaceBook client not installed",
   "unInstall_twitter":"Twitter client not installed",
   "about":"About PokerKing",
-  "news":"News"
+  "news":"News",
+  "hot":"Hot"
 }
