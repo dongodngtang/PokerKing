@@ -21,14 +21,25 @@ export default class CashTable extends Component {
         )
     };
 
+    getLang=(item)=>{
+        const {imag_en_e,image_en, image} = item;
+        let lang = global.localLanguage;
+        if(lang === 'en'){
+            return image_en
+        }else if(lang === 'zh-e'){
+            return imag_en_e
+        }else {
+            return image
+        }
+    }
+
     _renderItem = (item, index) => {
-        const {image_en, image} = item;
-        let lang = global.global.localLanguage;
+        let img = this.getLang(item);
         return (
             <TouchableOpacity key={index} activeOpacity={1} onPress={() => {
                 router.toQueueProcess(item)
             }}>
-                <ImageBackground source={getBg(lang === 'en' ? item.image_en : item.image)} style={[styles.jinsha, {
+                <ImageBackground source={getBg(img)} style={[styles.jinsha, {
                     flexDirection: "row-reverse",
                     alignItems: 'center'
                 }]}>
