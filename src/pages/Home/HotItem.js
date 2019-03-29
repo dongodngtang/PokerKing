@@ -10,7 +10,7 @@ const WIDTH = Metrics.screenWidth;
 export default class HotItem extends Component {
 
     render() {
-        const {id, image, title, source, created_at} = this.props.item;
+        const {id, image, title, source, created_at,hot} = this.props.item;
         const {type} = this.props;
         return (
             <TouchableOpacity style={styles.item_view}
@@ -32,7 +32,7 @@ export default class HotItem extends Component {
                     {this.props.type && this.props.type === 'event' ? <View style={styles.right_bottom_view}>
                         <Text style={styles.bottom_txt}>{utcDate(created_at, 'YYYY/MM/DD MM:ss')}</Text>
                     </View> : <View style={styles.right_bottom_view}>
-                        {this.props.type && this.props.type === 'hot_list' ?
+                        {this.props.type && this.props.type === 'hot_list' && hot ?
                             <View style={{
                                 alignItems: 'center',
                                 justifyContent: 'center',
@@ -48,7 +48,7 @@ export default class HotItem extends Component {
                         {strNotNull(source) ?
                             <Text numberOfLines={1} style={[styles.bottom_txt, {
                                 marginRight: 10,
-                                maxWidth: this.props.type && this.props.type === 'hot_list' ? Number(mul(WIDTH, 0.32)) : Number(mul(WIDTH, 0.4))
+                                maxWidth: this.props.type && this.props.type === 'hot_list' && hot ? Number(mul(WIDTH, 0.32)) : Number(mul(WIDTH, 0.4))
                             }]}>#{source}</Text> : null}
                         <Text style={styles.bottom_txt}>{utcDate(created_at, 'MM-DD')}</Text>
                     </View>}
