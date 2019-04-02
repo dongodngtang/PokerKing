@@ -71,7 +71,7 @@ export default class RaceSchedule extends Component {
 
     render() {
         const {schedules_dates} = this.state;
-        if(isEmptyObject(schedules_dates)){
+        if (isEmptyObject(schedules_dates)) {
             return <NotData/>
         }
         return (
@@ -113,8 +113,17 @@ export default class RaceSchedule extends Component {
         return (
             <View>
                 <View style={styles.item_view2}>
-                    <Text style={styles.top_txt1}>{name}</Text>
-                    <TouchableOpacity style={styles.schedule_middle_view} activeOpacity={1} onPress={() => {
+                    <View style={{width:'100%',flexDirection: 'row', alignItems: 'center'}}>
+                        <Text style={[styles.top_txt1, {width: '65%'}]}>{name}</Text>
+                        <View style={{flex: 1}}/>
+                        <Text style={styles.time_txt}>{utcDate(begin_time, 'YYYY/MM/DD MM:ss')}</Text>
+                    </View>
+
+
+                    <View style={styles.schedule_middle_view}>
+                        <Text style={[styles.top_txt1, {marginRight: 20}]}>{global.lang.t('race')}{event_num}</Text>
+                    </View>
+                    <TouchableOpacity style={styles.schedule_bottom_view} activeOpacity={1} onPress={() => {
                         schedules_events.forEach((x) => {
                             if (x.id === item.id) {
                                 x.isSelect = !x.isSelect
@@ -124,19 +133,13 @@ export default class RaceSchedule extends Component {
                             schedules_events: [...schedules_events]
                         });
                     }}>
-                        <Text style={[styles.top_txt1, {marginRight: 20}]}>{global.lang.t('race')}{event_num}</Text>
-                        <Text style={styles.time_txt}>{utcDate(begin_time, 'YYYY/MM/DD MM:ss')}</Text>
+                        <Text style={[styles.race_price,{width: '65%'}]} numberOfLines={1}>{global.lang.t('race_price')}{buy_in}</Text>
                         <View style={{flex: 1}}/>
                         <Image style={{width: 12, height: 6}}
                                source={item.isSelect ? Images.is_top : Images.is_bottom}/>
                     </TouchableOpacity>
-                    <View style={styles.schedule_bottom_view}>
-                        <Text style={[styles.top_txt1, {width: '65%'}]} numberOfLines={1}>{name}</Text>
-                        <View style={{flex: 1}}/>
-                        <Text style={styles.race_price}>{global.lang.t('race_price')}{buy_in}</Text>
-                    </View>
                 </View>
-                {item.isSelect ? <SelectPart item={item} event={this.props.params.event} /> : null}
+                {item.isSelect ? <SelectPart item={item} event={this.props.params.event}/> : null}
             </View>
 
         )
@@ -209,9 +212,10 @@ class SelectPart extends Component {
             }
         }, 500)
     }
+
     render() {
         const {name, event_type, event_num, buy_in, entries, starting_stack, schedule_pdf, begin_time, reg_open, reg_close} = this.props.item;
-        const {id,description} = this.props.event;
+        const {id, description} = this.props.event;
         return (
             <View style={styles.selected_view}>
                 <View style={{flexDirection: 'row', alignItems: 'center', marginLeft: 17, marginRight: 17}}>
@@ -252,7 +256,7 @@ class SelectPart extends Component {
                     <View style={{flex: 1}}/>
                     <Image style={{width: 6, height: 12}} source={Images.right_gray}/>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.problem_view} activeOpacity={1} onPress={()=>{
+                <TouchableOpacity style={styles.problem_view} activeOpacity={1} onPress={() => {
 
                     router.toRaceMessage(id)
                 }}>
@@ -270,7 +274,7 @@ class SelectPart extends Component {
                         }
                         AddCalendarEvent.presentEventCreatingDialog(eventConfig)
                             .then((eventInfo: { calendarItemIdentifier: string, eventIdentifier: string }) => {
-                                if(eventInfo.action === 'SAVED'){
+                                if (eventInfo.action === 'SAVED') {
                                     showToast(global.lang.t('add_schedule'))
                                 }
                                 console.log(JSON.stringify(eventInfo));

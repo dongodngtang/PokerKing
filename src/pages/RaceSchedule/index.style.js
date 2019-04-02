@@ -16,7 +16,7 @@ export default StyleSheet.create({
         backgroundColor:"#D63649",
         flexDirection:'column',
         alignItems:'center',
-        width:60,
+        width:70,
         height:62,
         justifyContent:'center'
     },
@@ -26,12 +26,12 @@ export default StyleSheet.create({
         flexDirection:'column',
         alignItems:'center',
         justifyContent:'center',
-        width:64,
+        width:70,
         height:66
     },
     item_view2:{
         paddingTop:16,
-        marginLeft:18,
+        marginLeft:16,
         marginRight:18,
         flexDirection:'column'
     },
@@ -50,6 +50,7 @@ export default StyleSheet.create({
     },
     schedule_bottom_view:{
         flexDirection:'row',
+        alignItems:'center',
         marginBottom:16
     },
     race_price:{
