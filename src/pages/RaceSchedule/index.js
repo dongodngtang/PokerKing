@@ -113,7 +113,7 @@ export default class RaceSchedule extends Component {
         return (
             <View>
                 <View style={styles.item_view2}>
-                    <Text style={styles.top_txt1}>#{name}</Text>
+                    <Text style={styles.top_txt1}>{name}</Text>
                     <TouchableOpacity style={styles.schedule_middle_view} activeOpacity={1} onPress={() => {
                         schedules_events.forEach((x) => {
                             if (x.id === item.id) {
