@@ -66,8 +66,8 @@ export default class Drawer extends Component {
                     // Clipboard.setString(`${shareHost()}/loadApp`);
                     // showToast(global.lang.t("copy_download"))
                     let param = {
-                        shareTitle: 'Pokerkinglive',
-                        shareText: 'Pokerkinglive',
+                        shareTitle: 'PokerKingLive',
+                        shareText: 'PokerKingLive',
                         shareImage: 'http://cdn-upyun.deshpro.com/deshpro_public/pokerking2.png',
                         shareLink: `${shareHost()}/loadApp`
                     };
