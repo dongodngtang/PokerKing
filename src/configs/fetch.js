@@ -127,7 +127,7 @@ function errReject(res) {
       setLoginEmpty()
 
   } else {
-    showToast(problem)
+    // showToast(problem)
   }
 }
 
