@@ -162,7 +162,7 @@ export default class Races extends Component {
             activeOpacity={1}
             style={itemStyle} onPress={onPress}>
             <Image style={imgStyle} source={img}/>
-            <Text style={styles.personalText}>{title}</Text>
+            <Text style={[styles.personalText,{width:'65%'}]}>{title}</Text>
             <View style={{flex: 1}}/>
 
             <Image style={styles.personalImg} source={Images.is_right}/>
