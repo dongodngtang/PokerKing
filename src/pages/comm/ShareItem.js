@@ -159,16 +159,15 @@ export default class ShareItem extends Component {
 }
 const styles = StyleSheet.create({
     container: {
-        width: (DEVICE_WIDTH - 40) / 5,
+        width: (DEVICE_WIDTH - 30) / 5,
         height: (DEVICE_WIDTH - 40) / 4,
-        alignItems: "center",
-        justifyContent: "center"
+        alignItems: "center"
     },
     subView: {
-        width: (DEVICE_WIDTH - 90) / 5,
+        width: (DEVICE_WIDTH - 90) / 4,
         height: (DEVICE_WIDTH - 90) / 5,
         alignItems: "center",
-        justifyContent: "center",
+        justifyContent: "center"
     },
     imageSuper: {
         width: (DEVICE_WIDTH - 140) / 5,
