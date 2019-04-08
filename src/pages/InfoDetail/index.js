@@ -52,8 +52,8 @@ export default class InfoDetail extends Component {
         }
         return (
             <ScrollView style={styles.detail_view}>
+                <View style={{height:20}}/>
                 <View style={{
-                    marginTop: 20,
                     marginLeft: 18,
                     marginRight: 18,
                     paddingBottom: 80,
