@@ -25,7 +25,7 @@ export default class HotItem extends Component {
                        source={getBg(image)}/>
                 <View style={styles.right_view}>
                     <Text style={[styles.race_content_txt, {
-                        maxWidth: Number(mul(WIDTH, 0.58)),
+                        maxWidth: Number(mul(WIDTH, 0.56)),
                         color: type && type === 'hot' ? '#DDDDDD' : "#444444"
                     }]}
                           numberOfLines={2}>{title}</Text>
