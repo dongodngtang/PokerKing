@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, TouchableOpacity, Image} from 'react-native';
+import {View, Text, TouchableOpacity, Image,StatusBar} from 'react-native';
 import {connect} from 'react-redux';
 import styles from './index.style';
 import {Images, Styles} from "../../configs/Theme";
@@ -64,6 +64,7 @@ export default class Races extends Component {
     topBar = () => {
         return (
             <View style={styles.navTop}>
+                <StatusBar barStyle={'light-content'}/>
                 <TouchableOpacity
                     onPress={() => {
                         router.pop()
