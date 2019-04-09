@@ -85,7 +85,7 @@ export default class QueueProcess extends Component {
                     cash_game_id: item.id
                 }, data => {
                     logMsg("cash_queues:", data);
-                    let members = data.items;
+                    let members = data.ordinary_queues;
                     members.map((item,index)=>{
                         item.isSelect = index === 0;
                     });
