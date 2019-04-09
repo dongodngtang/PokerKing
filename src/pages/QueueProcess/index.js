@@ -44,10 +44,10 @@ export default class QueueProcess extends Component {
                 router.toQueueList(item);
             }}>
                 <Text
-                    style={[styles.item_txt,{width:'56%'}]}>{`${small_blind}/${big_blind}NL（${table_numbers}${global.lang.t('table')}）`}</Text>
+                    style={[styles.item_txt,{width:'48%'}]}>{`${small_blind}/${big_blind}NL（${table_numbers}${global.lang.t('table')}）`}</Text>
                 <View style={{flex: 1}}/>
                 <Text
-                    style={[styles.item_txt, {marginRight: 20}]}>{global.lang.t('line_count')}：{cash_queue_members_count}</Text>
+                    style={[styles.item_txt, {marginRight: 15}]}>{global.lang.t('line_count')}：{cash_queue_members_count}</Text>
                 <Image style={{height: 12, width: 6}} source={Images.is_right}/>
             </TouchableOpacity>
         )
