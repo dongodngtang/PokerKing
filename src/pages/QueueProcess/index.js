@@ -14,8 +14,8 @@ import {initLoginUser} from "../../services/accountDao";
 }))
 export default class QueueProcess extends Component {
 
-    state={
-        cash_queues:[]
+    state = {
+        cash_queues: []
     }
 
     constructor(props) {
@@ -26,7 +26,7 @@ export default class QueueProcess extends Component {
     }
 
 
-    _onRefresh=()=>{
+    _onRefresh = () => {
         this.listView && this.listView.refresh()
     };
 
@@ -43,7 +43,8 @@ export default class QueueProcess extends Component {
                 });
                 router.toQueueList(item);
             }}>
-                <Text style={styles.item_txt}>{`${small_blind}/${big_blind}NL（${table_numbers}${global.lang.t('table')}）`}</Text>
+                <Text
+                    style={[styles.item_txt,{width:'56%'}]}>{`${small_blind}/${big_blind}NL（${table_numbers}${global.lang.t('table')}）`}</Text>
                 <View style={{flex: 1}}/>
                 <Text
                     style={[styles.item_txt, {marginRight: 20}]}>{global.lang.t('line_count')}：{cash_queue_members_count}</Text>
@@ -86,13 +87,18 @@ export default class QueueProcess extends Component {
                 }, data => {
                     logMsg("cash_queues:", data);
                     let members = data.ordinary_queues;
-                    members.map((item,index)=>{
+                    let high_limit = data.high_limit_queues;
+                    if (!isEmptyObject(high_limit) && high_limit.status) {
+                        members.push(data.high_limit_queues);
+                    }
+                    members.map((item, index) => {
                         item.isSelect = index === 0;
                     });
                     this.setState({
-                        cash_queues:members
+                        cash_queues: members
                     })
                     startFetch(members, 18)
+                    logMsg("djskjdksd",members)
                 }, err => {
                     logMsg("reject:", err)
                     abortFetch()

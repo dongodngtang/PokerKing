@@ -5,7 +5,7 @@
  */
 
 import React, {Component} from 'react'
-import {Button, Text, SafeAreaView, View, Image, TouchableOpacity, Clipboard} from 'react-native'
+import {Button, Text, SafeAreaView, View, Image, TouchableOpacity, Clipboard,Platform} from 'react-native'
 import {Actions} from 'react-native-router-flux';
 import styles from './index.style';
 import {Images, Metrics} from "../../configs/Theme";
@@ -76,7 +76,7 @@ export default class Drawer extends Component {
 
                 {isEmptyObject(profile)?null: <TouchableOpacity
                     activeOpacity={1}
-                    style={{alignSelf:'center',position:'absolute',bottom:Number(mul(HEIGHT, 0.1))}} onPress={() => {
+                    style={{alignSelf:'center',position:'absolute',bottom:Number(mul(HEIGHT, 0.05))}} onPress={() => {
                     alertOrder(global.lang.t('is_drop_out'), () => {
                         storageLoginUser({})
                     });
