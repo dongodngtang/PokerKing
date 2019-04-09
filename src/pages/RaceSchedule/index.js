@@ -116,7 +116,7 @@ export default class RaceSchedule extends Component {
                     <View style={{width:'100%',flexDirection: 'row', alignItems: 'center'}}>
                         <Text style={[styles.top_txt1, {width: '65%'}]}>{name}</Text>
                         <View style={{flex: 1}}/>
-                        <Text style={styles.time_txt}>{utcDate(begin_time, 'YYYY/MM/DD HH:MM')}</Text>
+                        <Text style={styles.time_txt}>{utcDate(begin_time, 'YYYY/MM/DD HH:mm')}</Text>
                     </View>
 
 
@@ -226,11 +226,11 @@ class SelectPart extends Component {
                 <View style={styles.selected_middle_view}>
                     <View style={styles.cloumn_view}>
                         <Text style={styles.top_txt1}>{global.lang.t("start_registration")}</Text>
-                        <Text style={styles.top_txt2}>{utcDate(reg_open, 'YY/MM/DD HH:MM')}</Text>
+                        <Text style={styles.top_txt2}>{utcDate(reg_open, 'YY/MM/DD HH:mm')}</Text>
                     </View>
                     <View style={styles.cloumn_view}>
                         <Text style={styles.top_txt1}>{global.lang.t("end_registration")}</Text>
-                        <Text style={styles.top_txt2}>{utcDate(reg_close, 'YY/MM/DD HH:MM')}</Text>
+                        <Text style={styles.top_txt2}>{utcDate(reg_close, 'YY/MM/DD HH:mm')}</Text>
                     </View>
                     <View style={[styles.cloumn_view,{width:'38%',alignItems:'flex-end'}]}>
                         <Text style={styles.top_txt1}>{global.lang.t("end_distance")}</Text>
