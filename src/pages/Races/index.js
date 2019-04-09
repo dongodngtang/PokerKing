@@ -161,9 +161,10 @@ export default class Races extends Component {
         const {profile} = this.props;
         return <TouchableOpacity
             activeOpacity={1}
-            style={itemStyle} onPress={onPress}>
+            style={itemStyle}
+            onPress={onPress}>
             <Image style={imgStyle} source={img}/>
-            <Text style={[styles.personalText,{width:'65%'}]}>{title}</Text>
+            <Text style={[styles.personalText,{width:'66%'}]}>{title}</Text>
             <View style={{flex: 1}}/>
 
             <Image style={styles.personalImg} source={Images.is_right}/>

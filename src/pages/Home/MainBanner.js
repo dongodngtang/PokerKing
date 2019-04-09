@@ -36,7 +36,8 @@ export default class MainBanner extends Component {
                                         router.toEventDetail(item.source_id,0)
                                     }
                                 }}>
-                                <Image style={{height: Height, width: '100%'}}
+                                <Image
+                                    style={{height: Height, width: '100%'}}
                                        source={getBg(item.image)}/>
                             </TouchableOpacity>
 

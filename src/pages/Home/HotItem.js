@@ -30,7 +30,7 @@ export default class HotItem extends Component {
                     }]}
                           numberOfLines={2}>{title}</Text>
                     {this.props.type && this.props.type === 'event' ? <View style={styles.right_bottom_view}>
-                        <Text style={styles.bottom_txt}>{utcDate(created_at, 'YYYY/MM/DD MM:ss')}</Text>
+                        <Text style={styles.bottom_txt}>{utcDate(created_at, 'YYYY/MM/DD HH:MM')}</Text>
                     </View> : <View style={styles.right_bottom_view}>
                         {this.props.type && this.props.type === 'hot_list' && hot ?
                             <View style={{
