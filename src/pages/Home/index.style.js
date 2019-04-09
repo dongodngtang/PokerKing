@@ -128,7 +128,7 @@ export default StyleSheet.create({
     select_btn:{
         flexDirection:'row',
         alignItems:'center',
-        marginBottom:32,
+        marginBottom:28,
         marginLeft:30
     },
     change_img:{

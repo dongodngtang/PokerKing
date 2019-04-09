@@ -39,7 +39,7 @@ export default class Drawer extends Component {
                     <Image source={getAvatar(avatar)} style={styles.person_img}/>
                     <Text style={styles.person_txt}>{nick_name}</Text>
                 </TouchableOpacity>
-                <View style={{height: 58}}/>
+                <View style={{height: 45}}/>
                 {this._item(styles.select_btn, Images.xiugaiziliao, styles.change_img, global.lang.t('modifyData'), () => {
                     if (isEmptyObject(profile)) {
                         router.toLogin();
