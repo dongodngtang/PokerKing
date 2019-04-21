@@ -182,7 +182,6 @@ dependencies {
     compile project(':rn-fetch-blob')
     compile project(':react-native-add-calendar-event')
     compile project(':react-native-image-crop-picker')
-    compile project(':react-native-code-push')
     compile project(':react-native-picker')
     compile project(':jshare-react-native')
     compile project(':jcore-react-native')

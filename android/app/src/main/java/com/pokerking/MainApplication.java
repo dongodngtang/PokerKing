@@ -12,7 +12,6 @@ import org.wonday.pdf.RCTPdfView;
 import com.RNFetchBlob.RNFetchBlobPackage;
 import com.vonovak.AddCalendarEventPackage;
 import com.reactnative.ivpusic.imagepicker.PickerPackage;
-import com.microsoft.codepush.react.CodePush;
 import com.beefe.picker.PickerViewPackage;
 import cn.jiguang.share.reactnative.JSharePackage;
 import com.facebook.react.ReactNativeHost;
@@ -55,7 +54,6 @@ public class MainApplication extends Application implements ReactApplication {
             new RNFetchBlobPackage(),
             new AddCalendarEventPackage(),
             new PickerPackage(),
-            new CodePush(getResources().getString(R.string.reactNativeCodePush_androidDeploymentKey), getApplicationContext(), BuildConfig.DEBUG),
             new PickerViewPackage(),
             new JSharePackage(SHUTDOWN_TOAST, SHUTDOWN_LOG)
       );
