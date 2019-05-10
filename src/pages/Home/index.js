@@ -11,6 +11,7 @@ import HotItem from "./HotItem";
 import {Actions} from "react-native-router-flux";
 import {getHomeBanners, getInfoList, initLoginUser} from '../../services/accountDao'
 import CustomModal from "../../components/CustomModal";
+import codePush from "react-native-code-push";
 import ShareToast from "../comm/ShareToast";
 import NotData from "../comm/NotData";
 import FoundBeauti from "../FoundBeauti";
@@ -28,6 +29,7 @@ const drawerStyles = {
 @connect(({Home}) => ({
     ...Home
 }))
+@codePush
 export default class Home extends Component {
 
     constructor(props) {
@@ -61,11 +63,11 @@ export default class Home extends Component {
 
     componentDidMount() {
 
-        // codePush.disallowRestart()
-        // codePush.sync({
-        //     updateDialog: false,
-        //     installMode: codePush.InstallMode.ON_NEXT_RESUME
-        // })
+        codePush.disallowRestart()
+        codePush.sync({
+            updateDialog: false,
+            installMode: codePush.InstallMode.ON_NEXT_RESUME
+        })
     };
 
     onPickerSelect = (index) => {
