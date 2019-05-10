@@ -45,6 +45,7 @@ export default class Register extends Component {
         return str.replace(/\d+/g,'');
     }
 
+
     render() {
         return (
             <View style={styles.container}>
@@ -57,11 +58,12 @@ export default class Register extends Component {
                                 paddingBottom: 0,
                                 paddingLeft: 0,
                                 marginLeft: 8,
-                                width: 230,
+                                width: '90%',
                                 height: 50,
                                 fontSize: 16,
-                                color:'#444444'
+                                color:'#444444',
                             }}
+
                             maxLength={15}
                             numberOfLines={1}
                             placeholderTextColor={'#CCCCCC'}
@@ -69,8 +71,7 @@ export default class Register extends Component {
                             clearTextOnFocus={true}
                             underlineColorAndroid={'transparent'}
                             onChangeText={txt => {
-
-                                this.user_name = txt
+                                this.user_name =  txt.toUpperCase()
 
                             }}
                         />
@@ -100,12 +101,12 @@ export default class Register extends Component {
                                 paddingBottom: 0,
                                 paddingLeft: 0,
                                 marginLeft: 8,
-                                width: 230,
+                                width: '95%',
                                 height: 50,
                                 fontSize: 16,
                                 color:'#444444'
                             }}
-                            maxLength={25}
+                            // maxLength={25}
                             numberOfLines={1}
                             placeholderTextColor={'#CCCCCC'}
                             placeholder={global.lang.t('mailbox')}
