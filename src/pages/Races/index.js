@@ -141,7 +141,7 @@ export default class Races extends Component {
                     })}
 
                 {this._item(styles.item_view, Images.rili_gray, styles.img_dy1,
-                    `${isStrNull(recent_event.name) ? '' : recent_event.name}${global.lang.t('race_schedule')}`, () => {
+                    `${global.lang.t('race_schedule')}`, () => {
                         router.toRaceSchedule(recent_event);
                     })}
 

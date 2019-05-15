@@ -20,7 +20,8 @@ export default class Register extends Component {
             name_show: false,
             email_show: false,
             genderTxt:global.lang.t('gender'),
-            nickStr:''
+            nickStr:'',
+            username:''
         }
         this.user_name = ''
         this.email = ''
@@ -63,15 +64,17 @@ export default class Register extends Component {
                                 fontSize: 16,
                                 color:'#444444',
                             }}
-
-                            maxLength={15}
                             numberOfLines={1}
                             placeholderTextColor={'#CCCCCC'}
                             placeholder={global.lang.t('username_EC')}
                             clearTextOnFocus={true}
+                            value={this.state.username}
                             underlineColorAndroid={'transparent'}
                             onChangeText={txt => {
                                 this.user_name =  txt.toUpperCase()
+                                this.setState({
+                                    username:this.user_name
+                                })
 
                             }}
                         />

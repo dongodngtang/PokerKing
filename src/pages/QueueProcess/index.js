@@ -87,10 +87,10 @@ export default class QueueProcess extends Component {
                 }, data => {
                     logMsg("cash_queues:", data);
                     let members = data.ordinary_queues;
-                    let high_limit = data.high_limit_queues;
-                    if (!isEmptyObject(high_limit) && high_limit.status) {
-                        members.push(data.high_limit_queues);
-                    }
+                    // let high_limit = data.high_limit_queues;
+                    // if (!isEmptyObject(high_limit) && high_limit.status) {
+                    //     members.push(data.high_limit_queues);
+                    // }
                     members.map((item, index) => {
                         item.isSelect = index === 0;
                     });

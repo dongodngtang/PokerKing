@@ -76,10 +76,7 @@ export const scenes = () => {
                })}/>
         <Scene key="Races"
                component={Races}
-               hideNavBar
-               {...TopNav({
-                   title: 'OPC'
-               })}/>
+               navBar={()=><View/>}/>
         <Scene key="RaceNew"
                component={RaceNew}
                {...TopNav({
@@ -229,8 +226,8 @@ export class NavBar extends PureComponent {
             <TouchableOpacity
                 activeOpacity={1}
                 onLongPress={() => {
-                    // if (__DEV__)
-                    //     alert(title + pageMsg)
+                    if (__DEV__)
+                        alert(title + pageMsg)
                     if (middle_title) {
                         router.toSwitchApi();
                     }
