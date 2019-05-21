@@ -227,7 +227,7 @@ export class NavBar extends PureComponent {
                 activeOpacity={1}
                 onLongPress={() => {
                     if (__DEV__)
-                        alert(title + pageMsg)
+                        // alert(title + pageMsg)
                     if (middle_title) {
                         router.toSwitchApi();
                     }

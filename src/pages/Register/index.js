@@ -71,7 +71,7 @@ export default class Register extends Component {
                             value={this.state.username}
                             underlineColorAndroid={'transparent'}
                             onChangeText={txt => {
-                                this.user_name =  txt.toUpperCase()
+                                this.user_name =  txt.trim().toUpperCase()
                                 this.setState({
                                     username:this.user_name
                                 })
@@ -132,6 +132,8 @@ export default class Register extends Component {
                     body.email = this.email;
                     if (isStrNull(this.user_name)) {
                         showToast(global.lang.t('input_nick_name'))
+                    }else if (this.user_name.length < 6 || this.user_name.length < 14){
+                        showToast(global.lang.t('length_nick_name'))
                     }else if (this.gender === 0){
                         showToast(global.lang.t('select_gender'))
                     }else if (isStrNull(this.email)){
