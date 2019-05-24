@@ -122,7 +122,7 @@ export default StyleSheet.create({
     },
     person_txt:{
         color:"#FFFFFF",
-        fontSize:18,
+        fontSize:15,
         marginTop:12
     },
     select_btn:{
