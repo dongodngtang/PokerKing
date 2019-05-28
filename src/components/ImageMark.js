@@ -6,6 +6,8 @@ import {ActivityIndicator, TouchableOpacity, View, Image, Platform} from 'react-
 import {Metrics} from '../configs/Theme';
 import PropTypes from 'prop-types';
 import {util, strNotNull, logMsg} from '../utils/utils';
+import _ from 'lodash'
+let images = []
 
 
 export default class ImageMark extends Component {
@@ -19,8 +21,13 @@ export default class ImageMark extends Component {
         width: Metrics.screenWidth - 40,
         height: 320
     };
+    constructor(props){
+        super(props)
+        images.push({url:props.src})
+    }
 
     componentDidMount() {
+
         if (this.no_chang()) {
             Image.getSize(this.props.src, (width, height) => {
                 let screenWidth = Metrics.screenWidth - 40;
@@ -46,9 +53,7 @@ export default class ImageMark extends Component {
 
     imageClick = (source) => {
         if (strNotNull(source)) {
-            let index = 0;
-
-            let images = [{url: source}];
+            let index = _.findIndex(images,item=>item.url === source)
 
             router.toImageGalleryPage(images, index)
         }
@@ -64,6 +69,10 @@ export default class ImageMark extends Component {
         }
 
     };
+
+    componentWillUnmount(){
+        images = []
+    }
 
 
     render() {
