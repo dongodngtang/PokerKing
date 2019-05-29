@@ -76,7 +76,7 @@ export const scenes = () => {
                })}/>
         <Scene key="Races"
                component={Races}
-               navBar={()=><View/>}/>
+               hideNavBar/>
         <Scene key="RaceNew"
                component={RaceNew}
                {...TopNav({
