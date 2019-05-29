@@ -115,7 +115,6 @@ export default class Home extends Component {
                 <StatusBar barStyle={'light-content'}/>
                 <TouchableOpacity
                     onPress={() => {
-                        logMsg("drawerdrawerdrawer")
                         this.drawer && this.drawer.toggle()
                     }}
                     style={styles.home_left}>
@@ -127,8 +126,7 @@ export default class Home extends Component {
                 </TouchableOpacity>
                 <TouchableOpacity
                     onLongPress={() => {
-                        if (__DEV__)
-                            router.toSwitchApi();
+                        router.toSwitchApi();
                     }}
                     style={styles.home_nav_title}>
                     <Text
