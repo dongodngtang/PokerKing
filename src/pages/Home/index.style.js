@@ -1,6 +1,6 @@
 
 import { StyleSheet } from 'react-native';
-import {Metrics} from "../../configs/Theme";
+import {isIphoneX, Metrics} from "../../configs/Theme";
 import {mul} from "../../utils/utils";
 
 const WIDTH = Metrics.screenWidth;
@@ -19,6 +19,36 @@ export default StyleSheet.create({
         flexDirection:'row',
         alignItems:'center',
         justifyContent:'space-between'
+    },
+    home_navTop:{
+        height: isIphoneX ? Metrics.navBarHeight + 10 : Metrics.navBarHeight,
+        width: Metrics.screenWidth,
+        backgroundColor: '#13151C',
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingTop: Metrics.statusBarHeight
+    },
+    home_left:{
+        height: 44,
+        justifyContent: 'center',
+        width: 90,
+        paddingRight: 10,
+        paddingLeft: 17,
+        zIndex:999
+    },
+    home_nav_title:{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignSelf: 'center'
+    },
+    home_right:{
+        flexDirection: 'row-reverse',
+        flexWrap: 'nowrap',
+        height: 44,
+        alignItems: 'center',
+        paddingLeft: 17,
+        width: 90
     },
     active_btn:{
         width:Number(mul(WIDTH , 0.437)),

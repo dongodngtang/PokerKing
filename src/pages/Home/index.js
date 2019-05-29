@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import {View, Text, Button, TouchableOpacity, Image, ScrollView, RefreshControl, ImageBackground} from 'react-native';
+import {View, Text, Button, TouchableOpacity, Image, ScrollView, RefreshControl, StatusBar} from 'react-native';
 import {connect} from 'react-redux';
 import {isEmptyObject, logMsg} from "../../utils/utils";
 import MainBanner from './MainBanner';
 import styles from './index.style';
 import UltimateFlatList from '../../components/ultimate/UltimateFlatList';
-import {Images, Metrics} from "../../configs/Theme";
+import {Images, Metrics, Styles} from "../../configs/Theme";
 import SelectPiker from "../comm/SelectPiker";
 import HotItem from "./HotItem";
 import {Actions} from "react-native-router-flux";
@@ -41,15 +41,15 @@ export default class Home extends Component {
             info_list: [],
             isRefreshing: false
         };
-        props.navigation.setParams({
-            onRight: () => {
-                this.selectPiker && this.selectPiker.toggle()
-                this.drawer && this.drawer.close()
-            },
-            onLeft: () => {
-                this.drawer && this.drawer.toggle()
-            }
-        })
+        // props.navigation.setParams({
+        //     onRight: () => {
+        //         this.selectPiker && this.selectPiker.toggle()
+        //         this.drawer && this.drawer.close()
+        //     },
+        //     onLeft: () => {
+        //         this.drawer && this.drawer.toggle()
+        //     }
+        // })
         this.count = 0
     };
 
@@ -109,10 +109,55 @@ export default class Home extends Component {
         )
     }
 
+    topHomeBar = () => {
+        return (
+            <View style={styles.home_navTop}>
+                <StatusBar barStyle={'light-content'}/>
+                <TouchableOpacity
+                    onPress={() => {
+                        logMsg("drawerdrawerdrawer")
+                        this.drawer && this.drawer.toggle()
+                    }}
+                    style={styles.home_left}>
+                    <Image
+                        style={{height: 16, width: 20}}
+                        source={Images.homepage_side}
+                    />
+
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onLongPress={() => {
+                        if (__DEV__)
+                            router.toSwitchApi();
+                    }}
+                    style={styles.home_nav_title}>
+                    <Text
+                        style={{fontSize: 18, color: '#FFE9AD',alignSelf: 'center'}}
+                        numberOfLines={1}>{global.lang.t('app_name')}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => {
+                        this.selectPiker && this.selectPiker.toggle()
+                        this.drawer && this.drawer.close()
+                    }}
+                    style={styles.home_right}>
+                    <Text
+                        style={{fontSize: 15, color: '#FFE9AD'}}>{global.lang.t('home_language')}</Text>
+
+                </TouchableOpacity>
+            </View>
+        )
+    };
+
+    _drawerClose = ()=>{
+        this.drawer && this.drawer.close()
+    }
+
     render() {
         const {shareParam} = this.props;
         return (
             <Drawer
+                tapToClose
                 ref={ref => this.drawer = ref}
                 type="static"
                 content={<ControlPanel
@@ -125,7 +170,7 @@ export default class Home extends Component {
                         refreshing={this.state.isRefreshing}
                         onRefresh={this._onRefresh}
                     />}>
-
+                    {this.topHomeBar()}
                     <MainBanner home_banners={this.state.home_banners}/>
                     <View style={styles.active_type_view}>
                         <TouchableOpacity activeOpacity={1} onPress={() => {

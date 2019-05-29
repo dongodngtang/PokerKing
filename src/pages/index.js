@@ -40,14 +40,7 @@ export const scenes = () => {
         <Scene key="Home"
                initial
                component={Home}
-               {...TopNav({
-                   title: global.lang.t('app_name'),
-                   rightTitle: global.lang.t('home_language'),
-                   left_definition: true,
-                   left_img: Images.homepage_side,
-                   img_size: {height: 16, width: 20},
-                   middle_title: true
-               })}/>
+               hideNavBar/>
 
 
         <Scene key="Detail"
