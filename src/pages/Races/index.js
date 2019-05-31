@@ -220,7 +220,7 @@ class Card extends Component {
         const {begin_time, end_time,id,logo, name} = this.props.item;
         let month = unix_format(begin_time, `MM`);
 
-        let race_start_time = global.localLanguage === 'en' ? `${global.lang.t(`month${month}`)}`+unix_format(begin_time,` MM,YYYY`) :
+        let race_start_time = global.localLanguage === 'en' ? `${global.lang.t(`month${month}`)}`+unix_format(begin_time,` DD,YYYY`) :
             unix_format(begin_time, `YYYY${global.lang.t('year')}MM${global.lang.t('month')}DD${global.lang.t('day2')}`);
 
         return (
