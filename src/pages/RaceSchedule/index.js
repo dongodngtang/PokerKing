@@ -260,7 +260,7 @@ class SelectPart extends Component {
 
                     router.toRaceMessage(id)
                 }}>
-                    <Image style={{width: 26, height: 26, marginRight: 14}} source={Images.shuhcu}/>
+                    <Image style={{width: 25, height: 25, marginRight: 15}} source={Images.shuhcu}/>
                     <Text style={styles.problem_txt}>{global.lang.t('enter_information')}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
