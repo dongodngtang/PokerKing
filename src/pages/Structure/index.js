@@ -52,10 +52,12 @@ export default class Structure extends Component {
                                 console.log(error);
                             }}
                             style={styles.pdf}/> :
-                        <ImageMark
-                            key={pdf}
-                            src={pdf}
-                            alt="structure"/>}
+                        <View style={{marginTop:10,marginBottom:10}}>
+                            <ImageMark
+                                key={pdf}
+                                src={pdf}
+                                alt="structure"/>
+                        </View>}
 
                 </View>
             )
