@@ -133,7 +133,7 @@ export default class RaceSchedule extends Component {
                             schedules_events: [...schedules_events]
                         });
                     }}>
-                        <Text style={[styles.race_price,{width: '65%'}]} numberOfLines={1}>{global.lang.t('race_price')}{buy_in}</Text>
+                        <Text style={[styles.race_price,{width: '65%'}]} numberOfLines={1}>{global.lang.t('race_price')} {buy_in}</Text>
                         <View style={{flex: 1}}/>
                         <Image style={{width: 12, height: 6}}
                                source={item.isSelect ? Images.is_top : Images.is_bottom}/>

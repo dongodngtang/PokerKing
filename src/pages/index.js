@@ -35,7 +35,11 @@ import FoundBeauti from "./FoundBeauti";
 import ProtocolPage from "./ProtocolPage";
 
 export const scenes = () => {
-    return <Scene key="root">
+    return <Scene key="root"
+                  headerMode={'screen'}
+                  navTransparent
+                  renderLeftButton={null}
+                  navigationBarStyle={{backgroundColor:'black'}}>
         
         <Scene key="Home"
                initial
