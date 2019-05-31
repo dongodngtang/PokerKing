@@ -125,6 +125,7 @@ export default class Home extends Component {
 
                 </TouchableOpacity>
                 <TouchableOpacity
+                    activeOpacity={1}
                     onLongPress={() => {
                         router.toSwitchApi();
                     }}
