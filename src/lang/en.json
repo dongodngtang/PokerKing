@@ -169,5 +169,6 @@
   "unInstall_twitter":"Twitter client not installed",
   "about":"About PokerKing",
   "news":"News",
-  "hot":"Hot"
+  "hot":"Hot",
+  "add_calendar_alert":"Open the calendar"
 }

@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import {View, Text, Image, TouchableOpacity, ScrollView, FlatList} from 'react-native';
+import {View, Text, Image, TouchableOpacity, ScrollView, FlatList,Linking} from 'react-native';
 import {connect} from 'react-redux';
 import styles from './index.style';
 import {Images, Metrics, realSize} from "../../configs/Theme";
 import UltimateFlatList from '../../components/ultimate/UltimateFlatList';
-import {isEmptyObject, logMsg, utcDate, moneyFormat, showToast, getRemainTime} from "../../utils/utils";
+import {isEmptyObject, logMsg, utcDate, moneyFormat, showToast, getRemainTime,alertOrder} from "../../utils/utils";
 import moment from 'moment';
 import {getSchedulesDates, getSchedulesEvents} from '../../services/raceDao'
 import * as AddCalendarEvent from 'react-native-add-calendar-event';
@@ -265,6 +265,7 @@ class SelectPart extends Component {
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => {
+
                         let s = utcDate(begin_time, 'YYYY-MM-DDTHH:mm:ss.SSS[Z]');
                         let eventConfig = {
                             title: name,
@@ -282,6 +283,12 @@ class SelectPart extends Component {
                             .catch((error: string) => {
                                 // handle error such as when user rejected permissions
                                 console.warn(error);
+                                alertOrder(global.lang.t('add_calendar_alert'), () => {
+                                    Linking.openURL('app-settings:')
+                                        .catch((err) => console.log('error', err));
+                                });
+
+                                // alert(JSON.stringify(error))
                             });
                     }}
                     style={styles.calendar_view} activeOpacity={1}>
