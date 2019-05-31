@@ -3,7 +3,8 @@ import {View, Text, Image,StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import Pdf from 'react-native-pdf';
 import {Metrics} from "../../configs/Theme";
-import {logMsg} from "../../utils/utils";
+import {isStrNull, logMsg} from "../../utils/utils";
+import NotData from "../comm/NotData";
 
 @connect(({Structure}) => ({
     ...Structure,
@@ -16,6 +17,10 @@ export default class Structure extends Component {
     }
 
     render() {
+        const {pdf} = this.props.params;
+        if(isStrNull(pdf)){
+            return <NotData/>
+        }
         const source = {uri: this.props.params.pdf, cache: true};
         return (
             <View style={styles.container}>
