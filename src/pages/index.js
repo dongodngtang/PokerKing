@@ -110,7 +110,9 @@ export const scenes = () => {
                })}/>
         <Scene key="QueueList"
                component={QueueList}
-               {...TopNav({})}/>
+               {...TopNav({
+                   rightTitle:global.lang.t('refresh')
+               })}/>
         <Scene key="InfoDetail"
                component={InfoDetail}
                {...TopNav({

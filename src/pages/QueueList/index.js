@@ -17,7 +17,10 @@ export default class QueueList extends Component {
     constructor(props) {
         super(props);
         props.navigation.setParams({
-            title: `${this.props.params.item.small_blind}/${this.props.params.item.big_blind}NL（${this.props.params.item.table_numbers}${global.lang.t('table')}）`
+            title: `${this.props.params.item.small_blind}/${this.props.params.item.big_blind}NL（${this.props.params.item.table_numbers}${global.lang.t('table')}）`,
+            onRight: () => {
+                this.listView && this.listView.refresh()
+            }
         })
     };
 
@@ -29,7 +32,8 @@ export default class QueueList extends Component {
 
     _renderItem = (item, index) => {
         return (
-            <TouchableOpacity activeOpacity={1} style={index === 0 ? styles.selected_manila_item : styles.manila_item_view}>
+            <TouchableOpacity activeOpacity={1}
+                              style={index === 0 ? styles.selected_manila_item : styles.manila_item_view}>
                 <Text style={styles.manila_item_txt}>{index + 1}</Text>
                 <View style={{flex: 1}}/>
                 <Text style={[styles.manila_item_txt, {alignSelf: 'center'}]}>{item.nickname}</Text>
