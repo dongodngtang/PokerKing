@@ -17,11 +17,16 @@ export default class InfoDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            info_detail: {}
+            info_detail: {},
+            err:false
         };
     }
 
     componentDidMount() {
+       this.refresh()
+    }
+
+    refresh = ()=>{
         const {id} = this.props.params;
         getInfoDetail({id: id}, data => {
             logMsg("info_detail", data);
@@ -42,13 +47,20 @@ export default class InfoDetail extends Component {
             this.setState({
                 info_detail: data.info
             })
+        },err=>{
+            this.setState({
+                err:true
+            })
         })
     }
-
     render() {
-        const {info_detail} = this.state;
-        if (isEmptyObject(info_detail)) {
-            return <NotData backgroundColor={'#FFFFFF'}/>
+        const {info_detail,err } = this.state;
+        if (isEmptyObject(info_detail) && err) {
+            return <NotData
+                onPress={()=>{
+                    this.refresh()
+                }}
+                backgroundColor={'#FFFFFF'}/>
         }
         return (
             <ScrollView style={styles.detail_view}>

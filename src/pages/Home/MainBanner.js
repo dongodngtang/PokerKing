@@ -9,7 +9,7 @@ import {
 import Swiper from 'react-native-swiper';
 import {Metrics} from '../../themes';
 import {getAvatar, getBg, logMsg} from "../../utils/utils";
-import ImageLoad from "../../components/ImageLoad";
+
 
 
 const Height = Metrics.reallySize(164)

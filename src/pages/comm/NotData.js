@@ -11,7 +11,11 @@ import {Images} from "../../configs/Theme";
 export default class NotData extends Component {
     render() {
         return (
-            <View style={{
+            <TouchableOpacity
+                onPress={()=>{
+                    this.props.onPress && this.props.onPress()
+                }}
+                style={{
                 flex: 1,
                 height:Metrics.screenHeight - Metrics.navBarHeight,
                 width:Metrics.screenWidth,
@@ -27,7 +31,7 @@ export default class NotData extends Component {
                     color: '#AAAAAA', fontSize: 18,
                     marginTop: 22
                 }}>{global.lang.t('load_no_data')}</Text>
-            </View>
+            </TouchableOpacity>
         )
     }
 }

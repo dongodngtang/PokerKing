@@ -7,6 +7,7 @@ import {Metrics} from '../configs/Theme';
 import PropTypes from 'prop-types';
 import {util, strNotNull, logMsg} from '../utils/utils';
 import _ from 'lodash'
+import ImageLoad from "./ImageLoad";
 let images = []
 
 
@@ -93,7 +94,7 @@ export default class ImageMark extends Component {
                     width: this.state.width,
                     height: this.state.height
                 }}>
-                <Image
+                <ImageLoad
                     style={{
                         width: this.state.width,
                         height: this.state.height
