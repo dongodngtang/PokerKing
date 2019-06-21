@@ -91,7 +91,9 @@ export const scenes = () => {
                })}/>
         <Scene key="QueueProcess"
                component={QueueProcess}
-               {...TopNav({})}/>
+               {...TopNav({
+                   rightTitle:global.lang.t('refresh')
+               })}/>
         <Scene key="Feedback"
                component={Feedback}
                {...TopNav({
