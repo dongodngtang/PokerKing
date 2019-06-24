@@ -40,11 +40,21 @@ export const scenes = () => {
                   navTransparent
                   renderLeftButton={null}
                   navigationBarStyle={{backgroundColor:'black'}}>
-        
-        <Scene key="Home"
+
+        <Scene key="main"
                initial
-               component={Home}
-               hideNavBar/>
+               tabs>
+            <Scene key="Home"
+                   initial
+                   tabBarLabel={'首页'}
+                   component={Home}
+                   hideNavBar/>
+            <Scene key="Races"
+                   component={Races}
+                   hideNavBar/>
+        </Scene>
+        
+
 
 
         <Scene key="Detail"
