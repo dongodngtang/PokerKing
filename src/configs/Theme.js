@@ -228,7 +228,7 @@ export const Styles = {
     navTop: {
         height: isIphoneX ? Metrics.navBarHeight + 10 : Metrics.navBarHeight,
         width: Metrics.screenWidth,
-        backgroundColor: '#13151C',
+        backgroundColor: '#1A1B1F',
         flexDirection: 'row',
         alignItems: 'center',
         paddingTop: Metrics.statusBarHeight

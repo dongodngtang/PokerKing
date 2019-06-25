@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import {View, Text, TouchableOpacity, Image,StatusBar} from 'react-native';
+import {View, Text, TouchableOpacity, Image, StatusBar} from 'react-native';
 import {connect} from 'react-redux';
 import styles from './index.style';
-import {Images, Styles} from "../../configs/Theme";
+import {Images, px2dp, Styles} from "../../configs/Theme";
 import Carousel from 'react-native-snap-carousel';
 import {Metrics} from "../../configs/Theme";
 import RaceModal from './RaceModal';
@@ -45,10 +45,10 @@ export default class Races extends Component {
         const {all_events} = this.state;
 
 
-        all_events.forEach((item,index) => {
-          if(item.id === recent_event.id){
-              this._carousel && this._carousel.snapToItem(index)
-          }
+        all_events.forEach((item, index) => {
+            if (item.id === recent_event.id) {
+                this._carousel && this._carousel.snapToItem(index)
+            }
         });
         this.setState({
             recent_event: recent_event
@@ -67,12 +67,12 @@ export default class Races extends Component {
                 <StatusBar barStyle={'light-content'}/>
                 <TouchableOpacity
                     onPress={() => {
-                        router.pop()
+
                     }}
                     style={styles.left2}>
                     <Image
-                        style={{height: 17, width: 9}}
-                        source={Images.left}
+                        style={{height: px2dp(48), width: px2dp(120)}}
+                        source={Images.puke_icon}
                     />
 
                 </TouchableOpacity>
@@ -83,12 +83,39 @@ export default class Races extends Component {
                         this.change_list_show()
                     }}>
                     <Text
-                        style={{fontSize: 18, color: '#FFE9AD'}}
+                        style={{fontSize: 17, color: '#FFE9AD'}}
                         numberOfLines={1}>{this.state.recent_event.name}</Text>
                     <Image style={{width: 12, height: 6, marginLeft: 10}}
                            source={this.state.list_show ? Images.top : Images.bottom}/>
                 </TouchableOpacity>
-                <View style={{width: 35}}/>
+                <TouchableOpacity
+                    onPress={() => {
+
+                    }}
+                    style={styles.right2}>
+                    <Image
+                        style={{height: px2dp(38), width: px2dp(36)}}
+                        source={Images.setting}
+                    />
+
+                </TouchableOpacity>
+            </View>
+        )
+    };
+
+    timeSelect = (events) => {
+        const {begin_time, end_time} = events;
+        return (
+            <View style={styles.time_view}>
+                <View style={{width: 17}}/>
+                <Image
+                    style={{height: px2dp(36), width: px2dp(36), marginRight: 4}}
+                    source={Images.date}
+                />
+                <Text numberOfLines={1} style={styles.date_text}>
+                    {`${unix_format(begin_time, "YYYY/MM/DD")}-${unix_format(end_time, "YYYY/MM/DD")}`}
+                </Text>
+                <View style={{width: 17}}/>
             </View>
         )
     };
@@ -99,7 +126,7 @@ export default class Races extends Component {
             item={item} recent_event={this.state.recent_event}/>
     };
 
-    debouncePress =(id) => {
+    debouncePress = (id) => {
         const clickTime = Date.now()
         if (!this.lastClickTime ||
             Math.abs(this.lastClickTime - clickTime) > 1000) {
@@ -113,6 +140,7 @@ export default class Races extends Component {
         return (
             <View style={styles.race_view}>
                 {this.topBar()}
+                {this.timeSelect(recent_event)}
                 {all_events && all_events.length > 0 ? <View style={styles.carousel_view}>
                     <Carousel
                         loop
@@ -164,7 +192,7 @@ export default class Races extends Component {
             style={itemStyle}
             onPress={onPress}>
             <Image style={imgStyle} source={img}/>
-            <Text style={[styles.personalText,{width:'66%'}]}>{title}</Text>
+            <Text style={[styles.personalText, {width: '66%'}]}>{title}</Text>
             <View style={{flex: 1}}/>
 
             <Image style={styles.personalImg} source={Images.is_right}/>
@@ -205,7 +233,7 @@ class Card extends Component {
         }, 100)
     };
 
-    debouncePress =(id) => {
+    debouncePress = (id) => {
         const clickTime = Date.now()
         if (!this.lastClickTime ||
             Math.abs(this.lastClickTime - clickTime) > 1000) {
@@ -217,10 +245,10 @@ class Card extends Component {
 
     render() {
         const {description} = this.props.recent_event;
-        const {begin_time, end_time,id,logo, name} = this.props.item;
+        const {begin_time, end_time, id, logo, name} = this.props.item;
         let month = unix_format(begin_time, `MM`);
 
-        let race_start_time = global.localLanguage === 'en' ? `${global.lang.t(`month${month}`)}`+unix_format(begin_time,` DD,YYYY`) :
+        let race_start_time = global.localLanguage === 'en' ? `${global.lang.t(`month${month}`)}` + unix_format(begin_time, `DD,YYYY`) :
             unix_format(begin_time, `YYYY${global.lang.t('year')}MM${global.lang.t('month')}DD${global.lang.t('day2')}`);
 
         return (
