@@ -8,7 +8,7 @@
  */
 
 
-import {Dimensions, Platform, StatusBar} from 'react-native';
+import {Dimensions, Platform, StatusBar,PixelRatio} from 'react-native';
 import {reallySize} from "../themes/Metrics";
 
 const {height, width} = Dimensions.get('window');
@@ -45,7 +45,10 @@ const defaultWidth = 750;
 const defaultHeight = 1334;
 const w2 = defaultWidth / DEFAULT_DENSITY;
 const h2 = defaultHeight / DEFAULT_DENSITY;
-
+//缩放比例
+const _scaleWidth = width / defaultWidth;
+const _scaleHeight = height / defaultHeight;
+const fontScale = PixelRatio.getFontScale();
 
 /**
  * 屏幕适配,缩放size
@@ -59,6 +62,16 @@ export function px2dp(size: Number) {
     size = Math.round((size * scale + 0.5));
     return size / DEFAULT_DENSITY;
 }
+/**
+ * 设置字体的size（单位px）
+ * @param size 传入设计稿上的px
+ * @returns {Number} 返回实际sp ,会随系统缩放比例改变，如不需要请去掉 * fontScale
+ */
+export function px2sp(size: Number) {
+    const scale = Math.min(_scaleWidth, _scaleHeight);
+    return size * scale * fontScale;
+}
+
 
 export const Metrics = {
     reallySize: reallySize,

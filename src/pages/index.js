@@ -7,7 +7,7 @@
 import React, {PureComponent} from 'react'
 import {View, TouchableOpacity, Text, Image, StatusBar} from 'react-native'
 import {Scene, Drawer, Actions} from 'react-native-router-flux'
-import {Images, Styles, Colors, px2dp} from '../configs/Theme';
+import {Images, Styles, Colors, px2dp, px2sp} from '../configs/Theme';
 import {isStrNull} from "../utils/utils";
 import Home from './Home'
 import Detail from './Detail'
@@ -50,13 +50,14 @@ export const scenes = () => {
                tabBarStyle={{backgroundColor:'#1A1B1F'}}
                activeTintColor={'#FFE9AD'}
                inactiveTintColor={'#736C5B'}
+               labelStyle={{fontSize:px2sp(24)}}
                tabs>
             <Scene key="Home"
                    initial
                    tabBarLabel={'首页'}
                    tabBarIcon={({focused})=>(
                        <TabBarItem
-                           iconStyle={{height:px2dp(24),width:px2dp(18)}}
+                           iconStyle={{height:px2dp(48),width:px2dp(36)}}
                            focused={focused}
                            normalImage={Images.news_gray}
                            selectedImage={Images.news}/>
@@ -67,7 +68,7 @@ export const scenes = () => {
                    component={Races}
                    tabBarIcon={({focused})=>(
                        <TabBarItem
-                           iconStyle={{height:px2dp(24),width:px2dp(24)}}
+                           iconStyle={{height:px2dp(48),width:px2dp(48)}}
                            focused={focused}
                            normalImage={Images.event_gray}
                            selectedImage={Images.event}/>
