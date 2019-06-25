@@ -7,7 +7,7 @@
 import React, {PureComponent} from 'react'
 import {View, TouchableOpacity, Text, Image, StatusBar} from 'react-native'
 import {Scene, Drawer, Actions} from 'react-native-router-flux'
-import {Images, Styles, Colors} from '../configs/Theme';
+import {Images, Styles, Colors, px2dp} from '../configs/Theme';
 import {isStrNull} from "../utils/utils";
 import Home from './Home'
 import Detail from './Detail'
@@ -33,6 +33,7 @@ import RaceMessage from "./RaceMessage";
 import FAQ from "./FAQ";
 import FoundBeauti from "./FoundBeauti";
 import ProtocolPage from "./ProtocolPage";
+import TabBarItem from "./navigation/TabBarItem";
 
 export const scenes = () => {
     return <Scene key="root"
@@ -43,14 +44,34 @@ export const scenes = () => {
 
         <Scene key="main"
                initial
+               lazy={true}
+               animationEnabled={false}
+               tabBarPosition={'bottom'}
+               tabBarStyle={{backgroundColor:'#1A1B1F'}}
+               activeTintColor={'#FFE9AD'}
+               inactiveTintColor={'#736C5B'}
                tabs>
             <Scene key="Home"
                    initial
                    tabBarLabel={'首页'}
+                   tabBarIcon={({focused})=>(
+                       <TabBarItem
+                           iconStyle={{height:px2dp(24),width:px2dp(18)}}
+                           focused={focused}
+                           normalImage={Images.news_gray}
+                           selectedImage={Images.news}/>
+                   )}
                    component={Home}
                    hideNavBar/>
             <Scene key="Races"
                    component={Races}
+                   tabBarIcon={({focused})=>(
+                       <TabBarItem
+                           iconStyle={{height:px2dp(24),width:px2dp(24)}}
+                           focused={focused}
+                           normalImage={Images.event_gray}
+                           selectedImage={Images.event}/>
+                   )}
                    hideNavBar/>
         </Scene>
         

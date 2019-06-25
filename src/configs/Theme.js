@@ -39,6 +39,27 @@ export function realSize(size) {
  */
 const PartHeight = height - (Platform.OS === 'android' ? navBarHeight + StatusBar.currentHeight : navBarHeight);
 
+export const DEFAULT_DENSITY = 2;
+//以iphone6为基准,如果以其他尺寸为基准的话,请修改下面的 defaultWidth 和 defaultHeight 为对应尺寸即可.
+const defaultWidth = 750;
+const defaultHeight = 1334;
+const w2 = defaultWidth / DEFAULT_DENSITY;
+const h2 = defaultHeight / DEFAULT_DENSITY;
+
+
+/**
+ * 屏幕适配,缩放size
+ * @param size 设计图的尺寸
+ * @returns {number}
+ */
+export function px2dp(size: Number) {
+    let scaleWidth = width / w2;
+    let scaleHeight = height / h2;
+    let scale = Math.min(scaleWidth, scaleHeight);
+    size = Math.round((size * scale + 0.5));
+    return size / DEFAULT_DENSITY;
+}
+
 export const Metrics = {
     reallySize: reallySize,
     screenHeight: height,
