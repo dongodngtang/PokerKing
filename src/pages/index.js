@@ -144,7 +144,9 @@ export const scenes = () => {
         <Scene key="QueueProcess"
                component={QueueProcess}
                {...TopNav({
-                   rightTitle:global.lang.t('refresh')
+                   right_img_show: true,
+                   right_img: Images.message,
+                   right_img_size: {height: px2dp(34), width: px2dp(45)}
                })}/>
         <Scene key="Feedback"
                component={Feedback}
@@ -287,7 +289,7 @@ export class NavBar extends PureComponent {
                 }}
                 style={Styles.navTitle}>
                 <Text
-                    style={{fontSize: 18, color: '#FFE9AD', alignSelf: 'center'}} numberOfLines={1}>{title}</Text>
+                    style={{fontSize: 17, color: '#FFE9AD', alignSelf: 'center'}} numberOfLines={1}>{title}</Text>
 
             </TouchableOpacity>
 

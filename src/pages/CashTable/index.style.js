@@ -69,7 +69,8 @@ export default StyleSheet.create({
     txt1:{
         fontSize:18,
         color:"#FFE9AD",
-        marginLeft:17
+        marginLeft:17,
+        maxWidth:'80%'
     },
     txt2:{
         fontSize:14,

@@ -173,5 +173,8 @@
   "add_calendar_alert":"Open the calendar",
   "refresh":"Refresh",
   "room":"房间",
-  "mine":"我的"
+  "mine":"我的",
+  "room_waiting":"房间实况／等候区",
+  "table_number":"桌数",
+  "waiting_number":	"等候人数"
 }

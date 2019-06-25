@@ -83,7 +83,7 @@ export default class Races extends Component {
                         this.change_list_show()
                     }}>
                     <Text
-                        style={{fontSize: 17, color: '#FFE9AD'}}
+                        style={{fontSize: 17, color: '#FFE9AD',maxWidth:'90%'}}
                         numberOfLines={1}>{this.state.recent_event.name}</Text>
                     <Image style={{width: 12, height: 6, marginLeft: 10}}
                            source={this.state.list_show ? Images.top : Images.bottom}/>

@@ -1,36 +1,71 @@
 import {StyleSheet} from 'react-native';
+import {Metrics} from "../../configs/Theme";
 
 export default StyleSheet.create({
-    process_view: {
-        flex: 1,
-        backgroundColor: "#3F4042"
+    topName_view:{
+        height:40,
+        width:Metrics.screenWidth,
+        backgroundColor:"#1A1B1F",
+        alignItems:'center',
+        justifyContent:'center',
+        borderBottomWidth:1,
+        borderBottomColor:"#736C5B"
     },
-    item_view: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingTop: 12,
-        paddingBottom: 12,
-        paddingLeft: 17,
-        paddingRight: 18
-    },
-    item_txt:{
-        color:"#ECECEE",
+    room_waiting:{
+        color:"#FFE9AD",
         fontSize:14
     },
-    selected_item:{
-        backgroundColor:"#333436",
-        borderLeftColor:"#CF1E34",
-        borderLeftWidth:6,
+    process_view: {
+        flex: 1,
+        backgroundColor: "#1A1B1F"
+    },
+    item_view: {
+        width:Metrics.screenWidth - 34,
+        backgroundColor:"#303236",
+        alignSelf:'center',
         flexDirection: 'row',
         alignItems: 'center',
-        paddingTop: 12,
-        paddingBottom: 12,
-        paddingLeft: 11,
-        paddingRight: 18
+        borderBottomWidth:1,
+        borderBottomColor:"#736C5B",
     },
-    manila_process_view:{
-        flex: 1,
-        backgroundColor: "#ECECEE"
+    left_view:{
+        flex:1,
+        paddingTop: 8,
+        paddingBottom: 11,
+        flexDirection:'column',
+        borderRightWidth:1,
+        borderRightColor:"#998E72"
+    },
+    left_top_view:{
+        paddingBottom:8,
+        borderBottomWidth:1,
+        borderBottomColor:"#736C5B",
+        flexDirection:'column'
+    },
+    hkd:{
+        color:"#FFE9AD",
+        fontSize:12,
+        marginTop:7,
+        marginLeft:7
+    },
+    left_bottom_view:{
+        flexDirection:'row',
+        alignItems:'center',
+        marginLeft:7
+    },
+    right_view:{
+        flex:1,
+        flexDirection:'column'
+    },
+    blind:{
+        color:"#FFE9AD",
+        fontSize:16,
+        marginLeft:7
+    },
+    table_numbers_text:{
+        flex:1,
+        color:"#FFE9AD",
+        fontSize:12
     }
 })
 

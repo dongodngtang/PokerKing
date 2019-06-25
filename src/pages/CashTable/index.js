@@ -80,7 +80,7 @@ export default class CashTable extends Component {
                     flexDirection: "column-reverse"
                 }]}>
                     <TouchableOpacity activeOpacity={1}  style={[styles.txt_view,{backgroundColor:'#1A1B1F'}]}>
-                        <Text style={styles.txt1}>{global.lang.t('sands_casino')}</Text>
+                        <Text style={styles.txt1} numberOfLines={1}>{item.name}</Text>
                         <View style={{flex:1}}/>
                         <Image
                             style={{height: px2dp(48), width: px2dp(40),marginRight:17}}

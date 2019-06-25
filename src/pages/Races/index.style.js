@@ -49,7 +49,8 @@ export default StyleSheet.create({
     date_text:{
         alignSelf:'center',
         color: "#FFE9AD",
-        fontSize: 15
+        fontSize: 15,
+        maxWidth:'70%'
     },
     slide_view: {
         flexDirection: 'column',

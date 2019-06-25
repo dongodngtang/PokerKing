@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, FlatList, Image, TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
-import {isEmptyObject, logMsg} from "../../utils/utils";
+import {isEmptyObject, logMsg, moneyFormat} from "../../utils/utils";
 import styles from './index.style';
 import {Metrics, Images} from "../../configs/Theme";
 import {getCashQueues, getCashQueuesNumber} from '../../services/cashTableDao'
@@ -21,11 +21,19 @@ export default class QueueProcess extends Component {
     constructor(props) {
         super(props);
         props.navigation.setParams({
-            title: `${global.lang.t('queue_process')}`,
+            title: props.params.item.name,
             onRight: () => {
                 this.listView && this.listView.refresh()
             }
         })
+    };
+
+    topName=()=>{
+        return(
+            <View style={styles.topName_view}>
+                <Text style={styles.room_waiting}>{global.lang.t('room_waiting')}</Text>
+            </View>
+        )
     }
 
 
@@ -37,22 +45,25 @@ export default class QueueProcess extends Component {
         const {cash_game_id, small_blind, big_blind, table_numbers, cash_queue_members_count, created_at} = item;
         const {cash_queues} = this.state;
         return (
-            <TouchableOpacity style={item.isSelect ? styles.selected_item : styles.item_view} onPress={() => {
-                cash_queues.forEach((x) => {
-                    x.isSelect = item.id === x.id
-                });
-                this.setState({
-                    cash_queues: [...cash_queues]
-                });
-                router.toQueueList(item);
-            }}>
-                <Text
-                    style={[styles.item_txt,{width:'48%'}]}>{`${small_blind}/${big_blind}NL（${table_numbers}${global.lang.t('table')}）`}</Text>
-                <View style={{flex: 1}}/>
-                <Text
-                    style={[styles.item_txt, {marginRight: 15}]}>{global.lang.t('line_count')}：{cash_queue_members_count}</Text>
-                <Image style={{height: 12, width: 6}} source={Images.is_right}/>
-            </TouchableOpacity>
+            <View style={styles.item_view}>
+                <View style={styles.left_view}>
+                    <View style={styles.left_top_view}>
+                        <Text style={styles.blind}>{`${small_blind}/${big_blind}NLH`}</Text>
+                        <Text style={styles.hkd}>{`HKD ${moneyFormat(small_blind)}～${moneyFormat(big_blind)}`}</Text>
+                    </View>
+                    <View style={[styles.left_bottom_view,{marginTop:4}]}>
+                        <Text style={styles.table_numbers_text}>{`${global.lang.t('table_number')}`}</Text>
+                        <Text style={styles.table_numbers_text}>{table_numbers}</Text>
+                    </View>
+                    <View style={[styles.left_bottom_view,{marginTop:6}]}>
+                        <Text style={styles.table_numbers_text}>{`${global.lang.t('waiting_number')}`}</Text>
+                        <Text style={styles.table_numbers_text}>{cash_queue_members_count}</Text>
+                    </View>
+                </View>
+                <View style={styles.right_view}>
+
+                </View>
+            </View>
         )
     };
 
@@ -60,6 +71,8 @@ export default class QueueProcess extends Component {
     render() {
         return (
             <View style={styles.process_view}>
+                {this.topName()}
+                {this._separator()}
                 <UltimateFlatList
                     firstLoader={true}
                     ref={(ref) => this.listView = ref}
@@ -101,7 +114,6 @@ export default class QueueProcess extends Component {
                         cash_queues: members
                     })
                     startFetch(members, 18)
-                    logMsg("djskjdksd",members)
                 }, err => {
                     logMsg("reject:", err)
                     abortFetch()
@@ -115,7 +127,7 @@ export default class QueueProcess extends Component {
 
     _separator = () => {
         return (
-            <View style={{height: 1, width: Metrics.screenWidth, backgroundColor: "#2D2D2D"}}/>
+            <View style={{height: 9, width: Metrics.screenWidth, backgroundColor: "#1A1B1F"}}/>
         )
     }
 }
