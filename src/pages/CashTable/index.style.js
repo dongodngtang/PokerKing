@@ -1,9 +1,37 @@
 import {Metrics} from "../../configs/Theme";
 import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
+    navTop: {
+        height: Metrics.navBarHeight,
+        width: Metrics.screenWidth,
+        backgroundColor: '#1A1B1F',
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingTop: Metrics.statusBarHeight
+    },
+    left2: {
+        // height: 44,
+        paddingLeft: 17,
+        justifyContent: 'center'
+    },
+    right2: {
+        flexDirection: 'row-reverse',
+        flexWrap: 'nowrap',
+        alignItems: 'center',
+        paddingLeft: 17,
+        paddingRight: 42
+    },
+    navTitle: {
+        flex: 1,
+        marginLeft:10,
+        flexDirection: 'row',
+        alignItems: 'center',
+        alignSelf: 'center',
+        justifyContent: 'center'
+    },
     table_view:{
         flex:1,
-        backgroundColor:'#444444',
+        backgroundColor:'#1A1B1F',
         alignItems:'center'
     },
     click_btn:{
@@ -22,13 +50,15 @@ export default StyleSheet.create({
         alignSelf:'center'
     },
     jinsha:{
-
         width:Metrics.screenWidth,
         height:170
     },
     txt_view:{
-        flexDirection:'column',
-        marginRight:32
+        height:45,
+        width:Metrics.screenWidth,
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'space-between'
 
     },
     weini_view:{
@@ -37,9 +67,9 @@ export default StyleSheet.create({
 
     },
     txt1:{
-        fontSize:20,
-        color:"#212223",
-        fontWeight:'bold'
+        fontSize:18,
+        color:"#FFE9AD",
+        marginLeft:17
     },
     txt2:{
         fontSize:14,

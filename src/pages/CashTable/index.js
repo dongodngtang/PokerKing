@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import {View, Text, TouchableOpacity, Image, ImageBackground, FlatList} from 'react-native';
+import {View, Text, TouchableOpacity, Image, ImageBackground, StatusBar} from 'react-native';
 import {connect} from 'react-redux';
 import styles from './index.style';
-import {Images} from "../../configs/Theme";
+import {Images, px2dp} from "../../configs/Theme";
 import {getCashGames, getCashQueuesNumber} from "../../services/cashTableDao";
 import {getBg, isEmpty, isEmptyObject, logMsg} from "../../utils/utils";
 import {Metrics} from "../../configs/Theme";
@@ -14,6 +14,43 @@ import {initLoginUser} from "../../services/accountDao";
     ...CashTable,
 }))
 export default class CashTable extends Component {
+
+
+    topBar = () => {
+        return (
+            <View style={styles.navTop}>
+                <StatusBar barStyle={'light-content'}/>
+                <TouchableOpacity
+                    onPress={() => {
+
+                    }}
+                    style={styles.left2}>
+                    <Image
+                        style={{height: px2dp(48), width: px2dp(120)}}
+                        source={Images.puke_icon}
+                    />
+
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.navTitle}>
+                    <Text
+                        style={{fontSize: 17, color: '#FFE9AD'}}
+                        numberOfLines={1}>{global.lang.t('room')}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => {
+
+                    }}
+                    style={styles.right2}>
+                    <Image
+                        style={{height: px2dp(38), width: px2dp(36)}}
+                        source={Images.setting}
+                    />
+
+                </TouchableOpacity>
+            </View>
+        )
+    };
 
     _separator = () => {
         return (
@@ -31,7 +68,7 @@ export default class CashTable extends Component {
         }else {
             return image
         }
-    }
+    };
 
     _renderItem = (item, index) => {
         let img = this.getLang(item);
@@ -40,13 +77,16 @@ export default class CashTable extends Component {
                 router.toQueueProcess(item)
             }}>
                 <ImageBackground source={getBg(img)} style={[styles.jinsha, {
-                    flexDirection: "row-reverse",
-                    alignItems: 'center'
+                    flexDirection: "column-reverse"
                 }]}>
-                    {/*<View style={styles.txt_view}>*/}
-                    {/*<Text style={styles.txt1}>{global.lang.t('sands_casino')}</Text>*/}
-                    {/*<Text style={styles.txt2}>{global.lang.t('queuing')}></Text>*/}
-                    {/*</View>*/}
+                    <TouchableOpacity activeOpacity={1}  style={[styles.txt_view,{backgroundColor:'#1A1B1F'}]}>
+                        <Text style={styles.txt1}>{global.lang.t('sands_casino')}</Text>
+                        <View style={{flex:1}}/>
+                        <Image
+                            style={{height: px2dp(48), width: px2dp(40),marginRight:17}}
+                            source={Images.location}
+                        />
+                    </TouchableOpacity>
                 </ImageBackground>
             </TouchableOpacity>
         )
@@ -55,7 +95,7 @@ export default class CashTable extends Component {
     render() {
         return (
             <View style={styles.table_view}>
-
+                {this.topBar()}
                 <UltimateFlatList
                     firstLoader={true}
                     ref={(ref) => this.listView = ref}
