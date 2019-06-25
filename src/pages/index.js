@@ -54,7 +54,7 @@ export const scenes = () => {
                tabs>
             <Scene key="Home"
                    initial
-                   tabBarLabel={'首页'}
+                   tabBarLabel={global.lang.t('news')}
                    tabBarIcon={({focused})=>(
                        <TabBarItem
                            iconStyle={{height:px2dp(48),width:px2dp(36)}}
@@ -64,7 +64,7 @@ export const scenes = () => {
                    )}
                    component={Home}
                    hideNavBar/>
-            <Scene key="Races"
+            <Scene key={global.lang.t('race')}
                    component={Races}
                    tabBarIcon={({focused})=>(
                        <TabBarItem
@@ -72,6 +72,26 @@ export const scenes = () => {
                            focused={focused}
                            normalImage={Images.event_gray}
                            selectedImage={Images.event}/>
+                   )}
+                   hideNavBar/>
+            <Scene key={global.lang.t('room')}
+                   component={CashTable}
+                   tabBarIcon={({focused})=>(
+                       <TabBarItem
+                           iconStyle={{height:px2dp(48),width:px2dp(44)}}
+                           focused={focused}
+                           normalImage={Images.room_gray}
+                           selectedImage={Images.room}/>
+                   )}
+                   hideNavBar/>
+            <Scene key={global.lang.t('mine')}
+                   component={Races}
+                   tabBarIcon={({focused})=>(
+                       <TabBarItem
+                           iconStyle={{height:px2dp(48),width:px2dp(48)}}
+                           focused={focused}
+                           normalImage={Images.mine_gray}
+                           selectedImage={Images.mine}/>
                    )}
                    hideNavBar/>
         </Scene>

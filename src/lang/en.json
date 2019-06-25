@@ -171,5 +171,7 @@
   "news":"News",
   "hot":"Hot",
   "add_calendar_alert":"Open the calendar",
-  "refresh":"Refresh"
+  "refresh":"Refresh",
+  "room":"房间",
+  "mine":"我的"
 }
