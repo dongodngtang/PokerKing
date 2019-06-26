@@ -71,6 +71,18 @@ export function px2sp(size: Number) {
     const scale = Math.min(_scaleWidth, _scaleHeight);
     return size * scale * fontScale;
 }
+/**
+ * 同时设置宽高
+ * @param width
+ * @param height
+ * @returns {{width: Number, height: Number}}
+ */
+export function wh(width: Number, height: Number = width) {
+    return {
+        width: px2dp(width),
+        height: px2dp(height)
+    }
+}
 
 
 export const Metrics = {

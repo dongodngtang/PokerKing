@@ -55,6 +55,22 @@ export function isEmptyObject(e) {
   return !0
 }
 
+// 记录上次点击的时间
+let lastOnPressTime = 0;
+/**
+ * 确保在固定时间能无法响应多次事件
+ * @param {Number} times
+ */
+export function OnSafePress(callback = () => {}, times = 1000) {
+    let curOnPressTime = new Date().getTime();
+    console.log('OnSafePress', curOnPressTime - lastOnPressTime );
+
+    if (curOnPressTime - lastOnPressTime > times) {
+        lastOnPressTime = curOnPressTime;
+        callback()
+    }
+}
+
 /**
  * 已关注
  * @param ids

@@ -17,12 +17,12 @@ import SplashScreen from 'react-native-splash-screen'
 import JShareModule from 'jshare-react-native';
 import {logMsg, showToast} from "./utils/utils";
 import {Actions} from 'react-native-router-flux';
-
-let lastBackTime = 0
+import codePush from "react-native-code-push";
 
 @connect(({ common}) => ({
       ...common
 }))
+@codePush
 export default class Root extends Component {
     constructor(props) {
         super(props);
@@ -45,6 +45,11 @@ export default class Root extends Component {
         if (Platform.OS === 'android') {
             BackHandler.addEventListener('hardwareBackPress', this.onBackAndroid)
         }
+        codePush.disallowRestart()
+        codePush.sync({
+            updateDialog: false,
+            installMode: codePush.InstallMode.ON_NEXT_RESUME
+        })
     }
 
     onBackAndroid =()=> {
