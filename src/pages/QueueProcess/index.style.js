@@ -80,7 +80,8 @@ export default StyleSheet.create({
         marginBottom:7
     },
     right_mid_view: {
-        alignSelf:'flex-end',
+        alignSelf:'center',
+        marginTop:4,
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',

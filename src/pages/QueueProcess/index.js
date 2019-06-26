@@ -43,14 +43,14 @@ export default class QueueProcess extends Component {
 
     _renderItem = (item, index) => {
         let rank = 12;
-        const {cash_game_id, small_blind, big_blind, table_numbers, cash_queue_members_count, created_at} = item;
+        const {cash_game_id, small_blind, big_blind, table_numbers, cash_queue_members_count, buy_in} = item;
         const {cash_queues} = this.state;
         return (
             <View style={styles.item_view}>
                 <View style={styles.left_view}>
                     <View style={styles.left_top_view}>
                         <Text style={styles.blind}>{`${small_blind}/${big_blind} NLH`}</Text>
-                        <Text style={styles.hkd}>{`HKD ${moneyFormat(small_blind)}～${moneyFormat(big_blind)}`}</Text>
+                        <Text style={styles.hkd}>{`HKD ${buy_in}`}</Text>
                     </View>
                     <View style={[styles.left_bottom_view, {marginTop: 4}]}>
                         <Text style={styles.table_numbers_text}>{`${global.lang.t('table_number')}`}</Text>
@@ -69,9 +69,9 @@ export default class QueueProcess extends Component {
                         </Text>
                     </View>
 
-                    <View style={[styles.right_mid_view, {backgroundColor: rank > 0 ? '#303236' : "#1A1B1F"}]}>
+                    <TouchableOpacity activeOpacity={1} style={[styles.right_mid_view, {backgroundColor: rank > 0 ? '#303236' : "#1A1B1F"}]}>
                         <Text style={styles.application_wait}>{global.lang.t('application_wait')}</Text>
-                    </View>
+                    </TouchableOpacity>
                 </View>
             </View>
         )
