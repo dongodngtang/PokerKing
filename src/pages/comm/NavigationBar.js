@@ -3,7 +3,7 @@ import {Image, Text, TouchableOpacity, View,StyleSheet,SafeAreaView} from "react
 import {Images, Metrics, px2dp} from "../../configs/Theme";
 
 
-const NavigationBar = ({leftOnPress,rightOnPress})=>(
+const NavigationBar = ({title,leftOnPress,rightOnPress})=>(
   <View style={{}}>
       <SafeAreaView forceInset={{ top: 'always' }}/>
       <View style={styles.navTop}>
@@ -20,7 +20,7 @@ const NavigationBar = ({leftOnPress,rightOnPress})=>(
               style={styles.navTitle}>
               <Text
                   style={{fontSize: 17, color: '#FFE9AD'}}
-                  numberOfLines={1}>{global.lang.t('room')}</Text>
+                  numberOfLines={1}>{title}</Text>
           </TouchableOpacity>
           <TouchableOpacity
               onPress={() => rightOnPress && rightOnPress()}

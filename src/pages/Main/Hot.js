@@ -1,5 +1,5 @@
 import React, {PureComponent} from "react";
-import {View, StyleSheet, Text,Image} from 'react-native'
+import {View, StyleSheet, Text, Image, TouchableOpacity} from 'react-native'
 
 import NotData from "../comm/NotData";
 import UltimateFlatList from "../../components/ultimate/UltimateFlatList";
@@ -13,12 +13,12 @@ import {unix_format} from "../../utils/utils";
  *功能：
  */
 
-const Hot = ({onFetch}) => (
+const Hot = ({onFetch, onPress, onShare}) => (
     <UltimateFlatList
         ref={(ref) => this.listView = ref}
         onFetch={onFetch}
         keyExtractor={(item, index) => `hot_race${index}`}
-        item={_renderItem}
+        item={(item, index) => _renderItem(item, index, onPress, onShare)}
         refreshableTitlePull={global.lang.t('pull_refresh')}
         refreshableTitleRelease={global.lang.t('release_refresh')}
         dateTitle={global.lang.t('last_refresh')}
@@ -29,29 +29,34 @@ const Hot = ({onFetch}) => (
 )
 
 
-const _renderItem = (item,index) => (
-    <View
+const _renderItem = (item, index, onPress, onShare) => (
+    <TouchableOpacity
+        onPress={() => onPress && onPress(item)}
         key={`hot${index}`}
         style={styles.item}>
         <ImageLoad style={styles.img}
                    source={{uri: item.image}}/>
         <View style={styles.content}>
             <Text style={styles.title}>{item.title}</Text>
-            <View style={{flexDirection:'row',alignItems: 'center',width:'100%',marginTop: 5}}>
-                <Image style={{height:px2dp(32),width:px2dp(32)}}
-                source={Images.hot_gary}/>
-                <Text style={[styles.time,{marginLeft:px2dp(14)}]}>{item.source}</Text>
-                <Text style={[styles.time,{marginLeft:px2dp(28)}]}>{unix_format(item.created_at,"MM DD,YYYY")}</Text>
-                <View style={{flex:1}}/>
-                <Image style={{height:px2dp(46),width:px2dp(46),marginRight:px2dp(36)}}
-                source={Images.collect}/>
-                <Image style={{height:px2dp(32),width:px2dp(40),marginRight:px2dp(20)}}
-                       source={Images.share}/>
+            <View style={{flexDirection: 'row', alignItems: 'center', width: '100%', marginTop: 5}}>
+                <Image style={{height: px2dp(32), width: px2dp(32)}}
+                       source={Images.hot_gary}/>
+                <Text style={[styles.time, {marginLeft: px2dp(14)}]}>{item.source}</Text>
+                <Text style={[styles.time, {marginLeft: px2dp(28)}]}>{unix_format(item.created_at, "MM DD,YYYY")}</Text>
+                <View style={{flex: 1}}/>
+                <Image style={{height: px2dp(46), width: px2dp(46), marginRight: px2dp(36)}}
+                       source={Images.collect}/>
+                <TouchableOpacity
+                    onPress={() => onShare && onShare(item)}>
+                    <Image style={{height: px2dp(32), width: px2dp(40), marginRight: px2dp(20)}}
+                           source={Images.share}/>
+                </TouchableOpacity>
+
             </View>
 
         </View>
 
-    </View>
+    </TouchableOpacity>
 )
 
 const styles = StyleSheet.create({
