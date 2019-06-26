@@ -69,7 +69,12 @@ export default class QueueProcess extends Component {
                         </Text>
                     </View>
 
-                    <TouchableOpacity activeOpacity={1} style={[styles.right_mid_view, {backgroundColor: rank > 0 ? '#303236' : "#1A1B1F"}]}>
+                    <TouchableOpacity
+                        activeOpacity={1}
+                        style={[styles.right_mid_view, {backgroundColor: rank > 0 ? '#303236' : "#1A1B1F"}]}
+                        onPress={() => {
+
+                        }}>
                         <Text style={styles.application_wait}>{global.lang.t('application_wait')}</Text>
                     </TouchableOpacity>
                 </View>

@@ -68,13 +68,10 @@ export default class Register extends Component {
                             placeholderTextColor={'#CCCCCC'}
                             placeholder={global.lang.t('username_EC')}
                             clearTextOnFocus={true}
-                            value={this.state.username}
+                            autoCapitalize={'characters'}
                             underlineColorAndroid={'transparent'}
                             onChangeText={txt => {
-                                this.user_name =  txt.trim().toUpperCase()
-                                this.setState({
-                                    username:this.user_name
-                                })
+                                this.user_name =  txt.trim()
 
                             }}
                         />
