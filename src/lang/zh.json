@@ -164,7 +164,10 @@
   "mine":"我的",
   "room_waiting":"房间实况／等候区",
   "table_number":"桌数",
-  "waiting_number":	"等候人数"
+  "waiting_number":	"等候人数",
+  "ranking":"您的排次",
+  "application_wait":"申请等候",
+  "cancel_wait":"取消等候"
 }
 
 

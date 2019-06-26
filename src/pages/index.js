@@ -85,7 +85,7 @@ export const scenes = () => {
                    )}
                    hideNavBar/>
             <Scene key={global.lang.t('mine')}
-                   component={Races}
+                   component={Register}
                    tabBarIcon={({focused})=>(
                        <TabBarItem
                            iconStyle={{height:px2dp(48),width:px2dp(48)}}

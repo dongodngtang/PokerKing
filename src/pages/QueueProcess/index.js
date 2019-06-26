@@ -28,8 +28,8 @@ export default class QueueProcess extends Component {
         })
     };
 
-    topName=()=>{
-        return(
+    topName = () => {
+        return (
             <View style={styles.topName_view}>
                 <Text style={styles.room_waiting}>{global.lang.t('room_waiting')}</Text>
             </View>
@@ -42,26 +42,36 @@ export default class QueueProcess extends Component {
     };
 
     _renderItem = (item, index) => {
+        let rank = 12;
         const {cash_game_id, small_blind, big_blind, table_numbers, cash_queue_members_count, created_at} = item;
         const {cash_queues} = this.state;
         return (
             <View style={styles.item_view}>
                 <View style={styles.left_view}>
                     <View style={styles.left_top_view}>
-                        <Text style={styles.blind}>{`${small_blind}/${big_blind}NLH`}</Text>
+                        <Text style={styles.blind}>{`${small_blind}/${big_blind} NLH`}</Text>
                         <Text style={styles.hkd}>{`HKD ${moneyFormat(small_blind)}～${moneyFormat(big_blind)}`}</Text>
                     </View>
-                    <View style={[styles.left_bottom_view,{marginTop:4}]}>
+                    <View style={[styles.left_bottom_view, {marginTop: 4}]}>
                         <Text style={styles.table_numbers_text}>{`${global.lang.t('table_number')}`}</Text>
                         <Text style={styles.table_numbers_text}>{table_numbers}</Text>
                     </View>
-                    <View style={[styles.left_bottom_view,{marginTop:6}]}>
+                    <View style={[styles.left_bottom_view, {marginTop: 6}]}>
                         <Text style={styles.table_numbers_text}>{`${global.lang.t('waiting_number')}`}</Text>
                         <Text style={styles.table_numbers_text}>{cash_queue_members_count}</Text>
                     </View>
                 </View>
                 <View style={styles.right_view}>
+                    <View style={styles.right_top_view}>
+                        <Text style={styles.ranking}>{global.lang.t('ranking')}</Text>
+                        <Text
+                            style={[styles.ranking_info, rank > 0 ? styles.ranking_info3 : styles.ranking_info2]}>{rank > 0 ? rank : '--'}
+                        </Text>
+                    </View>
 
+                    <View style={[styles.right_mid_view, {backgroundColor: rank > 0 ? '#303236' : "#1A1B1F"}]}>
+                        <Text style={styles.application_wait}>{global.lang.t('application_wait')}</Text>
+                    </View>
                 </View>
             </View>
         )
