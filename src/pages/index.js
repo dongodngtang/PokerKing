@@ -34,6 +34,7 @@ import FAQ from "./FAQ";
 import FoundBeauti from "./FoundBeauti";
 import ProtocolPage from "./ProtocolPage";
 import TabBarItem from "./navigation/TabBarItem";
+import Main from "./Main";
 
 export const scenes = () => {
     return <Scene key="root"
@@ -42,7 +43,7 @@ export const scenes = () => {
                   renderLeftButton={null}
                   navigationBarStyle={{backgroundColor:'black'}}>
 
-        <Scene key="main"
+        <Scene key="first"
                initial
                lazy={true}
                animationEnabled={false}
@@ -62,7 +63,7 @@ export const scenes = () => {
                            normalImage={Images.news_gray}
                            selectedImage={Images.news}/>
                    )}
-                   component={Home}
+                   component={Main}
                    hideNavBar/>
             <Scene key={global.lang.t('race')}
                    component={Races}
