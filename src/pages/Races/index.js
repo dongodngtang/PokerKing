@@ -259,7 +259,7 @@ class Card extends Component {
                     <Text style={styles.race_time_txt}>{global.lang.t('race_time')}</Text>
                     <Text style={styles.race_time_txt}>{this.state.countTime}</Text>
                 </View>
-                <Image
+                <ImageLoad
                     style={styles.slide_img}
                     source={getBg(logo)}/>
                 <View style={styles.slide_top_view}>
