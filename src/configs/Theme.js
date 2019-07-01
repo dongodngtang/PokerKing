@@ -219,6 +219,11 @@ export const Colors = {
     txt_666: '#666666',
     _E54: '#E54A2E',
     _CCC: '#CCCCCC',
+    _FFE:'#FFE9AD',
+    _998:'#998E72',
+    _1A1:'#1A1B1F',
+    _303:'#303236',
+    _736:'#736C5B'
 }
 
 export const Styles = {
