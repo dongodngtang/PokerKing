@@ -30,7 +30,7 @@ export default class Drawer extends Component {
         let avatar = isEmptyObject(profile) ? Images.default_bg : isStrNull(profile.avatar) ? Images.default_bg : {uri: profile.avatar}
         let nick_name = isEmptyObject(profile) ? global.lang.t('login') : profile.nickname;
         return (
-            <SafeAreaView style={{flex: 1, backgroundColor: "#212223"}}>
+            <SafeAreaView style={{flex: 1, backgroundColor: "#212223",paddingRight:2}}>
                 <TouchableOpacity style={styles.safe_area_view} activeOpacity={1} onPress={() => {
                     if (isEmptyObject(profile)) {
                         router.toLogin();
@@ -65,6 +65,7 @@ export default class Drawer extends Component {
                 {this._item(styles.select_btn, Images.feiji, styles.change_img, global.lang.t('recommend'), () => {
                     // Clipboard.setString(`${shareHost()}/loadApp`);
                     // showToast(global.lang.t("copy_download"))
+                    this.props.drawClose();
                     let param = {
                         shareTitle: 'PokerKingLive',
                         shareText: 'PokerKingLive',
