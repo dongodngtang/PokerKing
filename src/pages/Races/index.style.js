@@ -58,6 +58,18 @@ export default StyleSheet.create({
     slide_view: {
         flexDirection: 'column'
     },
+    slide_top_view_1: {
+        width: Metrics.screenWidth - 80,
+        backgroundColor: "#343638",
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingTop: 4,
+        paddingBottom: 4,
+        paddingLeft: 14,
+        paddingRight: 14,
+        borderRadius: 4
+    },
     slide_top_view: {
         width: Metrics.screenWidth - 80,
         backgroundColor: "#FFE9AD",
@@ -69,6 +81,14 @@ export default StyleSheet.create({
         paddingLeft: 14,
         paddingRight: 14,
         borderRadius: 4
+    },
+    race_time_txt_1: {
+        color: "#CCCCCC",
+        fontSize: 16
+    },
+    race_time_txt2_1: {
+        color: "#CCCCCC",
+        fontSize: 16
     },
     race_time_txt: {
         color: "#1A1B1F",

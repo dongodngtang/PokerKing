@@ -176,17 +176,17 @@ export default class Races extends Component {
                 }}>
                     {this._item(styles.item_view, Images.location, styles.img_dy,
                         global.lang.t('race_location'), () => {
-                            this.debouncePress(recent_event.id)
+
                         })}
 
                     {this._item(styles.item_view, Images.event_intro, styles.img_dy1,
                         `${global.lang.t('race_intro')}`, () => {
-                            router.toRaceSchedule(recent_event);
+                            this.debouncePress(recent_event.id)
                         })}
 
                     {this._item(styles.item_view, Images.event_dynamics, styles.img_dy2,
                         global.lang.t('race_schedule'), () => {
-                            router.toRaceNew(recent_event.id);
+                            router.toRaceSchedule(recent_event);
                         })}
                     {this._item(styles.item_view, Images.news_info, styles.img_dy3,
                         global.lang.t('race_news'), () => {
@@ -194,7 +194,7 @@ export default class Races extends Component {
                         })}
                     {this._item(styles.item_view_last, Images.live, styles.img_dy4,
                         global.lang.t('race_live'), () => {
-                            router.toRaceNew(recent_event.id);
+
                         })}
                 </View>
 
@@ -229,10 +229,12 @@ export default class Races extends Component {
 class Card extends Component {
 
     state = {
-        countTime: ''
+        countTime: '',
+        index: 0
     }
 
     counting = (startTime, endTime) => {
+        let index = 0;
         this.intervalTimer = setInterval(() => {
             // 得到剩余时间
             let remainTime = getRemainTime(startTime)
@@ -249,10 +251,12 @@ class Card extends Component {
                 let toEndTime = getRemainTime(endTime)
                 let raceStatus = global.lang.t('processing')
                 if (toEndTime.total < 0) {
-                    raceStatus = global.lang.t('over')
+                    raceStatus = '----'
+                    index = -1
                 }
                 this.setState({
-                    countTime: raceStatus
+                    countTime: raceStatus,
+                    index: index
                 })
             }
         }, 100)
@@ -284,10 +288,16 @@ class Card extends Component {
                 <Image
                     style={styles.slide_img}
                     source={getBg(logo)}/>
-                <View style={styles.slide_top_view}>
-                    <Text style={styles.race_time_txt}>{global.lang.t('race_time')}</Text>
+                {this.state.index === -1 ? <View style={styles.slide_top_view_1}>
+                    <Text
+                        style={styles.race_time_txt_1}>{global.lang.t('race_over')}</Text>
+                    <Text style={styles.race_time_txt2_1}>{this.state.countTime}</Text>
+                </View> : <View style={styles.slide_top_view}>
+                    <Text
+                        style={styles.race_time_txt}>{global.lang.t('race_time')}</Text>
                     <Text style={styles.race_time_txt2}>{this.state.countTime}</Text>
-                </View>
+                </View>}
+
                 <Text style={styles.card_name}>{name}</Text>
                 <View style={styles.card_bottom_view}>
                     <Text style={styles.card_location}>{`澳门`}</Text>

@@ -170,5 +170,6 @@
   "cancel_wait":"取消等候",
   "race_location":"赛事定位",
   "race_intro":"赛事介绍",
-  "race_live":"赛事直播"
+  "race_live":"赛事直播",
+  "race_over":"赛事已结束"
 }
