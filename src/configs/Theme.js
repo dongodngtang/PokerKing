@@ -189,7 +189,11 @@ export const Images = {
     time_select:require('../asserts/new/time_select.png'),
     top_new:require('../asserts/new/top.png'),
     type_select:require('../asserts/new/type_select.png'),
-    mine_gray:require('../asserts/new/mine_gray.png')
+    mine_gray:require('../asserts/new/mine_gray.png'),
+    collection:require('../asserts/new/collection.png'),
+    notice_img:require('../asserts/new/notice_img.png'),
+    puke_intro:require('../asserts/new/puke_intro.png'),
+    vip_img:require('../asserts/new/vip_img.png')
 
 }
 

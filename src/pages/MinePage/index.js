@@ -39,12 +39,41 @@ export default class MinePage extends Component {
                             <Text style={styles.member_text}>{member}</Text>
                         </View>}
                     </View>
-                    <View style={{flex:1}}/>
+                    <View style={{flex: 1}}/>
                     <Image style={styles.right_img} source={Images.right}/>
                 </TouchableOpacity>
 
+                <View style={styles.items_view}>
+                    {this._item(styles.item_view, Images.notice_img, styles.img_dy1,
+                        global.lang.t('notice'), () => {
 
+                        })}
+                    {this._item(styles.item_view, Images.collection, styles.img_dy2,
+                        global.lang.t('collection'), () => {
+
+                        })}
+                    {this._item(styles.item_view, Images.puke_intro, styles.img_dy3,
+                        global.lang.t('about'), () => {
+
+                        })}
+                    {this._item(styles.item_view, Images.vip_img, styles.img_dy4,
+                        global.lang.t('vip_intro'), () => {
+
+                        })}
+                </View>
             </View>
+        )
+    }
+
+    _item = (itemStyle, img, imgStyle, title, onPress, notice) => {
+        return (
+            <TouchableOpacity activeOpacity={1} style={itemStyle} onPress={onPress}>
+                <Image style={imgStyle} source={img}/>
+                <Text style={styles.title_text}>{title}</Text>
+                <View style={{flex: 1}}/>
+                {isStrNull(notice) ? null : <Text style={styles.read_message}>{global.lang.t('your')}{global.lang.t('unRead')}</Text>}
+                <Image style={styles.right_img} source={Images.right}/>
+            </TouchableOpacity>
         )
     }
 }

@@ -171,5 +171,10 @@
   "race_location":"赛事定位",
   "race_intro":"赛事介绍",
   "race_live":"赛事直播",
-  "race_over":"赛事已结束"
+  "race_over":"赛事已结束",
+  "notice":"通知",
+  "collection":"收藏",
+  "vip_intro":"会员介绍",
+  "your":"您有",
+  "unRead":"条消息未读"
 }
