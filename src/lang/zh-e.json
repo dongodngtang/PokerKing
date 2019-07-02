@@ -179,5 +179,8 @@
   "unRead":"条消息未读",
   "instants_news":"即时新闻",
   "rank_status":"排队进程",
-  "instants":"即时"
+  "instants":"即时",
+  "search": "搜索",
+  "category_select":"类别选择",
+  "time_select":"时间选择"
 }
