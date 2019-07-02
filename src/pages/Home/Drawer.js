@@ -30,7 +30,7 @@ export default class Drawer extends Component {
         let avatar = isEmptyObject(profile) ? Images.default_bg : isStrNull(profile.avatar) ? Images.default_bg : {uri: profile.avatar}
         let nick_name = isEmptyObject(profile) ? global.lang.t('login') : profile.nickname;
         return (
-            <SafeAreaView style={{flex: 1, backgroundColor: "#212223",paddingRight:2}}>
+            <SafeAreaView style={{flex: 1, backgroundColor: "#212223"}}>
                 <TouchableOpacity style={styles.safe_area_view} activeOpacity={1} onPress={() => {
                     if (isEmptyObject(profile)) {
                         router.toLogin();
