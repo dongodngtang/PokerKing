@@ -50,7 +50,7 @@ export const scenes = () => {
                lazy={true}
                animationEnabled={false}
                tabBarPosition={'bottom'}
-               tabBarStyle={{backgroundColor:'#1A1B1F'}}
+               tabBarStyle={{backgroundColor:'#1A1B1F',paddingBottom:3}}
                activeTintColor={'#FFE9AD'}
                inactiveTintColor={'#736C5B'}
                labelStyle={{fontSize:px2sp(24)}}

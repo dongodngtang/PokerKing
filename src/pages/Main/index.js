@@ -69,7 +69,7 @@ export default class Main extends Component {
                     tabBarTextStyle={{  fontSize: px2sp(30),fontWeight: 'bold' }}
                     tabBarInactiveTextColor={'#998E72'}
                     tabBarActiveTextColor='#FFE9AD'
-                    tabBarUnderlineStyle={{ backgroundColor: '#FFE9AD', height: px2dp(2), }}
+                    tabBarUnderlineStyle={{ backgroundColor: '#FFE9AD', height: px2dp(2)}}
                     renderTabBar={()=><DefaultTabBar style={{borderWidth: 0}}/>}>
                     <Hot
                         onShare={this.share}
