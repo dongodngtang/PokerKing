@@ -62,7 +62,7 @@ export default class SearchNews extends Component {
                 {this.state.search ? <SearchBar
                     keyword={keyword => {
                         this.keyword = keyword;
-                        // this.newsList && this.newsList.refresh()
+                        this.newsList.search(this.keywords)
 
                     }}/> : <Text style={styles.nar_text} numberOfLines={1}>2019</Text>}
                 <View style={{flex: 1}}/>
@@ -73,7 +73,6 @@ export default class SearchNews extends Component {
                             search: !this.state.search
                         })
                         this.keyword = undefined;
-                        // this.newsList && this.newsList.refresh()
                     }}>
                     <Text style={styles.cancel_text}>{global.lang.t('cancel')}</Text>
 
@@ -84,7 +83,7 @@ export default class SearchNews extends Component {
 
     resentBlank = () => {
         return <View style={styles.resent}>
-            <Text style={styles.txtRecent}>最近搜索</Text>
+            <Text style={styles.txtRecent}>{global.lang.t('recent_search')}</Text>
             <View style={{flex: 1}}/>
             <TouchableOpacity
                 onPress={() => {
@@ -149,7 +148,7 @@ export default class SearchNews extends Component {
                     isSearch={true}/>
                 <View style={styles.viewSearch}>
                     {this.resentBlank()}
-                    {this.tabBlank()}
+                    {/*{this.tabBlank()}*/}
                 </View>
             </View>
         )
