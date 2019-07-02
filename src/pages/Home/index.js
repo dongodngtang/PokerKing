@@ -160,6 +160,7 @@ export default class Home extends Component {
                 ref={ref => this.drawer = ref}
                 type="static"
                 content={<ControlPanel
+                    drawClose={this._drawerClose}
                     profile={this.props.profile}/>}
                 openDrawerOffset={185}
                 tweenHandler={Drawer.tweenPresets.parallax}>
