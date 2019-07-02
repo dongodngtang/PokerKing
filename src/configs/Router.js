@@ -187,6 +187,12 @@ export default class Router {
 
         })
     }
+    toNotices() {
+        this.push({
+            sceneKey: 'NoticesPage'
+
+        })
+    }
     toProtocolPage() {
         this.push({
             sceneKey: 'ProtocolPage'

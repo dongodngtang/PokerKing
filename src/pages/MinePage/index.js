@@ -48,7 +48,7 @@ export default class MinePage extends Component {
                 <View style={styles.items_view}>
                     {this._item(styles.item_view, Images.notice_img, styles.img_dy1,
                         global.lang.t('notice'), () => {
-
+                            router.toNotices();
                         })}
                     {this._item(styles.item_view, Images.collection, styles.img_dy2,
                         global.lang.t('collection'), () => {

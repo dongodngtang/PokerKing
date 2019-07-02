@@ -36,6 +36,7 @@ import ProtocolPage from "./ProtocolPage";
 import TabBarItem from "./navigation/TabBarItem";
 import Main from "./Main";
 import MinePage from "./MinePage";
+import NoticesPage from './NoticesPage'
 
 export const scenes = () => {
     return <Scene key="root"
@@ -219,6 +220,12 @@ export const scenes = () => {
                component={ProtocolPage}
                {...TopNav({
                    title: global.lang.t('protocol')
+               })}
+        />
+        <Scene key="NoticesPage"
+               component={NoticesPage}
+               {...TopNav({
+                   title: global.lang.t('notice')
                })}
         />
     </Scene>
