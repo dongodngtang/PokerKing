@@ -1,5 +1,7 @@
 import {StyleSheet} from 'react-native';
 import {Metrics} from "../../themes";
+import {px2dp} from "../../configs/Theme";
+import {div} from "../../utils/utils";
 
 export default StyleSheet.create({
     navTop: {
@@ -24,7 +26,7 @@ export default StyleSheet.create({
     },
     navTitle: {
         flex: 1,
-        marginLeft:10,
+        marginLeft: 10,
         flexDirection: 'row',
         alignItems: 'center',
         alignSelf: 'center',
@@ -32,62 +34,85 @@ export default StyleSheet.create({
     },
     race_view: {
         flex: 1,
-        backgroundColor: '#3F4042'
+        backgroundColor: '#1A1B1F',
+        flexDirection:'column'
     },
     carousel_view: {
-        marginTop: 14,
-        marginBottom: 26
-    },
-    time_view: {
-        height: 45,
-        width:Metrics.screenWidth,
-        backgroundColor:"#1A1B1F",
-        flexDirection:'row',
-        alignItems:'center',
-        justifyContent:'center'
-    },
-    date_text:{
-        alignSelf:'center',
-        color: "#FFE9AD",
-        fontSize: 15,
-        maxWidth:'70%'
-    },
-    slide_view: {
         flexDirection: 'column',
         alignItems: 'center'
     },
+    time_view: {
+        height: 45,
+        width: Metrics.screenWidth,
+        backgroundColor: "#1A1B1F",
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    date_text: {
+        alignSelf: 'center',
+        color: "#FFE9AD",
+        fontSize: 15,
+        maxWidth: '70%'
+    },
+    slide_view: {
+        flexDirection: 'column'
+    },
     slide_top_view: {
         width: Metrics.screenWidth - 80,
-        backgroundColor: "#212223",
+        backgroundColor: "#FFE9AD",
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        paddingTop: 8,
-        paddingBottom: 8,
+        paddingTop: 4,
+        paddingBottom: 4,
         paddingLeft: 14,
         paddingRight: 14,
         borderRadius: 4
     },
     race_time_txt: {
-        color: "#CCCCCC",
+        color: "#1A1B1F",
         fontSize: 16
     },
     race_time_txt2: {
-        color: "#FFE9AD",
+        color: "#1A1B1F",
         fontSize: 16,
-        width: '53%'
+        maxWidth: '60%'
+    },
+    card_name: {
+        color: "#FFE9AD",
+        fontSize: 14,
+        marginTop: 12
+    },
+    card_bottom_view: {
+        flexDirection: "row",
+        alignItems: 'center',
+        marginTop: 8
+    },
+    card_location: {
+        color: "#998E72",
+        fontSize: 12,
+    },
+    collect_img: {
+        width: px2dp(40),
+        height: px2dp(38)
+    },
+    share_img: {
+        width: px2dp(40),
+        height: px2dp(32),
+        marginLeft: 18
     },
     slide_img: {
-        marginTop: 10,
+        // marginTop: 10,
         marginBottom: 10,
         width: Metrics.screenWidth - 80,
         height: 144,
         borderRadius: 4
     },
     personalText: {
-        fontSize: 16,
-        color: '#ECECEE',
-        marginLeft: 30
+        fontSize: 12,
+        color: '#FFE9AD',
+        marginTop: 7
     },
     personalImg: {
         width: Metrics.reallySize(6),
@@ -95,26 +120,44 @@ export default StyleSheet.create({
         marginRight: 18
     },
     item_view: {
-        height: 54,
-        flexDirection: 'row',
+        flexDirection: 'column',
         alignItems: 'center',
-        borderBottomColor: '#888888',
-        borderBottomWidth: 1
+        marginRight:9,
+        marginTop:17
+    },
+    item_view_last: {
+        flexDirection: 'column',
+        alignItems: 'center',
+        marginTop:17
+    },
+    item_view2: {
+        height: div((Metrics.screenWidth - 70),5),
+        width: div((Metrics.screenWidth - 70),5),
+        borderRadius: 4,
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent:'center',
+        backgroundColor: '#303236'
     },
     img_dy: {
-        width: 26,
-        height: 24,
-        marginLeft: 18
+        width: px2dp(54),
+        height: px2dp(66)
     },
     img_dy1: {
-        width: 24,
-        height: 22,
-        marginLeft: 20
+        width: px2dp(54),
+        height: px2dp(62)
     },
     img_dy2: {
-        width: 28,
-        height: 26,
-        marginLeft: 16
+        width: px2dp(72),
+        height: px2dp(72)
+    },
+    img_dy3: {
+        width: px2dp(68),
+        height: px2dp(28)
+    },
+    img_dy4: {
+        width: px2dp(64),
+        height: px2dp(60)
     },
     select_top_view: {
         flexDirection: 'row',

@@ -7,7 +7,7 @@ import Carousel from 'react-native-snap-carousel';
 import {Metrics} from "../../configs/Theme";
 import RaceModal from './RaceModal';
 import {mainEvents} from "../../services/eventsDao";
-import {getBg, logMsg, unix_format, getRemainTime, isStrNull} from "../../utils/utils";
+import {getBg, logMsg, unix_format, getRemainTime, isStrNull, mul} from "../../utils/utils";
 import ImageLoad from "../../components/ImageLoad";
 import RaceMessage from "../RaceMessage";
 
@@ -83,7 +83,7 @@ export default class Races extends Component {
                         this.change_list_show()
                     }}>
                     <Text
-                        style={{fontSize: 17, color: '#FFE9AD',maxWidth:'90%'}}
+                        style={{fontSize: 17, color: '#FFE9AD', maxWidth: '90%'}}
                         numberOfLines={1}>{this.state.recent_event.name}</Text>
                     <Image style={{width: 12, height: 6, marginLeft: 10}}
                            source={this.state.list_show ? Images.top : Images.bottom}/>
@@ -160,23 +160,43 @@ export default class Races extends Component {
                             })
                         }}
                     />
+                    <View style={{
+                        backgroundColor: "#736C5B", width: Metrics.screenWidth - 34, height: 1,
+                        borderRadius: 2, marginTop: 16
+                    }}/>
                 </View> : null}
 
 
-                {this._item(styles.item_view, Images.zixun, styles.img_dy,
-                    global.lang.t('race_message'), () => {
-                        this.debouncePress(recent_event.id)
-                    })}
+                <View style={{
+                    width: Metrics.screenWidth - 34,
+                    alignSelf: 'center',
+                    flexDirection: 'row',
+                    flexWrap: 'wrap',
+                    alignItems: 'center'
+                }}>
+                    {this._item(styles.item_view, Images.location, styles.img_dy,
+                        global.lang.t('race_location'), () => {
+                            this.debouncePress(recent_event.id)
+                        })}
 
-                {this._item(styles.item_view, Images.rili_gray, styles.img_dy1,
-                    `${global.lang.t('race_schedule')}`, () => {
-                        router.toRaceSchedule(recent_event);
-                    })}
+                    {this._item(styles.item_view, Images.event_intro, styles.img_dy1,
+                        `${global.lang.t('race_intro')}`, () => {
+                            router.toRaceSchedule(recent_event);
+                        })}
 
-                {this._item(styles.item_view, Images.ziyuan, styles.img_dy2,
-                    global.lang.t('race_news'), () => {
-                        router.toRaceNew(recent_event.id);
-                    })}
+                    {this._item(styles.item_view, Images.event_dynamics, styles.img_dy2,
+                        global.lang.t('race_schedule'), () => {
+                            router.toRaceNew(recent_event.id);
+                        })}
+                    {this._item(styles.item_view, Images.news_info, styles.img_dy3,
+                        global.lang.t('race_news'), () => {
+                            router.toRaceNew(recent_event.id);
+                        })}
+                    {this._item(styles.item_view_last, Images.live, styles.img_dy4,
+                        global.lang.t('race_live'), () => {
+                            router.toRaceNew(recent_event.id);
+                        })}
+                </View>
 
                 <RaceModal ref={ref => this.raceModal = ref} recent_event={recent_event} events={events}
                            change_recent_event={this.change_recent_event}
@@ -191,11 +211,16 @@ export default class Races extends Component {
             activeOpacity={1}
             style={itemStyle}
             onPress={onPress}>
-            <Image style={imgStyle} source={img}/>
-            <Text style={[styles.personalText, {width: '66%'}]}>{title}</Text>
-            <View style={{flex: 1}}/>
+            <View style={styles.item_view2}>
+                <Image style={imgStyle} source={img}/>
+            </View>
 
-            <Image style={styles.personalImg} source={Images.is_right}/>
+            <Text style={[styles.personalText]}>{title}</Text>
+            {/*<Image style={imgStyle} source={img}/>*/}
+            {/*<Text style={[styles.personalText, {width: '66%'}]}>{title}</Text>*/}
+            {/*<View style={{flex: 1}}/>*/}
+
+            {/*<Image style={styles.personalImg} source={Images.is_right}/>*/}
         </TouchableOpacity>
     };
 }
@@ -255,17 +280,33 @@ class Card extends Component {
             <TouchableOpacity activeOpacity={1} style={styles.slide_view} onPress={() => {
                 this.debouncePress(id);
             }}>
-                <View style={styles.slide_top_view}>
-                    <Text style={styles.race_time_txt}>{global.lang.t('race_time')}</Text>
-                    <Text style={styles.race_time_txt}>{this.state.countTime}</Text>
-                </View>
+
                 <Image
                     style={styles.slide_img}
                     source={getBg(logo)}/>
                 <View style={styles.slide_top_view}>
-                    <Text style={styles.race_time_txt2}>{name}</Text>
-                    <Text style={styles.race_time_txt}>{race_start_time}</Text>
+                    <Text style={styles.race_time_txt}>{global.lang.t('race_time')}</Text>
+                    <Text style={styles.race_time_txt2}>{this.state.countTime}</Text>
                 </View>
+                <Text style={styles.card_name}>{name}</Text>
+                <View style={styles.card_bottom_view}>
+                    <Text style={styles.card_location}>{`澳门`}</Text>
+                    <View style={{flex: 1}}/>
+                    <TouchableOpacity>
+                        <Image
+                            style={styles.collect_img}
+                            source={Images.collect}/>
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <Image
+                            style={styles.share_img}
+                            source={Images.share}/>
+                    </TouchableOpacity>
+                </View>
+                {/*<View style={styles.slide_top_view}>*/}
+                {/*<Text style={styles.race_time_txt2}>{name}</Text>*/}
+                {/*<Text style={styles.race_time_txt}>{race_start_time}</Text>*/}
+                {/*</View>*/}
             </TouchableOpacity>
         )
     }
