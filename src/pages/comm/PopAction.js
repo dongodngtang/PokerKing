@@ -20,30 +20,7 @@ export default class PopAction extends PureComponent {
     }
 
 
-    btnArrayView = () => {
 
-        const {btnArray} = this.props;
-
-        return btnArray.map((item, index) => {
-            return <TouchableOpacity
-                onPress={() => item.onPress && item.onPress()}
-                activeOpacity={1}
-                key={'action' + index}
-                style={{
-                    height: 50,
-                    backgroundColor: 'white',
-                    borderBottomColor: '#ECECEE',
-                    borderBottomWidth: 1,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    width: '100%'
-                }}>
-
-                <Text style={[{fontSize: 17, fontWeight: 'bold'}, item.txtStyle]}>{item.name}</Text>
-
-            </TouchableOpacity>
-        })
-    }
 
     render() {
         return (<Modal
@@ -55,7 +32,8 @@ export default class PopAction extends PureComponent {
                 <TouchableOpacity
                     activeOpacity={1}
                     onPress={this.toggle} style={{flex: 1}}/>
-                {this.btnArrayView()}
+
+                {this.props.children}
 
             </View>
 
