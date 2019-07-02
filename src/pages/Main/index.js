@@ -74,17 +74,17 @@ export default class Main extends Component {
                     <Hot
                         onShare={this.share}
                         onPress={this.toDetail}
-                        tabLabel={'热门'}
+                        tabLabel={global.lang.t('hot')}
                         onFetch={this.onFetch}/>
                     <Hot
                         onShare={this.share}
                         onPress={this.toDetail}
                         key={'2'}
-                        tabLabel={'即时'}
+                        tabLabel={global.lang.t('instants')}
                         onFetch={this.onFetch}/>
                     <More
                         key={'3'}
-                        tabLabel={'更多>'}/>
+                        tabLabel={`${global.lang.t('more')}>`}/>
                 </ScrollableTab>
 
                 {!isEmptyObject(shareParam) ? <ShareToast hiddenShareAction={() => {
