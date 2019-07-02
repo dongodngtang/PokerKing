@@ -35,6 +35,7 @@ import FoundBeauti from "./FoundBeauti";
 import ProtocolPage from "./ProtocolPage";
 import TabBarItem from "./navigation/TabBarItem";
 import Main from "./Main";
+import MinePage from "./MinePage";
 
 export const scenes = () => {
     return <Scene key="root"
@@ -86,7 +87,7 @@ export const scenes = () => {
                    )}
                    hideNavBar/>
             <Scene key={global.lang.t('mine')}
-                   component={Register}
+                   component={MinePage}
                    tabBarIcon={({focused})=>(
                        <TabBarItem
                            iconStyle={{height:px2dp(48),width:px2dp(48)}}
