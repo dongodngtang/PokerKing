@@ -195,7 +195,9 @@ export const Images = {
     puke_intro:require('../asserts/new/puke_intro.png'),
     vip_img:require('../asserts/new/vip_img.png'),
     notices1:require('../asserts/new/notices1.png'),
-    notices2:require('../asserts/new/notices2.png')
+    notices2:require('../asserts/new/notices2.png'),
+    delete2:require('../asserts/new/delete2.png'),
+    no_search:require('../asserts/new/no_search.png')
 
 }
 
