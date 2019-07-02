@@ -30,6 +30,8 @@ export default class MinePage extends Component {
                 <TouchableOpacity style={styles.top_view} onPress={() => {
                     if (isEmptyObject(profile)) {
                         router.toLogin();
+                    }else{
+                        router.toModifyData()
                     }
                 }}>
                     <Image source={getAvatar(avatar)} style={styles.person_img}/>
@@ -54,7 +56,7 @@ export default class MinePage extends Component {
                         })}
                     {this._item(styles.item_view, Images.puke_intro, styles.img_dy3,
                         global.lang.t('about'), () => {
-
+                            router.toFoundBeauti();
                         })}
                     {this._item(styles.item_view, Images.vip_img, styles.img_dy4,
                         global.lang.t('vip_intro'), () => {
