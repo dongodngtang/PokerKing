@@ -34,6 +34,54 @@ export default StyleSheet.create({
         color: '#FFE9AD',
         alignSelf:'center',
         maxWidth:'60%'
+    },
+    resent: {
+        height: 45,
+        alignItems: 'center',
+        flexDirection: 'row'
+    },
+    txtRecent: {
+        fontSize: 14,
+        color: '#333333',
+        marginLeft: 19
+    },
+    viewSearch: {
+        position: 'absolute',
+        top: Metrics.navBarHeight,
+        bottom: 0,
+        left: 0,
+        right: 0,
+        backgroundColor:'#ECECEE'
+    },
+    imgDel: {
+        height: 22,
+        width: 22
+    },
+    btnDel: {
+        height: 45,
+        width: 60,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    btnCat: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    tabSearch: {
+        borderRadius: 14,
+        height: 28,
+        paddingLeft: 17,
+        paddingRight: 17,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#E1E1E2',
+        marginBottom: 16,
+        marginRight: 12
+    },
+    txtTab: {
+        fontSize: 14,
+        color: '#444444'
     }
 })
 
