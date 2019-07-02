@@ -199,4 +199,10 @@ export default class Router {
 
         })
     }
+    toSearchNews() {
+        this.push({
+            sceneKey: 'SearchNews'
+
+        })
+    }
 }

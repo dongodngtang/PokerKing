@@ -182,7 +182,8 @@
   "instants": "即时",
   "search": "搜索",
   "category_select":"类别选择",
-  "time_select":"时间选择"
+  "time_select":"时间选择",
+  "search_text":"输入文章关键字"
 }
 
 

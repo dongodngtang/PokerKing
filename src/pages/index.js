@@ -37,6 +37,7 @@ import TabBarItem from "./navigation/TabBarItem";
 import Main from "./Main";
 import MinePage from "./MinePage";
 import NoticesPage from './NoticesPage'
+import SearchNews from "./SearchNews";
 
 export const scenes = () => {
     return <Scene key="root"
@@ -227,6 +228,10 @@ export const scenes = () => {
                {...TopNav({
                    title: global.lang.t('notice')
                })}
+        />
+        <Scene key="SearchNews"
+               component={SearchNews}
+               hideNavBar
         />
     </Scene>
 }

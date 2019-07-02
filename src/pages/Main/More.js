@@ -11,9 +11,12 @@ const More = ({}) => (
     <View>
         <ItemLayout rightIcon={Images.right}
                     rightStyle={{...wh(22, 36)}}
-                    title={global.leng.t('search')}
+                    title={global.lang.t('search')}
                     leftIcon={Images.search}
                     leftStyle={{...wh(40, 40), marginRight: px2dp(20)}}
+                    onPress={()=>{
+                        router.toSearchNews()
+                    }}
         />
         <View style={{height: px2dp(1), backgroundColor: '#736C5B', width: Metrics.screenWidth}}/>
         <TimeSelect/>
