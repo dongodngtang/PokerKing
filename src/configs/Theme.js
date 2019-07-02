@@ -193,7 +193,9 @@ export const Images = {
     collection:require('../asserts/new/collection.png'),
     notice_img:require('../asserts/new/notice_img.png'),
     puke_intro:require('../asserts/new/puke_intro.png'),
-    vip_img:require('../asserts/new/vip_img.png')
+    vip_img:require('../asserts/new/vip_img.png'),
+    notices1:require('../asserts/new/notices1.png'),
+    notices2:require('../asserts/new/notices2.png')
 
 }
 
