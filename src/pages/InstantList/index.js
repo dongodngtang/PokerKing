@@ -65,10 +65,10 @@ export default class InstantList extends Component {
                            <Text style={[styles.time, {marginLeft: px2dp(28)}]}>{unix_format(1562121862, "MM DD,YYYY")}</Text>
                            <View style={{flex: 1}}/>
                            <Image style={{height: px2dp(46), width: px2dp(46), marginRight: px2dp(36)}}
-                                  source={Images.collect}/>
+                                  source={Images.collection_gray}/>
                            <TouchableOpacity>
                                <Image style={{height: px2dp(32), width: px2dp(40), marginRight: px2dp(20)}}
-                                      source={Images.share}/>
+                                      source={Images.share_gray}/>
                            </TouchableOpacity>
 
                        </View>
