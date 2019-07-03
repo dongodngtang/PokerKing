@@ -38,6 +38,9 @@ import Main from "./Main";
 import MinePage from "./MinePage";
 import NoticesPage from './NoticesPage'
 import SearchNews from "./SearchNews";
+import InstantList from "./InstantList";
+import RankList from "./RankList";
+import Setting from "./Setting";
 
 export const scenes = () => {
     return <Scene key="root"
@@ -225,6 +228,24 @@ export const scenes = () => {
                component={NoticesPage}
                {...TopNav({
                    title: global.lang.t('notice')
+               })}
+        />
+        <Scene key="InstantList"
+               component={InstantList}
+               {...TopNav({
+                   title: global.lang.t('instants_news')
+               })}
+        />
+        <Scene key="RankList"
+               component={RankList}
+               {...TopNav({
+                   title: global.lang.t('rank_status')
+               })}
+        />
+        <Scene key="Setting"
+               component={Setting}
+               {...TopNav({
+                   title: global.lang.t('modifyData')
                })}
         />
         <Scene key="SearchNews"

@@ -13,8 +13,7 @@ import {unix_format} from "../../utils/utils";
  *功能：
  */
 
-
-const Hot = ({onFetch, onPress, onShare}) => (
+const Instants = ({onFetch, onPress, onShare}) => (
     <UltimateFlatList
         ref={(ref) => this.listView = ref}
         onFetch={onFetch}
@@ -84,4 +83,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default Hot
+export default Instants

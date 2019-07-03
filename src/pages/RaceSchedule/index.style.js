@@ -89,19 +89,23 @@ export default StyleSheet.create({
     },
     day_txt:{
         color:Colors._998,
-        fontSize:px2sp(28)
+        fontSize:px2sp(28),
+        lineHeight:18
     },
     week_txt:{
         color:Colors._998,
-        fontSize:px2sp(24)
+        fontSize:px2sp(24),
+        lineHeight:18
     },
     day_txt_light:{
         color:Colors._FFE,
-        fontSize:px2sp(28)
+        fontSize:px2sp(28),
+        lineHeight:18
     },
     week_txt_light:{
         color:Colors._FFE,
-        fontSize:px2sp(24)
+        fontSize:px2sp(24),
+        lineHeight:18
     },
     structure_view:{
         height:40,

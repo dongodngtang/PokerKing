@@ -205,4 +205,22 @@ export default class Router {
 
         })
     }
+    toInstantList() {
+        this.push({
+            sceneKey: 'InstantList'
+
+        })
+    }
+    toRankList() {
+        this.push({
+            sceneKey: 'RankList'
+
+        })
+    }
+    toSetting() {
+        this.push({
+            sceneKey: 'Setting'
+
+        })
+    }
 }
