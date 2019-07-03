@@ -205,4 +205,10 @@ export default class Router {
 
         })
     }
+    toInstantList() {
+        this.push({
+            sceneKey: 'InstantList'
+
+        })
+    }
 }

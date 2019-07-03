@@ -50,7 +50,9 @@ export default class NoticesPage extends Component {
 
     _renderItem=(item,index)=>{
         return(
-            <TouchableOpacity style={styles.item_view}>
+            <TouchableOpacity style={styles.item_view} onPress={()=>{
+                router.toInstantList();
+            }}>
                 <View style={styles.img_view}>
                     <Image style={styles.notices1_img} source={Images.notices1}/>
                 </View>
