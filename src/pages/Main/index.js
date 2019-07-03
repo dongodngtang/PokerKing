@@ -20,7 +20,8 @@ export default class Main extends Component {
 
 
     state = {
-        activeTab:'热门'
+        activeTab:'热门',
+        index : 0
     }
 
     onFetch = (page = 1, startFetch, abortFetch)=>{
@@ -39,7 +40,8 @@ export default class Main extends Component {
 
     onChangeTab =({i,ref})=>{
         this.setState({
-            activeTab:ref.props.tabLabel
+            activeTab:ref.props.tabLabel,
+            index : i
         })
     }
 
@@ -62,7 +64,7 @@ export default class Main extends Component {
 
         return (
             <Base>
-                <NavigationBar title={this.state.activeTab} rightOnPress={router.toSetting}/>
+                <NavigationBar title={this.state.activeTab} index={this.state.index} rightOnPress={router.toSetting}/>
                 <ScrollableTab
                     onChangeTab={this.onChangeTab}
                     scrollWithoutAnimation={true}
