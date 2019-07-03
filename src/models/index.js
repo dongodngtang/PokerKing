@@ -6,8 +6,10 @@
 
 import Home from '../pages/Home/model'
 import common from '../services/common'
+import MinePage from '../pages/MinePage/model'
 
 export default[
     Home,
-    common
+    common,
+    MinePage
 ]

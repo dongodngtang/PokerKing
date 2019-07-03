@@ -16,10 +16,10 @@ export default {
           } });
       }
     },
-      * setProfile(_,{call,put}){
+      * setProfile(payload,{call,put}){
 
           yield put({type:'save',payload:{
-                  profile:_.params
+                  profile:payload.params
               }})
 
       },

@@ -18,6 +18,7 @@ import JShareModule from 'jshare-react-native';
 import {logMsg, showToast} from "./utils/utils";
 import {Actions} from 'react-native-router-flux';
 import codePush from "react-native-code-push";
+import {initLoginUser} from "./services/accountDao";
 
 @connect(({ common}) => ({
       ...common
@@ -33,6 +34,7 @@ export default class Root extends Component {
         global.lang = this.lang
 
         initBaseUrl()
+        initLoginUser()
 
     }
 
