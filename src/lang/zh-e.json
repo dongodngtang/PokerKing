@@ -184,5 +184,9 @@
   "category_select":"类别选择",
   "time_select":"时间选择",
   "search_text":"输入文章关键字",
-  "recent_search":"最近搜索"
+  "recent_search":"最近搜索",
+  "race_date":"赛事日程",
+  "remarks":"备注",
+  "enter_race":"如何参赛",
+  "add_race":"添加赛事"
 }

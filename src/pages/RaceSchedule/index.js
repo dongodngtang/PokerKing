@@ -25,7 +25,7 @@ export default class RaceSchedule extends Component {
 
         let title = props.params.event && props.params.event.name
         props.navigation.setParams({
-            title: title ? title : '赛事日程'
+            title: title ? title : global.leng.t('race_date')
         })
     };
 
@@ -270,7 +270,7 @@ class SelectPart extends Component {
                 <View style={{backgroundColor: '#736C5B', height: px2dp(2)}}/>
 
                 <View style={{height: px2dp(160), width: '100%', paddingLeft: px2dp(18), paddingTop: px2dp(16)}}>
-                    <Text style={styles.top_txt1}>备注：</Text>
+                    <Text style={styles.top_txt1}>{global.lang.t('remarks')}：</Text>
 
                     <View style={{
                         flexDirection: 'row',
@@ -282,14 +282,14 @@ class SelectPart extends Component {
                                 router.toStructure(schedule_pdf)
                             }}
                             style={styles.btnRemark}>
-                            <Text style={styles.top_txt1}>赛事架构</Text>
+                            <Text style={styles.top_txt1}>{global.lang.t('structure')}</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                             onPress={() => {
                                 router.toRaceMessage(id)
                             }}
                             style={styles.btnRemark}>
-                            <Text style={styles.top_txt1}>如何参赛</Text>
+                            <Text style={styles.top_txt1}>{global.lang.t('enter_race')}</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.btnRemark}>
                             <Text style={styles.top_txt1}
@@ -319,7 +319,7 @@ class SelectPart extends Component {
 
                                               // alert(JSON.stringify(error))
                                           });
-                                  }}>添加赛事</Text>
+                                  }}>{global.lang.t('add_race')}</Text>
                         </TouchableOpacity>
                     </View>
 

@@ -25,7 +25,7 @@ const NavigationBar = ({title, leftOnPress, rightOnPress, index}) => (
                     numberOfLines={1}>{title}</Text>
             </TouchableOpacity>
             <TouchableOpacity
-                onPress={() => rightOnPress && rightOnPress()}
+                onPress={() => router.toSetting()}
                 style={styles.right2}>
                 <Image
                     style={{height: px2dp(38), width: px2dp(36)}}
