@@ -123,7 +123,10 @@ export default class Races extends Component {
 
     _renderItem = ({item, index}) => {
         return <Card
-            item={item} recent_event={this.state.recent_event}/>
+            item={item}
+            recent_event={this.state.recent_event}
+            snapToNext={this.snapToNext}
+            snapToPrev={this.snapToPrev}/>
     };
 
     debouncePress = (id) => {
@@ -133,6 +136,14 @@ export default class Races extends Component {
             this.lastClickTime = clickTime
             router.toRaceMessage(id)
         }
+    }
+
+    snapToNext = ()=>{
+        this._carousel && this._carousel.snapToNext()
+    }
+
+    snapToPrev = ()=>{
+        this._carousel && this._carousel.snapToPrev()
     }
 
     render() {
@@ -151,7 +162,7 @@ export default class Races extends Component {
                         data={this.state.all_events}
                         renderItem={this._renderItem}
                         sliderWidth={Metrics.screenWidth}
-                        itemWidth={Metrics.screenWidth - 80}
+                        itemWidth={Metrics.screenWidth}
                         onSnapToItem={(index) => {
                             let selectedEvent = all_events[index];
                             logMsg('滚动到了', selectedEvent);
@@ -276,48 +287,67 @@ class Card extends Component {
         const {description} = this.props.recent_event;
         const {begin_time, end_time, id, logo, name} = this.props.item;
         let month = unix_format(begin_time, `MM`);
+        const {snapToPrev,snapToNext} = this.props
 
         let race_start_time = global.localLanguage === 'en' ? `${global.lang.t(`month${month}`)}` + unix_format(begin_time, `DD,YYYY`) :
             unix_format(begin_time, `YYYY${global.lang.t('year')}MM${global.lang.t('month')}DD${global.lang.t('day2')}`);
 
         return (
-            <TouchableOpacity activeOpacity={1} style={styles.slide_view} onPress={() => {
-                this.debouncePress(id);
-            }}>
+            <View style={{flexDirection: 'row'}}>
+                <TouchableOpacity
+                    onPress={()=>snapToPrev && snapToPrev()}
+                    style={{height:px2dp(302),width:px2dp(60),
+                justifyContent: 'center',paddingLeft: px2dp(24)}}>
+                    <Image style={{height: px2dp(34), width: px2dp(20)}}
+                           source={Images.left}/>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    activeOpacity={1}
+                    onPress={() => {
+                        this.debouncePress(id);
+                    }}>
 
-                <Image
-                    style={styles.slide_img}
-                    source={getBg(logo)}/>
-                {this.state.index === -1 ? <View style={styles.slide_top_view_1}>
-                    <Text
-                        style={styles.race_time_txt_1}>{global.lang.t('race_over')}</Text>
-                    <Text style={styles.race_time_txt2_1}>{this.state.countTime}</Text>
-                </View> : <View style={styles.slide_top_view}>
-                    <Text
-                        style={styles.race_time_txt}>{global.lang.t('race_time')}</Text>
-                    <Text style={styles.race_time_txt2}>{this.state.countTime}</Text>
-                </View>}
+                    <Image
+                        style={styles.slide_img}
+                        source={getBg(logo)}/>
+                    {this.state.index === -1 ? <View style={styles.slide_top_view_1}>
+                        <Text
+                            style={styles.race_time_txt_1}>{global.lang.t('race_over')}</Text>
+                        <Text style={styles.race_time_txt2_1}>{this.state.countTime}</Text>
+                    </View> : <View style={styles.slide_top_view}>
+                        <Text
+                            style={styles.race_time_txt}>{global.lang.t('race_time')}</Text>
+                        <Text style={styles.race_time_txt2}>{this.state.countTime}</Text>
+                    </View>}
 
-                <Text style={styles.card_name}>{name}</Text>
-                <View style={styles.card_bottom_view}>
-                    <Text style={styles.card_location}>{`澳门`}</Text>
-                    <View style={{flex: 1}}/>
-                    <TouchableOpacity>
-                        <Image
-                            style={styles.collect_img}
-                            source={Images.collect}/>
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                        <Image
-                            style={styles.share_img}
-                            source={Images.share}/>
-                    </TouchableOpacity>
-                </View>
-                {/*<View style={styles.slide_top_view}>*/}
-                {/*<Text style={styles.race_time_txt2}>{name}</Text>*/}
-                {/*<Text style={styles.race_time_txt}>{race_start_time}</Text>*/}
-                {/*</View>*/}
-            </TouchableOpacity>
+                    <Text style={styles.card_name}>{name}</Text>
+                    <View style={styles.card_bottom_view}>
+                        <Text style={styles.card_location}>{`澳门`}</Text>
+                        <View style={{flex: 1}}/>
+                        <TouchableOpacity>
+                            <Image
+                                style={styles.collect_img}
+                                source={Images.collect}/>
+                        </TouchableOpacity>
+                        <TouchableOpacity>
+                            <Image
+                                style={styles.share_img}
+                                source={Images.share}/>
+                        </TouchableOpacity>
+                    </View>
+                    {/*<View style={styles.slide_top_view}>*/}
+                    {/*<Text style={styles.race_time_txt2}>{name}</Text>*/}
+                    {/*<Text style={styles.race_time_txt}>{race_start_time}</Text>*/}
+                    {/*</View>*/}
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={()=>snapToNext && snapToNext()}
+                    style={{height:px2dp(302),width:px2dp(60),
+                    justifyContent: 'center',paddingLeft: px2dp(24)}}>
+                    <Image style={{height: px2dp(34), width: px2dp(20)}}
+                           source={Images.right}/>
+                </TouchableOpacity>
+            </View>
         )
     }
 

@@ -123,11 +123,9 @@ export default StyleSheet.create({
         marginLeft: 18
     },
     slide_img: {
-        // marginTop: 10,
-        marginBottom: 10,
-        width: Metrics.screenWidth - 80,
-        height: 144,
-        borderRadius: 4
+        marginBottom: px2dp(24),
+        width: px2dp(628),
+        height: px2dp(302)
     },
     personalText: {
         fontSize: 12,
