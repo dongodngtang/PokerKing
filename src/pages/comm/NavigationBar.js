@@ -18,6 +18,7 @@ const NavigationBar = ({title,leftOnPress,rightOnPress})=>(
           </TouchableOpacity>
           <TouchableOpacity
               style={styles.navTitle}>
+              <Image style={{height: px2dp(44), width: px2dp(32),marginRight:5}} source={Images.hot_races}/>
               <Text
                   style={{fontSize: 17, color: '#FFE9AD'}}
                   numberOfLines={1}>{title}</Text>
@@ -61,7 +62,7 @@ const styles = StyleSheet.create({
         flex: 1,
         marginLeft:10,
         flexDirection: 'row',
-        alignItems: 'center',
+        alignItems: 'flex-end',
         alignSelf: 'center',
         justifyContent: 'center'
     },
