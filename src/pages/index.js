@@ -41,14 +41,12 @@ import SearchNews from "./SearchNews";
 
 export const scenes = () => {
     return <Scene key="root"
-                  headerMode={'screen'}
-                  navTransparent
-                  renderLeftButton={null}
-                  navigationBarStyle={{backgroundColor:'black'}}>
+                  headerMode={'screen'}>
 
         <Scene key="first"
                initial
                lazy={true}
+               hideNavBar
                animationEnabled={false}
                tabBarPosition={'bottom'}
                tabBarStyle={{backgroundColor:'#1A1B1F',paddingBottom:3}}
