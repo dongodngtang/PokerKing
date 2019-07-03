@@ -3,7 +3,7 @@ import {View, StyleSheet, Text, Image, TouchableOpacity} from 'react-native'
 
 import NotData from "../comm/NotData";
 import UltimateFlatList from "../../components/ultimate/UltimateFlatList";
-import {Images, px2dp, px2sp} from "../../configs/Theme";
+import {Images, Metrics, px2dp, px2sp} from "../../configs/Theme";
 import ImageLoad from "../../components/ImageLoad";
 import {unix_format} from "../../utils/utils";
 
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     },
     img: {
         height: px2dp(336),
-        width: px2dp(700)
+        width: Metrics.screenWidth - 34
     },
     title: {
         color: '#FFE9AD',
