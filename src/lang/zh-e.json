@@ -188,5 +188,6 @@
   "race_date":"赛事日程",
   "remarks":"备注",
   "enter_race":"如何参赛",
-  "add_race":"添加赛事"
+  "add_race":"添加赛事",
+  "load_no_article":"没有找到相关文章"
 }
