@@ -158,6 +158,7 @@ export const Images = {
     //new
     bottom_new:require('../asserts/new/bottom.png'),
     collect:require('../asserts/new/collect.png'),
+    collection_gray:require('../asserts/new/collection_gray.png'),
     date:require('../asserts/new/date.png'),
     delete_new:require('../asserts/new/delete.png'),
     event:require('../asserts/new/event.png'),
@@ -186,6 +187,7 @@ export const Images = {
     selected:require('../asserts/new/selected.png'),
     setting:require('../asserts/new/setting.png'),
     share:require('../asserts/new/share.png'),
+    share_gray:require('../asserts/new/share_gray.png'),
     time_select:require('../asserts/new/time_select.png'),
     top_new:require('../asserts/new/top.png'),
     type_select:require('../asserts/new/type_select.png'),
