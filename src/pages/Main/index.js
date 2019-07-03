@@ -7,6 +7,7 @@ import ScrollableTab,{DefaultTabBar} from 'react-native-scrollable-tab-view'
 import {getInfoList} from "../../services/accountDao";
 import {isEmptyObject, logMsg, OnSafePress, shareHost, shareTo} from "../../utils/utils";
 import Hot from "./Hot";
+import Instants from "./Instants";
 import {px2dp, px2sp} from "../../configs/Theme";
 import More from "./More";
 import ShareToast from "../comm/ShareToast";
@@ -76,7 +77,7 @@ export default class Main extends Component {
                         onPress={this.toDetail}
                         tabLabel={global.lang.t('hot')}
                         onFetch={this.onFetch}/>
-                    <Hot
+                    <Instants
                         onShare={this.share}
                         onPress={this.toDetail}
                         key={'2'}
