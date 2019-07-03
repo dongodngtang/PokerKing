@@ -217,4 +217,10 @@ export default class Router {
 
         })
     }
+    toSetting() {
+        this.push({
+            sceneKey: 'Setting'
+
+        })
+    }
 }

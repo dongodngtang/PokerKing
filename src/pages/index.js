@@ -40,6 +40,7 @@ import NoticesPage from './NoticesPage'
 import SearchNews from "./SearchNews";
 import InstantList from "./InstantList";
 import RankList from "./RankList";
+import Setting from "./Setting";
 
 export const scenes = () => {
     return <Scene key="root"
@@ -241,6 +242,12 @@ export const scenes = () => {
                component={RankList}
                {...TopNav({
                    title: global.lang.t('rank_status')
+               })}
+        />
+        <Scene key="Setting"
+               component={Setting}
+               {...TopNav({
+                   title: global.lang.t('modifyData')
                })}
         />
         <Scene key="SearchNews"

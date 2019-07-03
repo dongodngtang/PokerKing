@@ -62,7 +62,7 @@ export default class Main extends Component {
 
         return (
             <Base>
-                <NavigationBar title={this.state.activeTab}/>
+                <NavigationBar title={this.state.activeTab} rightOnPress={router.toSetting()}/>
                 <ScrollableTab
                     onChangeTab={this.onChangeTab}
                     scrollWithoutAnimation={true}
