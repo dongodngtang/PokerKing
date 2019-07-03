@@ -211,4 +211,10 @@ export default class Router {
 
         })
     }
+    toRankList() {
+        this.push({
+            sceneKey: 'RankList'
+
+        })
+    }
 }
