@@ -16,6 +16,13 @@ export default {
           } });
       }
     },
+      * setProfile(payload,{call,put}){
+
+          yield put({type:'save',payload:{
+                  profile:payload.params
+              }})
+
+      },
   },
 
   reducers: {

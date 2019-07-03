@@ -86,25 +86,25 @@ export function getProfile(resolve,reject) {
     if(global.loginUser && global.loginUser.user_id){
         get(api.profile(),{},ret=>{
             resolve && resolve(ret.data)
-            dva.getDispatch()({type:'Home/setProfile',params:ret.data})
+            dva.getDispatch()({type:'MinePage/setProfile',params:ret.data})
 
         },reject)
     }else{
-        dva.getDispatch()({type:'Home/setProfile',params:{}})
+        dva.getDispatch()({type:'MinePage/setProfile',params:{}})
     }
 
 }
 
 export function putProfile(body, resolve, reject) {
     put(api.profile(),body,ret=>{
-        dva.getDispatch()({type:'Home/setProfile',params:ret.data})
+        dva.getDispatch()({type:'MinePage/setProfile',params:ret.data})
         resolve(ret.data)
     },reject)
 }
 
 export function uploadAvatar(body, resolve, reject) {
     put(api.uploadAvatar(),body,ret=>{
-        dva.getDispatch()({type:'Home/setProfile',params:ret.data})
+        dva.getDispatch()({type:'MinePage/setProfile',params:ret.data})
         resolve(ret.data)
     },reject)
 }
