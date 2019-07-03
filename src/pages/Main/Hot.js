@@ -13,6 +13,7 @@ import {unix_format} from "../../utils/utils";
  *功能：
  */
 
+
 const Hot = ({onFetch, onPress, onShare}) => (
     <UltimateFlatList
         ref={(ref) => this.listView = ref}
@@ -42,7 +43,7 @@ const _renderItem = (item, index, onPress, onShare) => (
                 <Image style={{height: px2dp(32), width: px2dp(32)}}
                        source={Images.hot_gary}/>
                 <Text style={[styles.time, {marginLeft: px2dp(14)}]}>{item.source}</Text>
-                <Text style={[styles.time, {marginLeft: px2dp(28)}]}>{unix_format(item.created_at, "MM DD,YYYY")}</Text>
+                <Text style={[styles.time, {marginLeft: px2dp(28)}]}>{global.lang.t(`month${unix_format(item.created_at, 'MM')}`)}{unix_format(item.created_at, ` DD,YYYY`)}</Text>
                 <View style={{flex: 1}}/>
                 <Image style={{height: px2dp(46), width: px2dp(46), marginRight: px2dp(36)}}
                        source={Images.collect}/>
