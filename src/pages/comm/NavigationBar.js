@@ -4,7 +4,7 @@ import {Images, Metrics, px2dp} from "../../configs/Theme";
 import {isEmptyObject} from "../../utils/utils";
 
 
-const NavigationBar = ({title, leftOnPress, rightOnPress, index}) => (
+const NavigationBar = ({title, profile,leftOnPress, rightOnPress, index}) => (
     <View style={{}}>
         <SafeAreaView forceInset={{top: 'always'}}/>
         <View style={styles.navTop}>
