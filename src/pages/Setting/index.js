@@ -84,12 +84,16 @@ export default class Setting extends Component {
 
     change_version = () => {
         router.toSwitchApi();
+    };
+
+    toAccount=()=>{
+        router.toModifyData()
     }
 
     render() {
         return (
             <View style={{flex: 1, backgroundColor: "#1A1B1F"}}>
-                {isLogin() ? this._item(global.lang.t('account_security'), Images.right, styles.right_img, null, null) : null}
+                {isLogin() ? this._item(global.lang.t('account_security'), Images.right, styles.right_img, null, null,this.toAccount) : null}
                 {isLogin() ? this._line() : null}
                 {this._item(`${global.lang.t('home_language')}(${this.getLanguage()})`, Images.right, styles.right_img, null, null, this.piker)}
                 <View style={{height: 30, width: '100%'}}/>

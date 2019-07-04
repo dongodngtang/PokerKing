@@ -109,9 +109,12 @@ export default class Router {
     }
 
     toModifyData() {
-        this.push({
-            sceneKey: 'ModifyData'
+        needLogin(()=>{
+            this.push({
+                sceneKey: 'ModifyData'
+            })
         })
+
     }
 
     toSwitchApi() {
