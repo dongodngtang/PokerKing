@@ -90,7 +90,7 @@ export default class Races extends Component {
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => {
-
+                        router.toSetting()
                     }}
                     style={styles.right2}>
                     <Image
