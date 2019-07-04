@@ -94,6 +94,14 @@ export function logMsg(...msg) {
     console.log(...msg)
 }
 
+export function needLogin(callback) {
+    if(isLogin()){
+        callback && callback()
+    }else{
+        router.toLogin()
+    }
+}
+
 export function isLogin() {
   return !isEmpty(global.loginUser)
 }
