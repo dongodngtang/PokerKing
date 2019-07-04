@@ -59,7 +59,7 @@ export default StyleSheet.create({
         flexDirection: 'column'
     },
     slide_top_view_1: {
-        width: Metrics.screenWidth - 80,
+        width: Metrics.screenWidth - 60,
         backgroundColor: "#343638",
         flexDirection: 'row',
         alignItems: 'center',
@@ -71,7 +71,7 @@ export default StyleSheet.create({
         borderRadius: 4
     },
     slide_top_view: {
-        width: Metrics.screenWidth - 80,
+        width: Metrics.screenWidth - 60,
         backgroundColor: "#FFE9AD",
         flexDirection: 'row',
         alignItems: 'center',
@@ -102,7 +102,8 @@ export default StyleSheet.create({
     card_name: {
         color: "#FFE9AD",
         fontSize: 14,
-        marginTop: 12
+        marginTop: 12,
+        maxWidth:Metrics.screenWidth - 60
     },
     card_bottom_view: {
         flexDirection: "row",
@@ -112,6 +113,7 @@ export default StyleSheet.create({
     card_location: {
         color: "#998E72",
         fontSize: 12,
+        maxWidth:'75%'
     },
     collect_img: {
         width: px2dp(40),
@@ -124,7 +126,7 @@ export default StyleSheet.create({
     },
     slide_img: {
         marginBottom: px2dp(24),
-        width: px2dp(628),
+        width: Metrics.screenWidth - 60,
         height: px2dp(302)
     },
     personalText: {

@@ -335,10 +335,6 @@ class Card extends Component {
                                 source={Images.share}/>
                         </TouchableOpacity>
                     </View>
-                    {/*<View style={styles.slide_top_view}>*/}
-                    {/*<Text style={styles.race_time_txt2}>{name}</Text>*/}
-                    {/*<Text style={styles.race_time_txt}>{race_start_time}</Text>*/}
-                    {/*</View>*/}
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={()=>snapToNext && snapToNext()}
