@@ -3,10 +3,11 @@ import {View, Text, Image, TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
 import styles from './index.style'
 import {Images, Metrics} from "../../configs/Theme";
-import {alertOrder, logMsg, shareHost, shareTo, strNotNull} from "../../utils/utils";
+import {alertOrder, isLogin, logMsg, shareHost, shareTo, strNotNull} from "../../utils/utils";
 import {storageLoginUser} from "../../services/accountDao";
 import SelectPiker from "../comm/SelectPiker";
 import codePush from "react-native-code-push";
+import {VERSION} from '../../themes/Constant'
 
 
 @connect(({Setting}) => ({
@@ -79,19 +80,23 @@ export default class Setting extends Component {
 
     feedback = () => {
         router.toFeedback();
+    };
+
+    change_version = () => {
+        router.toSwitchApi();
     }
 
     render() {
         return (
             <View style={{flex: 1, backgroundColor: "#1A1B1F"}}>
-                {this._item(global.lang.t('account_security'), Images.right, styles.right_img, null, null)}
-                {this._line()}
+                {isLogin() ? this._item(global.lang.t('account_security'), Images.right, styles.right_img, null, null) : null}
+                {isLogin() ? this._line() : null}
                 {this._item(`${global.lang.t('home_language')}(${this.getLanguage()})`, Images.right, styles.right_img, null, null, this.piker)}
                 <View style={{height: 30, width: '100%'}}/>
                 {this._item(global.lang.t('share_friends'), Images.right, styles.right_img, null, null, this.share)}
                 {this._line()}
-                {this._item(global.lang.t('feedback'), Images.right, styles.right_img, null, null, this.feedback)}
-                {this._line()}
+                {isLogin() ? this._item(global.lang.t('feedback'), Images.right, styles.right_img, null, null, this.feedback) : null}
+                {isLogin() ? this._line() : null}
                 {this._item(global.lang.t('race_notice'), null, null, <TouchableOpacity
                     activeOpacity={1}
                     style={styles.right_btn} onPress={() => {
@@ -116,15 +121,15 @@ export default class Setting extends Component {
                 {this._line()}
                 {this._item(global.lang.t('clear'), Images.right, styles.right_img, null, '99.2M')}
                 <View style={{height: 14, width: '100%'}}/>
-                {this._item(global.lang.t('version'), Images.right, styles.right_img, null, '2.0')}
+                {this._item(global.lang.t('version'), Images.right, styles.right_img, null, VERSION, this.change_version)}
 
-                <TouchableOpacity style={styles.drop_out} activeOpacity={1} onPress={() => {
+                {isLogin() ? <TouchableOpacity style={styles.drop_out} activeOpacity={1} onPress={() => {
                     alertOrder(global.lang.t('is_drop_out'), () => {
                         storageLoginUser({})
                     });
                 }}>
                     <Text style={styles.drop_out_txt}>{global.lang.t('drop_out')}</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> : null}
 
                 <SelectPiker
                     ref={ref => this.selectPiker = ref}
