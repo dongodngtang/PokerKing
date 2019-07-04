@@ -65,7 +65,7 @@ export default class Races extends Component {
         return (
             <View style={styles.navTop}>
                 <StatusBar barStyle={'light-content'}/>
-                <TouchableOpacity
+                <View
                     onPress={() => {
 
                     }}
@@ -75,20 +75,20 @@ export default class Races extends Component {
                         source={Images.puke_icon}
                     />
 
-                </TouchableOpacity>
-                <TouchableOpacity
+                </View>
+                <View
                     style={styles.navTitle}
                     onPress={() => {
-                        this.raceModal && this.raceModal.toggle();
-                        this.change_list_show()
+
                     }}>
                     <Text
                         style={{fontSize: 17, color: '#FFE9AD', maxWidth: '90%'}}
                         numberOfLines={1}>{this.state.recent_event.name}</Text>
                     <Image style={{width: 12, height: 6, marginLeft: 10}}
                            source={this.state.list_show ? Images.top : Images.bottom}/>
-                </TouchableOpacity>
+                </View>
                 <TouchableOpacity
+                    activeOpacity={1}
                     onPress={() => {
                         router.toSetting()
                     }}
