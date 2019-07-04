@@ -39,17 +39,21 @@ const _renderItem = (item, index, onPress, onShare) => (
                    source={{uri: item.image}}/>
         <View style={styles.content}>
             <Text style={styles.title}>{item.title}</Text>
-            <View style={{flexDirection: 'row', alignItems: 'center', width: '100%', marginTop: 5}}>
-                <Image style={{height: px2dp(32), width: px2dp(32)}}
+            <View style={{flexDirection: 'row', width: '100%',alignItems:'center', marginTop: 5}}>
+                <Image style={{height: px2dp(32), width: px2dp(32), alignSelf: 'center'}}
                        source={Images.hot_gary}/>
-                <Text style={[styles.time, {marginLeft: px2dp(14)}]}>{item.source}</Text>
-                <Text style={[styles.time, {marginLeft: px2dp(28)}]}>{global.lang.t(`month${unix_format(item.created_at, 'MM')}`)}{unix_format(item.created_at, ` DD,YYYY`)}</Text>
+                <Text numberOfLines={1}  style={styles.time}>{item.source}</Text>
+                <Text numberOfLines={1} style={styles.time2}>
+                    {global.lang.t(`month${unix_format(item.created_at, 'MM')}`)}{unix_format(item.created_at, ` DD,YYYY`)}
+                </Text>
                 <View style={{flex: 1}}/>
-                <Image style={{height: px2dp(46), width: px2dp(46), marginRight: px2dp(36)}}
-                       source={Images.collect}/>
+                <TouchableOpacity>
+                    <Image style={{height: px2dp(44), width: px2dp(44), marginRight: 18, alignSelf: 'flex-end'}}
+                           source={Images.collect}/>
+                </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => onShare && onShare(item)}>
-                    <Image style={{height: px2dp(32), width: px2dp(40), marginRight: px2dp(20)}}
+                    <Image style={{height: px2dp(32), width: px2dp(40), marginRight: px2dp(20), alignSelf: 'flex-end'}}
                            source={Images.share}/>
                 </TouchableOpacity>
 
@@ -68,7 +72,8 @@ const styles = StyleSheet.create({
     },
     img: {
         height: px2dp(336),
-        width: Metrics.screenWidth - 34
+        width: Metrics.screenWidth - 24,
+        backgroundColor:'red'
     },
     title: {
         color: '#FFE9AD',
@@ -76,7 +81,14 @@ const styles = StyleSheet.create({
     },
     time: {
         color: '#998E72',
-        fontSize: px2sp(28)
+        fontSize: px2sp(28),
+        marginLeft: 7,
+        maxWidth:'40%'
+    },
+    time2: {
+        color: '#998E72',
+        fontSize: px2sp(28),
+        marginLeft: 14
     },
     content: {
         marginVertical: px2dp(24)

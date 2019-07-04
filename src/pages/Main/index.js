@@ -79,7 +79,7 @@ export default class Main extends Component {
                         onPress={this.toDetail}
                         tabLabel={global.lang.t('hot')}
                         onFetch={this.onFetch}/>
-                    <Instants
+                    <Hot
                         onShare={this.share}
                         onPress={this.toDetail}
                         key={'2'}
