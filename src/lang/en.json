@@ -201,5 +201,11 @@
   "remarks":"备注",
   "enter_race":"如何参赛",
   "add_race":"添加赛事",
-  "load_no_article":"没有找到相关文章"
+  "load_no_article":"没有找到相关文章",
+  "account_security":"账号安全",
+  "share_friends":"推荐给好友",
+  "race_notice":"赛事新闻通知",
+  "rank_notice":"排队进程通知",
+  "clear":"清除缓存",
+  "version":"版本"
 }

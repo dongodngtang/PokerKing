@@ -135,7 +135,7 @@
   "FAQ_title5": "扑克王现场赛事由哪些比赛项目？",
   "FAQ_reply5": "所有主赛事均为无限注德州扑克，单各分站和扑克室还提供其他许多牌局类型。",
   "save": "保存",
-  "drop_out": "退出",
+  "drop_out": "退出登录",
   "is_drop_out": "确认退出?",
   "input_question": "报告问题不能为空",
   "successfully": "提交成功",
@@ -201,7 +201,13 @@
   "remarks":"备注",
   "enter_race":"如何参赛",
   "add_race":"添加赛事",
-  "load_no_article":"没有找到相关文章"
+  "load_no_article":"没有找到相关文章",
+  "account_security":"账号安全",
+  "share_friends":"推荐给好友",
+  "race_notice":"赛事新闻通知",
+  "rank_notice":"排队进程通知",
+  "clear":"清除缓存",
+  "version":"版本"
 }
 
 
