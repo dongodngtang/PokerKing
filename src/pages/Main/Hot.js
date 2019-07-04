@@ -5,7 +5,7 @@ import NotData from "../comm/NotData";
 import UltimateFlatList from "../../components/ultimate/UltimateFlatList";
 import {Images, Metrics, px2dp, px2sp} from "../../configs/Theme";
 import ImageLoad from "../../components/ImageLoad";
-import {unix_format} from "../../utils/utils";
+import {alertOrder, isLogin, showToast, unix_format} from "../../utils/utils";
 
 /**
  *作者：lorne
@@ -47,12 +47,24 @@ const _renderItem = (item, index, onPress, onShare) => (
                     {global.lang.t(`month${unix_format(item.created_at, 'MM')}`)}{unix_format(item.created_at, ` DD,YYYY`)}
                 </Text>
                 <View style={{flex: 1}}/>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={()=>{
+                    if(isLogin()){
+                        showToast('收藏成功')
+                    }else{
+                        router.toLogin()
+                    }
+                }}>
                     <Image style={{height: px2dp(44), width: px2dp(44), marginRight: 18, alignSelf: 'flex-end'}}
                            source={Images.collect}/>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    onPress={() => onShare && onShare(item)}>
+                    onPress={() => {
+                        if(isLogin()){
+                            onShare && onShare(item)
+                        }else{
+                            router.toLogin()
+                        }
+                    }}>
                     <Image style={{height: px2dp(32), width: px2dp(40), marginRight: px2dp(20), alignSelf: 'flex-end'}}
                            source={Images.share}/>
                 </TouchableOpacity>
