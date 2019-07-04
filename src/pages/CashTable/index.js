@@ -20,7 +20,7 @@ export default class CashTable extends Component {
         return (
             <View style={styles.navTop}>
                 <StatusBar barStyle={'light-content'}/>
-                <TouchableOpacity
+                <View
                     onPress={() => {
 
                     }}
@@ -30,16 +30,16 @@ export default class CashTable extends Component {
                         source={Images.puke_icon}
                     />
 
-                </TouchableOpacity>
-                <TouchableOpacity
+                </View>
+                <View
                     style={styles.navTitle}>
                     <Text
                         style={{fontSize: 17, color: '#FFE9AD'}}
                         numberOfLines={1}>{global.lang.t('room')}</Text>
-                </TouchableOpacity>
+                </View>
                 <TouchableOpacity
                     onPress={() => {
-
+                        router.toSetting();
                     }}
                     style={styles.right2}>
                     <Image
