@@ -9,6 +9,7 @@ import SwitchApi from "../pages/SwitchApi";
 import EventDetail from "../pages/EventDetail";
 import Structure from "../pages/Structure";
 import ProtocolPage from "../pages/ProtocolPage";
+import {needLogin} from "../utils/utils";
 
 export default class Router {
     popTo({sceneKey, params}) {
@@ -121,12 +122,15 @@ export default class Router {
     }
 
     toInfoDetail(id) {
-        this.push({
-            sceneKey: 'InfoDetail',
-            params: {
-                id
-            }
+        needLogin(()=>{
+            this.push({
+                sceneKey: 'InfoDetail',
+                params: {
+                    id
+                }
+            })
         })
+
     }
     toEventDetail(id,event_id) {
         this.push({
