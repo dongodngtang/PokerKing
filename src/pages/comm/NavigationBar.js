@@ -1,6 +1,7 @@
 import React from "react";
 import {Image, Text, TouchableOpacity, View, StyleSheet, SafeAreaView} from "react-native";
 import {Images, Metrics, px2dp} from "../../configs/Theme";
+import {isEmptyObject} from "../../utils/utils";
 
 
 const NavigationBar = ({title, leftOnPress, rightOnPress, index}) => (
@@ -25,7 +26,13 @@ const NavigationBar = ({title, leftOnPress, rightOnPress, index}) => (
                     numberOfLines={1}>{title}</Text>
             </TouchableOpacity>
             <TouchableOpacity
-                onPress={() => router.toSetting()}
+                onPress={() => {
+                    if (isEmptyObject(profile)) {
+                        router.toLogin();
+                    } else {
+                        router.toSetting();
+                    }
+                }}
                 style={styles.right2}>
                 <Image
                     style={{height: px2dp(38), width: px2dp(36)}}

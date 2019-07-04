@@ -31,6 +31,7 @@ export default class Setting extends Component {
     }
 
     render() {
+        const {profile} = this.props
         return (
             <View style={{flex: 1, backgroundColor: "#1A1B1F"}}>
                 {this._item(global.lang.t('account_security'), Images.right, styles.right_img, null, null)}
