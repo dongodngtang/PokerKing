@@ -79,7 +79,7 @@ export default class CashTable extends Component {
                 <ImageBackground source={getBg(img)} style={[styles.jinsha, {
                     flexDirection: "column-reverse"
                 }]}>
-                    <TouchableOpacity activeOpacity={1}  style={[styles.txt_view,{backgroundColor:'#1A1B1F'}]}>
+                    <TouchableOpacity activeOpacity={1}  style={[styles.txt_view,{backgroundColor:'#101010',opacity:0.78}]}>
                         <Text style={styles.txt1} numberOfLines={1}>{item.name}</Text>
                         <View style={{flex:1}}/>
                         <Image
