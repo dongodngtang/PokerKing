@@ -297,8 +297,8 @@ class Card extends Component {
                 <TouchableOpacity
                     onPress={()=>snapToPrev && snapToPrev()}
                     style={{height:px2dp(302),width:px2dp(60),
-                justifyContent: 'center',paddingLeft: px2dp(24)}}>
-                    <Image style={{height: px2dp(34), width: px2dp(20)}}
+                justifyContent: 'center'}}>
+                    <Image style={{height: px2dp(34), width: px2dp(20),marginLeft:px2dp(24)}}
                            source={Images.left}/>
                 </TouchableOpacity>
                 <TouchableOpacity
@@ -338,9 +338,9 @@ class Card extends Component {
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={()=>snapToNext && snapToNext()}
-                    style={{height:px2dp(302),width:px2dp(60),
-                    justifyContent: 'center',paddingLeft: px2dp(24)}}>
-                    <Image style={{height: px2dp(34), width: px2dp(20)}}
+                    style={{height:px2dp(302),width:px2dp(60),flexDirection:'row-reverse',
+                    alignItems: 'center'}}>
+                    <Image style={{height: px2dp(34), width: px2dp(20),marginRight:px2dp(24)}}
                            source={Images.right}/>
                 </TouchableOpacity>
             </View>
