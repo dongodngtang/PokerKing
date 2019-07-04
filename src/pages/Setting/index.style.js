@@ -27,9 +27,9 @@ export default StyleSheet.create({
         width: 53,
         height: 34,
         borderRadius: 17,
+        flexDirection:'row-reverse',
         alignItems: 'center',
-        marginRight: 17,
-        marginLeft:17
+        marginLeft: 17
     },
     btn_change: {
         width: 32,
@@ -52,6 +52,10 @@ export default StyleSheet.create({
         justifyContent:'center',
         position:'absolute',
         bottom:0
+    },
+    img:{
+        width:px2dp(102),
+        height:px2dp(62)
     }
 })
 

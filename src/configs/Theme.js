@@ -199,7 +199,9 @@ export const Images = {
     notices1:require('../asserts/new/notices1.png'),
     notices2:require('../asserts/new/notices2.png'),
     delete2:require('../asserts/new/delete2.png'),
-    no_search:require('../asserts/new/no_search.png')
+    no_search:require('../asserts/new/no_search.png'),
+    setClose:require('../asserts/new/setClose.png'),
+    setOpen:require('../asserts/new/setOpen.png')
 
 }
 

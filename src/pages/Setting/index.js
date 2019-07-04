@@ -42,7 +42,7 @@ export default class Setting extends Component {
 
     _line = () => {
         return (
-            <View style={{width: Metrics.screenWidth,backgroundColor:"#303236",height:1}}>
+            <View style={{width: Metrics.screenWidth, backgroundColor: "#303236", height: 1}}>
                 <View style={{width: Metrics.screenWidth - 19, height: 1, backgroundColor: '#998E72', marginLeft: 19}}/>
             </View>
         )
@@ -60,21 +60,25 @@ export default class Setting extends Component {
 
     }
 
-    piker=()=>{
+    piker = () => {
         this.selectPiker && this.selectPiker.toggle()
     }
 
-    getLanguage=()=>{
+    getLanguage = () => {
         const lan = global.localLanguage;
-        if(lan === 'en'){
+        if (lan === 'en') {
             return 'English'
-        }else if(lan === 'zh'){
+        } else if (lan === 'zh') {
             return '简体中文'
-        }else if(lan === 'zh-en'){
+        } else if (lan === 'zh-en') {
             return '繁体中文'
-        }else{
+        } else {
             return ''
         }
+    };
+
+    feedback = () => {
+        router.toFeedback();
     }
 
     render() {
@@ -82,40 +86,39 @@ export default class Setting extends Component {
             <View style={{flex: 1, backgroundColor: "#1A1B1F"}}>
                 {this._item(global.lang.t('account_security'), Images.right, styles.right_img, null, null)}
                 {this._line()}
-                {this._item(`${global.lang.t('home_language')}(${this.getLanguage()})`, Images.right, styles.right_img, null, null,this.piker)}
+                {this._item(`${global.lang.t('home_language')}(${this.getLanguage()})`, Images.right, styles.right_img, null, null, this.piker)}
                 <View style={{height: 30, width: '100%'}}/>
-                {this._item(global.lang.t('share_friends'), Images.right, styles.right_img, null, null,this.share)}
+                {this._item(global.lang.t('share_friends'), Images.right, styles.right_img, null, null, this.share)}
                 {this._line()}
-                {this._item(global.lang.t('feedback'), Images.right, styles.right_img, null, null)}
+                {this._item(global.lang.t('feedback'), Images.right, styles.right_img, null, null, this.feedback)}
                 {this._line()}
-                {this._item(global.lang.t('race_notice'), null, null, <View
-                    style={[styles.right_btn, {
-                        backgroundColor: this.state.race_notice ? 'green' : "white",
-                        flexDirection: this.state.race_notice ? 'row-reverse' : "row"
-                    }]}>
-                    <TouchableOpacity activeOpacity={1} style={styles.btn_change} onPress={() => {
-                        this.setState({
-                            race_notice: !this.state.race_notice
-                        })
-                    }}/></View>, null)}
+                {this._item(global.lang.t('race_notice'), null, null, <TouchableOpacity
+                    activeOpacity={1}
+                    style={styles.right_btn} onPress={() => {
+                    this.setState({
+                        race_notice: !this.state.race_notice
+                    })
+                }}>
+                    <Image style={styles.img}
+                           source={this.state.race_notice ? Images.setOpen : Images.setClose}/></TouchableOpacity>, null)}
                 {this._line()}
-                {this._item(global.lang.t('rank_notice'), null, null, <View
-                    style={[styles.right_btn, {
-                        backgroundColor: this.state.rank_notice ? 'green' : "white",
-                        flexDirection: this.state.rank_notice ? 'row-reverse' : "row"
-                    }]}>
-                    <TouchableOpacity activeOpacity={1} style={styles.btn_change} onPress={() => {
+                {this._item(global.lang.t('rank_notice'), null, null, <TouchableOpacity
+                    activeOpacity={1}
+                    onPress={() => {
                         this.setState({
                             rank_notice: !this.state.rank_notice
                         })
-                    }}/></View>, null)}
+                    }}
+                    style={styles.right_btn}>
+                    <Image style={styles.img} source={this.state.rank_notice ? Images.setOpen : Images.setClose}/>
+                </TouchableOpacity>, null)}
 
                 {this._line()}
                 {this._item(global.lang.t('clear'), Images.right, styles.right_img, null, '99.2M')}
                 <View style={{height: 14, width: '100%'}}/>
                 {this._item(global.lang.t('version'), Images.right, styles.right_img, null, '2.0')}
 
-                <TouchableOpacity style={styles.drop_out} activeOpacity={1} onPress={()=>{
+                <TouchableOpacity style={styles.drop_out} activeOpacity={1} onPress={() => {
                     alertOrder(global.lang.t('is_drop_out'), () => {
                         storageLoginUser({})
                     });
@@ -132,9 +135,9 @@ export default class Setting extends Component {
         )
     }
 
-    _item = (leftTxt, rightImg, imgStyles, rightView, rightTitle,onPress) => {
+    _item = (leftTxt, rightImg, imgStyles, rightView, rightTitle, onPress) => {
         return (
-            <TouchableOpacity  activeOpacity={1} style={styles.btn_view} onPress={onPress && onPress}>
+            <TouchableOpacity activeOpacity={1} style={styles.btn_view} onPress={onPress && onPress}>
                 <Text style={styles.leftTxt}>{leftTxt}</Text>
                 <View style={{flex: 1}}/>
                 {strNotNull(rightTitle) ? <Text style={styles.rightTitle}>{rightTitle}</Text> : null}
