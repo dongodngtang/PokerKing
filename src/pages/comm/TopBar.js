@@ -27,8 +27,6 @@ export default class TopBar extends Component {
                 <TouchableOpacity
                     style={styles.navTitle}
                     onPress={() => {
-                        this.raceModal && this.raceModal.toggle();
-                        this.change_list_show()
                     }}>
                     <Text
                         style={{fontSize: 17, color: '#FFE9AD', maxWidth: '90%'}}
@@ -36,7 +34,7 @@ export default class TopBar extends Component {
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => {
-
+                        router.toSetting()
                     }}
                     style={styles.right2}>
                     <Image
