@@ -14,8 +14,14 @@ export default StyleSheet.create({
     btn_search: {
         width: 50,
         height: 40,
+        flexDirection:"row",
+        alignItems: 'center'
+    },
+    btn_search2: {
+        width: 60,
+        height: 40,
         flexDirection:"row-reverse",
-        alignItems: 'center',
+        alignItems: 'center'
     },
     cancel_text: {
         fontSize: 17,

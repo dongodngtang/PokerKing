@@ -41,7 +41,8 @@ export default class SearchNews extends Component {
                 this.setState({
                     recordKeys: Array.from(this.setwords)
                 })
-            }).catch(err=>{})
+            }).catch(err => {
+        })
     }
 
     topBar = () => {
@@ -66,8 +67,8 @@ export default class SearchNews extends Component {
 
                     }}/> : <Text style={styles.nar_text} numberOfLines={1}>2019</Text>}
                 <View style={{flex: 1}}/>
-                <TouchableOpacity
-                    style={[styles.btn_search, {marginLeft: 17}]}
+                {this.state.search ? <TouchableOpacity
+                    style={[styles.btn_search2, {marginLeft: 17}]}
                     onPress={() => {
                         this.setState({
                             search: !this.state.search
@@ -76,7 +77,7 @@ export default class SearchNews extends Component {
                     }}>
                     <Text style={styles.cancel_text}>{global.lang.t('cancel')}</Text>
 
-                </TouchableOpacity>
+                </TouchableOpacity> : <View style={{width:50}}/>}
             </View>
         )
     };
@@ -122,7 +123,7 @@ export default class SearchNews extends Component {
     };
 
     submitSearch = () => {
-        if(strNotNull(this.keywords)){
+        if (strNotNull(this.keywords)) {
             this.setwords.add(this.keywords);
             global.storage.save({
                 key: StorageKey.InfoSearchRecord,
@@ -133,7 +134,7 @@ export default class SearchNews extends Component {
             });
             if (this.newsList)
                 this.newsList.search(this.keywords)
-        }else{
+        } else {
 
         }
 
