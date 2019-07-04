@@ -72,8 +72,7 @@ const styles = StyleSheet.create({
     },
     img: {
         height: px2dp(336),
-        width: Metrics.screenWidth - 24,
-        backgroundColor:'red'
+        width: Metrics.screenWidth - 24
     },
     title: {
         color: '#FFE9AD',

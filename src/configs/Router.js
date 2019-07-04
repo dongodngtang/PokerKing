@@ -62,21 +62,27 @@ export default class Router {
     }
 
     toRaceNew(event_id) {
-        this.push({
-            sceneKey: 'RaceNew',
-            params:{
-                event_id
-            }
+        needLogin(()=>{
+            this.push({
+                sceneKey: 'RaceNew',
+                params:{
+                    event_id
+                }
+            })
         })
+
     }
 
     toRaceSchedule(event) {
-        this.push({
-            sceneKey: 'RaceSchedule',
-            params:{
-                event
-            }
+        needLogin(()=>{
+            this.push({
+                sceneKey: 'RaceSchedule',
+                params:{
+                    event
+                }
+            })
         })
+
     }
 
     toCashTable() {
@@ -171,13 +177,16 @@ export default class Router {
         })
     }
     toRaceMessage(id) {
-        this.push({
-            sceneKey: 'RaceMessage',
-            params: {
-                id
-            }
+        needLogin(()=>{
+            this.push({
+                sceneKey: 'RaceMessage',
+                params: {
+                    id
+                }
 
+            })
         })
+
     }
     toFAQ() {
         this.push({
@@ -192,10 +201,12 @@ export default class Router {
         })
     }
     toNotices() {
-        this.push({
-            sceneKey: 'NoticesPage'
-
+        needLogin(()=>{
+            this.push({
+                sceneKey: 'NoticesPage'
+            })
         })
+
     }
     toProtocolPage() {
         this.push({

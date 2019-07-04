@@ -27,11 +27,7 @@ const NavigationBar = ({title, profile,leftOnPress, rightOnPress, index}) => (
             </TouchableOpacity>
             <TouchableOpacity
                 onPress={() => {
-                    if (isEmptyObject(profile)) {
-                        router.toLogin();
-                    } else {
-                        router.toSetting();
-                    }
+                    router.toSetting();
                 }}
                 style={styles.right2}>
                 <Image
