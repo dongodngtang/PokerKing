@@ -270,7 +270,7 @@ class Card extends Component {
                     index: index
                 })
             }
-        }, 100)
+        }, 1000)
     };
 
     debouncePress = (id) => {

@@ -1,0 +1,70 @@
+import React, {Component} from 'react';
+import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import {connect} from 'react-redux';
+import Base from "../Base";
+import {Colors, px2dp, px2sp} from "../../configs/Theme";
+import StepToChange from "./StepToChange";
+
+
+@connect(({ChangePhone}) => ({
+    ...ChangePhone,
+}))
+export default class ChangePhone extends Component {
+
+    state = {
+        showModal: false
+    }
+
+    componentDidMount() {
+
+    }
+
+    toggle = ()=>{
+        this.setState({
+            showModal: !this.state.showModal
+        })
+    }
+
+    render() {
+        return (
+            <Base style={{alignItems: 'center'}}>
+
+                <Text style={[styles.txtPhone, {marginTop: px2dp(328)}]}>您当前的手机号为134****0999</Text>
+                <Text style={[styles.txtPhone, {marginTop: px2dp(14)}]}>更换后个人信息不变，下次可以使用新手机号登录</Text>
+
+                <TouchableOpacity
+                    onPress={this.toggle}
+                    style={[styles.btnChange, {marginTop: px2dp(178)}]}>
+                    <Text style={styles.txtChange}>更换手机号</Text>
+                </TouchableOpacity>
+
+                <StepToChange
+                    closeModal={this.toggle}
+                    showModal={this.state.showModal}
+                />
+
+
+            </Base>
+        )
+    }
+}
+
+const styles = StyleSheet.create({
+    txtPhone: {
+        fontSize: px2sp(32),
+        color: '#AAA'
+    },
+    btnChange: {
+        height: px2dp(100),
+        width: px2dp(682),
+        marginHorizontal: px2dp(34),
+        backgroundColor: Colors._FFE,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: px2dp(8)
+    },
+    txtChange: {
+        fontSize: px2sp(34),
+        color: Colors._1A1
+    }
+})

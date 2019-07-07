@@ -5,7 +5,7 @@ import TopBar from "../comm/TopBar";
 import {Images} from "../../configs/Theme";
 import styles from './index.style'
 import {getAvatar, isEmptyObject, isStrNull, logMsg} from "../../utils/utils";
-import PopAction from "../comm/PopAction";
+
 
 
 @connect(({MinePage}) => ({
@@ -61,15 +61,10 @@ export default class MinePage extends Component {
                         })}
                     {this._item(styles.item_view, Images.vip_img, styles.img_dy4,
                         global.lang.t('vip_intro'), () => {
-                            this.popAction && this.popAction.toggle()
+                           router.toChangePhone()
                         })}
                 </View>
 
-                <PopAction ref={ref =>this.popAction = ref}>
-                    <View style={{flex:1,backgroundColor:'white'}}>
-
-                    </View>
-                </PopAction>
             </View>
         )
     }

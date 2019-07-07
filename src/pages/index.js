@@ -5,9 +5,9 @@
  */
 
 import React, {PureComponent} from 'react'
-import {View, TouchableOpacity, Text, Image, StatusBar} from 'react-native'
+import {View, TouchableOpacity, Text, Image, StatusBar,SafeAreaView} from 'react-native'
 import {Scene, Drawer, Actions} from 'react-native-router-flux'
-import {Images, Styles, Colors, px2dp, px2sp} from '../configs/Theme';
+import {Images, Styles, Colors, px2dp, px2sp, Metrics} from '../configs/Theme';
 import {isStrNull} from "../utils/utils";
 import Home from './Home'
 import Detail from './Detail'
@@ -43,6 +43,7 @@ import RankList from "./RankList";
 import Setting from "./Setting";
 import AccountSecurity from "./AccountSecurity";
 import Mobile from "./Mobile";
+import ChangePhone from "./ChangePhone";
 
 export const scenes = () => {
     return <Scene key="root"
@@ -266,6 +267,12 @@ export const scenes = () => {
                component={SearchNews}
                hideNavBar
         />
+
+        <Scene key="ChangePhone"
+               component={ChangePhone}
+               {...TopNav({
+                   title: "手机号"
+               })}/>
     </Scene>
 }
 const TopNav = (props) => {
@@ -312,43 +319,49 @@ export class NavBar extends PureComponent {
         const {component, title, rightTitle, onLeft, hideLeft, middle_title} = this.props;
 
         let pageMsg = `在page/index查找${component && component.displayName}`;
-        return <View style={Styles.navTop}>
-            <StatusBar barStyle={'light-content'}/>
-            <TouchableOpacity
-                onPress={() => {
-                    onLeft ? onLeft() : router.pop()
+        return <View style={{backgroundColor: '#1A1B1F'}}>
+            <SafeAreaView/>
+            <View style={{width: Metrics.screenWidth,
+                flexDirection: 'row',
+                alignItems: 'center',
+                height:44}}>
+                <StatusBar barStyle={'light-content'}/>
+                <TouchableOpacity
+                    onPress={() => {
+                        onLeft ? onLeft() : router.pop()
 
-                }}
-                style={Styles.left}>
-                {this.left_img()}
+                    }}
+                    style={Styles.left}>
+                    {this.left_img()}
 
-            </TouchableOpacity>
+                </TouchableOpacity>
 
 
-            <TouchableOpacity
-                activeOpacity={1}
-                onLongPress={() => {
-                    if (__DEV__)
+                <TouchableOpacity
+                    activeOpacity={1}
+                    onLongPress={() => {
+                        if (__DEV__)
                         // alert(title + pageMsg)
-                    if (middle_title) {
-                        router.toSwitchApi();
-                    }
-                }}
-                style={Styles.navTitle}>
-                <Text
-                    style={{fontSize: 17, color: '#FFE9AD', alignSelf: 'center'}} numberOfLines={1}>{title}</Text>
+                            if (middle_title) {
+                                router.toSwitchApi();
+                            }
+                    }}
+                    style={Styles.navTitle}>
+                    <Text
+                        style={{fontSize: 17, color: '#FFE9AD', alignSelf: 'center'}} numberOfLines={1}>{title}</Text>
 
-            </TouchableOpacity>
+                </TouchableOpacity>
 
-            <TouchableOpacity
-                onPress={() => {
-                    this.props.onRight && this.props.onRight()
-                }}
-                style={Styles.right}>
-                {this.left_content()}
+                <TouchableOpacity
+                    onPress={() => {
+                        this.props.onRight && this.props.onRight()
+                    }}
+                    style={Styles.right}>
+                    {this.left_content()}
 
-            </TouchableOpacity>
+                </TouchableOpacity>
 
+            </View>
         </View>
     }
 }

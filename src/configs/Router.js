@@ -268,6 +268,11 @@ export default class Router {
 
             })
         })
-
     }
+
+    toChangePhone(){
+        this.push({sceneKey:'ChangePhone'})
+    }
+
+
 }
