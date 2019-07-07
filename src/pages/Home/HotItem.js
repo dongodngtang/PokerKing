@@ -13,7 +13,7 @@ export default class HotItem extends Component {
         const {id, image, title, source, created_at,hot} = this.props.item;
         const {type} = this.props;
         return (
-            <TouchableOpacity style={styles.item_view}
+            <TouchableOpacity style={styles.event_view}
                               onPress={() => {
                                   if (this.props.type && this.props.type === 'event') {
                                       router.toEventDetail(id, this.props.event_id)
@@ -26,11 +26,11 @@ export default class HotItem extends Component {
                 <View style={styles.right_view}>
                     <Text style={[styles.race_content_txt, {
                         maxWidth: Number(mul(WIDTH, 0.56)),
-                        color: type && type === 'hot' ? '#DDDDDD' : "#444444"
+                        color: type && type === 'hot' ? '#DDDDDD' : "#FFE9AD"
                     }]}
                           numberOfLines={2}>{title}</Text>
                     {this.props.type && this.props.type === 'event' ? <View style={styles.right_bottom_view}>
-                        <Text style={styles.bottom_txt}>{utcDate(created_at, 'YYYY/MM/DD HH:mm')}</Text>
+                        <Text style={styles.bottom_txt}>{utcDate(created_at, 'MM/DD  HH:mm')}</Text>
                     </View> : <View style={styles.right_bottom_view}>
                         {this.props.type && this.props.type === 'hot_list' && hot ?
                             <View style={{

@@ -1,46 +1,51 @@
 import React from "react";
-import {Image, Text, TouchableOpacity, View,StyleSheet,SafeAreaView} from "react-native";
+import {Image, Text, TouchableOpacity, View, StyleSheet, SafeAreaView} from "react-native";
 import {Images, Metrics, px2dp} from "../../configs/Theme";
+import {isEmptyObject} from "../../utils/utils";
 
 
-const NavigationBar = ({title,leftOnPress,rightOnPress})=>(
-  <View style={{}}>
-      <SafeAreaView forceInset={{ top: 'always' }}/>
-      <View style={styles.navTop}>
-          <TouchableOpacity
-              onPress={() => leftOnPress && leftOnPress()}
-              style={styles.left2}>
-              <Image
-                  style={{height: px2dp(48), width: px2dp(120)}}
-                  source={Images.puke_icon}
-              />
+const NavigationBar = ({title, profile,leftOnPress, rightOnPress, index}) => (
+    <View style={{}}>
+        <SafeAreaView forceInset={{top: 'always'}}/>
+        <View style={styles.navTop}>
+            <TouchableOpacity
+                onPress={() => leftOnPress && leftOnPress()}
+                style={styles.left2}>
+                <Image
+                    style={{height: px2dp(48), width: px2dp(120)}}
+                    source={Images.puke_icon}
+                />
 
-          </TouchableOpacity>
-          <TouchableOpacity
-              style={styles.navTitle}>
-              <Text
-                  style={{fontSize: 17, color: '#FFE9AD'}}
-                  numberOfLines={1}>{title}</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-              onPress={() => rightOnPress && rightOnPress()}
-              style={styles.right2}>
-              <Image
-                  style={{height: px2dp(38), width: px2dp(36)}}
-                  source={Images.setting}
-              />
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={[styles.navTitle, {alignItems: index === 0 ? 'flex-end' : 'center'}]}>
+                {index === 0 ? <Image style={{height: px2dp(44), width: px2dp(32), marginRight: 5}}
+                                      source={Images.hot_races}/> : null}
+                <Text
+                    style={{fontSize: 17, color: '#FFE9AD'}}
+                    numberOfLines={1}>{title}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                onPress={() => {
+                    router.toSetting();
+                }}
+                style={styles.right2}>
+                <Image
+                    style={{height: px2dp(38), width: px2dp(36)}}
+                    source={Images.setting}
+                />
 
-          </TouchableOpacity>
-      </View>
-  </View>
+            </TouchableOpacity>
+        </View>
+    </View>
 )
 
 const styles = StyleSheet.create({
-    container:{
+    container: {
         backgroundColor: '#1A1B1F'
     },
     navTop: {
-        height:44,
+        height: 44,
         width: Metrics.screenWidth,
         flexDirection: 'row',
         alignItems: 'center'
@@ -59,9 +64,8 @@ const styles = StyleSheet.create({
     },
     navTitle: {
         flex: 1,
-        marginLeft:10,
+        marginLeft: 10,
         flexDirection: 'row',
-        alignItems: 'center',
         alignSelf: 'center',
         justifyContent: 'center'
     },

@@ -11,9 +11,12 @@ const More = ({}) => (
     <View>
         <ItemLayout rightIcon={Images.right}
                     rightStyle={{...wh(22, 36)}}
-                    title={'搜索'}
+                    title={global.lang.t('search')}
                     leftIcon={Images.search}
                     leftStyle={{...wh(40, 40), marginRight: px2dp(20)}}
+                    onPress={()=>{
+                        router.toSearchNews()
+                    }}
         />
         <View style={{height: px2dp(1), backgroundColor: '#736C5B', width: Metrics.screenWidth}}/>
         <TimeSelect/>
@@ -39,7 +42,7 @@ class TypeSelect extends PureComponent {
                 }}
                 rightIcon={rightIcon}
                 rightStyle={{...wh(34, 20)}}
-                title={'类别选择'}
+                title={global.lang.t('category_select')}
                 leftIcon={Images.type_select}
                 leftStyle={{...wh(36, 36), marginRight: px2dp(24)}}
             />
@@ -86,7 +89,7 @@ class TimeSelect extends PureComponent {
                 }}
                 rightIcon={rightIcon}
                 rightStyle={{...wh(34, 20)}}
-                title={'时间选择'}
+                title={global.lang.t('time_select')}
                 leftIcon={Images.time_select}
                 leftStyle={{...wh(36, 36), marginRight: px2dp(24)}}
             />

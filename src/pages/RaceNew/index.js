@@ -28,7 +28,7 @@ export default class RaceNew extends Component {
         return (
             <View style={styles.raceNew_view}>
                 <UltimateFlatList
-                    style={{backgroundColor: 'white'}}
+                    style={{backgroundColor: '#1A1B1F'}}
                     firstLoader={true}
                     ref={(ref) => this.listView = ref}
                     onFetch={this.onFetch}
@@ -49,7 +49,9 @@ export default class RaceNew extends Component {
     _separator = () => {
         return (
             <View
-                style={{height: 1, backgroundColor: "#ECECEE", width: Metrics.screenWidth - 34, alignSelf: 'center'}}/>
+                style={{height: 1, backgroundColor: "#303236", width: Metrics.screenWidth, alignSelf: 'center'}}>
+                <View style={{height: 1, backgroundColor: "#998E72", width: Metrics.screenWidth - 34, alignSelf: 'center'}}/>
+            </View>
         )
     }
 

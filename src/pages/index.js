@@ -35,20 +35,24 @@ import FoundBeauti from "./FoundBeauti";
 import ProtocolPage from "./ProtocolPage";
 import TabBarItem from "./navigation/TabBarItem";
 import Main from "./Main";
+import MinePage from "./MinePage";
+import NoticesPage from './NoticesPage'
+import SearchNews from "./SearchNews";
+import InstantList from "./InstantList";
+import RankList from "./RankList";
+import Setting from "./Setting";
 
 export const scenes = () => {
     return <Scene key="root"
-                  headerMode={'screen'}
-                  navTransparent
-                  renderLeftButton={null}
-                  navigationBarStyle={{backgroundColor:'black'}}>
+                  headerMode={'screen'}>
 
         <Scene key="first"
                initial
                lazy={true}
+               hideNavBar
                animationEnabled={false}
                tabBarPosition={'bottom'}
-               tabBarStyle={{backgroundColor:'#1A1B1F'}}
+               tabBarStyle={{backgroundColor:'#1A1B1F',paddingBottom:3}}
                activeTintColor={'#FFE9AD'}
                inactiveTintColor={'#736C5B'}
                labelStyle={{fontSize:px2sp(24)}}
@@ -86,7 +90,7 @@ export const scenes = () => {
                    )}
                    hideNavBar/>
             <Scene key={global.lang.t('mine')}
-                   component={Register}
+                   component={MinePage}
                    tabBarIcon={({focused})=>(
                        <TabBarItem
                            iconStyle={{height:px2dp(48),width:px2dp(48)}}
@@ -219,6 +223,34 @@ export const scenes = () => {
                {...TopNav({
                    title: global.lang.t('protocol')
                })}
+        />
+        <Scene key="NoticesPage"
+               component={NoticesPage}
+               {...TopNav({
+                   title: global.lang.t('notice')
+               })}
+        />
+        <Scene key="InstantList"
+               component={InstantList}
+               {...TopNav({
+                   title: global.lang.t('instants_news')
+               })}
+        />
+        <Scene key="RankList"
+               component={RankList}
+               {...TopNav({
+                   title: global.lang.t('rank_status')
+               })}
+        />
+        <Scene key="Setting"
+               component={Setting}
+               {...TopNav({
+                   title: global.lang.t('modifyData')
+               })}
+        />
+        <Scene key="SearchNews"
+               component={SearchNews}
+               hideNavBar
         />
     </Scene>
 }

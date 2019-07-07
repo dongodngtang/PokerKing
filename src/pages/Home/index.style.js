@@ -102,6 +102,14 @@ export default StyleSheet.create({
         marginRight:17,
         flexDirection:'row'
     },
+    event_view:{
+        paddingTop:20,
+        paddingBottom:16,
+        paddingLeft:17,
+        paddingRight:17,
+        flexDirection:'row',
+        backgroundColor:"#303236"
+    },
     race_img:{
         width:122,
         height:74,
@@ -121,7 +129,7 @@ export default StyleSheet.create({
         alignItems:'center'
     },
     bottom_txt:{
-        color:"#AAAAAA",
+        color:"#998E72",
         fontSize:12
     },
     into_poker_txt:{

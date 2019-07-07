@@ -7,6 +7,7 @@ import ScrollableTab,{DefaultTabBar} from 'react-native-scrollable-tab-view'
 import {getInfoList} from "../../services/accountDao";
 import {isEmptyObject, logMsg, OnSafePress, shareHost, shareTo} from "../../utils/utils";
 import Hot from "./Hot";
+import Instants from "./Instants";
 import {px2dp, px2sp} from "../../configs/Theme";
 import More from "./More";
 import ShareToast from "../comm/ShareToast";
@@ -19,7 +20,8 @@ export default class Main extends Component {
 
 
     state = {
-        activeTab:'热门'
+        activeTab:'热门',
+        index : 0
     }
 
     onFetch = (page = 1, startFetch, abortFetch)=>{
@@ -38,7 +40,8 @@ export default class Main extends Component {
 
     onChangeTab =({i,ref})=>{
         this.setState({
-            activeTab:ref.props.tabLabel
+            activeTab:ref.props.tabLabel,
+            index : i
         })
     }
 
@@ -61,7 +64,7 @@ export default class Main extends Component {
 
         return (
             <Base>
-                <NavigationBar title={this.state.activeTab}/>
+                <NavigationBar title={this.state.activeTab} index={this.state.index}/>
                 <ScrollableTab
                     onChangeTab={this.onChangeTab}
                     scrollWithoutAnimation={true}
@@ -69,22 +72,22 @@ export default class Main extends Component {
                     tabBarTextStyle={{  fontSize: px2sp(30),fontWeight: 'bold' }}
                     tabBarInactiveTextColor={'#998E72'}
                     tabBarActiveTextColor='#FFE9AD'
-                    tabBarUnderlineStyle={{ backgroundColor: '#FFE9AD', height: px2dp(2), }}
+                    tabBarUnderlineStyle={{ backgroundColor: '#FFE9AD', height: px2dp(2)}}
                     renderTabBar={()=><DefaultTabBar style={{borderWidth: 0}}/>}>
                     <Hot
                         onShare={this.share}
                         onPress={this.toDetail}
-                        tabLabel={'热门'}
+                        tabLabel={global.lang.t('hot')}
                         onFetch={this.onFetch}/>
                     <Hot
                         onShare={this.share}
                         onPress={this.toDetail}
                         key={'2'}
-                        tabLabel={'即时'}
+                        tabLabel={global.lang.t('instants')}
                         onFetch={this.onFetch}/>
                     <More
                         key={'3'}
-                        tabLabel={'更多>'}/>
+                        tabLabel={`${global.lang.t('more')}>`}/>
                 </ScrollableTab>
 
                 {!isEmptyObject(shareParam) ? <ShareToast hiddenShareAction={() => {

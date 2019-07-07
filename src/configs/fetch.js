@@ -139,7 +139,7 @@ function errReject(res) {
     })
     setToken('')
     global.loginUser = {}
-    dva.getDispatch()({type:'Home/setProfile',params:{}})
+    dva.getDispatch()({type:'MinePage/setProfile',params:{}})
      showToast('用户登录过期')
      router.toLogin()
 }

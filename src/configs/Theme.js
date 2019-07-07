@@ -158,6 +158,7 @@ export const Images = {
     //new
     bottom_new:require('../asserts/new/bottom.png'),
     collect:require('../asserts/new/collect.png'),
+    collection_gray:require('../asserts/new/collection_gray.png'),
     date:require('../asserts/new/date.png'),
     delete_new:require('../asserts/new/delete.png'),
     event:require('../asserts/new/event.png'),
@@ -186,10 +187,21 @@ export const Images = {
     selected:require('../asserts/new/selected.png'),
     setting:require('../asserts/new/setting.png'),
     share:require('../asserts/new/share.png'),
+    share_gray:require('../asserts/new/share_gray.png'),
     time_select:require('../asserts/new/time_select.png'),
     top_new:require('../asserts/new/top.png'),
     type_select:require('../asserts/new/type_select.png'),
-    mine_gray:require('../asserts/new/mine_gray.png')
+    mine_gray:require('../asserts/new/mine_gray.png'),
+    collection:require('../asserts/new/collection.png'),
+    notice_img:require('../asserts/new/notice_img.png'),
+    puke_intro:require('../asserts/new/puke_intro.png'),
+    vip_img:require('../asserts/new/vip_img.png'),
+    notices1:require('../asserts/new/notices1.png'),
+    notices2:require('../asserts/new/notices2.png'),
+    delete2:require('../asserts/new/delete2.png'),
+    no_search:require('../asserts/new/no_search.png'),
+    setClose:require('../asserts/new/setClose.png'),
+    setOpen:require('../asserts/new/setOpen.png')
 
 }
 
@@ -219,6 +231,11 @@ export const Colors = {
     txt_666: '#666666',
     _E54: '#E54A2E',
     _CCC: '#CCCCCC',
+    _FFE:'#FFE9AD',
+    _998:'#998E72',
+    _1A1:'#1A1B1F',
+    _303:'#303236',
+    _736:'#736C5B'
 }
 
 export const Styles = {

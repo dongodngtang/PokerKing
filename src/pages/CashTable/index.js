@@ -20,7 +20,7 @@ export default class CashTable extends Component {
         return (
             <View style={styles.navTop}>
                 <StatusBar barStyle={'light-content'}/>
-                <TouchableOpacity
+                <View
                     onPress={() => {
 
                     }}
@@ -30,16 +30,16 @@ export default class CashTable extends Component {
                         source={Images.puke_icon}
                     />
 
-                </TouchableOpacity>
-                <TouchableOpacity
+                </View>
+                <View
                     style={styles.navTitle}>
                     <Text
                         style={{fontSize: 17, color: '#FFE9AD'}}
                         numberOfLines={1}>{global.lang.t('room')}</Text>
-                </TouchableOpacity>
+                </View>
                 <TouchableOpacity
                     onPress={() => {
-
+                        router.toSetting();
                     }}
                     style={styles.right2}>
                     <Image
@@ -79,7 +79,7 @@ export default class CashTable extends Component {
                 <ImageBackground source={getBg(img)} style={[styles.jinsha, {
                     flexDirection: "column-reverse"
                 }]}>
-                    <TouchableOpacity activeOpacity={1}  style={[styles.txt_view,{backgroundColor:'#1A1B1F'}]}>
+                    <TouchableOpacity activeOpacity={1}  style={[styles.txt_view,{backgroundColor:'#101010',opacity:0.78}]}>
                         <Text style={styles.txt1} numberOfLines={1}>{item.name}</Text>
                         <View style={{flex:1}}/>
                         <Image

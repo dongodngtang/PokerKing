@@ -27,7 +27,8 @@ export default class ModifyData extends Component {
     constructor(props) {
         super(props)
 
-        const {profile} = props
+        let {profile} = props
+         profile = profile || {}
         let avatar = isEmptyObject(profile) ? Images.home_avatar : isStrNull(profile.avatar) ? Images.home_avatar
             : {uri: profile.avatar}
 

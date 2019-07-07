@@ -5,9 +5,6 @@ import {Metrics} from "../../configs/Theme";
 import {isEmptyObject, logMsg} from "../../utils/utils";
 import {Images} from "../../configs/Theme";
 
-@connect(({QueueList}) => ({
-    ...QueueList,
-}))
 export default class NotData extends Component {
     render() {
         return (

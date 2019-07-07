@@ -7,7 +7,7 @@ import Carousel from 'react-native-snap-carousel';
 import {Metrics} from "../../configs/Theme";
 import RaceModal from './RaceModal';
 import {mainEvents} from "../../services/eventsDao";
-import {getBg, logMsg, unix_format, getRemainTime, isStrNull} from "../../utils/utils";
+import {getBg, logMsg, unix_format, getRemainTime, isStrNull, mul} from "../../utils/utils";
 import ImageLoad from "../../components/ImageLoad";
 import RaceMessage from "../RaceMessage";
 
@@ -65,7 +65,7 @@ export default class Races extends Component {
         return (
             <View style={styles.navTop}>
                 <StatusBar barStyle={'light-content'}/>
-                <TouchableOpacity
+                <View
                     onPress={() => {
 
                     }}
@@ -75,22 +75,22 @@ export default class Races extends Component {
                         source={Images.puke_icon}
                     />
 
-                </TouchableOpacity>
-                <TouchableOpacity
+                </View>
+                <View
                     style={styles.navTitle}
                     onPress={() => {
-                        this.raceModal && this.raceModal.toggle();
-                        this.change_list_show()
+
                     }}>
                     <Text
-                        style={{fontSize: 17, color: '#FFE9AD',maxWidth:'90%'}}
+                        style={{fontSize: 17, color: '#FFE9AD', maxWidth: '90%'}}
                         numberOfLines={1}>{this.state.recent_event.name}</Text>
                     <Image style={{width: 12, height: 6, marginLeft: 10}}
                            source={this.state.list_show ? Images.top : Images.bottom}/>
-                </TouchableOpacity>
+                </View>
                 <TouchableOpacity
+                    activeOpacity={1}
                     onPress={() => {
-
+                        router.toSetting()
                     }}
                     style={styles.right2}>
                     <Image
@@ -123,7 +123,10 @@ export default class Races extends Component {
 
     _renderItem = ({item, index}) => {
         return <Card
-            item={item} recent_event={this.state.recent_event}/>
+            item={item}
+            recent_event={this.state.recent_event}
+            snapToNext={this.snapToNext}
+            snapToPrev={this.snapToPrev}/>
     };
 
     debouncePress = (id) => {
@@ -133,6 +136,14 @@ export default class Races extends Component {
             this.lastClickTime = clickTime
             router.toRaceMessage(id)
         }
+    }
+
+    snapToNext = ()=>{
+        this._carousel && this._carousel.snapToNext()
+    }
+
+    snapToPrev = ()=>{
+        this._carousel && this._carousel.snapToPrev()
     }
 
     render() {
@@ -151,7 +162,7 @@ export default class Races extends Component {
                         data={this.state.all_events}
                         renderItem={this._renderItem}
                         sliderWidth={Metrics.screenWidth}
-                        itemWidth={Metrics.screenWidth - 80}
+                        itemWidth={Metrics.screenWidth}
                         onSnapToItem={(index) => {
                             let selectedEvent = all_events[index];
                             logMsg('滚动到了', selectedEvent);
@@ -160,23 +171,43 @@ export default class Races extends Component {
                             })
                         }}
                     />
+                    <View style={{
+                        backgroundColor: "#736C5B", width: Metrics.screenWidth - 34, height: 1,
+                        borderRadius: 2, marginTop: 16
+                    }}/>
                 </View> : null}
 
 
-                {this._item(styles.item_view, Images.zixun, styles.img_dy,
-                    global.lang.t('race_message'), () => {
-                        this.debouncePress(recent_event.id)
-                    })}
+                <View style={{
+                    width: Metrics.screenWidth - 34,
+                    alignSelf: 'center',
+                    flexDirection: 'row',
+                    flexWrap: 'wrap',
+                    alignItems: 'center'
+                }}>
+                    {this._item(styles.item_view, Images.location, styles.img_dy,
+                        global.lang.t('race_location'), () => {
 
-                {this._item(styles.item_view, Images.rili_gray, styles.img_dy1,
-                    `${global.lang.t('race_schedule')}`, () => {
-                        router.toRaceSchedule(recent_event);
-                    })}
+                        })}
 
-                {this._item(styles.item_view, Images.ziyuan, styles.img_dy2,
-                    global.lang.t('race_news'), () => {
-                        router.toRaceNew(recent_event.id);
-                    })}
+                    {this._item(styles.item_view, Images.event_intro, styles.img_dy1,
+                        `${global.lang.t('race_intro')}`, () => {
+                            this.debouncePress(recent_event.id)
+                        })}
+
+                    {this._item(styles.item_view, Images.event_dynamics, styles.img_dy2,
+                        global.lang.t('race_schedule'), () => {
+                            router.toRaceSchedule(recent_event);
+                        })}
+                    {this._item(styles.item_view, Images.news_info, styles.img_dy3,
+                        global.lang.t('race_news'), () => {
+                            router.toRaceNew(recent_event.id);
+                        })}
+                    {this._item(styles.item_view_last, Images.live, styles.img_dy4,
+                        global.lang.t('race_live'), () => {
+
+                        })}
+                </View>
 
                 <RaceModal ref={ref => this.raceModal = ref} recent_event={recent_event} events={events}
                            change_recent_event={this.change_recent_event}
@@ -191,11 +222,16 @@ export default class Races extends Component {
             activeOpacity={1}
             style={itemStyle}
             onPress={onPress}>
-            <Image style={imgStyle} source={img}/>
-            <Text style={[styles.personalText, {width: '66%'}]}>{title}</Text>
-            <View style={{flex: 1}}/>
+            <View style={styles.item_view2}>
+                <Image style={imgStyle} source={img}/>
+            </View>
 
-            <Image style={styles.personalImg} source={Images.is_right}/>
+            <Text style={[styles.personalText]}>{title}</Text>
+            {/*<Image style={imgStyle} source={img}/>*/}
+            {/*<Text style={[styles.personalText, {width: '66%'}]}>{title}</Text>*/}
+            {/*<View style={{flex: 1}}/>*/}
+
+            {/*<Image style={styles.personalImg} source={Images.is_right}/>*/}
         </TouchableOpacity>
     };
 }
@@ -204,10 +240,12 @@ export default class Races extends Component {
 class Card extends Component {
 
     state = {
-        countTime: ''
+        countTime: '',
+        index: 0
     }
 
     counting = (startTime, endTime) => {
+        let index = 0;
         this.intervalTimer = setInterval(() => {
             // 得到剩余时间
             let remainTime = getRemainTime(startTime)
@@ -224,10 +262,12 @@ class Card extends Component {
                 let toEndTime = getRemainTime(endTime)
                 let raceStatus = global.lang.t('processing')
                 if (toEndTime.total < 0) {
-                    raceStatus = global.lang.t('over')
+                    raceStatus = '----'
+                    index = -1
                 }
                 this.setState({
-                    countTime: raceStatus
+                    countTime: raceStatus,
+                    index: index
                 })
             }
         }, 100)
@@ -247,26 +287,63 @@ class Card extends Component {
         const {description} = this.props.recent_event;
         const {begin_time, end_time, id, logo, name} = this.props.item;
         let month = unix_format(begin_time, `MM`);
+        const {snapToPrev,snapToNext} = this.props
 
         let race_start_time = global.localLanguage === 'en' ? `${global.lang.t(`month${month}`)}` + unix_format(begin_time, `DD,YYYY`) :
             unix_format(begin_time, `YYYY${global.lang.t('year')}MM${global.lang.t('month')}DD${global.lang.t('day2')}`);
 
         return (
-            <TouchableOpacity activeOpacity={1} style={styles.slide_view} onPress={() => {
-                this.debouncePress(id);
-            }}>
-                <View style={styles.slide_top_view}>
-                    <Text style={styles.race_time_txt}>{global.lang.t('race_time')}</Text>
-                    <Text style={styles.race_time_txt}>{this.state.countTime}</Text>
-                </View>
-                <ImageLoad
-                    style={styles.slide_img}
-                    source={getBg(logo)}/>
-                <View style={styles.slide_top_view}>
-                    <Text style={styles.race_time_txt2}>{name}</Text>
-                    <Text style={styles.race_time_txt}>{race_start_time}</Text>
-                </View>
-            </TouchableOpacity>
+            <View style={{flexDirection: 'row'}}>
+                <TouchableOpacity
+                    onPress={()=>snapToPrev && snapToPrev()}
+                    style={{height:px2dp(302),width:px2dp(60),
+                justifyContent: 'center'}}>
+                    <Image style={{height: px2dp(34), width: px2dp(20),marginLeft:px2dp(24)}}
+                           source={Images.left}/>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    activeOpacity={1}
+                    onPress={() => {
+                        this.debouncePress(id);
+                    }}>
+
+                    <Image
+                        style={styles.slide_img}
+                        source={getBg(logo)}/>
+                    {this.state.index === -1 ? <View style={styles.slide_top_view_1}>
+                        <Text
+                            style={styles.race_time_txt_1}>{global.lang.t('race_over')}</Text>
+                        <Text style={styles.race_time_txt2_1}>{this.state.countTime}</Text>
+                    </View> : <View style={styles.slide_top_view}>
+                        <Text
+                            style={styles.race_time_txt}>{global.lang.t('race_time')}</Text>
+                        <Text style={styles.race_time_txt2}>{this.state.countTime}</Text>
+                    </View>}
+
+                    <Text style={styles.card_name}>{name}</Text>
+                    <View style={styles.card_bottom_view}>
+                        <Text style={styles.card_location}>{`澳门`}</Text>
+                        <View style={{flex: 1}}/>
+                        <TouchableOpacity>
+                            <Image
+                                style={styles.collect_img}
+                                source={Images.collect}/>
+                        </TouchableOpacity>
+                        <TouchableOpacity>
+                            <Image
+                                style={styles.share_img}
+                                source={Images.share}/>
+                        </TouchableOpacity>
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={()=>snapToNext && snapToNext()}
+                    style={{height:px2dp(302),width:px2dp(60),flexDirection:'row-reverse',
+                    alignItems: 'center'}}>
+                    <Image style={{height: px2dp(34), width: px2dp(20),marginRight:px2dp(24)}}
+                           source={Images.right}/>
+                </TouchableOpacity>
+            </View>
         )
     }
 

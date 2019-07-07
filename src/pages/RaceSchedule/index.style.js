@@ -1,15 +1,14 @@
 
 import { StyleSheet } from 'react-native';
-import {Metrics} from "../../configs/Theme";
+import {Colors, Metrics, px2dp, px2sp, wh} from "../../configs/Theme";
 
 export default StyleSheet.create({
     schedule_view:{
         flex:1,
-        backgroundColor:"#ECECEE"
+        backgroundColor:Colors._1A1
     },
     carousels_view:{
-        height:66,
-        marginBottom:6
+        height:px2dp(118)
     },
     item_select_view:{
         display:'flex',
@@ -21,23 +20,20 @@ export default StyleSheet.create({
         justifyContent:'center'
     },
     item_view:{
-        display:'flex',
-        backgroundColor:"#13151C",
-        flexDirection:'column',
         alignItems:'center',
         justifyContent:'center',
         width:70,
         height:66
     },
     item_view2:{
-        paddingTop:16,
-        marginLeft:16,
-        marginRight:18,
-        flexDirection:'column'
+        paddingTop:px2dp(22),
+        paddingLeft:px2dp(18),
+        paddingRight:px2dp(20),
+        backgroundColor:Colors._303
     },
     top_txt1:{
-        color:"#444444",
-        fontSize:14
+        fontSize: px2sp(24),
+        color: Colors._FFE
     },
     schedule_middle_view:{
         flexDirection:'row',
@@ -58,8 +54,8 @@ export default StyleSheet.create({
         fontSize:12
     },
     selected_view:{
-        backgroundColor:"#ECECEE",
-        paddingTop:10
+        paddingTop:px2dp(18),
+        backgroundColor:'#252629'
     },
     line:{
         backgroundColor:"#CCCCCC",
@@ -83,7 +79,8 @@ export default StyleSheet.create({
         paddingBottom:14
     },
     cloumn_view:{
-        flexDirection:'column'
+        flexDirection:'row',
+        justifyContent:'space-between'
     },
     top_txt2:{
         color:"#888888",
@@ -91,12 +88,24 @@ export default StyleSheet.create({
         marginTop:4
     },
     day_txt:{
-        color:"#FFFFFF",
-        fontSize:16
+        color:Colors._998,
+        fontSize:px2sp(28),
+        lineHeight:18
     },
     week_txt:{
-        color:"#FFFFFF",
-        fontSize:11
+        color:Colors._998,
+        fontSize:px2sp(24),
+        lineHeight:18
+    },
+    day_txt_light:{
+        color:Colors._FFE,
+        fontSize:px2sp(28),
+        lineHeight:18
+    },
+    week_txt_light:{
+        color:Colors._FFE,
+        fontSize:px2sp(24),
+        lineHeight:18
     },
     structure_view:{
         height:40,
@@ -132,6 +141,15 @@ export default StyleSheet.create({
     problem_txt:{
         color:"#888888",
         fontSize:14
+    },
+    btnRemark:{
+        borderColor:'#998E72',
+        borderRadius:px2dp(4),
+        borderWidth: px2dp(2),
+        ...wh(210,54),
+        alignItems:'center',
+        justifyContent:'center',
+        marginRight:px2dp(20)
     }
 
 })
