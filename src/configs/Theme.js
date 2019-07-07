@@ -201,7 +201,8 @@ export const Images = {
     delete2:require('../asserts/new/delete2.png'),
     no_search:require('../asserts/new/no_search.png'),
     setClose:require('../asserts/new/setClose.png'),
-    setOpen:require('../asserts/new/setOpen.png')
+    setOpen:require('../asserts/new/setOpen.png'),
+    load_error:require('../asserts/load/load_error.png')
 
 }
 
