@@ -2,7 +2,6 @@ import React, {PureComponent} from 'react';
 import {
     Image, Text, Platform, TextInput, View, StyleSheet
 } from 'react-native';
-import * as Animatable from 'react-native-animatable';
 import {Images} from "../../configs/Theme";
 
 const styles = StyleSheet.create({
@@ -17,7 +16,7 @@ const styles = StyleSheet.create({
     search: {
         height: 17,
         width: 17,
-        marginLeft:20
+        marginLeft: 20
     },
     txt_search: {
         fontSize: 12,
@@ -27,12 +26,12 @@ const styles = StyleSheet.create({
     input: {
         position: 'absolute',
         flex: 1,
-        paddingTop:4,
-        paddingBottom:4,
+        paddingTop: 4,
+        paddingBottom: 4,
         width: '90%',
         color: '#FFE9AD',
-        fontSize:16,
-        marginLeft:8
+        fontSize: 16,
+        marginLeft: 8,
     }
 })
 
@@ -43,13 +42,21 @@ export default class SearchBar extends PureComponent {
         text: ''
     }
 
+    clearInput = () => {
+        this.setState({
+            text: ''
+        })
+        this.input && this.input.clear()
+    }
+
     render() {
         const {text} = this.state;
         let hide = text.length > 0;
-        return <Animatable.View
+        return <View
             style={styles.contains}>
 
             <TextInput
+                ref={ref => this.input = ref}
                 underlineColorAndroid={'transparent'}
                 selectionColor={'#FFE9AD'}
                 onChangeText={text => {
@@ -63,6 +70,6 @@ export default class SearchBar extends PureComponent {
             {hide ? null : <Text style={styles.txt_search}>{global.lang.t('search_text')}</Text>}
 
 
-        </Animatable.View>
+        </View>
     }
 }

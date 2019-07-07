@@ -5,45 +5,15 @@ import styles from './index.style'
 import {Images} from "../../configs/Theme";
 import SearchBar from '../comm/SearchBar';
 import StorageKey from "../../configs/StorageKey";
-import {strNotNull} from "../../utils/utils";
+import {logMsg, strNotNull} from "../../utils/utils";
 import HotNewsList from "../HotNewsList";
+import {infosSearch} from "../../services/raceDao";
 
 @connect(({SearchNews}) => ({
     ...SearchNews,
 }))
 export default class SearchNews extends Component {
 
-    state = {
-        search: true,
-        show_content: true,
-        reject_problem: '',
-        recordKeys: [],
-        submit: false
-    };
-
-    refresh = () => {
-        this.setState({
-            reject_problem: ''
-        });
-        this.listView && this.listView.refresh();
-    };
-
-
-    componentDidMount() {
-        this.setwords = new Set();
-        this.keywords = '';
-        global.storage.load({key: StorageKey.InfoSearchRecord})
-            .then(ret => {
-                if (ret.length > 20) {
-                    ret = ret.slice(ret.length - 20)
-                }
-                this.setwords = new Set(ret.reverse());
-                this.setState({
-                    recordKeys: Array.from(this.setwords)
-                })
-            }).catch(err => {
-        })
-    }
 
     topBar = () => {
         return (
@@ -59,28 +29,31 @@ export default class SearchNews extends Component {
                         source={Images.left}/>
 
                 </TouchableOpacity>
-                {this.state.search ? null : <View style={{flex: 1}}/>}
-                {this.state.search ? <SearchBar
+               <SearchBar
+                    ref={ref => this.searchBar = ref}
                     keyword={keyword => {
-                        this.keyword = keyword;
-                        this.newsList.search(this.keywords)
+                       logMsg("书里看到",keyword)
+                       this.searchByKeyword(keyword)
+                    }}/>
 
-                    }}/> : <Text style={styles.nar_text} numberOfLines={1}>2019</Text>}
-                <View style={{flex: 1}}/>
-                {this.state.search ? <TouchableOpacity
+                <TouchableOpacity
                     style={[styles.btn_search2, {marginLeft: 17}]}
                     onPress={() => {
-                        this.setState({
-                            search: !this.state.search
-                        })
-                        this.keyword = undefined;
+                        this.searchBar && this.searchBar.clearInput()
+                        this.keyword = '';
                     }}>
                     <Text style={styles.cancel_text}>{global.lang.t('cancel')}</Text>
 
-                </TouchableOpacity> : <View style={{width:50}}/>}
+                </TouchableOpacity>
             </View>
         )
     };
+
+    searchByKeyword = (keyword)=>{
+        infosSearch({keyword},data=>{
+            logMsg("a上课地方",data)
+        })
+    }
 
     resentBlank = () => {
         return <View style={styles.resent}>
@@ -144,12 +117,11 @@ export default class SearchNews extends Component {
         return (
             <View style={{flex: 1, backgroundColor: "#1A1B1F"}}>
                 {this.topBar()}
-                <HotNewsList
-                    ref={ref => this.newsList = ref}
-                    isSearch={true}/>
+                {/*<HotNewsList*/}
+                    {/*ref={ref => this.newsList = ref}*/}
+                    {/*isSearch={true}/>*/}
                 <View style={styles.viewSearch}>
                     {this.resentBlank()}
-                    {/*{this.tabBlank()}*/}
                 </View>
             </View>
         )
