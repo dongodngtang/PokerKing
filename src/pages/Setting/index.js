@@ -87,7 +87,7 @@ export default class Setting extends Component {
     };
 
     toAccount=()=>{
-        router.toModifyData()
+        router.toAccountSecurity()
     }
 
     render() {
