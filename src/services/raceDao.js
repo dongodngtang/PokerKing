@@ -29,3 +29,10 @@ export function getEventDetail(body,resolve, reject) {
         resolve(ret.data)
     },reject)
 }
+
+
+export function infosSearch(body,resolve,reject) {
+    get(api.infos_search,body,ret=>{
+        resolve(ret.data)
+    },reject)
+}

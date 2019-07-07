@@ -52,12 +52,7 @@ export default StyleSheet.create({
         marginLeft: 19
     },
     viewSearch: {
-        position: 'absolute',
-        top: Metrics.navBarHeight,
-        bottom: 0,
-        left: 0,
-        right: 0,
-        backgroundColor:'#ECECEE'
+       flex:1
     },
     imgDel: {
         height: 22,
