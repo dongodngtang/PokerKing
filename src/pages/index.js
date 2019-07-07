@@ -41,6 +41,8 @@ import SearchNews from "./SearchNews";
 import InstantList from "./InstantList";
 import RankList from "./RankList";
 import Setting from "./Setting";
+import AccountSecurity from "./AccountSecurity";
+import Mobile from "./Mobile";
 
 export const scenes = () => {
     return <Scene key="root"
@@ -246,6 +248,18 @@ export const scenes = () => {
                component={Setting}
                {...TopNav({
                    title: global.lang.t('modifyData')
+               })}
+        />
+        <Scene key="AccountSecurity"
+               component={AccountSecurity}
+               {...TopNav({
+                   title: global.lang.t('account_security')
+               })}
+        />
+        <Scene key="Mobile"
+               component={Mobile}
+               {...TopNav({
+                   title: global.lang.t('iphone')
                })}
         />
         <Scene key="SearchNews"

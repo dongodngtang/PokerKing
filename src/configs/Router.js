@@ -243,4 +243,31 @@ export default class Router {
 
         })
     }
+    toAccountSecurity() {
+        needLogin(()=>{
+            this.push({
+                sceneKey: 'AccountSecurity'
+
+            })
+        })
+
+    }
+    toMobile() {
+        needLogin(()=>{
+            this.push({
+                sceneKey: 'Mobile'
+
+            })
+        })
+
+    }
+    toModifyPWD() {
+        needLogin(()=>{
+            this.push({
+                sceneKey: 'ModifyPWD'
+
+            })
+        })
+
+    }
 }

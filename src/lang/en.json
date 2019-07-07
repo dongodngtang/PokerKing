@@ -207,5 +207,14 @@
   "race_notice":"赛事新闻通知",
   "rank_notice":"排队进程通知",
   "clear":"清除缓存",
-  "version":"版本"
+  "version":"版本",
+  "iphone":"手机号",
+  "change_pwd":"修改密码",
+  "iphone_text":"您当前的手机号为",
+  "iphone_text2":"更换后个人信息不变，下次可以使用新手机号登录",
+  "change_mobile":"更换手机号",
+  "once":"一个月只能更换一次",
+  "noChange":"更换手机号不影响账号内容和数据",
+  "useNewTle":"您将使用新手机号登录",
+  "konw":"我知道了"
 }
