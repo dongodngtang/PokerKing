@@ -10,20 +10,22 @@ export default StyleSheet.create({
         paddingTop: Metrics.statusBarHeight
     },
     left2: {
-        // height: 44,
         paddingLeft: 17,
+        width:60,
         justifyContent: 'center'
     },
     right2: {
+        width:60,
         flexDirection: 'row-reverse',
         flexWrap: 'nowrap',
         alignItems: 'center',
-        paddingLeft: 17,
-        paddingRight: 42
+        paddingLeft: 17
     },
     navTitle: {
         flex: 1,
-        marginLeft:10,
+        width:Metrics.screenWidth - 164,
+        marginLeft:5,
+        marginRight:5,
         flexDirection: 'row',
         alignItems: 'center',
         alignSelf: 'center',

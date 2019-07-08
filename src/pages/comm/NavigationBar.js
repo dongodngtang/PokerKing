@@ -51,20 +51,22 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     left2: {
-        // height: 44,
+        width:60,
         paddingLeft: 17,
         justifyContent: 'center'
     },
     right2: {
+        width:60,
         flexDirection: 'row-reverse',
         flexWrap: 'nowrap',
         alignItems: 'center',
-        paddingLeft: 17,
-        paddingRight: 42
+        paddingLeft: 17
     },
     navTitle: {
         flex: 1,
-        marginLeft: 10,
+        width:Metrics.screenWidth - 164,
+        marginLeft:5,
+        marginRight:5,
         flexDirection: 'row',
         alignSelf: 'center',
         justifyContent: 'center'

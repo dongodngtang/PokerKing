@@ -3,8 +3,7 @@ import {
     TouchableOpacity, View, TextInput,
     StyleSheet, Image, Text, KeyboardAvoidingView, FlatList, Modal,StatusBar
 } from 'react-native';
-import styles from "./topBar.style";
-import {Images, px2dp} from "../../configs/Theme";
+import {Images, Metrics, px2dp} from "../../configs/Theme";
 
 export default class TopBar extends Component {
 
@@ -17,7 +16,7 @@ export default class TopBar extends Component {
                     onPress={() => {
 
                     }}
-                    style={styles.left2}>
+                    style={styles.left22}>
                     {/*<Image*/}
                         {/*style={{height: px2dp(48), width: px2dp(120)}}*/}
                         {/*source={left_img}*/}
@@ -47,3 +46,34 @@ export default class TopBar extends Component {
         )
     }
 }
+const styles = StyleSheet.create({
+    navTop: {
+        height: Metrics.navBarHeight,
+        width: Metrics.screenWidth,
+        backgroundColor: '#1A1B1F',
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingTop: Metrics.statusBarHeight
+    },
+    left22: {
+        paddingLeft: 17,
+        width:60,
+        justifyContent: 'center'
+    },
+    right2: {
+        width:60,
+        flexDirection: 'row-reverse',
+        alignItems: 'center',
+        paddingLeft: 17
+    },
+    navTitle: {
+        flex: 1,
+        width:Metrics.screenWidth - 164,
+        marginLeft:5,
+        marginRight:5,
+        flexDirection: 'row',
+        alignItems: 'center',
+        alignSelf: 'center',
+        justifyContent: 'center'
+    }
+})
