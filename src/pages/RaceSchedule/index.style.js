@@ -5,7 +5,7 @@ import {Colors, Metrics, px2dp, px2sp, wh} from "../../configs/Theme";
 export default StyleSheet.create({
     schedule_view:{
         flex:1,
-        backgroundColor:Colors._1A1
+        backgroundColor:'#1A1B1F'
     },
     carousels_view:{
         height:px2dp(118)

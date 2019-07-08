@@ -79,7 +79,7 @@ export default class RaceSchedule extends Component {
     render() {
         const {schedules_dates} = this.state;
         if (isEmptyObject(schedules_dates)) {
-            return <NotData/>
+            return <NotData backgroundColor={'#1A1B1F'}/>
         }
         return (
             <ScrollView style={styles.schedule_view}>
@@ -106,7 +106,7 @@ export default class RaceSchedule extends Component {
                     dateTitle={global.lang.t('last_refresh')}
                     allLoadedText={global.lang.t('no_more')}
                     waitingSpinnerText={global.lang.t('loading')}
-                    emptyView={() => <NotData/>}
+                    emptyView={() => <NotData backgroundColor={'#1A1B1F'}/>}
                 />
 
             </ScrollView>

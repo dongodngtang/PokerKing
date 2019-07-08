@@ -162,6 +162,7 @@ export default class Races extends Component {
                     <Carousel
                         loop
                         layout={'default'}
+                        removeClippedSubviews={false}
                         ref={(c) => {
                             this._carousel = c
                         }}
