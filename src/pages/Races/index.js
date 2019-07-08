@@ -84,7 +84,8 @@ export default class Races extends Component {
                 <TouchableOpacity
                     style={styles.navTitle}
                     onPress={() => {
-
+                        this.raceModal && this.raceModal.toggle();
+                        this.change_list_show()
                     }}>
                     <Text
                         style={{fontSize: 17, color: '#FFE9AD', maxWidth: '90%'}}
