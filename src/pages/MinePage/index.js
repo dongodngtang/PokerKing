@@ -53,7 +53,7 @@ export default class MinePage extends Component {
                         })}
                     {this._item(styles.item_view, Images.collection, styles.img_dy2,
                         global.lang.t('collection'), () => {
-
+                            router.toCollections();
                         })}
                     {this._item(styles.item_view, Images.puke_intro, styles.img_dy3,
                         global.lang.t('about'), () => {

@@ -27,9 +27,14 @@ const api = {
     schedules_events:schedules_events,//获取某个日期的赛程
     event_detail:event_detail,//获取主赛的新闻详情
     event_info:event_info,//获取主赛详情
-    infos_search:'infos/search'
+    infos_search:'infos/search',
+    collection_list:collection_list,//查看收藏列表
 }
 
+
+function collection_list() {
+    return `users/${getUserId()}/favorites`
+}
 
 function uploadAvatar() {
     return `account/users/${getUserId()}/avatar`

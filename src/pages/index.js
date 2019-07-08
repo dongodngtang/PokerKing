@@ -44,6 +44,7 @@ import Setting from "./Setting";
 import AccountSecurity from "./AccountSecurity";
 import Mobile from "./Mobile";
 import ChangePhone from "./ChangePhone";
+import Collections from "./Collections";
 
 export const scenes = () => {
     return <Scene key="root"
@@ -271,7 +272,12 @@ export const scenes = () => {
         <Scene key="ChangePhone"
                component={ChangePhone}
                {...TopNav({
-                   title: "手机号"
+                   title: global.lang.t('iphone')
+               })}/>
+        <Scene key="Collections"
+               component={Collections}
+               {...TopNav({
+                   title: global.lang.t('collection')
                })}/>
     </Scene>
 }

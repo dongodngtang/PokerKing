@@ -213,6 +213,14 @@ export default class Router {
         })
 
     }
+    toCollections() {
+        needLogin(()=>{
+            this.push({
+                sceneKey: 'Collections'
+            })
+        })
+
+    }
     toProtocolPage() {
         this.push({
             sceneKey: 'ProtocolPage'
