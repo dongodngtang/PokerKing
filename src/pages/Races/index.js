@@ -81,7 +81,7 @@ export default class Races extends Component {
                     {/*/>*/}
 
                 </View>
-                <View
+                <TouchableOpacity
                     style={styles.navTitle}
                     onPress={() => {
 
@@ -91,7 +91,7 @@ export default class Races extends Component {
                         numberOfLines={1}>{this.state.recent_event.name}</Text>
                     <Image style={{width: 12, height: 6, marginLeft: 10}}
                            source={this.state.list_show ? Images.top : Images.bottom}/>
-                </View>
+                </TouchableOpacity>
                 <TouchableOpacity
                     activeOpacity={1}
                     onPress={() => {
