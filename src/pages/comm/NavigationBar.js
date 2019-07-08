@@ -11,10 +11,10 @@ const NavigationBar = ({title, profile,leftOnPress, rightOnPress, index}) => (
             <TouchableOpacity
                 onPress={() => leftOnPress && leftOnPress()}
                 style={styles.left2}>
-                <Image
-                    style={{height: px2dp(48), width: px2dp(120)}}
-                    source={Images.puke_icon}
-                />
+                {/*<Image*/}
+                    {/*style={{height: px2dp(48), width: px2dp(120)}}*/}
+                    {/*source={Images.puke_icon}*/}
+                {/*/>*/}
 
             </TouchableOpacity>
             <TouchableOpacity

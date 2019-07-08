@@ -18,10 +18,10 @@ export default class TopBar extends Component {
 
                     }}
                     style={styles.left2}>
-                    <Image
-                        style={{height: px2dp(48), width: px2dp(120)}}
-                        source={left_img}
-                    />
+                    {/*<Image*/}
+                        {/*style={{height: px2dp(48), width: px2dp(120)}}*/}
+                        {/*source={left_img}*/}
+                    {/*/>*/}
 
                 </TouchableOpacity>
                 <TouchableOpacity

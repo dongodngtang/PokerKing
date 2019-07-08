@@ -75,10 +75,10 @@ export default class Races extends Component {
 
                     }}
                     style={styles.left2}>
-                    <Image
-                        style={{height: px2dp(48), width: px2dp(120)}}
-                        source={Images.puke_icon}
-                    />
+                    {/*<Image*/}
+                        {/*style={{height: px2dp(48), width: px2dp(120)}}*/}
+                        {/*source={Images.puke_icon}*/}
+                    {/*/>*/}
 
                 </View>
                 <View
