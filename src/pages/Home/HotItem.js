@@ -9,50 +9,84 @@ const WIDTH = Metrics.screenWidth;
 
 export default class HotItem extends Component {
 
-    render() {
-        const {type} = this.props;
-        const {id, image, title, source, created_at, hot} = this.props.item;
+    getImg = (type, item) => {
+        let img = Images.empty_bg;
+        if (type === 'info') {
+            img = item.info.preview_image
+        } else if (type === 'main_event') {
+            img = item.main_event.logo
+        } else {
+            img = item.image
+        }
+        return getBg(img)
+    }
+    getTitle = (type, item) => {
+        let title = item.title;
+        if (type === 'info') {
+            title = item.info.title
+        } else if (type === 'main_event') {
+            title = item.main_event.name
+        }
+        return title
+    }
+    getData = (type, item, date) => {
+        let data = utcDate(item.created_at, date)
+        if (type === 'info') {
+            data = utcDate(item.info.created_at, date)
+        } else if (type === 'main_event') {
+            data = utcDate(item.main_event.begin_time, date)
+        }
+        return data
+    }
 
+    render() {
+        const {type, item} = this.props;
+        const {id, image, title, source, created_at, hot} = item;
         return (
             <TouchableOpacity style={styles.event_view}
                               onPress={() => {
-                                  if (this.props.type && this.props.type === 'event') {
+                                  if (type && type === 'event') {
                                       router.toEventDetail(id, this.props.event_id)
+                                  } else if (type && type === 'main_event') {
+                                      router.toEventDetail(item.main_event.id, 0)
+                                  } else if (type && type === 'info') {
+                                      router.toInfoDetail(item.info.id)
                                   } else {
                                       router.toInfoDetail(id)
                                   }
                               }}>
                 <Image style={styles.race_img}
-                       source={getBg(image)}/>
+                       source={this.getImg(type, item)}/>
                 <View style={styles.right_view}>
                     <Text style={[styles.race_content_txt, {
                         maxWidth: Number(mul(WIDTH, 0.56)),
                         color: type && type === 'hot' ? '#DDDDDD' : "#FFE9AD"
                     }]}
-                          numberOfLines={2}>{title}</Text>
-                    {this.props.type && this.props.type === 'event' ? <View style={styles.right_bottom_view}>
-                        <Text style={styles.bottom_txt}>{utcDate(created_at, 'MM/DD  HH:mm')}</Text>
-                    </View> : <View style={styles.right_bottom_view}>
-                        {this.props.type && this.props.type === 'hot_list' && hot ?
-                            <View style={{
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                width: Metrics.reallySize(34),
-                                height: Metrics.reallySize(18),
-                                borderRadius: 3,
-                                borderWidth: 1,
-                                borderColor: "#EA5163",
-                                marginRight: 10
-                            }}>
-                                <Text style={{color: "#EA5163", fontSize: 12}}>{global.lang.t('hot')}</Text>
-                            </View> : null}
-                        {strNotNull(source) ?
-                            <Text numberOfLines={1} style={[styles.bottom_txt, {
-                                marginRight: 10,
-                                maxWidth: this.props.type && this.props.type === 'hot_list' && hot ? Number(mul(WIDTH, 0.32)) : Number(mul(WIDTH, 0.4))
-                            }]}>#{source}</Text> : null}
-                        <Text style={styles.bottom_txt}>{utcDate(created_at, 'MM-DD')}</Text>
-                    </View>}
+                          numberOfLines={2}>{this.getTitle(type, item)}</Text>
+                    {type && (type === 'event' || type === 'info' || type === 'main_event') ?
+                        <View style={styles.right_bottom_view}>
+                            <Text style={styles.bottom_txt}>{this.getData(type, item, 'MM/DD  HH:mm')}</Text>
+                        </View> : <View style={styles.right_bottom_view}>
+                            {this.props.type && this.props.type === 'hot_list' && hot ?
+                                <View style={{
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    width: Metrics.reallySize(34),
+                                    height: Metrics.reallySize(18),
+                                    borderRadius: 3,
+                                    borderWidth: 1,
+                                    borderColor: "#EA5163",
+                                    marginRight: 10
+                                }}>
+                                    <Text style={{color: "#EA5163", fontSize: 12}}>{global.lang.t('hot')}</Text>
+                                </View> : null}
+                            {strNotNull(source) ?
+                                <Text numberOfLines={1} style={[styles.bottom_txt, {
+                                    marginRight: 10,
+                                    maxWidth: this.props.type && this.props.type === 'hot_list' && hot ? Number(mul(WIDTH, 0.32)) : Number(mul(WIDTH, 0.4))
+                                }]}>#{source}</Text> : null}
+                            <Text style={styles.bottom_txt}>{this.getData(type, item, 'MM-DD')}</Text>
+                        </View>}
 
                 </View>
             </TouchableOpacity>

@@ -20,7 +20,7 @@ export default class Main extends Component {
 
 
     state = {
-        activeTab: '热门',
+        activeTab: global.lang.t('hot'),
         index: 0
     }
 

@@ -41,8 +41,21 @@ export default class Collections extends Component {
 
     _separator = () => {
         return (
-            <View
-                style={{height: 1, backgroundColor: "#484848", width: Metrics.screenWidth - 34, alignSelf: 'center'}}/>
+            <View style={{
+                height: 1,
+                backgroundColor: "#303236",
+                width: Metrics.screenWidth,
+                justifyContent: 'center',
+                alignItems: 'center'
+            }}>
+                <View
+                    style={{
+                        height: 1,
+                        backgroundColor: "#998E72",
+                        width: Metrics.screenWidth - 34,
+                        alignSelf: 'center'
+                    }}/>
+            </View>
         )
     }
 
@@ -50,7 +63,7 @@ export default class Collections extends Component {
 
         return (
             <View style={{backgroundColor: '#303236'}}>
-                <HotItem item={item} type={'info'}/>
+                <HotItem item={item} type={item.target_type}/>
             </View>
         )
     };

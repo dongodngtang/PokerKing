@@ -7,9 +7,14 @@ import Carousel from 'react-native-snap-carousel';
 import {Metrics} from "../../configs/Theme";
 import RaceModal from './RaceModal';
 import {mainEvents} from "../../services/eventsDao";
-import {getBg, logMsg, unix_format, getRemainTime, isStrNull, mul} from "../../utils/utils";
+import {
+    getBg, logMsg, unix_format, getRemainTime, isStrNull, mul, showToast, shareHost,
+    shareTo, isEmptyObject
+} from "../../utils/utils";
 import ImageLoad from "../../components/ImageLoad";
 import RaceMessage from "../RaceMessage";
+import {isCollect, postCancelCollect, postCollect} from "../../services/accountDao";
+import ShareToast from "../comm/ShareToast";
 
 @connect(({Races}) => ({
     ...Races,
@@ -147,6 +152,7 @@ export default class Races extends Component {
     }
 
     render() {
+        const {shareParam} = this.props;
         const {events, recent_event, all_events} = this.state;
         return (
             <View style={styles.race_view}>
@@ -212,6 +218,16 @@ export default class Races extends Component {
                 <RaceModal ref={ref => this.raceModal = ref} recent_event={recent_event} events={events}
                            change_recent_event={this.change_recent_event}
                            change_list_show={this.change_list_show}/>
+
+                {!isEmptyObject(shareParam) ? <ShareToast hiddenShareAction={() => {
+                    this.props.dispatch({type: 'Home/closeShare'})
+                }}
+
+                                                          shareTitle={shareParam.shareTitle}
+                                                          shareText={shareParam.shareText}
+                                                          shareLink={shareParam.shareLink}
+                                                          shareImage={shareParam.shareImage}
+                                                          shareType={shareParam.shareType}/> : null}
             </View>
         )
     }
@@ -227,11 +243,6 @@ export default class Races extends Component {
             </View>
 
             <Text style={[styles.personalText]}>{title}</Text>
-            {/*<Image style={imgStyle} source={img}/>*/}
-            {/*<Text style={[styles.personalText, {width: '66%'}]}>{title}</Text>*/}
-            {/*<View style={{flex: 1}}/>*/}
-
-            {/*<Image style={styles.personalImg} source={Images.is_right}/>*/}
         </TouchableOpacity>
     };
 }
@@ -280,6 +291,37 @@ class Card extends Component {
             this.lastClickTime = clickTime
             router.toRaceMessage(id)
         }
+    };
+
+    share = (event) => {
+        let param = {
+            shareLink: `${shareHost()}/infos/${event.id}`,
+            shareTitle: event.name,
+            shareText: event.name,
+            shareImage: event.logo
+        };
+        shareTo(param)
+        logMsg('分享')
+
+    }
+    toCollect = (item) => {
+        const body = {target_id: item.id, target_type: "main_event"}
+        isCollect(body, data => {
+            if (data.is_favorite) {
+                postCancelCollect(body, data => {
+                    showToast(global.lang.t("cancelFavorite"))
+                }, err => {
+                    showToast(global.lang.t('err_problem'))
+                })
+            } else {
+                postCollect(body, data => {
+                    showToast(global.lang.t("getFavorite"))
+                }, err => {
+                    showToast(global.lang.t('err_problem'))
+                })
+            }
+        })
+
     }
 
 
@@ -324,12 +366,16 @@ class Card extends Component {
                     <View style={styles.card_bottom_view}>
                         <Text style={styles.card_location}>{`澳门`}</Text>
                         <View style={{flex: 1}}/>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={()=>{
+                            this.toCollect(this.props.item)
+                        }}>
                             <Image
                                 style={styles.collect_img}
                                 source={Images.collect}/>
                         </TouchableOpacity>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={()=>{
+                            this.share(this.props.item)
+                        }}>
                             <Image
                                 style={styles.share_img}
                                 source={Images.share}/>
