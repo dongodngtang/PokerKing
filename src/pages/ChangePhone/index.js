@@ -29,13 +29,13 @@ export default class ChangePhone extends Component {
         return (
             <Base style={{alignItems: 'center'}}>
 
-                <Text style={[styles.txtPhone, {marginTop: px2dp(328)}]}>您当前的手机号为134****0999</Text>
-                <Text style={[styles.txtPhone, {marginTop: px2dp(14)}]}>更换后个人信息不变，下次可以使用新手机号登录</Text>
+                <Text style={[styles.txtPhone, {marginTop: px2dp(328)}]}>{global.lang.t('iphone_text')}{}</Text>
+                <Text style={[styles.txtPhone, {marginTop: px2dp(14)}]}>{global.lang.t('iphone_text2')}</Text>
 
                 <TouchableOpacity
                     onPress={this.toggle}
                     style={[styles.btnChange, {marginTop: px2dp(178)}]}>
-                    <Text style={styles.txtChange}>更换手机号</Text>
+                    <Text style={styles.txtChange}>{global.lang.t('change_mobile')}</Text>
                 </TouchableOpacity>
 
                 <StepToChange

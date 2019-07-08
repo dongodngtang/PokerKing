@@ -61,7 +61,7 @@ export default class MinePage extends Component {
                         })}
                     {this._item(styles.item_view, Images.vip_img, styles.img_dy4,
                         global.lang.t('vip_intro'), () => {
-                           router.toChangePhone()
+
                         })}
                 </View>
 

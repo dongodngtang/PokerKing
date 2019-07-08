@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {View, Text, TouchableOpacity, Image} from 'react-native';
 import {connect} from 'react-redux';
 import styles from "../Setting/index.style";
-import {strNotNull} from "../../utils/utils";
+import {logMsg, strNotNull} from "../../utils/utils";
 import {Images, Metrics} from "../../configs/Theme";
 import style from './index.style'
 
@@ -25,7 +25,7 @@ export default class AccountSecurity extends Component {
     };
 
     changeIphone = () => {
-      router.toMobile()
+        router.toChangePhone()
     }
 
     changeMail=()=>{
@@ -37,6 +37,7 @@ export default class AccountSecurity extends Component {
     }
 
     render() {
+        logMsg('oooooo',global.login_user)
         return (
             <View style={{flex: 1, backgroundColor: '#1A1B1F'}}>
                 {this._item(global.lang.t('iphone'), 'k215678@qq.com', this.changeIphone)}
