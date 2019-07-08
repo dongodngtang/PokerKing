@@ -507,7 +507,7 @@ const styles = StyleSheet.create({
     },
     allLoadedText: {
         alignSelf: 'center',
-        color: '#bfbfbf'
+        color: '#FFE9AD'
     },
     gridItem: {
         overflow: 'hidden',
