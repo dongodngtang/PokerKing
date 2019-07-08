@@ -216,5 +216,8 @@
   "once":"一个月只能更换一次",
   "noChange":"更换手机号不影响账号内容和数据",
   "useNewTle":"您将使用新手机号登录",
-  "konw":"我知道了"
+  "konw":"我知道了",
+  "getFavorite":"收藏成功",
+  "cancelFavorite":"取消收藏成功",
+  "err_problem":"网络异常，称稍后再试"
 }

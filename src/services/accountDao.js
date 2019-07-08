@@ -120,6 +120,24 @@ export function postFeedBacks(body, resolve, reject) {
 }
 
 
+/*查看是否收藏*/
+export function isCollect(body, resolve, reject) {
+    post(api.isCollect(), body, ret => {
+        resolve(ret.data)
+    }, reject)
+}
+/*收藏资讯 或者 收藏主赛*/
+export function postCollect(body, resolve, reject) {
+    post(api.collect_item(), body, ret => {
+        resolve(ret.data)
+    }, reject)
+}
+/*收藏资讯 或者 收藏主赛*/
+export function postCancelCollect(body, resolve, reject) {
+    post(api.cancel_collect(), body, ret => {
+        resolve(ret.data)
+    }, reject)
+}
 /*查看收藏列表*/
 export function getCollectionList(body, resolve, reject) {
     get(api.collection_list(), body, ret => {

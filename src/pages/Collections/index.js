@@ -47,9 +47,10 @@ export default class Collections extends Component {
     }
 
     _renderItem = (item, index) => {
+
         return (
             <View style={{backgroundColor: '#303236'}}>
-                <HotItem item={item} type={'hot'}/>
+                <HotItem item={item} type={'info'}/>
             </View>
         )
     };

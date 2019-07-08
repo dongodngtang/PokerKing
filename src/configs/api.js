@@ -29,9 +29,18 @@ const api = {
     event_info:event_info,//获取主赛详情
     infos_search:'infos/search',
     collection_list:collection_list,//查看收藏列表
+    collect_item:collection_list,//收藏资讯 或者 收藏主赛
+    isCollect:isCollect,//查看是否收藏
+    cancel_collect:cancel_collect,//取消收藏
 }
 
 
+function cancel_collect() {
+    return `users/${getUserId()}/favorites/cancel`
+}
+function isCollect() {
+    return `users/${getUserId()}/favorites/is_favorite`
+}
 function collection_list() {
     return `users/${getUserId()}/favorites`
 }

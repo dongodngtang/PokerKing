@@ -10,8 +10,9 @@ const WIDTH = Metrics.screenWidth;
 export default class HotItem extends Component {
 
     render() {
-        const {id, image, title, source, created_at,hot} = this.props.item;
         const {type} = this.props;
+        const {id, image, title, source, created_at, hot} = this.props.item;
+
         return (
             <TouchableOpacity style={styles.event_view}
                               onPress={() => {

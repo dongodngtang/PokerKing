@@ -14,12 +14,12 @@ import {alertOrder, isLogin, showToast, unix_format} from "../../utils/utils";
  */
 
 
-const Hot = ({onFetch, onPress, onShare}) => (
+const Hot = ({onFetch, onPress, onShare,onCollect}) => (
     <UltimateFlatList
         ref={(ref) => this.listView = ref}
         onFetch={onFetch}
         keyExtractor={(item, index) => `hot_race${index}`}
-        item={(item, index) => _renderItem(item, index, onPress, onShare)}
+        item={(item, index) => _renderItem(item, index, onPress, onShare,onCollect)}
         refreshableTitlePull={global.lang.t('pull_refresh')}
         refreshableTitleRelease={global.lang.t('release_refresh')}
         dateTitle={global.lang.t('last_refresh')}
@@ -30,7 +30,7 @@ const Hot = ({onFetch, onPress, onShare}) => (
 )
 
 
-const _renderItem = (item, index, onPress, onShare) => (
+const _renderItem = (item, index, onPress, onShare,onCollect) => (
     <TouchableOpacity
         onPress={() => onPress && onPress(item)}
         key={`hot${index}`}
@@ -49,6 +49,7 @@ const _renderItem = (item, index, onPress, onShare) => (
                 <View style={{flex: 1}}/>
                 <TouchableOpacity onPress={()=>{
                     if(isLogin()){
+                        onCollect && onCollect(item)
                         showToast('收藏成功')
                     }else{
                         router.toLogin()
