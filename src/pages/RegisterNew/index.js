@@ -80,7 +80,7 @@ export default class RegisterNew extends Component {
                 </View>
 
                 <TouchableOpacity style={styles.next_btn} onPress={() => {
-                    this._next();
+                    router.toMobileRegister()
                 }}>
                     <Text style={{color: '#FFE9AD', fontSize: 17}}>{global.lang.t('login_continue')}</Text>
                 </TouchableOpacity>

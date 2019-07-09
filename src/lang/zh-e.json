@@ -224,5 +224,6 @@
   "psd":"密码",
   "zhuce":"注册",
   "set_name":"设置账号",
-  "set_psd":"设置密码"
+  "set_psd":"设置密码",
+  "set_mobile":"绑定手机号"
 }
