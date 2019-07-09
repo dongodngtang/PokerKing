@@ -206,7 +206,9 @@ export const Images = {
     setOpen: require('../asserts/new/setOpen.png'),
     load_error: require('../asserts/load/load_error.png'),
     psd: require('../asserts/new/psd.png'),
-    login: require('../asserts/new/login.png')
+    login: require('../asserts/new/login.png'),
+    psd_gray: require('../asserts/new/psd_gray.png'),
+    login_gray: require('../asserts/new/login_gray.png')
 
 }
 

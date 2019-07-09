@@ -46,6 +46,7 @@ import Mobile from "./Mobile";
 import ChangePhone from "./ChangePhone";
 import Collections from "./Collections";
 import SearchDateTag from "./Main/SearchNews/SearchDateTag";
+import RegisterNew from "./RegisterNew";
 
 export const scenes = () => {
     return <Scene key="root"
@@ -277,6 +278,11 @@ export const scenes = () => {
                component={Collections}
                {...TopNav({
                    title: global.lang.t('collection')
+               })}/>
+        <Scene key="RegisterNew"
+               component={RegisterNew}
+               {...TopNav({
+                   title: global.lang.t('zhuce')
                })}/>
         <Scene key="SearchDateTag"
                component={SearchDateTag}

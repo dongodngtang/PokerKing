@@ -119,6 +119,12 @@ export default class Login extends Component {
         return (
             <View style={styles.container}>
 
+                <TouchableOpacity style={{marginTop: 20, alignSelf: 'flex-end', marginRight: 17}} onPress={() => {
+                    router.toRegisterNew()
+                }}>
+                    <Text style={{color: "#FFE9AD", fontSize:14}}>{global.lang.t("zhuce")}</Text>
+                </TouchableOpacity>
+
                 <Image source={getAvatar('')} style={styles.person_img}/>
 
                 <KeyboardAvoidingView behavior='position' keyboardVerticalOffset={20}>
