@@ -34,12 +34,14 @@ export default class Root extends Component {
         global.lang = this.lang
 
         initBaseUrl()
-        initLoginUser()
 
     }
 
     componentDidMount() {
-        SplashScreen.hide();
+        initLoginUser(()=>{
+            SplashScreen.hide();
+        })
+
         if(Platform.OS ==='ios'){
             JShareModule.setup()
         }
