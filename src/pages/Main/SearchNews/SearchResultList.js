@@ -10,6 +10,7 @@ import {ImageLoad} from '../../../components'
 import {px2dp, px2sp, wh} from "../../../configs/Theme";
 import {isEmpty, logMsg, utcDate} from "../../../utils/utils";
 import {infosSearch} from "../../../services/raceDao";
+import NotData from "../../comm/NotData";
 
 export default class SearchResultList extends Component {
 
@@ -21,24 +22,26 @@ export default class SearchResultList extends Component {
     render() {
         return <View style={styles.container}>
             <UltimateFlatList
-                paginationFetchingView={()=><View/>}
                 ref={ref => this.list = ref}
                 firstLoader={false}
                 onFetch={this.onFetch}
                 separator={() => <View style={styles.line}/>}
                 keyExtractor={(item, index) => `search${index}`}
-                item={this._renderItem}/>
+                item={this._renderItem}
+                paginationFetchingView={()=><View/>}
+                emptyView={() => <NotData/>}
+            />
         </View>
     }
 
     onFetch = (page = 1, startFetch, abortFetch) => {
         try {
             if (this.searchParams) {
-                infosSearch(this.searchParams, data => {
+                infosSearch({page,...this.searchParams}, data => {
                     startFetch(data.infos, 18)
                 })
             } else {
-                startFetch([])
+                abortFetch()
             }
         } catch (e) {
             abortFetch()
@@ -71,7 +74,8 @@ export default class SearchResultList extends Component {
 const styles = StyleSheet.create({
     container: {
         paddingHorizontal: px2dp(34),
-        backgroundColor: '#303236'
+        backgroundColor: '#303236',
+        flex:1
     },
     item: {
         flexDirection: 'row',

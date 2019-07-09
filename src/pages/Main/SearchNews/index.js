@@ -93,9 +93,9 @@ export default class SearchNews extends Component {
             <View style={{flex: 1, backgroundColor: "#1A1B1F"}}>
                 {this.topBar()}
 
-                <View style={styles.viewSearch}>
-                    {this.resentBlank()}
-                </View>
+                {/*<View style={styles.viewSearch}>*/}
+                    {/*{this.resentBlank()}*/}
+                {/*</View>*/}
                 <SearchResultList ref={ref=>this.searchList = ref}/>
             </View>
         )
