@@ -6,8 +6,9 @@ import {Images} from "../../configs/Theme";
 import SearchBar from '../comm/SearchBar';
 import StorageKey from "../../configs/StorageKey";
 import {logMsg, strNotNull} from "../../utils/utils";
-import HotNewsList from "../HotNewsList";
-import {infosSearch} from "../../services/raceDao";
+import SearchResultList from "./SearchResultList";
+
+
 
 @connect(({SearchNews}) => ({
     ...SearchNews,
@@ -29,11 +30,11 @@ export default class SearchNews extends Component {
                         source={Images.left}/>
 
                 </TouchableOpacity>
-               <SearchBar
+                <SearchBar
                     ref={ref => this.searchBar = ref}
                     keyword={keyword => {
-                       logMsg("书里看到",keyword)
-                       this.searchByKeyword(keyword)
+                        logMsg("书里看到", keyword)
+                        this.searchByKeyword(keyword)
                     }}/>
 
                 <TouchableOpacity
@@ -49,10 +50,8 @@ export default class SearchNews extends Component {
         )
     };
 
-    searchByKeyword = (keyword)=>{
-        infosSearch({keyword},data=>{
-            logMsg("a上课地方",data)
-        })
+    searchByKeyword = (keyword) => {
+        this.searchList && this.searchList.search({keyword})
     }
 
     resentBlank = () => {
@@ -77,13 +76,11 @@ export default class SearchNews extends Component {
 
     tabBlank = () => {
 
-        let that = this;
         return <View style={{flexDirection: 'row', flexWrap: 'wrap', marginLeft: 19}}>
             {this.state.recordKeys.map(function (item, index) {
                 return <TouchableOpacity
                     onPress={() => {
-                        that.keywords = item;
-                        that.submitSearch();
+
                     }}
                     key={`tab${index}`}
                     style={styles.tabSearch}>
@@ -95,34 +92,16 @@ export default class SearchNews extends Component {
         </View>
     };
 
-    submitSearch = () => {
-        if (strNotNull(this.keywords)) {
-            this.setwords.add(this.keywords);
-            global.storage.save({
-                key: StorageKey.InfoSearchRecord,
-                rawData: Array.from(this.setwords)
-            });
-            this.setState({
-                submit: true
-            });
-            if (this.newsList)
-                this.newsList.search(this.keywords)
-        } else {
-
-        }
-
-    };
 
     render() {
         return (
             <View style={{flex: 1, backgroundColor: "#1A1B1F"}}>
                 {this.topBar()}
-                {/*<HotNewsList*/}
-                    {/*ref={ref => this.newsList = ref}*/}
-                    {/*isSearch={true}/>*/}
-                <View style={styles.viewSearch}>
-                    {this.resentBlank()}
-                </View>
+
+                {/*<View style={styles.viewSearch}>*/}
+                    {/*{this.resentBlank()}*/}
+                {/*</View>*/}
+                <SearchResultList ref={ref=>this.searchList = ref}/>
             </View>
         )
     }

@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
         width: '90%',
         color: '#FFE9AD',
         fontSize: 16,
-        marginLeft: 8,
+        marginLeft: 8
     }
 })
 
@@ -55,6 +55,10 @@ export default class SearchBar extends PureComponent {
         return <View
             style={styles.contains}>
 
+            {hide ? null : <Image source={Images.search_gray}
+                                  style={styles.search}/>}
+
+            {hide ? null : <Text style={styles.txt_search}>{global.lang.t('search_text')}</Text>}
             <TextInput
                 ref={ref => this.input = ref}
                 underlineColorAndroid={'transparent'}
@@ -64,11 +68,6 @@ export default class SearchBar extends PureComponent {
                     this.props.keyword(text)
                 }}
                 style={styles.input}/>
-            {hide ? null : <Image source={Images.search_gray}
-                                  style={styles.search}/>}
-
-            {hide ? null : <Text style={styles.txt_search}>{global.lang.t('search_text')}</Text>}
-
 
         </View>
     }
