@@ -5,7 +5,7 @@
  */
 
 import React, {PureComponent} from 'react'
-import {View, TouchableOpacity, Text, Image, StatusBar,SafeAreaView} from 'react-native'
+import {View, TouchableOpacity, Text, Image, StatusBar, SafeAreaView} from 'react-native'
 import {Scene, Drawer, Actions} from 'react-native-router-flux'
 import {Images, Styles, Colors, px2dp, px2sp, Metrics} from '../configs/Theme';
 import {isStrNull} from "../utils/utils";
@@ -37,7 +37,7 @@ import TabBarItem from "./navigation/TabBarItem";
 import Main from "./Main";
 import MinePage from "./MinePage";
 import NoticesPage from './NoticesPage'
-import SearchNews from "./SearchNews";
+import SearchNews from "./Main/SearchNews";
 import InstantList from "./InstantList";
 import RankList from "./RankList";
 import Setting from "./Setting";
@@ -45,6 +45,7 @@ import AccountSecurity from "./AccountSecurity";
 import Mobile from "./Mobile";
 import ChangePhone from "./ChangePhone";
 import Collections from "./Collections";
+import SearchDateTag from "./Main/SearchNews/SearchDateTag";
 
 export const scenes = () => {
     return <Scene key="root"
@@ -56,17 +57,17 @@ export const scenes = () => {
                hideNavBar
                animationEnabled={false}
                tabBarPosition={'bottom'}
-               tabBarStyle={{backgroundColor:'#1A1B1F',paddingBottom:3}}
+               tabBarStyle={{backgroundColor: '#1A1B1F', paddingBottom: 3}}
                activeTintColor={'#FFE9AD'}
                inactiveTintColor={'#736C5B'}
-               labelStyle={{fontSize:px2sp(24)}}
+               labelStyle={{fontSize: px2sp(24)}}
                tabs>
             <Scene key="Home"
                    initial
                    tabBarLabel={global.lang.t('news')}
-                   tabBarIcon={({focused})=>(
+                   tabBarIcon={({focused}) => (
                        <TabBarItem
-                           iconStyle={{height:px2dp(48),width:px2dp(36)}}
+                           iconStyle={{height: px2dp(48), width: px2dp(36)}}
                            focused={focused}
                            normalImage={Images.news_gray}
                            selectedImage={Images.news}/>
@@ -75,9 +76,9 @@ export const scenes = () => {
                    hideNavBar/>
             <Scene key={global.lang.t('race')}
                    component={Races}
-                   tabBarIcon={({focused})=>(
+                   tabBarIcon={({focused}) => (
                        <TabBarItem
-                           iconStyle={{height:px2dp(48),width:px2dp(48)}}
+                           iconStyle={{height: px2dp(48), width: px2dp(48)}}
                            focused={focused}
                            normalImage={Images.event_gray}
                            selectedImage={Images.event}/>
@@ -85,9 +86,9 @@ export const scenes = () => {
                    hideNavBar/>
             <Scene key={global.lang.t('room')}
                    component={CashTable}
-                   tabBarIcon={({focused})=>(
+                   tabBarIcon={({focused}) => (
                        <TabBarItem
-                           iconStyle={{height:px2dp(48),width:px2dp(44)}}
+                           iconStyle={{height: px2dp(48), width: px2dp(44)}}
                            focused={focused}
                            normalImage={Images.room_gray}
                            selectedImage={Images.room}/>
@@ -95,17 +96,15 @@ export const scenes = () => {
                    hideNavBar/>
             <Scene key={global.lang.t('mine')}
                    component={MinePage}
-                   tabBarIcon={({focused})=>(
+                   tabBarIcon={({focused}) => (
                        <TabBarItem
-                           iconStyle={{height:px2dp(48),width:px2dp(48)}}
+                           iconStyle={{height: px2dp(48), width: px2dp(48)}}
                            focused={focused}
                            normalImage={Images.mine_gray}
                            selectedImage={Images.mine}/>
                    )}
                    hideNavBar/>
         </Scene>
-        
-
 
 
         <Scene key="Detail"
@@ -176,7 +175,7 @@ export const scenes = () => {
         <Scene key="QueueList"
                component={QueueList}
                {...TopNav({
-                   rightTitle:global.lang.t('refresh')
+                   rightTitle: global.lang.t('refresh')
                })}/>
         <Scene key="InfoDetail"
                component={InfoDetail}
@@ -279,6 +278,9 @@ export const scenes = () => {
                {...TopNav({
                    title: global.lang.t('collection')
                })}/>
+        <Scene key="SearchDateTag"
+               component={SearchDateTag}
+               hideNavBar/>
     </Scene>
 }
 const TopNav = (props) => {
@@ -327,10 +329,12 @@ export class NavBar extends PureComponent {
         let pageMsg = `在page/index查找${component && component.displayName}`;
         return <View style={{backgroundColor: '#1A1B1F'}}>
             <SafeAreaView/>
-            <View style={{width: Metrics.screenWidth,
+            <View style={{
+                width: Metrics.screenWidth,
                 flexDirection: 'row',
                 alignItems: 'center',
-                height:44}}>
+                height: 44
+            }}>
                 <StatusBar barStyle={'light-content'}/>
                 <TouchableOpacity
                     onPress={() => {

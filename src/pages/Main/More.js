@@ -60,7 +60,10 @@ class TypeSelect extends PureComponent {
     }
 
     renderItem = (type, index) => {
-        return <View
+        return <TouchableOpacity
+            onPress={()=>{
+                router.toSearchDateTag({type:'tag',value:type})
+            }}
             key={`type${index}`}
             style={{
                 ...wh(176, 56), marginTop: px2dp(24), backgroundColor: '#383A41',
@@ -69,7 +72,7 @@ class TypeSelect extends PureComponent {
             }}>
             <Text style={{color: '#FFE9AD', fontSize: px2sp(28)}}>{type}</Text>
 
-        </View>
+        </TouchableOpacity>
     }
 }
 
@@ -99,7 +102,11 @@ class TimeSelect extends PureComponent {
     }
 
     renderItem = (year, index) => {
-        return <View
+        return <TouchableOpacity
+            onPress={()=>{
+                let value = year.replace('>',"")
+                router.toSearchDateTag({type:'date',value})
+            }}
             key={`year${index}`}
             style={{
                 height: px2dp(76), width: '100%', marginTop: 1, backgroundColor: '#25262A',
@@ -107,7 +114,7 @@ class TimeSelect extends PureComponent {
             }}>
             <Text style={{color: '#999999', fontSize: px2sp(28)}}>{year}</Text>
 
-        </View>
+        </TouchableOpacity>
     }
 }
 

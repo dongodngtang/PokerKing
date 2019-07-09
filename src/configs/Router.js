@@ -282,5 +282,8 @@ export default class Router {
         this.push({sceneKey:'ChangePhone'})
     }
 
+    toSearchDateTag(searchParams){
+        this.push({sceneKey:'SearchDateTag',params:{searchParams}})
+    }
 
 }

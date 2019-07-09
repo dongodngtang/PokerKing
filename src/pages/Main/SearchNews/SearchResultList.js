@@ -5,10 +5,11 @@
  */
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
-import UltimateFlatList from '../../components/ultimate/UltimateFlatList';
-import {px2dp, px2sp, wh} from "../../configs/Theme";
-import {utcDate} from "../../utils/utils";
-import {infosSearch} from "../../services/raceDao";
+import UltimateFlatList from '../../../components/ultimate/UltimateFlatList';
+import {ImageLoad} from '../../../components'
+import {px2dp, px2sp, wh} from "../../../configs/Theme";
+import {isEmpty, logMsg, utcDate} from "../../../utils/utils";
+import {infosSearch} from "../../../services/raceDao";
 
 export default class SearchResultList extends Component {
 
@@ -50,8 +51,9 @@ export default class SearchResultList extends Component {
         let date = utcDate(created_at, 'MM-DD')
         return <View style={styles.item}
                      key={`search_result_item${index}`}>
-            <Image style={styles.banner}
-                   source={{uri: image}}/>
+            {isEmpty(image)?<View style={styles.banner}/>:<ImageLoad style={styles.banner}
+                                               source={{uri: image}}/>}
+
             <View style={{height: px2dp(150),marginLeft:px2dp(22)}}>
                 <Text style={styles.title}>{title}</Text>
                 <View style={{flex: 1}}/>

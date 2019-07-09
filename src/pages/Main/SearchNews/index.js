@@ -1,18 +1,13 @@
 import React, {Component} from 'react';
 import {View, Text, TouchableOpacity, Image} from 'react-native';
-import {connect} from 'react-redux';
 import styles from './index.style'
-import {Images} from "../../configs/Theme";
-import SearchBar from '../comm/SearchBar';
-import StorageKey from "../../configs/StorageKey";
-import {logMsg, strNotNull} from "../../utils/utils";
+import {Images} from "../../../configs/Theme";
+import SearchBar from '../../comm/SearchBar';
+import StorageKey from "../../../configs/StorageKey";
+import {logMsg, strNotNull} from "../../../utils/utils";
 import SearchResultList from "./SearchResultList";
 
 
-
-@connect(({SearchNews}) => ({
-    ...SearchNews,
-}))
 export default class SearchNews extends Component {
 
 
@@ -98,9 +93,9 @@ export default class SearchNews extends Component {
             <View style={{flex: 1, backgroundColor: "#1A1B1F"}}>
                 {this.topBar()}
 
-                {/*<View style={styles.viewSearch}>*/}
-                    {/*{this.resentBlank()}*/}
-                {/*</View>*/}
+                <View style={styles.viewSearch}>
+                    {this.resentBlank()}
+                </View>
                 <SearchResultList ref={ref=>this.searchList = ref}/>
             </View>
         )

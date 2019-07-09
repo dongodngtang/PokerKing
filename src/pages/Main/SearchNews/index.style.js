@@ -1,6 +1,6 @@
 
 import { StyleSheet } from 'react-native';
-import {Metrics} from "../../configs/Theme";
+import {Metrics} from "../../../configs/Theme";
 
 export default StyleSheet.create({
     navBar: {

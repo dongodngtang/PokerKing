@@ -5,10 +5,11 @@
  */
 
 import React, {Component} from 'react';
-import {View, ScrollView, Text, RefreshControl,StyleSheet,StatusBar} from 'react-native';
+import {View, ScrollView, Text, RefreshControl, StyleSheet, StatusBar} from 'react-native';
 import Loading from './comm/Loading'
 import {logMsg} from "../utils/utils";
 import PropTypes from 'prop-types';
+import {NavBar} from "./index";
 
 const StatusBarStyle = {
     default: 'default',
@@ -19,7 +20,7 @@ const StatusBarStyle = {
 export default class Base extends Component {
 
     static propTypes = {
-        hideNavBar: PropTypes.bool,
+        showNav: PropTypes.bool,
         statusBarStyle: PropTypes.oneOf([StatusBarStyle.default, StatusBarStyle.lightcontent]),
     };
 
@@ -40,13 +41,13 @@ export default class Base extends Component {
     }
 
     render() {
-        const {style, scrollable, pedding, onRefresh, isRefreshing,statusBarStyle} = this.props;
+        const {style, scrollable, pedding, onRefresh, isRefreshing, statusBarStyle, showNav} = this.props;
         if (scrollable) {
-            return <ScrollView
-                keyboardShouldPersistTaps='handled'
-                refreshControl={this.renderRefreshControl()}>
-                <StatusBar barStyle={statusBarStyle} />
-                <View style={[{flex: 1, backgroundColor: '#1A1B1F'}, style]}>
+            return <View style={[{flex: 1, backgroundColor: '#1A1B1F'}, style]}>
+                <ScrollView
+                    keyboardShouldPersistTaps='handled'
+                    refreshControl={this.renderRefreshControl()}>
+                    <StatusBar barStyle={statusBarStyle}/>
                     {pedding ? <View style={[styles.flex_center, {flex: 1}]}>
                         <Text>加载中...</Text>
 
@@ -54,14 +55,15 @@ export default class Base extends Component {
 
                     <Loading
                         ref={ref => this.loading = ref}/>
+                </ScrollView>
 
-                </View>
-
-            </ScrollView>
+            </View>
         }
         return (
             <View style={[{flex: 1, backgroundColor: '#1A1B1F'}, style]}>
-                <StatusBar barStyle={statusBarStyle} />
+                <StatusBar barStyle={statusBarStyle}/>
+                {showNav ? <NavBar {...this.props}/> : null}
+
                 {pedding ? <View style={[styles.flex_center, {flex: 1}]}>
                     <Text>加载中...</Text>
 
@@ -104,7 +106,7 @@ export default class Base extends Component {
 }
 
 const styles = StyleSheet.create(({
-    flex_center:{
+    flex_center: {
         justifyContent: 'center',
         alignItems: 'center'
     }
