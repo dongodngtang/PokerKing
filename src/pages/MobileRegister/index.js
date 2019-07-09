@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import {View, Text, Button, TextInput, KeyboardAvoidingView, TouchableOpacity, Image} from 'react-native';
+import {View, Text, Button, TextInput, KeyboardAvoidingView, TouchableOpacity, Image,StatusBar} from 'react-native';
 import {connect} from 'react-redux';
 import styles from './index.style';
 import ExtArea from '../comm/ExtArea';
-import {Images, Metrics, Colors} from "../../configs/Theme";
+import {Images, Metrics, Colors, px2dp} from "../../configs/Theme";
 import {getAvatar, isStrNull, logMsg, showToast} from "../../utils/utils";
 import {verify, postCode, register, login, verify_code} from "../../services/accountDao";
 import CountDownButton from '../../components/CountDownButton'
@@ -46,12 +46,43 @@ export default class MobileRegister extends Component {
 
     }
 
+    topBar = () => {
+        return (
+            <View style={styles.navTop}>
+                <StatusBar barStyle={'light-content'}/>
+                <TouchableOpacity
+                    onPress={() => {
+                        router.pop()
+                    }}
+                    style={styles.left2}>
+                    <Image
+                        style={{height: 17, width: 9}}
+                        source={Images.left}
+                    />
+                </TouchableOpacity>
+                <View style={styles.navTitle}>
+                    <Text
+                        style={{fontSize: 17, color: '#FFE9AD', maxWidth: '90%'}}
+                        numberOfLines={1}>{global.lang.t('set_mobile')}</Text>
+                </View>
+                <TouchableOpacity
+                    activeOpacity={1}
+                    onPress={() => {
+
+                    }}
+                    style={styles.right2}>
+                    <Text style={{color:"#FFE9AD",fontSize:14}}>{global.lang.t("jump")}</Text>
+
+                </TouchableOpacity>
+            </View>
+        )
+    };
+
     render() {
         const {ext, areaName} = this.state;
         return (
             <View style={styles.register_container}>
-
-
+                {this.topBar()}
                 <TouchableOpacity style={styles.areaView} onPress={() => {
                     this.areaAction && this.areaAction.openModal();
                 }}>

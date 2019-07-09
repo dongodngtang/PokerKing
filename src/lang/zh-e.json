@@ -227,5 +227,6 @@
   "set_psd":"设置密码",
   "set_mobile":"绑定手机号",
   "mobile_prompt":"提示：使用排队功能需要绑定手机号",
-  "complete":"完成"
+  "complete":"完成",
+  "jump":"跳过"
 }

@@ -287,9 +287,7 @@ export const scenes = () => {
                })}/>
         <Scene key="MobileRegister"
                component={MobileRegister}
-               {...TopNav({
-                   title: global.lang.t('set_mobile')
-               })}/>
+               hideNavBar/>
         <Scene key="SearchDateTag"
                component={SearchDateTag}
                hideNavBar/>
