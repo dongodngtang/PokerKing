@@ -219,7 +219,9 @@
   "konw":"我知道了",
   "getFavorite":"收藏成功",
   "cancelFavorite":"取消收藏成功",
-  "err_problem":"网络异常，称稍后再试"
+  "err_problem":"网络异常，称稍后再试",
+  "nameormobile":"账号或手机号",
+  "psd":"密码"
 }
 
 

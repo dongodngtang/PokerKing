@@ -120,11 +120,11 @@ export const scenes = () => {
         <Scene key="Login"
                component={Login}
                {...TopNav({
-                   left_definition: true,
+                   // left_definition: true,
                    rightTitle: global.lang.t('home_language'),
                    left_img: Images.close,
-                   img_size: {height: 16, width: 16},
-                   title: 'PokerKingLive'
+                   img_size: {height: 16, width: 16}
+                   // title: 'PokerKingLive'
                })}/>
         <Scene key="HotNewsList"
                component={HotNewsList}
