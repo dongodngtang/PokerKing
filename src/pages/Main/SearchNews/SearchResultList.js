@@ -28,15 +28,15 @@ export default class SearchResultList extends Component {
                 separator={() => <View style={styles.line}/>}
                 keyExtractor={(item, index) => `search${index}`}
                 item={this._renderItem}
-                paginationFetchingView={()=><View/>}
-                emptyView={() =>  <TouchableOpacity
-                    onPress={()=>{
+                paginationFetchingView={() => <View/>}
+                emptyView={() => <TouchableOpacity
+                    onPress={() => {
                         this.props.onPress && this.props.onPress()
                     }}
                     style={{
                         flex: 1,
-                        flexDirection:'column',
-                        justifyContent:'center',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
                         alignItems: 'center',
                         paddingTop: px2dp(132)
                     }}>
@@ -52,17 +52,19 @@ export default class SearchResultList extends Component {
         </View>
     }
 
-    onFetch = (page = 1, startFetch, abortFetch) => {
+    onFetch = (page = 1, startFetch, endFetch) => {
         try {
             if (this.searchParams) {
-                infosSearch({page,...this.searchParams}, data => {
+                infosSearch({page, ...this.searchParams}, data => {
                     startFetch(data.infos, 18)
+                }, err => {
+                    endFetch()
                 })
             } else {
-                abortFetch()
+                endFetch()
             }
         } catch (e) {
-            abortFetch()
+            endFetch()
         }
 
     }
@@ -72,10 +74,10 @@ export default class SearchResultList extends Component {
         let date = utcDate(created_at, 'MM-DD')
         return <View style={styles.item}
                      key={`search_result_item${index}`}>
-            {isEmpty(image)?<View style={styles.banner}/>:<ImageLoad style={styles.banner}
-                                               source={{uri: image}}/>}
+            {isEmpty(image) ? <View style={styles.banner}/> : <ImageLoad style={styles.banner}
+                                                                         source={{uri: image}}/>}
 
-            <View style={{height: px2dp(150),marginLeft:px2dp(22)}}>
+            <View style={{height: px2dp(150), marginLeft: px2dp(22)}}>
                 <Text style={styles.title}>{title}</Text>
                 <View style={{flex: 1}}/>
                 <View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -92,7 +94,7 @@ export default class SearchResultList extends Component {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#303236',
-        flex:1
+        flex: 1
     },
     item: {
         flexDirection: 'row',
