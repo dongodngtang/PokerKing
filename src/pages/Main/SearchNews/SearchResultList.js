@@ -68,21 +68,23 @@ export default class SearchResultList extends Component {
     }
 
     _renderItem = (item, index) => {
-        const {image, title, source, created_at} = item
+        const {id,image, title, source, created_at} = item
         let date = utcDate(created_at, 'MM-DD')
         return <View style={styles.item}
                      key={`search_result_item${index}`}>
             {isEmpty(image)?<View style={styles.banner}/>:<ImageLoad style={styles.banner}
                                                source={{uri: image}}/>}
 
-            <View style={{height: px2dp(150),marginLeft:px2dp(22)}}>
+            <TouchableOpacity style={{height: px2dp(150),marginLeft:px2dp(22)}} onPress={()=>{
+                router.toInfoDetail(id)
+            }}>
                 <Text style={styles.title}>{title}</Text>
                 <View style={{flex: 1}}/>
                 <View style={{flexDirection: 'row', alignItems: 'center'}}>
                     <Text style={styles.source}>{source}</Text>
                     <Text style={[styles.source, {marginLeft: px2dp(20)}]}>{date}</Text>
                 </View>
-            </View>
+            </TouchableOpacity>
         </View>
 
     }
@@ -91,7 +93,7 @@ export default class SearchResultList extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#303236',
+        backgroundColor: '#1A1B1F',
         flex:1
     },
     item: {
