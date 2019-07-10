@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import Base from "../Base";
 import NavigationBar from "../comm/NavigationBar";
 import ScrollableTab, {DefaultTabBar} from 'react-native-scrollable-tab-view'
-import {getInfoList, postCollect, postCancelCollect, isCollect} from "../../services/accountDao";
+import {getInfoList, postCollect, postCancelCollect, isCollect, initLoginUser} from "../../services/accountDao";
 import {isEmptyObject, logMsg, OnSafePress, shareHost, shareTo, showToast} from "../../utils/utils";
 import Hot from "./Hot";
 import Instants from "./Instants";
@@ -25,16 +25,18 @@ export default class Main extends Component {
     }
 
     onFetch = (page = 1, startFetch, abortFetch) => {
-        getInfoList({
-            status: 'hot',
-            page,
-            page_size: 20
-        }, data => {
-            logMsg("InfoList:", data)
-            startFetch(data.infos, 20)
-        }, err => {
-            logMsg("reject:", err)
-            abortFetch()
+        initLoginUser(()=>{
+            getInfoList({
+                status: 'hot',
+                page,
+                page_size: 20
+            }, data => {
+                logMsg("InfoList:", data)
+                startFetch(data.infos, 20)
+            }, err => {
+                logMsg("reject:", err)
+                abortFetch()
+            })
         })
     }
 
