@@ -222,26 +222,81 @@ export default class MobileRegister extends Component {
                     backgroundColor: "#ECECEE"
                 }}/>
                 <TouchableOpacity style={styles.complete} onPress={() => {
-                    // this._next();
+                    this._next();
                 }}>
                     <Text style={{color: '#FFE9AD', fontSize: 17}}>{global.lang.t('complete')}</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity
+                <View
                     style={{
                         marginLeft: 17,
                         marginRight: 17,
                         position: 'absolute',
                         bottom:56, alignSelf:'center', flexDirection: 'row', alignItems: 'center'}}
-                    onPress={() => {
-                        router.toProtocolPage()
-                    }}>
+                    >
                     <Text style={{color: "#999999", fontSize: 14}}>{global.lang.t('mobile_prompt')}</Text>
-                </TouchableOpacity>
+                </View>
 
 
             </View>
         )
+    };
+
+    _next = () => {
+        const {ext} = this.state;
+        let iphone = this.iphone
+        let vcode = this.vcode
+        router.toRegister({
+            type: 'mobile',
+            mobile: iphone,
+            vcode,
+            country_code: ext
+        })
+        if (iphone.length > 1 && vcode.length > 1 && !isStrNull(ext)) {
+            //核查验证码是否正确
+            verify_code({
+                account: iphone,
+                country_code: ext,
+                option_type: 'login',
+                vcode_type: 'mobile',
+                vcode: vcode
+            }, res => {
+                // 查询该账户是否被注册过¶
+                verify({
+                    account: iphone,
+                    country_code: ext
+                }, ret => {
+                    if (ret && ret.exist && ret.exist === 1) {
+                        // 登录
+                        login({
+                            type: 'vcode',
+                            mobile: iphone,
+                            vcode,
+                            country_code: ext
+                        }, ret => {
+                            showToast(global.lang.t('login_success'))
+                            this.props.navigation.popToTop()
+                        }, err => {
+
+                        })
+                    } else {
+                        // 注册
+                        router.toRegister({
+                            type: 'mobile',
+                            mobile: iphone,
+                            vcode,
+                            country_code: ext
+                        })
+
+                    }
+
+                }, err => {
+
+                })
+            })
+        }
+        else
+            showToast(`${global.lang.t('fillWhole')}`);
     };
 
     onSelectMenu = (index, subindex, data) => {

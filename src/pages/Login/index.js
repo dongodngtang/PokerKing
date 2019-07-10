@@ -201,7 +201,7 @@ export default class Login extends Component {
                         router.toProtocolPage()
                     }}>
                     <Text style={{color: "#AAAAAA", fontSize: 12}}>{global.lang.t('protocol1')}<Text style={{
-                        color: "#444444",
+                        color: "#998E72",
                         fontSize: 12,
                         marginLeft: 8
                     }}>{`《${global.lang.t('protocol2')}》`}</Text></Text>

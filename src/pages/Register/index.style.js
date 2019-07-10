@@ -3,17 +3,17 @@ import { StyleSheet } from 'react-native';
 import {Metrics} from "../../configs/Theme";
 
 export default StyleSheet.create({
-    container:{
+    resgister_container:{
         flex:1,
         flexDirection:'column',
-        backgroundColor:'white',
-        alignItems:'center'
+        backgroundColor:'white'
     },
     textView:{
+        alignSelf:'center',
         width:Metrics.screenWidth - 34,
         flexDirection:'row',
         alignItems:'center',
-        borderBottomColor:'#444444',
+        borderBottomColor:'#ECECEE',
         borderBottomWidth:1,
         marginTop:15
     },
