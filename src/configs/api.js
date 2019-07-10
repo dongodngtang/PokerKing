@@ -32,6 +32,8 @@ const api = {
     collect_item:collection_list,//收藏资讯 或者 收藏主赛
     isCollect:isCollect,//查看是否收藏
     cancel_collect:cancel_collect,//取消收藏
+    history_search:'infos/history_search',//查询历史搜索的关键词
+    remove_history_search:'infos/remove_history_search'
 }
 
 

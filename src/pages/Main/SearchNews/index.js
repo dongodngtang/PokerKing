@@ -3,12 +3,28 @@ import {View, Text, TouchableOpacity, Image} from 'react-native';
 import styles from './index.style'
 import {Images} from "../../../configs/Theme";
 import SearchBar from '../../comm/SearchBar';
-import StorageKey from "../../../configs/StorageKey";
-import {logMsg, strNotNull} from "../../../utils/utils";
+import {logMsg} from "../../../utils/utils";
 import SearchResultList from "./SearchResultList";
+import {historySearch, removeHistorySearch} from "../../../services/raceDao";
 
 
 export default class SearchNews extends Component {
+
+    state = {
+        recordKeys: [],
+        hideHistory: false
+    }
+
+
+    componentDidMount() {
+        historySearch(data => {
+            if (data && data.history) {
+                this.setState({
+                    recordKeys: data.history
+                })
+            }
+        })
+    }
 
 
     topBar = () => {
@@ -28,16 +44,12 @@ export default class SearchNews extends Component {
                 <SearchBar
                     ref={ref => this.searchBar = ref}
                     keyword={keyword => {
-                        logMsg("书里看到", keyword)
                         this.searchByKeyword(keyword)
                     }}/>
 
                 <TouchableOpacity
                     style={[styles.btn_search2, {marginLeft: 17}]}
-                    onPress={() => {
-                        this.searchBar && this.searchBar.clearInput()
-                        this.keyword = '';
-                    }}>
+                    onPress={this.clearInput}>
                     <Text style={styles.cancel_text}>{global.lang.t('cancel')}</Text>
 
                 </TouchableOpacity>
@@ -45,7 +57,18 @@ export default class SearchNews extends Component {
         )
     };
 
+    clearInput = ()=>{
+        this.searchBar && this.searchBar.clearInput()
+        this.keyword = '';
+        this.setState({
+            hideHistory: false
+        })
+    }
+
     searchByKeyword = (keyword) => {
+        this.setState({
+            hideHistory: keyword && keyword.length > 0
+        })
         this.searchList && this.searchList.search({keyword})
     }
 
@@ -55,10 +78,13 @@ export default class SearchNews extends Component {
             <View style={{flex: 1}}/>
             <TouchableOpacity
                 onPress={() => {
-                    this.setwords.clear();
-                    this.setState({
-                        recordKeys: []
+                    this.clearInput()
+                    removeHistorySearch(data => {
+                        this.setState({
+                            recordKeys: []
+                        })
                     })
+
                 }}
                 style={styles.btnDel}>
                 <Image style={styles.imgDel}
@@ -72,10 +98,10 @@ export default class SearchNews extends Component {
     tabBlank = () => {
 
         return <View style={{flexDirection: 'row', flexWrap: 'wrap', marginLeft: 19}}>
-            {this.state.recordKeys.map(function (item, index) {
+            {this.state.recordKeys && this.state.recordKeys.map((item, index)=> {
                 return <TouchableOpacity
                     onPress={() => {
-
+                        this.searchByKeyword(item)
                     }}
                     key={`tab${index}`}
                     style={styles.tabSearch}>
@@ -93,10 +119,12 @@ export default class SearchNews extends Component {
             <View style={{flex: 1, backgroundColor: "#1A1B1F"}}>
                 {this.topBar()}
 
-                {/*<View style={styles.viewSearch}>*/}
-                    {/*{this.resentBlank()}*/}
-                {/*</View>*/}
-                <SearchResultList ref={ref=>this.searchList = ref}/>
+                {this.state.hideHistory ? null : <View style={styles.viewSearch}>
+                    {this.resentBlank()}
+                    {this.tabBlank()}
+                </View>}
+
+                <SearchResultList ref={ref => this.searchList = ref}/>
             </View>
         )
     }

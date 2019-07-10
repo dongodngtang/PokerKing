@@ -1,5 +1,4 @@
-
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 import {Metrics} from "../../../configs/Theme";
 
 export default StyleSheet.create({
@@ -14,13 +13,13 @@ export default StyleSheet.create({
     btn_search: {
         width: 50,
         height: 40,
-        flexDirection:"row",
+        flexDirection: "row",
         alignItems: 'center'
     },
     btn_search2: {
         width: 60,
         height: 40,
-        flexDirection:"row-reverse",
+        flexDirection: "row-reverse",
         alignItems: 'center'
     },
     cancel_text: {
@@ -35,11 +34,11 @@ export default StyleSheet.create({
         height: 17,
         width: 17
     },
-    nar_text:{
+    nar_text: {
         fontSize: 17,
         color: '#FFE9AD',
-        alignSelf:'center',
-        maxWidth:'60%'
+        alignSelf: 'center',
+        maxWidth: '60%'
     },
     resent: {
         height: 45,
@@ -48,11 +47,11 @@ export default StyleSheet.create({
     },
     txtRecent: {
         fontSize: 14,
-        color: '#333333',
+        color: '#999999',
         marginLeft: 19
     },
     viewSearch: {
-       flex:1
+        minHeight: 50
     },
     imgDel: {
         height: 22,
@@ -76,13 +75,13 @@ export default StyleSheet.create({
         paddingRight: 17,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#E1E1E2',
+        backgroundColor: '#303236',
         marginBottom: 16,
         marginRight: 12
     },
     txtTab: {
         fontSize: 14,
-        color: '#444444'
+        color: '#999999'
     }
 })
 

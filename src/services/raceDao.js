@@ -36,3 +36,15 @@ export function infosSearch(body,resolve,reject) {
         resolve(ret.data)
     },reject)
 }
+
+export function historySearch( resolve, reject) {
+    get(api.history_search,{},ret=>{
+        resolve(ret.data)
+    },reject)
+}
+
+export function removeHistorySearch(resolve, reject) {
+    get(api.remove_history_search,{},ret=>{
+        resolve(ret.data)
+    },reject)
+}

@@ -73,21 +73,22 @@ export default class SearchResultList extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        paddingHorizontal: px2dp(34),
         backgroundColor: '#303236',
         flex:1
     },
     item: {
         flexDirection: 'row',
         alignItems: 'center',
-        height: px2dp(220)
+        height: px2dp(220),
+        paddingHorizontal: px2dp(34)
     },
     banner: {
         ...wh(258, 150)
     },
     title: {
         fontSize: px2sp(32),
-        color: '#FFE9AD'
+        color: '#FFE9AD',
+        width: px2dp(400)
     },
     source: {
         fontSize: px2sp(24),
@@ -96,6 +97,6 @@ const styles = StyleSheet.create({
     line: {
         backgroundColor: '#998E72',
         height: px2dp(2),
-        width: '100%'
+        marginHorizontal: px2dp(34)
     }
 })
