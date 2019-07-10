@@ -4,10 +4,10 @@
  *功能：
  */
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import UltimateFlatList from '../../../components/ultimate/UltimateFlatList';
 import {ImageLoad} from '../../../components'
-import {px2dp, px2sp, wh} from "../../../configs/Theme";
+import {Images, Metrics, px2dp, px2sp, wh} from "../../../configs/Theme";
 import {isEmpty, logMsg, utcDate} from "../../../utils/utils";
 import {infosSearch} from "../../../services/raceDao";
 import NotData from "../../comm/NotData";
@@ -29,7 +29,25 @@ export default class SearchResultList extends Component {
                 keyExtractor={(item, index) => `search${index}`}
                 item={this._renderItem}
                 paginationFetchingView={()=><View/>}
-                emptyView={() => <NotData/>}
+                emptyView={() =>  <TouchableOpacity
+                    onPress={()=>{
+                        this.props.onPress && this.props.onPress()
+                    }}
+                    style={{
+                        flex: 1,
+                        flexDirection:'column',
+                        justifyContent:'center',
+                        alignItems: 'center',
+                        paddingTop: px2dp(132)
+                    }}>
+                    <Image style={{height: px2dp(132), width: px2dp(126)}}
+                           source={Images.no_search}/>
+
+                    <Text style={{
+                        color: '#484A50', fontSize: 15,
+                        marginTop: px2dp(38)
+                    }}>没有找到相关文章</Text>
+                </TouchableOpacity>}
             />
         </View>
     }

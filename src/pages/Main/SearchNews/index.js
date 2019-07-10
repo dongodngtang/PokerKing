@@ -46,13 +46,13 @@ export default class SearchNews extends Component {
                     keyword={keyword => {
                         this.searchByKeyword(keyword)
                     }}/>
-
-                <TouchableOpacity
+                {this.state.hideHistory? <TouchableOpacity
                     style={[styles.btn_search2, {marginLeft: 17}]}
                     onPress={this.clearInput}>
                     <Text style={styles.cancel_text}>{global.lang.t('cancel')}</Text>
 
-                </TouchableOpacity>
+                </TouchableOpacity>:<View style={[styles.btn_search2, {marginLeft: 17}]}/>}
+
             </View>
         )
     };
