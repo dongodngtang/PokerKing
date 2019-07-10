@@ -28,15 +28,15 @@ export default class SearchResultList extends Component {
                 separator={() => <View style={styles.line}/>}
                 keyExtractor={(item, index) => `search${index}`}
                 item={this._renderItem}
-                paginationFetchingView={()=><View/>}
-                emptyView={() =>  <TouchableOpacity
-                    onPress={()=>{
+                paginationFetchingView={() => <View/>}
+                emptyView={() => <TouchableOpacity
+                    onPress={() => {
                         this.props.onPress && this.props.onPress()
                     }}
                     style={{
                         flex: 1,
-                        flexDirection:'column',
-                        justifyContent:'center',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
                         alignItems: 'center',
                         paddingTop: px2dp(132)
                     }}>
@@ -52,30 +52,36 @@ export default class SearchResultList extends Component {
         </View>
     }
 
-    onFetch = (page = 1, startFetch, abortFetch) => {
+    onFetch = (page = 1, startFetch, endFetch) => {
         try {
             if (this.searchParams) {
-                infosSearch({page,...this.searchParams}, data => {
-                    startFetch(data.infos, 18)
+                infosSearch({page, ...this.searchParams}, data => {
+                    if (data && data.infos && data.infos.length > 0) {
+                        startFetch(data.infos, 18)
+                    } else {
+                        endFetch()
+                    }
+                }, err => {
+                    endFetch()
                 })
             } else {
-                abortFetch()
+                endFetch()
             }
         } catch (e) {
-            abortFetch()
+            endFetch()
         }
 
     }
 
     _renderItem = (item, index) => {
-        const {id,image, title, source, created_at} = item
+        const {id, image, title, source, created_at} = item
         let date = utcDate(created_at, 'MM-DD')
         return <View style={styles.item}
                      key={`search_result_item${index}`}>
-            {isEmpty(image)?<View style={styles.banner}/>:<ImageLoad style={styles.banner}
-                                               source={{uri: image}}/>}
+            {isEmpty(image) ? <View style={styles.banner}/> : <ImageLoad style={styles.banner}
+                                                                         source={{uri: image}}/>}
 
-            <TouchableOpacity style={{height: px2dp(150),marginLeft:px2dp(22)}} onPress={()=>{
+            <TouchableOpacity style={{height: px2dp(150), marginLeft: px2dp(22)}} onPress={() => {
                 router.toInfoDetail(id)
             }}>
                 <Text style={styles.title}>{title}</Text>
@@ -94,7 +100,7 @@ export default class SearchResultList extends Component {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#1A1B1F',
-        flex:1
+        flex: 1
     },
     item: {
         flexDirection: 'row',
