@@ -46,6 +46,8 @@ import Mobile from "./Mobile";
 import ChangePhone from "./ChangePhone";
 import Collections from "./Collections";
 import SearchDateTag from "./Main/SearchNews/SearchDateTag";
+import RegisterNew from "./RegisterNew";
+import MobileRegister from "./MobileRegister";
 
 export const scenes = () => {
     return <Scene key="root"
@@ -120,11 +122,11 @@ export const scenes = () => {
         <Scene key="Login"
                component={Login}
                {...TopNav({
-                   left_definition: true,
+                   // left_definition: true,
                    rightTitle: global.lang.t('home_language'),
                    left_img: Images.close,
-                   img_size: {height: 16, width: 16},
-                   title: 'PokerKingLive'
+                   img_size: {height: 16, width: 16}
+                   // title: 'PokerKingLive'
                })}/>
         <Scene key="HotNewsList"
                component={HotNewsList}
@@ -278,6 +280,14 @@ export const scenes = () => {
                {...TopNav({
                    title: global.lang.t('collection')
                })}/>
+        <Scene key="RegisterNew"
+               component={RegisterNew}
+               {...TopNav({
+                   title: global.lang.t('zhuce')
+               })}/>
+        <Scene key="MobileRegister"
+               component={MobileRegister}
+               hideNavBar/>
         <Scene key="SearchDateTag"
                component={SearchDateTag}
                hideNavBar/>

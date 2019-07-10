@@ -4,11 +4,11 @@ import {connect} from 'react-redux';
 import styles from './index.style';
 import ExtArea from '../comm/ExtArea';
 import {Images, Metrics, Colors} from "../../configs/Theme";
-import {isStrNull, logMsg, showToast} from "../../utils/utils";
+import {getAvatar, isStrNull, logMsg, showToast} from "../../utils/utils";
 import {verify, postCode, register, login, verify_code} from "../../services/accountDao";
 import CountDownButton from '../../components/CountDownButton'
 import SelectPiker from "../comm/SelectPiker";
-import CountryPicker,{getAllCountries} from 'react-native-country-picker-modal'
+import CountryPicker, {getAllCountries} from 'react-native-country-picker-modal'
 import DeviceInfo from 'react-native-device-info'
 
 
@@ -40,7 +40,7 @@ export default class Login extends Component {
             selectedItem: 1,
             itemList: ['English', '简体中文', '繁体中文'],
             ext: callingCode,
-            areaName:areaName,
+            areaName: areaName,
             cca2: cca2,
         };
         this.iphone = ''
@@ -119,55 +119,31 @@ export default class Login extends Component {
         return (
             <View style={styles.container}>
 
-                <Text style={styles.top_txt}>{global.lang.t('sign_vscode')}</Text>
-
-                <TouchableOpacity style={styles.areaView} onPress={() => {
-                    this.areaAction && this.areaAction.openModal();
+                <TouchableOpacity style={{marginTop: 20, alignSelf: 'flex-end', marginRight: 17}} onPress={() => {
+                    router.toRegisterNew()
                 }}>
-                    <CountryPicker
-                        styles={{touchFlag:{
-                                marginBottom: 12
-                            }
-                        }}
-                        ref={ref => this.areaAction = ref}
-                        filterable
-                        closeable
-                        onChange={value => {
-                            logMsg(value)
-                            this.setState({ areaName: value.name,
-                                ext: value.callingCode ,
-                                cca2: value.cca2})
-                        }}
-                        cca2={this.state.cca2}
-                        translation="eng"
-                    />
-
-                    <Text
-                        style={{width: 180, marginLeft: 8, height: 28, fontSize: 16, color: '#666666'}}>
-                        {`${areaName} (+${this.state.ext})`}
-                    </Text>
-                    <View style={{flex: 1}}/>
-                    <Image style={{width: 6, height: 16, marginRight: 10}} source={Images.is_right}/>
-
+                    <Text style={{color: "#FFE9AD", fontSize:14}}>{global.lang.t("zhuce")}</Text>
                 </TouchableOpacity>
+
+                <Image source={getAvatar('')} style={styles.person_img}/>
+
                 <KeyboardAvoidingView behavior='position' keyboardVerticalOffset={20}>
-                    <View style={styles.textView}>
+                    <View style={styles.textView2}>
+                        <Image source={Images.login} style={styles.login_img}/>
                         <TextInput
                             returnKeyType={'done'}
                             keyboardType={'numeric'}
                             style={{
                                 paddingTop: 0,
                                 paddingBottom: 0,
-                                paddingLeft: 0,
-                                marginLeft: 8,
-                                width: 230,
+                                width: '85%',
                                 height: 50,
-                                fontSize: 16,
-                                color: '#444444'
+                                fontSize: 14,
+                                color: '#999999'
                             }}
                             numberOfLines={1}
                             placeholderTextColor={'#CCCCCC'}
-                            placeholder={global.lang.t('cellphone')}
+                            placeholder={global.lang.t('nameormobile')}
                             clearTextOnFocus={true}
                             underlineColorAndroid={'transparent'}
                             onChangeText={txt => {
@@ -177,24 +153,24 @@ export default class Login extends Component {
                         />
 
                     </View>
-                    <View style={styles.textView}>
+                    <View style={{height: 1}}/>
+                    <View style={styles.textView2}>
+                        <Image source={Images.psd} style={styles.login_img}/>
                         <TextInput
                             returnKeyType={'done'}
                             keyboardType={'numeric'}
                             style={{
                                 paddingTop: 0,
                                 paddingBottom: 0,
-                                paddingLeft: 0,
-                                marginLeft: 8,
-                                width: 160,
-                                height: 35,
-                                fontSize: 16,
-                                color: '#444444'
+                                width: '85%',
+                                height: 50,
+                                fontSize: 14,
+                                color: '#999999'
                             }}
                             maxLength={6}
                             numberOfLines={1}
                             placeholderTextColor={'#CCCCCC'}
-                            placeholder={global.lang.t('vscode')}
+                            placeholder={global.lang.t('psd')}
                             clearTextOnFocus={true}
                             underlineColorAndroid={'transparent'}
                             onChangeText={txt => {
@@ -202,36 +178,6 @@ export default class Login extends Component {
                             }}
 
                         />
-                        <View style={{flex: 1}}/>
-                        <View style={{height: 22, width: 1, backgroundColor: '#ECECEE', marginRight: 16}}/>
-                        <CountDownButton
-                            disableBg={'#F3F3F3'}
-                            disableColor={'#747474'}
-                            style={{
-                                marginRight: 8,
-                                height: 50,
-                                backgroundColor: 'white'
-                            }}
-                            textStyle={styles.down_txt}
-                            enable
-                            onClick={counting => {
-                                let iphone = this.iphone
-                                if (isStrNull(iphone)) {
-                                    showToast(global.lang.t('please_input_phone'))
-                                    return
-                                }
-                                postCode({
-                                    mobile: iphone,
-                                    country_code: ext,
-                                    option_type: 'login',
-                                    vcode_type: "mobile",
-                                }, data => {
-                                    counting(true)
-                                }, err => {
-                                    showToast(err)
-                                })
-
-                            }}/>
 
                     </View>
                 </KeyboardAvoidingView>
@@ -239,11 +185,18 @@ export default class Login extends Component {
                 <TouchableOpacity style={styles.btn} onPress={() => {
                     this._next();
                 }}>
-                    <Text style={{color: '#FFE9AD', fontSize: 18}}>{global.lang.t('login_continue')}</Text>
+                    <Text style={{color: '#303236', fontSize: 17}}>{global.lang.t('login')}</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    style={{marginLeft:17,marginRight:17,marginTop: 36, alignSelf: 'center', flexDirection: 'row', alignItems: 'center'}}
+                    style={{
+                        marginLeft: 17,
+                        marginRight: 17,
+                        position: 'absolute',
+                        bottom: 48,
+                        flexDirection: 'row',
+                        alignItems: 'center'
+                    }}
                     onPress={() => {
                         router.toProtocolPage()
                     }}>

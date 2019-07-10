@@ -219,7 +219,16 @@
   "konw":"我知道了",
   "getFavorite":"收藏成功",
   "cancelFavorite":"取消收藏成功",
-  "err_problem":"网络异常，称稍后再试"
+  "err_problem":"网络异常，称稍后再试",
+  "nameormobile":"账号或手机号",
+  "psd":"密码",
+  "zhuce":"注册",
+  "set_name":"设置账号",
+  "set_psd":"设置密码",
+  "set_mobile":"绑定手机号",
+  "mobile_prompt":"提示：使用排队功能需要绑定手机号",
+  "complete":"完成",
+  "jump":"跳过"
 }
 
 

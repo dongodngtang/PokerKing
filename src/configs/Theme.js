@@ -8,7 +8,7 @@
  */
 
 
-import {Dimensions, Platform, StatusBar,PixelRatio} from 'react-native';
+import {Dimensions, Platform, StatusBar, PixelRatio} from 'react-native';
 import {reallySize} from "../themes/Metrics";
 
 const {height, width} = Dimensions.get('window');
@@ -62,6 +62,7 @@ export function px2dp(size: Number) {
     size = Math.round((size * scale + 0.5));
     return size / DEFAULT_DENSITY;
 }
+
 /**
  * 设置字体的size（单位px）
  * @param size 传入设计稿上的px
@@ -71,6 +72,7 @@ export function px2sp(size: Number) {
     const scale = Math.min(_scaleWidth, _scaleHeight);
     return size * scale * fontScale;
 }
+
 /**
  * 同时设置宽高
  * @param width
@@ -146,63 +148,67 @@ export const Images = {
     icon_share_wechat: require('../asserts/share/weixin.png'),
     icon_share_wxcircle: require('../asserts/share/icon_share_wxcircle.png'),
     share_img: require('../asserts/share.png'),
-    facebook:require('../asserts/share/facebook.png'),
-    fuzhi:require('../asserts/share/fuzhi.png'),
-    twitter:require('../asserts/share/tuite.png'),
-    home_race:require('../asserts/home/home_race.png'),
-    home_cash:require('../asserts/home/home_cash.png'),
-    about:require('../asserts/about.png'),
-    race_bg2:require('../asserts/race_bg2.png'),
-    cash_bg:require('../asserts/cash_bg.png'),
-    touanament_bg:require('../asserts/touanament_bg.png'),
+    facebook: require('../asserts/share/facebook.png'),
+    fuzhi: require('../asserts/share/fuzhi.png'),
+    twitter: require('../asserts/share/tuite.png'),
+    home_race: require('../asserts/home/home_race.png'),
+    home_cash: require('../asserts/home/home_cash.png'),
+    about: require('../asserts/about.png'),
+    race_bg2: require('../asserts/race_bg2.png'),
+    cash_bg: require('../asserts/cash_bg.png'),
+    touanament_bg: require('../asserts/touanament_bg.png'),
     //new
-    bottom_new:require('../asserts/new/bottom.png'),
-    collect:require('../asserts/new/collect.png'),
-    collection_gray:require('../asserts/new/collection_gray.png'),
-    date:require('../asserts/new/date.png'),
-    delete_new:require('../asserts/new/delete.png'),
-    event:require('../asserts/new/event.png'),
-    event_dynamics:require('../asserts/new/event_dynamics.png'),
-    event_gray:require('../asserts/new/event_gray.png'),
-    event_intro:require('../asserts/new/event_intro.png'),
-    hot_gary:require('../asserts/new/hot_gary.png'),
-    hot_races:require('../asserts/new/hot_races.png'),
-    left_new:require('../asserts/new/left.png'),
-    live:require('../asserts/new/live.png'),
-    live_gray:require('../asserts/new/live_gray.png'),
-    location:require('../asserts/new/location.png'),
-    message:require('../asserts/new/message.png'),
-    mine:require('../asserts/new/mine.png'),
-    news:require('../asserts/new/news.png'),
-    news_gray:require('../asserts/new/news_gray.png'),
-    news_info:require('../asserts/new/news_info.png'),
-    puke_icon:require('../asserts/new/puke_icon.png'),
-    right:require('../asserts/new/right.png'),
-    room:require('../asserts/new/room.png'),
-    search:require('../asserts/new/search.png'),
-    search2:require('../asserts/new/search2.png'),
-    room_gray:require('../asserts/new/room_gray.png'),
-    search_gray:require('../asserts/new/search_gray.png'),
-    select_gary:require('../asserts/new/select_gary.png'),
-    selected:require('../asserts/new/selected.png'),
-    setting:require('../asserts/new/setting.png'),
-    share:require('../asserts/new/share.png'),
-    share_gray:require('../asserts/new/share_gray.png'),
-    time_select:require('../asserts/new/time_select.png'),
-    top_new:require('../asserts/new/top.png'),
-    type_select:require('../asserts/new/type_select.png'),
-    mine_gray:require('../asserts/new/mine_gray.png'),
-    collection:require('../asserts/new/collection.png'),
-    notice_img:require('../asserts/new/notice_img.png'),
-    puke_intro:require('../asserts/new/puke_intro.png'),
-    vip_img:require('../asserts/new/vip_img.png'),
-    notices1:require('../asserts/new/notices1.png'),
-    notices2:require('../asserts/new/notices2.png'),
-    delete2:require('../asserts/new/delete2.png'),
-    no_search:require('../asserts/new/no_search.png'),
-    setClose:require('../asserts/new/setClose.png'),
-    setOpen:require('../asserts/new/setOpen.png'),
-    load_error:require('../asserts/load/load_error.png')
+    bottom_new: require('../asserts/new/bottom.png'),
+    collect: require('../asserts/new/collect.png'),
+    collection_gray: require('../asserts/new/collection_gray.png'),
+    date: require('../asserts/new/date.png'),
+    delete_new: require('../asserts/new/delete.png'),
+    event: require('../asserts/new/event.png'),
+    event_dynamics: require('../asserts/new/event_dynamics.png'),
+    event_gray: require('../asserts/new/event_gray.png'),
+    event_intro: require('../asserts/new/event_intro.png'),
+    hot_gary: require('../asserts/new/hot_gary.png'),
+    hot_races: require('../asserts/new/hot_races.png'),
+    left_new: require('../asserts/new/left.png'),
+    live: require('../asserts/new/live.png'),
+    live_gray: require('../asserts/new/live_gray.png'),
+    location: require('../asserts/new/location.png'),
+    message: require('../asserts/new/message.png'),
+    mine: require('../asserts/new/mine.png'),
+    news: require('../asserts/new/news.png'),
+    news_gray: require('../asserts/new/news_gray.png'),
+    news_info: require('../asserts/new/news_info.png'),
+    puke_icon: require('../asserts/new/puke_icon.png'),
+    right: require('../asserts/new/right.png'),
+    room: require('../asserts/new/room.png'),
+    search: require('../asserts/new/search.png'),
+    search2: require('../asserts/new/search2.png'),
+    room_gray: require('../asserts/new/room_gray.png'),
+    search_gray: require('../asserts/new/search_gray.png'),
+    select_gary: require('../asserts/new/select_gary.png'),
+    selected: require('../asserts/new/selected.png'),
+    setting: require('../asserts/new/setting.png'),
+    share: require('../asserts/new/share.png'),
+    share_gray: require('../asserts/new/share_gray.png'),
+    time_select: require('../asserts/new/time_select.png'),
+    top_new: require('../asserts/new/top.png'),
+    type_select: require('../asserts/new/type_select.png'),
+    mine_gray: require('../asserts/new/mine_gray.png'),
+    collection: require('../asserts/new/collection.png'),
+    notice_img: require('../asserts/new/notice_img.png'),
+    puke_intro: require('../asserts/new/puke_intro.png'),
+    vip_img: require('../asserts/new/vip_img.png'),
+    notices1: require('../asserts/new/notices1.png'),
+    notices2: require('../asserts/new/notices2.png'),
+    delete2: require('../asserts/new/delete2.png'),
+    no_search: require('../asserts/new/no_search.png'),
+    setClose: require('../asserts/new/setClose.png'),
+    setOpen: require('../asserts/new/setOpen.png'),
+    load_error: require('../asserts/load/load_error.png'),
+    psd: require('../asserts/new/psd.png'),
+    login: require('../asserts/new/login.png'),
+    psd_gray: require('../asserts/new/psd_gray.png'),
+    login_gray: require('../asserts/new/login_gray.png')
 
 }
 
@@ -232,11 +238,11 @@ export const Colors = {
     txt_666: '#666666',
     _E54: '#E54A2E',
     _CCC: '#CCCCCC',
-    _FFE:'#FFE9AD',
-    _998:'#998E72',
-    _1A1:'#1A1B1F',
-    _303:'#303236',
-    _736:'#736C5B'
+    _FFE: '#FFE9AD',
+    _998: '#998E72',
+    _1A1: '#1A1B1F',
+    _303: '#303236',
+    _736: '#736C5B'
 }
 
 export const Styles = {

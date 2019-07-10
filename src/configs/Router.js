@@ -282,6 +282,14 @@ export default class Router {
         this.push({sceneKey:'ChangePhone'})
     }
 
+    toRegisterNew(){
+        this.push({sceneKey:'RegisterNew'})
+    }
+
+    toMobileRegister(){
+        this.push({sceneKey:'MobileRegister'})
+    }
+
     toSearchDateTag(searchParams){
         this.push({sceneKey:'SearchDateTag',params:{searchParams}})
     }
