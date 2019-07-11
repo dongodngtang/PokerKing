@@ -10,7 +10,7 @@ import {
 import {Colors, px2dp, px2sp} from "../../configs/Theme";
 
 
-export default NoNet =({refresh})=>(
+const NoNet =({refresh})=>(
     <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>
 
         <Image style={{width:px2dp(198),height:px2dp(160),marginTop:px2dp(252)}}/>
@@ -27,3 +27,4 @@ export default NoNet =({refresh})=>(
 
     </View>
 )
+export default NoNet

@@ -10,6 +10,9 @@ import Loading from './comm/Loading'
 import {logMsg} from "../utils/utils";
 import PropTypes from 'prop-types';
 import {NavBar} from "./index";
+import _ from 'lodash';
+import NoNet from "./comm/NoNet";
+
 
 const StatusBarStyle = {
     default: 'default',
@@ -20,17 +23,23 @@ const StatusBarStyle = {
 export default class Base extends Component {
 
     static propTypes = {
-        showNav: PropTypes.bool,
+        showNav: PropTypes.bool,//显示顶部导航栏
         statusBarStyle: PropTypes.oneOf([StatusBarStyle.default, StatusBarStyle.lightcontent]),
+        scrollable: PropTypes.bool,//是ScrollView或者View
+        hudView: PropTypes.any,//插入如错误页或者其他占位页面,可以传任何参数注意使用方法
+
+    };
+    static defaultProps = {
+        showNav: false,
+        statusBarStyle: StatusBarStyle.lightcontent,
+        scrollable: false,
+        hudView: null
+
     };
 
     state = {
         isRefreshing: false
     }
-
-    static defaultProps = {
-        statusBarStyle: StatusBarStyle.lightcontent,
-    };
 
     open = () => {
         this.loading && this.loading.open()
@@ -40,18 +49,38 @@ export default class Base extends Component {
         this.loading && this.loading.close()
     }
 
+    _renderContent() {
+        const {hudView, children} = this.props
+        if (_.isEmpty(hudView)) {
+            return children
+        }
+        if (_.isString(hudView)) {
+            switch (hudView) {
+                case 'NoNet':
+                    return <NoNet/>
+                default:
+                    return <NoNet/>
+            }
+        }
+
+        return hudView
+    }
+
     render() {
-        const {style, scrollable, pedding, onRefresh, isRefreshing, statusBarStyle, showNav} = this.props;
+        const {
+            style,
+            scrollable,
+            statusBarStyle,
+            showNav,
+        } = this.props;
         if (scrollable) {
             return <View style={[{flex: 1, backgroundColor: '#1A1B1F'}, style]}>
+                {showNav ? <NavBar {...this.props}/> : null}
                 <ScrollView
                     keyboardShouldPersistTaps='handled'
                     refreshControl={this.renderRefreshControl()}>
                     <StatusBar barStyle={statusBarStyle}/>
-                    {pedding ? <View style={[styles.flex_center, {flex: 1}]}>
-                        <Text>加载中...</Text>
-
-                    </View> : this.props.children}
+                    {this._renderContent()}
 
                     <Loading
                         ref={ref => this.loading = ref}/>
@@ -64,10 +93,7 @@ export default class Base extends Component {
                 <StatusBar barStyle={statusBarStyle}/>
                 {showNav ? <NavBar {...this.props}/> : null}
 
-                {pedding ? <View style={[styles.flex_center, {flex: 1}]}>
-                    <Text>加载中...</Text>
-
-                </View> : this.props.children}
+                {this._renderContent()}
 
                 <Loading
                     ref={ref => this.loading = ref}/>

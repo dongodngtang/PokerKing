@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { ActivityIndicator, Image, StyleSheet, View } from 'react-native';
-
+import {ActivityIndicator, Image, StyleSheet, View} from 'react-native';
+import _ from 'lodash';
 const styles = StyleSheet.create({
     centered: {
         ...StyleSheet.absoluteFillObject,
@@ -67,7 +67,7 @@ export const createImageProgress = ImageComponent =>
         componentDidMount() {
             if (this.props.threshold) {
                 this.thresholdTimer = setTimeout(() => {
-                    this.setState({ thresholdReached: true });
+                    this.setState({thresholdReached: true});
                     this.thresholdTimer = null;
                 }, this.props.threshold);
             }
@@ -171,6 +171,10 @@ export const createImageProgress = ImageComponent =>
             } = this.props;
 
             if (!source || !source.uri) {
+
+                if (source.hasOwnProperty('uri') && _.isEmpty(source.uri)) {
+                    return <View style={style}/>
+                }
                 // This is not a networked asset so fallback to regular image
                 return (
                     <View style={style} ref={this.handleRef}>
