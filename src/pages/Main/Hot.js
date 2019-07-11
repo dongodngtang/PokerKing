@@ -5,7 +5,7 @@ import NotData from "../comm/NotData";
 import UltimateFlatList from "../../components/ultimate/UltimateFlatList";
 import {Images, Metrics, px2dp, px2sp} from "../../configs/Theme";
 import ImageLoad from "../../components/ImageLoad";
-import {alertOrder, isLogin, showToast, unix_format} from "../../utils/utils";
+import {alertOrder, isLogin, showToast, strNotNull, unix_format} from "../../utils/utils";
 
 /**
  *作者：lorne
@@ -40,9 +40,9 @@ const _renderItem = (item, index, onPress, onShare,onCollect) => (
         <View style={styles.content}>
             <Text style={styles.title}>{item.title}</Text>
             <View style={{flexDirection: 'row', width: '100%',alignItems:'center', marginTop: 5}}>
-                <Image style={{height: px2dp(32), width: px2dp(32), alignSelf: 'center'}}
+                <Image style={{height: px2dp(32), width: px2dp(32), alignSelf: 'center',marginRight:7}}
                        source={Images.hot_gary}/>
-                <Text numberOfLines={1}  style={styles.time}>{item.source}</Text>
+                {strNotNull(item.source)?<Text numberOfLines={1}  style={styles.time}>{item.source}</Text>:null}
                 <Text numberOfLines={1} style={styles.time2}>
                     {global.lang.t(`month${unix_format(item.created_at, 'MM')}`)}{unix_format(item.created_at, ` DD,YYYY`)}
                 </Text>
@@ -94,13 +94,12 @@ const styles = StyleSheet.create({
     time: {
         color: '#998E72',
         fontSize: px2sp(28),
-        marginLeft: 7,
-        maxWidth:'40%'
+        maxWidth:'40%',
+        marginRight: 14
     },
     time2: {
         color: '#998E72',
-        fontSize: px2sp(28),
-        marginLeft: 14
+        fontSize: px2sp(28)
     },
     content: {
         marginVertical: px2dp(24)

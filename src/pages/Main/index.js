@@ -25,18 +25,28 @@ export default class Main extends Component {
     }
 
     onFetch = (page = 1, startFetch, abortFetch) => {
-        initLoginUser(()=>{
-            getInfoList({
-                status: 'hot',
-                page,
-                page_size: 20
-            }, data => {
-                logMsg("InfoList:", data)
-                startFetch(data.infos, 20)
-            }, err => {
-                logMsg("reject:", err)
-                abortFetch()
-            })
+        getInfoList({
+            status: 'hot',
+            page,
+            page_size: 20
+        }, data => {
+            logMsg("InfoList:", data)
+            startFetch(data.infos, 20)
+        }, err => {
+            logMsg("reject:", err)
+            abortFetch()
+        })
+    }
+    onFetchInstant = (page = 1, startFetch, abortFetch) => {
+        getInfoList({
+            page,
+            page_size: 20
+        }, data => {
+            logMsg("InfoList:", data)
+            startFetch(data.infos, 18)
+        }, err => {
+            logMsg("reject:", err)
+            abortFetch()
         })
     }
 
@@ -106,7 +116,7 @@ export default class Main extends Component {
                         onPress={this.toDetail}
                         key={'2'}
                         tabLabel={global.lang.t('instants')}
-                        onFetch={this.onFetch}/>
+                        onFetch={this.onFetchInstant}/>
                     <More
                         key={'3'}
                         tabLabel={`${global.lang.t('more')}>`}/>

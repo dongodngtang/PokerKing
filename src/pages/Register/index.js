@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import {View, Text, Button, KeyboardAvoidingView, TextInput, TouchableOpacity,Image} from 'react-native';
+import {View, Text, Button, KeyboardAvoidingView, TextInput, TouchableOpacity, Image} from 'react-native';
 import {connect} from 'react-redux';
-import styles from "../Login/index.style";
-import {Images} from "../../configs/Theme";
+import styles from "./index.style";
+import {Images, Metrics} from "../../configs/Theme";
 import {ActionSheet} from '../../components';
 import {register} from "../../services/accountDao";
 import ImagePicker from "react-native-image-crop-picker";
@@ -14,42 +14,41 @@ const reg = /[^A-Z0-9]+/;
     ...Register,
 }))
 export default class Register extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {
             name_show: false,
             email_show: false,
-            genderTxt:global.lang.t('gender'),
-            nickStr:'',
-            username:''
+            genderTxt: global.lang.t('gender'),
+            nickStr: '',
+            username: ''
         }
         this.user_name = ''
         this.email = ''
-        this.gender= 0
+        this.gender = 0
     }
 
 
-
-    _getGender =(gender)=> {
+    _getGender = (gender) => {
         logMsg(gender)
-        if(gender !== 0){
+        if (gender !== 0) {
             this.gender = gender
             this.setState({
-                genderTxt:gender === 1?global.lang.t('male'):global.lang.t('female')
+                genderTxt: gender === 1 ? global.lang.t('male') : global.lang.t('female')
             })
         }
 
 
     }
 
-     trimNumber = (str)=> {
-        return str.replace(/\d+/g,'');
+    trimNumber = (str) => {
+        return str.replace(/\d+/g, '');
     }
 
 
     render() {
         return (
-            <View style={styles.container}>
+            <View style={styles.resgister_container}>
 
                 <KeyboardAvoidingView behavior='position' keyboardVerticalOffset={20}>
                     <View style={[styles.textView, {marginTop: 30}]}>
@@ -62,7 +61,7 @@ export default class Register extends Component {
                                 width: '90%',
                                 height: 50,
                                 fontSize: 16,
-                                color:'#444444',
+                                color: '#444444',
                             }}
                             numberOfLines={1}
                             placeholderTextColor={'#CCCCCC'}
@@ -71,26 +70,25 @@ export default class Register extends Component {
                             autoCapitalize={'characters'}
                             underlineColorAndroid={'transparent'}
                             onChangeText={txt => {
-                                this.user_name =  txt.trim()
+                                this.user_name = txt.trim()
 
                             }}
                         />
 
                     </View>
 
-                    <View style={[styles.textView,{height:50}]}>
-                        <TouchableOpacity style={{width:'100%',flexDirection:'row',alignItems:'center'}}
-                                          onPress={()=>{
+                    <View style={[styles.textView, {height: 50}]}>
+                        <TouchableOpacity style={{width: '100%', flexDirection: 'row', alignItems: 'center'}}
+                                          onPress={() => {
                                               this.actionGender && this.actionGender.show()
                                           }}>
                             <Text style={{
                                 color: this.state.genderTxt === global.lang.t('gender') ? '#CCCCCC' : '#444444',
                                 marginLeft: 8,
-                                fontSize:16,
-                                fontWeight: 'bold',
+                                fontSize: 16
                             }}>{this.state.genderTxt}</Text>
                             <View style={{flex: 1}}/>
-                            <Image style={{width:6,height:16,marginRight:10}} source={Images.is_right}/>
+                            <Image style={{width: 6, height: 16, marginRight: 10}} source={Images.is_right}/>
                         </TouchableOpacity>
                     </View>
 
@@ -104,7 +102,7 @@ export default class Register extends Component {
                                 width: '95%',
                                 height: 50,
                                 fontSize: 16,
-                                color:'#444444'
+                                color: '#444444'
                             }}
                             // maxLength={25}
                             numberOfLines={1}
@@ -120,35 +118,42 @@ export default class Register extends Component {
                     </View>
                 </KeyboardAvoidingView>
 
-                <Text style={{color:'#AAAAAA',fontSize:12,marginTop:40}}>{global.lang.t('prompt')}</Text>
+                <Text style={{
+                    color: '#AAAAAA',
+                    fontSize: 12,
+                    marginTop: 40,
+                    marginLeft: 17,
+                    marginRight:17,
+                    maxWidth:Metrics.screenWidth - 34
+                }}>{global.lang.t('prompt')}</Text>
 
-                <TouchableOpacity style={styles.btn} onPress={()=>{
+                <TouchableOpacity style={styles.btn} onPress={() => {
                     let body = this.props.params;
                     body.nickname = this.user_name;
                     body.gender = this.gender;
                     body.email = this.email;
                     if (isStrNull(this.user_name)) {
                         showToast(global.lang.t('input_nick_name'))
-                    }else if (this.user_name.length < 6 || this.user_name.length > 14){
+                    } else if (this.user_name.length < 6 || this.user_name.length > 14) {
                         showToast(global.lang.t('length_nick_name'))
-                    }else if (this.gender === 0){
+                    } else if (this.gender === 0) {
                         showToast(global.lang.t('select_gender'))
-                    }else if (isStrNull(this.email)){
+                    } else if (isStrNull(this.email)) {
                         showToast(global.lang.t('input_email'))
-                    }else{
+                    } else {
                         if (reg.test(this.user_name)) {
                             showToast(global.lang.t('nick_name_english'));
-                        }else{
-                            register(body,ret=>{
+                        } else {
+                            register(body, ret => {
                                 global.lang.t('login_success')
                                 this.props.navigation.popToTop()
-                            },err=>{
+                            }, err => {
 
                             })
                         }
                     }
                 }}>
-                    <Text style={{color:'#FFE9AD',fontSize:18}}>{global.lang.t('determine')}</Text>
+                    <Text style={{color: '#FFE9AD', fontSize: 18}}>{global.lang.t('determine')}</Text>
                 </TouchableOpacity>
 
                 <ActionSheet

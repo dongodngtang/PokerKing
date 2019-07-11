@@ -20,31 +20,13 @@ export default class Login extends Component {
 
     constructor(props) {
         super(props)
-        let userLocaleCountryCode = DeviceInfo.getDeviceCountry()
-        const userCountryData = getAllCountries()
-            .filter(country => country.cca2 === userLocaleCountryCode)
-            .pop()
-        let callingCode = '86'
-        let areaName = 'China'
-        let cca2 = userLocaleCountryCode
-        if (!cca2 || !userCountryData) {
-            cca2 = 'CN'
-            callingCode = '86'
-        } else {
-            callingCode = userCountryData.callingCode
-            areaName = userCountryData.name.common
-        }
-
 
         this.state = {
             selectedItem: 1,
-            itemList: ['English', '简体中文', '繁体中文'],
-            ext: callingCode,
-            areaName: areaName,
-            cca2: cca2,
+            itemList: ['English', '简体中文', '繁体中文']
         };
-        this.iphone = ''
-        this.vcode = ''
+        this.userName = ''
+        this.pwd = ''
         props.navigation.setParams({
             onRight: () => {
                 this.selectPiker && this.selectPiker.toggle()
@@ -63,30 +45,28 @@ export default class Login extends Component {
     }
 
     _next = () => {
-        const {ext} = this.state;
-        let iphone = this.iphone
-        let vcode = this.vcode
-        if (iphone.length > 1 && vcode.length > 1 && !isStrNull(ext)) {
-            //核查验证码是否正确
+        let userName = this.userName
+        let pwd = this.pwd
+        if (userName.length > 1 && pwd.length > 1) {
             verify_code({
-                account: iphone,
-                country_code: ext,
+                account: userName,
+                country_code: '86',
                 option_type: 'login',
                 vcode_type: 'mobile',
-                vcode: vcode
+                vcode: '201919'
             }, res => {
                 // 查询该账户是否被注册过¶
                 verify({
-                    account: iphone,
-                    country_code: ext
+                    account: userName,
+                    country_code: '86'
                 }, ret => {
                     if (ret && ret.exist && ret.exist === 1) {
                         // 登录
                         login({
                             type: 'vcode',
-                            mobile: iphone,
-                            vcode,
-                            country_code: ext
+                            mobile: userName,
+                            vcode:'201919',
+                            country_code: '86'
                         }, ret => {
                             showToast(global.lang.t('login_success'))
                             this.props.navigation.popToTop()
@@ -95,12 +75,6 @@ export default class Login extends Component {
                         })
                     } else {
                         // 注册
-                        router.toRegister({
-                            type: 'mobile',
-                            mobile: iphone,
-                            vcode,
-                            country_code: ext
-                        })
 
                     }
 
@@ -108,6 +82,7 @@ export default class Login extends Component {
 
                 })
             })
+
         }
         else
             showToast(`${global.lang.t('fillWhole')}`);
@@ -115,7 +90,6 @@ export default class Login extends Component {
 
 
     render() {
-        const {ext, areaName} = this.state;
         return (
             <View style={styles.container}>
 
@@ -147,7 +121,7 @@ export default class Login extends Component {
                             clearTextOnFocus={true}
                             underlineColorAndroid={'transparent'}
                             onChangeText={txt => {
-                                this.iphone = txt
+                                this.userName = '13640988285'
                             }}
 
                         />
@@ -174,7 +148,7 @@ export default class Login extends Component {
                             clearTextOnFocus={true}
                             underlineColorAndroid={'transparent'}
                             onChangeText={txt => {
-                                this.vcode = txt
+                                this.pwd = '201919'
                             }}
 
                         />
@@ -201,7 +175,7 @@ export default class Login extends Component {
                         router.toProtocolPage()
                     }}>
                     <Text style={{color: "#AAAAAA", fontSize: 12}}>{global.lang.t('protocol1')}<Text style={{
-                        color: "#444444",
+                        color: "#998E72",
                         fontSize: 12,
                         marginLeft: 8
                     }}>{`《${global.lang.t('protocol2')}》`}</Text></Text>
@@ -219,17 +193,4 @@ export default class Login extends Component {
         )
     };
 
-    onSelectMenu = (index, subindex, data) => {
-        this.setState({
-            ext: data.subtitle,
-            areaName: data.title
-        });
-    };
-
-    changed_ext = (code, name) => {
-        this.setState({
-            ext: code,
-            areaName: name
-        })
-    }
 }
