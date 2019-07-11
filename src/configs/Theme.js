@@ -212,7 +212,10 @@ export const Images = {
     set_eye: require('../asserts/new/set_eye.png'),
     set_eye_close: require('../asserts/new/set_eye_close.png'),
     delete_pwd: require('../asserts/new/delete_pwd.png'),
-    net_err: require('../asserts/new/net_err.png')
+    net_err: require('../asserts/new/net_err.png'),
+    set_exclamation: require('../asserts/new/set_exclamation.png'),
+    left_returnpng: require('../asserts/new/left_returnpng.png'),
+    right_close: require('../asserts/new/right_close.png')
 }
 
 

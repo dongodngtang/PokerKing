@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {View, Text, TouchableOpacity, Image, StyleSheet, TextInput} from 'react-native';
-import {Colors, Images, px2dp, px2sp, wh} from "../../configs/Theme";
+import {Colors, Images, Metrics, px2dp, px2sp, wh} from "../../configs/Theme";
 import _ from 'lodash'
 
 
@@ -54,21 +54,19 @@ export default class StepToChange extends Component {
 const FirstCard = ({nextTo}) => (
     <View style={styles.card}>
 
-        <View style={{
-            ...wh(64, 64), backgroundColor: 'red', marginTop: px2dp(32),
-            alignSelf: 'center'
-        }}/>
+
+        <Image style={{alignSelf:'center',width:px2dp(64),height:px2dp(64),marginTop: px2dp(32)}} source={Images.set_exclamation}/>
         <View style={[styles.rowItem, {marginTop: px2dp(32)}]}>
             <View style={styles.tipDot}/>
-            <Text style={styles.txtTip}>一个月只能更换一次</Text>
+            <Text style={styles.txtTip}>{global.lang.t('once')}</Text>
         </View>
         <View style={[styles.rowItem, {marginTop: px2dp(14)}]}>
             <View style={styles.tipDot}/>
-            <Text style={styles.txtTip}>更换手机号不影响账号内容和数据</Text>
+            <Text style={styles.txtTip}>{global.lang.t('noChange')}</Text>
         </View>
         <View style={[styles.rowItem, {marginTop: px2dp(14)}]}>
             <View style={styles.tipDot}/>
-            <Text style={styles.txtTip}>您将使用新手机号登录</Text>
+            <Text style={styles.txtTip}>{global.lang.t('useNewTle')}</Text>
         </View>
         <View style={{flex: 1}}/>
 
@@ -78,7 +76,7 @@ const FirstCard = ({nextTo}) => (
                 nextTo && nextTo(1)
             }}
             style={styles.btnConfirm}>
-            <Text style={styles.btnConfirmTxt}>我知道了</Text>
+            <Text style={styles.btnConfirmTxt}>{global.lang.t('konw')}</Text>
         </TouchableOpacity>
     </View>
 )
@@ -89,22 +87,21 @@ const InputPhoneCard = ({nextTo, close}) => (
             onPress={() => close && close()}
             style={{
                 ...wh(60, 60),
-                backgroundColor: 'red',
                 alignItems: 'center',
                 justifyContent: 'center',
                 position: 'absolute',
-                top: 0, right: 0
+                top: 13, right: 13
             }}>
             <Image style={{...wh(32, 32)}}
                    source={Images.close_block}/>
         </TouchableOpacity>
-        <Text style={[styles.btnConfirmTxt, {marginTop: px2dp(74), marginBottom: px2dp(64)}]}>更换手机号</Text>
+        <Text style={[styles.btnConfirmTxt, {marginTop: px2dp(74), marginBottom: px2dp(64)}]}>{global.lang.t('change_mobile')}</Text>
 
         <View style={{height: px2dp(100), width: px2dp(350)}}>
             <TextInput
                 underlineColorAndroid={'transparent'}
                 selectionColor={'#FFE9AD'}
-                placeholder={'请输入手机号码'}
+                placeholder={global.lang.t('input_number')}
                 placeholderTextColor={'#AAA'}
                 onChangeText={text => {
 
@@ -121,7 +118,7 @@ const InputPhoneCard = ({nextTo, close}) => (
                 nextTo && nextTo(2)
             }}
             style={styles.btnConfirm}>
-            <Text style={styles.btnConfirmTxt}>下一步</Text>
+            <Text style={styles.btnConfirmTxt}>{global.lang.t('next')}</Text>
         </TouchableOpacity>
     </View>
 )
@@ -172,42 +169,40 @@ class InputCodeCard extends Component {
                 onPress={() => nextTo && nextTo(1)}
                 style={{
                     ...wh(60, 60),
-                    backgroundColor: 'red',
                     alignItems: 'center',
                     justifyContent: 'center',
                     position: 'absolute',
-                    top: 0, left: 0
+                    top: 13, left: 13
                 }}>
                 <Image style={{...wh(32, 32)}}
-                       source={Images.left}/>
+                       source={Images.left_returnpng}/>
             </TouchableOpacity>
             <TouchableOpacity
                 onPress={() => close && close()}
                 style={{
                     ...wh(60, 60),
-                    backgroundColor: 'red',
                     alignItems: 'center',
                     justifyContent: 'center',
                     position: 'absolute',
-                    top: 0, right: 0
+                    top: 13, right: 15
                 }}>
                 <Image style={{...wh(32, 32)}}
-                       source={Images.close_block}/>
+                       source={Images.right_close}/>
             </TouchableOpacity>
-            <Text style={[styles.btnConfirmTxt, {marginTop: px2dp(54)}]}>请输入验证码</Text>
+            <Text style={[styles.btnConfirmTxt, {marginTop: px2dp(54)}]}>{global.lang.t('please_input_code')}</Text>
             <Text style={{
                 color: '#AAA',
                 fontSize: px2dp(28),
                 marginTop: px2dp(12),
                 marginBottom: px2dp(28)
-            }}>验证码发送至135****0987</Text>
+            }}>{global.lang.t('code_people')}135****0987</Text>
 
             <TouchableOpacity
                 style={{
                     height: px2dp(68), width: px2dp(240), backgroundColor: '#998E72',
                     alignItems: 'center', justifyContent: 'center', borderRadius: px2dp(4)
                 }}>
-                <Text style={{color: '#fff', fontSize: px2sp(28)}}>{`${count}秒后重置`}</Text>
+                <Text style={{color: '#fff', fontSize: px2sp(28)}}>{`${count}${global.lang.t('time_begin')}`}</Text>
             </TouchableOpacity>
 
             <View style={{marginTop: px2dp(30), height: px2dp(88)}}>
@@ -251,8 +246,9 @@ const styles = StyleSheet.create({
         top: 0
     },
     card: {
+        alignSelf:'center',
         minHeight: px2dp(420),
-        width: px2dp(596),
+        width: Metrics.screenWidth - 76,
         backgroundColor: '#FFFFFF',
         borderRadius: px2dp(8),
         marginTop: px2dp(256)
@@ -274,7 +270,7 @@ const styles = StyleSheet.create({
         marginRight: px2dp(30)
     },
     line: {
-        backgroundColor: '#AAA',
+        backgroundColor: '#979797',
         height: px2dp(2),
         width: '100%'
     },
@@ -303,7 +299,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     txtCode: {
-        color: '#737373',
+        color: '#666666',
         fontSize: px2sp(48)
     }
 
