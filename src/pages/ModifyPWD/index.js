@@ -28,31 +28,28 @@ export default class ModifyPWD extends Component {
             <View style={{flex: 1, backgroundColor: "#161718"}}>
                 <KeyboardAvoidingView behavior='position' keyboardVerticalOffset={20}>
                     <View style={[styles.old_pwd_view, {marginTop: 5}]}>
-                        <Text style={styles.left_text}>{global.lang.t('old_pwd')}</Text>
-                        <View style={{flex: 1}}/>
                         <TextInput
                             style={{
                                 paddingTop: 0,
                                 paddingBottom: 0,
                                 paddingLeft: 0,
-                                marginLeft: 8,
-                                maxWidth: '60%',
+                                marginLeft: 17,
+                                width: '65%',
                                 height: 50,
                                 fontSize: 14,
-                                color: '#DDDDDD',
-                                textAlign: 'right'
+                                color: '#AAAAAA'
                             }}
                             numberOfLines={1}
                             placeholderTextColor={'#DDDDDD'}
-                            placeholder={global.lang.t('pwd_change')}
+                            placeholder={global.lang.t('old_pwd')}
                             clearTextOnFocus={true}
-                            autoCapitalize={'characters'}
                             underlineColorAndroid={'transparent'}
                             onChangeText={txt => {
                                 this.old_pwd = txt
 
                             }}
                         />
+                        <View style={{flex: 1}}/>
                         {strNotNull(this.old_pwd) ?
                             <TouchableOpacity activeOpacity={1} style={{marginLeft: 28}} onPress={() => {
                                 this.old_pwd = ''
@@ -72,29 +69,28 @@ export default class ModifyPWD extends Component {
                     </View>
 
                     <View style={[styles.old_pwd_view, {marginTop: 1}]}>
-                        <Text style={styles.left_text}>{global.lang.t('new_pwd')}</Text>
-                        <View style={{flex: 1}}/>
                         <TextInput
                             style={{
                                 paddingTop: 0,
                                 paddingBottom: 0,
                                 paddingLeft: 0,
-                                marginLeft: 8,
-                                maxWidth: '60%',
+                                marginLeft: 17,
+                                width: '65%',
                                 height: 50,
                                 fontSize: 14,
-                                color: '#DDDDDD',
+                                color: '#AAAAAA',
                             }}
                             numberOfLines={1}
+                            placeholder={global.lang.t('new_pwd')}
                             placeholderTextColor={'#DDDDDD'}
                             clearTextOnFocus={true}
-                            autoCapitalize={'characters'}
                             underlineColorAndroid={'transparent'}
                             onChangeText={txt => {
                                 this.new_pwd = txt
 
                             }}
                         />
+                        <View style={{flex: 1}}/>
                         {strNotNull(this.old_pwd) ?
                             <TouchableOpacity activeOpacity={1} style={{marginLeft: 28}} onPress={() => {
                                 this.old_pwd = ''
@@ -116,6 +112,12 @@ export default class ModifyPWD extends Component {
                 </KeyboardAvoidingView>
                 <TouchableOpacity activeOpacity={1} style={styles.confirm_view}>
                     <Text style={styles.determine}>{global.lang.t('determine')}</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity activeOpacity={1} style={styles.iphone_pwd} onPress={()=>{
+                    router.toModifyPWDToMobile()
+                }}>
+                    <Text style={styles.iphone_change}>{global.lang.t('iphone_change')}</Text>
                 </TouchableOpacity>
             </View>
         )

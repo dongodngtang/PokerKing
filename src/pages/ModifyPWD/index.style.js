@@ -18,6 +18,10 @@ export default StyleSheet.create({
         color: '#212325',
         fontSize: 14
     },
+    iphone_change: {
+        color: '#AAAAAA',
+        fontSize: 16
+    },
     confirm_view: {
         width: Metrics.screenWidth - 34,
         height: 50,
@@ -27,6 +31,13 @@ export default StyleSheet.create({
         backgroundColor: '#FFE9AD',
         borderRadius: 4,
         marginTop: 61
+    },
+    iphone_pwd:{
+        position:'absolute',
+        bottom:47,
+        alignSelf:'center',
+        alignItems:'center',
+        justifyContent:'center'
     }
 })
 

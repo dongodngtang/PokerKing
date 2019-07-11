@@ -277,6 +277,14 @@ export default class Router {
             })
         })
     }
+    toModifyPWDToMobile() {
+        needLogin(()=>{
+            this.push({
+                sceneKey: 'ModifyPWDToMobile'
+
+            })
+        })
+    }
 
     toChangePhone(){
         this.push({sceneKey:'ChangePhone'})

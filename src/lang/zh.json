@@ -231,7 +231,8 @@
   "jump":"跳过",
   "old_pwd":"旧密码",
   "new_pwd":"新密码",
-  "pwd_change":"输入后文字"
+  "pwd_change":"输入后文字",
+  "iphone_change":"通过手机验证方式"
 }
 
 

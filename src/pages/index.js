@@ -49,6 +49,7 @@ import SearchDateTag from "./Main/SearchNews/SearchDateTag";
 import RegisterNew from "./RegisterNew";
 import MobileRegister from "./MobileRegister";
 import ModifyPWD from "./ModifyPWD";
+import ModifyPWDToMobile from "./ModifyPWDToMobile";
 
 export const scenes = () => {
     return <Scene key="root"
@@ -288,6 +289,13 @@ export const scenes = () => {
                })}/>
         <Scene key="ModifyPWD"
                component={ModifyPWD}
+               {...TopNav({
+                   bgd:true,
+                   bg_color:'#090909',
+                   title: global.lang.t('change_pwd')
+               })}/>
+        <Scene key="ModifyPWDToMobile"
+               component={ModifyPWDToMobile}
                {...TopNav({
                    bgd:true,
                    bg_color:'#090909',
