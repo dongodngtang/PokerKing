@@ -228,7 +228,10 @@
   "set_mobile":"绑定手机号",
   "mobile_prompt":"提示：使用排队功能需要绑定手机号",
   "complete":"完成",
-  "jump":"跳过"
+  "jump":"跳过",
+  "old_pwd":"旧密码",
+  "new_pwd":"新密码",
+  "pwd_change":"输入后文字"
 }
 
 

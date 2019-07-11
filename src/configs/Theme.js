@@ -208,8 +208,10 @@ export const Images = {
     psd: require('../asserts/new/psd.png'),
     login: require('../asserts/new/login.png'),
     psd_gray: require('../asserts/new/psd_gray.png'),
-    login_gray: require('../asserts/new/login_gray.png')
-
+    login_gray: require('../asserts/new/login_gray.png'),
+    set_eye: require('../asserts/new/set_eye.png'),
+    set_eye_close: require('../asserts/new/set_eye_close.png'),
+    delete_pwd: require('../asserts/new/delete_pwd.png')
 }
 
 

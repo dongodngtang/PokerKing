@@ -48,6 +48,7 @@ import Collections from "./Collections";
 import SearchDateTag from "./Main/SearchNews/SearchDateTag";
 import RegisterNew from "./RegisterNew";
 import MobileRegister from "./MobileRegister";
+import ModifyPWD from "./ModifyPWD";
 
 export const scenes = () => {
     return <Scene key="root"
@@ -285,6 +286,13 @@ export const scenes = () => {
                {...TopNav({
                    title: global.lang.t('zhuce')
                })}/>
+        <Scene key="ModifyPWD"
+               component={ModifyPWD}
+               {...TopNav({
+                   bgd:true,
+                   bg_color:'#090909',
+                   title: global.lang.t('change_pwd')
+               })}/>
         <Scene key="MobileRegister"
                component={MobileRegister}
                hideNavBar/>
@@ -334,10 +342,10 @@ export class NavBar extends PureComponent {
     }
 
     render() {
-        const {component, title, rightTitle, onLeft, hideLeft, middle_title} = this.props;
+        const {bgd, bg_color,component, title, rightTitle, onLeft, hideLeft, middle_title} = this.props;
 
         let pageMsg = `在page/index查找${component && component.displayName}`;
-        return <View style={{backgroundColor: '#1A1B1F'}}>
+        return <View style={{backgroundColor: bgd ? bg_color : '#1A1B1F'}}>
             <SafeAreaView/>
             <View style={{
                 width: Metrics.screenWidth,

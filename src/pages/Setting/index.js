@@ -129,7 +129,9 @@ export default class Setting extends Component {
 
                 {isLogin() ? <TouchableOpacity style={styles.drop_out} activeOpacity={1} onPress={() => {
                     alertOrder(global.lang.t('is_drop_out'), () => {
-                        storageLoginUser({})
+                        alertOrder(global.lang.t('is_drop_out'), () => {
+                            storageLoginUser({})
+                        });
                     });
                 }}>
                     <Text style={styles.drop_out_txt}>{global.lang.t('drop_out')}</Text>
