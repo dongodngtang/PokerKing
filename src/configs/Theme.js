@@ -211,7 +211,8 @@ export const Images = {
     login_gray: require('../asserts/new/login_gray.png'),
     set_eye: require('../asserts/new/set_eye.png'),
     set_eye_close: require('../asserts/new/set_eye_close.png'),
-    delete_pwd: require('../asserts/new/delete_pwd.png')
+    delete_pwd: require('../asserts/new/delete_pwd.png'),
+    net_err: require('../asserts/new/net_err.png')
 }
 
 

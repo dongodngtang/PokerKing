@@ -233,7 +233,8 @@
   "new_pwd":"新密码",
   "pwd_change":"输入后文字",
   "iphone_change":"通过手机验证方式",
-  "oldPwd_change":"通过旧密码方式"
+  "oldPwd_change":"通过旧密码方式",
+  "net_err":"网络异常，请检查您的网络"
 }
 
 
