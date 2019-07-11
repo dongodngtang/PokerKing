@@ -93,7 +93,7 @@ const InputPhoneCard = ({nextTo, close}) => (
                 top: 13, right: 13
             }}>
             <Image style={{...wh(32, 32)}}
-                   source={Images.close_block}/>
+                   source={Images.right_close}/>
         </TouchableOpacity>
         <Text style={[styles.btnConfirmTxt, {marginTop: px2dp(74), marginBottom: px2dp(64)}]}>{global.lang.t('change_mobile')}</Text>
 
