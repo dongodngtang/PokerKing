@@ -37,6 +37,7 @@ export default class AccountSecurity extends Component {
     }
 
     render() {
+        logMsg("kkkkk",global.loginUser)
         return (
             <View style={{flex: 1, backgroundColor: '#1A1B1F'}}>
                 {this._item(global.lang.t('iphone'), 'k215678@qq.com', this.changeIphone)}

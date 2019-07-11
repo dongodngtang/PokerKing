@@ -91,9 +91,9 @@ export default class ModifyPWD extends Component {
                             }}
                         />
                         <View style={{flex: 1}}/>
-                        {strNotNull(this.old_pwd) ?
+                        {strNotNull(this.new_pwd) ?
                             <TouchableOpacity activeOpacity={1} style={{marginLeft: 28}} onPress={() => {
-                                this.old_pwd = ''
+                                this.new_pwd = ''
                             }}>
                                 <Image style={{width: px2dp(32), height: px2dp(32)}}
                                        source={Images.delete_pwd}/>
