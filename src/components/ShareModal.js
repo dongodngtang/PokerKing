@@ -24,15 +24,15 @@ export default class ShareModal extends Component{
                 <View style={{flex:1,flexDirection:'row'}}>
                     <TouchableOpacity
                         style={{flex:1,alignItems: 'center',justifyContent: 'center',borderWidth: 1}}>
-                        <Text>微信朋友</Text>
+                        <Text>{global.lang.t('wechat')}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={{flex:1,alignItems: 'center',justifyContent: 'center',borderWidth: 1}}>
-                        <Text>微信朋友圈</Text>
+                        <Text>{global.lang.t('friends')}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={{flex:1,alignItems: 'center',justifyContent: 'center',borderWidth: 1}}>
-                        <Text>微博</Text>
+                        <Text>{global.lang.t('weibo')}</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={{flex:1,flexDirection:'row'}}>
