@@ -3,6 +3,7 @@ package com.pokerking;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import cl.json.RNSharePackage;
 import com.microsoft.codepush.react.CodePush;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.rnfs.RNFSPackage;
@@ -26,7 +27,7 @@ import java.util.List;
 
 public class MainApplication extends Application implements ReactApplication {
 
-    // 是否关闭 Log，默认不关闭
+    // 是否关闭 Log，
     private static boolean SHUTDOWN_LOG = false;
     // 是否关闭 toast，默认不关闭
     private static boolean SHUTDOWN_TOAST = false;
@@ -48,6 +49,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNSharePackage(),
             new CodePush(getResources().getString(R.string.reactNativeCodePush_androidDeploymentKey), getApplicationContext(), BuildConfig.DEBUG),
             new RNDeviceInfo(),
             new RNFSPackage(),
