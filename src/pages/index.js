@@ -275,6 +275,8 @@ export const scenes = () => {
         <Scene key="ChangePhone"
                component={ChangePhone}
                {...TopNav({
+                   bgd:true,
+                   bg_color:'#090909',
                    title: global.lang.t('iphone')
                })}/>
         <Scene key="Collections"
