@@ -67,7 +67,6 @@ export const scenes = () => {
                labelStyle={{fontSize: px2sp(24)}}
                tabs>
             <Scene key="Home"
-                   initial
                    tabBarLabel={global.lang.t('news')}
                    tabBarIcon={({focused}) => (
                        <TabBarItem
