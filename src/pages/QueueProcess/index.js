@@ -8,6 +8,7 @@ import {getCashQueues, getCashQueuesNumber} from '../../services/cashTableDao'
 import NotData from '../comm/NotData';
 import UltimateFlatList from '../../components/ultimate/UltimateFlatList';
 import {initLoginUser} from "../../services/accountDao";
+import QRCodeModal from "./QRCodeModal";
 
 @connect(({QueueProcess}) => ({
     ...QueueProcess,
@@ -73,7 +74,7 @@ export default class QueueProcess extends Component {
                         activeOpacity={1}
                         style={[styles.right_mid_view, {backgroundColor: rank > 0 ? '#303236' : "#1A1B1F"}]}
                         onPress={() => {
-
+                            this.QRCodeModel && this.QRCodeModel.toggle()
                         }}>
                         <Text style={styles.application_wait}>{global.lang.t('application_wait')}</Text>
                     </TouchableOpacity>
@@ -102,6 +103,8 @@ export default class QueueProcess extends Component {
                     waitingSpinnerText={global.lang.t('loading')}
                     emptyView={() => <NotData/>}
                 />
+
+                <QRCodeModal ref={ref => this.QRCodeModel = ref}/>
             </View>
 
         )

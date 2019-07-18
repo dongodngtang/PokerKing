@@ -132,7 +132,6 @@ export default class Login extends Component {
                         <Image source={Images.psd} style={styles.login_img}/>
                         <TextInput
                             returnKeyType={'done'}
-                            keyboardType={'numeric'}
                             style={{
                                 paddingTop: 0,
                                 paddingBottom: 0,
