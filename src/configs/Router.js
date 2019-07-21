@@ -294,8 +294,8 @@ export default class Router {
         this.push({sceneKey:'RegisterNew'})
     }
 
-    toMobileRegister(){
-        this.push({sceneKey:'MobileRegister'})
+    toMobileRegister(params){
+        this.push({sceneKey:'MobileRegister',params})
     }
 
     toSearchDateTag(searchParams){

@@ -46,8 +46,8 @@ import Mobile from "./Mobile";
 import ChangePhone from "./ChangePhone";
 import Collections from "./Collections";
 import SearchDateTag from "./Main/SearchNews/SearchDateTag";
-import RegisterNew from "./RegisterNew";
-import MobileRegister from "./MobileRegister";
+import RegisterNew from "./Register/RegisterNew";
+import MobileRegister from "./Register/MobileRegister";
 import ModifyPWD from "./ModifyPWD";
 import ModifyPWDToMobile from "./ModifyPWDToMobile";
 

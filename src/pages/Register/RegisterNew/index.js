@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {View, Text, TouchableOpacity, Image, KeyboardAvoidingView, TextInput} from 'react-native';
 import {connect} from 'react-redux';
 import styles from './index.style'
-import {Images, Metrics} from "../../configs/Theme";
+import {Images, Metrics} from "../../../configs/Theme";
+import md5 from "react-native-md5";
 
 @connect(({RegisterNew}) => ({
     ...RegisterNew,
@@ -80,7 +81,10 @@ export default class RegisterNew extends Component {
                 </View>
 
                 <TouchableOpacity style={styles.next_btn} onPress={() => {
-                    router.toMobileRegister()
+                    router.toMobileRegister({
+                        username:this.login_name,
+                        password:md5.hex_md5(this.password)
+                    })
                 }}>
                     <Text style={{color: '#FFE9AD', fontSize: 17}}>{global.lang.t('login_continue')}</Text>
                 </TouchableOpacity>

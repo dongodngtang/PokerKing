@@ -1,6 +1,6 @@
 
 import { StyleSheet } from 'react-native';
-import {Metrics, px2dp} from "../../configs/Theme";
+import {Metrics, px2dp} from "../../../configs/Theme";
 export default StyleSheet.create({
     regist_view:{
         width:Metrics.screenWidth,

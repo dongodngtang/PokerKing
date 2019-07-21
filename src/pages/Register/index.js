@@ -10,9 +10,6 @@ import {isStrNull, logMsg, showToast} from "../../utils/utils";
 
 const reg = /[^A-Z0-9]+/;
 
-@connect(({Register}) => ({
-    ...Register,
-}))
 export default class Register extends Component {
     constructor(props) {
         super(props)
@@ -132,6 +129,7 @@ export default class Register extends Component {
                     body.nickname = this.user_name;
                     body.gender = this.gender;
                     body.email = this.email;
+
                     if (isStrNull(this.user_name)) {
                         showToast(global.lang.t('input_nick_name'))
                     } else if (this.user_name.length < 6 || this.user_name.length > 14) {
