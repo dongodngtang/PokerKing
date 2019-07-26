@@ -48,41 +48,18 @@ export default class Login extends Component {
         let userName = this.userName
         let pwd = this.pwd
         if (userName.length > 1 && pwd.length > 1) {
-            verify_code({
-                account: userName,
-                country_code: '86',
-                option_type: 'login',
-                vcode_type: 'mobile',
-                vcode: '201919'
-            }, res => {
-                // 查询该账户是否被注册过¶
-                verify({
-                    account: userName,
-                    country_code: '86'
-                }, ret => {
-                    if (ret && ret.exist && ret.exist === 1) {
-                        // 登录
-                        login({
-                            type: 'vcode',
-                            mobile: userName,
-                            vcode:'201919',
-                            country_code: '86'
-                        }, ret => {
-                            showToast(global.lang.t('login_success'))
-                            this.props.navigation.popToTop()
-                        }, err => {
+            // 登录
+            login({
+                type: 'vcode',
+                mobile: userName,
+                vcode:'201919',
+                country_code: '86'
+            }, ret => {
+                showToast(global.lang.t('login_success'))
+                this.props.navigation.popToTop()
+            }, err => {
 
-                        })
-                    } else {
-                        // 注册
-
-                    }
-
-                }, err => {
-
-                })
             })
-
         }
         else
             showToast(`${global.lang.t('fillWhole')}`);
