@@ -197,16 +197,33 @@ export default class MobileRegister extends Component {
                                     showToast(global.lang.t('please_input_phone'))
                                     return
                                 }
-                                postCode({
-                                    mobile: iphone,
-                                    country_code: ext,
-                                    option_type: 'login',
-                                    vcode_type: "mobile",
-                                }, data => {
-                                    counting(true)
+                                // 查询该账户是否被注册过¶
+                                verify({
+                                    account: iphone,
+                                    country_code: ext
+                                }, ret => {
+
+                                    if (ret && ret.exist && ret.exist === 1) {
+                                        // 已存在
+                                        showToast(global.lang.t('login_success'))
+                                    } else {
+                                        postCode({
+                                            mobile: iphone,
+                                            country_code: ext,
+                                            option_type: 'login',
+                                            vcode_type: "mobile",
+                                        }, data => {
+                                            counting(true)
+                                        }, err => {
+
+                                        })
+
+                                    }
+
                                 }, err => {
-                                    showToast(err)
+
                                 })
+
 
                             }}/>
 
@@ -244,13 +261,7 @@ export default class MobileRegister extends Component {
         const {ext} = this.state;
         let iphone = this.iphone
         let vcode = this.vcode
-        router.toRegister({
-            type: 'mobile',
-            mobile: iphone,
-            vcode,
-            country_code: ext,
-            ...this.props.params
-        })
+
         if (iphone.length > 1 && vcode.length > 1 && !isStrNull(ext)) {
             //核查验证码是否正确
             verify_code({
@@ -260,42 +271,22 @@ export default class MobileRegister extends Component {
                 vcode_type: 'mobile',
                 vcode: vcode
             }, res => {
-                // 查询该账户是否被注册过¶
-                verify({
-                    account: iphone,
-                    country_code: ext
-                }, ret => {
-                    if (ret && ret.exist && ret.exist === 1) {
-                        // 登录
-                        login({
-                            type: 'vcode',
-                            mobile: iphone,
-                            vcode,
-                            country_code: ext
-                        }, ret => {
-                            showToast(global.lang.t('login_success'))
-                            this.props.navigation.popToTop()
-                        }, err => {
 
-                        })
-                    } else {
-                        // 注册
-                        router.toRegister({
-                            type: 'mobile',
-                            mobile: iphone,
-                            vcode,
-                            country_code: ext
-                        })
-
-                    }
-
-                }, err => {
-
+                // 注册
+                router.toRegister({
+                    mobile: iphone,
+                    vcode,
+                    country_code: ext,
+                    ...this.props.params
                 })
+
+            })
+        }else {
+            router.toRegister({
+                ...this.props.params
             })
         }
-        else
-            showToast(`${global.lang.t('fillWhole')}`);
+
     };
 
     onSelectMenu = (index, subindex, data) => {

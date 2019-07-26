@@ -4,6 +4,11 @@ import {connect} from 'react-redux';
 import styles from './index.style'
 import {Images, Metrics} from "../../../configs/Theme";
 import md5 from "react-native-md5";
+import {showToast} from "../../../utils/utils";
+import {postCode, verify} from "../../../services/accountDao";
+
+const reg = /^[a-zA-Z][a-zA-z0-9_]{5,15}$/;
+
 
 @connect(({RegisterNew}) => ({
     ...RegisterNew,
@@ -51,7 +56,13 @@ export default class RegisterNew extends Component {
                             />
 
                         </View>
-                        <View style={{height: 1,marginLeft:17, marginRight:17,width:Metrics.screenWidth - 34,backgroundColor:"#ECECEE"}}/>
+                        <View style={{
+                            height: 1,
+                            marginLeft: 17,
+                            marginRight: 17,
+                            width: Metrics.screenWidth - 34,
+                            backgroundColor: "#ECECEE"
+                        }}/>
                         <View style={styles.input_view}>
                             <Image source={Images.psd_gray} style={styles.login_img}/>
                             <TextInput
@@ -81,10 +92,34 @@ export default class RegisterNew extends Component {
                 </View>
 
                 <TouchableOpacity style={styles.next_btn} onPress={() => {
-                    router.toMobileRegister({
-                        username:this.login_name,
-                        password:md5.hex_md5(this.password)
+                    let account = this.login_name
+                    let password = this.password
+                    if(!reg.test(account)){
+                        showToast(global.lang.t('nick_name_english'));
+                        return
+                    }
+                    if(password.length < 6){
+                        showToast('密码输入的长度不小于6位');
+                        return
+                    }
+                    // 查询该账户是否被注册过¶
+                    verify({
+                        account
+                    }, ret => {
+
+                        if (ret && ret.exist && ret.exist === 1) {
+                            // 已存在
+                            showToast(global.lang.t('login_success'))
+                        } else {
+                            router.toMobileRegister({
+                                account,
+                                password: md5.hex_md5(password)
+                            })
+                        }
+
                     })
+
+
                 }}>
                     <Text style={{color: '#FFE9AD', fontSize: 17}}>{global.lang.t('login_continue')}</Text>
                 </TouchableOpacity>

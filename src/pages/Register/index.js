@@ -8,7 +8,7 @@ import {register} from "../../services/accountDao";
 import ImagePicker from "react-native-image-crop-picker";
 import {isStrNull, logMsg, showToast} from "../../utils/utils";
 
-const reg = /[^A-Z0-9]+/;
+
 
 export default class Register extends Component {
     constructor(props) {
@@ -130,25 +130,17 @@ export default class Register extends Component {
                     body.gender = this.gender;
                     body.email = this.email;
 
-                    if (isStrNull(this.user_name)) {
-                        showToast(global.lang.t('input_nick_name'))
-                    } else if (this.user_name.length < 6 || this.user_name.length > 14) {
-                        showToast(global.lang.t('length_nick_name'))
-                    } else if (this.gender === 0) {
+                    if (this.gender === 0) {
                         showToast(global.lang.t('select_gender'))
                     } else if (isStrNull(this.email)) {
                         showToast(global.lang.t('input_email'))
                     } else {
-                        if (reg.test(this.user_name)) {
-                            showToast(global.lang.t('nick_name_english'));
-                        } else {
-                            register(body, ret => {
-                                global.lang.t('login_success')
-                                this.props.navigation.popToTop()
-                            }, err => {
+                        register(body, ret => {
+                            global.lang.t('login_success')
+                            this.props.navigation.popToTop()
+                        }, err => {
 
-                            })
-                        }
+                        })
                     }
                 }}>
                     <Text style={{color: '#FFE9AD', fontSize: 18}}>{global.lang.t('determine')}</Text>
