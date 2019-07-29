@@ -48,6 +48,7 @@ export default class Login extends Component {
         if (account.length > 1 && password.length > 1) {
             // 登录
             login({
+                type: "account",
                 account,
                 password:md5.hex_md5(password)
             }, ret => {
