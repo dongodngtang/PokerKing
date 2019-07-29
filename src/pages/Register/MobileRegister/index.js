@@ -205,7 +205,7 @@ export default class MobileRegister extends Component {
 
                                     if (ret && ret.exist && ret.exist === 1) {
                                         // 已存在
-                                        showToast(global.lang.t('login_success'))
+                                        showToast('手机号已被注册')
                                     } else {
                                         postCode({
                                             mobile: iphone,

@@ -35,7 +35,6 @@ export default class RegisterNew extends Component {
                             <Image source={Images.login_gray} style={styles.login_img}/>
                             <TextInput
                                 returnKeyType={'done'}
-                                keyboardType={'numeric'}
                                 style={{
                                     paddingTop: 0,
                                     paddingBottom: 0,
@@ -67,7 +66,6 @@ export default class RegisterNew extends Component {
                             <Image source={Images.psd_gray} style={styles.login_img}/>
                             <TextInput
                                 returnKeyType={'done'}
-                                keyboardType={'numeric'}
                                 style={{
                                     paddingTop: 0,
                                     paddingBottom: 0,
@@ -109,7 +107,7 @@ export default class RegisterNew extends Component {
 
                         if (ret && ret.exist && ret.exist === 1) {
                             // 已存在
-                            showToast(global.lang.t('login_success'))
+                            showToast('用户名已被注册')
                         } else {
                             router.toMobileRegister({
                                 account,

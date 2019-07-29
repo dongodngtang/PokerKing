@@ -4,12 +4,10 @@ import {connect} from 'react-redux';
 import styles from './index.style';
 import ExtArea from '../comm/ExtArea';
 import {Images, Metrics, Colors} from "../../configs/Theme";
-import {getAvatar, isStrNull, logMsg, showToast} from "../../utils/utils";
-import {verify, postCode, register, login, verify_code} from "../../services/accountDao";
-import CountDownButton from '../../components/CountDownButton'
+import {getAvatar, isStrNull, showToast} from "../../utils/utils";
+import {login} from "../../services/accountDao";
 import SelectPiker from "../comm/SelectPiker";
-import CountryPicker, {getAllCountries} from 'react-native-country-picker-modal'
-import DeviceInfo from 'react-native-device-info'
+import md5 from "react-native-md5";
 
 
 @connect(({Login}) => ({
@@ -45,15 +43,13 @@ export default class Login extends Component {
     }
 
     _next = () => {
-        let userName = this.userName
-        let pwd = this.pwd
-        if (userName.length > 1 && pwd.length > 1) {
+        let account = this.userName
+        let password = this.pwd
+        if (account.length > 1 && password.length > 1) {
             // 登录
             login({
-                type: 'vcode',
-                mobile: userName,
-                vcode:'201919',
-                country_code: '86'
+                account,
+                password:md5.hex_md5(password)
             }, ret => {
                 showToast(global.lang.t('login_success'))
                 this.props.navigation.popToTop()
@@ -83,7 +79,6 @@ export default class Login extends Component {
                         <Image source={Images.login} style={styles.login_img}/>
                         <TextInput
                             returnKeyType={'done'}
-                            keyboardType={'numeric'}
                             style={{
                                 paddingTop: 0,
                                 paddingBottom: 0,
@@ -98,7 +93,7 @@ export default class Login extends Component {
                             clearTextOnFocus={true}
                             underlineColorAndroid={'transparent'}
                             onChangeText={txt => {
-                                this.userName = '13640988285'
+                                this.userName = txt
                             }}
 
                         />
@@ -117,14 +112,13 @@ export default class Login extends Component {
                                 fontSize: 14,
                                 color: '#999999'
                             }}
-                            maxLength={6}
                             numberOfLines={1}
                             placeholderTextColor={'#CCCCCC'}
                             placeholder={global.lang.t('psd')}
                             clearTextOnFocus={true}
                             underlineColorAndroid={'transparent'}
                             onChangeText={txt => {
-                                this.pwd = '201919'
+                                this.pwd = txt
                             }}
 
                         />
