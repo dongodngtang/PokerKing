@@ -14,11 +14,11 @@ export default class ModifyPWD extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            new_show: false,
-            old_show: false
+            new_show: true,
+            old_show: true,
+            old_pwd:'',
+            new_pwd:''
         }
-        this.old_pwd = ''
-        this.new_pwd = ''
     }
 
     componentDidMount() {
@@ -26,6 +26,7 @@ export default class ModifyPWD extends Component {
     }
 
     render() {
+        const {new_pwd,new_show,old_pwd,old_show} = this.state
         return (
             <View style={{flex: 1, backgroundColor: "#161718"}}>
                 <KeyboardAvoidingView behavior='position' keyboardVerticalOffset={20}>
@@ -46,15 +47,19 @@ export default class ModifyPWD extends Component {
                             placeholder={global.lang.t('old_pwd')}
                             clearTextOnFocus={true}
                             underlineColorAndroid={'transparent'}
-                            onChangeText={txt => {
-                                this.old_pwd = txt
+                            secureTextEntry={old_show}
+                            value={old_pwd}
+                            onChange={old_pwd => {
+                                this.setState({
+                                    old_pwd
+                                })
 
                             }}
                         />
                         <View style={{flex: 1}}/>
-                        {strNotNull(this.old_pwd) ?
+                        {old_pwd ?
                             <TouchableOpacity activeOpacity={1} style={{marginLeft: 28}} onPress={() => {
-                                this.old_pwd = ''
+                               this.setState({old_pwd:''})
                             }}>
                                 <Image style={{width: px2dp(32), height: px2dp(32)}}
                                        source={Images.delete_pwd}/>
@@ -86,16 +91,20 @@ export default class ModifyPWD extends Component {
                             placeholder={global.lang.t('new_pwd')}
                             placeholderTextColor={'#DDDDDD'}
                             clearTextOnFocus={true}
+                            secureTextEntry={new_show}
                             underlineColorAndroid={'transparent'}
-                            onChangeText={txt => {
-                                this.new_pwd = txt
+                            value={new_pwd}
+                            onChange={new_pwd => {
+                                this.setState({
+                                    new_pwd
+                                })
 
                             }}
                         />
                         <View style={{flex: 1}}/>
-                        {strNotNull(this.new_pwd) ?
+                        {new_pwd?
                             <TouchableOpacity activeOpacity={1} style={{marginLeft: 28}} onPress={() => {
-                                this.new_pwd = ''
+                               this.setState({new_pwd:''})
                             }}>
                                 <Image style={{width: px2dp(32), height: px2dp(32)}}
                                        source={Images.delete_pwd}/>
@@ -128,8 +137,8 @@ export default class ModifyPWD extends Component {
     }
 
     _nextPwd=()=>{
-        let old_pwd = this.old_pwd
-        let new_pwd = this.new_pwd
+
+        const {old_pwd,new_pwd} = this.state
         if (old_pwd.length > 1 && new_pwd.length > 1) {
             // 登录
             change_password({
