@@ -315,6 +315,9 @@ export default class Router {
     toRegisterNew() {
         this.push({sceneKey: 'RegisterNew'})
     }
+    toPwdFound() {
+        this.push({sceneKey: 'PwdFound'})
+    }
 
     toMobileRegister(params) {
         this.push({sceneKey: 'MobileRegister', params})

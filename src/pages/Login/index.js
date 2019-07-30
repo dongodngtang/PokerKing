@@ -135,7 +135,7 @@ export default class Login extends Component {
                     </TouchableOpacity>
                     <View style={{flex:1}}/>
                     <TouchableOpacity style={{borderBottomWidth:1,borderBottomColor:'#AAAAAA'}} onPress={() => {
-                        // router.toRegisterNew()
+                        router.toPwdFound()
                     }}>
                         <Text style={{color: "#AAAAAA", fontSize: 12}}>{global.lang.t("forget_pwd")}</Text>
                     </TouchableOpacity>
