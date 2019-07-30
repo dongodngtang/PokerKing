@@ -79,6 +79,13 @@ export function login(body, resolve, reject) {
     }, reject)
 }
 
+export function change_password(body, resolve, reject) {
+    post(api.change_password, body, ret => {
+        storageLoginUser(ret.data)
+        resolve(ret.data)
+    }, reject)
+}
+
 export function verify_code(body, resolve, reject) {
     post(api.verify_vcode, body, ret => {
         resolve(ret.data)

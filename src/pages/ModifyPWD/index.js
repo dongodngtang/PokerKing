@@ -3,7 +3,9 @@ import {View, Text, Image, TouchableOpacity, TextInput, KeyboardAvoidingView} fr
 import {connect} from 'react-redux';
 import styles from './index.style'
 import {Images, px2dp} from "../../configs/Theme";
-import {strNotNull} from "../../utils/utils";
+import {showToast, strNotNull} from "../../utils/utils";
+import {change_password} from "../../services/accountDao";
+import md5 from "react-native-md5";
 
 @connect(({ModifyPWD}) => ({
     ...ModifyPWD,
@@ -110,7 +112,9 @@ export default class ModifyPWD extends Component {
 
 
                 </KeyboardAvoidingView>
-                <TouchableOpacity activeOpacity={1} style={styles.confirm_view}>
+                <TouchableOpacity activeOpacity={1} style={styles.confirm_view} onPress={()=>{
+                    this._nextPwd()
+                }}>
                     <Text style={styles.determine}>{global.lang.t('determine')}</Text>
                 </TouchableOpacity>
 
@@ -121,5 +125,25 @@ export default class ModifyPWD extends Component {
                 </TouchableOpacity>
             </View>
         )
+    }
+
+    _nextPwd=()=>{
+        let old_pwd = this.old_pwd
+        let new_pwd = this.new_pwd
+        if (old_pwd.length > 1 && new_pwd.length > 1) {
+            // 登录
+            change_password({
+                type: "pwd",
+                old_pwd:md5.hex_md5(old_pwd),
+                new_pwd: md5.hex_md5(new_pwd)
+            }, ret => {
+                showToast(global.lang.t('change_pwd_success'))
+                this.props.navigation.popToTop()
+            }, err => {
+
+            })
+        }
+        else
+            showToast(`${global.lang.t('fillWhole')}`);
     }
 }

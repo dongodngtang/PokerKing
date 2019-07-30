@@ -243,7 +243,8 @@
   "friends":"朋友圈",
   "weibo":"微博",
   "mine_message":"个人信息",
-  "forget_pwd":"忘记密码"
+  "forget_pwd":"忘记密码",
+  "change_pwd_success":"修改密码成功"
 }
 
 

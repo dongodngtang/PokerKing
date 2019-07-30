@@ -35,6 +35,7 @@ const api = {
     history_search:'infos/history_search',//查询历史搜索的关键词
     remove_history_search:'infos/remove_history_search',
     bind_account:'account/bind_account',//用户绑定手机号
+    change_password:'account/change_password',//用户修改密码 [通过旧密码修改]
 }
 
 
