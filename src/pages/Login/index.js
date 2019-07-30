@@ -50,7 +50,7 @@ export default class Login extends Component {
             login({
                 type: "account",
                 account,
-                password:md5.hex_md5(password)
+                password: md5.hex_md5(password)
             }, ret => {
                 showToast(global.lang.t('login_success'))
                 this.props.navigation.popToTop()
@@ -66,12 +66,6 @@ export default class Login extends Component {
     render() {
         return (
             <View style={styles.container}>
-
-                <TouchableOpacity style={{marginTop: 20, alignSelf: 'flex-end', marginRight: 17}} onPress={() => {
-                    router.toRegisterNew()
-                }}>
-                    <Text style={{color: "#FFE9AD", fontSize:14}}>{global.lang.t("zhuce")}</Text>
-                </TouchableOpacity>
 
                 <Image source={getAvatar('')} style={styles.person_img}/>
 
@@ -132,6 +126,20 @@ export default class Login extends Component {
                 }}>
                     <Text style={{color: '#303236', fontSize: 17}}>{global.lang.t('login')}</Text>
                 </TouchableOpacity>
+
+                <View style={{marginTop: 20, flexDirection: 'row', marginLeft: 17, marginRight: 17}}>
+                    <TouchableOpacity onPress={() => {
+                        router.toRegisterNew()
+                    }}>
+                        <Text style={{color: "#FFE9AD", fontSize: 14}}>{global.lang.t("zhuce")}</Text>
+                    </TouchableOpacity>
+                    <View style={{flex:1}}/>
+                    <TouchableOpacity style={{borderBottomWidth:1,borderBottomColor:'#AAAAAA'}} onPress={() => {
+                        // router.toRegisterNew()
+                    }}>
+                        <Text style={{color: "#AAAAAA", fontSize: 12}}>{global.lang.t("forget_pwd")}</Text>
+                    </TouchableOpacity>
+                </View>
 
                 <TouchableOpacity
                     style={{

@@ -242,5 +242,6 @@
   "wechat":"微信",
   "friends":"朋友圈",
   "weibo":"微博",
-  "mine_message":"个人信息"
+  "mine_message":"个人信息",
+  "forget_pwd":"忘记密码"
 }
