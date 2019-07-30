@@ -26,10 +26,11 @@ export default class ChangePhone extends Component {
     }
 
     render() {
+        const {mobile,country_code} = this.props.params
         return (
             <Base style={{alignItems: 'center'}}>
 
-                <Text style={[styles.txtPhone, {marginTop: px2dp(328)}]}>{global.lang.t('iphone_text')}{}</Text>
+                <Text style={[styles.txtPhone, {marginTop: px2dp(328)}]}>{global.lang.t('iphone_text')}{mobile}</Text>
                 <Text style={[styles.txtPhone, {marginTop: px2dp(14)}]}>{global.lang.t('iphone_text2')}</Text>
 
                 <TouchableOpacity
@@ -39,6 +40,7 @@ export default class ChangePhone extends Component {
                 </TouchableOpacity>
 
                 <StepToChange
+                    country_code={country_code}
                     closeModal={this.toggle}
                     showModal={this.state.showModal}
                 />

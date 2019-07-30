@@ -5,7 +5,7 @@ import TopBar from "../comm/TopBar";
 import {Images} from "../../configs/Theme";
 import styles from './index.style'
 import {getAvatar, isEmptyObject, isStrNull, logMsg} from "../../utils/utils";
-import QRCode from 'react-native-qrcode';
+
 
 
 @connect(({MinePage}) => ({
@@ -64,12 +64,6 @@ export default class MinePage extends Component {
 
                         })}
                 </View>
-
-                <QRCode
-                    value={'是劳动纠纷是的'}
-                    size={200}
-                    bgColor='red'
-                    fgColor='white'/>
 
             </View>
         )

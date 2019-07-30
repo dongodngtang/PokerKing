@@ -1,5 +1,5 @@
 import api from '../configs/api'
-import {get, post, put, setBaseUrl, setToken} from '../configs/fetch'
+import {get, post, put, setBaseUrl, setToken,setLoginEmpty} from '../configs/fetch'
 import {isEmpty, logMsg, isEmptyObject} from '../utils/utils';
 import dva from '../utils/dva'
 
@@ -142,5 +142,12 @@ export function postCancelCollect(body, resolve, reject) {
 export function getCollectionList(body, resolve, reject) {
     get(api.collection_list(), body, ret => {
         resolve(ret.data)
+    }, reject)
+}
+
+export function postBindAccount(body, resolve, reject) {
+    post(api.bind_account, body, ret => {
+        resolve(ret.data)
+        setLoginEmpty()
     }, reject)
 }

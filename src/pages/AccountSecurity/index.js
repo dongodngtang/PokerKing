@@ -6,8 +6,8 @@ import {logMsg, strNotNull} from "../../utils/utils";
 import {Images, Metrics} from "../../configs/Theme";
 import style from './index.style'
 
-@connect(({AccountSecurity}) => ({
-    ...AccountSecurity,
+@connect(({AccountSecurity,MinePage}) => ({
+    ...AccountSecurity,...MinePage
 }))
 export default class AccountSecurity extends Component {
 
@@ -25,7 +25,8 @@ export default class AccountSecurity extends Component {
     };
 
     changeIphone = () => {
-        router.toChangePhone()
+        const {profile} = this.props;
+        router.toChangePhone(profile.mobile,profile.country_code)
     }
 
     changeMail=()=>{
@@ -37,12 +38,12 @@ export default class AccountSecurity extends Component {
     }
 
     render() {
-        logMsg("kkkkk",global.loginUser)
+        const {profile} = this.props;
         return (
             <View style={{flex: 1, backgroundColor: '#1A1B1F'}}>
-                {this._item(global.lang.t('iphone'), 'k215678@qq.com', this.changeIphone)}
+                {this._item(global.lang.t('iphone'), profile.mobile, this.changeIphone)}
                 {this._line()}
-                {this._item(global.lang.t('mailbox'), 'k215678@qq.com', this.changeMail)}
+                {this._item(global.lang.t('mailbox'), profile.email, this.changeMail)}
                 <View style={{height:12}}/>
                 {this._item(global.lang.t('change_pwd'), null, this.changePWD)}
             </View>

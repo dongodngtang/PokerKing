@@ -62,10 +62,10 @@ export default class Router {
     }
 
     toRaceNew(event_id) {
-        needLogin(()=>{
+        needLogin(() => {
             this.push({
                 sceneKey: 'RaceNew',
-                params:{
+                params: {
                     event_id
                 }
             })
@@ -74,10 +74,10 @@ export default class Router {
     }
 
     toRaceSchedule(event) {
-        needLogin(()=>{
+        needLogin(() => {
             this.push({
                 sceneKey: 'RaceSchedule',
-                params:{
+                params: {
                     event
                 }
             })
@@ -101,7 +101,7 @@ export default class Router {
     }
 
     toFeedback() {
-        needLogin(()=>{
+        needLogin(() => {
             this.push({
                 sceneKey: 'Feedback'
             })
@@ -109,7 +109,7 @@ export default class Router {
     }
 
     toModifyData() {
-        needLogin(()=>{
+        needLogin(() => {
             this.push({
                 sceneKey: 'ModifyData'
             })
@@ -133,7 +133,7 @@ export default class Router {
     }
 
     toInfoDetail(id) {
-        needLogin(()=>{
+        needLogin(() => {
             this.push({
                 sceneKey: 'InfoDetail',
                 params: {
@@ -143,7 +143,8 @@ export default class Router {
         })
 
     }
-    toEventDetail(id,event_id) {
+
+    toEventDetail(id, event_id) {
         this.push({
             sceneKey: 'EventDetail',
             params: {
@@ -172,6 +173,7 @@ export default class Router {
 
         })
     }
+
     toStructure(pdf) {
         this.push({
             sceneKey: 'Structure',
@@ -181,8 +183,9 @@ export default class Router {
 
         })
     }
+
     toRaceMessage(id) {
-        needLogin(()=>{
+        needLogin(() => {
             this.push({
                 sceneKey: 'RaceMessage',
                 params: {
@@ -193,66 +196,76 @@ export default class Router {
         })
 
     }
+
     toFAQ() {
         this.push({
             sceneKey: 'FAQ'
 
         })
     }
+
     toFoundBeauti() {
         this.push({
             sceneKey: 'FoundBeauti'
 
         })
     }
+
     toNotices() {
-        needLogin(()=>{
+        needLogin(() => {
             this.push({
                 sceneKey: 'NoticesPage'
             })
         })
 
     }
+
     toCollections() {
-        needLogin(()=>{
+        needLogin(() => {
             this.push({
                 sceneKey: 'Collections'
             })
         })
 
     }
+
     toProtocolPage() {
         this.push({
             sceneKey: 'ProtocolPage'
 
         })
     }
+
     toSearchNews() {
         this.push({
             sceneKey: 'SearchNews'
 
         })
     }
+
     toInstantList() {
         this.push({
             sceneKey: 'InstantList'
 
         })
     }
+
     toRankList() {
         this.push({
             sceneKey: 'RankList'
 
         })
     }
+
     toSetting() {
         this.push({
             sceneKey: 'Setting'
 
         })
     }
+
     toAccountSecurity() {
-        needLogin(()=>{
+        needLogin(() => {
             this.push({
                 sceneKey: 'AccountSecurity'
 
@@ -260,8 +273,9 @@ export default class Router {
         })
 
     }
+
     toMobile() {
-        needLogin(()=>{
+        needLogin(() => {
             this.push({
                 sceneKey: 'Mobile'
 
@@ -269,16 +283,18 @@ export default class Router {
         })
 
     }
+
     toModifyPWD() {
-        needLogin(()=>{
+        needLogin(() => {
             this.push({
                 sceneKey: 'ModifyPWD'
 
             })
         })
     }
+
     toModifyPWDToMobile() {
-        needLogin(()=>{
+        needLogin(() => {
             this.push({
                 sceneKey: 'ModifyPWDToMobile'
 
@@ -286,20 +302,26 @@ export default class Router {
         })
     }
 
-    toChangePhone(){
-        this.push({sceneKey:'ChangePhone'})
+    toChangePhone(mobile,country_code) {
+        this.push({
+            sceneKey: 'ChangePhone',
+            params: {
+                mobile,
+                country_code
+            }
+        })
     }
 
-    toRegisterNew(){
-        this.push({sceneKey:'RegisterNew'})
+    toRegisterNew() {
+        this.push({sceneKey: 'RegisterNew'})
     }
 
-    toMobileRegister(params){
-        this.push({sceneKey:'MobileRegister',params})
+    toMobileRegister(params) {
+        this.push({sceneKey: 'MobileRegister', params})
     }
 
-    toSearchDateTag(searchParams){
-        this.push({sceneKey:'SearchDateTag',params:{searchParams}})
+    toSearchDateTag(searchParams) {
+        this.push({sceneKey: 'SearchDateTag', params: {searchParams}})
     }
 
 }

@@ -131,7 +131,7 @@ function errReject(res) {
   }
 }
 
- function setLoginEmpty() {
+ export function setLoginEmpty() {
     logMsg('退出登录用户')
     global.storage.save({
         key:'LoginUser',

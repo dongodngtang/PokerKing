@@ -33,7 +33,8 @@ const api = {
     isCollect:isCollect,//查看是否收藏
     cancel_collect:cancel_collect,//取消收藏
     history_search:'infos/history_search',//查询历史搜索的关键词
-    remove_history_search:'infos/remove_history_search'
+    remove_history_search:'infos/remove_history_search',
+    bind_account:'account/bind_account',//用户绑定手机号
 }
 
 
