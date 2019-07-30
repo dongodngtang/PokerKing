@@ -122,8 +122,8 @@ export default class Setting extends Component {
                     <Image style={styles.img} source={this.state.rank_notice ? Images.setOpen : Images.setClose}/>
                 </TouchableOpacity>, null)}
 
-                {this._line()}
-                {this._item(global.lang.t('clear'), Images.right, styles.right_img, null, '99.2M')}
+                {/*{this._line()}*/}
+                {/*{this._item(global.lang.t('clear'), Images.right, styles.right_img, null, '99.2M')}*/}
                 <View style={{height: 14, width: '100%'}}/>
                 {this._item(global.lang.t('version'), Images.right, styles.right_img, null, VERSION, this.change_version)}
 

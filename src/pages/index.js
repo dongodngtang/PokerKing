@@ -167,7 +167,7 @@ export const scenes = () => {
         <Scene key="ModifyData"
                component={ModifyData}
                {...TopNav({
-                   title: global.lang.t('modifyData'),
+                   title: global.lang.t('mine_message'),
                    rightTitle: global.lang.t('save')
                })}/>
         <Scene key="SwitchApi"
