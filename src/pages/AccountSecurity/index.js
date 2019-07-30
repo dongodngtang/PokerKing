@@ -37,13 +37,12 @@ export default class AccountSecurity extends Component {
     }
 
     render() {
-        logMsg("kkkkk",global.loginUser)
         return (
             <View style={{flex: 1, backgroundColor: '#1A1B1F'}}>
                 {this._item(global.lang.t('iphone'), 'k215678@qq.com', this.changeIphone)}
                 {this._line()}
-                {this._item(global.lang.t('mailbox'), 'k215678@qq.com', this.changeMail)}
-                <View style={{height:12}}/>
+                {/*{this._item(global.lang.t('mailbox'), 'k215678@qq.com', this.changeMail)}*/}
+                {/*<View style={{height:12}}/>*/}
                 {this._item(global.lang.t('change_pwd'), null, this.changePWD)}
             </View>
         )
