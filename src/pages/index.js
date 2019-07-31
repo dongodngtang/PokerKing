@@ -50,6 +50,7 @@ import RegisterNew from "./Register/RegisterNew";
 import MobileRegister from "./Register/MobileRegister";
 import ModifyPWD from "./ModifyPWD";
 import ModifyPWDToMobile from "./ModifyPWDToMobile";
+import VerCodeLogin from "./VerCodeLogin";
 
 export const scenes = () => {
     return <Scene key="root"
@@ -301,6 +302,13 @@ export const scenes = () => {
                    bgd:true,
                    bg_color:'#090909',
                    title: global.lang.t('change_pwd')
+               })}/>
+        <Scene key="VerCodeLogin"
+               component={VerCodeLogin}
+               {...TopNav({
+                   bgd:true,
+                   bg_color:'#212223',
+                   title: global.lang.t('mobile_ver')
                })}/>
         <Scene key="MobileRegister"
                component={MobileRegister}

@@ -144,7 +144,7 @@ export default class Login extends Component {
                 <TouchableOpacity
                     style={{borderBottomWidth: 1, borderBottomColor: '#FFE9AD', alignSelf: 'center', marginTop: 30}}
                     activeOpacity={1} onPress={() => {
-
+                    router.toVerCodeLogin()
                 }}>
                     <Text numberOfLines={1} style={{
                         color: '#FFE9AD', fontSize: 17

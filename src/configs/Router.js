@@ -318,6 +318,9 @@ export default class Router {
     toPwdFound() {
         this.push({sceneKey: 'PwdFound'})
     }
+    toVerCodeLogin() {
+        this.push({sceneKey: 'VerCodeLogin'})
+    }
 
     toMobileRegister(params) {
         this.push({sceneKey: 'MobileRegister', params})
