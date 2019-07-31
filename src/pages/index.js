@@ -307,6 +307,7 @@ export const scenes = () => {
                component={VerCodeLogin}
                {...TopNav({
                    bgd:true,
+                   rightTitle: global.lang.t('home_language'),
                    bg_color:'#212223',
                    title: global.lang.t('mobile_ver')
                })}/>
