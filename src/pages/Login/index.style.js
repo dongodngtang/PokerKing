@@ -61,6 +61,11 @@ export default StyleSheet.create({
     down_txt: {
         fontSize: 14,
         color: '#4A90E2'
+    },
+    mobile_ver:{
+        marginTop:30,
+        justifyContent:'center',
+        alignItems:'center'
     }
 })
 

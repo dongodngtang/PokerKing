@@ -133,13 +133,23 @@ export default class Login extends Component {
                     }}>
                         <Text style={{color: "#FFE9AD", fontSize: 14}}>{global.lang.t("zhuce")}</Text>
                     </TouchableOpacity>
-                    <View style={{flex:1}}/>
-                    <TouchableOpacity style={{borderBottomWidth:1,borderBottomColor:'#AAAAAA'}} onPress={() => {
+                    <View style={{flex: 1}}/>
+                    <TouchableOpacity style={{borderBottomWidth: 1, borderBottomColor: '#AAAAAA'}} onPress={() => {
                         router.toPwdFound()
                     }}>
                         <Text style={{color: "#AAAAAA", fontSize: 12}}>{global.lang.t("forget_pwd")}</Text>
                     </TouchableOpacity>
                 </View>
+
+                <TouchableOpacity
+                    style={{borderBottomWidth: 1, borderBottomColor: '#FFE9AD', alignSelf: 'center', marginTop: 30}}
+                    activeOpacity={1} onPress={() => {
+
+                }}>
+                    <Text numberOfLines={1} style={{
+                        color: '#FFE9AD', fontSize: 17
+                    }}>{global.lang.t('mobile_ver')}</Text>
+                </TouchableOpacity>
 
                 <TouchableOpacity
                     style={{

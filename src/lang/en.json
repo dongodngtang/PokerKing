@@ -244,5 +244,6 @@
   "weibo":"微博",
   "mine_message":"个人信息",
   "forget_pwd":"忘记密码",
-  "change_pwd_success":"修改密码成功"
+  "change_pwd_success":"修改密码成功",
+  "mobile_ver":"手机验证码登录"
 }
