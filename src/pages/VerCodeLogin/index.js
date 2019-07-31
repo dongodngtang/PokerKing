@@ -119,7 +119,7 @@ export default class VerCodeLogin extends Component {
         return (
             <View style={styles.container}>
 
-                <Text style={styles.top_txt}>{global.lang.t('sign_vscode')}</Text>
+                {/*<Text style={styles.top_txt}>{global.lang.t('sign_vscode')}</Text>*/}
 
                 <TouchableOpacity style={styles.areaView} onPress={() => {
                     this.areaAction && this.areaAction.openModal();
@@ -212,7 +212,7 @@ export default class VerCodeLogin extends Component {
                                 height: 50,
                                 backgroundColor: 'white'
                             }}
-                            textStyle={styles.down_txt}
+
                             enable
                             onClick={counting => {
                                 let iphone = this.iphone
@@ -239,7 +239,7 @@ export default class VerCodeLogin extends Component {
                 <TouchableOpacity style={styles.btn} onPress={() => {
                     this._next();
                 }}>
-                    <Text style={{color: '#FFE9AD', fontSize: 18}}>{global.lang.t('login_continue')}</Text>
+                    <Text style={{color: '#FFE9AD', fontSize: 18}}>{global.lang.t('login')}</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
