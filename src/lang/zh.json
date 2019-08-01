@@ -245,7 +245,9 @@
   "mine_message":"个人信息",
   "forget_pwd":"忘记密码",
   "change_pwd_success":"修改密码成功",
-  "mobile_ver":"手机验证码登录"
+  "mobile_ver":"手机验证码登录",
+  "nickName_ver":"昵称已被注册",
+  "pwd_length":"密码输入的长度不小于6位"
 }
 
 

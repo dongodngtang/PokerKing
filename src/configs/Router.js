@@ -302,7 +302,7 @@ export default class Router {
         })
     }
 
-    toChangePhone(mobile,country_code) {
+    toChangePhone(mobile, country_code) {
         this.push({
             sceneKey: 'ChangePhone',
             params: {
@@ -312,12 +312,19 @@ export default class Router {
         })
     }
 
-    toRegisterNew() {
-        this.push({sceneKey: 'RegisterNew'})
+    toRegisterNew(mobiles) {
+        this.push({
+            sceneKey: 'RegisterNew',
+            params: mobiles
+        })
     }
+
     toPwdFound() {
-        this.push({sceneKey: 'PwdFound'})
+        this.push({
+            sceneKey: 'PwdFound'
+        })
     }
+
     toVerCodeLogin() {
         this.push({sceneKey: 'VerCodeLogin'})
     }

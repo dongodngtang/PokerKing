@@ -95,7 +95,7 @@ export default class VerCodeLogin extends Component {
                         })
                     } else {
                         // 注册
-                        router.toRegister({
+                        router.toRegisterNew({
                             type: 'mobile',
                             mobile: iphone,
                             vcode,

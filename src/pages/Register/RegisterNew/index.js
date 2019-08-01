@@ -97,7 +97,7 @@ export default class RegisterNew extends Component {
                         return
                     }
                     if(password.length < 6){
-                        showToast('密码输入的长度不小于6位');
+                        showToast(global.lang.t('pwd_length'));
                         return
                     }
                     // 查询该账户是否被注册过¶
@@ -107,7 +107,7 @@ export default class RegisterNew extends Component {
 
                         if (ret && ret.exist && ret.exist === 1) {
                             // 已存在
-                            showToast('用户名已被注册')
+                            showToast(global.lang.t('nickName_ver'))
                         } else {
                             router.toMobileRegister({
                                 account,
