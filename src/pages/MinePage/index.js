@@ -38,9 +38,9 @@ export default class MinePage extends Component {
                     <Image source={getAvatar(avatar)} style={styles.person_img}/>
                     <View style={styles.mid_view}>
                         <Text style={styles.nick_name}>{nick_name}</Text>
-                        {isStrNull(member) ? null : <View style={styles.member_view}>
-                            <Text style={styles.member_text}>{member}</Text>
-                        </View>}
+                        {/*{isStrNull(member) ? null : <View style={styles.member_view}>*/}
+                            {/*<Text style={styles.member_text}>{member}</Text>*/}
+                        {/*</View>}*/}
                     </View>
                     <View style={{flex: 1}}/>
                     <Image style={styles.right_img} source={Images.right}/>

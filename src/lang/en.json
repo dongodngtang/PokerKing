@@ -119,7 +119,7 @@
   "over":"Completed",
   "login":"login",
   "upload_up":"upload no more than 3 photos",
-  "prompt":"Reminder: Username cannot be changed.",
+  "prompt":"Reminder: Nickname cannot be changed.",
   "nick_name_english":"Username can only contain letters A-Z and numbers",
   "input_nick_name":"Please enter your username",
   "select_gender":"Please select your gender",

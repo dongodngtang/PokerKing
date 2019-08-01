@@ -74,7 +74,7 @@ export default class RegisterNew extends Component {
                                     fontSize: 14,
                                     color: '#999999'
                                 }}
-                                maxLength={50}
+                                maxLength={25}
                                 numberOfLines={1}
                                 placeholderTextColor={'#CCCCCC'}
                                 placeholder={global.lang.t('set_psd')}

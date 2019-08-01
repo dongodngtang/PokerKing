@@ -60,7 +60,7 @@ export default class Register extends Component {
                                 fontSize: 16,
                                 color: '#444444',
                             }}
-                            maxLength={50}
+                            maxLength={25}
                             numberOfLines={1}
                             placeholderTextColor={'#CCCCCC'}
                             placeholder={global.lang.t('username_EC')}

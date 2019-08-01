@@ -17,7 +17,8 @@ export default StyleSheet.create({
     },
     mid_view: {
         flexDirection: 'column',
-        marginLeft: 18
+        marginLeft: 18,
+        width:'58%'
     },
     nick_name: {
         fontSize: 24,
