@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {View, Text, TouchableOpacity, Image} from 'react-native';
 import {connect} from 'react-redux';
 import styles from "../Setting/index.style";
-import {logMsg, strNotNull} from "../../utils/utils";
+import {isLogin, logMsg, strNotNull} from "../../utils/utils";
 import {Images, Metrics} from "../../configs/Theme";
 import style from './index.style'
 
@@ -25,8 +25,15 @@ export default class AccountSecurity extends Component {
     };
 
     changeIphone = () => {
+
         const {profile} = this.props;
-        router.toChangePhone(profile.mobile,profile.country_code)
+        logMsg("pppp",profile.mobile)
+        if(isLogin() && strNotNull(profile.mobile)){
+            router.toChangePhone(profile.mobile,profile.country_code)
+        }else{
+            router.toBindingMobile()
+        }
+
     }
 
     changeMail=()=>{
