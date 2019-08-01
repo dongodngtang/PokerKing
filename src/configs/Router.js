@@ -312,10 +312,9 @@ export default class Router {
         })
     }
 
-    toRegisterNew(mobiles) {
+    toRegisterNew() {
         this.push({
-            sceneKey: 'RegisterNew',
-            params: mobiles
+            sceneKey: 'RegisterNew'
         })
     }
 

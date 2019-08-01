@@ -95,12 +95,8 @@ export default class VerCodeLogin extends Component {
                         })
                     } else {
                         // 注册
-                        router.toRegisterNew({
-                            type: 'mobile',
-                            mobile: iphone,
-                            vcode,
-                            country_code: ext
-                        })
+                        showToast(global.lang.t('not_mobile'));
+                        router.pop()
 
                     }
 
