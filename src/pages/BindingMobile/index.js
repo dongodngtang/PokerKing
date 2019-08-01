@@ -44,48 +44,15 @@ export default class BindingMobile extends Component {
 
     }
 
-    topBar = () => {
-        return (
-            <View style={styles.navTop}>
-                <StatusBar barStyle={'light-content'}/>
-                <TouchableOpacity
-                    onPress={() => {
-                        router.pop()
-                    }}
-                    style={styles.left2}>
-                    <Image
-                        style={{height: 17, width: 9}}
-                        source={Images.left}
-                    />
-                </TouchableOpacity>
-                <View style={styles.navTitle}>
-                    <Text
-                        style={{fontSize: 17, color: '#FFE9AD', maxWidth: '90%'}}
-                        numberOfLines={1}>{global.lang.t('set_mobile')}</Text>
-                </View>
-                <TouchableOpacity
-                    activeOpacity={1}
-                    onPress={() => {
-                        router.toRegister({
-                            ...this.props.params
-                        })
-                    }}
-                    style={styles.right2}>
-                    <Text style={{color:"#FFE9AD",fontSize:14}}>{global.lang.t("jump")}</Text>
-
-                </TouchableOpacity>
-            </View>
-        )
-    };
 
     render() {
         const {ext, areaName} = this.state;
         return (
             <View style={styles.register_container}>
-                {this.topBar()}
                 <TouchableOpacity style={styles.areaView} onPress={() => {
                     this.areaAction && this.areaAction.openModal();
                 }}>
+                    <View style={{width:17}}/>
                     <CountryPicker
                         styles={{
                             touchFlag: {
@@ -112,15 +79,13 @@ export default class BindingMobile extends Component {
                         {`${areaName} (+${this.state.ext})`}
                     </Text>
                     <View style={{flex: 1}}/>
-                    <Image style={{width: 6, height: 16, marginRight: 10}} source={Images.is_right}/>
+                    <Image style={{width: 6, height: 16, marginRight: 17}} source={Images.is_right}/>
 
                 </TouchableOpacity>
                 <View style={{
                     height: 1,
-                    marginLeft: 17,
-                    marginRight: 17,
-                    width: Metrics.screenWidth - 34,
-                    backgroundColor: "#ECECEE"
+                    width: Metrics.screenWidth,
+                    backgroundColor: "#1A1B1F"
                 }}/>
                 <KeyboardAvoidingView behavior='position' keyboardVerticalOffset={20}>
                     <View style={styles.textView}>
@@ -131,15 +96,15 @@ export default class BindingMobile extends Component {
                                 paddingTop: 0,
                                 paddingBottom: 0,
                                 paddingLeft: 0,
-                                marginLeft: 8,
+                                marginLeft: 17,
                                 width: '85%',
                                 height: 50,
                                 fontSize: 16,
-                                color: '#444444'
+                                color: '#DDDDDD'
                             }}
                             numberOfLines={1}
-                            placeholderTextColor={'#CCCCCC'}
-                            placeholder={global.lang.t('cellphone')}
+                            placeholderTextColor={'#AAAAAA'}
+                            placeholder={global.lang.t('please_input_phone')}
                             clearTextOnFocus={true}
                             underlineColorAndroid={'transparent'}
                             onChangeText={txt => {
@@ -151,10 +116,8 @@ export default class BindingMobile extends Component {
                     </View>
                     <View style={{
                         height: 1,
-                        marginLeft: 17,
-                        marginRight: 17,
-                        width: Metrics.screenWidth - 34,
-                        backgroundColor: "#ECECEE"
+                        width: Metrics.screenWidth,
+                        backgroundColor: "#1A1B1F"
                     }}/>
                     <View style={styles.textView}>
                         <TextInput
@@ -164,15 +127,15 @@ export default class BindingMobile extends Component {
                                 paddingTop: 0,
                                 paddingBottom: 0,
                                 paddingLeft: 0,
-                                marginLeft: 8,
+                                marginLeft: 17,
                                 width: 160,
                                 height: 35,
                                 fontSize: 16,
-                                color: '#444444'
+                                color: '#DDDDDD'
                             }}
                             maxLength={6}
                             numberOfLines={1}
-                            placeholderTextColor={'#CCCCCC'}
+                            placeholderTextColor={'#AAAAAA'}
                             placeholder={global.lang.t('vscode')}
                             clearTextOnFocus={true}
                             underlineColorAndroid={'transparent'}

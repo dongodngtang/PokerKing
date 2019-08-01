@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {Metrics} from "../../../configs/Theme";
+import {Metrics} from "../../configs/Theme";
 
 export default StyleSheet.create({
     navTop: {
@@ -34,23 +34,24 @@ export default StyleSheet.create({
     },
     register_container: {
         flex: 1,
-        backgroundColor: "#FFFFFF",
+        backgroundColor: "#1A1B1F",
         flexDirection:'column',
         alignItems:'center'
     },
     areaView: {
-        width: Metrics.screenWidth - 34,
         marginTop: 11,
         height: 50,
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor:"#303236"
     },
     textView:{
         alignSelf:'center',
-        width: Metrics.screenWidth - 34,
+        width: Metrics.screenWidth,
         display: 'flex',
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor:"#303236"
     },
     complete:{
         width: Metrics.screenWidth - 34,
