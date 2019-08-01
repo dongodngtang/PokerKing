@@ -51,6 +51,7 @@ import MobileRegister from "./Register/MobileRegister";
 import ModifyPWD from "./ModifyPWD";
 import ModifyPWDToMobile from "./ModifyPWDToMobile";
 import VerCodeLogin from "./VerCodeLogin";
+import BindingMobile from "./BindingMobile";
 
 export const scenes = () => {
     return <Scene key="root"
@@ -310,6 +311,13 @@ export const scenes = () => {
                    rightTitle: global.lang.t('home_language'),
                    bg_color:'#212223',
                    title: global.lang.t('mobile_ver')
+               })}/>
+        <Scene key="BindingMobile"
+               component={BindingMobile}
+               {...TopNav({
+                   bgd:true,
+                   bg_color:'#090909',
+                   title: global.lang.t('bind_mobile')
                })}/>
         <Scene key="MobileRegister"
                component={MobileRegister}

@@ -249,5 +249,6 @@
   "nickName_ver":"昵称已被注册",
   "pwd_length":"密码输入的长度不小于6位",
   "not_mobile":"该手机号未绑定",
-  "nickName_res":"账号以字母开头，总长度5-15位"
+  "nickName_res":"账号以字母开头，总长度5-15位",
+  "bind_mobile":"绑定手机"
 }

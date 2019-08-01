@@ -273,6 +273,15 @@ export default class Router {
         })
 
     }
+    toBindingMobile() {
+        needLogin(() => {
+            this.push({
+                sceneKey: 'BindingMobile'
+
+            })
+        })
+
+    }
 
     toMobile() {
         needLogin(() => {

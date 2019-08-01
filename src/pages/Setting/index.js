@@ -87,7 +87,13 @@ export default class Setting extends Component {
     };
 
     toAccount=()=>{
-        router.toAccountSecurity()
+        logMsg("dsdsd",global.loginUser.mobile)
+        if(isLogin() && strNotNull(global.loginUser.mobile)){
+            router.toAccountSecurity()
+        }else{
+            router.toBindingMobile()
+        }
+
     }
 
     render() {
