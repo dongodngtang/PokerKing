@@ -11,7 +11,7 @@
   "macao": "澳门",
   "taiwan": "台湾",
   "gender": "性别",
-  "username_EC": "用户名（6-14个英文和数字组成）",
+  "username_EC": "昵称",
   "length_nick_name": "用户名（6-14个英文和数字组成）",
   "mailbox": "邮箱",
   "determine": "确定",
@@ -223,7 +223,7 @@
   "nameormobile":"账号或手机号",
   "psd":"密码",
   "zhuce":"注册",
-  "set_name":"设置账号",
+  "set_name":"设置账号(以字母开头，总长度5-15)",
   "set_psd":"设置密码",
   "set_mobile":"绑定手机号",
   "mobile_prompt":"提示：使用排队功能需要绑定手机号",
@@ -248,7 +248,8 @@
   "mobile_ver":"手机验证码登录",
   "nickName_ver":"昵称已被注册",
   "pwd_length":"密码输入的长度不小于6位",
-  "not_mobile":"该手机号未绑定"
+  "not_mobile":"该手机号未绑定",
+  "nickName_res":"账号以字母开头，总长度5-15位"
 }
 
 

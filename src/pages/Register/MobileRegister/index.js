@@ -66,7 +66,9 @@ export default class MobileRegister extends Component {
                 <TouchableOpacity
                     activeOpacity={1}
                     onPress={() => {
-
+                        router.toRegister({
+                            ...this.props.params
+                        })
                     }}
                     style={styles.right2}>
                     <Text style={{color:"#FFE9AD",fontSize:14}}>{global.lang.t("jump")}</Text>
@@ -282,9 +284,7 @@ export default class MobileRegister extends Component {
 
             })
         }else {
-            router.toRegister({
-                ...this.props.params
-            })
+            showToast(global.lang.t('fillWhole'))
         }
 
     };

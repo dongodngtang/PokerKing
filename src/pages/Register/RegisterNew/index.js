@@ -7,7 +7,7 @@ import md5 from "react-native-md5";
 import {showToast} from "../../../utils/utils";
 import {postCode, verify} from "../../../services/accountDao";
 
-const reg = /^[a-zA-Z][a-zA-z0-9_]{5,15}$/;
+const reg = /^[a-zA-Z][a-zA-z0-9_@]{5,15}$/;
 
 
 @connect(({RegisterNew}) => ({
@@ -74,6 +74,7 @@ export default class RegisterNew extends Component {
                                     fontSize: 14,
                                     color: '#999999'
                                 }}
+                                maxLength={50}
                                 numberOfLines={1}
                                 placeholderTextColor={'#CCCCCC'}
                                 placeholder={global.lang.t('set_psd')}
@@ -93,7 +94,7 @@ export default class RegisterNew extends Component {
                     let account = this.login_name
                     let password = this.password
                     if(!reg.test(account)){
-                        showToast(global.lang.t('nick_name_english'));
+                        showToast(global.lang.t('nickName_res'));
                         return
                     }
                     if(password.length < 6){
