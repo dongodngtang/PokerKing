@@ -255,6 +255,7 @@
   "bind_text":"重设和修改时，需要用到此号码",
   "code_err":"验证码错误",
   "bind_success":"绑定成功",
-  "bind_fail":"绑定失败"
+  "bind_fail":"绑定失败",
+  "code_send":"验证码已经发送到手机"
 
 }

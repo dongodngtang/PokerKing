@@ -70,8 +70,8 @@ export default class ModifyPWD extends Component {
                                 old_show: !this.state.old_show
                             })
                         }}>
-                            <Image style={{width: px2dp(36), height: this.state.old_show ? px2dp(34) : px2dp(18)}}
-                                   source={this.state.old_show ? Images.set_eye : Images.set_eye_close}/>
+                            <Image style={{width: px2dp(36), height: this.state.old_show ? px2dp(18) : px2dp(34)}}
+                                   source={this.state.old_show ? Images.set_eye_close : Images.set_eye}/>
                         </TouchableOpacity>
                     </View>
 
@@ -114,8 +114,8 @@ export default class ModifyPWD extends Component {
                                 new_show: !this.state.new_show
                             })
                         }}>
-                            <Image style={{width: px2dp(36), height: this.state.new_show ? px2dp(34) : px2dp(18)}}
-                                   source={this.state.new_show ? Images.set_eye : Images.set_eye_close}/>
+                            <Image style={{width: px2dp(36), height: this.state.new_show ? px2dp(18) : px2dp(34)}}
+                                   source={this.state.new_show ? Images.set_eye_close : Images.set_eye}/>
                         </TouchableOpacity>
                     </View>
 
