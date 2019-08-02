@@ -27,7 +27,6 @@ export default class AccountSecurity extends Component {
     changeIphone = () => {
 
         const {profile} = this.props;
-        logMsg("pppp",profile.mobile)
         if(isLogin() && strNotNull(profile.mobile)){
             router.toChangePhone(profile.mobile,profile.country_code)
         }else{

@@ -1,16 +1,17 @@
 import React, {Component} from 'react';
-import {View, Text, Button, TextInput, KeyboardAvoidingView, TouchableOpacity, Image,StatusBar} from 'react-native';
+import {View, Text, Button, TextInput, KeyboardAvoidingView, TouchableOpacity, Image, StatusBar} from 'react-native';
 import {connect} from 'react-redux';
 import styles from './index.style';
 import {Images, Metrics, Colors, px2dp} from "../../configs/Theme";
 import {getAvatar, isStrNull, logMsg, showToast} from "../../utils/utils";
-import {verify, postCode, register, login, verify_code} from "../../services/accountDao";
+import {verify, postCode, register, login, verify_code, postBindAccount} from "../../services/accountDao";
 import CountDownButton from '../../components/CountDownButton'
 import CountryPicker, {getAllCountries} from 'react-native-country-picker-modal'
 import DeviceInfo from 'react-native-device-info'
+import md5 from "react-native-md5";
 
 @connect(({BindingMobile}) => ({
-  ...BindingMobile,
+    ...BindingMobile,
 }))
 export default class BindingMobile extends Component {
     constructor(props) {
@@ -52,7 +53,7 @@ export default class BindingMobile extends Component {
                 <TouchableOpacity style={styles.areaView} onPress={() => {
                     this.areaAction && this.areaAction.openModal();
                 }}>
-                    <View style={{width:17}}/>
+                    <View style={{width: 17}}/>
                     <CountryPicker
                         styles={{
                             touchFlag: {
@@ -206,13 +207,13 @@ export default class BindingMobile extends Component {
                 </TouchableOpacity>
 
                 {/*<View*/}
-                    {/*style={{*/}
-                        {/*marginLeft: 17,*/}
-                        {/*marginRight: 17,*/}
-                        {/*position: 'absolute',*/}
-                        {/*bottom:56, alignSelf:'center', flexDirection: 'row', alignItems: 'center'}}*/}
+                {/*style={{*/}
+                {/*marginLeft: 17,*/}
+                {/*marginRight: 17,*/}
+                {/*position: 'absolute',*/}
+                {/*bottom:56, alignSelf:'center', flexDirection: 'row', alignItems: 'center'}}*/}
                 {/*>*/}
-                    {/*<Text style={{color: "#999999", fontSize: 14}}>{global.lang.t('mobile_prompt')}</Text>*/}
+                {/*<Text style={{color: "#999999", fontSize: 14}}>{global.lang.t('mobile_prompt')}</Text>*/}
                 {/*</View>*/}
 
 
@@ -233,18 +234,27 @@ export default class BindingMobile extends Component {
                 option_type: 'login',
                 vcode_type: 'mobile',
                 vcode: vcode
-            }, res => {
+            }, ret => {
 
-                // 注册
-                router.toRegister({
-                    mobile: iphone,
-                    vcode,
-                    country_code: ext,
-                    ...this.props.params
-                })
+                if (ret && ret.code && ret.code === 0) {
+                    let body = {
+                        type: "mobile",
+                        account: iphone,
+                        code: vcode,
+                        country_code: ext
+                    }
+                    postBindAccount(body, data => {
+                        showToast(global.lang.t('bind_success'))
+                        router.pop();
+                    }, err => {
+                        showToast(global.lang.t('bind_fail'))
+                    })
+                } else {
+                    showToast(global.lang.t('code_err'))
+                }
 
             })
-        }else {
+        } else {
             showToast(global.lang.t('fillWhole'))
         }
 
