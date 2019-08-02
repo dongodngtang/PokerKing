@@ -250,7 +250,9 @@
   "pwd_length":"密码输入的长度不小于6位",
   "not_mobile":"该手机号未绑定",
   "nickName_res":"账号以字母开头，总长度5-15位",
-  "bind_mobile":"绑定手机"
+  "bind_mobile":"绑定手机",
+  "bind":"绑定",
+  "bind_text":"重设和修改时，需要用到此号码"
 }
 
 

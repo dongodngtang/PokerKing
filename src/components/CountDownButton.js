@@ -128,7 +128,7 @@ export default class CountDownButton extends React.Component {
                 <View style={[{
                     width: 120, height: 44,
                     justifyContent: 'center', alignItems: 'center'
-                }, style, {backgroundColor: bgColor ? bgColor : 'white'}]}>
+                }, style, {backgroundColor: ((!counting && enable && selfEnable) ? (bgColor ? bgColor : 'white') : disableBg || 'gray')}]}>
                     <Text
                         style={[{fontSize: 14}, textStyle, {color: ((!counting && enable && selfEnable) ? (textStyle ? textStyle : '#4A90E2') : disableColor || 'gray')}]}>{timerTitle}</Text>
                 </View>

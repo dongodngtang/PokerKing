@@ -145,16 +145,16 @@ export default class BindingMobile extends Component {
 
                         />
                         <View style={{flex: 1}}/>
-                        <View style={{height: 22, width: 1, backgroundColor: '#ECECEE', marginRight: 16}}/>
+
                         <CountDownButton
-                            disableBg={'#F3F3F3'}
-                            disableColor={'#747474'}
+                            disableBg={'#AAAAAA'}
+                            disableColor={'#FFFFFF'}
+                            bgColor={'#FFE9AD'}
                             style={{
-                                marginRight: 8,
                                 height: 50,
-                                backgroundColor: 'white'
+                                backgroundColor: '#AAAAAA'
                             }}
-                            textStyle={styles.down_txt}
+                            textStyle={styles.down_bind_txt}
                             enable
                             onClick={counting => {
                                 let iphone = this.iphone
@@ -194,28 +194,26 @@ export default class BindingMobile extends Component {
 
                     </View>
                 </KeyboardAvoidingView>
-                <View style={{
-                    height: 1,
-                    marginLeft: 17,
-                    marginRight: 17,
-                    width: Metrics.screenWidth - 34,
-                    backgroundColor: "#ECECEE"
-                }}/>
-                <TouchableOpacity style={styles.complete} onPress={() => {
+
+                <View style={styles.bind_text}>
+                    <Text style={{color: '#AAAAAA', fontSize: 12}}>{global.lang.t('bind_text')}</Text>
+                </View>
+
+                <TouchableOpacity style={styles.bind_complete} onPress={() => {
                     this._next();
                 }}>
-                    <Text style={{color: '#FFE9AD', fontSize: 17}}>{global.lang.t('complete')}</Text>
+                    <Text style={{color: '#1A1B1F', fontSize: 17}}>{global.lang.t('bind')}</Text>
                 </TouchableOpacity>
 
-                <View
-                    style={{
-                        marginLeft: 17,
-                        marginRight: 17,
-                        position: 'absolute',
-                        bottom:56, alignSelf:'center', flexDirection: 'row', alignItems: 'center'}}
-                >
-                    <Text style={{color: "#999999", fontSize: 14}}>{global.lang.t('mobile_prompt')}</Text>
-                </View>
+                {/*<View*/}
+                    {/*style={{*/}
+                        {/*marginLeft: 17,*/}
+                        {/*marginRight: 17,*/}
+                        {/*position: 'absolute',*/}
+                        {/*bottom:56, alignSelf:'center', flexDirection: 'row', alignItems: 'center'}}*/}
+                {/*>*/}
+                    {/*<Text style={{color: "#999999", fontSize: 14}}>{global.lang.t('mobile_prompt')}</Text>*/}
+                {/*</View>*/}
 
 
             </View>

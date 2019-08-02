@@ -53,13 +53,24 @@ export default StyleSheet.create({
         alignItems: 'center',
         backgroundColor:"#303236"
     },
-    complete:{
+    down_bind_txt:{
+        fontSize:16,
+        color:"#1E1E1E"
+    },
+    bind_text:{
+        marginTop:19,
+        marginLeft: 17,
+        marginRight: 17,
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    bind_complete:{
         width: Metrics.screenWidth - 34,
         marginLeft: 17,
         marginRight: 17,
         paddingTop: 12,
         paddingBottom: 12,
-        backgroundColor: '#212223',
+        backgroundColor: '#FFE9AD',
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 4,
