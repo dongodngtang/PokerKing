@@ -243,12 +243,13 @@ export default class BindingMobile extends Component {
                         code: vcode,
                         country_code: ext
                     }
-                    postBindAccount(body, data => {
+                    postBindAccount(body,ret=>{
                         showToast(global.lang.t('bind_success'))
                         router.pop();
-                    }, err => {
+                    },err => {
                         showToast(global.lang.t('bind_fail'))
-                    })
+                    });
+
                 } else {
                     showToast(global.lang.t('code_err'))
                 }
