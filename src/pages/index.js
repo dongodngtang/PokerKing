@@ -52,6 +52,7 @@ import ModifyPWD from "./ModifyPWD";
 import ModifyPWDToMobile from "./ModifyPWDToMobile";
 import VerCodeLogin from "./VerCodeLogin";
 import BindingMobile from "./BindingMobile";
+import PwdFound from "./PwdFound";
 
 export const scenes = () => {
     return <Scene key="root"
@@ -311,6 +312,12 @@ export const scenes = () => {
                    rightTitle: global.lang.t('home_language'),
                    bg_color:'#212223',
                    title: global.lang.t('mobile_ver')
+               })}/>
+        <Scene key="PwdFound"
+               component={PwdFound}
+               {...TopNav({
+                   bg_color:'#212223',
+                   title: global.lang.t('forget_pwd')
                })}/>
         <Scene key="BindingMobile"
                component={BindingMobile}
