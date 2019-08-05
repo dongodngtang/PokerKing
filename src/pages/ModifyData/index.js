@@ -18,9 +18,9 @@ const picker = {
     compressImageQuality: 0.5,
 };
 
-@connect(({ModifyData, Home}) => ({
+@connect(({ModifyData, MinePage}) => ({
     ...ModifyData,
-    ...Home
+    ...MinePage
 }))
 export default class ModifyData extends Component {
 
