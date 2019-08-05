@@ -66,10 +66,10 @@ export default class ModifyData extends Component {
                     this._update(this.state.avatar.uri)
                 }
                 putProfile(edit, ret => {
-                    router.pop();
                     if (profile.nickname !== this.inputNick || profile.email !== this.inputMail ||
                         this.state.gender_modify || this.state.avatar_modify) {
                         showToast(global.lang.t('successfully_modified'))
+                        router.pop();
                     }
                 }, err => {
 
