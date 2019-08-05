@@ -4,10 +4,19 @@ import {connect} from 'react-redux';
 import styles from './index.style';
 import {Images, Metrics, Colors, px2dp} from "../../configs/Theme";
 import {alertOrder, getAvatar, isStrNull, logMsg, showToast} from "../../utils/utils";
-import {verify, postCode, register, login, verify_code, storageLoginUser} from "../../services/accountDao";
+import {
+    verify,
+    postCode,
+    register,
+    login,
+    verify_code,
+    storageLoginUser,
+    postResetPwd
+} from "../../services/accountDao";
 import CountDownButton from '../../components/CountDownButton'
 import CountryPicker, {getAllCountries} from 'react-native-country-picker-modal'
 import DeviceInfo from 'react-native-device-info'
+import md5 from "react-native-md5";
 
 @connect(({PwdFound}) => ({
   ...PwdFound,
@@ -106,7 +115,6 @@ export default class PwdFound extends Component {
                             numberOfLines={1}
                             placeholderTextColor={'#CCCCCC'}
                             placeholder={global.lang.t('cellphone')}
-                            clearTextOnFocus={true}
                             underlineColorAndroid={'transparent'}
                             onChangeText={txt => {
                                 this.iphone = txt
@@ -140,7 +148,6 @@ export default class PwdFound extends Component {
                             numberOfLines={1}
                             placeholderTextColor={'#CCCCCC'}
                             placeholder={global.lang.t('vscode')}
-                            clearTextOnFocus={true}
                             underlineColorAndroid={'transparent'}
                             onChangeText={txt => {
                                 this.vcode = txt
@@ -165,33 +172,16 @@ export default class PwdFound extends Component {
                                     showToast(global.lang.t('please_input_phone'))
                                     return
                                 }
-                                // 查询该账户是否被注册过¶
-                                verify({
-                                    account: iphone,
-                                    country_code: ext
-                                }, ret => {
-
-                                    if (ret && ret.exist && ret.exist === 1) {
-                                        // 已存在
-                                        showToast('手机号已被注册')
-                                    } else {
-                                        postCode({
-                                            mobile: iphone,
-                                            country_code: ext,
-                                            option_type: 'login',
-                                            vcode_type: "mobile",
-                                        }, data => {
-                                            counting(true)
-                                        }, err => {
-
-                                        })
-
-                                    }
-
+                                postCode({
+                                    mobile: iphone,
+                                    country_code: ext,
+                                    option_type: 'login',
+                                    vcode_type: "mobile",
+                                }, data => {
+                                    counting(true)
                                 }, err => {
 
                                 })
-
 
                             }}/>
 
@@ -213,8 +203,7 @@ export default class PwdFound extends Component {
                             }}
                             numberOfLines={1}
                             placeholderTextColor={'#CCCCCC'}
-                            placeholder={global.lang.t('cellphone')}
-                            clearTextOnFocus={true}
+                            placeholder={global.lang.t('set_psd')}
                             underlineColorAndroid={'transparent'}
                             onChangeText={txt => {
                                 this.password = txt
@@ -248,16 +237,16 @@ export default class PwdFound extends Component {
         let vcode = this.vcode
 
         if (iphone.length > 1 && vcode.length > 1 && !isStrNull(ext)) {
-            //核查验证码是否正确
-            verify_code({
-                account: iphone,
+
+            postResetPwd({
+                mobile: iphone,
                 country_code: ext,
-                option_type: 'login',
-                vcode_type: 'mobile',
-                vcode: vcode
+                type: 'mobile',
+                vcode: vcode,
+                password:md5.hex_md5(this.password)
             }, res => {
                 showToast(global.lang.t('set_success'))
-                router.toLogin()
+                router.pop()
             })
         }else {
             showToast(global.lang.t('fillWhole'))

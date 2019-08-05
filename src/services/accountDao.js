@@ -158,3 +158,10 @@ export function postBindAccount(body, resolve, reject) {
         setLoginEmpty()
     }, reject)
 }
+
+
+export function postResetPwd(body, resolve, reject) {
+    post(api.reset_password, body, ret => {
+        resolve(ret.data)
+    }, reject)
+}
