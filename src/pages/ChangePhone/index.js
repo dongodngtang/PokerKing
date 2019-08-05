@@ -40,6 +40,7 @@ export default class ChangePhone extends Component {
                 </TouchableOpacity>
 
                 <StepToChange
+                    oldMobile={mobile}
                     country_code={country_code}
                     closeModal={this.toggle}
                     showModal={this.state.showModal}

@@ -3,7 +3,7 @@ import {View, Text, TouchableOpacity, Image, StyleSheet, TextInput} from 'react-
 import {Colors, Images, Metrics, px2dp, px2sp, wh} from "../../configs/Theme";
 import _ from 'lodash'
 import {showToast} from "../../utils/utils";
-import {postBindAccount, postCode} from "../../services/accountDao";
+import {postBindAccount, postCode, verify_code} from "../../services/accountDao";
 
 
 export default class StepToChange extends Component {
@@ -21,18 +21,26 @@ export default class StepToChange extends Component {
             case 0:
                 return <FirstCard
                     nextTo={this.nextTo}/>
-            case 1:
+            case 1://给旧手机发送验证码 验证是否是本人操作
+                return <InputCodeCard
+                    countryCode={this.props.country_code}
+                    changeMobile={this.props.oldMobile}
+                    close={this.close}
+                    oldVerify={true}
+                    nextTo={this.nextTo}/>
+            case 2://给新手机号发送验证码验证需要绑定的手机是本人
                 return <InputPhoneCard
                     changeMobile={this.state.changeMobile}
                     setChangeMobile={this.setChangeMobile}
                     close={this.close}
                     nextTo={this.nextTo}/>
-            case 2:
+            case 3:
                 return <InputCodeCard
                     countryCode={this.props.country_code}
                     changeMobile={this.state.changeMobile}
                     close={this.close}
                     nextTo={this.nextTo}/>
+
 
         }
     }
@@ -153,12 +161,19 @@ class InputCodeCard extends Component {
     }
 
     counting = () => {
-        const {changeMobile,countryCode} = this.props
-        postCode({option_type:'bind_account',
+        const {changeMobile,countryCode,oldVerify} = this.props
+        let param = {option_type:'bind_account',
             vcode_type:'mobile',
             mobile:changeMobile,
             country_code:countryCode
-        },ret=>{
+        }
+        if(oldVerify){
+            param = {option_type:'change_old_account',
+                vcode_type:'mobile'
+            }
+        }
+
+        postCode(param,ret=>{
             this.timedown = setInterval(() => {
                 if (this.state.count > 0) {
                     this.setState({
@@ -186,14 +201,24 @@ class InputCodeCard extends Component {
                 smsCode: text,
             }, () => {
                 if (text.length === 4) {
-                    postBindAccount({
-                        type:'mobile',
-                        account:this.props.changeMobile,
-                        code:text,
-                        country_code:this.props.country_code
-                    },ret=>{
-                        showToast('手机号更换成功！')
-                    })
+                    if(this.props.oldVerify){
+                        verify_code({
+                            option_type:'change_old_account',
+                            vcode:text
+                        },ret=>{
+                            this.props.next && this.props.next(2)
+                        })
+                    }else{
+                        postBindAccount({
+                            type:'mobile',
+                            account:this.props.changeMobile,
+                            code:text,
+                            country_code:this.props.country_code
+                        },ret=>{
+                            showToast('手机号更换成功！')
+                        })
+                    }
+
                 }
             })
         }
