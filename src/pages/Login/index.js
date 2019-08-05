@@ -107,6 +107,7 @@ export default class Login extends Component {
                                 fontSize: 14,
                                 color: '#999999'
                             }}
+                            secureTextEntry
                             numberOfLines={1}
                             placeholderTextColor={'#CCCCCC'}
                             placeholder={global.lang.t('psd')}
