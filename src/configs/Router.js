@@ -92,12 +92,15 @@ export default class Router {
     }
 
     toQueueProcess(item) {
-        this.push({
-            sceneKey: 'QueueProcess',
-            params: {
-                item
-            }
+        needLogin(()=>{
+            this.push({
+                sceneKey: 'QueueProcess',
+                params: {
+                    item
+                }
+            })
         })
+
     }
 
     toFeedback() {
