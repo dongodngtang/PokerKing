@@ -137,7 +137,7 @@ export default class Register extends Component {
                         showToast(global.lang.t('input_email'))
                     } else {
                         register(body, ret => {
-                            global.lang.t('login_success')
+                            showToast(global.lang.t('register_success'))
                             this.props.navigation.popToTop()
                         }, err => {
 

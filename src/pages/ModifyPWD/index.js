@@ -49,9 +49,9 @@ export default class ModifyPWD extends Component {
                             underlineColorAndroid={'transparent'}
                             secureTextEntry={old_show}
                             value={old_pwd}
-                            onChange={old_pwd => {
+                            onChange={txt => {
                                 this.setState({
-                                    old_pwd
+                                    old_pwd:txt.nativeEvent.text
                                 })
 
                             }}
@@ -94,9 +94,9 @@ export default class ModifyPWD extends Component {
                             secureTextEntry={new_show}
                             underlineColorAndroid={'transparent'}
                             value={new_pwd}
-                            onChange={new_pwd => {
+                            onChange={txt => {
                                 this.setState({
-                                    new_pwd
+                                    new_pwd:txt.nativeEvent.text
                                 })
 
                             }}

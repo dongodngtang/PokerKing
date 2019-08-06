@@ -81,7 +81,7 @@ export function login(body, resolve, reject) {
 
 export function change_password(body, resolve, reject) {
     post(api.change_password, body, ret => {
-        storageLoginUser(ret.data)
+        storageLoginUser({})
         resolve(ret.data)
     }, reject)
 }
