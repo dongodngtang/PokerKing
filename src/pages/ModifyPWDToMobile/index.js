@@ -4,12 +4,12 @@ import {connect} from 'react-redux';
 import styles from "../ModifyPWD/index.style";
 import {Images, px2dp} from "../../configs/Theme";
 import {isStrNull, showToast, strNotNull} from "../../utils/utils";
-import {postCode} from "../../services/accountDao";
+import {change_password, postCode} from "../../services/accountDao";
 import CountDownButton from "../../components/CountDownButton";
-
+import md5 from "react-native-md5";
 
 @connect(({ModifyPWDToMobile}) => ({
-    ...ModifyPWDToMobile,
+    ...ModifyPWDToMobile
 }))
 export default class ModifyPWDToMobile extends Component {
     constructor(props) {
@@ -31,33 +31,35 @@ export default class ModifyPWDToMobile extends Component {
         const {vsCode, new_show, new_pwd, code_show} = this.state;
         return (
             <View style={{flex: 1, backgroundColor: "#161718"}}>
+                {code_show ? <View style={{
+                    marginTop: 5, marginLeft: 17, marginRight: 17
+                }}>
+                    <Text style={{fontSize: 14, color: "#888888"}}>{`${global.lang.t('code_send')}${global.loginUser.mobile}`}</Text>
+                </View> : null}
+
                 <KeyboardAvoidingView behavior='position' keyboardVerticalOffset={20}>
-                    {code_show ? <View style={{
-                        marginTop: 5, marginLeft: 17, marginRight: 17
-                    }}> <Text style={{fontSize: 14, color: "#888888"}}>
-                        {`${globan.lang.t('code_send')}${global.global.loginUser.mobile}`}
-                    </Text></View> : null}
                     <View style={[styles.old_pwd_view, {marginTop: 5}]}>
+                        <View style={{width:17}}/>
                         <TextInput
                             style={{
                                 paddingTop: 0,
                                 paddingBottom: 0,
                                 paddingLeft: 0,
-                                marginLeft: 17,
-                                maxWidth: '60%',
+                                width: '60%',
                                 height: 50,
                                 fontSize: 14,
                                 color: '#DDDDDD'
                             }}
+                            maxLength={20}
                             numberOfLines={1}
                             placeholderTextColor={'#AAAAAA'}
                             placeholder={global.lang.t('vscode')}
                             clearTextOnFocus={true}
                             underlineColorAndroid={'transparent'}
                             value={vsCode}
-                            onChange={vsCode => {
+                            onChange={txt => {
                                 this.setState({
-                                    vsCode
+                                    vsCode:txt.nativeEvent.text
                                 })
 
                             }}
@@ -73,18 +75,18 @@ export default class ModifyPWDToMobile extends Component {
                             }}
                             textStyle={'#212325'}
                             enable
+                            timerEnd={() => {
+                                this.setState({code_show: false})
+                            }}
                             onClick={counting => {
-                                let iphone = this.iphone
-                                if (isStrNull(iphone)) {
-                                    showToast(global.lang.t('please_input_phone'))
-                                    return
-                                }
+                                this.setState({code_show: true})
                                 postCode({
                                     mobile: global.loginUser.mobile,
                                     country_code: global.loginUser.country_code,
                                     option_type: 'login',
                                     vcode_type: "mobile",
                                 }, data => {
+
                                     counting(true)
                                 }, err => {
                                     showToast(err)
@@ -103,7 +105,7 @@ export default class ModifyPWDToMobile extends Component {
                                 width: '65%',
                                 height: 50,
                                 fontSize: 14,
-                                color: '#DDDDDD',
+                                color: '#DDDDDD'
                             }}
                             numberOfLines={1}
                             placeholder={global.lang.t('new_pwd')}
@@ -112,9 +114,9 @@ export default class ModifyPWDToMobile extends Component {
                             underlineColorAndroid={'transparent'}
                             secureTextEntry={new_show}
                             value={new_pwd}
-                            onChange={new_pwd => {
+                            onChange={txt => {
                                 this.setState({
-                                    new_pwd
+                                    new_pwd:txt.nativeEvent.text
                                 })
 
                             }}
@@ -138,7 +140,9 @@ export default class ModifyPWDToMobile extends Component {
                     </View>
                 </KeyboardAvoidingView>
 
-                <TouchableOpacity activeOpacity={1} style={styles.confirm_view}>
+                <TouchableOpacity activeOpacity={1} style={styles.confirm_view} onPress={()=>{
+                    this._determine()
+                }}>
                     <Text style={styles.determine}>{global.lang.t('determine')}</Text>
                 </TouchableOpacity>
 
@@ -149,5 +153,16 @@ export default class ModifyPWDToMobile extends Component {
                 </TouchableOpacity>
             </View>
         )
+    }
+
+    _determine = () =>{
+
+        change_password({
+            type : 'vcode',
+            vcode:this.state.vsCode,
+            new_pwd:md5.hex_md5(this.state.new_pwd)
+        },res=>{
+            showToast(global.lang.t('change_pwd_success'))
+        })
     }
 }
