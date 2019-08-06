@@ -236,24 +236,19 @@ export default class BindingMobile extends Component {
                 vcode: vcode
             }, ret => {
 
-                if (ret && ret.code && ret.code === 0) {
-                    let body = {
-                        type: "mobile",
-                        account: iphone,
-                        code: vcode,
-                        country_code: ext
-                    }
-                    postBindAccount(body,ret=>{
-                        showToast(global.lang.t('bind_success'))
-                        router.pop();
-                    },err => {
-                        showToast(global.lang.t('bind_fail'))
-                    });
-
-                } else {
-                    showToast(global.lang.t('code_err'))
+                let body = {
+                    type: "mobile",
+                    account: iphone,
+                    code: vcode,
+                    country_code: ext,
+                    notLogin:true
                 }
-
+                postBindAccount(body,ret=>{
+                    showToast(global.lang.t('bind_success'))
+                    router.pop();
+                },err => {
+                    showToast(global.lang.t('bind_fail'))
+                });
             })
         } else {
             showToast(global.lang.t('fillWhole'))
