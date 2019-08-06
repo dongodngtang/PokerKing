@@ -131,7 +131,7 @@ function errReject(res) {
   }
 }
 
- export function setLoginEmpty() {
+ export function setLoginEmpty(showT) {
     logMsg('退出登录用户')
     global.storage.save({
         key:'LoginUser',
@@ -140,7 +140,7 @@ function errReject(res) {
     setToken('')
     global.loginUser = {}
     dva.getDispatch()({type:'MinePage/setProfile',params:{}})
-     showToast('用户登录过期')
+     showT || showToast('用户登录过期')
      router.toLogin()
 }
 

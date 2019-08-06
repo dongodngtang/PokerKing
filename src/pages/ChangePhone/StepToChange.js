@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {View, Text, TouchableOpacity, Image, StyleSheet, TextInput} from 'react-native';
 import {Colors, Images, Metrics, px2dp, px2sp, wh} from "../../configs/Theme";
 import _ from 'lodash'
-import {showToast} from "../../utils/utils";
+import {logMsg, showToast} from "../../utils/utils";
 import {postBindAccount, postCode, verify_code} from "../../services/accountDao";
 
 
@@ -33,6 +33,7 @@ export default class StepToChange extends Component {
                     changeMobile={this.state.changeMobile}
                     setChangeMobile={this.setChangeMobile}
                     close={this.close}
+                    countryCode={this.props.country_code}
                     nextTo={this.nextTo}/>
             case 3:
                 return <InputCodeCard
@@ -101,7 +102,7 @@ const FirstCard = ({nextTo}) => (
     </View>
 )
 
-const InputPhoneCard = ({nextTo, close, setChangeMobile, changeMobile}) => (
+const InputPhoneCard = ({nextTo, close, setChangeMobile, changeMobile,countryCode}) => (
     <View style={[styles.card, {alignItems: 'center'}]}>
         <TouchableOpacity
             onPress={() => close && close()}
@@ -141,7 +142,16 @@ const InputPhoneCard = ({nextTo, close, setChangeMobile, changeMobile}) => (
         <TouchableOpacity
             onPress={() => {
                 if(changeMobile && changeMobile.length>1){
-                    nextTo && nextTo(2)
+                    let param = {option_type:'bind_account',
+                        vcode_type:'mobile',
+                        mobile:changeMobile,
+                        country_code:countryCode
+                    }
+
+                    postCode(param,ret=>{
+                        nextTo && nextTo(3)
+                    })
+
                 }else{
                     showToast('手机号输入不能为空')
                 }
@@ -171,24 +181,30 @@ class InputCodeCard extends Component {
             param = {option_type:'change_old_account',
                 vcode_type:'mobile'
             }
+
         }
-
         postCode(param,ret=>{
-            this.timedown = setInterval(() => {
-                if (this.state.count > 0) {
-                    this.setState({
-                        count: --this.state.count
-                    })
-                } else {
-                    clearInterval(this.timedown)
-                    this.setState({
-                        count:60
-                    })
-                }
-
-            }, 1000)
+            this.start()
         })
 
+
+
+    }
+
+    start = ()=>{
+        this.timedown = setInterval(() => {
+            if (this.state.count > 0) {
+                this.setState({
+                    count: --this.state.count
+                })
+            } else {
+                clearInterval(this.timedown)
+                this.setState({
+                    count:60
+                })
+            }
+
+        }, 1000)
     }
 
     componentWillUnmount(){
@@ -196,24 +212,24 @@ class InputCodeCard extends Component {
     }
 
     _onChange = (text) => {
-        if(text.length < 5){
+        if(text.length < 7){
             this.setState({
                 smsCode: text,
             }, () => {
-                if (text.length === 4) {
+                if (text.length === 6) {
                     if(this.props.oldVerify){
                         verify_code({
                             option_type:'change_old_account',
                             vcode:text
                         },ret=>{
-                            this.props.next && this.props.next(2)
+                            this.props.nextTo && this.props.nextTo(2)
                         })
                     }else{
                         postBindAccount({
                             type:'mobile',
                             account:this.props.changeMobile,
                             code:text,
-                            country_code:this.props.country_code
+                            country_code:this.props.countryCode
                         },ret=>{
                             showToast('手机号更换成功！')
                         })
@@ -227,22 +243,35 @@ class InputCodeCard extends Component {
     }
 
     componentDidMount() {
-        this.counting()
+        if(this.props.oldVerify){
+            this.counting()
+        }else{
+            this.start()
+        }
+
     }
 
 
     render() {
         const {count, smsCode} = this.state
-        const {close, nextTo, changeMobile} = this.props
+        const {close, nextTo, changeMobile,oldVerify} = this.props
 
         let code0 = smsCode.substr(0, 1)
         let code1 = smsCode.substr(1, 1)
         let code2 = smsCode.substr(2, 1)
         let code3 = smsCode.substr(3, 1)
+        let code4 = smsCode.substr(4, 1)
+        let code5 = smsCode.substr(5, 1)
 
         return <View style={[styles.card, {alignItems: 'center'}]}>
             <TouchableOpacity
-                onPress={() => nextTo && nextTo(1)}
+                onPress={() => {
+                    if(oldVerify){
+                        nextTo && nextTo(1)
+                    }else{
+                        nextTo && nextTo(2)
+                    }
+                }}
                 style={{
                     ...wh(60, 60),
                     alignItems: 'center',
@@ -301,10 +330,16 @@ class InputCodeCard extends Component {
                     <View style={styles.smsCode}>
                         <Text style={styles.txtCode}>{code3}</Text>
                     </View>
+                    <View style={styles.smsCode}>
+                        <Text style={styles.txtCode}>{code4}</Text>
+                    </View>
+                    <View style={styles.smsCode}>
+                        <Text style={styles.txtCode}>{code5}</Text>
+                    </View>
                 </View>
                 <TextInput
                     autoFocus
-                    maxLength={4}
+                    maxLength={6}
                     style={{height: px2dp(88), position: 'absolute', width: px2dp(88 * 4 + 30 * 3), opacity: 0}}
                     keyboardType={'numeric'}
                     underlineColorAndroid={'transparent'}
@@ -372,10 +407,10 @@ const styles = StyleSheet.create({
         paddingBottom: px2dp(10)
     },
     smsCode: {
-        ...wh(88, 88),
+        ...wh(80, 80),
         borderColor: '#AAAAAA',
         borderWidth: px2dp(2),
-        marginLeft: px2dp(30),
+        marginLeft: px2dp(10),
         justifyContent: 'center',
         alignItems: 'center'
     },

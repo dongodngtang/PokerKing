@@ -155,7 +155,7 @@ export function getCollectionList(body, resolve, reject) {
 export function postBindAccount(body, resolve, reject) {
     post(api.bind_account, body, ret => {
         resolve(ret.data)
-        setLoginEmpty()
+        setLoginEmpty(true)
     }, reject)
 }
 
