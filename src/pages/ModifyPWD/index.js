@@ -148,6 +148,7 @@ export default class ModifyPWD extends Component {
             }, ret => {
                 showToast(global.lang.t('change_pwd_success'))
                 this.props.navigation.popToTop()
+                router.toLogin();
             }, err => {
 
             })
