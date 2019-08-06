@@ -9,6 +9,7 @@ import CountDownButton from '../../components/CountDownButton'
 import CountryPicker, {getAllCountries} from 'react-native-country-picker-modal'
 import DeviceInfo from 'react-native-device-info'
 import md5 from "react-native-md5";
+import dva from "../../utils/dva";
 
 @connect(({BindingMobile}) => ({
     ...BindingMobile,
