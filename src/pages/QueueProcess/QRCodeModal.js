@@ -20,12 +20,14 @@ export default class QRCodeModal extends PureComponent {
     state = {
         visible: false,
         countTime: 60,
+        vgDecodeResult:''
     };
 
-    toggle = () => {
+    toggle = (vgDecodeResult = '') => {
 
         this.setState({
-            visible: !this.state.visible
+            visible: !this.state.visible,
+            vgDecodeResult
         }, () => {
             if (this.state.visible) {
                 this.startCounting()
@@ -65,7 +67,7 @@ export default class QRCodeModal extends PureComponent {
                     <Text style={styles.counting}>{`${this.state.countTime}s`}</Text>
 
                     <QRCode
-                        value={'是劳动纠纷是的'}
+                        value={this.state.vgDecodeResult}
                         size={px2dp(274)}
                     />
 

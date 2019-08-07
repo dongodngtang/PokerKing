@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, FlatList, Image, TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
-import {isEmptyObject, logMsg, moneyFormat} from "../../utils/utils";
+import {getLoginUser, isEmptyObject, logMsg, moneyFormat} from "../../utils/utils";
 import styles from './index.style';
 import {Metrics, Images} from "../../configs/Theme";
 import {getCashQueues, getCashQueuesNumber} from '../../services/cashTableDao'
@@ -15,9 +15,6 @@ import QRCodeModal from "./QRCodeModal";
 }))
 export default class QueueProcess extends Component {
 
-    state = {
-        cash_queues: []
-    }
 
     constructor(props) {
         super(props);
@@ -44,8 +41,8 @@ export default class QueueProcess extends Component {
 
     _renderItem = (item, index) => {
         let rank = 12;
-        const {cash_game_id, small_blind, big_blind, table_numbers, cash_queue_members_count, buy_in} = item;
-        const {cash_queues} = this.state;
+        const {id, small_blind, big_blind, table_numbers, cash_queue_members_count, buy_in} = item;
+
         return (
             <View style={styles.item_view}>
                 <View style={styles.left_view}>
@@ -74,7 +71,11 @@ export default class QueueProcess extends Component {
                         activeOpacity={1}
                         style={[styles.right_mid_view, {backgroundColor: rank > 0 ? '#303236' : "#1A1B1F"}]}
                         onPress={() => {
-                            this.QRCodeModel && this.QRCodeModel.toggle()
+                            let  cash_game_id = this.props.params.item.id
+                            let access_token = getLoginUser().access_token
+                            let vgDecodeResult = {cash_queue_id:id,cash_game_id,access_token}
+                            vgDecodeResult=JSON.stringify(vgDecodeResult)
+                            this.QRCodeModel && this.QRCodeModel.toggle(vgDecodeResult)
                         }}>
                         <Text style={styles.application_wait}>{global.lang.t('application_wait')}</Text>
                     </TouchableOpacity>
@@ -104,7 +105,8 @@ export default class QueueProcess extends Component {
                     emptyView={() => <NotData/>}
                 />
 
-                <QRCodeModal ref={ref => this.QRCodeModel = ref}/>
+                <QRCodeModal
+                    ref={ref => this.QRCodeModel = ref}/>
             </View>
 
         )
@@ -120,18 +122,22 @@ export default class QueueProcess extends Component {
                     cash_game_id: item.id
                 }, data => {
                     logMsg("cash_queues:", data);
-                    let members = data.ordinary_queues;
-                    // let high_limit = data.high_limit_queues;
-                    // if (!isEmptyObject(high_limit) && high_limit.status) {
-                    //     members.push(data.high_limit_queues);
-                    // }
-                    members.map((item, index) => {
-                        item.isSelect = index === 0;
-                    });
-                    this.setState({
-                        cash_queues: members
-                    })
-                    startFetch(members, 18)
+
+                    if(data && data.queues){
+                        let members = data.queues;
+                        // let high_limit = data.high_limit_queues;
+                        // if (!isEmptyObject(high_limit) && high_limit.status) {
+                        //     members.push(data.high_limit_queues);
+                        // }
+                        members.map((item, index) => {
+                            item.isSelect = index === 0;
+                        });
+
+                        startFetch( members, 18)
+                    }else{
+                        abortFetch()
+                    }
+
                 }, err => {
                     logMsg("reject:", err)
                     abortFetch()
