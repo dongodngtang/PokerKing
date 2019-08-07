@@ -14,7 +14,7 @@ const More = ({}) => (
                     title={global.lang.t('search')}
                     leftIcon={Images.search}
                     leftStyle={{...wh(40, 40), marginRight: px2dp(20)}}
-                    onPress={()=>{
+                    onPress={() => {
                         router.toSearchNews()
                     }}
         />
@@ -34,7 +34,7 @@ class TypeSelect extends PureComponent {
     render() {
         const {isOpen} = this.state
         let rightIcon = isOpen ? Images.top : Images.bottom
-        let types = isOpen ? ['赛事精华', '玩家专访', '经典对局', '赛事预热'] : []
+        let types = isOpen ? [global.lang.t('race_jinghua'), global.lang.t('zhuanfang'), global.lang.t('duiju'), global.lang.t('yure')] : []
         return <View>
             <ItemLayout
                 onPress={() => {
@@ -50,7 +50,7 @@ class TypeSelect extends PureComponent {
                 <View style={{
                     backgroundColor: '#25262A', marginTop: 1,
                     paddingLeft: px2dp(54), flexWrap: 'wrap', flexDirection: 'row',
-                    paddingBottom: px2dp(60),paddingTop: px2dp(16)
+                    paddingBottom: px2dp(60), paddingTop: px2dp(16)
                 }}>
                     {types.map((item, index) => this.renderItem(item, index))}
                 </View> : null}
@@ -61,14 +61,14 @@ class TypeSelect extends PureComponent {
 
     renderItem = (type, index) => {
         return <TouchableOpacity
-            onPress={()=>{
-                router.toSearchDateTag({type:'tag',value:type})
+            onPress={() => {
+                router.toSearchDateTag({type: 'tag', value: type})
             }}
             key={`type${index}`}
             style={{
                 ...wh(176, 56), marginTop: px2dp(24), backgroundColor: '#383A41',
-                alignItems: 'center', justifyContent: 'center',borderRadius:px2dp(28),
-                marginRight:px2dp(24)
+                alignItems: 'center', justifyContent: 'center', borderRadius: px2dp(28),
+                marginRight: px2dp(24)
             }}>
             <Text style={{color: '#FFE9AD', fontSize: px2sp(28)}}>{type}</Text>
 
@@ -103,9 +103,9 @@ class TimeSelect extends PureComponent {
 
     renderItem = (year, index) => {
         return <TouchableOpacity
-            onPress={()=>{
-                let value = year.replace('>',"")
-                router.toSearchDateTag({type:'date',value})
+            onPress={() => {
+                let value = year.replace('>', "")
+                router.toSearchDateTag({type: 'date', value})
             }}
             key={`year${index}`}
             style={{
