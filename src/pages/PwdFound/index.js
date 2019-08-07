@@ -175,8 +175,9 @@ export default class PwdFound extends Component {
                                 postCode({
                                     mobile: iphone,
                                     country_code: ext,
-                                    option_type: 'login',
+                                    option_type: 'reset_pwd',
                                     vcode_type: "mobile",
+                                    foundPwd:true
                                 }, data => {
                                     counting(true)
                                 }, err => {
