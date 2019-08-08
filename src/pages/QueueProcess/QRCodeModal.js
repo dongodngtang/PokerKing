@@ -9,7 +9,7 @@ import {StyleSheet, View, Image, TouchableOpacity, Modal, Text} from 'react-nati
 import propTypes from 'prop-types';
 import {px2dp, px2sp} from "../../configs/Theme";
 import QRCode from 'react-native-qrcode';
-import {getRemainTime, logMsg} from "../../utils/utils";
+import {getRemainTime, logMsg, strNotNull} from "../../utils/utils";
 import Base64 from "react-native-base64";
 
 export default class QRCodeModal extends PureComponent {
@@ -21,23 +21,31 @@ export default class QRCodeModal extends PureComponent {
     state = {
         visible: false,
         countTime: 60,
-        vgDecodeResult:''
+        vgDecodeResult: ''
     };
 
-    toggle = (vgDecodeResult = '') => {
-        let md = Base64.encode(vgDecodeResult)
-        logMsg('扫码数据',vgDecodeResult,md)
-        this.setState({
-            visible: !this.state.visible,
-            vgDecodeResult:md,
-            countTime:60
-        }, () => {
-            if (this.state.visible) {
-                this.startCounting()
-            } else {
-                this.intervalTimer && clearInterval(this.intervalTimer);
-            }
-        })
+    toggle = (vgDecodeResult = undefined) => {
+        logMsg('扫码数据', vgDecodeResult)
+        if (strNotNull(vgDecodeResult)){
+          let  md = Base64.encode(vgDecodeResult)
+
+            this.setState({
+                visible: true,
+                vgDecodeResult: md,
+                countTime: 60
+            }, () => {
+                if (this.state.visible) {
+                    this.startCounting()
+                } else {
+                    this.intervalTimer && clearInterval(this.intervalTimer);
+                }
+            })
+        }else{
+            this.setState({
+                visible:false
+            })
+        }
+
     }
 
     startCounting = () => {
@@ -62,7 +70,7 @@ export default class QRCodeModal extends PureComponent {
             }}>
             <TouchableOpacity
                 activeOpacity={1}
-                onPress={this.toggle}
+                onPress={()=>this.toggle()}
                 style={styles.container}>
 
                 <View style={styles.card}>
