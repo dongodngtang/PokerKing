@@ -36,9 +36,14 @@ const api = {
     remove_history_search:'infos/remove_history_search',
     bind_account:'account/bind_account',//用户绑定手机号
     change_password:'account/change_password',//用户修改密码 [通过旧密码修改]
-    reset_password:'account/reset_password'
+    reset_password:'account/reset_password',
+    notice:notice,//Jpush报名消息通知
 }
 
+
+function notice() {
+    return `users/${getUserId()}/notifications`
+}
 
 function cancel_collect() {
     return `users/${getUserId()}/favorites/cancel`
