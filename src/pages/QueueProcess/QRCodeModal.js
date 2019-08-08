@@ -10,6 +10,7 @@ import propTypes from 'prop-types';
 import {px2dp, px2sp} from "../../configs/Theme";
 import QRCode from 'react-native-qrcode';
 import {getRemainTime, logMsg} from "../../utils/utils";
+import Base64 from "react-native-base64";
 
 export default class QRCodeModal extends PureComponent {
 
@@ -24,10 +25,11 @@ export default class QRCodeModal extends PureComponent {
     };
 
     toggle = (vgDecodeResult = '') => {
-        logMsg('扫码数据',vgDecodeResult)
+        let md = Base64.encode(vgDecodeResult)
+        logMsg('扫码数据',vgDecodeResult,md)
         this.setState({
             visible: !this.state.visible,
-            vgDecodeResult,
+            vgDecodeResult:md,
             countTime:60
         }, () => {
             if (this.state.visible) {
