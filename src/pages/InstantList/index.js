@@ -3,8 +3,8 @@ import { View,Text,Image,TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import UltimateFlatList from "../../components/ultimate/UltimateFlatList";
 import NotData from "../comm/NotData";
-import {logMsg, unix_format} from "../../utils/utils";
-import {getInfoList, initLoginUser} from "../../services/accountDao";
+import {logMsg, showToast, unix_format} from "../../utils/utils";
+import {getInfoList, initLoginUser, isCollect, postCancelCollect, postCollect} from "../../services/accountDao";
 import {Images, Metrics,px2dp,px2sp} from "../../configs/Theme";
 import styles from './index.style';
 import ImageLoad from "../../components/ImageLoad";
@@ -49,6 +49,26 @@ export default class InstantList extends Component {
         )
     };
 
+    toCollect = (item) => {
+        const body = {target_id: item.id, target_type: "info"}
+        isCollect(body, data => {
+            if (data.is_favorite) {
+                postCancelCollect(body, data => {
+                    showToast(global.lang.t("cancelFavorite"))
+                }, err => {
+                    showToast(global.lang.t('err_problem'))
+                })
+            } else {
+                postCollect(body, data => {
+                    showToast(global.lang.t("getFavorite"))
+                }, err => {
+                    showToast(global.lang.t('err_problem'))
+                })
+            }
+        })
+
+    }
+
     _renderItem = (item, index) => {
         return (
            <View style={{flexDirection:'column',alignItems:'center'}}>
@@ -64,8 +84,14 @@ export default class InstantList extends Component {
                            <Text style={[styles.time, {marginLeft: px2dp(14)}]}>{`#TPTS`}</Text>
                            <Text style={[styles.time, {marginLeft: px2dp(28)}]}>{unix_format(1562121862, "MM DD,YYYY")}</Text>
                            <View style={{flex: 1}}/>
-                           <Image style={{height: px2dp(46), width: px2dp(46), marginRight: px2dp(36)}}
-                                  source={Images.collection_gray}/>
+
+                           <TouchableOpacity onPress={()=>{
+                               this.toCollect(item)
+                           }}>
+                               <Image style={{height: px2dp(46), width: px2dp(46), marginRight: px2dp(36)}}
+                                      source={Images.collection_gray}/>
+                           </TouchableOpacity>
+
                            <TouchableOpacity>
                                <Image style={{height: px2dp(32), width: px2dp(40), marginRight: px2dp(20)}}
                                       source={Images.share_gray}/>
