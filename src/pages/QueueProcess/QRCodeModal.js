@@ -9,7 +9,7 @@ import {StyleSheet, View, Image, TouchableOpacity, Modal, Text} from 'react-nati
 import propTypes from 'prop-types';
 import {px2dp, px2sp} from "../../configs/Theme";
 import QRCode from 'react-native-qrcode';
-import {getRemainTime, logMsg} from "../../utils/utils";
+import {getRemainTime, logMsg, strNotNull} from "../../utils/utils";
 import Base64 from "react-native-base64";
 
 export default class QRCodeModal extends PureComponent {
@@ -21,16 +21,18 @@ export default class QRCodeModal extends PureComponent {
     state = {
         visible: false,
         countTime: 60,
-        vgDecodeResult:''
+        vgDecodeResult: ''
     };
 
     toggle = (vgDecodeResult = '') => {
-        let md = Base64.encode(vgDecodeResult)
-        logMsg('扫码数据',vgDecodeResult,md)
+        let md = ''
+        if (strNotNull(vgDecodeResult))
+            md = Base64.encode(vgDecodeResult)
+        logMsg('扫码数据', vgDecodeResult, md)
         this.setState({
             visible: !this.state.visible,
-            vgDecodeResult:md,
-            countTime:60
+            vgDecodeResult: md,
+            countTime: 60
         }, () => {
             if (this.state.visible) {
                 this.startCounting()
