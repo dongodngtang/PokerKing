@@ -8,7 +8,7 @@ import {getInfoList, postCollect, postCancelCollect, isCollect, initLoginUser} f
 import {isEmptyObject, logMsg, OnSafePress, shareHost, shareTo, showToast} from "../../utils/utils";
 import Hot from "./Hot";
 import Instants from "./Instants";
-import {px2dp, px2sp} from "../../configs/Theme";
+import {Images, px2dp, px2sp} from "../../configs/Theme";
 import More from "./More";
 import ShareToast from "../comm/ShareToast";
 
@@ -21,7 +21,8 @@ export default class Main extends Component {
 
     state = {
         activeTab: global.lang.t('hot'),
-        index: 0
+        index: 0,
+        show_collect:false
     }
 
     onFetch = (page = 1, startFetch, abortFetch) => {
@@ -72,22 +73,27 @@ export default class Main extends Component {
     }
     toCollect = (item) => {
         const body = {target_id: item.id, target_type: "info"}
+        let show_collect = false;
         isCollect(body, data => {
             if (data.is_favorite) {
                 postCancelCollect(body, data => {
                     showToast(global.lang.t("cancelFavorite"))
+                    show_collect = true
                 }, err => {
                     showToast(global.lang.t('err_problem'))
                 })
             } else {
                 postCollect(body, data => {
                     showToast(global.lang.t("getFavorite"))
+                    show_collect = false
                 }, err => {
                     showToast(global.lang.t('err_problem'))
                 })
             }
         })
-
+        this.setState({
+            show_collect
+        })
     }
 
     render() {
@@ -110,7 +116,8 @@ export default class Main extends Component {
                         onPress={this.toDetail}
                         onCollect={this.toCollect}
                         tabLabel={global.lang.t('hot')}
-                        onFetch={this.onFetch}/>
+                        onFetch={this.onFetch}
+                        show_collect={this.state.show_collect}/>
                     <Hot
                         onShare={this.share}
                         onPress={this.toDetail}
