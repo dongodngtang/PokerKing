@@ -76,7 +76,7 @@ export default class QRCodeModal extends PureComponent {
                     <Text style={styles.counting}>{`${this.state.countTime}s`}</Text>
 
                     <QRCode
-                        value={'拉斯科技对方'}
+                        value={this.state.vgDecodeResult}
                         size={px2dp(274)}
                     />
 
