@@ -30,7 +30,7 @@ const Hot = ({onFetch, onPress, onShare,onCollect}) => (
 )
 
 
-const _renderItem = (item, index, onPress, onShare,onCollect) => (
+const _renderItem = (item, index, onPress, onShare,onCollect,show_collect) => (
     <TouchableOpacity
         onPress={() => onPress && onPress(item)}
         key={`hot${index}`}
@@ -56,7 +56,7 @@ const _renderItem = (item, index, onPress, onShare,onCollect) => (
                     }
                 }}>
                     <Image style={{height: px2dp(44), width: px2dp(44), marginRight: 18, alignSelf: 'flex-end'}}
-                           source={Images.collect}/>
+                           source={show_collect ? Images.collected : Images.collect}/>
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => {
