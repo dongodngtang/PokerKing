@@ -153,8 +153,8 @@ export default StyleSheet.create({
         marginTop:17
     },
     item_view2: {
-        height: div((Metrics.screenWidth - 70),5),
-        width: div((Metrics.screenWidth - 70),5),
+        height: px2dp(120),
+        width: px2dp(120),
         borderRadius: 4,
         flexDirection: 'column',
         alignItems: 'center',
