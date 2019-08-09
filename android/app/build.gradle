@@ -173,6 +173,7 @@ android {
 }
 
 dependencies {
+    compile project(':jpush-react-native')
     compile project(':react-native-code-push')
     compile project(':react-native-device-info')
     compile project(':react-native-fs')
