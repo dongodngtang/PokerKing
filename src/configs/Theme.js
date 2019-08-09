@@ -162,6 +162,7 @@ export const Images = {
     collect: require('../asserts/new/collect.png'),
     collected: require('../asserts/new/collected.png'),
     collection_gray: require('../asserts/new/collection_gray.png'),
+    collected_gray: require('../asserts/new/collected_gray.png'),
     date: require('../asserts/new/date.png'),
     delete_new: require('../asserts/new/delete.png'),
     event: require('../asserts/new/event.png'),
