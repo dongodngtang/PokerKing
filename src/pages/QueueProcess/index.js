@@ -7,7 +7,7 @@ import {Metrics, Images} from "../../configs/Theme";
 import {getCashQueues, getCashQueuesNumber} from '../../services/cashTableDao'
 import NotData from '../comm/NotData';
 import UltimateFlatList from '../../components/ultimate/UltimateFlatList';
-import {initLoginUser} from "../../services/accountDao";
+import {initLoginUser, shortUrl} from "../../services/accountDao";
 import QRCodeModal from "./QRCodeModal";
 
 @connect(({QueueProcess}) => ({
@@ -73,9 +73,12 @@ export default class QueueProcess extends Component {
                         onPress={() => {
                             let  cash_game_id = this.props.params.item.id
                             let access_token = getLoginUser().access_token
-                            let vgDecodeResult = {cash_queue_id:id,cash_game_id,access_token}
-                            vgDecodeResult=JSON.stringify(vgDecodeResult)
-                            this.QRCodeModel && this.QRCodeModel.toggle(vgDecodeResult)
+                            let url = `http://www.baidu.com?token=${access_token}&cash_queue_id=${id}&cash_game_id=${cash_game_id}`
+
+                            shortUrl({url},data=>{
+                                this.QRCodeModel && this.QRCodeModel.toggle(data.short_url)
+                            })
+
                         }}>
                         <Text style={styles.application_wait}>{global.lang.t('application_wait')}</Text>
                     </TouchableOpacity>

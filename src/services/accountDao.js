@@ -176,3 +176,9 @@ export function getNotices({}, resolve, reject) {
         resolve(ret.data)
     }, reject)
 }
+
+export function shortUrl(body, resolve, reject) {
+    post(api.short_url,body,ret=>{
+        resolve(ret.data)
+    },reject)
+}

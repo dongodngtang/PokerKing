@@ -10,7 +10,6 @@ import propTypes from 'prop-types';
 import {px2dp, px2sp} from "../../configs/Theme";
 import QRCode from 'react-native-qrcode';
 import {getRemainTime, logMsg, strNotNull} from "../../utils/utils";
-import Base64 from "react-native-base64";
 
 export default class QRCodeModal extends PureComponent {
 
@@ -27,11 +26,10 @@ export default class QRCodeModal extends PureComponent {
     toggle = (vgDecodeResult = undefined) => {
         logMsg('扫码数据', vgDecodeResult)
         if (strNotNull(vgDecodeResult)){
-          let  md = Base64.encode(vgDecodeResult)
 
             this.setState({
                 visible: true,
-                vgDecodeResult: md,
+                vgDecodeResult:vgDecodeResult,
                 countTime: 60
             }, () => {
                 if (this.state.visible) {
@@ -78,7 +76,7 @@ export default class QRCodeModal extends PureComponent {
                     <Text style={styles.counting}>{`${this.state.countTime}s`}</Text>
 
                     <QRCode
-                        value={this.state.vgDecodeResult}
+                        value={'拉斯科技对方'}
                         size={px2dp(274)}
                     />
 
