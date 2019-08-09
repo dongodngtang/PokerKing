@@ -7,7 +7,7 @@ import NotData from "../comm/NotData";
 import TopBar from "../comm/TopBar";
 import styles from './index.style'
 import {logMsg} from "../../utils/utils";
-import {getInfoList} from "../../services/accountDao";
+import {getNotices} from "../../services/accountDao";
 
 @connect(({NoticesPage}) => ({
     ...NoticesPage,
@@ -16,7 +16,10 @@ export default class NoticesPage extends Component {
 
 
     componentDidMount() {
+        getNotices(data=>{
+            logMsg("notices",data)
 
+        })
     }
 
     render() {

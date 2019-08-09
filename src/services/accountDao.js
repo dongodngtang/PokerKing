@@ -169,3 +169,10 @@ export function postResetPwd(body, resolve, reject) {
         resolve(ret.data)
     }, reject)
 }
+
+//消息通知
+export function getNotices({}, resolve, reject) {
+    post(api.notice, {}, ret => {
+        resolve(ret.data)
+    }, reject)
+}

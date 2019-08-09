@@ -129,9 +129,12 @@ export default class QueueProcess extends Component {
                         // if (!isEmptyObject(high_limit) && high_limit.status) {
                         //     members.push(data.high_limit_queues);
                         // }
-                        members.map((item, index) => {
-                            item.isSelect = index === 0;
-                        });
+                        if(!isEmptyObject(members)){
+                            members.map((item, index) => {
+                                item.isSelect = index === 0;
+                            });
+                        }
+
 
                         startFetch( members, 18)
                     }else{
