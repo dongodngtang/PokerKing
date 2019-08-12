@@ -19,6 +19,7 @@ import {logMsg, showToast} from "./utils/utils";
 import {Actions} from 'react-native-router-flux';
 import codePush from "react-native-code-push";
 import {initLoginUser} from "./services/accountDao";
+import JPushModule from 'jpush-react-native'
 
 @connect(({ common}) => ({
       ...common
@@ -38,6 +39,7 @@ export default class Root extends Component {
     }
 
     componentDidMount() {
+        JPushModule.initPush()
         initLoginUser(()=>{
             SplashScreen.hide();
         })
@@ -54,6 +56,7 @@ export default class Root extends Component {
             updateDialog: false,
             installMode: codePush.InstallMode.ON_NEXT_RESUME
         })
+
     }
 
     onBackAndroid =()=> {

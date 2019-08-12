@@ -3,6 +3,8 @@ package com.pokerking;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+
+import cn.jpush.android.api.JPushInterface;
 import cn.jpush.reactnativejpush.JPushPackage;
 import com.microsoft.codepush.react.CodePush;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
@@ -81,5 +83,6 @@ public class MainApplication extends Application implements ReactApplication {
     super.onCreate();
     SoLoader.init(this, false);
     JShareInterface.init(this);
+    JPushInterface.init(this);
   }
 }

@@ -2,6 +2,7 @@ import api from '../configs/api'
 import {get, post, put, setBaseUrl, setToken,setLoginEmpty} from '../configs/fetch'
 import {isEmpty, logMsg, isEmptyObject} from '../utils/utils';
 import dva from '../utils/dva'
+import JPushModule from 'jpush-react-native'
 
 global.loginUser = null
 
@@ -11,10 +12,19 @@ export function storageLoginUser(loginUser) {
         key: 'LoginUser',
         data: loginUser
     })
-    setToken(loginUser.access_token ? loginUser.access_token : '')
+
+    setToken(loginUser.access_token ? loginUser.access_token : '',success=>{
+        logMsg('极光推送别名设置成功',success)
+    })
     global.loginUser = loginUser
     getProfile()
-
+    if(loginUser.user_id){
+        JPushModule.setAlias(`test${loginUser.user_id}`,ret=>{
+            logMsg('设置极光推送别名',ret)
+        })
+    }else{
+        JPushModule.deleteAlias()
+    }
 }
 
 export function initLoginUser(callback) {

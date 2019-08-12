@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, ScrollView} from 'react-native';
+import {View, Text, Platform} from 'react-native';
 import {connect} from 'react-redux';
 import Base from "../Base";
 import NavigationBar from "../comm/NavigationBar";
@@ -11,6 +11,7 @@ import Instants from "./Instants";
 import {Images, px2dp, px2sp} from "../../configs/Theme";
 import More from "./More";
 import ShareToast from "../comm/ShareToast";
+import JPushModule from 'jpush-react-native'
 
 
 @connect(({Main, Home}) => ({
@@ -23,6 +24,30 @@ export default class Main extends Component {
         activeTab: global.lang.t('hot'),
         index: 0,
         show_collect:false
+    }
+
+    componentDidMount(){
+        JPushModule.addReceiveNotificationListener(this.receiveNotice)
+        if(Platform.OS === 'ios'){
+            JPushModule.addOpenNotificationLaunchAppListener(this.openNotice)
+        }else{
+
+        }
+    }
+
+    componentWillUnmount(){
+        JPushModule.removeReceiveNotificationListener(this.receiveNotice);
+        if(Platform.OS === 'ios'){
+            JPushModule.removeOpenNotificationLaunchAppEventListener(this.openNotice)
+        }
+    }
+
+    openNotice = (e)=>{
+
+    }
+
+    receiveNotice = (msg)=>{
+
     }
 
     onFetch = (page = 1, startFetch, abortFetch) => {
