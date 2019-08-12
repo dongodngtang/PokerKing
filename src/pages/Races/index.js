@@ -15,6 +15,7 @@ import ImageLoad from "../../components/ImageLoad";
 import RaceMessage from "../RaceMessage";
 import {isCollect, postCancelCollect, postCollect} from "../../services/accountDao";
 import ShareToast from "../comm/ShareToast";
+import CollectBtn from "../comm/CollectBtn";
 
 @connect(({Races}) => ({
     ...Races,
@@ -306,25 +307,6 @@ class Card extends Component {
         logMsg('分享')
 
     }
-    toCollect = (item) => {
-        const body = {target_id: item.id, target_type: "main_event"}
-        isCollect(body, data => {
-            if (data.is_favorite) {
-                postCancelCollect(body, data => {
-                    showToast(global.lang.t("cancelFavorite"))
-                }, err => {
-                    showToast(global.lang.t('err_problem'))
-                })
-            } else {
-                postCollect(body, data => {
-                    showToast(global.lang.t("getFavorite"))
-                }, err => {
-                    showToast(global.lang.t('err_problem'))
-                })
-            }
-        })
-
-    }
 
 
     render() {
@@ -368,13 +350,10 @@ class Card extends Component {
                     <View style={styles.card_bottom_view}>
                         <Text style={styles.card_location}>{`澳门`}</Text>
                         <View style={{flex: 1}}/>
-                        <TouchableOpacity onPress={()=>{
-                            this.toCollect(this.props.item)
-                        }}>
-                            <Image
-                                style={styles.collect_img}
-                                source={Images.collect}/>
-                        </TouchableOpacity>
+                        <CollectBtn item={this.props.item}
+                                    type={'main_event'}
+                                    btnStyle={styles.collect_img}
+                        />
                         <TouchableOpacity onPress={()=>{
                             this.share(this.props.item)
                         }}>

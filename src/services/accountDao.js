@@ -1,8 +1,9 @@
 import api from '../configs/api'
-import {get, post, put, setBaseUrl, setToken,setLoginEmpty} from '../configs/fetch'
+import {get, post, put, setBaseUrl, setToken, setLoginEmpty} from '../configs/fetch'
 import {isEmpty, logMsg, isEmptyObject} from '../utils/utils';
 import dva from '../utils/dva'
 import JPushModule from 'jpush-react-native'
+import {initCollects} from "../pages/comm/CollectBtn";
 
 global.loginUser = null
 
@@ -13,27 +14,31 @@ export function storageLoginUser(loginUser) {
         data: loginUser
     })
 
-    setToken(loginUser.access_token ? loginUser.access_token : '',success=>{
-        logMsg('极光推送别名设置成功',success)
+    setToken(loginUser.access_token ? loginUser.access_token : '', success => {
+        logMsg('极光推送别名设置成功', success)
     })
     global.loginUser = loginUser
     getProfile()
-    if(loginUser.user_id){
-        JPushModule.setAlias(`test${loginUser.user_id}`,ret=>{
-            logMsg('设置极光推送别名',ret)
+    if (loginUser.user_id) {
+        JPushModule.setAlias(`test${loginUser.user_id}`, ret => {
+            logMsg('设置极光推送别名', ret)
         })
-    }else{
+    } else {
         JPushModule.deleteAlias()
     }
+
+    getCollectionList({})
 }
 
 export function initLoginUser(callback) {
     storage.load({
         key: 'LoginUser'
     }).then(ret => {
-        if (isEmptyObject(global.loginUser))
+        if (isEmptyObject(global.loginUser)) {
             storageLoginUser(ret)
+        }
         callback && callback()
+
     }).catch(err => {
         callback && callback()
     })
@@ -143,31 +148,35 @@ export function isCollect(body, resolve, reject) {
         resolve(ret.data)
     }, reject)
 }
+
 /*收藏资讯 或者 收藏主赛*/
 export function postCollect(body, resolve, reject) {
     post(api.collect_item(), body, ret => {
         resolve(ret.data)
     }, reject)
 }
+
 /*收藏资讯 或者 收藏主赛*/
 export function postCancelCollect(body, resolve, reject) {
     post(api.cancel_collect(), body, ret => {
         resolve(ret.data)
     }, reject)
 }
+
 /*查看收藏列表*/
 export function getCollectionList(body, resolve, reject) {
     get(api.collection_list(), body, ret => {
-        resolve(ret.data)
+        resolve && resolve(ret.data)
+        initCollects(ret.data.items)
     }, reject)
 }
 
 export function postBindAccount(body, resolve, reject) {
     post(api.bind_account, body, ret => {
         resolve(ret.data)
-        if(body.notLogin){
+        if (body.notLogin) {
             getProfile()
-        }else{
+        } else {
             setLoginEmpty(true)
         }
     }, reject)
@@ -188,7 +197,7 @@ export function getNotices({}, resolve, reject) {
 }
 
 export function shortUrl(body, resolve, reject) {
-    post(api.short_url,body,ret=>{
+    post(api.short_url, body, ret => {
         resolve(ret.data)
-    },reject)
+    }, reject)
 }

@@ -26,6 +26,8 @@ export default class Main extends Component {
         show_collect:false
     }
 
+    isFirst = true
+
     componentDidMount(){
         JPushModule.addReceiveNotificationListener(this.receiveNotice)
         if(Platform.OS === 'ios'){
@@ -51,17 +53,35 @@ export default class Main extends Component {
     }
 
     onFetch = (page = 1, startFetch, abortFetch) => {
-        getInfoList({
-            status: 'hot',
-            page,
-            page_size: 20
-        }, data => {
-            logMsg("InfoList:", data)
-            startFetch(data.infos, 20)
-        }, err => {
-            logMsg("reject:", err)
-            abortFetch()
-        })
+        if(this.isFirst){
+            this.isFirst = false
+            let t2 = setTimeout(()=>{
+                getInfoList({
+                    status: 'hot',
+                    page,
+                    page_size: 20
+                }, data => {
+                    logMsg("InfoList:", data)
+                    startFetch(data.infos, 20)
+                }, err => {
+                    logMsg("reject:", err)
+                    abortFetch()
+                })
+            },1000)
+        }else{
+            getInfoList({
+                status: 'hot',
+                page,
+                page_size: 20
+            }, data => {
+                logMsg("InfoList:", data)
+                startFetch(data.infos, 20)
+            }, err => {
+                logMsg("reject:", err)
+                abortFetch()
+            })
+        }
+
     }
     onFetchInstant = (page = 1, startFetch, abortFetch) => {
         getInfoList({
