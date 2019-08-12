@@ -246,17 +246,21 @@ export default class Router {
         })
     }
 
-    toInstantList() {
+    toInstantList(applies) {
         this.push({
-            sceneKey: 'InstantList'
-
+            sceneKey: 'InstantList',
+            params:{
+                applies
+            }
         })
     }
 
-    toRankList() {
+    toRankList(events) {
         this.push({
-            sceneKey: 'RankList'
-
+            sceneKey: 'RankList',
+            params:{
+                events
+            }
         })
     }
 

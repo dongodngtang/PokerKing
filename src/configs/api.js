@@ -37,12 +37,12 @@ const api = {
     bind_account:'account/bind_account',//用户绑定手机号
     change_password:'account/change_password',//用户修改密码 [通过旧密码修改]
     reset_password:'account/reset_password',
-    notice:notice,//Jpush报名消息通知
+    notices:notices,//Jpush报名消息通知
     short_url:'short_url'
 }
 
 
-function notice() {
+function notices() {
     return `users/${getUserId()}/notifications`
 }
 
