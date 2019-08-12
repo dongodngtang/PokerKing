@@ -6,6 +6,7 @@ import SearchBar from '../../comm/SearchBar';
 import {logMsg} from "../../../utils/utils";
 import SearchResultList from "./SearchResultList";
 import {historySearch, removeHistorySearch} from "../../../services/raceDao";
+import {del} from "../../../configs/fetch";
 
 
 export default class SearchNews extends Component {
@@ -14,6 +15,8 @@ export default class SearchNews extends Component {
         recordKeys: [],
         hideHistory: false
     }
+
+    timeout = null
 
 
     componentDidMount() {
@@ -46,18 +49,18 @@ export default class SearchNews extends Component {
                     keyword={keyword => {
                         this.searchByKeyword(keyword)
                     }}/>
-                {this.state.hideHistory? <TouchableOpacity
+                {this.state.hideHistory ? <TouchableOpacity
                     style={[styles.btn_search2, {marginLeft: 17}]}
                     onPress={this.clearInput}>
                     <Text style={styles.cancel_text}>{global.lang.t('cancel')}</Text>
 
-                </TouchableOpacity>:<View style={[styles.btn_search2, {marginLeft: 17}]}/>}
+                </TouchableOpacity> : <View style={[styles.btn_search2, {marginLeft: 17}]}/>}
 
             </View>
         )
     };
 
-    clearInput = ()=>{
+    clearInput = () => {
         this.searchBar && this.searchBar.clearInput()
         this.keyword = '';
         this.setState({
@@ -66,11 +69,22 @@ export default class SearchNews extends Component {
     }
 
     searchByKeyword = (keyword) => {
-        this.setState({
-            hideHistory: keyword && keyword.length > 0
+        this.debounce(()=>{
+            this.setState({
+                hideHistory: keyword && keyword.length > 0
+            })
+            this.searchList && this.searchList.search({keyword})
         })
-        this.searchList && this.searchList.search({keyword})
+
     }
+
+    debounce = (func, delay = 1000) => {
+        clearTimeout(this.timeout)
+        this.timeout = setTimeout( ()=> {
+            func()
+        },delay)
+    }
+
 
     resentBlank = () => {
         return <View style={styles.resent}>
@@ -98,7 +112,7 @@ export default class SearchNews extends Component {
     tabBlank = () => {
 
         return <View style={{flexDirection: 'row', flexWrap: 'wrap', marginLeft: 19}}>
-            {this.state.recordKeys && this.state.recordKeys.map((item, index)=> {
+            {this.state.recordKeys && this.state.recordKeys.map((item, index) => {
                 return <TouchableOpacity
                     onPress={() => {
                         this.searchByKeyword(item)
