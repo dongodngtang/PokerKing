@@ -18,7 +18,7 @@ export function storageLoginUser(loginUser) {
     global.loginUser = loginUser
     getProfile()
     if (loginUser.user_id) {
-        JPushModule.setAlias(`test${loginUser.user_id}`, ret => {
+        JPushModule.setAlias(`test_${loginUser.user_id}`, ret => {
             logMsg('jpush设置极光推送别名', ret)
         })
     } else {
@@ -188,8 +188,8 @@ export function postResetPwd(body, resolve, reject) {
 }
 
 //消息通知
-export function getNotices(resolve, reject) {
-    get(api.notices(), {}, ret => {
+export function getNotices({}, resolve, reject) {
+    post(api.notice, {}, ret => {
         resolve(ret.data)
     }, reject)
 }
