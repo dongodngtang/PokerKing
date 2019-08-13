@@ -3,7 +3,7 @@ import { View,Text,Image,TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import UltimateFlatList from "../../components/ultimate/UltimateFlatList";
 import NotData from "../comm/NotData";
-import {logMsg, unix_format} from "../../utils/utils";
+import {isEmptyObject, logMsg, unix_format} from "../../utils/utils";
 import {getInfoList, initLoginUser} from "../../services/accountDao";
 import {Images, Metrics,px2dp,px2sp} from "../../configs/Theme";
 import styles from './index.style';
@@ -20,6 +20,10 @@ export default class RankList extends Component {
   }
 
   render() {
+      const {events} = this.props.params;
+      if (isEmptyObject(events)) {
+          return <NotData/>
+      }
     return (
       <View style={{flex:1,backgroundColor:"#F5F0F0"}}>
           <UltimateFlatList
@@ -40,6 +44,12 @@ export default class RankList extends Component {
     )
   }
 
+    getTime=(created_at,type)=>{
+        let race_start_time = global.localLanguage === 'en' ? `${global.lang.t(`month${month}`)}` + unix_format(created_at, type) :
+            unix_format(created_at, `YYYY${global.lang.t('year')}MM${global.lang.t('month')}DD${global.lang.t('day2')}`);
+        return race_start_time;
+    }
+
     _separator = () => {
         return (
             <View
@@ -50,22 +60,23 @@ export default class RankList extends Component {
     _renderItem = (item, index) => {
         return (
             <View style={{flexDirection:'column',alignItems:'center'}}>
-                <Text style={styles.time_text}>{`2109年5月30日 13:34`}</Text>
+                <Text style={styles.time_text}>{this.getTime(item.created_at,`MM DD,YYYY hh:mm`)}</Text>
                 <View
                     key={`rank_list${index}`}
                     style={styles.item}>
 
-                    <Text style={styles.title}>{'您所参加的 '}<Text style={styles.title2}>扑克王威尼斯扑克房 </Text></Text>
-                    <Text style={styles.title3}>{'盲注300/600NLH '}<Text style={styles.title}> 前面还有</Text><Text style={styles.title4}> 5</Text><Text style={styles.title}> 位在排队等候！</Text></Text>
-                    <Text style={styles.title}>请及时赶往现场办理入场手续！ </Text>
+                    <Text style={styles.title}>{global.lang.t('notice1')}<Text style={styles.title2}>{item.title}</Text></Text>
+                    <Text style={styles.title3}>{'盲注300/600NLH '}<Text style={styles.title}> {global.lang.t('notice2')}</Text><Text style={styles.title4}> 5</Text><Text style={styles.title}> {global.lang.t('notice3')}</Text></Text>
+                    <Text style={styles.title}>{global.lang.t('notice2')}</Text>
                 </View>
             </View>
         )
     };
 
     onFetch = (page = 1, startFetch, abortFetch) => {
+        const {events} = this.props.params;
         try {
-            startFetch([1,2,3,4,5,6], 18)
+            startFetch(events, 18)
 
         } catch (err) {
             abortFetch();
