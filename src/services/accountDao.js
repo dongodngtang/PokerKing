@@ -14,14 +14,12 @@ export function storageLoginUser(loginUser) {
         data: loginUser
     })
 
-    setToken(loginUser.access_token ? loginUser.access_token : '', success => {
-        logMsg('极光推送别名设置成功', success)
-    })
+    setToken(loginUser.access_token ? loginUser.access_token : '')
     global.loginUser = loginUser
     getProfile()
     if (loginUser.user_id) {
         JPushModule.setAlias(`test${loginUser.user_id}`, ret => {
-            logMsg('设置极光推送别名', ret)
+            logMsg('jpush设置极光推送别名', ret)
         })
     } else {
         JPushModule.deleteAlias()

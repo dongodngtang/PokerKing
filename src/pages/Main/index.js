@@ -49,7 +49,7 @@ export default class Main extends Component {
     }
 
     receiveNotice = (msg)=>{
-
+        logMsg('推送消息',msg)
     }
 
     onFetch = (page = 1, startFetch, abortFetch) => {

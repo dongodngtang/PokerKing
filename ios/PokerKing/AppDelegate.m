@@ -18,6 +18,9 @@
 #import <RCTJShareModule.h>
 #import "RNSplashScreen.h"
 
+static NSString *appKey = @"2c643e3244a45c9fae519e9b";     //填写appkey
+static BOOL isProduction = false;  //填写isProdurion  平时测试时为false ，生产时填写true
+
 @implementation AppDelegate
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
@@ -65,8 +68,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  [JPUSHService setupWithOption:launchOptions appKey:@"2c643e3244a45c9fae519e9b"
-                        channel:nil apsForProduction:nil];
+  [JPUSHService setupWithOption:launchOptions appKey:appKey
+                        channel:nil apsForProduction:isProduction];
 
   NSURL *jsCodeLocation;
 
