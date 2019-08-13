@@ -246,20 +246,22 @@ export default class Router {
         })
     }
 
-    toInstantList(applies) {
+    toInstantList(events,refresh) {
         this.push({
             sceneKey: 'InstantList',
             params:{
-                applies
+                events,
+                refresh
             }
         })
     }
 
-    toRankList(events) {
+    toRankList(applies,refresh) {
         this.push({
             sceneKey: 'RankList',
             params:{
-                events
+                applies,
+                refresh
             }
         })
     }

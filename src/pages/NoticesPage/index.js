@@ -20,6 +20,10 @@ export default class NoticesPage extends Component {
 
 
     componentDidMount() {
+        this.refresh();
+    }
+
+    refresh=()=>{
         getNotices(data => {
             logMsg("notices", data)
             this.setState({
@@ -49,51 +53,40 @@ export default class NoticesPage extends Component {
     }
 
     render() {
-        const {applies,events} = this.state.notices
+        const {applies,events,apply_unread_counts,event_unread_counts} = this.state.notices
         return (
             <View style={{flex: 1, backgroundColor: "#1A1B1F"}}>
                 <View style={{width: Metrics.screenWidth, backgroundColor: "#998E72", height: 1}}/>
                 <TouchableOpacity style={styles.item_view} onPress={() => {
-                    router.toInstantList(applies);
+                    router.toInstantList(events,this.refresh);
                 }}>
                     <View style={styles.img_view}>
                         <Image style={styles.notices1_img} source={Images.notices1}/>
+                        {event_unread_counts > 0 ? <View style={styles.unread_counts}/> : null}
                     </View>
                     <View style={styles.mid_view}>
                         <Text style={styles.instants_news}>{global.lang.t('instants_news')}</Text>
-                        <Text style={styles.contents} numberOfLines={1}>{this._content(applies)}</Text>
-                    </View>
-                    <View style={{flex: 1}}/>
-                    <Text style={styles.time_text}>{this._date(applies)}</Text>
-                </TouchableOpacity>
-                <View style={{width: Metrics.screenWidth - 17, marginLeft: 17, backgroundColor: "#998E72", height: 1}}/>
-                <TouchableOpacity style={styles.item_view} onPress={() => {
-                    router.toRankList(events);
-                }}>
-                    <View style={styles.img_view}>
-                        <Image style={styles.notices1_img} source={Images.notices2}/>
-                    </View>
-                    <View style={styles.mid_view}>
-                        <Text style={styles.instants_news}>{global.lang.t('rank_status')}</Text>
                         <Text style={styles.contents} numberOfLines={1}>{this._content(events)}</Text>
                     </View>
                     <View style={{flex: 1}}/>
                     <Text style={styles.time_text}>{this._date(events)}</Text>
                 </TouchableOpacity>
                 <View style={{width: Metrics.screenWidth - 17, marginLeft: 17, backgroundColor: "#998E72", height: 1}}/>
-                {/*<UltimateFlatList*/}
-                {/*ref={(ref) => this.listView = ref}*/}
-                {/*onFetch={this.onFetch}*/}
-                {/*separator={this._separator}*/}
-                {/*keyExtractor={(item, index) => `notices${index}`}*/}
-                {/*item={this._renderItem}*/}
-                {/*refreshableTitlePull={global.lang.t('pull_refresh')}*/}
-                {/*refreshableTitleRelease={global.lang.t('release_refresh')}*/}
-                {/*dateTitle={global.lang.t('last_refresh')}*/}
-                {/*allLoadedText={global.lang.t('no_more')}*/}
-                {/*waitingSpinnerText={global.lang.t('loading')}*/}
-                {/*emptyView={() => <NotData/>}*/}
-                {/*/>*/}
+                <TouchableOpacity style={styles.item_view} onPress={() => {
+                    router.toRankList(applies,this.refresh);
+                }}>
+                    <View style={styles.img_view}>
+                        <Image style={styles.notices1_img} source={Images.notices2}/>
+                        {apply_unread_counts  > 0 ? <View style={styles.unread_counts}/> : null}
+                    </View>
+                    <View style={styles.mid_view}>
+                        <Text style={styles.instants_news}>{global.lang.t('rank_status')}</Text>
+                        <Text style={styles.contents} numberOfLines={1}>{this._content(applies)}</Text>
+                    </View>
+                    <View style={{flex: 1}}/>
+                    <Text style={styles.time_text}>{this._date(applies)}</Text>
+                </TouchableOpacity>
+                <View style={{width: Metrics.screenWidth - 17, marginLeft: 17, backgroundColor: "#998E72", height: 1}}/>
             </View>
         )
     }

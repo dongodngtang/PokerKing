@@ -12,7 +12,18 @@ export default StyleSheet.create({
         height:px2dp(108)
     },
     img_view:{
-        marginLeft:17
+        width:px2dp(108),
+        height:px2dp(108),
+        marginLeft:17,
+        flexDirection:'row'
+    },
+    unread_counts:{
+        width:px2dp(20),
+        height:px2dp(20),
+        borderRadius:px2dp(10),
+        backgroundColor:"red",
+        position:'absolute',
+        right:px2dp(1)
     },
     mid_view:{
         flexDirection:'column',

@@ -16,12 +16,17 @@ export default class RankList extends Component {
   
 
   componentDidMount(){
-
+      this.props.navigation.setParams({
+          onLeft: () => {
+              this.props.params.refresh()
+              router.pop()
+          }
+      });
   }
 
   render() {
-      const {events} = this.props.params;
-      if (isEmptyObject(events)) {
+      const {applies} = this.props.params;
+      if (isEmptyObject(applies)) {
           return <NotData/>
       }
     return (
@@ -74,9 +79,9 @@ export default class RankList extends Component {
     };
 
     onFetch = (page = 1, startFetch, abortFetch) => {
-        const {events} = this.props.params;
+        const {applies} = this.props.params;
         try {
-            startFetch(events, 18)
+            startFetch(applies, 18)
 
         } catch (err) {
             abortFetch();

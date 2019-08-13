@@ -3,7 +3,7 @@ import {View, Text, Image, TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
 import UltimateFlatList from "../../components/ultimate/UltimateFlatList";
 import NotData from "../comm/NotData";
-import {isEmptyObject, logMsg, showToast, unix_format} from "../../utils/utils";
+import {isEmptyObject, logMsg, shareTo, showToast, unix_format} from "../../utils/utils";
 import {getInfoList, initLoginUser, isCollect, postCancelCollect, postCollect} from "../../services/accountDao";
 import {Images, Metrics, px2dp, px2sp} from "../../configs/Theme";
 import styles from './index.style';
@@ -16,13 +16,18 @@ export default class InstantList extends Component {
 
 
     componentDidMount() {
-
+        this.props.navigation.setParams({
+            onLeft: () => {
+                this.props.params.refresh()
+                router.pop()
+            }
+        });
     }
 
 
     render() {
-        const {applies} = this.props.params;
-        if (isEmptyObject(applies)) {
+        const {events} = this.props.params;
+        if (isEmptyObject(events)) {
             return <NotData/>
         }
         return (
@@ -86,17 +91,17 @@ export default class InstantList extends Component {
                     key={`instants_list${index}`}
                     style={styles.item}>
                     <ImageLoad style={styles.img}
-                               source={{uri: item.img}}/>
+                               source={{uri: item.info.img}}/>
                     <View style={styles.content}>
-                        <Text numberOfLines={2} style={styles.title}>{item.title}</Text>
+                        <Text numberOfLines={2} style={styles.title}>{item.info.title}</Text>
                         <View style={{flexDirection: 'row', alignItems: 'center', width: '100%', marginTop: 5}}>
                             <Text style={[styles.time, {marginLeft: px2dp(14)}]}>{`#TPTS`}</Text>
                             <Text
-                                style={[styles.time, {marginLeft: px2dp(28)}]}>{this.getTime(item.created_at, "MM DD,YYYY")}</Text>
+                                style={[styles.time, {marginLeft: px2dp(28)}]}>{this.getTime(item.info.created_at, "MM DD,YYYY")}</Text>
                             <View style={{flex: 1}}/>
 
                             <TouchableOpacity onPress={() => {
-                                this.toCollect(item)
+                                this.toCollect(item.info)
                             }}>
                                 <Image style={{height: px2dp(46), width: px2dp(46), marginRight: px2dp(36)}}
                                        source={Images.collection_gray}/>
@@ -117,9 +122,9 @@ export default class InstantList extends Component {
     };
 
     onFetch = (page = 1, startFetch, abortFetch) => {
-        const {applies} = this.props.params;
+        const {events} = this.props.params;
         try {
-            startFetch(applies, 18)
+            startFetch(events, 18)
 
         } catch (err) {
             abortFetch();
