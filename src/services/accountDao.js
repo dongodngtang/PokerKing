@@ -188,8 +188,8 @@ export function postResetPwd(body, resolve, reject) {
 }
 
 //消息通知
-export function getNotices({}, resolve, reject) {
-    post(api.notice, {}, ret => {
+export function getNotices(resolve, reject) {
+    get(api.notices(), {}, ret => {
         resolve(ret.data)
     }, reject)
 }
