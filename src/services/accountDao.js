@@ -200,6 +200,18 @@ export function postNotifications(body, resolve, reject) {
     }, reject)
 }
 
+export function postNotify(body, resolve, reject) {
+    post(api.post_notify(), body, ret => {
+        resolve(ret.data)
+    }, reject)
+}
+
+export function postOffNotify(body, resolve, reject) {
+    post(api.post_off_notify(), body, ret => {
+        resolve(ret.data)
+    }, reject)
+}
+
 //消息通知
 export function getNotices(resolve, reject) {
     get(api.notices(), {}, ret => {

@@ -3,8 +3,8 @@ import {View, Text, Image, TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
 import styles from './index.style'
 import {Images, Metrics} from "../../configs/Theme";
-import {alertOrder, isLogin, logMsg, shareHost, shareTo, strNotNull} from "../../utils/utils";
-import {storageLoginUser} from "../../services/accountDao";
+import {alertOrder, isLogin, logMsg, shareHost, shareTo, showToast, strNotNull} from "../../utils/utils";
+import {storageLoginUser,postNotify,postOffNotify} from "../../services/accountDao";
 import SelectPiker from "../comm/SelectPiker";
 import codePush from "react-native-code-push";
 import {VERSION} from '../../themes/Constant'
@@ -92,6 +92,7 @@ export default class Setting extends Component {
     }
 
     render() {
+        const {race_notice,rank_notice} = this.state;
         return (
             <View style={{flex: 1, backgroundColor: "#1A1B1F"}}>
                 {isLogin() ? this._item(global.lang.t('account_security'), Images.right, styles.right_img, null, null,this.toAccount) : null}
@@ -105,6 +106,15 @@ export default class Setting extends Component {
                 {this._item(global.lang.t('race_notice'), null, null, <TouchableOpacity
                     activeOpacity={1}
                     style={styles.right_btn} onPress={() => {
+                    if(race_notice){
+                        postOffNotify({'type':"event"},data=>{
+                            showToast(`${global.lang.t('race_notice')}${global.lang.t('off')}`)
+                        })
+                    }else{
+                        postNotify({'type':"event"},data=>{
+                            showToast(`${global.lang.t('race_notice')}${global.lang.t('open')}`)
+                        })
+                    }
                     this.setState({
                         race_notice: !this.state.race_notice
                     })
@@ -115,6 +125,15 @@ export default class Setting extends Component {
                 {this._item(global.lang.t('rank_notice'), null, null, <TouchableOpacity
                     activeOpacity={1}
                     onPress={() => {
+                        if(rank_notice){
+                            postOffNotify({'type':"apply"},data=>{
+                                showToast(`${global.lang.t('rank_notice')}${global.lang.t('off')}`)
+                            })
+                        }else{
+                            postNotify({'type':"apply"},data=>{
+                                showToast(`${global.lang.t('rank_notice')}${global.lang.t('open')}`)
+                            })
+                        }
                         this.setState({
                             rank_notice: !this.state.rank_notice
                         })
