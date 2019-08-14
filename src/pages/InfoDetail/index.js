@@ -90,7 +90,7 @@ export default class InfoDetail extends Component {
                                                            paddingBottom: 20
                                                        }}
                                                        ItemSeparatorComponent={this._separator}
-                                                       keyExtractor={(item, index) => index}
+                                                       keyExtractor={(item, index) => index+'sd'}
                                                        renderItem={this._renderItem}
                 /> : null}
 
