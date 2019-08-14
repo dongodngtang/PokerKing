@@ -93,7 +93,7 @@ export default class MinePage extends Component {
     _item = (itemStyle, img, imgStyle, title, onPress, notice) => {
         return (
             <TouchableOpacity activeOpacity={1} style={itemStyle} onPress={onPress}>
-                {notice ? <View style={{flexDirection: 'row', marginRight: 9}}>
+                {notice ? <View style={{flexDirection: 'row'}}>
                     <Image style={imgStyle} source={img}/>
                     <View style={styles.unread_count}/>
                 </View> : <Image style={imgStyle} source={img}/>}
