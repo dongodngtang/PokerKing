@@ -72,15 +72,15 @@ export default class QueueProcess extends Component {
                         activeOpacity={1}
                         style={[styles.right_mid_view, {backgroundColor: rank > 0 ? '#303236' : "#1A1B1F"}]}
                         onPress={() => {
-                            // let  cash_game_id = this.props.params.item.id
-                            // let access_token = getLoginUser().access_token
-                            // let url = `http://www.baidu.com?token=${access_token}&cash_queue_id=${id}&cash_game_id=${cash_game_id}`
-                            //
-                            // shortUrl({url},data=>{
-                            //     this.QRCodeModel && this.QRCodeModel.toggle(data.short_url)
-                            // })
+                            let  cash_game_id = this.props.params.item.id
+                            let access_token = getLoginUser().access_token
+                            let url = `http://www.baidu.com?token=${access_token}&cash_queue_id=${id}&cash_game_id=${cash_game_id}`
 
-                            this.PopAction && this.PopAction.toggle()
+                            shortUrl({url},data=>{
+                                this.QRCodeModel && this.QRCodeModel.toggle(data.short_url)
+                            })
+
+                            // this.PopAction && this.PopAction.toggle()
 
                         }}>
                         <Text style={styles.application_wait}>{global.lang.t('application_wait')}</Text>
