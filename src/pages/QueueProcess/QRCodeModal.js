@@ -80,7 +80,7 @@ export default class QRCodeModal extends PureComponent {
                         size={px2dp(274)}
                     />
 
-                    <Text style={styles.txt}>{`请使用二维码到前台扫\n描确认等候申请`}</Text>
+                    <Text style={styles.txt}>{`${global.lang.t('QRcode1')}\n${global.lang.t('QRcode2')}`}</Text>
                 </View>
 
 
