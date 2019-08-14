@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import {View, Text, FlatList, Image, TouchableOpacity} from 'react-native';
+import {View, Text, SafeAreaView, Image, TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
-import {getLoginUser, isEmptyObject, logMsg, moneyFormat} from "../../utils/utils";
+import {getLoginUser, isEmptyObject, isStrNull, logMsg, moneyFormat} from "../../utils/utils";
 import styles from './index.style';
-import {Metrics, Images} from "../../configs/Theme";
+import {Metrics, Images, px2dp} from "../../configs/Theme";
 import {getCashQueues, getCashQueuesNumber} from '../../services/cashTableDao'
 import NotData from '../comm/NotData';
 import UltimateFlatList from '../../components/ultimate/UltimateFlatList';
@@ -25,7 +25,12 @@ export default class QueueProcess extends Component {
                 this.listView && this.listView.refresh()
             }
         })
+
+        this.state = {
+            signedList: []
+        }
     };
+
 
     topName = () => {
         return (
@@ -42,7 +47,7 @@ export default class QueueProcess extends Component {
 
     _renderItem = (item, index) => {
         let rank = 12;
-        const {id, small_blind, big_blind, table_numbers, cash_queue_members_count, buy_in} = item;
+        const {id, small_blind, big_blind, table_numbers, cash_queue_members_count, buy_in, apply_index} = item;
 
         return (
             <View style={styles.item_view}>
@@ -64,7 +69,7 @@ export default class QueueProcess extends Component {
                     <View style={styles.right_top_view}>
                         <Text style={styles.ranking}>{global.lang.t('ranking')}</Text>
                         <Text
-                            style={[styles.ranking_info, rank > 0 ? styles.ranking_info3 : styles.ranking_info2]}>{rank > 0 ? rank : '--'}
+                            style={[styles.ranking_info, !isStrNull(apply_index) ? styles.ranking_info3 : styles.ranking_info2]}>{apply_index ? apply_index : '--'}
                         </Text>
                     </View>
 
@@ -72,15 +77,10 @@ export default class QueueProcess extends Component {
                         activeOpacity={1}
                         style={[styles.right_mid_view, {backgroundColor: rank > 0 ? '#303236' : "#1A1B1F"}]}
                         onPress={() => {
-                            let  cash_game_id = this.props.params.item.id
-                            let access_token = getLoginUser().access_token
-                            let url = `http://www.baidu.com?token=${access_token}&cash_queue_id=${id}&cash_game_id=${cash_game_id}`
+                            if (isStrNull(apply_index)) {
+                                this.PopAction && this.PopAction.toggle()
+                            }
 
-                            shortUrl({url},data=>{
-                                this.QRCodeModel && this.QRCodeModel.toggle(data.short_url)
-                            })
-
-                            // this.PopAction && this.PopAction.toggle()
 
                         }}>
                         <Text style={styles.application_wait}>{global.lang.t('application_wait')}</Text>
@@ -90,6 +90,32 @@ export default class QueueProcess extends Component {
         )
     };
 
+    signChange = (item, i) => {
+        let changeList = [...this.state.signedList]
+        changeList[i].signed = !item.signed
+        this.setState({
+            signedList: changeList
+        })
+    }
+
+    toSign = () => {
+        const {signedList} = this.state
+        let ids = []
+        signedList.forEach((x, i) => {
+            if (x.signed) {
+                ids.push(x.id)
+            }
+        })
+        let str = ids.join("|")
+        logMsg('报名', str)
+        let cash_game_id = this.props.params.item.id
+        let access_token = getLoginUser().access_token
+        let url = `http://www.baidu.com?token=${access_token}&cash_queue_id=${str}&cash_game_id=${cash_game_id}`
+
+        shortUrl({url}, data => {
+            this.QRCodeModel && this.QRCodeModel.toggle(data.short_url)
+        })
+    }
 
     render() {
         return (
@@ -115,7 +141,15 @@ export default class QueueProcess extends Component {
                     ref={ref => this.QRCodeModel = ref}/>
 
                 <PopAction
-                    ref={ref => this.PopAction = ref}/>
+                    ref={ref => this.PopAction = ref}>
+                    <ChooseType
+                        cancel={() => {
+                            this.PopAction && this.PopAction.toggle()
+                        }}
+                        confirm={this.toSign}
+                        onChange={this.signChange}
+                        signedList={this.state.signedList}/>
+                </PopAction>
             </View>
 
         )
@@ -132,21 +166,22 @@ export default class QueueProcess extends Component {
                 }, data => {
                     logMsg("cash_queues:", data);
 
-                    if(data && data.queues){
+                    if (data && data.queues) {
                         let members = data.queues;
-                        // let high_limit = data.high_limit_queues;
-                        // if (!isEmptyObject(high_limit) && high_limit.status) {
-                        //     members.push(data.high_limit_queues);
-                        // }
-                        if(!isEmptyObject(members)){
-                            members.map((item, index) => {
-                                item.isSelect = index === 0;
-                            });
-                        }
+                        let signedList = []
+                        members.forEach(x => {
+                            signedList.push({
+                                buy_in: x.buy_in,
+                                signed: !isStrNull(x.apply_index),
+                                id: x.id
+                            })
+                        })
+                        this.setState({
+                            signedList
+                        })
 
-
-                        startFetch( members, 18)
-                    }else{
+                        startFetch(data.queues, 18)
+                    } else {
                         abortFetch()
                     }
 
@@ -166,4 +201,53 @@ export default class QueueProcess extends Component {
             <View style={{height: 9, width: Metrics.screenWidth, backgroundColor: "#1A1B1F"}}/>
         )
     }
+}
+
+
+const ChooseType = ({signedList, onChange, cancel, confirm}) => {
+    let count = signedList.length - 1
+    return <View style={{backgroundColor: '#fff'}}>
+        <View style={{
+            flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
+            height: px2dp(100), width: '100%'
+        }}>
+            <TouchableOpacity
+                onPress={() => {
+                    cancel && cancel()
+                }}
+                style={{height: px2dp(100), width: px2dp(140), alignItems: 'center', justifyContent: 'center'}}>
+                <Text style={{fontSize: 18, color: '#303236'}}>取消</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                onPress={() => {
+                    cancel && cancel();
+                    confirm && confirm()
+                }}
+                style={{height: px2dp(100), width: px2dp(140), alignItems: 'center', justifyContent: 'center'}}>
+                <Text style={{fontSize: 18, color: '#303236'}}>确定</Text>
+            </TouchableOpacity>
+        </View>
+
+        {signedList && signedList.map((item, i) => <View
+            key={`we${i}`}
+            style={{width: '100%'}}>
+            <TouchableOpacity
+                onPress={() => onChange && onChange(item, i)}
+                style={{height: px2dp(72), flexDirection: 'row', alignItems: 'center'}}>
+
+                <View style={{width: px2dp(194)}}/>
+                <Image style={{height: px2dp(44), width: px2dp(44)}}
+                       source={item.signed ? Images.selected : Images.select_gary}/>
+                <Text style={{fontSize: 16, color: '#303236', marginLeft: px2dp(48)}}>{item.buy_in}</Text>
+            </TouchableOpacity>
+            {i < count ?
+                <View style={{height: px2dp(2), backgroundColor: '#DCDCDC', marginHorizontal: px2dp(38)}}/> : null}
+
+        </View>)}
+
+
+        <Text style={{fontSize: 12, color: '#888888', marginTop: px2dp(30), marginLeft: px2dp(34)}}
+        >提示：我们将会在等候人数最后5位、10位时，向您发送推送提醒</Text>
+        <View style={{height: px2dp(100)}}/>
+    </View>
 }
