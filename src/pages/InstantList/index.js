@@ -8,6 +8,7 @@ import {getInfoList, initLoginUser, isCollect, postCancelCollect, postCollect} f
 import {Images, Metrics, px2dp, px2sp} from "../../configs/Theme";
 import styles from './index.style';
 import ImageLoad from "../../components/ImageLoad";
+import CollectBtn from "../comm/CollectBtn";
 
 @connect(({InstantList}) => ({
     ...InstantList,
@@ -103,8 +104,13 @@ export default class InstantList extends Component {
                             <TouchableOpacity onPress={() => {
                                 this.toCollect(item.info)
                             }}>
-                                <Image style={{height: px2dp(46), width: px2dp(46), marginRight: px2dp(36)}}
-                                       source={Images.collection_gray}/>
+                                {/*<Image style={{height: px2dp(46), width: px2dp(46), marginRight: px2dp(36)}}*/}
+                                       {/*source={Images.collection_gray}/>*/}
+                                <CollectBtn item={item}
+                                            collect_gray={true}
+                                            type={'info'}
+                                            btnStyle={{height: px2dp(44), width: px2dp(44), marginRight: 18, alignSelf: 'flex-end'}}
+                                />
                             </TouchableOpacity>
 
                             <TouchableOpacity>
