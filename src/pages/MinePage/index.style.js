@@ -56,8 +56,7 @@ export default StyleSheet.create({
     },
     img_dy1:{
         width: px2dp(46),
-        height: px2dp(38),
-        marginRight:9
+        height: px2dp(38)
     },
     img_dy2:{
         width: px2dp(44),
@@ -82,6 +81,15 @@ export default StyleSheet.create({
         color: "#998E72",
         fontSize: 12,
         marginRight:14
+    },
+    unread_count:{
+        width:px2dp(18),
+        height:px2dp(18),
+        borderRadius:px2dp(9),
+        backgroundColor:"red",
+        position:'absolute',
+        right:-3,
+        top:-1
     }
 
 })

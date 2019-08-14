@@ -5,7 +5,7 @@ import TopBar from "../comm/TopBar";
 import {Images} from "../../configs/Theme";
 import styles from './index.style'
 import {getAvatar, isEmptyObject, isStrNull, logMsg} from "../../utils/utils";
-
+import {postNotifications, getUnread} from "../../services/accountDao";
 
 
 @connect(({MinePage}) => ({
@@ -13,9 +13,30 @@ import {getAvatar, isEmptyObject, isStrNull, logMsg} from "../../utils/utils";
 }))
 export default class MinePage extends Component {
 
+    state = {
+        unread: 0,
+        notices: false
+    }
 
     componentDidMount() {
+        getUnread(data => {
+            logMsg("unread_count", data)
 
+            let notice = false;
+            if (data.unread_count && data.unread_count > 0) {
+                notice = true
+            }
+            this.setState({
+                unread: data.unread_count,
+                notices: notice
+            })
+        })
+    }
+
+    refresh = () => {
+        postNotifications({type: 'all'}, data => {
+            logMsg("读取了all吗", data)
+        })
     }
 
     render() {
@@ -31,7 +52,7 @@ export default class MinePage extends Component {
                 <TouchableOpacity style={styles.top_view} onPress={() => {
                     if (isEmptyObject(profile)) {
                         router.toLogin();
-                    }else{
+                    } else {
                         router.toModifyData()
                     }
                 }}>
@@ -39,7 +60,7 @@ export default class MinePage extends Component {
                     <View style={styles.mid_view}>
                         <Text style={styles.nick_name}>{nick_name}</Text>
                         {/*{isStrNull(member) ? null : <View style={styles.member_view}>*/}
-                            {/*<Text style={styles.member_text}>{member}</Text>*/}
+                        {/*<Text style={styles.member_text}>{member}</Text>*/}
                         {/*</View>}*/}
                     </View>
                     <View style={{flex: 1}}/>
@@ -50,19 +71,19 @@ export default class MinePage extends Component {
                     {this._item(styles.item_view, Images.notice_img, styles.img_dy1,
                         global.lang.t('notice'), () => {
                             router.toNotices();
-                        })}
+                        }, this.state.notices)}
                     {this._item(styles.item_view, Images.collection, styles.img_dy2,
                         global.lang.t('collection'), () => {
                             router.toCollections();
-                        })}
+                        }, false)}
                     {this._item(styles.item_view, Images.puke_intro, styles.img_dy3,
                         global.lang.t('about'), () => {
                             router.toFoundBeauti();
-                        })}
+                        }, false)}
                     {/*{this._item(styles.item_view, Images.vip_img, styles.img_dy4,*/}
-                        {/*global.lang.t('vip_intro'), () => {*/}
+                    {/*global.lang.t('vip_intro'), () => {*/}
 
-                        {/*})}*/}
+                    {/*})}*/}
                 </View>
 
             </View>
@@ -72,10 +93,16 @@ export default class MinePage extends Component {
     _item = (itemStyle, img, imgStyle, title, onPress, notice) => {
         return (
             <TouchableOpacity activeOpacity={1} style={itemStyle} onPress={onPress}>
-                <Image style={imgStyle} source={img}/>
+                {notice ? <View style={{flexDirection: 'row', marginRight: 9}}>
+                    <Image style={imgStyle} source={img}/>
+                    <View style={styles.unread_count}/>
+                </View> : <Image style={imgStyle} source={img}/>}
+
                 <Text style={styles.title_text}>{title}</Text>
                 <View style={{flex: 1}}/>
-                {isStrNull(notice) ? null : <Text style={styles.read_message}>{global.lang.t('your')}{global.lang.t('unRead')}</Text>}
+                {notice ? <Text
+                        style={styles.read_message}>{global.lang.t('your')}{this.state.unread}{global.lang.t('unRead')}</Text> :
+                    null}
                 <Image style={styles.right_img} source={Images.right}/>
             </TouchableOpacity>
         )

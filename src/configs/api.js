@@ -39,12 +39,17 @@ const api = {
     reset_password:'account/reset_password',
     notices:notices,//Jpush报名消息通知
     short_url:'short_url',
-    post_notifications:post_notifications
+    post_notifications:post_notifications,
+    unread:unread
 }
 
 
 function post_notifications() {
     return `users/${getUserId()}/notifications/read_all`
+}
+
+function unread() {
+    return `users/${getUserId()}/notifications/unread_remind`
 }
 
 function notices() {
