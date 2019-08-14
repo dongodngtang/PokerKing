@@ -103,10 +103,13 @@ export default class Router {
 
     }
 
-    toFeedback() {
+    toFeedback(id) {
         needLogin(() => {
             this.push({
-                sceneKey: 'Feedback'
+                sceneKey: 'Feedback',
+                params:{
+                    id
+                }
             })
         })
     }

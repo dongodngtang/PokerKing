@@ -22,6 +22,7 @@ const api = {
     info_detail:info_detail,//获取热门资讯详情
     main_events:'main_events/recent_events',
     feed_backs:"feedbacks",//用户反馈
+    feed_backs_cash:feed_backs_cash,//扑克房反馈
     event_list:event_list,//获取主赛的新闻列表,
     schedules_dates:schedules_dates,//获取赛程的所有日期
     schedules_events:schedules_events,//获取某个日期的赛程
@@ -43,6 +44,10 @@ const api = {
     unread:unread
 }
 
+
+function feed_backs_cash(cash_game) {
+    return `cash_games/${cash_game.cash_game_id}/feedbacks`
+}
 
 function post_notifications() {
     return `users/${getUserId()}/notifications/read_all`

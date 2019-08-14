@@ -22,7 +22,7 @@ export default class QueueProcess extends Component {
         props.navigation.setParams({
             title: props.params.item.name,
             onRight: () => {
-                this.listView && this.listView.refresh()
+                router.toFeedback(props.params.item.id);
             }
         })
 

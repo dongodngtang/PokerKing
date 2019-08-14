@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {View, Text, ScrollView, TextInput, Platform, TouchableOpacity, Image} from 'react-native';
 import {connect} from 'react-redux';
 import styles from './index.style';
-import {postFeedBacks} from '../../services/accountDao'
+import {postFeedBacks, postFeedBacksCash} from '../../services/accountDao'
 import {logMsg, showToast, strNotNull, isStrNull, fileName} from "../../utils/utils";
 import ImagePicker from 'react-native-image-crop-picker';
 import ImageLoad from "../../components/ImageLoad";
@@ -43,7 +43,6 @@ export default class Feedback extends Component {
 
 
     componentDidMount() {
-
     };
 
     _check = () => {
@@ -66,7 +65,7 @@ export default class Feedback extends Component {
                     uri: img,
                     name: fileName(img)
                 }
-                if(Platform.OS === 'android')
+                if (Platform.OS === 'android')
                     item.type = 'image/jpeg'
                 formData.append('images[]', item)
             })
@@ -76,14 +75,24 @@ export default class Feedback extends Component {
             formData.append('email', this.mailbox)
             formData.append('sense', sense)
 
+            if (this.props.params && strNotNull(this.props.params.id)) {
+                postFeedBacksCash({cash_game_id: this.props.params.id}, formData, data => {
+                    logMsg("feedbackscash", data)
+                    showToast(global.lang.t('successfully'));
+                    router.pop();
+                }, err => {
+                    showToast(err)
+                })
+            } else {
+                postFeedBacks(formData, data => {
+                    logMsg("feedbacks", data)
+                    showToast(global.lang.t('successfully'));
+                    router.pop();
+                }, err => {
+                    showToast(err)
+                })
+            }
 
-            postFeedBacks(formData, data => {
-                logMsg("feedbacks", data)
-                showToast('提交成功');
-                router.pop();
-            }, err => {
-                showToast(err)
-            })
         }
     };
 
@@ -141,7 +150,7 @@ export default class Feedback extends Component {
                         blurOnSubmit
                         textAlignVertical={'top'}
                         multiline={true}
-                        style={[styles.input, {height: 112,paddingTop:2}]}/>
+                        style={[styles.input, {height: 112, paddingTop: 2}]}/>
 
                     <Text style={[styles.your_mailbox, {
                         marginTop: 28,
@@ -152,8 +161,8 @@ export default class Feedback extends Component {
                         activeOpacity={1}
                         onPress={() => {
                             let count = 0
-                            images.forEach(item=>{
-                                if(strNotNull(item)){
+                            images.forEach(item => {
+                                if (strNotNull(item)) {
                                     count++
                                 }
                             })

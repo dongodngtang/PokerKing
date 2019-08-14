@@ -139,6 +139,13 @@ export function postFeedBacks(body, resolve, reject) {
     }, reject)
 }
 
+/*扑克房反馈*/
+export function postFeedBacksCash(cash_game,body, resolve, reject) {
+    post(api.feed_backs_cash(cash_game), body, ret => {
+        resolve(ret.data)
+    }, reject)
+}
+
 
 /*查看是否收藏*/
 export function isCollect(body, resolve, reject) {
