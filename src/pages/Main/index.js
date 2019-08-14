@@ -30,22 +30,17 @@ export default class Main extends Component {
 
     componentDidMount(){
         JPushModule.addReceiveNotificationListener(this.receiveNotice)
-        if(Platform.OS === 'ios'){
-            JPushModule.addOpenNotificationLaunchAppListener(this.openNotice)
-        }else{
-
-        }
+        JPushModule.addOpenNotificationLaunchAppListener(this.openNotice)
     }
 
     componentWillUnmount(){
         JPushModule.removeReceiveNotificationListener(this.receiveNotice);
-        if(Platform.OS === 'ios'){
-            JPushModule.removeOpenNotificationLaunchAppEventListener(this.openNotice)
-        }
+        JPushModule.removeOpenNotificationLaunchAppEventListener(this.openNotice)
     }
 
     openNotice = (e)=>{
-
+        logMsg('点击通知',e)
+        showToast('我点击了通知')
     }
 
     receiveNotice = (msg)=>{

@@ -9,6 +9,7 @@ import NotData from '../comm/NotData';
 import UltimateFlatList from '../../components/ultimate/UltimateFlatList';
 import {initLoginUser, shortUrl} from "../../services/accountDao";
 import QRCodeModal from "./QRCodeModal";
+import PopAction from "../comm/PopAction";
 
 @connect(({QueueProcess}) => ({
     ...QueueProcess,
@@ -79,6 +80,8 @@ export default class QueueProcess extends Component {
                                 this.QRCodeModel && this.QRCodeModel.toggle(data.short_url)
                             })
 
+                            // this.PopAction && this.PopAction.toggle()
+
                         }}>
                         <Text style={styles.application_wait}>{global.lang.t('application_wait')}</Text>
                     </TouchableOpacity>
@@ -110,6 +113,9 @@ export default class QueueProcess extends Component {
 
                 <QRCodeModal
                     ref={ref => this.QRCodeModel = ref}/>
+
+                <PopAction
+                    ref={ref => this.PopAction = ref}/>
             </View>
 
         )
