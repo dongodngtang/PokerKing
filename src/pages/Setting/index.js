@@ -27,6 +27,12 @@ export default class Setting extends Component {
 
 
     componentDidMount() {
+        logMsg('users',global.loginUser)
+        const {apply_notify,event_notify} = global.loginUser
+        this.setState({
+            race_notice:event_notify,
+            rank_notice:apply_notify
+        })
 
         codePush.disallowRestart()
         codePush.sync({
@@ -108,10 +114,12 @@ export default class Setting extends Component {
                     style={styles.right_btn} onPress={() => {
                     if(race_notice){
                         postOffNotify({'type':"event"},data=>{
+                            logMsg("event_off",data)
                             showToast(`${global.lang.t('race_notice')}${global.lang.t('off')}`)
                         })
                     }else{
                         postNotify({'type':"event"},data=>{
+                            logMsg("event",data)
                             showToast(`${global.lang.t('race_notice')}${global.lang.t('open')}`)
                         })
                     }
@@ -127,10 +135,12 @@ export default class Setting extends Component {
                     onPress={() => {
                         if(rank_notice){
                             postOffNotify({'type':"apply"},data=>{
+                                logMsg("apply_off",data)
                                 showToast(`${global.lang.t('rank_notice')}${global.lang.t('off')}`)
                             })
                         }else{
                             postNotify({'type':"apply"},data=>{
+                                logMsg("apply",data)
                                 showToast(`${global.lang.t('rank_notice')}${global.lang.t('open')}`)
                             })
                         }
