@@ -201,13 +201,13 @@ export function postNotifications(body, resolve, reject) {
 }
 
 export function postNotify(body, resolve, reject) {
-    post(api.post_notify(), body, ret => {
+    post(api.post_notify, body, ret => {
         resolve(ret.data)
     }, reject)
 }
 
 export function postOffNotify(body, resolve, reject) {
-    post(api.post_off_notify(), body, ret => {
+    post(api.post_off_notify, body, ret => {
         resolve(ret.data)
     }, reject)
 }

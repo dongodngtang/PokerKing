@@ -42,18 +42,10 @@ const api = {
     short_url:'short_url',
     post_notifications:post_notifications,//读取未读消息
     unread:unread,//w未读消息
-    post_notify:post_notify,//打开消息通知
-    post_off_notify:post_off_notify,//关闭消息通知
+    post_notify:'users/notify/on',//打开消息通知
+    post_off_notify:'users/notify/off',//关闭消息通知
 }
 
-
-function post_off_notify() {
-    return `users/${getUserId()}/notify/off`
-}
-
-function post_notify() {
-    return `users/${getUserId()}/notify/on`
-}
 
 function feed_backs_cash(cash_game) {
     return `cash_games/${cash_game.cash_game_id}/feedbacks`
