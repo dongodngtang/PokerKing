@@ -38,9 +38,14 @@ const api = {
     change_password:'account/change_password',//用户修改密码 [通过旧密码修改]
     reset_password:'account/reset_password',
     notices:notices,//Jpush报名消息通知
-    short_url:'short_url'
+    short_url:'short_url',
+    post_notifications:post_notifications
 }
 
+
+function post_notifications() {
+    return `users/${getUserId()}/notifications/read_all`
+}
 
 function notices() {
     return `users/${getUserId()}/notifications`

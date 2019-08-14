@@ -91,7 +91,7 @@ export default class InstantList extends Component {
                     key={`instants_list${index}`}
                     style={styles.item}>
                     <ImageLoad style={styles.img}
-                               source={{uri: item.info.img}}/>
+                               source={{uri: item.info.image}}/>
                     <View style={styles.content}>
                         <Text numberOfLines={2} style={styles.title}>{item.info.title}</Text>
                         <View style={{flexDirection: 'row', alignItems: 'center', width: '100%', marginTop: 5}}>
