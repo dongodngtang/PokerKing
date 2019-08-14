@@ -19,6 +19,10 @@ export default class MinePage extends Component {
     }
 
     componentDidMount() {
+        this.refresh()
+    }
+
+    refresh = () => {
         getUnread(data => {
             logMsg("unread_count", data)
 
@@ -31,12 +35,9 @@ export default class MinePage extends Component {
                 notices: notice
             })
         })
-    }
-
-    refresh = () => {
-        postNotifications({type: 'all'}, data => {
-            logMsg("读取了all吗", data.msg)
-        })
+        // postNotifications({type: 'all'}, data => {
+        //     logMsg("读取了all吗", data)
+        // })
     }
 
     render() {
