@@ -20,6 +20,12 @@ export default class NoticesPage extends Component {
 
 
     componentDidMount() {
+        this.props.navigation.setParams({
+            onLeft: () => {
+                this.props.params.refresh()
+                router.pop()
+            }
+        });
         this.refresh();
     }
 

@@ -56,7 +56,8 @@ export default StyleSheet.create({
     },
     img_dy1:{
         width: px2dp(46),
-        height: px2dp(38)
+        height: px2dp(38),
+        marginRight:9
     },
     img_dy2:{
         width: px2dp(44),

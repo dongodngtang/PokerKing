@@ -35,7 +35,7 @@ export default class MinePage extends Component {
 
     refresh = () => {
         postNotifications({type: 'all'}, data => {
-            logMsg("读取了all吗", data)
+            logMsg("读取了all吗", data.msg)
         })
     }
 
@@ -70,7 +70,7 @@ export default class MinePage extends Component {
                 <View style={styles.items_view}>
                     {this._item(styles.item_view, Images.notice_img, styles.img_dy1,
                         global.lang.t('notice'), () => {
-                            router.toNotices();
+                            router.toNotices(this.refresh);
                         }, this.state.notices)}
                     {this._item(styles.item_view, Images.collection, styles.img_dy2,
                         global.lang.t('collection'), () => {

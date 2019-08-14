@@ -69,10 +69,10 @@ export default class RankList extends Component {
                 <View
                     key={`rank_list${index}`}
                     style={styles.item}>
-
-                    <Text style={styles.title}>{global.lang.t('notice1')}<Text style={styles.title2}>{item.title}</Text></Text>
-                    <Text style={styles.title3}>{'盲注300/600NLH '}<Text style={styles.title}> {global.lang.t('notice2')}</Text><Text style={styles.title4}> 5</Text><Text style={styles.title}> {global.lang.t('notice3')}</Text></Text>
-                    <Text style={styles.title}>{global.lang.t('notice2')}</Text>
+                    <Text style={styles.title}>{item.content}</Text>
+                    {/*<Text style={styles.title}>{global.lang.t('notice1')}<Text style={styles.title2}>{item.title}</Text></Text>*/}
+                    {/*<Text style={styles.title3}>{'盲注300/600NLH '}<Text style={styles.title}> {global.lang.t('notice2')}</Text><Text style={styles.title4}> 5</Text><Text style={styles.title}> {global.lang.t('notice3')}</Text></Text>*/}
+                    {/*<Text style={styles.title}>{global.lang.t('notice2')}</Text>*/}
                 </View>
             </View>
         )

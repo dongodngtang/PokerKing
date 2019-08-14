@@ -214,10 +214,13 @@ export default class Router {
         })
     }
 
-    toNotices() {
+    toNotices(refresh) {
         needLogin(() => {
             this.push({
-                sceneKey: 'NoticesPage'
+                sceneKey: 'NoticesPage',
+                params:{
+                    refresh
+                }
             })
         })
 
