@@ -3,7 +3,7 @@ import {View, Text, Button, TextInput, KeyboardAvoidingView, TouchableOpacity, I
 import {connect} from 'react-redux';
 import styles from './index.style';
 import ExtArea from '../comm/ExtArea';
-import {Images, Metrics, Colors} from "../../configs/Theme";
+import {Images, Metrics, Colors, realSize, px2dp} from "../../configs/Theme";
 import {getAvatar, isStrNull, showToast} from "../../utils/utils";
 import {login} from "../../services/accountDao";
 import SelectPiker from "../comm/SelectPiker";
@@ -156,10 +156,9 @@ export default class Login extends Component {
                     style={{
                         marginLeft: 17,
                         marginRight: 17,
-                        position: 'absolute',
-                        bottom: 48,
                         flexDirection: 'row',
-                        alignItems: 'center'
+                        alignItems: 'center',
+                        marginTop:px2dp(90)
                     }}
                     onPress={() => {
                         router.toProtocolPage()
