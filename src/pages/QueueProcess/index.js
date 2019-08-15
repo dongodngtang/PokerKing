@@ -46,7 +46,6 @@ export default class QueueProcess extends Component {
     };
 
     _renderItem = (item, index) => {
-        let rank = 12;
         const {id, small_blind, big_blind, table_numbers, cash_queue_members_count, buy_in, apply_index} = item;
 
         return (
@@ -75,7 +74,7 @@ export default class QueueProcess extends Component {
 
                     <TouchableOpacity
                         activeOpacity={1}
-                        style={[styles.right_mid_view, {backgroundColor: rank > 0 ? '#303236' : "#1A1B1F"}]}
+                        style={[styles.right_mid_view, {backgroundColor: isStrNull(apply_index) ? '#1A1B1F' : "#303236"}]}
                         onPress={() => {
                             if (isStrNull(apply_index)) {
                                 this.PopAction && this.PopAction.toggle()
@@ -83,7 +82,8 @@ export default class QueueProcess extends Component {
 
 
                         }}>
-                        <Text style={styles.application_wait}>{global.lang.t('application_wait')}</Text>
+                        <Text
+                            style={styles.application_wait}>{isStrNull(apply_index) ? global.lang.t('application_wait') : global.lang.t('cancel_wait')}</Text>
                     </TouchableOpacity>
                 </View>
             </View>
