@@ -158,7 +158,8 @@ export default class Login extends Component {
                         marginRight: 17,
                         flexDirection: 'row',
                         alignItems: 'center',
-                        marginTop:px2dp(90)
+                        position:'absolute',
+                        bottom:px2dp(150)
                     }}
                     onPress={() => {
                         router.toProtocolPage()

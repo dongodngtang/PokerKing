@@ -311,7 +311,7 @@ class Card extends Component {
 
     render() {
         const {description} = this.props.recent_event;
-        const {begin_time, end_time, id, logo, name} = this.props.item;
+        const {begin_time, end_time, id, logo, name,location} = this.props.item;
         let month = unix_format(begin_time, `MM`);
         const {snapToPrev,snapToNext} = this.props
 
@@ -348,7 +348,7 @@ class Card extends Component {
 
                     <Text style={styles.card_name}>{name}</Text>
                     <View style={styles.card_bottom_view}>
-                        <Text style={styles.card_location}>{`澳门`}</Text>
+                        <Text style={styles.card_location}>{location}</Text>
                         <View style={{flex: 1}}/>
                         <CollectBtn item={this.props.item}
                                     type={'main_event'}
