@@ -80,7 +80,6 @@ export default class QueueProcess extends Component {
                                 this.PopAction && this.PopAction.toggle()
                             }
 
-
                         }}>
                         <Text
                             style={styles.application_wait}>{isStrNull(apply_index) ? global.lang.t('application_wait') : global.lang.t('cancel_wait')}</Text>
