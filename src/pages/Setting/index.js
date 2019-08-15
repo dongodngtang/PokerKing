@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import styles from './index.style'
 import {Images, Metrics} from "../../configs/Theme";
 import {alertOrder, isLogin, logMsg, shareHost, shareTo, showToast, strNotNull} from "../../utils/utils";
-import {storageLoginUser,postNotify,postOffNotify} from "../../services/accountDao";
+import {storageLoginUser, postNotify, postOffNotify} from "../../services/accountDao";
 import SelectPiker from "../comm/SelectPiker";
 import codePush from "react-native-code-push";
 import {VERSION} from '../../themes/Constant'
@@ -27,11 +27,11 @@ export default class Setting extends Component {
 
 
     componentDidMount() {
-        logMsg('users',global.loginUser)
-        const {apply_notify,event_notify} = global.loginUser
+        logMsg('users', global.loginUser)
+        const {apply_notify, event_notify} = global.loginUser
         this.setState({
-            race_notice:event_notify,
-            rank_notice:apply_notify
+            race_notice: event_notify,
+            rank_notice: apply_notify
         })
 
         codePush.disallowRestart()
@@ -92,16 +92,16 @@ export default class Setting extends Component {
         router.toSwitchApi();
     };
 
-    toAccount=()=>{
+    toAccount = () => {
         router.toAccountSecurity()
 
     }
 
     render() {
-        const {race_notice,rank_notice} = this.state;
+        const {race_notice, rank_notice} = this.state;
         return (
             <View style={{flex: 1, backgroundColor: "#1A1B1F"}}>
-                {isLogin() ? this._item(global.lang.t('account_security'), Images.right, styles.right_img, null, null,this.toAccount) : null}
+                {isLogin() ? this._item(global.lang.t('account_security'), Images.right, styles.right_img, null, null, this.toAccount) : null}
                 {isLogin() ? this._line() : null}
                 {this._item(`${global.lang.t('home_language')}(${this.getLanguage()})`, Images.right, styles.right_img, null, null, this.piker)}
                 <View style={{height: 30, width: '100%'}}/>
@@ -109,17 +109,17 @@ export default class Setting extends Component {
                 {this._line()}
                 {isLogin() ? this._item(global.lang.t('feedback'), Images.right, styles.right_img, null, null, this.feedback) : null}
                 {isLogin() ? this._line() : null}
-                {this._item(global.lang.t('race_notice'), null, null, <TouchableOpacity
+                {isLogin() ? this._item(global.lang.t('race_notice'), null, null, <TouchableOpacity
                     activeOpacity={1}
                     style={styles.right_btn} onPress={() => {
-                    if(race_notice){
-                        postOffNotify({'type':"event"},data=>{
-                            logMsg("event_off",data)
+                    if (race_notice) {
+                        postOffNotify({'type': "event"}, data => {
+                            logMsg("event_off", data)
                             showToast(`${global.lang.t('race_notice')}${global.lang.t('off')}`)
                         })
-                    }else{
-                        postNotify({'type':"event"},data=>{
-                            logMsg("event",data)
+                    } else {
+                        postNotify({'type': "event"}, data => {
+                            logMsg("event", data)
                             showToast(`${global.lang.t('race_notice')}${global.lang.t('open')}`)
                         })
                     }
@@ -128,19 +128,19 @@ export default class Setting extends Component {
                     })
                 }}>
                     <Image style={styles.img}
-                           source={this.state.race_notice ? Images.setOpen : Images.setClose}/></TouchableOpacity>, null)}
-                {this._line()}
-                {this._item(global.lang.t('rank_notice'), null, null, <TouchableOpacity
+                           source={this.state.race_notice ? Images.setOpen : Images.setClose}/></TouchableOpacity>, null) : null}
+                {isLogin() ? this._line() : null}
+                {isLogin() ? this._item(global.lang.t('rank_notice'), null, null, <TouchableOpacity
                     activeOpacity={1}
                     onPress={() => {
-                        if(rank_notice){
-                            postOffNotify({'type':"apply"},data=>{
-                                logMsg("apply_off",data)
+                        if (rank_notice) {
+                            postOffNotify({'type': "apply"}, data => {
+                                logMsg("apply_off", data)
                                 showToast(`${global.lang.t('rank_notice')}${global.lang.t('off')}`)
                             })
-                        }else{
-                            postNotify({'type':"apply"},data=>{
-                                logMsg("apply",data)
+                        } else {
+                            postNotify({'type': "apply"}, data => {
+                                logMsg("apply", data)
                                 showToast(`${global.lang.t('rank_notice')}${global.lang.t('open')}`)
                             })
                         }
@@ -150,11 +150,11 @@ export default class Setting extends Component {
                     }}
                     style={styles.right_btn}>
                     <Image style={styles.img} source={this.state.rank_notice ? Images.setOpen : Images.setClose}/>
-                </TouchableOpacity>, null)}
+                </TouchableOpacity>, null) : null}
 
                 {/*{this._line()}*/}
                 {/*{this._item(global.lang.t('clear'), Images.right, styles.right_img, null, '99.2M')}*/}
-                <View style={{height: 14, width: '100%'}}/>
+                {isLogin() ? <View style={{height: 14, width: '100%'}}/> : null}
                 {this._item(global.lang.t('version'), Images.right, styles.right_img, null, VERSION, this.change_version)}
 
                 {isLogin() ? <TouchableOpacity style={styles.drop_out} activeOpacity={1} onPress={() => {
