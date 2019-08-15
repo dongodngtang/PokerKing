@@ -194,7 +194,7 @@ export default class Races extends Component {
                     flexWrap: 'wrap',
                     alignItems: 'center'
                 }}>
-                    {this._item(styles.item_view, Images.location, styles.img_dy,
+                    {this._item(styles.item_view, Images.location_gary, styles.img_dy,
                         global.lang.t('race_location'), () => {
 
                         })}

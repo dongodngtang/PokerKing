@@ -175,6 +175,7 @@ export const Images = {
     live: require('../asserts/new/live.png'),
     live_gray: require('../asserts/new/live_gray.png'),
     location: require('../asserts/new/location.png'),
+    location_gary: require('../asserts/new/location_gary.png'),
     message: require('../asserts/new/message.png'),
     mine: require('../asserts/new/mine.png'),
     news: require('../asserts/new/news.png'),
