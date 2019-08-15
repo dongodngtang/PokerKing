@@ -107,11 +107,11 @@ export default class QueueProcess extends Component {
             }
         })
         let str = ids.join("|")
-        logMsg('报名', str)
+
         let cash_game_id = this.props.params.item.id
         let access_token = getLoginUser().access_token
         let url = `http://www.baidu.com?token=${access_token}&cash_queue_id=${str}&cash_game_id=${cash_game_id}`
-
+        logMsg('报名', url)
         shortUrl({url}, data => {
             this.QRCodeModel && this.QRCodeModel.toggle(data.short_url)
         })
@@ -138,6 +138,7 @@ export default class QueueProcess extends Component {
                 />
 
                 <QRCodeModal
+                    closeCall={this._onRefresh}
                     ref={ref => this.QRCodeModel = ref}/>
 
                 <PopAction
@@ -171,7 +172,7 @@ export default class QueueProcess extends Component {
                         let signedList = []
                         members.forEach(x => {
                             signedList.push({
-                                buy_in: x.buy_in,
+                                buy_in:`${x.small_blind}/${x.big_blind} NLH`,
                                 signed: !isStrNull(x.apply_index),
                                 id: x.id
                             })
@@ -246,8 +247,8 @@ const ChooseType = ({signedList, onChange, cancel, confirm}) => {
         </View>)}
 
 
-        <Text style={{fontSize: 12, color: '#888888', marginTop: px2dp(30), marginLeft: px2dp(34)}}
-        >提示：我们将会在等候人数最后5位、10位时，向您发送推送提醒</Text>
+        <Text style={{fontSize: 12, color: '#888888', marginTop: px2dp(30), marginHorizontal: px2dp(34)}}
+        >{'提示：我们将会在等候人数最后5位、10位时，向您发送推送提醒'}</Text>
         <View style={{height: px2dp(100)}}/>
     </View>
 }

@@ -39,6 +39,7 @@ export default class QRCodeModal extends PureComponent {
                 }
             })
         }else{
+            this.props.closeCall && this.props.closeCall()
             this.setState({
                 visible:false
             })
