@@ -53,7 +53,7 @@ export default class QueueProcess extends Component {
                 <View style={styles.left_view}>
                     <View style={styles.left_top_view}>
                         <Text style={styles.blind}>{`${small_blind}/${big_blind} NLH`}</Text>
-                        <Text style={styles.hkd}>{`HKD ${buy_in}`}</Text>
+                        <Text style={styles.hkd}>{`${buy_in}`}</Text>
                     </View>
                     <View style={[styles.left_bottom_view, {marginTop: 4}]}>
                         <Text style={styles.table_numbers_text}>{`${global.lang.t('table_number')}`}</Text>
