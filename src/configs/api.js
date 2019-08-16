@@ -44,8 +44,12 @@ const api = {
     unread:unread,//w未读消息
     post_notify:'users/notify/on',//打开消息通知
     post_off_notify:'users/notify/off',//关闭消息通知
+    cancelapply:cancelapply,//APP取消排队报名 并下发通知
 }
 
+function cancelapply(body) {
+    return `cash_games/${body.cash_game_id}/cash_queues/${body.cash_queue_id}/cancelapply`
+}
 
 function feed_backs_cash(cash_game) {
     return `cash_games/${cash_game.cash_game_id}/feedbacks`

@@ -18,3 +18,9 @@ export function getCashQueuesNumber(body,resolve, reject) {
         resolve(ret.data)
     }, reject)
 }
+
+export function postCancelApply(body,resolve, reject) {
+    post(api.cancelapply(body),{},ret=>{
+        resolve(ret.data)
+    },reject)
+}
