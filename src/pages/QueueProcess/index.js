@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {View, Text, SafeAreaView, Image, TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
-import {getLoginUser, isEmptyObject, isStrNull, logMsg, moneyFormat} from "../../utils/utils";
+import {getLoginUser, isEmptyObject, isStrNull, logMsg, moneyFormat, showToast} from "../../utils/utils";
 import styles from './index.style';
 import {Metrics, Images, px2dp} from "../../configs/Theme";
-import {getCashQueues, getCashQueuesNumber} from '../../services/cashTableDao'
+import {getCashQueues, getCashQueuesNumber, postCancelApply} from '../../services/cashTableDao'
 import NotData from '../comm/NotData';
 import UltimateFlatList from '../../components/ultimate/UltimateFlatList';
 import {initLoginUser, shortUrl} from "../../services/accountDao";
@@ -78,13 +78,47 @@ export default class QueueProcess extends Component {
                         onPress={() => {
                             if (isStrNull(apply_index)) {
                                 this.PopAction && this.PopAction.toggle()
+                            }else{
+                                this.popCancel && this.popCancel.toggle()
                             }
 
                         }}>
                         <Text
-                            style={styles.application_wait}>{isStrNull(apply_index) ? global.lang.t('application_wait') : global.lang.t('cancel_wait')}</Text>
+                            style={styles.application_wait}
+                        >{isStrNull(apply_index) ? global.lang.t('application_wait') : global.lang.t('cancel_wait')}</Text>
                     </TouchableOpacity>
                 </View>
+                <PopAction
+                    key={'cancel'}
+                    ref={ref => this.popCancel = ref}>
+                    <View style={{height: px2dp(320), width: '100%', backgroundColor: '#fff',
+                        justifyContent:'space-evenly'}}>
+                        <TouchableOpacity
+                            onPress={()=>{
+                                this.cancelApply(id)
+                                this.popCancel && this.popCancel.toggle()
+                            }}
+                            style={{
+                                height: px2dp(88), marginHorizontal: px2dp(34),
+                                backgroundColor: '#303236', alignItems: 'center', justifyContent: 'center'
+                            }}>
+                            <Text style={{fontSize: 18, color: '#FFE9AD'}}>确定取消等候</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                            onPress={()=>{
+                                this.popCancel && this.popCancel.toggle()
+                            }}
+                            style={{
+                                height: px2dp(88), marginHorizontal: px2dp(34),
+                                borderWidth: px2dp(1), borderColor: '#303236',
+                                alignItems: 'center', justifyContent: 'center'
+                            }}>
+                            <Text style={{fontSize: 18, color: '##303236'}}>取消</Text>
+                        </TouchableOpacity>
+                    </View>
+
+                </PopAction>
             </View>
         )
     };
@@ -116,6 +150,14 @@ export default class QueueProcess extends Component {
         })
     }
 
+    cancelApply = (cash_queue_id)=>{
+        let cash_game_id = this.props.params.item.id
+        let body = {cash_queue_id,cash_game_id}
+        postCancelApply(body,ret=>{
+            showToast('取消成功')
+        })
+    }
+
     render() {
         return (
             <View style={styles.process_view}>
@@ -141,6 +183,7 @@ export default class QueueProcess extends Component {
                     ref={ref => this.QRCodeModel = ref}/>
 
                 <PopAction
+                    key={'apply'}
                     ref={ref => this.PopAction = ref}>
                     <ChooseType
                         cancel={() => {
@@ -149,6 +192,16 @@ export default class QueueProcess extends Component {
                         confirm={this.toSign}
                         onChange={this.signChange}
                         signedList={this.state.signedList}/>
+                </PopAction>
+
+                <PopAction
+                    key={'apply_success'}
+                    ref={ref => this.applySuccess = ref}>
+                   <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>
+                       <Text style={{color:'#FFE9AD',fontSize:18}}>{`已报名成功`}</Text>
+
+                   </View>
+                    <View style={{flex:1}}/>
                 </PopAction>
             </View>
 
@@ -171,7 +224,7 @@ export default class QueueProcess extends Component {
                         let signedList = []
                         members.forEach(x => {
                             signedList.push({
-                                buy_in:`${x.small_blind}/${x.big_blind} NLH`,
+                                buy_in: `${x.small_blind}/${x.big_blind} NLH`,
                                 signed: !isStrNull(x.apply_index),
                                 id: x.id
                             })
