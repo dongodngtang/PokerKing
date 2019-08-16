@@ -229,7 +229,8 @@ export default class QueueProcess extends Component {
                             signedList.push({
                                 buy_in: `${x.small_blind}/${x.big_blind} NLH`,
                                 signed: !isStrNull(x.apply_index),
-                                id: x.id
+                                id: x.id,
+                                applyId:x.apply_index
                             })
                         })
                         this.setState({
@@ -288,13 +289,14 @@ const ChooseType = ({signedList, onChange, cancel, confirm}) => {
             key={`we${i}`}
             style={{width: '100%'}}>
             <TouchableOpacity
+                disabled={!isStrNull(item.applyId)}
                 onPress={() => onChange && onChange(item, i)}
                 style={{height: px2dp(72), flexDirection: 'row', alignItems: 'center'}}>
 
                 <View style={{width: px2dp(194)}}/>
                 <Image style={{height: px2dp(44), width: px2dp(44)}}
                        source={item.signed ? Images.selected : Images.select_gary}/>
-                <Text style={{fontSize: 16, color: '#303236', marginLeft: px2dp(48)}}>{item.buy_in}</Text>
+                <Text style={{fontSize: 16, color: isStrNull(item.applyId)?'#303236':'#aaaaaa', marginLeft: px2dp(48)}}>{item.buy_in}</Text>
             </TouchableOpacity>
             {i < count ?
                 <View style={{height: px2dp(2), backgroundColor: '#DCDCDC', marginHorizontal: px2dp(38)}}/> : null}
