@@ -79,6 +79,7 @@ export default class QueueProcess extends Component {
                             if (isStrNull(apply_index)) {
                                 this.PopAction && this.PopAction.toggle()
                             }else{
+                                this.cancelId = id
                                 this.popCancel && this.popCancel.toggle()
                             }
 
@@ -95,7 +96,7 @@ export default class QueueProcess extends Component {
                         justifyContent:'space-evenly'}}>
                         <TouchableOpacity
                             onPress={()=>{
-                                this.cancelApply(id)
+                                this.cancelApply()
                                 this.popCancel && this.popCancel.toggle()
                             }}
                             style={{
@@ -114,7 +115,7 @@ export default class QueueProcess extends Component {
                                 borderWidth: px2dp(1), borderColor: '#303236',
                                 alignItems: 'center', justifyContent: 'center'
                             }}>
-                            <Text style={{fontSize: 18, color: '##303236'}}>取消</Text>
+                            <Text style={{fontSize: 18, color: '#303236'}}>取消</Text>
                         </TouchableOpacity>
                     </View>
 
@@ -150,11 +151,13 @@ export default class QueueProcess extends Component {
         })
     }
 
-    cancelApply = (cash_queue_id)=>{
+    cancelApply = ()=>{
+        let cash_queue_id = this.cancelId
         let cash_game_id = this.props.params.item.id
         let body = {cash_queue_id,cash_game_id}
         postCancelApply(body,ret=>{
             showToast('取消成功')
+            this._onRefresh()
         })
     }
 

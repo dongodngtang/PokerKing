@@ -20,7 +20,7 @@ export function getCashQueuesNumber(body,resolve, reject) {
 }
 
 export function postCancelApply(body,resolve, reject) {
-    post(url.cancelapply(body),{},ret=>{
+    post(api.cancelapply(body),{},ret=>{
         resolve(ret.data)
     },reject)
 }
