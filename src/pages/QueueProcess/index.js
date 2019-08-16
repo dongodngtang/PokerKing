@@ -216,7 +216,7 @@ const ChooseType = ({signedList, onChange, cancel, confirm}) => {
                     cancel && cancel()
                 }}
                 style={{height: px2dp(100), width: px2dp(140), alignItems: 'center', justifyContent: 'center'}}>
-                <Text style={{fontSize: 18, color: '#303236'}}>取消</Text>
+                <Text style={{fontSize: 18, color: '#303236'}}>{global.lang.t('cancel')}</Text>
             </TouchableOpacity>
             <TouchableOpacity
                 onPress={() => {
@@ -224,7 +224,7 @@ const ChooseType = ({signedList, onChange, cancel, confirm}) => {
                     confirm && confirm()
                 }}
                 style={{height: px2dp(100), width: px2dp(140), alignItems: 'center', justifyContent: 'center'}}>
-                <Text style={{fontSize: 18, color: '#303236'}}>确定</Text>
+                <Text style={{fontSize: 18, color: '#303236'}}>{global.lang.t('determine')}</Text>
             </TouchableOpacity>
         </View>
 
@@ -247,7 +247,7 @@ const ChooseType = ({signedList, onChange, cancel, confirm}) => {
 
 
         <Text style={{fontSize: 12, color: '#888888', marginTop: px2dp(30), marginHorizontal: px2dp(34)}}
-        >{'提示：我们将会在等候人数最后5位、10位时，向您发送推送提醒'}</Text>
+        >{global.lang.t('rank_prompt')}</Text>
         <View style={{height: px2dp(100)}}/>
     </View>
 }
