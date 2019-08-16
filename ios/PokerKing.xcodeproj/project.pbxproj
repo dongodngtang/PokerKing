@@ -1108,6 +1108,7 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = KZCC4Q9822;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -1855,6 +1856,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = PokerKing/PokerKing.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = KZCC4Q9822;
@@ -1883,6 +1886,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pokerkinglive;
 				PRODUCT_NAME = PokerKing;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1893,6 +1897,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = PokerKing/PokerKing.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = KZCC4Q9822;
 				HEADER_SEARCH_PATHS = (
@@ -1920,6 +1926,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pokerkinglive;
 				PRODUCT_NAME = PokerKing;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

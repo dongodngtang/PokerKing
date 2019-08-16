@@ -89,8 +89,8 @@ export default StyleSheet.create({
         borderRadius:px2dp(9),
         backgroundColor:"red",
         position:'absolute',
-        right:-3,
-        top:-1
+        right:3,
+        top:-2
     }
 
 })
