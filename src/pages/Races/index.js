@@ -9,7 +9,7 @@ import RaceModal from './RaceModal';
 import {mainEvents} from "../../services/eventsDao";
 import {
     getBg, logMsg, unix_format, getRemainTime, isStrNull, mul, showToast, shareHost,
-    shareTo, isEmptyObject
+    shareTo, isEmptyObject, strNotNull
 } from "../../utils/utils";
 import ImageLoad from "../../components/ImageLoad";
 import RaceMessage from "../RaceMessage";
@@ -77,8 +77,8 @@ export default class Races extends Component {
                     }}
                     style={styles.left2}>
                     {/*<Image*/}
-                        {/*style={{height: px2dp(48), width: px2dp(120)}}*/}
-                        {/*source={Images.puke_icon}*/}
+                    {/*style={{height: px2dp(48), width: px2dp(120)}}*/}
+                    {/*source={Images.puke_icon}*/}
                     {/*/>*/}
 
                 </View>
@@ -145,11 +145,11 @@ export default class Races extends Component {
         }
     }
 
-    snapToNext = ()=>{
+    snapToNext = () => {
         this._carousel && this._carousel.snapToNext()
     }
 
-    snapToPrev = ()=>{
+    snapToPrev = () => {
         this._carousel && this._carousel.snapToPrev()
     }
 
@@ -214,6 +214,12 @@ export default class Races extends Component {
                         })}
                     {this._item(styles.item_view_last, Images.live, styles.img_dy4,
                         global.lang.t('race_live'), () => {
+                        let url = recent_event.live_url
+                            if (strNotNull(url)) {
+                                router.toWebViewPage(this.props, url)
+                            } else {
+                                showToast(global.lang.t('not_live'))
+                            }
 
                         })}
                 </View>
@@ -311,9 +317,9 @@ class Card extends Component {
 
     render() {
         const {description} = this.props.recent_event;
-        const {begin_time, end_time, id, logo, name,location} = this.props.item;
+        const {begin_time, end_time, id, logo, name, location} = this.props.item;
         let month = unix_format(begin_time, `MM`);
-        const {snapToPrev,snapToNext} = this.props
+        const {snapToPrev, snapToNext} = this.props
 
         let race_start_time = global.localLanguage === 'en' ? `${global.lang.t(`month${month}`)}` + unix_format(begin_time, `DD,YYYY`) :
             unix_format(begin_time, `YYYY${global.lang.t('year')}MM${global.lang.t('month')}DD${global.lang.t('day2')}`);
@@ -321,10 +327,12 @@ class Card extends Component {
         return (
             <View style={{flexDirection: 'row'}}>
                 <TouchableOpacity
-                    onPress={()=>snapToPrev && snapToPrev()}
-                    style={{height:px2dp(302),width:px2dp(60),
-                justifyContent: 'center'}}>
-                    <Image style={{height: px2dp(34), width: px2dp(20),marginLeft:px2dp(24)}}
+                    onPress={() => snapToPrev && snapToPrev()}
+                    style={{
+                        height: px2dp(302), width: px2dp(60),
+                        justifyContent: 'center'
+                    }}>
+                    <Image style={{height: px2dp(34), width: px2dp(20), marginLeft: px2dp(24)}}
                            source={Images.left}/>
                 </TouchableOpacity>
                 <TouchableOpacity
@@ -354,7 +362,7 @@ class Card extends Component {
                                     type={'main_event'}
                                     btnStyle={styles.collect_img}
                         />
-                        <TouchableOpacity onPress={()=>{
+                        <TouchableOpacity onPress={() => {
                             this.share(this.props.item)
                         }}>
                             <Image
@@ -364,10 +372,12 @@ class Card extends Component {
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    onPress={()=>snapToNext && snapToNext()}
-                    style={{height:px2dp(302),width:px2dp(60),flexDirection:'row-reverse',
-                    alignItems: 'center'}}>
-                    <Image style={{height: px2dp(34), width: px2dp(20),marginRight:px2dp(24)}}
+                    onPress={() => snapToNext && snapToNext()}
+                    style={{
+                        height: px2dp(302), width: px2dp(60), flexDirection: 'row-reverse',
+                        alignItems: 'center'
+                    }}>
+                    <Image style={{height: px2dp(34), width: px2dp(20), marginRight: px2dp(24)}}
                            source={Images.right}/>
                 </TouchableOpacity>
             </View>
