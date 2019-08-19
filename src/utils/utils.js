@@ -32,7 +32,7 @@ export const util = _;
 export function showToast(msg) {
   if (!isStrNull(msg)) {
     const toast = Toast.show(msg, {
-      testID: 'deshproToast', position: 200, duration: Toast.durations.SHORT,
+      testID: 'deshproToast', position: 0, duration: Toast.durations.SHORT,
       shadow: false,
       onHidden: (siblingManager) => {
         Toast.hide(toast)
