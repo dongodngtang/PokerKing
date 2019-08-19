@@ -9,42 +9,24 @@ import {postNotifications, getUnread} from "../../services/accountDao";
 
 
 @connect(({MinePage}) => ({
-    ...MinePage,
+    ...MinePage
 }))
 export default class MinePage extends Component {
 
-    state = {
-        unread: 0,
-        notices: false
-    }
 
-    componentDidMount() {
-        this.refresh()
-    }
+
+
 
     refresh = () => {
-        getUnread(data => {
-            logMsg("unread_count", data)
-
-            let notice = false;
-            if (data.unread_count && data.unread_count > 0) {
-                notice = true
-            }
-            this.setState({
-                unread: data.unread_count,
-                notices: notice
-            })
-        })
-        // postNotifications({type: 'all'}, data => {
-        //     logMsg("读取了all吗", data)
-        // })
+        getUnread()
     }
 
     render() {
-        const {profile} = this.props;
+        const {profile,msgInfo} = this.props;
         let avatar = isEmptyObject(profile) ? Images.default_bg : isStrNull(profile.avatar) ? Images.default_bg : {uri: profile.avatar}
         let nick_name = isEmptyObject(profile) ? global.lang.t('login') : profile.nickname;
         let member = isEmptyObject(profile) ? '' : profile.member;
+        let unread_count = msgInfo.unread_count
         return (
             <View style={{flex: 1, backgroundColor: "#1A1B1F"}}>
                 <TopBar left_img={Images.puke_icon}
@@ -72,15 +54,15 @@ export default class MinePage extends Component {
                     {this._item(styles.item_view, Images.notice_img, styles.img_dy1,
                         global.lang.t('notice'), () => {
                             router.toNotices(this.refresh);
-                        }, this.state.notices)}
+                        },unread_count)}
                     {this._item(styles.item_view, Images.collection, styles.img_dy2,
                         global.lang.t('collection'), () => {
                             router.toCollections();
-                        }, false)}
+                        })}
                     {this._item(styles.item_view, Images.puke_intro, styles.img_dy3,
                         global.lang.t('about'), () => {
                             router.toFoundBeauti();
-                        }, false)}
+                        })}
                     {/*{this._item(styles.item_view, Images.vip_img, styles.img_dy4,*/}
                     {/*global.lang.t('vip_intro'), () => {*/}
 
@@ -91,18 +73,18 @@ export default class MinePage extends Component {
         )
     }
 
-    _item = (itemStyle, img, imgStyle, title, onPress, notice) => {
+    _item = (itemStyle, img, imgStyle, title, onPress, unread_count=0) => {
         return (
             <TouchableOpacity activeOpacity={1} style={itemStyle} onPress={onPress}>
-                {notice ? <View style={{flexDirection: 'row'}}>
+                {unread_count>0 ? <View style={{flexDirection: 'row'}}>
                     <Image style={imgStyle} source={img}/>
                     <View style={styles.unread_count}/>
                 </View> : <Image style={imgStyle} source={img}/>}
 
                 <Text style={styles.title_text}>{title}</Text>
                 <View style={{flex: 1}}/>
-                {notice ? <Text
-                        style={styles.read_message}>{global.lang.t('your')}{this.state.unread}{global.lang.t('unRead')}</Text> :
+                {unread_count>0 ? <Text
+                        style={styles.read_message}>{global.lang.t('your')}{unread_count}{global.lang.t('unRead')}</Text> :
                     null}
                 <Image style={styles.right_img} source={Images.right}/>
             </TouchableOpacity>
