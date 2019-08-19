@@ -8,7 +8,7 @@ import React, {PureComponent} from 'react';
 import {StyleSheet, View, Image, TouchableOpacity, Modal, Text} from 'react-native';
 import propTypes from 'prop-types';
 import {px2dp, px2sp} from "../../configs/Theme";
-import QRCode from 'react-native-qrcode';
+import QRCode from '../../components/qrcode/QRCode';
 import {getRemainTime, logMsg, strNotNull} from "../../utils/utils";
 
 export default class QRCodeModal extends PureComponent {
