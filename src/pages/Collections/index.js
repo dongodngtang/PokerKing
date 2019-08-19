@@ -3,7 +3,10 @@ import {View, Text, TouchableOpacity, Image} from 'react-native';
 import {connect} from 'react-redux';
 import styles from './index.style';
 import UltimateFlatList from '../../components/ultimate/UltimateFlatList';
-import {getCollectionList, initLoginUser, postCollect, storageLoginUser} from "../../services/accountDao";
+import {
+    getCollectionList, initLoginUser, postCancelCollect, postCollect,
+    storageLoginUser
+} from "../../services/accountDao";
 import {alertOrder, logMsg, showToast} from "../../utils/utils";
 import {Images, Metrics} from "../../configs/Theme";
 import HotItem from "../Home/HotItem";
@@ -44,11 +47,11 @@ export default class Collections extends Component {
                         <TouchableOpacity style={styles.rowBack} onPress={() => {
                             let item = data.item;
                             alertOrder(global.lang.t('delete_confirm'), () => {
-                                postCollect({
+                                postCancelCollect({
                                     target_id: item.target_type && item.target_type === 'main_event' ? item.main_event.id : item.info.id,
                                     target_type: item.target_type
                                 }, data => {
-                                    showToast(global.lang.t("getFavorite"))
+                                    showToast(global.lang.t("cancelFavorite"))
                                 }, err => {
                                     showToast(global.lang.t('err_problem'))
                                 })
