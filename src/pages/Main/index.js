@@ -40,7 +40,7 @@ export default class Main extends Component {
 
     openNotice = (e)=>{
         logMsg('点击通知',e)
-        showToast('我点击了通知')
+        // showToast('我点击了通知')
     }
 
     receiveNotice = (msg)=>{
