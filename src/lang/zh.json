@@ -219,7 +219,7 @@
   "konw":"我知道了",
   "getFavorite":"收藏成功",
   "cancelFavorite":"取消收藏成功",
-  "err_problem":"网络异常，称稍后再试",
+  "err_problem":"网络异常，请稍后再试",
   "nameormobile":"账号或手机号",
   "psd":"密码",
   "zhuce":"注册",
@@ -272,7 +272,9 @@
   "off":"已关闭",
   "open":"已打开",
   "rank_prompt":"提示：我们将会在等候人数最后5位、10位时，向您发送推送提醒",
-  "not_live":"暂无直播"
+  "not_live":"暂无直播",
+  "delete":"删除",
+  "delete_confirm":"确认删除"
 }
 
 

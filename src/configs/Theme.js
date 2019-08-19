@@ -218,7 +218,8 @@ export const Images = {
     net_err: require('../asserts/new/net_err.png'),
     set_exclamation: require('../asserts/new/set_exclamation.png'),
     left_returnpng: require('../asserts/new/left_returnpng.png'),
-    right_close: require('../asserts/new/right_close.png')
+    right_close: require('../asserts/new/right_close.png'),
+    delete_collect: require('../asserts/new/delete_collect.png')
 }
 
 
