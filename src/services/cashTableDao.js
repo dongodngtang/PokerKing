@@ -1,5 +1,5 @@
 import api from '../configs/api'
-import {get, post, put, setBaseUrl, setToken} from '../configs/fetch'
+import {get, post, postScan, put, setBaseUrl, setToken} from '../configs/fetch'
 import {isEmpty, logMsg,showToast} from '../utils/utils';
 
 /*现金桌列表*/
@@ -20,7 +20,11 @@ export function getCashQueuesNumber(body,resolve, reject) {
 }
 
 export function postCancelApply(body,resolve, reject) {
-    post(api.cancelapply(body),{},ret=>{
+    post(api.cancelapply(body),{},resolve,reject)
+}
+
+export function postScanApply(body,resolve, reject) {
+    postScan(api.scanapplystatus,body,ret=>{
         resolve(ret.data)
     },reject)
 }

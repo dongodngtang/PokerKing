@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {getLoginUser, isEmptyObject, isStrNull, logMsg, moneyFormat, showToast} from "../../utils/utils";
 import styles from './index.style';
 import {Metrics, Images, px2dp} from "../../configs/Theme";
-import {getCashQueues, getCashQueuesNumber, postCancelApply} from '../../services/cashTableDao'
+import {getCashQueues, getCashQueuesNumber, postCancelApply, postScanApply} from '../../services/cashTableDao'
 import NotData from '../comm/NotData';
 import UltimateFlatList from '../../components/ultimate/UltimateFlatList';
 import {initLoginUser, shortUrl} from "../../services/accountDao";
@@ -27,7 +27,8 @@ export default class QueueProcess extends Component {
         })
 
         this.state = {
-            signedList: []
+            signedList: [],
+            applySuccessBlind:''
         }
     };
 
@@ -135,10 +136,16 @@ export default class QueueProcess extends Component {
     toSign = () => {
         const {signedList} = this.state
         let ids = []
+        let blind = []
         signedList.forEach((x, i) => {
-            if (x.signed) {
+            if (x.signed && isStrNull(x.applyId)) {
                 ids.push(x.id)
+                blind.push(x.buy_in)
             }
+        })
+
+        this.setState({
+            applySuccessBlind:blind.join(',')
         })
         let str = ids.join("|")
 
@@ -147,6 +154,16 @@ export default class QueueProcess extends Component {
         let url = `http://www.baidu.com?token=${access_token}&cash_queue_id=${str}&cash_game_id=${cash_game_id}`
         logMsg('报名', url)
         shortUrl({url}, data => {
+            postScanApply({dwz_url:data.short_url},ret=>{
+                this.QRCodeModel && this.QRCodeModel.toggle('')
+                if(ret.code === 0){
+                    this.applySuccess && this.applySuccess.toggle()
+                }else{
+                    showToast('报名失败！请重试')
+                }
+
+
+            })
             this.QRCodeModel && this.QRCodeModel.toggle(data.short_url)
         })
     }
@@ -200,11 +217,19 @@ export default class QueueProcess extends Component {
                 <PopAction
                     key={'apply_success'}
                     ref={ref => this.applySuccess = ref}>
-                   <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>
-                       <Text style={{color:'#FFE9AD',fontSize:18}}>{`已报名成功`}</Text>
+                   <TouchableOpacity
+                       onPress={()=>{
+                           this.applySuccess && this.applySuccess.toggle()
+                       }}
+                       style={{flex:1,
+                       alignItems:'center',
+                       justifyContent:'center',
+                       position:'absolute'}}>
+                       <Text style={{color:'#FFE9AD',fontSize:18,marginHorizontal:px2dp(34)}}
+                       >{`级别${this.state.applySuccessBlind}\n已报名成功!`}</Text>
 
-                   </View>
-                    <View style={{flex:1}}/>
+                   </TouchableOpacity>
+
                 </PopAction>
             </View>
 

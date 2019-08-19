@@ -96,6 +96,14 @@ export function del(url, body, resolve, reject) {
   })
 }
 
+export function postScan(url, body, resolve, reject) {
+    client.post(url, body,{timeout:60*1000}).then(res => {
+        handle(res, resolve, reject)
+    }).catch(err => {
+        errReject(err)
+    })
+}
+
 
 export function post(url, body, resolve, reject) {
   client.post(url, body).then(res => {

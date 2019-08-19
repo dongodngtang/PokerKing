@@ -45,6 +45,7 @@ const api = {
     post_notify:'users/notify/on',//打开消息通知
     post_off_notify:'users/notify/off',//关闭消息通知
     cancelapply:cancelapply,//APP取消排队报名 并下发通知
+    scanapplystatus:'cash_queues/scanapplystatus'
 }
 
 function cancelapply(body) {
