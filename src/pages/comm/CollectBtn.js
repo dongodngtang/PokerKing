@@ -9,13 +9,15 @@ import {View, StyleSheet, Text, Image, TouchableOpacity} from 'react-native'
 import {isLogin, logMsg, showToast} from "../../utils/utils";
 import {Images, px2dp} from "../../configs/Theme";
 import {postCancelCollect, postCollect} from "../../services/accountDao";
+import _ from 'lodash'
+import dva from '../../utils/dva'
 
 let collectInfos = new Set()
 let collectEvents = new Set()
-let collects = null
 
-export const initCollects = (arr) => {
-    collects = arr
+export const initCollects = (collects) => {
+    collectInfos.clear()
+    collectEvents.clear()
     collects && collects.forEach(item => {
         if (item.target_type === 'info') {
             collectInfos.add(item.info.id)
@@ -23,6 +25,7 @@ export const initCollects = (arr) => {
             collectEvents.add(item.main_event.id)
         }
     })
+    dva.getDispatch()({type: 'MinePage/setCollections', params: collects})
 
 }
 
@@ -32,7 +35,17 @@ export default class CollectBtn extends Component {
         show_collect: false
     }
 
-    componentDidMount() {
+    select = (state) => {
+        return state.MinePage.collects
+    }
+
+    handleChange = () => {
+        let collects = this.select(dva.getStore().getState())
+        this.refresh()
+        console.log(collects)
+    }
+
+    refresh = ()=>{
         const {item, type} = this.props
         let show_collect = false
         if (type === 'info') {
@@ -43,6 +56,11 @@ export default class CollectBtn extends Component {
         this.setState({
             show_collect
         })
+    }
+
+    componentDidMount() {
+        this.refresh()
+        dva.getStore().subscribe(this.handleChange)
     }
 
     render() {

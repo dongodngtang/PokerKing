@@ -28,6 +28,11 @@ export default {
                   msgInfo:_.params
               }})
       },
+      * setCollections(_, { call, put }) {
+          yield put({type:'save',payload:{
+                  collects:_.params
+              }})
+      },
   },
 
   reducers: {

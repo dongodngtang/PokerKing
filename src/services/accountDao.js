@@ -21,16 +21,14 @@ export function storageLoginUser(loginUser) {
         JPushModule.setAlias(`test_${loginUser.user_id}`, ret => {
             logMsg('jpush设置极光推送别名', ret)
         })
-    } else {
-        JPushModule.deleteAlias()
-        initCollects([])
-    }
-
-    if(!isEmptyObject(loginUser)){
         getCollectionList({})
 
         getUnread(loginUser.user_id)
+    } else {
+        JPushModule.deleteAlias()
+        initCollects(null)
     }
+
 
 }
 
