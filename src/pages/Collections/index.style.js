@@ -13,7 +13,8 @@ export default StyleSheet.create({
     },
     delete_text:{
         color:"#FFFFFF",
-        fontSize:14
+        fontSize:14,
+        marginTop:5
     }
 })
 
