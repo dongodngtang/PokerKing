@@ -1,5 +1,5 @@
 import api from '../configs/api'
-import {get, post, put, setBaseUrl, setToken, setLoginEmpty} from '../configs/fetch'
+import {get, post, put, setBaseUrl, del, setToken, setLoginEmpty} from '../configs/fetch'
 import {isEmpty, logMsg, isEmptyObject} from '../utils/utils';
 import dva from '../utils/dva'
 import JPushModule from 'jpush-react-native'
@@ -239,4 +239,10 @@ export function getTags(resolve, reject) {
     get(api.info_tag,{page:1},ret=>{
         resolve(ret.data)
     })
+}
+//Jpush删除消息
+export function delCancelNoti(body,resolve, reject) {
+    del(api.cancel_noti(body),body,ret=>{
+        resolve(ret.data)
+    },reject)
 }

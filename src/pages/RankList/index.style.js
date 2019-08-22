@@ -7,7 +7,7 @@ export default StyleSheet.create({
         fontSize:14
     },
     item: {
-        paddingHorizontal: px2dp(22),
+        width:Metrics.screenWidth - 20,
         marginTop: 7,
         backgroundColor:'#FFFFFF',
         paddingTop:21,
@@ -21,7 +21,9 @@ export default StyleSheet.create({
     title: {
         color: '#303236',
         fontSize: px2sp(32),
-        lineHeight:25
+        lineHeight:25,
+        marginLeft:5,
+        marginRight:5
     },
     title2:{
         color: '#303236',
@@ -39,6 +41,24 @@ export default StyleSheet.create({
         fontSize: px2sp(32),
         fontWeight:'bold',
         lineHeight:25
+    },
+    rowBack3:{
+        flex:1,
+        marginLeft:10,
+        marginRight:10,
+        marginTop:46,
+        backgroundColor:'#888888',
+        flexDirection: 'row',
+        alignItems:'center'
+    },
+    delete_img:{
+        width:px2dp(44),
+        height:px2dp(44)
+    },
+    delete_text:{
+        color:"#FFFFFF",
+        fontSize:14,
+        marginTop:5
     }
 })
 

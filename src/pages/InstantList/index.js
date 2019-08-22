@@ -3,12 +3,13 @@ import {View, Text, Image, TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
 import UltimateFlatList from "../../components/ultimate/UltimateFlatList";
 import NotData from "../comm/NotData";
-import {isEmptyObject, isLogin, logMsg, shareTo, showToast, unix_format} from "../../utils/utils";
-import {getInfoList, initLoginUser, isCollect, postCancelCollect, postCollect} from "../../services/accountDao";
+import {alertOrder, isEmptyObject, isLogin, logMsg, shareTo, showToast, unix_format} from "../../utils/utils";
+import {getInfoList, delCancelNoti, isCollect} from "../../services/accountDao";
 import {Images, Metrics, px2dp, px2sp} from "../../configs/Theme";
 import styles from './index.style';
 import ImageLoad from "../../components/ImageLoad";
 import CollectBtn from "../comm/CollectBtn";
+import {SwipeListView} from 'react-native-swipe-list-view';
 
 @connect(({InstantList}) => ({
     ...InstantList,
@@ -34,18 +35,19 @@ export default class InstantList extends Component {
         return (
             <View style={{flex: 1, backgroundColor: "#F5F0F0"}}>
                 <UltimateFlatList
-                    style={{paddingTop: 20}}
-                    ref={(ref) => this.listView = ref}
-                    onFetch={this.onFetch}
-                    separator={this._separator}
-                    keyExtractor={(item, index) => `instantList${index}`}
-                    item={this._renderItem}
-                    refreshableTitlePull={global.lang.t('pull_refresh')}
-                    refreshableTitleRelease={global.lang.t('release_refresh')}
-                    dateTitle={global.lang.t('last_refresh')}
-                    allLoadedText={global.lang.t('no_more')}
-                    waitingSpinnerText={global.lang.t('loading')}
-                    emptyView={() => <NotData/>}
+                style={{paddingTop: 20}}
+                ref={(ref) => this.listView = ref}
+                onFetch={this.onFetch}
+                separator={this._separator}
+                keyExtractor={(item, index) => `instantList${index}`}
+                item={this._renderItem}
+                pagination={false}
+                refreshableTitlePull={global.lang.t('pull_refresh')}
+                refreshableTitleRelease={global.lang.t('release_refresh')}
+                dateTitle={global.lang.t('last_refresh')}
+                allLoadedText={global.lang.t('no_more')}
+                waitingSpinnerText={global.lang.t('loading')}
+                emptyView={() => <NotData/>}
                 />
             </View>
         )
@@ -59,7 +61,7 @@ export default class InstantList extends Component {
     };
 
     toCollect = (item) => {
-        if(isLogin()){
+        if (isLogin()) {
             const body = {target_id: item.id, target_type: "info"}
             isCollect(body, data => {
                 if (data.is_favorite) {
@@ -80,7 +82,7 @@ export default class InstantList extends Component {
 
     }
 
-    getTime=(created_at,type)=>{
+    getTime = (created_at, type) => {
         let race_start_time = global.localLanguage === 'en' ? `${global.lang.t(`month${month}`)}` + unix_format(created_at, type) :
             unix_format(created_at, `YYYY${global.lang.t('year')}MM${global.lang.t('month')}DD${global.lang.t('day2')}`);
         return race_start_time;
@@ -88,8 +90,8 @@ export default class InstantList extends Component {
 
     _renderItem = (item, index) => {
         return (
-            <View style={{flexDirection: 'column', alignItems: 'center'}}>
-                <Text style={styles.time_text}>{this.getTime(item.created_at,`DD,YYYY`)}</Text>
+            <View style={{flexDirection: 'column', alignItems: 'center',marginTop:20}}>
+                <Text style={styles.time_text}>{this.getTime(item.created_at, `DD,YYYY`)}</Text>
                 <TouchableOpacity
                     key={`instants_list${index}`}
                     style={styles.item}>
@@ -107,11 +109,16 @@ export default class InstantList extends Component {
                                 this.toCollect(item.info)
                             }}>
                                 {/*<Image style={{height: px2dp(46), width: px2dp(46), marginRight: px2dp(36)}}*/}
-                                       {/*source={Images.collection_gray}/>*/}
+                                {/*source={Images.collection_gray}/>*/}
                                 <CollectBtn item={item}
                                             collect_gray={true}
                                             type={'info'}
-                                            btnStyle={{height: px2dp(44), width: px2dp(44), marginRight: 18, alignSelf: 'flex-end'}}
+                                            btnStyle={{
+                                                height: px2dp(44),
+                                                width: px2dp(44),
+                                                marginRight: 18,
+                                                alignSelf: 'flex-end'
+                                            }}
                                 />
                             </TouchableOpacity>
 
