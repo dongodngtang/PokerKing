@@ -24,6 +24,10 @@ export default class Collections extends Component {
 
 
     componentDidMount() {
+        this.refresh()
+    }
+
+    refresh=()=>{
         if(isLogin()){
             getCollectionList({
                 page: 1,
@@ -54,6 +58,7 @@ export default class Collections extends Component {
                                     target_type: item.target_type
                                 }, data => {
                                     showToast(global.lang.t("cancelFavorite"))
+                                    this.refresh()
                                 }, err => {
                                     showToast(global.lang.t('err_problem'))
                                 })
