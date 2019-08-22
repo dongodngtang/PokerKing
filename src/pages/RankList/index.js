@@ -88,7 +88,7 @@ export default class RankList extends Component {
                         }}>
                             <View style={{flex: 1}}/>
                             <View style={{
-                                width: px2dp(186), height: px2dp(220), alignItems: 'center',
+                                width: px2dp(186), height: px2dp(186), alignItems: 'center',
                                 justifyContent: 'center'
                             }}>
                                 <Image source={Images.delete_collect} style={styles.delete_img}/>
