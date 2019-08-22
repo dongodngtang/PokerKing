@@ -60,8 +60,8 @@ function post_notifications() {
     return `users/${getUserId()}/notifications/read_all`
 }
 
-function unread() {
-    return `users/${getUserId()}/notifications/unread_remind`
+function unread(user_id) {
+    return `users/${user_id}/notifications/unread_remind`
 }
 
 function notices() {

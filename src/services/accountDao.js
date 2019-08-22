@@ -25,9 +25,12 @@ export function storageLoginUser(loginUser) {
         JPushModule.deleteAlias()
     }
 
-    getCollectionList({})
+    if(!isEmptyObject(loginUser)){
+        getCollectionList({})
 
-    getUnread()
+        getUnread(loginUser.user_id)
+    }
+
 }
 
 export function initLoginUser(callback) {
@@ -220,8 +223,8 @@ export function getNotices(resolve, reject) {
         resolve(ret.data)
     }, reject)
 }
-export function getUnread(resolve, reject) {
-    get(api.unread(), {}, ret => {
+export function getUnread(user_id,resolve, reject) {
+    get(api.unread(user_id), {}, ret => {
         dva.getDispatch()({type: 'MinePage/setUnread', params: ret.data})
         resolve && resolve(ret.data)
     }, reject)

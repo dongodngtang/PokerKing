@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import TopBar from "../comm/TopBar";
 import {Images} from "../../configs/Theme";
 import styles from './index.style'
-import {getAvatar, isEmptyObject, isStrNull, logMsg} from "../../utils/utils";
+import {getAvatar, getUserId, isEmptyObject, isStrNull, logMsg, needLogin} from "../../utils/utils";
 import {postNotifications, getUnread} from "../../services/accountDao";
 
 
@@ -18,7 +18,10 @@ export default class MinePage extends Component {
 
 
     refresh = () => {
-        getUnread()
+        needLogin(()=>{
+            getUnread(getUserId())
+        })
+
     }
 
     render() {
@@ -26,7 +29,7 @@ export default class MinePage extends Component {
         let avatar = isEmptyObject(profile) ? Images.default_bg : isStrNull(profile.avatar) ? Images.default_bg : {uri: profile.avatar}
         let nick_name = isEmptyObject(profile) ? global.lang.t('login') : profile.nickname;
         let member = isEmptyObject(profile) ? '' : profile.member;
-        let unread_count = msgInfo.unread_count
+        let unread_count = msgInfo && msgInfo.unread_count || ''
         return (
             <View style={{flex: 1, backgroundColor: "#1A1B1F"}}>
                 <TopBar left_img={Images.puke_icon}
