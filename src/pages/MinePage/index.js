@@ -36,11 +36,9 @@ export default class MinePage extends Component {
                         narTitle={global.lang.t('mine')}
                         right_img={Images.setting}/>
                 <TouchableOpacity style={styles.top_view} onPress={() => {
-                    if (isEmptyObject(profile)) {
-                        router.toLogin();
-                    } else {
-                        router.toModifyData()
-                    }
+                   needLogin(()=>{
+                       router.toModifyData()
+                   })
                 }}>
                     <Image source={getAvatar(avatar)} style={styles.person_img}/>
                     <View style={styles.mid_view}>

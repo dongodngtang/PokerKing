@@ -235,3 +235,9 @@ export function shortUrl(body, resolve, reject) {
         resolve(ret.data)
     }, reject)
 }
+
+export function getTags(resolve, reject) {
+    get(api.info_tag,{page:1},ret=>{
+        resolve(ret.data)
+    })
+}

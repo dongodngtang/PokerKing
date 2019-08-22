@@ -4,7 +4,14 @@ import {connect} from 'react-redux';
 import Base from "../Base";
 import NavigationBar from "../comm/NavigationBar";
 import ScrollableTab, {DefaultTabBar} from 'react-native-scrollable-tab-view'
-import {getInfoList, postCollect, postCancelCollect, isCollect, initLoginUser} from "../../services/accountDao";
+import {
+    getInfoList,
+    postCollect,
+    postCancelCollect,
+    isCollect,
+    initLoginUser,
+    getTags
+} from "../../services/accountDao";
 import {isEmptyObject, isLogin, logMsg, OnSafePress, shareHost, shareTo, showToast} from "../../utils/utils";
 import Hot from "./Hot";
 import Instants from "./Instants";
@@ -23,7 +30,8 @@ export default class Main extends Component {
     state = {
         activeTab: global.lang.t('hot'),
         index: 0,
-        show_collect:false
+        show_collect:false,
+        tags:[]
     }
 
     isFirst = true
@@ -31,6 +39,11 @@ export default class Main extends Component {
     componentDidMount(){
         JPushModule.addReceiveNotificationListener(this.receiveNotice)
         JPushModule.addOpenNotificationLaunchAppListener(this.openNotice)
+        getTags(data=>{
+            this.setState({
+                tags:data.tags
+            })
+        })
     }
 
     componentWillUnmount(){
@@ -169,6 +182,7 @@ export default class Main extends Component {
                         tabLabel={global.lang.t('instants')}
                         onFetch={this.onFetchInstant}/>
                     <More
+                        tags={this.state.tags}
                         key={'3'}
                         tabLabel={`${global.lang.t('more')}>`}/>
                 </ScrollableTab>

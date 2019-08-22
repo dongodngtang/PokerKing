@@ -7,7 +7,7 @@ import React, {PureComponent} from "react";
 import {View, StyleSheet, Text, Image, TouchableOpacity} from 'react-native'
 import {px2dp, Metrics, px2sp, Images, wh} from "../../configs/Theme";
 
-const More = ({}) => (
+const More = ({tags}) => (
     <View>
         <ItemLayout rightIcon={Images.right}
                     rightStyle={{...wh(22, 36)}}
@@ -21,7 +21,7 @@ const More = ({}) => (
         <View style={{height: px2dp(1), backgroundColor: '#736C5B', width: Metrics.screenWidth}}/>
         <TimeSelect/>
         <View style={{height: px2dp(1), backgroundColor: '#736C5B', width: Metrics.screenWidth}}/>
-        <TypeSelect/>
+        <TypeSelect tags={tags}/>
         <View style={{height: px2dp(1), backgroundColor: '#736C5B', width: Metrics.screenWidth}}/>
     </View>
 )
@@ -33,8 +33,9 @@ class TypeSelect extends PureComponent {
 
     render() {
         const {isOpen} = this.state
+        const {tags} = this.props
         let rightIcon = isOpen ? Images.top : Images.bottom
-        let types = isOpen ? [global.lang.t('race_jinghua'), global.lang.t('zhuanfang'), global.lang.t('duiju'), global.lang.t('yure')] : []
+        let types = isOpen ? tags : []
         return <View>
             <ItemLayout
                 onPress={() => {
@@ -60,9 +61,10 @@ class TypeSelect extends PureComponent {
     }
 
     renderItem = (type, index) => {
+        let tagName = global.localLanguage ==='zh'?type.name:type.name_en
         return <TouchableOpacity
             onPress={() => {
-                router.toSearchDateTag({type: 'tag', value: type})
+                router.toSearchDateTag({type: 'tag', value: tagName,tag_id:type.id})
             }}
             key={`type${index}`}
             style={{
@@ -70,7 +72,7 @@ class TypeSelect extends PureComponent {
                 alignItems: 'center', justifyContent: 'center', borderRadius: px2dp(28),
                 marginRight: px2dp(24)
             }}>
-            <Text style={{color: '#FFE9AD', fontSize: px2sp(28)}}>{type}</Text>
+            <Text style={{color: '#FFE9AD', fontSize: px2sp(28)}}>{tagName}</Text>
 
         </TouchableOpacity>
     }
