@@ -232,14 +232,14 @@ export function getRemainTime(endTime){
     }
 }
 
-export function alertOrder(str, callback) {
+export function alertOrder(str, callback,cancel) {
     Alert.alert(str, '', [{
         text: `${global.lang.t('cancel')}`, onPress: () => {
-
+            cancel && cancel()
         }
     }, {
         text: `${global.lang.t('determine')}`, onPress: () => {
-            callback()
+            callback && callback()
         }
     }])
 }

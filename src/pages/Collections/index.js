@@ -43,6 +43,12 @@ export default class Collections extends Component {
         }
     }
 
+    closeRow(rowMap, rowKey) {
+        if (rowMap[rowKey]) {
+            rowMap[rowKey].closeRow();
+        }
+    }
+
     render() {
         return (
             <View style={{flex: 1, backgroundColor: "#1A1B1F"}}>
@@ -52,7 +58,9 @@ export default class Collections extends Component {
                     renderHiddenItem={(data, rowMap) => (
                         <TouchableOpacity style={styles.rowBack} onPress={() => {
                             let item = data.item;
+                            this.closeRow(rowMap,data.item.key)
                             alertOrder(global.lang.t('delete_confirm'), () => {
+
                                 postCancelCollect({
                                     target_id: item.target_type && item.target_type === 'main_event' ? item.main_event.id : item.info.id,
                                     target_type: item.target_type
