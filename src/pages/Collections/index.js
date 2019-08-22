@@ -62,10 +62,9 @@ export default class Collections extends Component {
                     renderHiddenItem={(data, rowMap) => (
                         <TouchableOpacity style={styles.rowBack} onPress={() => {
                             let item = data.item;
-                           this.closeRow(rowMap,item.key)
                             console.log('连锁酒店',rowMap)
                             alertOrder(global.lang.t('delete_confirm'), () => {
-
+                                this.closeRow(rowMap,item.key)
                                 postCancelCollect({
                                     target_id: item.target_type && item.target_type === 'main_event' ? item.main_event.id : item.info.id,
                                     target_type: item.target_type
@@ -75,6 +74,8 @@ export default class Collections extends Component {
                                 }, err => {
                                     showToast(global.lang.t('err_problem'))
                                 })
+                            },()=>{
+                                this.closeRow(rowMap,item.key)
                             });
                         }}>
                             <View style={{flex:1}}/>

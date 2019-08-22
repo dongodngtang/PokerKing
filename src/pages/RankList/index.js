@@ -24,6 +24,12 @@ export default class RankList extends Component {
         });
     }
 
+    closeRow =(rowMap, rowKey)=> {
+        if (rowMap[rowKey]) {
+            rowMap[rowKey].closeRow();
+        }
+    }
+
     render() {
         const {applies} = this.props.params;
         if (isEmptyObject(applies)) {
@@ -39,6 +45,7 @@ export default class RankList extends Component {
                         <TouchableOpacity style={styles.rowBack3} onPress={() => {
                             let item = data.item;
                             alertOrder(global.lang.t('delete_confirm'), () => {
+                                this.closeRow(rowMap,item.key)
                                 delCancelNoti({
                                     id: item.id
                                 }, data => {
@@ -46,6 +53,8 @@ export default class RankList extends Component {
                                 }, err => {
                                     showToast(global.lang.t('err_problem'))
                                 })
+                            },()=>{
+                                this.closeRow(rowMap,item.key)
                             });
                         }}>
                             <View style={{flex: 1}}/>
