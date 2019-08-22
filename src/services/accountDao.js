@@ -23,6 +23,7 @@ export function storageLoginUser(loginUser) {
         })
     } else {
         JPushModule.deleteAlias()
+        initCollects([])
     }
 
     if(!isEmptyObject(loginUser)){
