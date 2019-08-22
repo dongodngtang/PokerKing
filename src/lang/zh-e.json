@@ -274,6 +274,7 @@
   "rank_prompt":"提示：我们将会在等候人数最后5位、10位时，向您发送推送提醒",
   "not_live":"暂无直播",
   "delete":"删除",
-  "delete_confirm":"确认删除"
+  "delete_confirm":"确认删除",
+  "delete_success":"删除成功"
 
 }

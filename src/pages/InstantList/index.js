@@ -34,54 +34,21 @@ export default class InstantList extends Component {
         }
         return (
             <View style={{flex: 1, backgroundColor: "#F5F0F0"}}>
-                <SwipeListView
-                    data={events}
-                    renderItem={this._renderItem}
-                    renderHiddenItem={(data, rowMap) => (
-                        <TouchableOpacity style={styles.rowBack} onPress={() => {
-                            let item = data.item;
-                            alertOrder(global.lang.t('delete_confirm'), () => {
-                                delCancelNoti({
-                                    id: item.id
-                                }, data => {
-                                    showToast(global.lang.t("cancelFavorite"))
-                                    this.props.params.refresh()
-                                }, err => {
-                                    showToast(global.lang.t('err_problem'))
-                                })
-                            });
-                        }}>
-                            <View style={{flex: 1}}/>
-                            <View style={{
-                                width: px2dp(186), height: px2dp(220), alignItems: 'center',
-                                justifyContent: 'center'
-                            }}>
-                                <Image source={Images.delete_collect} style={styles.delete_img}/>
-                                <Text style={styles.delete_text}>{global.lang.t('delete')}</Text>
-                            </View>
-
-                        </TouchableOpacity>
-                    )}
-                    closeOnRowPress={true}
-                    disableRightSwipe={true}
-                    rightOpenValue={-95}
+                <UltimateFlatList
+                style={{paddingTop: 20}}
+                ref={(ref) => this.listView = ref}
+                onFetch={this.onFetch}
+                separator={this._separator}
+                keyExtractor={(item, index) => `instantList${index}`}
+                item={this._renderItem}
+                pagination={false}
+                refreshableTitlePull={global.lang.t('pull_refresh')}
+                refreshableTitleRelease={global.lang.t('release_refresh')}
+                dateTitle={global.lang.t('last_refresh')}
+                allLoadedText={global.lang.t('no_more')}
+                waitingSpinnerText={global.lang.t('loading')}
+                emptyView={() => <NotData/>}
                 />
-
-                {/*<UltimateFlatList*/}
-                {/*style={{paddingTop: 20}}*/}
-                {/*ref={(ref) => this.listView = ref}*/}
-                {/*onFetch={this.onFetch}*/}
-                {/*separator={this._separator}*/}
-                {/*keyExtractor={(item, index) => `instantList${index}`}*/}
-                {/*item={this._renderItem}*/}
-                {/*pagination={false}*/}
-                {/*refreshableTitlePull={global.lang.t('pull_refresh')}*/}
-                {/*refreshableTitleRelease={global.lang.t('release_refresh')}*/}
-                {/*dateTitle={global.lang.t('last_refresh')}*/}
-                {/*allLoadedText={global.lang.t('no_more')}*/}
-                {/*waitingSpinnerText={global.lang.t('loading')}*/}
-                {/*emptyView={() => <NotData/>}*/}
-                {/*/>*/}
             </View>
         )
     }
@@ -121,7 +88,7 @@ export default class InstantList extends Component {
         return race_start_time;
     }
 
-    _renderItem = ({item, index}) => {
+    _renderItem = (item, index) => {
         return (
             <View style={{flexDirection: 'column', alignItems: 'center',marginTop:20}}>
                 <Text style={styles.time_text}>{this.getTime(item.created_at, `DD,YYYY`)}</Text>
