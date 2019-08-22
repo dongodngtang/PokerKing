@@ -21,7 +21,9 @@ export default StyleSheet.create({
     title: {
         color: '#303236',
         fontSize: px2sp(32),
-        lineHeight:25
+        lineHeight:25,
+        marginLeft:5,
+        marginRight:5
     },
     title2:{
         color: '#303236',
