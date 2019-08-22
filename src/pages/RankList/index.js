@@ -18,7 +18,7 @@ export default class RankList extends Component {
         super(props)
         let {applies} = props.params;
         applies = applies.map((x,i)=>{
-            x.key = i
+            x.key = i+''
             return x
         })
         this.state = {
@@ -43,7 +43,7 @@ export default class RankList extends Component {
         getNotices(data => {
             let applies = data.applies
             applies = applies.map((x,i)=>{
-                x.key = i
+                x.key = i+''
                 return x
             })
             this.setState({

@@ -35,7 +35,7 @@ export default class Collections extends Component {
             }, data => {
                 logMsg("CollectionList:", data)
                 let collects = data.items.map((x,i)=>{
-                    x.key = i
+                    x.key = i+''
                     return x
                 })
                 this.setState({
