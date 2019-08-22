@@ -5,9 +5,7 @@ export default StyleSheet.create({
     rowBack:{
         flex:1,
         backgroundColor:'#888888',
-        flexDirection:'column',
-        alignItems:'center',
-        justifyContent:'center'
+        flexDirection: 'row'
     },
     delete_img:{
         width:px2dp(44),
