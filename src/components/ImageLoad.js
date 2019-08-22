@@ -86,7 +86,7 @@ export const createImageProgress = ImageComponent =>
         }
 
         measure(cb) {
-            if (this.ref) {
+            if (this.ref && typeof cb === 'function') {
                 this.ref.measure(cb);
             }
         }
