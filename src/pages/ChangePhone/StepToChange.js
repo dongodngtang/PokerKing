@@ -4,6 +4,8 @@ import {Colors, Images, Metrics, px2dp, px2sp, wh} from "../../configs/Theme";
 import _ from 'lodash'
 import {logMsg, showToast} from "../../utils/utils";
 import {postBindAccount, postCode, verify_code} from "../../services/accountDao";
+import CountryPicker, {getAllCountries} from "react-native-country-picker-modal";
+import DeviceInfo from "react-native-device-info";
 
 
 export default class StepToChange extends Component {
@@ -102,66 +104,132 @@ const FirstCard = ({nextTo}) => (
     </View>
 )
 
-const InputPhoneCard = ({nextTo, close, setChangeMobile, changeMobile,countryCode}) => (
-    <View style={[styles.card, {alignItems: 'center'}]}>
-        <TouchableOpacity
-            onPress={() => close && close()}
-            style={{
-                ...wh(60, 60),
-                alignItems: 'center',
-                justifyContent: 'center',
-                position: 'absolute',
-                top: 13, right: 13
-            }}>
-            <Image style={{...wh(32, 32)}}
-                   source={Images.right_close}/>
-        </TouchableOpacity>
-        <Text style={[styles.btnConfirmTxt, {
-            marginTop: px2dp(74),
-            marginBottom: px2dp(64)
-        }]}>{global.lang.t('change_mobile')}</Text>
+class InputPhoneCard extends Component {
+    constructor(props) {
+        super(props)
+        let userLocaleCountryCode = DeviceInfo.getDeviceCountry()
+        const userCountryData = getAllCountries()
+            .filter(country => country.cca2 === userLocaleCountryCode)
+            .pop()
+        let callingCode = '86'
+        let areaName = 'China'
+        let cca2 = userLocaleCountryCode
+        if (!cca2 || !userCountryData) {
+            cca2 = 'CN'
+            callingCode = '86'
+        } else {
+            callingCode = userCountryData.callingCode
+            areaName = userCountryData.name.common
+        }
 
-        <View style={{height: px2dp(100), width: px2dp(350)}}>
-            <TextInput
-                keyboardType={'numeric'}
-                underlineColorAndroid={'transparent'}
-                selectionColor={'#FFE9AD'}
-                placeholder={global.lang.t('input_number')}
-                placeholderTextColor={'#AAA'}
-                onChangeText={text => {
-                    setChangeMobile && setChangeMobile(text)
-                }}
-                defaultValue={changeMobile}
-                style={styles.input}/>
+
+        this.state = {
+            ext: callingCode,
+            areaName: areaName,
+            cca2: cca2,
+        };
+    }
+
+
+    render() {
+        const {nextTo, close, setChangeMobile, changeMobile, countryCode} = this.props
+        return <View style={[styles.card, {alignItems: 'center'}]}>
+            <TouchableOpacity
+                onPress={() => close && close()}
+                style={{
+                    ...wh(60, 60),
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    position: 'absolute',
+                    top: 13, right: 13
+                }}>
+                <Image style={{...wh(32, 32)}}
+                       source={Images.right_close}/>
+            </TouchableOpacity>
+            <Text style={[styles.btnConfirmTxt, {
+                marginTop: px2dp(74),
+                marginBottom: px2dp(64)
+            }]}>{global.lang.t('change_mobile')}</Text>
+
+            <TouchableOpacity style={{height: px2dp(100), width:px2dp(492),flexDirection:'row'}}
+                              onPress={() => {
+                                  this.areaAction && this.areaAction.openModal();
+                              }}>
+                <CountryPicker
+                    styles={{
+                        touchFlag: {
+                            marginBottom: 12
+                        }
+                    }}
+                    ref={ref => this.areaAction = ref}
+                    filterable
+                    closeable
+                    onChange={value => {
+                        logMsg(value)
+                        this.setState({
+                            areaName: value.name,
+                            ext: value.callingCode,
+                            cca2: value.cca2
+                        })
+                    }}
+                    cca2={this.state.cca2}
+                    translation="eng"
+                />
+
+                <Text
+                    style={{width: 180, marginLeft: 8, height: 28, fontSize: 16, color: '#666666'}}>
+                    {`${this.state.areaName} (+${this.state.ext})`}
+                </Text>
+                <View style={{flex: 1}}/>
+                <Image style={{width: 6, height: 16, marginRight: 10}} source={Images.is_right}/>
+
+            </TouchableOpacity>
+
+            <View style={{height: px2dp(100), width: px2dp(492)}}>
+
+                <TextInput
+                    keyboardType={'numeric'}
+                    underlineColorAndroid={'transparent'}
+                    selectionColor={'#FFE9AD'}
+                    placeholder={global.lang.t('input_number')}
+                    placeholderTextColor={'#AAA'}
+                    onChangeText={text => {
+                        setChangeMobile && setChangeMobile(text)
+                    }}
+                    defaultValue={changeMobile}
+                    style={styles.input}/>
+                <View style={styles.line}/>
+            </View>
+
+            <View style={{flex: 1}}/>
+
             <View style={styles.line}/>
-        </View>
+            <TouchableOpacity
+                onPress={() => {
+                    if (changeMobile && changeMobile.length > 1) {
+                        let param = {
+                            option_type: 'bind_account',
+                            vcode_type: 'mobile',
+                            mobile: changeMobile,
+                            country_code: this.state.ext
+                        }
 
-        <View style={{flex: 1}}/>
+                        postCode(param, ret => {
+                            nextTo && nextTo(3)
+                        })
 
-        <View style={styles.line}/>
-        <TouchableOpacity
-            onPress={() => {
-                if(changeMobile && changeMobile.length>1){
-                    let param = {option_type:'bind_account',
-                        vcode_type:'mobile',
-                        mobile:changeMobile,
-                        country_code:countryCode
+                    } else {
+                        showToast('手机号输入不能为空')
                     }
 
-                    postCode(param,ret=>{
-                        nextTo && nextTo(3)
-                    })
+                }}
+                style={styles.btnConfirm}>
+                <Text style={styles.btnConfirmTxt}>{global.lang.t('next')}</Text>
+            </TouchableOpacity>
+        </View>
+    }
+}
 
-                }else{
-                    showToast('手机号输入不能为空')
-                }
-
-            }}
-            style={styles.btnConfirm}>
-            <Text style={styles.btnConfirmTxt}>{global.lang.t('next')}</Text>
-        </TouchableOpacity>
-    </View>
-)
 
 class InputCodeCard extends Component {
 
@@ -171,27 +239,28 @@ class InputCodeCard extends Component {
     }
 
     counting = () => {
-        const {changeMobile,countryCode,oldVerify} = this.props
-        let param = {option_type:'bind_account',
-            vcode_type:'mobile',
-            mobile:changeMobile,
-            country_code:countryCode
+        const {changeMobile, countryCode, oldVerify} = this.props
+        let param = {
+            option_type: 'bind_account',
+            vcode_type: 'mobile',
+            mobile: changeMobile,
+            country_code: countryCode
         }
-        if(oldVerify){
-            param = {option_type:'change_old_account',
-                vcode_type:'mobile'
+        if (oldVerify) {
+            param = {
+                option_type: 'change_old_account',
+                vcode_type: 'mobile'
             }
 
         }
-        postCode(param,ret=>{
+        postCode(param, ret => {
             this.start()
         })
 
 
-
     }
 
-    start = ()=>{
+    start = () => {
         this.timedown = setInterval(() => {
             if (this.state.count > 0) {
                 this.setState({
@@ -200,37 +269,37 @@ class InputCodeCard extends Component {
             } else {
                 clearInterval(this.timedown)
                 this.setState({
-                    count:60
+                    count: 60
                 })
             }
 
         }, 1000)
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         this.timedown && clearInterval(this.timedown)
     }
 
     _onChange = (text) => {
-        if(text.length < 7){
+        if (text.length < 7) {
             this.setState({
                 smsCode: text,
             }, () => {
                 if (text.length === 6) {
-                    if(this.props.oldVerify){
+                    if (this.props.oldVerify) {
                         verify_code({
-                            option_type:'change_old_account',
-                            vcode:text
-                        },ret=>{
+                            option_type: 'change_old_account',
+                            vcode: text
+                        }, ret => {
                             this.props.nextTo && this.props.nextTo(2)
                         })
-                    }else{
+                    } else {
                         postBindAccount({
-                            type:'mobile',
-                            account:this.props.changeMobile,
-                            code:text,
-                            country_code:this.props.countryCode
-                        },ret=>{
+                            type: 'mobile',
+                            account: this.props.changeMobile,
+                            code: text,
+                            country_code: this.props.countryCode
+                        }, ret => {
                             showToast('手机号更换成功！')
                         })
                     }
@@ -243,9 +312,9 @@ class InputCodeCard extends Component {
     }
 
     componentDidMount() {
-        if(this.props.oldVerify){
+        if (this.props.oldVerify) {
             this.counting()
-        }else{
+        } else {
             this.start()
         }
 
@@ -254,7 +323,7 @@ class InputCodeCard extends Component {
 
     render() {
         const {count, smsCode} = this.state
-        const {close, nextTo, changeMobile,oldVerify} = this.props
+        const {close, nextTo, changeMobile, oldVerify} = this.props
 
         let code0 = smsCode.substr(0, 1)
         let code1 = smsCode.substr(1, 1)
@@ -266,9 +335,9 @@ class InputCodeCard extends Component {
         return <View style={[styles.card, {alignItems: 'center'}]}>
             <TouchableOpacity
                 onPress={() => {
-                    if(oldVerify){
+                    if (oldVerify) {
                         nextTo && nextTo(1)
-                    }else{
+                    } else {
                         nextTo && nextTo(2)
                     }
                 }}
@@ -304,15 +373,18 @@ class InputCodeCard extends Component {
 
             <TouchableOpacity
                 disabled={count < 60}
-                onPress={()=>{
+                onPress={() => {
 
-                this.counting()
+                    this.counting()
                 }}
                 style={{
                     height: px2dp(68), width: px2dp(240), backgroundColor: '#998E72',
                     alignItems: 'center', justifyContent: 'center', borderRadius: px2dp(4)
                 }}>
-                <Text style={{color: '#fff', fontSize: px2sp(28)}}>{count < 60?`${count}${global.lang.t('time_begin')}`:'重新发送'}</Text>
+                <Text style={{
+                    color: '#fff',
+                    fontSize: px2sp(28)
+                }}>{count < 60 ? `${count}${global.lang.t('time_begin')}` : '重新发送'}</Text>
             </TouchableOpacity>
 
             <View style={{marginTop: px2dp(30), height: px2dp(88)}}>
