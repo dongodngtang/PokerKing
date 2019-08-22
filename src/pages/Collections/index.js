@@ -8,7 +8,7 @@ import {
     storageLoginUser
 } from "../../services/accountDao";
 import {alertOrder, isLogin, logMsg, showToast} from "../../utils/utils";
-import {Images, Metrics} from "../../configs/Theme";
+import {Images, Metrics, px2dp} from "../../configs/Theme";
 import HotItem from "../Home/HotItem";
 import NotData from "../comm/NotData";
 import {SwipeListView} from 'react-native-swipe-list-view';
@@ -59,8 +59,13 @@ export default class Collections extends Component {
                                 })
                             });
                         }}>
-                            <Image source={Images.delete_collect} style={styles.delete_img}/>
-                            <Text style={styles.delete_text}>{global.lang.t('delete')}</Text>
+                            <View style={{flex:1}}/>
+                            <View style={{width:px2dp(186),height:px2dp(220),alignItems: 'center',
+                            justifyContent: 'center'}}>
+                                <Image source={Images.delete_collect} style={styles.delete_img}/>
+                                <Text style={styles.delete_text}>{global.lang.t('delete')}</Text>
+                            </View>
+
                         </TouchableOpacity>
                     )}
                     closeOnRowPress={true}
