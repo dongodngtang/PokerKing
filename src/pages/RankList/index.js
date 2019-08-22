@@ -38,6 +38,7 @@ export default class RankList extends Component {
               separator={this._separator}
               keyExtractor={(item, index) => `instantList${index}`}
               item={this._renderItem}
+              pagination={false}
               refreshableTitlePull={global.lang.t('pull_refresh')}
               refreshableTitleRelease={global.lang.t('release_refresh')}
               dateTitle={global.lang.t('last_refresh')}
