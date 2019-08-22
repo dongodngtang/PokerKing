@@ -54,11 +54,12 @@ const _renderItem = (item, index, onPress, onShare) => (
                            />
                 <TouchableOpacity
                     onPress={() => {
-                        if (isLogin()) {
-                            onShare && onShare(item)
-                        } else {
-                            router.toLogin()
-                        }
+                        // if (isLogin()) {
+                        //     onShare && onShare(item)
+                        // } else {
+                        //     router.toLogin()
+                        // }
+                        onShare && onShare(item)
                     }}>
                     <Image style={{height: px2dp(32), width: px2dp(40), marginRight: px2dp(20), alignSelf: 'flex-end'}}
                            source={Images.share}/>
