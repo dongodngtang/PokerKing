@@ -135,6 +135,8 @@ export default class Main extends Component {
             this.setState({
                 show_collect
             })
+        }else{
+            router.toLogin()
         }
     }
 

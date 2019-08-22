@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import TopBar from "../comm/TopBar";
 import {Images} from "../../configs/Theme";
 import styles from './index.style'
-import {getAvatar, isEmptyObject, isStrNull, logMsg} from "../../utils/utils";
+import {getAvatar, isEmptyObject, isLogin, isStrNull, logMsg} from "../../utils/utils";
 import {postNotifications, getUnread} from "../../services/accountDao";
 
 
@@ -23,18 +23,20 @@ export default class MinePage extends Component {
     }
 
     refresh = () => {
-        getUnread(data => {
-            logMsg("unread_count", data)
+        if(isLogin()){
+            getUnread(data => {
+                logMsg("unread_count", data)
 
-            let notice = false;
-            if (data.unread_count && data.unread_count > 0) {
-                notice = true
-            }
-            this.setState({
-                unread: data.unread_count,
-                notices: notice
+                let notice = false;
+                if (data.unread_count && data.unread_count > 0) {
+                    notice = true
+                }
+                this.setState({
+                    unread: data.unread_count,
+                    notices: notice
+                })
             })
-        })
+        }
         // postNotifications({type: 'all'}, data => {
         //     logMsg("读取了all吗", data)
         // })
