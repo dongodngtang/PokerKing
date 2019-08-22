@@ -35,16 +35,23 @@ export default class CollectBtn extends Component {
         show_collect: false
     }
 
-    select = (state) => {
-        return state.MinePage.collects
+
+    componentDidMount() {
+        this.mount = true
+    }
+
+    componentWillUnmount() {
+        this.mount = false
     }
 
     handleChange = () => {
-        let collects = this.select(dva.getStore().getState())
-        this.refresh()
+        if (this.mount) {
+            this.refresh()
+        }
+
     }
 
-    refresh = ()=>{
+    refresh = () => {
         const {item, type} = this.props
         let show_collect = false
         if (type === 'info') {
