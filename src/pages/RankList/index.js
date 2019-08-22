@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import UltimateFlatList from "../../components/ultimate/UltimateFlatList";
 import NotData from "../comm/NotData";
 import {alertOrder, isEmptyObject, logMsg, showToast, unix_format} from "../../utils/utils";
-import {delCancelNoti, getInfoList, initLoginUser} from "../../services/accountDao";
+import {delCancelNoti, getInfoList, getNotices, initLoginUser} from "../../services/accountDao";
 import {Images, Metrics, px2dp, px2sp} from "../../configs/Theme";
 import styles from './index.style';
 import {SwipeListView} from 'react-native-swipe-list-view';
@@ -13,6 +13,19 @@ import {SwipeListView} from 'react-native-swipe-list-view';
     ...RankList,
 }))
 export default class RankList extends Component {
+
+    constructor(props){
+        super(props)
+        let {applies} = props.params;
+        applies = applies.map((x,i)=>{
+            x.key = i
+            return x
+        })
+        this.state = {
+            applies
+        }
+
+    }
 
 
     componentDidMount() {
@@ -24,6 +37,19 @@ export default class RankList extends Component {
         });
     }
 
+    refresh = ()=>{
+        getNotices(data => {
+            let applies = data.applies
+            applies = applies.map((x,i)=>{
+                x.key = i
+                return x
+            })
+            this.setState({
+                applies
+            })
+        })
+    }
+
     closeRow =(rowMap, rowKey)=> {
         if (rowMap[rowKey]) {
             rowMap[rowKey].closeRow();
@@ -31,7 +57,7 @@ export default class RankList extends Component {
     }
 
     render() {
-        const {applies} = this.props.params;
+        const {applies} = this.state;
         if (isEmptyObject(applies)) {
             return <NotData/>
         }
@@ -50,6 +76,7 @@ export default class RankList extends Component {
                                     id: item.id
                                 }, data => {
                                     showToast(global.lang.t("delete_success"))
+                                    this.refresh()
                                 }, err => {
                                     showToast(global.lang.t('err_problem'))
                                 })
