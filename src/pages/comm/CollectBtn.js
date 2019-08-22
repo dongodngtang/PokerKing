@@ -42,7 +42,6 @@ export default class CollectBtn extends Component {
     handleChange = () => {
         let collects = this.select(dva.getStore().getState())
         this.refresh()
-        console.log(collects)
     }
 
     refresh = ()=>{

@@ -28,6 +28,8 @@ export default class RankList extends Component {
     }
 
 
+
+
     componentDidMount() {
         this.props.navigation.setParams({
             onLeft: () => {
