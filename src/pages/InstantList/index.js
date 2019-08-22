@@ -3,7 +3,7 @@ import {View, Text, Image, TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
 import UltimateFlatList from "../../components/ultimate/UltimateFlatList";
 import NotData from "../comm/NotData";
-import {isEmptyObject, logMsg, shareTo, showToast, unix_format} from "../../utils/utils";
+import {isEmptyObject, isLogin, logMsg, shareTo, showToast, unix_format} from "../../utils/utils";
 import {getInfoList, initLoginUser, isCollect, postCancelCollect, postCollect} from "../../services/accountDao";
 import {Images, Metrics, px2dp, px2sp} from "../../configs/Theme";
 import styles from './index.style';
@@ -59,22 +59,24 @@ export default class InstantList extends Component {
     };
 
     toCollect = (item) => {
-        const body = {target_id: item.id, target_type: "info"}
-        isCollect(body, data => {
-            if (data.is_favorite) {
-                postCancelCollect(body, data => {
-                    showToast(global.lang.t("cancelFavorite"))
-                }, err => {
-                    showToast(global.lang.t('err_problem'))
-                })
-            } else {
-                postCollect(body, data => {
-                    showToast(global.lang.t("getFavorite"))
-                }, err => {
-                    showToast(global.lang.t('err_problem'))
-                })
-            }
-        })
+        if(isLogin()){
+            const body = {target_id: item.id, target_type: "info"}
+            isCollect(body, data => {
+                if (data.is_favorite) {
+                    postCancelCollect(body, data => {
+                        showToast(global.lang.t("cancelFavorite"))
+                    }, err => {
+                        showToast(global.lang.t('err_problem'))
+                    })
+                } else {
+                    postCollect(body, data => {
+                        showToast(global.lang.t("getFavorite"))
+                    }, err => {
+                        showToast(global.lang.t('err_problem'))
+                    })
+                }
+            })
+        }
 
     }
 

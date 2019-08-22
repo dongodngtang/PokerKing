@@ -5,7 +5,7 @@ import Base from "../Base";
 import NavigationBar from "../comm/NavigationBar";
 import ScrollableTab, {DefaultTabBar} from 'react-native-scrollable-tab-view'
 import {getInfoList, postCollect, postCancelCollect, isCollect, initLoginUser} from "../../services/accountDao";
-import {isEmptyObject, logMsg, OnSafePress, shareHost, shareTo, showToast} from "../../utils/utils";
+import {isEmptyObject, isLogin, logMsg, OnSafePress, shareHost, shareTo, showToast} from "../../utils/utils";
 import Hot from "./Hot";
 import Instants from "./Instants";
 import {Images, px2dp, px2sp} from "../../configs/Theme";
@@ -112,28 +112,30 @@ export default class Main extends Component {
 
     }
     toCollect = (item) => {
-        const body = {target_id: item.id, target_type: "info"}
-        let show_collect = false;
-        isCollect(body, data => {
-            if (data.is_favorite) {
-                postCancelCollect(body, data => {
-                    showToast(global.lang.t("cancelFavorite"))
-                    show_collect = true
-                }, err => {
-                    showToast(global.lang.t('err_problem'))
-                })
-            } else {
-                postCollect(body, data => {
-                    showToast(global.lang.t("getFavorite"))
-                    show_collect = false
-                }, err => {
-                    showToast(global.lang.t('err_problem'))
-                })
-            }
-        })
-        this.setState({
-            show_collect
-        })
+        if(isLogin()){
+            const body = {target_id: item.id, target_type: "info"}
+            let show_collect = false;
+            isCollect(body, data => {
+                if (data.is_favorite) {
+                    postCancelCollect(body, data => {
+                        showToast(global.lang.t("cancelFavorite"))
+                        show_collect = true
+                    }, err => {
+                        showToast(global.lang.t('err_problem'))
+                    })
+                } else {
+                    postCollect(body, data => {
+                        showToast(global.lang.t("getFavorite"))
+                        show_collect = false
+                    }, err => {
+                        showToast(global.lang.t('err_problem'))
+                    })
+                }
+            })
+            this.setState({
+                show_collect
+            })
+        }
     }
 
     render() {

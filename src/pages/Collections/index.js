@@ -7,7 +7,7 @@ import {
     getCollectionList, initLoginUser, postCancelCollect, postCollect,
     storageLoginUser
 } from "../../services/accountDao";
-import {alertOrder, logMsg, showToast} from "../../utils/utils";
+import {alertOrder, isLogin, logMsg, showToast} from "../../utils/utils";
 import {Images, Metrics} from "../../configs/Theme";
 import HotItem from "../Home/HotItem";
 import NotData from "../comm/NotData";
@@ -24,17 +24,19 @@ export default class Collections extends Component {
 
 
     componentDidMount() {
-        getCollectionList({
-            page: 1,
-            page_size: 20
-        }, data => {
-            logMsg("CollectionList:", data)
-            this.setState({
-                collects: data.items
+        if(isLogin()){
+            getCollectionList({
+                page: 1,
+                page_size: 20
+            }, data => {
+                logMsg("CollectionList:", data)
+                this.setState({
+                    collects: data.items
+                })
+            }, err => {
+                logMsg("reject:", err)
             })
-        }, err => {
-            logMsg("reject:", err)
-        })
+        }
     }
 
     render() {
