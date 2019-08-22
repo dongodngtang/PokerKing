@@ -34,8 +34,12 @@ export default class Collections extends Component {
                 page_size: 20
             }, data => {
                 logMsg("CollectionList:", data)
+                let collects = data.items.map((x,i)=>{
+                    x.key = i
+                    return x
+                })
                 this.setState({
-                    collects: data.items
+                    collects
                 })
             }, err => {
                 logMsg("reject:", err)
@@ -58,7 +62,8 @@ export default class Collections extends Component {
                     renderHiddenItem={(data, rowMap) => (
                         <TouchableOpacity style={styles.rowBack} onPress={() => {
                             let item = data.item;
-                            this.closeRow(rowMap,data.item.key)
+                           this.closeRow(rowMap,item.key)
+                            console.log('连锁酒店',rowMap)
                             alertOrder(global.lang.t('delete_confirm'), () => {
 
                                 postCancelCollect({
