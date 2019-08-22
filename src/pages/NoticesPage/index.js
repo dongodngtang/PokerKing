@@ -15,9 +15,7 @@ import {getNotices, postNotifications} from "../../services/accountDao";
 export default class NoticesPage extends Component {
 
     state = {
-        notices: {},
-        events: [],
-        applies: []
+        notices: {}
     }
 
 
@@ -34,14 +32,8 @@ export default class NoticesPage extends Component {
     refresh = () => {
         getNotices(data => {
             logMsg("notices", data)
-            let applies = data.applies.map((y, i) => {
-                y.key = i
-                return y
-            })
             this.setState({
-                notices: data,
-                events: data.events,
-                applies: applies
+                notices: data
             })
         })
     }
@@ -68,13 +60,12 @@ export default class NoticesPage extends Component {
 
     intoList = (type) => {
         postNotifications({type: type}, data => {
-            logMsg("读取了吗", type, data)
+            logMsg("读取了吗", type,data)
         })
     }
 
     render() {
-        const {apply_unread_counts, event_unread_counts} = this.state.notices
-        const {applies, events} = this.state;
+        const {applies, events, apply_unread_counts, event_unread_counts} = this.state.notices
         return (
             <View style={{flex: 1, backgroundColor: "#1A1B1F"}}>
                 <View style={{width: Metrics.screenWidth, backgroundColor: "#998E72", height: 1}}/>
