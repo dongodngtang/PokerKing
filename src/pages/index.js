@@ -104,6 +104,7 @@ export const scenes = () => {
                    component={MinePage}
                    tabBarIcon={({focused}) => (
                        <TabBarItem
+                           redDot={true}
                            iconStyle={{height: px2dp(48), width: px2dp(48)}}
                            focused={focused}
                            normalImage={Images.mine_gray}

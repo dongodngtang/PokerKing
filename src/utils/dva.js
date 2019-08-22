@@ -33,5 +33,8 @@ export default {
     createApp,
     getDispatch() {
         return app.dispatch;
+    },
+    getStore(){
+        return app.getStore()
     }
 }

@@ -23,12 +23,10 @@ export default {
               }})
 
       },
-      * setProfile(payload,{call,put}){
-
+      * setUnread(_, { call, put }) {
           yield put({type:'save',payload:{
-                  profile:payload.params
+                  msgInfo:_.params
               }})
-
       },
   },
 

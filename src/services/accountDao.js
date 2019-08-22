@@ -26,6 +26,8 @@ export function storageLoginUser(loginUser) {
     }
 
     getCollectionList({})
+
+    getUnread()
 }
 
 export function initLoginUser(callback) {
@@ -220,7 +222,8 @@ export function getNotices(resolve, reject) {
 }
 export function getUnread(resolve, reject) {
     get(api.unread(), {}, ret => {
-        resolve(ret.data)
+        dva.getDispatch()({type: 'MinePage/setUnread', params: ret.data})
+        resolve && resolve(ret.data)
     }, reject)
 }
 
