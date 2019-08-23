@@ -138,7 +138,9 @@ export default class SearchNews extends Component {
                     {this.tabBlank()}
                 </View>}
 
-                <SearchResultList ref={ref => this.searchList = ref}/>
+                <SearchResultList
+                    style={{flex:1}}
+                    ref={ref => this.searchList = ref}/>
             </View>
         )
     }

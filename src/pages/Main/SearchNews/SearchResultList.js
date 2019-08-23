@@ -58,7 +58,6 @@ export default class SearchResultList extends Component {
                 infosSearch({page, ...this.searchParams}, data => {
                     if (data && data.infos ) {
                         startFetch(data.infos, 18)
-                        endFetch()
                     } else {
                         endFetch()
                     }
@@ -100,8 +99,7 @@ export default class SearchResultList extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#1A1B1F',
-        flex: 1
+        backgroundColor: '#1A1B1F'
     },
     item: {
         flexDirection: 'row',
