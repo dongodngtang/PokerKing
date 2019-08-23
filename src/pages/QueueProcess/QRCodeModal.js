@@ -56,6 +56,7 @@ export default class QRCodeModal extends PureComponent {
                     countTime
                 })
             } else {
+                this.toggle()
                 clearInterval(this.intervalTimer);
             }
         }, 1000)
