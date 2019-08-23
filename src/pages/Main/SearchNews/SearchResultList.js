@@ -56,8 +56,9 @@ export default class SearchResultList extends Component {
         try {
             if (this.searchParams) {
                 infosSearch({page, ...this.searchParams}, data => {
-                    if (data && data.infos && data.infos.length > 0) {
+                    if (data && data.infos ) {
                         startFetch(data.infos, 18)
+                        endFetch()
                     } else {
                         endFetch()
                     }
