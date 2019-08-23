@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import {View, Text, SafeAreaView, Image, TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
-import {getLoginUser, isEmptyObject, isStrNull, logMsg, moneyFormat, showToast} from "../../utils/utils";
+import {getLoginUser, getUserId, isEmptyObject, isStrNull, logMsg, moneyFormat, showToast} from "../../utils/utils";
 import styles from './index.style';
 import {Metrics, Images, px2dp} from "../../configs/Theme";
 import {getCashQueues, getCashQueuesNumber, postCancelApply, postScanApply} from '../../services/cashTableDao'
 import NotData from '../comm/NotData';
 import UltimateFlatList from '../../components/ultimate/UltimateFlatList';
-import {initLoginUser, shortUrl} from "../../services/accountDao";
+import {getUnread, initLoginUser, shortUrl} from "../../services/accountDao";
 import QRCodeModal from "./QRCodeModal";
 import PopAction from "../comm/PopAction";
 
@@ -44,6 +44,7 @@ export default class QueueProcess extends Component {
 
     _onRefresh = () => {
         this.listView && this.listView.refresh()
+        getUnread(getUserId())
     };
 
     _renderItem = (item, index) => {
@@ -155,7 +156,7 @@ export default class QueueProcess extends Component {
         logMsg('报名', url)
         shortUrl({url}, data => {
             postScanApply({dwz_url:data.short_url},ret=>{
-                this.QRCodeModel && this.QRCodeModel.toggle('')
+                this.QRCodeModel && this.QRCodeModel.toggle()
                 if(ret.code === 0){
                     this.applySuccess && this.applySuccess.toggle()
                 }else{
