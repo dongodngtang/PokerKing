@@ -15,7 +15,7 @@ export default class ModifyPWDToMobile extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            new_show: false,
+            new_show: true,
             vsCode: '',
             new_pwd: '',
             code_show: false
@@ -160,7 +160,7 @@ export default class ModifyPWDToMobile extends Component {
         change_password({
             type : 'vcode',
             vcode:this.state.vsCode,
-            new_pwd:md5.hex_md5(this.state.new_pwd)
+            new_pwd:md5.hex_md5(this.state.new_pwd.trim())
         },res=>{
             showToast(global.lang.t('change_pwd_success'))
         })
