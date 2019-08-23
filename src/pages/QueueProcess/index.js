@@ -156,7 +156,7 @@ export default class QueueProcess extends Component {
         logMsg('报名', url)
         shortUrl({url}, data => {
             postScanApply({dwz_url:data.short_url},ret=>{
-                this.QRCodeModel && this.QRCodeModel.toggle('')
+                this.QRCodeModel && this.QRCodeModel.toggle()
                 if(ret.code === 0){
                     this.applySuccess && this.applySuccess.toggle()
                 }else{
