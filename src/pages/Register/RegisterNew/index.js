@@ -2,12 +2,12 @@ import React, {Component} from 'react';
 import {View, Text, TouchableOpacity, Image, KeyboardAvoidingView, TextInput} from 'react-native';
 import {connect} from 'react-redux';
 import styles from './index.style'
-import {Images, Metrics} from "../../../configs/Theme";
+import {Images, Metrics, px2dp} from "../../../configs/Theme";
 import md5 from "react-native-md5";
 import {showToast} from "../../../utils/utils";
 import {postCode, verify} from "../../../services/accountDao";
 
-const reg = /^[a-zA-Z][a-zA-z0-9_@]{5,15}$/;
+const reg = /^[a-zA-Z][a-zA-z0-9_@]{4,15}$/;
 
 
 @connect(({RegisterNew}) => ({
@@ -18,7 +18,10 @@ export default class RegisterNew extends Component {
     constructor(props) {
         super(props)
         this.login_name = ''
-        this.password = ''
+        this.state = {
+            pwd_show:true,
+            password:""
+        }
     }
 
 
@@ -27,6 +30,7 @@ export default class RegisterNew extends Component {
     }
 
     render() {
+        const {password} = this.state;
         return (
             <View style={{flex: 1}}>
                 <View style={styles.regist_view}>
@@ -69,7 +73,7 @@ export default class RegisterNew extends Component {
                                 style={{
                                     paddingTop: 0,
                                     paddingBottom: 0,
-                                    width: '85%',
+                                    width: '65%',
                                     height: 50,
                                     fontSize: 14,
                                     color: '#999999'
@@ -80,19 +84,33 @@ export default class RegisterNew extends Component {
                                 placeholder={global.lang.t('set_psd')}
                                 clearTextOnFocus={true}
                                 underlineColorAndroid={'transparent'}
-                                onChangeText={txt => {
-                                    this.password = txt
+                                value={password.trim()}
+                                secureTextEntry={this.state.pwd_show}
+                                onChange={txt => {
+                                    this.setState({
+                                        password:txt.nativeEvent.text
+                                    })
+
                                 }}
 
                             />
 
+                            <View style={{flex:1}}/>
+                            <TouchableOpacity activeOpacity={1} style={{marginLeft: 10,marginRight:5}} onPress={() => {
+                                this.setState({
+                                    pwd_show: !this.state.pwd_show
+                                })
+                            }}>
+                                <Image style={{width: px2dp(37), height: this.state.pwd_show ? px2dp(18) : px2dp(34)}}
+                                       source={this.state.pwd_show ? Images.set_eye_close : Images.set_eye}/>
+                            </TouchableOpacity>
                         </View>
                     </KeyboardAvoidingView>
                 </View>
 
                 <TouchableOpacity style={styles.next_btn} onPress={() => {
-                    let account = this.login_name
-                    let password = this.password
+                    let account = this.login_name.trim()
+                    let password = this.state.password.trim()
                     if(!reg.test(account)){
                         showToast(global.lang.t('nickName_res'));
                         return
