@@ -83,7 +83,7 @@ export default class ModifyPWDToMobile extends Component {
                                 postCode({
                                     mobile: global.loginUser.mobile,
                                     country_code: global.loginUser.country_code,
-                                    option_type: 'login',
+                                    option_type: 'change_pwd',
                                     vcode_type: "mobile",
                                 }, data => {
 
@@ -163,6 +163,8 @@ export default class ModifyPWDToMobile extends Component {
             new_pwd:md5.hex_md5(this.state.new_pwd.trim())
         },res=>{
             showToast(global.lang.t('change_pwd_success'))
+            this.props.navigation.popToTop()
+            router.toLogin();
         })
     }
 }
