@@ -42,7 +42,7 @@ export default class MinePage extends Component {
                 }}>
                     <Image source={getAvatar(avatar)} style={styles.person_img}/>
                     <View style={styles.mid_view}>
-                        <Text style={styles.nick_name}>{nick_name}</Text>
+                        <Text style={styles.nick_name}>{nick_name.toUpperCase()}</Text>
                         {/*{isStrNull(member) ? null : <View style={styles.member_view}>*/}
                         {/*<Text style={styles.member_text}>{member}</Text>*/}
                         {/*</View>}*/}
