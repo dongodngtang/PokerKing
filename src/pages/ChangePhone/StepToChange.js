@@ -3,7 +3,7 @@ import {View, Text, TouchableOpacity, Image, StyleSheet, TextInput} from 'react-
 import {Colors, Images, Metrics, px2dp, px2sp, wh} from "../../configs/Theme";
 import _ from 'lodash'
 import {logMsg, showToast} from "../../utils/utils";
-import {postBindAccount, postCode, verify_code} from "../../services/accountDao";
+import {postChangeAccount, postCode, verify_code} from "../../services/accountDao";
 import CountryPicker, {getAllCountries} from "react-native-country-picker-modal";
 import DeviceInfo from "react-native-device-info";
 
@@ -219,7 +219,7 @@ class InputPhoneCard extends Component {
                         })
 
                     } else {
-                        showToast('手机号输入不能为空')
+                        showToast(global.lang.t('input_number'))
                     }
 
                 }}
@@ -294,13 +294,13 @@ class InputCodeCard extends Component {
                             this.props.nextTo && this.props.nextTo(2)
                         })
                     } else {
-                        postBindAccount({
+                        postChangeAccount({
                             type: 'mobile',
                             account: this.props.changeMobile,
                             code: text,
                             country_code: this.props.countryCode
                         }, ret => {
-                            showToast('手机号更换成功！')
+                            showToast(global.lang.t('changed_mobile'))
                         })
                     }
 
@@ -384,7 +384,7 @@ class InputCodeCard extends Component {
                 <Text style={{
                     color: '#fff',
                     fontSize: px2sp(28)
-                }}>{count < 60 ? `${count}${global.lang.t('time_begin')}` : '重新发送'}</Text>
+                }}>{count < 60 ? `${count}${global.lang.t('time_begin')}` : global.lang.t('again_send')}</Text>
             </TouchableOpacity>
 
             <View style={{marginTop: px2dp(30), height: px2dp(88)}}>

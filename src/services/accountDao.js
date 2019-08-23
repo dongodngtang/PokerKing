@@ -180,6 +180,17 @@ export function getCollectionList(body, resolve, reject) {
     }, reject)
 }
 
+export function postChangeAccount(body, resolve, reject) {
+    post(api.change_account, body, ret => {
+        resolve(ret.data)
+        if (body.notLogin) {
+            getProfile()
+        } else {
+            setLoginEmpty(true)
+        }
+    }, reject)
+}
+
 export function postBindAccount(body, resolve, reject) {
     post(api.bind_account, body, ret => {
         resolve(ret.data)
