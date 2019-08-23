@@ -19,7 +19,7 @@ export default class QRCodeModal extends PureComponent {
 
     state = {
         visible: false,
-        countTime: 60,
+        countTime: 0,
         vgDecodeResult: ''
     };
 
@@ -40,6 +40,7 @@ export default class QRCodeModal extends PureComponent {
             })
         }else{
             this.props.closeCall && this.props.closeCall()
+            this.intervalTimer && clearInterval(this.intervalTimer);
             this.setState({
                 visible:false
             })

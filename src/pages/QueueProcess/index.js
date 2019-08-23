@@ -44,7 +44,6 @@ export default class QueueProcess extends Component {
 
     _onRefresh = () => {
         this.listView && this.listView.refresh()
-        getUnread(getUserId())
     };
 
     _renderItem = (item, index) => {
@@ -159,6 +158,7 @@ export default class QueueProcess extends Component {
                 this.QRCodeModel && this.QRCodeModel.toggle()
                 if(ret.code === 0){
                     this.applySuccess && this.applySuccess.toggle()
+                    getUnread(getUserId())
                 }else{
                     showToast('报名失败！请重试')
                 }
@@ -176,6 +176,7 @@ export default class QueueProcess extends Component {
         postCancelApply(body,ret=>{
             showToast('取消成功')
             this._onRefresh()
+            getUnread(getUserId())
         })
     }
 
