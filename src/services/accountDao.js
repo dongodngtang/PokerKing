@@ -13,9 +13,9 @@ export function storageLoginUser(loginUser) {
         key: 'LoginUser',
         data: loginUser
     })
-
-    setToken(loginUser.access_token ? loginUser.access_token : '')
     global.loginUser = loginUser
+    setToken(loginUser.access_token)
+
     getProfile()
     if (loginUser.user_id) {
         JPushModule.setAlias(`test_${loginUser.user_id}`, ret => {
@@ -25,7 +25,7 @@ export function storageLoginUser(loginUser) {
 
         getUnread(loginUser.user_id)
     } else {
-        JPushModule.deleteAlias()
+        JPushModule.deleteAlias(ret=>{})
         initCollects(null)
     }
 
