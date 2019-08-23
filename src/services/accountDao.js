@@ -5,7 +5,7 @@ import dva from '../utils/dva'
 import JPushModule from 'jpush-react-native'
 import {initCollects} from "../pages/comm/CollectBtn";
 
-global.loginUser = null
+global.loginUser = {}
 
 export function storageLoginUser(loginUser) {
     logMsg('登录用户数据', loginUser)
