@@ -11,7 +11,14 @@ import DeviceInfo from "react-native-device-info";
 export default class StepToChange extends Component {
     state = {
         step: 0,
-        changeMobile: ''
+        changeMobile: '',
+        oldCode:''
+    }
+
+    setOldCode = (code)=>{
+        this.setState({
+            oldCode:code
+        })
     }
 
     setChangeMobile = (txt) => {
@@ -29,6 +36,7 @@ export default class StepToChange extends Component {
                     changeMobile={this.props.oldMobile}
                     close={this.close}
                     oldVerify={true}
+                    setOldCode={this.setOldCode}
                     nextTo={this.nextTo}/>
             case 2://给新手机号发送验证码验证需要绑定的手机是本人
                 return <InputPhoneCard
@@ -42,6 +50,7 @@ export default class StepToChange extends Component {
                     countryCode={this.props.country_code}
                     changeMobile={this.state.changeMobile}
                     close={this.close}
+                    oldCode={this.state.oldCode}
                     nextTo={this.nextTo}/>
 
 
@@ -287,6 +296,7 @@ class InputCodeCard extends Component {
             }, () => {
                 if (text.length === 6) {
                     if (this.props.oldVerify) {
+                        this.props.setOldCode && this.props.setOldCode(text)
                         verify_code({
                             option_type: 'change_old_account',
                             vcode: text
@@ -297,8 +307,9 @@ class InputCodeCard extends Component {
                         postBindAccount({
                             type: 'mobile',
                             account: this.props.changeMobile,
-                            code: text,
-                            country_code: this.props.countryCode
+                            country_code: this.props.countryCode,
+                            new_code: text,
+                            old_code:this.props.oldCode
                         }, ret => {
                             showToast('手机号更换成功！')
                         })
