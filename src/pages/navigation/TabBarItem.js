@@ -4,8 +4,8 @@
  *功能：
  */
 import React, {Component} from 'react';
-import {Image, View} from 'react-native';
-import dva from '../../utils/dva'
+import {Image, View,DeviceEventEmitter} from 'react-native';
+
 import {px2dp} from "../../configs/Theme";
 
 export default class TabBarItem extends Component {
@@ -14,8 +14,7 @@ export default class TabBarItem extends Component {
         msg_unread: false
     }
 
-    handleChange = () => {
-        let msgInfo = this.select(dva.getStore().getState())
+    handleChange = (msgInfo) => {
         if (msgInfo) {
             this.setState({
                 msg_unread: msgInfo.unread_count > 0
@@ -23,12 +22,14 @@ export default class TabBarItem extends Component {
         }
     }
 
-    select = (state) => {
-        return state.MinePage.msgInfo
-    }
+
 
     componentDidMount() {
-        dva.getStore().subscribe(this.handleChange)
+        this.subscription = DeviceEventEmitter.addListener('NoticeTab',this.handleChange)
+    }
+
+    componentWillUnmount(){
+        this.subscription.remove()
     }
 
 

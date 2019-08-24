@@ -10,9 +10,9 @@ import {
     postCancelCollect,
     isCollect,
     initLoginUser,
-    getTags
+    getTags, getUnread
 } from "../../services/accountDao";
-import {isEmptyObject, isLogin, logMsg, OnSafePress, shareHost, shareTo, showToast} from "../../utils/utils";
+import {getUserId, isEmptyObject, isLogin, logMsg, OnSafePress, shareHost, shareTo, showToast} from "../../utils/utils";
 import Hot from "./Hot";
 import Instants from "./Instants";
 import {Images, px2dp, px2sp} from "../../configs/Theme";
@@ -58,6 +58,9 @@ export default class Main extends Component {
 
     receiveNotice = (msg)=>{
         logMsg('推送消息',msg)
+        if(isLogin()){
+            getUnread()
+        }
     }
 
     onFetch = (page = 1, startFetch, abortFetch) => {

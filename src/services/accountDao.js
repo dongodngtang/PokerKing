@@ -1,9 +1,10 @@
 import api from '../configs/api'
 import {get, post, put, setBaseUrl, del, setToken, setLoginEmpty} from '../configs/fetch'
-import {isEmpty, logMsg, isEmptyObject} from '../utils/utils';
+import {isEmpty, logMsg, isEmptyObject, getUserId} from '../utils/utils';
 import dva from '../utils/dva'
 import JPushModule from 'jpush-react-native'
 import {initCollects} from "../pages/comm/CollectBtn";
+import  {DeviceEventEmitter} from 'react-native';
 
 global.loginUser = {}
 
@@ -233,9 +234,10 @@ export function getNotices(resolve, reject) {
         resolve(ret.data)
     }, reject)
 }
-export function getUnread(user_id,resolve, reject) {
+export function getUnread(user_id = getUserId(),resolve, reject) {
     get(api.unread(user_id), {}, ret => {
         dva.getDispatch()({type: 'MinePage/setUnread', params: ret.data})
+        DeviceEventEmitter.emit('NoticeTab',ret.data)
         resolve && resolve(ret.data)
     }, reject)
 }
