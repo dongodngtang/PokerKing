@@ -28,9 +28,17 @@ export default class QueueProcess extends Component {
 
         this.state = {
             signedList: [],
-            applySuccessBlind:''
+            applySuccessBlind: ''
         }
     };
+
+    componentDidMount() {
+        this.mount = true
+    }
+
+    componentWillUnmount() {
+        this.mount = false
+    }
 
 
     topName = () => {
@@ -79,7 +87,7 @@ export default class QueueProcess extends Component {
                         onPress={() => {
                             if (isStrNull(apply_index)) {
                                 this.PopAction && this.PopAction.toggle()
-                            }else{
+                            } else {
                                 this.cancelId = id
                                 this.popCancel && this.popCancel.toggle()
                             }
@@ -93,10 +101,12 @@ export default class QueueProcess extends Component {
                 <PopAction
                     key={'cancel'}
                     ref={ref => this.popCancel = ref}>
-                    <View style={{height: px2dp(320), width: '100%', backgroundColor: '#fff',
-                        justifyContent:'space-evenly'}}>
+                    <View style={{
+                        height: px2dp(320), width: '100%', backgroundColor: '#fff',
+                        justifyContent: 'space-evenly'
+                    }}>
                         <TouchableOpacity
-                            onPress={()=>{
+                            onPress={() => {
                                 this.cancelApply()
                                 this.popCancel && this.popCancel.toggle()
                             }}
@@ -108,7 +118,7 @@ export default class QueueProcess extends Component {
                         </TouchableOpacity>
 
                         <TouchableOpacity
-                            onPress={()=>{
+                            onPress={() => {
                                 this.popCancel && this.popCancel.toggle()
                             }}
                             style={{
@@ -145,7 +155,7 @@ export default class QueueProcess extends Component {
         })
 
         this.setState({
-            applySuccessBlind:blind.join(',')
+            applySuccessBlind: blind.join(',')
         })
         let str = ids.join("|")
 
@@ -154,26 +164,29 @@ export default class QueueProcess extends Component {
         let url = `http://www.baidu.com?token=${access_token}&cash_queue_id=${str}&cash_game_id=${cash_game_id}`
         logMsg('报名', url)
         shortUrl({url}, data => {
-            postScanApply({dwz_url:data.short_url},ret=>{
-                this.QRCodeModel && this.QRCodeModel.toggle()
-                if(ret.code === 0){
-                    this.applySuccess && this.applySuccess.toggle()
-                    getUnread(getUserId())
-                }else{
-                    showToast('报名失败！请重试')
-                }
+            postScanApply({dwz_url: data.short_url}, ret => {
+                if (this.mount) {
 
+                    this.QRCodeModel && this.QRCodeModel.toggle()
+                    if (ret.code === 0) {
+                        this.applySuccess && this.applySuccess.toggle()
+                        getUnread(getUserId())
+                    } else {
+                        showToast('报名失败！请重试')
+                    }
+
+                }
 
             })
             this.QRCodeModel && this.QRCodeModel.toggle(data.short_url)
         })
     }
 
-    cancelApply = ()=>{
+    cancelApply = () => {
         let cash_queue_id = this.cancelId
         let cash_game_id = this.props.params.item.id
-        let body = {cash_queue_id,cash_game_id}
-        postCancelApply(body,ret=>{
+        let body = {cash_queue_id, cash_game_id}
+        postCancelApply(body, ret => {
             showToast('取消成功')
             this._onRefresh()
             getUnread(getUserId())
@@ -219,18 +232,20 @@ export default class QueueProcess extends Component {
                 <PopAction
                     key={'apply_success'}
                     ref={ref => this.applySuccess = ref}>
-                   <TouchableOpacity
-                       onPress={()=>{
-                           this.applySuccess && this.applySuccess.toggle()
-                       }}
-                       style={{flex:1,
-                       alignItems:'center',
-                       justifyContent:'center',
-                       position:'absolute'}}>
-                       <Text style={{color:'#FFE9AD',fontSize:18,marginHorizontal:px2dp(34)}}
-                       >{`级别${this.state.applySuccessBlind}\n已报名成功!`}</Text>
+                    <TouchableOpacity
+                        onPress={() => {
+                            this.applySuccess && this.applySuccess.toggle()
+                        }}
+                        style={{
+                            flex: 1,
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            position: 'absolute'
+                        }}>
+                        <Text style={{color: '#FFE9AD', fontSize: 18, marginHorizontal: px2dp(34)}}
+                        >{`级别${this.state.applySuccessBlind}\n已报名成功!`}</Text>
 
-                   </TouchableOpacity>
+                    </TouchableOpacity>
 
                 </PopAction>
             </View>
@@ -257,7 +272,7 @@ export default class QueueProcess extends Component {
                                 buy_in: `${x.small_blind}/${x.big_blind} NLH`,
                                 signed: !isStrNull(x.apply_index),
                                 id: x.id,
-                                applyId:x.apply_index
+                                applyId: x.apply_index
                             })
                         })
                         this.setState({
@@ -323,7 +338,11 @@ const ChooseType = ({signedList, onChange, cancel, confirm}) => {
                 <View style={{width: px2dp(194)}}/>
                 <Image style={{height: px2dp(44), width: px2dp(44)}}
                        source={item.signed ? Images.selected : Images.select_gary}/>
-                <Text style={{fontSize: 16, color: isStrNull(item.applyId)?'#303236':'#aaaaaa', marginLeft: px2dp(48)}}>{item.buy_in}</Text>
+                <Text style={{
+                    fontSize: 16,
+                    color: isStrNull(item.applyId) ? '#303236' : '#aaaaaa',
+                    marginLeft: px2dp(48)
+                }}>{item.buy_in}</Text>
             </TouchableOpacity>
             {i < count ?
                 <View style={{height: px2dp(2), backgroundColor: '#DCDCDC', marginHorizontal: px2dp(38)}}/> : null}
