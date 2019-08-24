@@ -86,6 +86,8 @@ export default class QueueProcess extends Component {
                         style={[styles.right_mid_view, {backgroundColor: isStrNull(apply_index) ? '#1A1B1F' : "#303236"}]}
                         onPress={() => {
                             if (isStrNull(apply_index)) {
+                                this.clearSign()
+                                this.signChange(this.state.signedList[index],index)
                                 this.PopAction && this.PopAction.toggle()
                             } else {
                                 this.cancelId = id
@@ -134,6 +136,15 @@ export default class QueueProcess extends Component {
             </View>
         )
     };
+
+    clearSign = ()=>{
+        this.state.signedList.forEach(x=>{
+            x.signed = false
+        })
+        this.setState({
+            signedList: this.state.signedList
+        })
+    }
 
     signChange = (item, i) => {
         let changeList = [...this.state.signedList]
