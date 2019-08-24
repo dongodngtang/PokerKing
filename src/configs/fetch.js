@@ -98,7 +98,7 @@ export function del(url, body, resolve, reject) {
 
 export function postScan(url, body, resolve, reject) {
     client.post(url, body,{timeout:60*1000}).then(res => {
-        handle(res, resolve, reject)
+        handle(res, resolve, reject,true)
     }).catch(err => {
         errReject(err)
     })
@@ -113,13 +113,13 @@ export function post(url, body, resolve, reject) {
   })
 }
 
-function handle(res, resolve, reject) {
+function handle(res, resolve, reject,notToast = false) {
   const {ok, status, data} = res;
   if (ok && status === 200 && data.code === 0) {
     resolve && resolve(data)
   } else {
     if (data && !isStrNull(data.msg)) {
-      showToast(data.msg)
+        notToast || showToast(data.msg)
       reject && reject(data.msg);
     }
 
