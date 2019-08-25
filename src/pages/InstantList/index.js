@@ -3,13 +3,17 @@ import {View, Text, Image, TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
 import UltimateFlatList from "../../components/ultimate/UltimateFlatList";
 import NotData from "../comm/NotData";
-import {alertOrder, isEmptyObject, isLogin, logMsg, shareTo, showToast, unix_format} from "../../utils/utils";
-import {getInfoList, delCancelNoti, isCollect} from "../../services/accountDao";
+import {
+    alertOrder, isEmptyObject, isLogin, logMsg, shareHost, shareTo, showToast,
+    unix_format
+} from "../../utils/utils";
+import {getInfoList, delCancelNoti, postCancelCollect,postCollect,isCollect} from "../../services/accountDao";
 import {Images, Metrics, px2dp, px2sp} from "../../configs/Theme";
 import styles from './index.style';
 import ImageLoad from "../../components/ImageLoad";
 import CollectBtn from "../comm/CollectBtn";
 import {SwipeListView} from 'react-native-swipe-list-view';
+import ShareToast from "../comm/ShareToast";
 
 @connect(({InstantList}) => ({
     ...InstantList,
@@ -24,6 +28,18 @@ export default class InstantList extends Component {
                 router.pop()
             }
         });
+    }
+
+    share = (info) => {
+        let param = {
+            shareLink: `${shareHost()}/infos/${info.id}`,
+            shareTitle: info.title,
+            shareText: info.title,
+            shareImage: info.image
+        };
+        shareTo(param)
+        logMsg('分享')
+
     }
 
 
@@ -122,7 +138,9 @@ export default class InstantList extends Component {
                                 />
                             </TouchableOpacity>
 
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={()=>{
+                                this.share(item.info)
+                            }}>
                                 <Image style={{height: px2dp(32), width: px2dp(40), marginRight: px2dp(20)}}
                                        source={Images.share_gray}/>
                             </TouchableOpacity>
