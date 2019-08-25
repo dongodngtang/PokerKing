@@ -277,7 +277,10 @@
   "delete_confirm":"确认删除",
   "delete_success":"删除成功",
   "changed_mobile":"手机号更换成功!",
-  "again_send":"重新发送"
+  "again_send":"重新发送",
+  "cancel_success":"取消成功",
+  "rank":"级别",
+  "rank_success":"已报名成功"
 }
 
 

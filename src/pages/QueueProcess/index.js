@@ -181,10 +181,10 @@ export default class QueueProcess extends Component {
                     this.QRCodeModel && this.QRCodeModel.toggle()
                     if (ret.code === 0) {
                         this.applySuccess && this.applySuccess.toggle()
-                        getUnread(getUserId())
                     } else {
                         showToast('报名失败！请重试')
                     }
+                    getUnread(getUserId())
 
                 }
 
@@ -198,7 +198,7 @@ export default class QueueProcess extends Component {
         let cash_game_id = this.props.params.item.id
         let body = {cash_queue_id, cash_game_id}
         postCancelApply(body, ret => {
-            showToast('取消成功')
+            showToast(global.lang.t('cancel_success'))
             this._onRefresh()
             getUnread(getUserId())
         })
@@ -254,7 +254,7 @@ export default class QueueProcess extends Component {
                             position: 'absolute'
                         }}>
                         <Text style={{color: '#FFE9AD', fontSize: 18, marginHorizontal: px2dp(34)}}
-                        >{`级别${this.state.applySuccessBlind}\n已报名成功!`}</Text>
+                        >{`${global.lang.t('rank')}${this.state.applySuccessBlind}\n${global.lang.t('rank_success')}!`}</Text>
 
                     </TouchableOpacity>
 
