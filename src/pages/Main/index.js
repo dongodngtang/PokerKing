@@ -79,11 +79,7 @@ export default class Main extends Component {
                 })
             })
 
-            if(Platform.OS === 'ios'){
-                JPushModule.setBadge(0,ret=>{
-                    logMsg('清除ios badge')
-                })
-            }
+           JPushModule.clearAllNotifications()
         }
     }
 
