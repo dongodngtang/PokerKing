@@ -6,8 +6,8 @@ import UltimateFlatList from "../../components/ultimate/UltimateFlatList";
 import NotData from "../comm/NotData";
 import TopBar from "../comm/TopBar";
 import styles from './index.style'
-import {isEmptyObject, isStrNull, logMsg, utcDate} from "../../utils/utils";
-import {getNotices, postNotifications} from "../../services/accountDao";
+import {getUserId, isEmptyObject, isStrNull, logMsg, utcDate} from "../../utils/utils";
+import {getNotices, getUnread, postNotifications} from "../../services/accountDao";
 
 @connect(({NoticesPage}) => ({
     ...NoticesPage,
@@ -22,7 +22,6 @@ export default class NoticesPage extends Component {
     componentDidMount() {
         this.props.navigation.setParams({
             onLeft: () => {
-                this.props.params.refresh()
                 router.pop()
             }
         });
@@ -61,6 +60,7 @@ export default class NoticesPage extends Component {
     intoList = (type) => {
         postNotifications({type: type}, data => {
             logMsg("读取了吗", type,data)
+            getUnread(getUserId())
         })
     }
 

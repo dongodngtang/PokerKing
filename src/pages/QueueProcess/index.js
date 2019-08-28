@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import {View, Text, SafeAreaView, Image, TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
-import {getLoginUser, getUserId, isEmptyObject, isStrNull, logMsg, moneyFormat, showToast} from "../../utils/utils";
+import {getLoginUser, isEmptyObject, isStrNull, logMsg, moneyFormat, showToast} from "../../utils/utils";
 import styles from './index.style';
 import {Metrics, Images, px2dp} from "../../configs/Theme";
 import {getCashQueues, getCashQueuesNumber, postCancelApply, postScanApply} from '../../services/cashTableDao'
 import NotData from '../comm/NotData';
 import UltimateFlatList from '../../components/ultimate/UltimateFlatList';
-import {getUnread, initLoginUser, shortUrl} from "../../services/accountDao";
+import { initLoginUser, shortUrl} from "../../services/accountDao";
 import QRCodeModal from "./QRCodeModal";
 import PopAction from "../comm/PopAction";
 
@@ -179,12 +179,11 @@ export default class QueueProcess extends Component {
                 if (this.mount) {
 
                     this.QRCodeModel && this.QRCodeModel.toggle()
-                    if (ret.code === 0) {
+                    if (ret && ret.code === 0) {
                         this.applySuccess && this.applySuccess.toggle()
                     } else {
                         showToast('报名失败！请重试')
                     }
-                    getUnread(getUserId())
 
                 }
 
@@ -200,7 +199,6 @@ export default class QueueProcess extends Component {
         postCancelApply(body, ret => {
             showToast(global.lang.t('cancel_success'))
             this._onRefresh()
-            getUnread(getUserId())
         })
     }
 

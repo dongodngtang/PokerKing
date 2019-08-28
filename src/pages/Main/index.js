@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, Platform} from 'react-native';
+import {View, DeviceEventEmitter, Platform} from 'react-native';
 import {connect} from 'react-redux';
 import Base from "../Base";
 import NavigationBar from "../comm/NavigationBar";
@@ -14,7 +14,6 @@ import {
 } from "../../services/accountDao";
 import {getUserId, isEmptyObject, isLogin, logMsg, OnSafePress, shareHost, shareTo, showToast} from "../../utils/utils";
 import Hot from "./Hot";
-import Instants from "./Instants";
 import {Images, px2dp, px2sp} from "../../configs/Theme";
 import More from "./More";
 import ShareToast from "../comm/ShareToast";
@@ -30,47 +29,71 @@ export default class Main extends Component {
     state = {
         activeTab: global.lang.t('hot'),
         index: 0,
-        show_collect:false,
-        tags:[]
+        show_collect: false,
+        tags: []
     }
 
     isFirst = true
 
-    componentDidMount(){
-        JPushModule.addReceiveNotificationListener(this.receiveNotice)
-        JPushModule.addOpenNotificationLaunchAppListener(this.openNotice)
-        getTags(data=>{
+    componentDidMount() {
+
+        getTags(data => {
             this.setState({
-                tags:data.tags
+                tags: data.tags
             })
         })
+        JPushModule.addReceiveNotificationListener(this.receiveNotice)
+        if (Platform.OS === 'android') {
+
+            this.receivePushMsg = DeviceEventEmitter.addListener('receivePushMsg', this.receiveNotice)
+            this.openPush = DeviceEventEmitter.addListener('openNotification', this.openNotice)
+            JPushModule.notifyJSDidLoad((resultCode) => {
+                logMsg('jpush设置极光', resultCode)
+            });
+        }else{
+
+            JPushModule.addOpenNotificationLaunchAppListener(this.openNotice)
+        }
+
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         JPushModule.removeReceiveNotificationListener(this.receiveNotice);
-        JPushModule.removeOpenNotificationLaunchAppEventListener(this.openNotice)
-    }
+        if (Platform.OS === 'android') {
+            DeviceEventEmitter.removeSubscription(this.receivePushMsg)
+            DeviceEventEmitter.removeSubscription(this.openPush)
+        }else{
 
-    openNotice = (e)=>{
-        logMsg('点击通知',e)
-        if(isLogin()){
-            router.toNotices(()=>{
-                getUnread(getUserId())
-            })
+            JPushModule.removeOpenNotificationLaunchAppEventListener(this.openNotice)
         }
     }
 
-    receiveNotice = (msg)=>{
-        logMsg('推送消息',msg)
-        if(isLogin()){
-            getUnread()
+    openNotice = (e) => {
+        logMsg('点击通知', e)
+        if (isLogin()) {
+            OnSafePress(() => {
+                router.toNotices(() => {
+                    getUnread(getUserId())
+                })
+            })
+
+        }
+    }
+
+    receiveNotice = (msg) => {
+        logMsg('推送消息', msg)
+        if (isLogin()) {
+            OnSafePress(()=>{
+                getUnread()
+            })
+
         }
     }
 
     onFetch = (page = 1, startFetch, abortFetch) => {
-        if(this.isFirst){
+        if (this.isFirst) {
             this.isFirst = false
-            let t2 = setTimeout(()=>{
+            let t2 = setTimeout(() => {
                 getInfoList({
                     status: 'hot',
                     page,
@@ -82,8 +105,8 @@ export default class Main extends Component {
                     logMsg("reject:", err)
                     abortFetch()
                 })
-            },1000)
-        }else{
+            }, 1000)
+        } else {
             getInfoList({
                 status: 'hot',
                 page,
@@ -132,7 +155,7 @@ export default class Main extends Component {
 
     }
     toCollect = (item) => {
-        if(isLogin()){
+        if (isLogin()) {
             const body = {target_id: item.id, target_type: "info"}
             let show_collect = false;
             isCollect(body, data => {
@@ -155,7 +178,7 @@ export default class Main extends Component {
             this.setState({
                 show_collect
             })
-        }else{
+        } else {
             router.toLogin()
         }
     }
