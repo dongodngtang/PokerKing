@@ -43,10 +43,11 @@ export default class Main extends Component {
             })
         })
         JPushModule.addReceiveNotificationListener(this.receiveNotice)
+        JPushModule.addReceiveOpenNotificationListener(this.openNotice)
         if (Platform.OS === 'android') {
 
             this.receivePushMsg = DeviceEventEmitter.addListener('receivePushMsg', this.receiveNotice)
-            this.openPush = DeviceEventEmitter.addListener('openNotification', this.openNotice)
+
             JPushModule.notifyJSDidLoad((resultCode) => {
                 logMsg('jpush设置极光', resultCode)
             });
@@ -59,9 +60,10 @@ export default class Main extends Component {
 
     componentWillUnmount() {
         JPushModule.removeReceiveNotificationListener(this.receiveNotice);
+        JPushModule.removeReceiveOpenNotificationListener(this.openNotice)
         if (Platform.OS === 'android') {
             DeviceEventEmitter.removeSubscription(this.receivePushMsg)
-            DeviceEventEmitter.removeSubscription(this.openPush)
+
         }else{
 
             JPushModule.removeOpenNotificationLaunchAppEventListener(this.openNotice)
