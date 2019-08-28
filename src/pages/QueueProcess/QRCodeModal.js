@@ -69,7 +69,7 @@ export default class QRCodeModal extends PureComponent {
             visible={this.state.visible}
             onRequestClose={() => {
             }}>
-            <TouchableOpacity
+            <View
                 activeOpacity={1}
                 onPress={()=>this.toggle()}
                 style={styles.container}>
@@ -87,7 +87,7 @@ export default class QRCodeModal extends PureComponent {
                 </View>
 
 
-            </TouchableOpacity>
+            </View>
 
         </Modal>)
     }
