@@ -39,18 +39,26 @@ export default class Root extends Component {
     }
 
     componentDidMount() {
-        JPushModule.initPush()
+
+
         initLoginUser(()=>{
             SplashScreen.hide();
         })
 
         if(Platform.OS ==='ios'){
             JShareModule.setup()
-        }
+            JPushModule.hasPermission(ret=>{
+                if(ret){
+                    JPushModule.initPush()
+                }
 
-        if (Platform.OS === 'android') {
+            })
+        }else{
+            JPushModule.initPush()
             BackHandler.addEventListener('hardwareBackPress', this.onBackAndroid)
         }
+
+
         codePush.disallowRestart()
         codePush.sync({
             updateDialog: false,
