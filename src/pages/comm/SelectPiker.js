@@ -31,16 +31,16 @@ export default class SelectPiker extends Component {
                 style={{alignItems: 'center'}}
             >
                 <TouchableOpacity style={{flex:1}} onPress={()=>{
-                    const {index} = this.state;
-                    if (index === 0) {
-                        global.lang.switchLang('en')
-                    } else if (index === 1) {
-                        global.lang.switchLang('zh')
-                    } else if (index === 2) {
-                        global.lang.switchLang('zh-e')
-                    } else {
-                        global.lang.switchLang('zh')
-                    }
+                    // const {index} = this.state;
+                    // if (index === 0) {
+                    //     global.lang.switchLang('en')
+                    // } else if (index === 1) {
+                    //     global.lang.switchLang('zh')
+                    // } else if (index === 2) {
+                    //     global.lang.switchLang('zh-e')
+                    // } else {
+                    //     global.lang.switchLang('zh')
+                    // }
                     this.toggle();
                 }}/>
 
