@@ -42,6 +42,7 @@ export default class Root extends Component {
     //第一次获取
     NetInfo.isConnected.fetch().done((status) => {
       console.log('Status:' + status);
+      this.handleConnectivityChange(status)
     });
     //监听网络状态改变
     NetInfo.addEventListener('connectionChange', this.handleConnectivityChange);
