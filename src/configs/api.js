@@ -49,6 +49,7 @@ const api = {
     scanapplystatus: 'cash_queues/scanapplystatus',
     info_tag: 'infos/tags',
     cancel_noti: cancel_noti,//Jpush删除消息
+    app_versions:'app_versions'
 }
 
 function cancelapply(body) {

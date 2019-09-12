@@ -1,10 +1,10 @@
 import api from '../configs/api'
 import {get, post, put, setBaseUrl, del, setToken, setLoginEmpty} from '../configs/fetch'
-import {isEmpty, logMsg, isEmptyObject, getUserId} from '../utils/utils';
+import {isEmpty, logMsg, isEmptyObject, getUserId, APP_VERSION} from '../utils/utils';
 import dva from '../utils/dva'
 import JPushModule from 'jpush-react-native'
 import {initCollects} from "../pages/comm/CollectBtn";
-import  {DeviceEventEmitter} from 'react-native';
+import {Alert, DeviceEventEmitter,Platform,Linking} from 'react-native';
 
 global.loginUser = {}
 
@@ -29,6 +29,8 @@ export function storageLoginUser(loginUser) {
         JPushModule.deleteAlias(ret=>{})
         initCollects(null)
     }
+
+    getAppVersion()
 
 
 }
@@ -258,4 +260,30 @@ export function delCancelNoti(body,resolve, reject) {
     del(api.cancel_noti(body),body,ret=>{
         resolve(ret.data)
     },reject)
+}
+
+export function getAppVersion() {
+    get(api.app_versions,{},ret=>{
+        if(ret && ret.data){
+            const {ios_platform,android_platform} = ret.data
+            let info = Platform.OS ==='ios'?ios_platform:android_platform
+          if(info.version !== APP_VERSION){
+            let buttons = [{
+              text: '取消',
+              style: 'cancel'
+            }, {
+              text: '确定',
+              onPress: () => {
+                Linking.openURL(info.download_url);
+              }
+            }]
+            let cancelable = !info.force_upgrade
+            Alert.alert(info.title, info.content,buttons,{cancelable} )
+          }
+
+
+        }
+
+    })
+
 }
