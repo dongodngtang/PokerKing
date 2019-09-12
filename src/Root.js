@@ -5,7 +5,7 @@
  */
 
 import React, {Component} from 'react';
-import {Platform,BackHandler} from 'react-native'
+import {Platform, BackHandler, NetInfo} from 'react-native'
 import {Router} from 'react-native-router-flux';
 import {scenes} from './pages'
 import RouterO from './configs/Router';
@@ -21,81 +21,110 @@ import codePush from "react-native-code-push";
 import {initLoginUser} from "./services/accountDao";
 import JPushModule from 'jpush-react-native'
 
-@connect(({ common}) => ({
-      ...common
+@connect(({common}) => ({
+  ...common
 }))
 @codePush
 export default class Root extends Component {
-    constructor(props) {
-        super(props);
-        this.router = this.router || new RouterO();
-        global.router = this.router;
+  constructor(props) {
+    super(props);
+    this.router = this.router || new RouterO();
+    global.router = this.router;
 
-        this.lang = this.lang || new Language()
-        global.lang = this.lang
+    this.lang = this.lang || new Language()
+    global.lang = this.lang
 
-        initBaseUrl()
+    initBaseUrl()
 
+  }
+
+  componentWillMount() {
+    //第一次获取
+    NetInfo.isConnected.fetch().done((status) => {
+      console.log('Status:' + status);
+    });
+    //监听网络状态改变
+    NetInfo.addEventListener('connectionChange', this.handleConnectivityChange);
+
+  }
+
+  handleConnectivityChange=(isConnected)=> {
+    console.log('status change:' + isConnected);
+    //监听第一次改变后, 可以取消监听.或者在componentUnmount中取消监听
+    // NetInfo.removeEventListener('change', this.handleConnectivityChange);
+    if(!isConnected){
+      alert('当前网络不可用')
     }
 
-    componentDidMount() {
+  }
 
 
-        initLoginUser(()=>{
-            SplashScreen.hide();
-        })
 
-        if(Platform.OS ==='ios'){
-            JShareModule.setup()
-            JPushModule.hasPermission(ret=>{
-                if(ret){
-                    JPushModule.initPush()
-                }
+  componentDidMount() {
 
-            })
-        }else{
-            JPushModule.initPush()
-            BackHandler.addEventListener('hardwareBackPress', this.onBackAndroid)
+    initLoginUser(() => {
+      SplashScreen.hide();
+    })
+
+    if (Platform.OS === 'ios') {
+      JShareModule.setup()
+      JPushModule.hasPermission(ret => {
+        if (ret) {
+          JPushModule.initPush()
         }
 
-
-        codePush.disallowRestart()
-        codePush.sync({
-            updateDialog: false,
-            installMode: codePush.InstallMode.ON_NEXT_RESUME
-        })
-
+      })
+    } else {
+      JPushModule.initPush()
+      BackHandler.addEventListener('hardwareBackPress', this.onBackAndroid)
     }
 
-    onBackAndroid =()=> {
+
+    codePush.disallowRestart()
+    codePush.sync({
+      updateDialog: false,
+      installMode: codePush.InstallMode.ON_NEXT_RESUME
+    })
+
+  }
+
+  onBackAndroid = () => {
 
 
-        if (Actions.state.index > 0) {
-            router.pop()
-            return true
-        } else {
-            logMsg('款式大方',Actions.state)
-            if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {//按第二次的时候，记录的时间+2000 >= 当前时间就可以退出
-                //最近2秒内按过back键，可以退出应用。
-                BackHandler.exitApp();//退出整个应用
-                return false
-            }
-            this.lastBackPressed = Date.now();//按第一次的时候，记录时间
-            showToast('再按一次退出应用');//显示提示信息
-            return true;
+    if (Actions.state.index > 0) {
+      router.pop()
+      return true
+    } else {
+      logMsg('款式大方', Actions.state)
+      if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {//按第二次的时候，记录的时间+2000 >= 当前时间就可以退出
+        //最近2秒内按过back键，可以退出应用。
+        BackHandler.exitApp();//退出整个应用
+        return false
+      }
+      this.lastBackPressed = Date.now();//按第一次的时候，记录时间
+      showToast('再按一次退出应用');//显示提示信息
+      return true;
 
-        }
     }
+  }
 
-    render() {
-        return (
-            <Router>
-                {scenes()}
-            </Router>
+  componentWillUnmount() {
+    console.log("componentWillUnMount");
+    NetInfo.removeEventListener('change', this.handleConnectivityChange);
+  }
 
 
-        )
-    }
+
+
+  render() {
+    return (
+      <Router>
+        {scenes()}
+      </Router>
+
+
+    )
+  }
 }
 
 
