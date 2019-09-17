@@ -280,5 +280,6 @@
   "again_send":"重新发送",
   "cancel_success":"取消成功",
   "rank":"级别",
-  "rank_success":"已报名成功"
+  "rank_success":"已报名成功",
+  "failed_rank":"报名失败！请重试"
 }
