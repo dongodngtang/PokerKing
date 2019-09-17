@@ -33,6 +33,7 @@ const Hot = ({onFetch, onPress, onShare}) => (
 
 const _renderItem = (item, index, onPress, onShare) => (
     <TouchableOpacity
+        activeOpacity={1}
         onPress={() => onPress && onPress(item)}
         key={`hot${index}`}
         style={styles.item}>
