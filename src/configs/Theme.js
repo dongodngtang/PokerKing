@@ -27,7 +27,7 @@ const navBarHeight = Platform.OS === "ios" ? width === 375 && height === 812 ? 8
  * 底部导航栏高度
  * @type {number}
  */
-const tabBarHeight = Platform.OS === "ios" ? width === 375 && height === 812 ? 84 : 50 : 50;
+const tabBarHeight = Platform.OS === "ios" ? width === 375 && height === 812 ? 84 : 55 : 55;
 
 export function realSize(size) {
     return size * width / 375;
