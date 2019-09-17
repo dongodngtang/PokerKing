@@ -17,10 +17,12 @@ export default class RankList extends Component {
     constructor(props){
         super(props)
         let {applies} = props.params;
-        applies = applies.map((x,i)=>{
-            x.key = i+''
-            return x
-        })
+        if(!isEmptyObject(applies)){
+            applies = applies.map((x,i)=>{
+                x.key = i+''
+                return x
+            })
+        }
         this.state = {
             applies
         }
