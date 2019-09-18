@@ -12,11 +12,22 @@ export default class Language {
     langObj = require('./zh.json')
 
     constructor(){
-        global.localLanguage = 'zh'
 
+      storage.load({
+        key: 'Language'
+      }).then(ret=>{
+        global.localLanguage = ret
+      }).catch(e=>{
+        global.localLanguage = 'zh'
+      })
     }
 
     switchLang(language){
+      global.storage.save({
+        key: 'Language',
+        data: language,
+      });
+
         if(language === 'en'){
             this.langObj = require('./en.json')
         }else if(language === 'zh-e'){
