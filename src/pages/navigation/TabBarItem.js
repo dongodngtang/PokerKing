@@ -37,7 +37,7 @@ export default class TabBarItem extends Component {
         let {focused, normalImage, selectedImage, iconStyle,redDot} = this.props;
         iconStyle = iconStyle || {}
         return (
-            <View>
+            <View style={{marginTop:5}}>
                 <Image
                     source={focused ? selectedImage : normalImage}
                     style={iconStyle}/>

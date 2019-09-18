@@ -182,7 +182,7 @@ export default class QueueProcess extends Component {
                     if (ret && ret.code === 0) {
                         this.applySuccess && this.applySuccess.toggle()
                     } else {
-                        showToast('报名失败！请重试')
+                        showToast(global.lang.t('failed_rank'))
                     }
 
                 }

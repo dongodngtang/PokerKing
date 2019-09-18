@@ -194,10 +194,10 @@ export default class Races extends Component {
                     flexWrap: 'wrap',
                     alignItems: 'center'
                 }}>
-                    {this._item(styles.item_view, Images.location_gary, styles.img_dy,
-                        global.lang.t('race_location'), () => {
-
-                        })}
+                    {/*{this._item(styles.item_view, Images.location_gary, styles.img_dy,*/}
+                        {/*global.lang.t('race_location'), () => {*/}
+                    
+                        {/*})}*/}
 
                     {this._item(styles.item_view, Images.event_intro, styles.img_dy1,
                         `${global.lang.t('race_intro')}`, () => {

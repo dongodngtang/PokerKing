@@ -65,6 +65,10 @@ export default class NoticesPage extends Component {
     }
 
     render() {
+        const {notices} = this.state;
+        if(isEmptyObject(notices)){
+            return <NotData/>
+        }
         const {applies, events, apply_unread_counts, event_unread_counts} = this.state.notices
         return (
             <View style={{flex: 1, backgroundColor: "#1A1B1F"}}>

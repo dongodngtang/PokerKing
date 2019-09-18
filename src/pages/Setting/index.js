@@ -77,7 +77,7 @@ export default class Setting extends Component {
             return 'English'
         } else if (lan === 'zh') {
             return '简体中文'
-        } else if (lan === 'zh-en') {
+        } else if (lan === 'zh-e') {
             return '繁体中文'
         } else {
             return ''

@@ -152,14 +152,16 @@ export default class Login extends Component {
                     }}>{global.lang.t('mobile_ver')}</Text>
                 </TouchableOpacity>
 
+                <View style={{flex:1}}/>
+
                 <TouchableOpacity
                     style={{
                         marginLeft: 17,
                         marginRight: 17,
                         flexDirection: 'row',
                         alignItems: 'center',
-                        position:'absolute',
-                        bottom:px2dp(150)
+                        marginBottom:Metrics.navBarHeight
+
                     }}
                     onPress={() => {
                         router.toProtocolPage()
