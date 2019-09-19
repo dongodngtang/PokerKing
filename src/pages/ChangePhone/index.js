@@ -55,7 +55,9 @@ export default class ChangePhone extends Component {
 const styles = StyleSheet.create({
     txtPhone: {
         fontSize: px2sp(32),
-        color: '#AAA'
+        color: '#AAA',
+        marginLeft:8,
+        marginRight:8
     },
     btnChange: {
         height: px2dp(100),
