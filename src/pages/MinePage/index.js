@@ -14,9 +14,6 @@ import {postNotifications, getUnread} from "../../services/accountDao";
 export default class MinePage extends Component {
 
 
-
-
-
     refresh = () => {
         needLogin(()=>{
             getUnread(getUserId())
@@ -25,6 +22,7 @@ export default class MinePage extends Component {
     }
 
     render() {
+
         const {profile,msgInfo} = this.props;
         let avatar = isEmptyObject(profile) ? Images.default_bg : isStrNull(profile.avatar) ? Images.default_bg : {uri: profile.avatar}
         let nick_name = isEmptyObject(profile) ? global.lang.t('login') : profile.nickname;

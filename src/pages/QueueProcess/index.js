@@ -1,13 +1,16 @@
 import React, {Component} from 'react';
 import {View, Text, SafeAreaView, Image, TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
-import {getLoginUser, isEmptyObject, isStrNull, logMsg, moneyFormat, showToast} from "../../utils/utils";
+import {
+    getLoginUser, getUserId, isEmptyObject, isStrNull, logMsg, moneyFormat, needLogin,
+    showToast
+} from "../../utils/utils";
 import styles from './index.style';
 import {Metrics, Images, px2dp} from "../../configs/Theme";
 import {getCashQueues, getCashQueuesNumber, postCancelApply, postScanApply} from '../../services/cashTableDao'
 import NotData from '../comm/NotData';
 import UltimateFlatList from '../../components/ultimate/UltimateFlatList';
-import { initLoginUser, shortUrl} from "../../services/accountDao";
+import {getUnread, initLoginUser, shortUrl} from "../../services/accountDao";
 import QRCodeModal from "./QRCodeModal";
 import PopAction from "../comm/PopAction";
 
@@ -137,6 +140,14 @@ export default class QueueProcess extends Component {
         )
     };
 
+
+    getUnread = () => {
+        needLogin(()=>{
+            getUnread(getUserId())
+        })
+
+    }
+
     clearSign = ()=>{
         this.state.signedList.forEach(x=>{
             x.signed = false
@@ -198,6 +209,7 @@ export default class QueueProcess extends Component {
         let body = {cash_queue_id, cash_game_id}
         postCancelApply(body, ret => {
             showToast(global.lang.t('cancel_success'))
+            this.getUnread();
             this._onRefresh()
         })
     }
@@ -243,6 +255,7 @@ export default class QueueProcess extends Component {
                     ref={ref => this.applySuccess = ref}>
                     <TouchableOpacity
                         onPress={() => {
+                            this.getUnread()
                             this.applySuccess && this.applySuccess.toggle()
                         }}
                         style={{
