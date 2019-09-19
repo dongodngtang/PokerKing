@@ -36,7 +36,6 @@ export default class Main extends Component {
     isFirst = true
 
     componentDidMount() {
-        logMsg("当前语言：",global.localLanguage)
         getTags(data => {
             this.setState({
                 tags: data.tags
