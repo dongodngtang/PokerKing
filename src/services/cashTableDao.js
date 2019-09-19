@@ -25,6 +25,6 @@ export function postCancelApply(body,resolve, reject) {
 
 export function postScanApply(body,resolve, reject) {
     postScan(api.scanapplystatus,body,ret=>{
-        resolve(ret.data)
+        resolve(ret)
     },reject)
 }
