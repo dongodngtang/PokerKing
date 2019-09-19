@@ -60,10 +60,10 @@ export default class MinePage extends Component {
                         global.lang.t('collection'), () => {
                             router.toCollections();
                         })}
-                    {this._item(styles.item_view, Images.puke_intro, styles.img_dy3,
-                        global.lang.t('about'), () => {
-                            router.toFoundBeauti();
-                        })}
+                    {/*{this._item(styles.item_view, Images.puke_intro, styles.img_dy3,*/}
+                        {/*global.lang.t('about'), () => {*/}
+                            {/*router.toFoundBeauti();*/}
+                        {/*})}*/}
                     {/*{this._item(styles.item_view, Images.vip_img, styles.img_dy4,*/}
                     {/*global.lang.t('vip_intro'), () => {*/}
 
