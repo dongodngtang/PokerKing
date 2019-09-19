@@ -3,7 +3,7 @@ import {View, Text, Button, TextInput, KeyboardAvoidingView, TouchableOpacity, I
 import {connect} from 'react-redux';
 import styles from './index.style';
 import {Images, Metrics, Colors, px2dp} from "../../configs/Theme";
-import {alertOrder, getAvatar, isStrNull, logMsg, showToast} from "../../utils/utils";
+import {alertOrder, getAvatar, isStrNull, logMsg, showToast, strNotNull} from "../../utils/utils";
 import {
     verify,
     postCode,
@@ -237,7 +237,7 @@ export default class PwdFound extends Component {
         let iphone = this.iphone
         let vcode = this.vcode
 
-        if (iphone.length > 1 && vcode.length > 1 && !isStrNull(ext)) {
+        if (iphone.length > 1 && vcode.length > 1 && !isStrNull(ext) && strNotNull(this.password)) {
 
             postResetPwd({
                 mobile: iphone,
