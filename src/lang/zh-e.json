@@ -282,6 +282,8 @@
   "rank":"级别",
   "rank_success":"已报名成功",
   "failed_rank":"报名失败！请重试",
-  "confirm_cancel":"確定取消等候"
+  "confirm_cancel":"確定取消等候",
+  "about_version":"關於版本",
+  "now_version":"當前版本"
 
 }
