@@ -7,7 +7,7 @@ import {
     getCollectionList, initLoginUser, postCancelCollect, postCollect,
     storageLoginUser
 } from "../../services/accountDao";
-import {alertOrder, isLogin, logMsg, showToast} from "../../utils/utils";
+import {alertOrder, isEmpty, isEmptyObject, isLogin, logMsg, showToast} from "../../utils/utils";
 import {Images, Metrics, px2dp} from "../../configs/Theme";
 import HotItem from "../Home/HotItem";
 import NotData from "../comm/NotData";
@@ -54,6 +54,9 @@ export default class Collections extends Component {
     }
 
     render() {
+        if(isEmptyObject(this.state.collects)){
+            return <NotData backgroundColor={'#1A1B1F'}/>
+        }
         return (
             <View style={{flex: 1, backgroundColor: "#1A1B1F"}}>
                 <SwipeListView
