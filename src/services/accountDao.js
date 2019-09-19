@@ -240,6 +240,11 @@ export function getUnread(user_id = getUserId(),resolve, reject) {
     get(api.unread(user_id), {}, ret => {
         dva.getDispatch()({type: 'MinePage/setUnread', params: ret.data})
         DeviceEventEmitter.emit('NoticeTab',ret.data)
+        if(ret && ret.data ){
+            if(ret.data.unread_count === 0){
+              JPushModule.setBadge(0,ret=>{})
+            }
+        }
         resolve && resolve(ret.data)
     }, reject)
 }
