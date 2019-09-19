@@ -17,6 +17,7 @@ export default class Language {
         key: 'Language'
       }).then(ret=>{
         global.localLanguage = ret
+        dva.getDispatch()({type:'common/switchLang',params:ret})
       }).catch(e=>{
         global.localLanguage = 'zh'
       })
