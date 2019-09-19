@@ -30,10 +30,6 @@ export default class Root extends Component {
     super(props);
     this.router = this.router || new RouterO();
     global.router = this.router;
-
-    this.lang = this.lang || new Language()
-    global.lang = this.lang
-
     initBaseUrl()
 
   }
@@ -62,7 +58,8 @@ export default class Root extends Component {
 
 
   componentDidMount() {
-
+    this.lang = this.lang || new Language()
+    global.lang = this.lang
     initLoginUser(() => {
       SplashScreen.hide();
     })
