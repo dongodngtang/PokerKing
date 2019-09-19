@@ -61,6 +61,7 @@ export default class NoticesPage extends Component {
     intoList = (type) => {
         postNotifications({type: type}, data => {
             logMsg("读取了吗", type,data)
+            this.refresh()
             getUnread(getUserId())
         })
     }
