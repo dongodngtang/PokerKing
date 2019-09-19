@@ -31,7 +31,8 @@ export default class Root extends Component {
     this.router = this.router || new RouterO();
     global.router = this.router;
     initBaseUrl()
-
+    this.lang = this.lang || new Language()
+    global.lang = this.lang
   }
 
   componentWillMount() {
@@ -56,10 +57,8 @@ export default class Root extends Component {
   }
 
 
-
   componentDidMount() {
-    this.lang = this.lang || new Language()
-    global.lang = this.lang
+    this.lang && this.lang.switchLang(global.localLanguage)
     initLoginUser(() => {
       SplashScreen.hide();
     })
