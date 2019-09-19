@@ -96,7 +96,7 @@ const FirstCard = ({nextTo}) => (
             <View style={styles.tipDot}/>
             <Text style={styles.txtTip}>{global.lang.t('noChange')}</Text>
         </View>
-        <View style={[styles.rowItem, {marginTop: px2dp(14)}]}>
+        <View style={[styles.rowItem, {marginTop: px2dp(14),marginBottom:px2dp(5)}]}>
             <View style={styles.tipDot}/>
             <Text style={styles.txtTip}>{global.lang.t('useNewTle')}</Text>
         </View>
@@ -389,7 +389,8 @@ class InputCodeCard extends Component {
                     this.counting()
                 }}
                 style={{
-                    height: px2dp(68), width: px2dp(240), backgroundColor: '#998E72',
+                    backgroundColor: '#998E72',paddingTop:px2dp(14),
+                    paddingBottom:px2dp(14),paddingLeft:px2dp(48),paddingRight:px2dp(48),
                     alignItems: 'center', justifyContent: 'center', borderRadius: px2dp(4)
                 }}>
                 <Text style={{
@@ -455,7 +456,8 @@ const styles = StyleSheet.create({
     rowItem: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingLeft: px2dp(30)
+        paddingLeft: px2dp(30),
+        marginRight:px2dp(8)
     },
     txtTip: {
         color: Colors.txt_666,

@@ -9,6 +9,7 @@ export default class NotData extends Component {
     render() {
         return (
             <TouchableOpacity
+                activeOpacity={1}
                 onPress={()=>{
                     this.props.onPress && this.props.onPress()
                 }}

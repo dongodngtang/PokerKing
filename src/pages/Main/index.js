@@ -36,7 +36,6 @@ export default class Main extends Component {
     isFirst = true
 
     componentDidMount() {
-
         getTags(data => {
             this.setState({
                 tags: data.tags
