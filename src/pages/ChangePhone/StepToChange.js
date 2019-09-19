@@ -389,7 +389,8 @@ class InputCodeCard extends Component {
                     this.counting()
                 }}
                 style={{
-                    height: px2dp(68), width: px2dp(240), backgroundColor: '#998E72',
+                    backgroundColor: '#998E72',paddingTop:px2dp(14),
+                    paddingBottom:px2dp(14),paddingLeft:px2dp(48),paddingRight:px2dp(48),
                     alignItems: 'center', justifyContent: 'center', borderRadius: px2dp(4)
                 }}>
                 <Text style={{
