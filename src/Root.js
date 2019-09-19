@@ -58,7 +58,6 @@ export default class Root extends Component {
 
 
   componentDidMount() {
-    this.lang && this.lang.switchLang(global.localLanguage)
     initLoginUser(() => {
       SplashScreen.hide();
     })

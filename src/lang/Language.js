@@ -17,6 +17,11 @@ export default class Language {
         key: 'Language'
       }).then(ret=>{
         global.localLanguage = ret
+       let timeout = setTimeout(()=>{
+          this.switchLang(ret)
+         clearTimeout(timeout)
+        },500)
+
       }).catch(e=>{
         global.localLanguage = 'zh'
       })
