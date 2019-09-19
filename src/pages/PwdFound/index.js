@@ -3,7 +3,7 @@ import {View, Text, Button, TextInput, KeyboardAvoidingView, TouchableOpacity, I
 import {connect} from 'react-redux';
 import styles from './index.style';
 import {Images, Metrics, Colors, px2dp} from "../../configs/Theme";
-import {alertOrder, getAvatar, isStrNull, logMsg, showToast} from "../../utils/utils";
+import {alertOrder, getAvatar, isStrNull, logMsg, showToast, strNotNull} from "../../utils/utils";
 import {
     verify,
     postCode,
@@ -237,18 +237,21 @@ export default class PwdFound extends Component {
         let iphone = this.iphone
         let vcode = this.vcode
 
-        if (iphone.length > 1 && vcode.length > 1 && !isStrNull(ext)) {
-
-            postResetPwd({
-                mobile: iphone,
-                country_code: ext,
-                type: 'mobile',
-                vcode: vcode,
-                password:md5.hex_md5(this.password)
-            }, res => {
-                showToast(global.lang.t('set_success'))
-                router.pop()
-            })
+        if (iphone.length > 1 && vcode.length > 1 && !isStrNull(ext) && strNotNull(this.password)) {
+            if(this.password.length > 5){
+                postResetPwd({
+                    mobile: iphone,
+                    country_code: ext,
+                    type: 'mobile',
+                    vcode: vcode,
+                    password:md5.hex_md5(this.password)
+                }, res => {
+                    showToast(global.lang.t('set_success'))
+                    router.pop()
+                })
+            }else{
+                showToast(global.lang.t('pwd_length'));
+            }
         }else {
             showToast(global.lang.t('fillWhole'))
         }
