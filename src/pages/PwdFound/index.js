@@ -238,17 +238,20 @@ export default class PwdFound extends Component {
         let vcode = this.vcode
 
         if (iphone.length > 1 && vcode.length > 1 && !isStrNull(ext) && strNotNull(this.password)) {
-
-            postResetPwd({
-                mobile: iphone,
-                country_code: ext,
-                type: 'mobile',
-                vcode: vcode,
-                password:md5.hex_md5(this.password)
-            }, res => {
-                showToast(global.lang.t('set_success'))
-                router.pop()
-            })
+            if(this.password.length > 5){
+                postResetPwd({
+                    mobile: iphone,
+                    country_code: ext,
+                    type: 'mobile',
+                    vcode: vcode,
+                    password:md5.hex_md5(this.password)
+                }, res => {
+                    showToast(global.lang.t('set_success'))
+                    router.pop()
+                })
+            }else{
+                showToast(global.lang.t('pwd_length'));
+            }
         }else {
             showToast(global.lang.t('fillWhole'))
         }
