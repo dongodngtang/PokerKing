@@ -71,16 +71,21 @@ export default class Main extends Component {
 
     openNotice = (e) => {
         logMsg('点击通知', e)
-        JPushModule.setBadge(0,ret=>{})
-        if (isLogin()) {
-            OnSafePress(() => {
-                router.toNotices(() => {
-                    getUnread(getUserId())
-                })
-            })
+       try{
+         JPushModule.setBadge(0,ret=>{})
+         if (isLogin()) {
+           OnSafePress(() => {
+             router.toNotices(() => {
+               getUnread(getUserId())
+             })
+           })
 
            JPushModule.clearAllNotifications()
-        }
+         }
+       }catch (e) {
+
+       }
+
     }
 
     receiveNotice = (msg) => {
