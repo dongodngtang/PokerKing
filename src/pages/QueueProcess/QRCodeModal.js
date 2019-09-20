@@ -25,11 +25,11 @@ export default class QRCodeModal extends PureComponent {
 
     toggle = (vgDecodeResult = undefined) => {
         logMsg('扫码数据', vgDecodeResult)
-        if (strNotNull(vgDecodeResult)){
+        if (strNotNull(vgDecodeResult)) {
 
             this.setState({
                 visible: true,
-                vgDecodeResult:vgDecodeResult,
+                vgDecodeResult: vgDecodeResult,
                 countTime: 60
             }, () => {
                 if (this.state.visible) {
@@ -38,11 +38,11 @@ export default class QRCodeModal extends PureComponent {
                     this.intervalTimer && clearInterval(this.intervalTimer);
                 }
             })
-        }else{
+        } else {
             this.props.closeCall && this.props.closeCall()
             this.intervalTimer && clearInterval(this.intervalTimer);
             this.setState({
-                visible:false
+                visible: false
             })
         }
 
@@ -71,10 +71,14 @@ export default class QRCodeModal extends PureComponent {
             }}>
             <TouchableOpacity
                 activeOpacity={1}
-                onPress={()=>this.toggle()}
+                onPress={() => this.toggle()}
                 style={styles.container}>
 
-                <View style={styles.card}>
+                <TouchableOpacity
+                    activeOpacity={1}
+                    style={styles.card}
+                    onPress={() => {
+                    }}>
 
                     <Text style={styles.counting}>{`${this.state.countTime}s`}</Text>
 
@@ -84,7 +88,7 @@ export default class QRCodeModal extends PureComponent {
                     />
 
                     <Text style={styles.txt}>{`${global.lang.t('QRcode1')}\n${global.lang.t('QRcode2')}`}</Text>
-                </View>
+                </TouchableOpacity>
 
 
             </TouchableOpacity>
