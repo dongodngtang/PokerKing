@@ -131,7 +131,7 @@ export const scenes = () => {
                    rightTitle: global.lang.t('home_language'),
                    left_img: Images.close,
                    img_size: {height: 16, width: 16}
-                   // title: 'PokerKingLive'
+                   // title: 'Kings Live'
                })}/>
         <Scene key="HotNewsList"
                component={HotNewsList}

@@ -65,14 +65,14 @@ code-push release-react pokekingAndroid android  -d Production
 └───────┴──────────────┴─────────────┴───────────┴──────────────────────────┴──────────────────────┘
 
 
-"PokerKingLive" is the Texas Hold'em event information platform, which can view news and events information at home and abroad, as well as view the offline queuing process to provide more convenient services for Texas Hold'em fans.
+"Kings Live" is the Texas Hold'em event information platform, which can view news and events information at home and abroad, as well as view the offline queuing process to provide more convenient services for Texas Hold'em fans.
 
 Deco Race: Professional Texas Hold'em events have everything you need, and the structure of the event is clear.
 
 Game table: The offline queue registration process is mastered by one hand, and the number of queues is viewed in real time.
 
 Hot News: Check out Texas Hold'em Madden News at any time
-“PokerKingLive” 是德州扑克赛事资讯平台，可以查看到国内外的新闻和赛事信息，同时还可以查看线下比赛报名排队进程，为德州扑克爱好者提供更便捷的服务。
+“Kings Live” 是德州扑克赛事资讯平台，可以查看到国内外的新闻和赛事信息，同时还可以查看线下比赛报名排队进程，为德州扑克爱好者提供更便捷的服务。
 
 德扑赛事：专业德州扑克赛事应有尽有，赛事结构信息清晰
 

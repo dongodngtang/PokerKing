@@ -57,8 +57,8 @@ export default class Setting extends Component {
 
     share = () => {
         let param = {
-            shareTitle: 'PokerKingLive',
-            shareText: 'PokerKingLive',
+            shareTitle: 'Kings Live',
+            shareText: 'Kings Live',
             shareImage: 'http://cdn-upyun.deshpro.com/deshpro_public/pokerking2.png',
             shareLink: `${shareHost()}/loadApp`
         };
