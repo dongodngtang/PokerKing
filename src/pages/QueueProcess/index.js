@@ -1,13 +1,16 @@
 import React, {Component} from 'react';
 import {View, Text, SafeAreaView, Image, TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
-import {getLoginUser, isEmptyObject, isStrNull, logMsg, moneyFormat, showToast} from "../../utils/utils";
+import {
+    getLoginUser, getUserId, isEmptyObject, isStrNull, logMsg, moneyFormat, needLogin,
+    showToast
+} from "../../utils/utils";
 import styles from './index.style';
 import {Metrics, Images, px2dp} from "../../configs/Theme";
 import {getCashQueues, getCashQueuesNumber, postCancelApply, postScanApply} from '../../services/cashTableDao'
 import NotData from '../comm/NotData';
 import UltimateFlatList from '../../components/ultimate/UltimateFlatList';
-import { initLoginUser, shortUrl} from "../../services/accountDao";
+import {getUnread, initLoginUser, shortUrl} from "../../services/accountDao";
 import QRCodeModal from "./QRCodeModal";
 import PopAction from "../comm/PopAction";
 
@@ -66,11 +69,11 @@ export default class QueueProcess extends Component {
                     </View>
                     <View style={[styles.left_bottom_view, {marginTop: 4}]}>
                         <Text style={styles.table_numbers_text}>{`${global.lang.t('table_number')}`}</Text>
-                        <Text style={styles.table_numbers_text}>{table_numbers}</Text>
+                        <Text style={[styles.table_numbers_text,{marginLeft:5,fontWeight:'bold'}]}>{table_numbers}</Text>
                     </View>
                     <View style={[styles.left_bottom_view, {marginTop: 6}]}>
                         <Text style={styles.table_numbers_text}>{`${global.lang.t('waiting_number')}`}</Text>
-                        <Text style={styles.table_numbers_text}>{cash_queue_members_count}</Text>
+                        <Text style={[styles.table_numbers_text,{marginLeft:5,fontWeight:'bold'}]}>{cash_queue_members_count}</Text>
                     </View>
                 </View>
                 <View style={styles.right_view}>
@@ -116,7 +119,7 @@ export default class QueueProcess extends Component {
                                 height: px2dp(88), marginHorizontal: px2dp(34),
                                 backgroundColor: '#303236', alignItems: 'center', justifyContent: 'center'
                             }}>
-                            <Text style={{fontSize: 18, color: '#FFE9AD'}}>确定取消等候</Text>
+                            <Text style={{fontSize: 18, color: '#FFE9AD'}}>{global.lang.t('confirm_cancel')}</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity
@@ -128,7 +131,7 @@ export default class QueueProcess extends Component {
                                 borderWidth: px2dp(1), borderColor: '#303236',
                                 alignItems: 'center', justifyContent: 'center'
                             }}>
-                            <Text style={{fontSize: 18, color: '#303236'}}>取消</Text>
+                            <Text style={{fontSize: 18, color: '#303236'}}>{global.lang.t('cancel')}</Text>
                         </TouchableOpacity>
                     </View>
 
@@ -136,6 +139,14 @@ export default class QueueProcess extends Component {
             </View>
         )
     };
+
+
+    getUnread = () => {
+        needLogin(()=>{
+            getUnread(getUserId())
+        })
+
+    }
 
     clearSign = ()=>{
         this.state.signedList.forEach(x=>{
@@ -198,6 +209,7 @@ export default class QueueProcess extends Component {
         let body = {cash_queue_id, cash_game_id}
         postCancelApply(body, ret => {
             showToast(global.lang.t('cancel_success'))
+            this.getUnread();
             this._onRefresh()
         })
     }
@@ -243,16 +255,23 @@ export default class QueueProcess extends Component {
                     ref={ref => this.applySuccess = ref}>
                     <TouchableOpacity
                         onPress={() => {
+                            this.getUnread()
                             this.applySuccess && this.applySuccess.toggle()
                         }}
                         style={{
-                            flex: 1,
                             alignItems: 'center',
                             justifyContent: 'center',
-                            position: 'absolute'
+                            marginTop:0,
+                            marginBottom:0,
+                            marginLeft:0,
+                            marginRight:0,
+                            width:Metrics.screenWidth,
+                            height:Metrics.screenHeight
                         }}>
                         <Text style={{color: '#FFE9AD', fontSize: 18, marginHorizontal: px2dp(34)}}
-                        >{`${global.lang.t('rank')}${this.state.applySuccessBlind}\n${global.lang.t('rank_success')}!`}</Text>
+                        >{`${global.lang.t('rank')}${this.state.applySuccessBlind}`}</Text>
+                        <Text style={{color: '#FFE9AD', fontSize: 18, marginHorizontal: px2dp(34)}}
+                        >{`${global.lang.t('rank_success')}!`}</Text>
 
                     </TouchableOpacity>
 

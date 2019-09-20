@@ -268,7 +268,7 @@
   "notice3":"位在排队等候！",
   "notice4":"请及时赶往现场办理入场手续！",
   "QRcode1":"请使用二维码到前台扫",
-  "QRcode2":"描确认等候申请",
+  "QRcode2":"扫描确认等候申请",
   "off":"已关闭",
   "open":"已打开",
   "rank_prompt":"提示：我们将会在等候人数最后5位、10位时，向您发送推送提醒",
@@ -281,7 +281,10 @@
   "cancel_success":"取消成功",
   "rank":"级别",
   "rank_success":"已报名成功",
-  "failed_rank":"报名失败！请重试"
+  "failed_rank":"报名失败！请重试",
+  "confirm_cancel":"确定取消等候",
+  "about_version":"关于版本",
+  "now_version":"当前版本"
 }
 
 

@@ -20,15 +20,16 @@ export default class NoticesPage extends Component {
 
 
     componentDidMount() {
+        this.refresh();
+    }
+
+    refresh = () => {
         this.props.navigation.setParams({
             onLeft: () => {
                 router.pop()
             }
         });
-        this.refresh();
-    }
 
-    refresh = () => {
         getNotices(data => {
             logMsg("notices", data)
             this.setState({
@@ -60,6 +61,7 @@ export default class NoticesPage extends Component {
     intoList = (type) => {
         postNotifications({type: type}, data => {
             logMsg("读取了吗", type,data)
+            this.refresh()
             getUnread(getUserId())
         })
     }
@@ -67,7 +69,7 @@ export default class NoticesPage extends Component {
     render() {
         const {notices} = this.state;
         if(isEmptyObject(notices)){
-            return <NotData/>
+            return <NotData backgroundColor={'#1A1B1F'}/>
         }
         const {applies, events, apply_unread_counts, event_unread_counts} = this.state.notices
         return (

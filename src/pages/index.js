@@ -177,7 +177,7 @@ export const scenes = () => {
         <Scene key="SwitchApi"
                component={SwitchApi}
                {...TopNav({
-                   title: '关于版本'
+                   title: global.lang.t('about_version')
                })}/>
         <Scene key="QueueList"
                component={QueueList}

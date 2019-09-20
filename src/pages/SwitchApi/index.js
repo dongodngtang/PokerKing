@@ -31,7 +31,7 @@ export default class SwitchApi extends Component {
               showToast('已选测试环境，请退出重启')
               router.pop()
           }}/>
-          <Text style={{color: '#AAA',fontSize: 17,marginTop:10,alignSelf:'center'}}>当前版本：V{VERSION}</Text>
+          <Text style={{color: '#AAA',fontSize: 17,marginTop:10,alignSelf:'center'}}>{global.lang.t('now_version')}：V{VERSION}</Text>
       </View>
     )
   }
