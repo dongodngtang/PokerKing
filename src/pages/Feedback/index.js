@@ -7,6 +7,7 @@ import {logMsg, showToast, strNotNull, isStrNull, fileName} from "../../utils/ut
 import ImagePicker from 'react-native-image-crop-picker';
 import ImageLoad from "../../components/ImageLoad";
 import {Images} from "../../configs/Theme";
+import Permissions from "react-native-permissions";
 
 const picker = {
     compressImageMaxWidth: 800,
@@ -167,6 +168,13 @@ export default class Feedback extends Component {
                                 }
                             })
                             if (count < 3) {
+
+                                Permissions.request('mediaLibrary').then(status => {
+                                    if(status !== 'authorized' || status !== 'undetermined') {
+                                        showToast(global.lang.t('photo_message'))
+                                    }
+
+                                })
                                 ImagePicker.openPicker(picker).then(image => {
                                     images.push(image.path)
                                     this.setState({
@@ -176,46 +184,47 @@ export default class Feedback extends Component {
                                 }).catch(e => {
                                     // Alert.alert(e.message ? e.message : e);
                                 });
-                            } else {
-                                showToast(global.lang.t('upload_up'))
                             }
+                        } else {
+                            showToast(global.lang.t('upload_up'))
+                        }
 
                         }}
-                        style={styles.browse_documents_btn}>
-                        <Text style={styles.browse_documents}>{global.lang.t('browse_documents')}</Text>
-                    </TouchableOpacity>
-
-                    <View style={{height: 80, flexDirection: 'row', alignItems: 'center', marginTop: 5}}>
-                        {images.length > 0 && images.map((img, index) => {
-                            return <View style={{marginRight: 10}}
-                                         key={`img_${index}`}>
-                                <TouchableOpacity activeOpacity={1}
-                                                  style={{position: 'absolute', right: -5, top: -5, zIndex: 999}}
-                                                  onPress={() => {
-                                                      delete images[index];
-
-                                                      this.setState({
-                                                          images
-                                                      })
-                                                  }}>
-                                    <Image style={{width: 22, height: 22}} source={Images.delete_img}/>
-                                </TouchableOpacity>
-                                <ImageLoad style={{height: 72, width: 72}}
-                                           source={{uri: this.localFilePath(img)}}/>
-
-                            </View>
-                        })}
-
-
-                    </View>
-                </View>
-
-                <TouchableOpacity style={styles.bottom_btn} onPress={() => {
-                    this._check()
-                }}>
-                    <Text style={[styles.browse_documents, {fontSize: 14}]}>{global.lang.t("send_feedback")}</Text>
+                    style={styles.browse_documents_btn}>
+                    <Text style={styles.browse_documents}>{global.lang.t('browse_documents')}</Text>
                 </TouchableOpacity>
-            </ScrollView>
-        )
+
+                <View style={{height: 80, flexDirection: 'row', alignItems: 'center', marginTop: 5}}>
+                    {images.length > 0 && images.map((img, index) => {
+                        return <View style={{marginRight: 10}}
+                                     key={`img_${index}`}>
+                            <TouchableOpacity activeOpacity={1}
+                                              style={{position: 'absolute', right: -5, top: -5, zIndex: 999}}
+                                              onPress={() => {
+                                                  delete images[index];
+
+                                                  this.setState({
+                                                      images
+                                                  })
+                                              }}>
+                                <Image style={{width: 22, height: 22}} source={Images.delete_img}/>
+                            </TouchableOpacity>
+                            <ImageLoad style={{height: 72, width: 72}}
+                                       source={{uri: this.localFilePath(img)}}/>
+
+                        </View>
+                    })}
+
+
+                </View>
+            </View>
+
+        <TouchableOpacity style={styles.bottom_btn} onPress={() => {
+            this._check()
+        }}>
+            <Text style={[styles.browse_documents, {fontSize: 14}]}>{global.lang.t("send_feedback")}</Text>
+        </TouchableOpacity>
+    </ScrollView>
+    )
     }
 }
