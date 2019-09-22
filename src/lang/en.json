@@ -285,8 +285,8 @@
   "confirm_cancel":"Cancel Waiting",
   "about_version":"About Version",
   "now_version":"Current version",
-  "alert_message":"通知权限没有打开，将获取不到推送消息",
-  "photo_message":"访问相册权限被关闭，请在设置中打开相册权限",
-  "again_exit":"再按一次退出应用",
+  "alert_message":"Notification permission is Closed, no push message will be obtained",
+  "photo_message":"Album permissions is Closed, please open album permissions in settings",
+  "again_exit":"Press again to exit the app",
   "mobile_zhuce":"This number has already been used"
 }
