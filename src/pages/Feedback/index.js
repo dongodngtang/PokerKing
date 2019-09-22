@@ -184,11 +184,9 @@ export default class Feedback extends Component {
                                 }).catch(e => {
                                     // Alert.alert(e.message ? e.message : e);
                                 });
+                            }else {
+                                showToast(global.lang.t('upload_up'))
                             }
-                        } else {
-                            showToast(global.lang.t('upload_up'))
-                        }
-
                         }}
                     style={styles.browse_documents_btn}>
                     <Text style={styles.browse_documents}>{global.lang.t('browse_documents')}</Text>
