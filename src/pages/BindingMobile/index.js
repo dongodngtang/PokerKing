@@ -172,7 +172,7 @@ export default class BindingMobile extends Component {
 
                                     if (ret && ret.exist && ret.exist === 1) {
                                         // 已存在
-                                        showToast('手机号已被注册')
+                                        showToast(global.lang.t('mobile_zhuce'))
                                     } else {
                                         postCode({
                                             mobile: iphone,

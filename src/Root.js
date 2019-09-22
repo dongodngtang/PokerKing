@@ -99,7 +99,7 @@ export default class Root extends Component {
         return false
       }
       this.lastBackPressed = Date.now();//按第一次的时候，记录时间
-      showToast('再按一次退出应用');//显示提示信息
+      showToast(global.lang.t("again_exit"));//显示提示信息
       return true;
 
     }

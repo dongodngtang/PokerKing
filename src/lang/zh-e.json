@@ -284,6 +284,10 @@
   "failed_rank":"报名失败！请重试",
   "confirm_cancel":"確定取消等候",
   "about_version":"關於版本",
-  "now_version":"當前版本"
+  "now_version":"當前版本",
+  "alert_message":"通知权限没有打开，将获取不到推送消息",
+  "photo_message":"访问相册权限被关闭，请在设置中打开相册权限",
+  "again_exit":"再按一次退出应用",
+  "mobile_zhuce":"手機號已被註冊"
 
 }

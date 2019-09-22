@@ -62,7 +62,7 @@ export default class Main extends Component {
                 Permissions.request('notification').then(status=>{
                     logMsg('申请通知权限',status)
                     if(status !== 'authorized'){
-                        showToast('通知权限没有打开，将获取不到推送消息')
+                        showToast(global.lang.t('alert_message'))
                     }
 
                 })
