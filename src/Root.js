@@ -51,7 +51,7 @@ export default class Root extends Component {
     //监听第一次改变后, 可以取消监听.或者在componentUnmount中取消监听
     // NetInfo.removeEventListener('change', this.handleConnectivityChange);
     if(!isConnected){
-      alert('当前网络不可用')
+      alert('请在设置中允许App使用网络或检查手机网络是否打开')
     }
 
   }

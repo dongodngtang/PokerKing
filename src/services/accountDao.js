@@ -28,6 +28,8 @@ export function storageLoginUser(loginUser) {
     } else {
         JPushModule.deleteAlias(ret=>{})
         initCollects(null)
+        //推出登录时，消息清除
+        dva.getDispatch()({type: 'MinePage/setUnread', params: {}})
     }
 
     getAppVersion()
