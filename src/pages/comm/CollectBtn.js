@@ -5,7 +5,7 @@
  */
 
 import React, {Component} from "react";
-import {View, StyleSheet, Text, Image, TouchableOpacity} from 'react-native'
+import {View, StyleSheet, DeviceEventEmitter, Image, TouchableOpacity} from 'react-native'
 import {isLogin, logMsg, showToast} from "../../utils/utils";
 import {Images, px2dp} from "../../configs/Theme";
 import {postCancelCollect, postCollect} from "../../services/accountDao";
@@ -25,8 +25,7 @@ export const initCollects = (collects) => {
             collectEvents.add(item.main_event.id)
         }
     })
-    dva.getDispatch()({type: 'MinePage/setCollections', params: collects})
-
+    DeviceEventEmitter.emit('SetCollections')
 }
 
 export default class CollectBtn extends Component {
@@ -35,24 +34,18 @@ export default class CollectBtn extends Component {
         show_collect: false
     }
 
-
-    componentDidMount() {
-        this.mount = true
+    componentDidMount(){
+        this.refresh()
+        this.subscription = DeviceEventEmitter.addListener('SetCollections',this.refresh)
     }
 
-    componentWillUnmount() {
-        this.mount = false
-    }
-
-    handleChange = () => {
-        if (this.mount) {
-            this.refresh()
-        }
-
+    componentWillUnmount(){
+        DeviceEventEmitter.removeSubscription(this.subscription)
     }
 
     refresh = () => {
         const {item, type} = this.props
+        logMsg('上课地方',item,type,collectInfos)
         let show_collect = false
         if (type === 'info') {
             show_collect = collectInfos.has(item.id)
@@ -64,12 +57,8 @@ export default class CollectBtn extends Component {
         })
     }
 
-    componentDidMount() {
-        this.refresh()
-        dva.getStore().subscribe(this.handleChange)
-    }
-
     render() {
+
         const {item, type, btnStyle} = this.props
         return <TouchableOpacity onPress={() => {
             if (isLogin()) {
@@ -81,7 +70,7 @@ export default class CollectBtn extends Component {
                             show_collect: false
                         })
                     }, err => {
-                        showToast(global.lang.t('err_problem'))
+                        // showToast(global.lang.t('err_problem'))
                     })
                 } else {
                     postCollect(body, data => {
@@ -90,7 +79,7 @@ export default class CollectBtn extends Component {
                             show_collect: true
                         })
                     }, err => {
-                        showToast(global.lang.t('err_problem'))
+                        // showToast(global.lang.t('err_problem'))
                     })
                 }
 

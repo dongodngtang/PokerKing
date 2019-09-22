@@ -99,6 +99,7 @@ export default class InstantList extends Component {
     }
 
     getTime = (created_at, type) => {
+        let month = unix_format(created_at,'MM')
         let race_start_time = global.localLanguage === 'en' ? `${global.lang.t(`month${month}`)}` + unix_format(created_at, type) :
             unix_format(created_at, `YYYY${global.lang.t('year')}MM${global.lang.t('month')}DD${global.lang.t('day2')}`);
         return race_start_time;
