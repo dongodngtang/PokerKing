@@ -7,6 +7,7 @@ import {Images} from "../../configs/Theme";
 import {isStrNull, getCurrentDate, isEmptyObject, getAvatar, logMsg, showToast} from "../../utils/utils";
 import {ActionSheet} from '../../components';
 import {putProfile, uploadAvatar} from "../../services/accountDao";
+import Permissions from "react-native-permissions";
 
 const picker = {
     width: 500,
@@ -118,6 +119,7 @@ export default class ModifyData extends Component {
     selectPhotoTapped = () => {
         this.ActionSheet.show()
     };
+
 
     render() {
         const {avatar, genderTxt, nickname, email} = this.state
@@ -232,23 +234,52 @@ export default class ModifyData extends Component {
     handlePress = (i) => {
         switch (i) {
             case 1:
-                ImagePicker.openCamera(picker).then(image => {
-                   this.setState({
-                       avatar:{uri:image.path}
-                   })
-                }).catch(e => {
-                    // Alert.alert(e.message ? e.message : e);
-                });
+                Permissions.check('camera').then(ret=>{
+                    logMsg('通知权限',ret)
+                    if(ret === 'authorized' || ret === 'undetermined'){
+                        ImagePicker.openCamera(picker).then(image => {
+                            this.setState({
+                                avatar:{uri:image.path}
+                            })
+                        }).catch(e => {
+                            // Alert.alert(e.message ? e.message : e);
+                        });
+                    }else {
+                        Permissions.request('camera').then(status=>{
+                            logMsg('申请通知权限',status)
+                            if(status !== 'authorized'){
+                                showToast('通知权限没有打开，将获取不到推送消息')
+                            }
+
+                        })
+                    }
+                })
+
                 break;
-            case 2: {
-                ImagePicker.openPicker(picker).then(image => {
-                    this.setState({
-                        avatar:{uri:image.path}
-                    })
-                }).catch(e => {
-                    // Alert.alert(e.message ? e.message : e);
-                });
-            }
+            case 2:
+                Permissions.check('camera').then(ret=>{
+                    logMsg('通知权限',ret)
+                    if(ret === 'authorized' || ret === 'undetermined'){
+                        ImagePicker.openPicker(picker).then(image => {
+                            this.setState({
+                                avatar:{uri:image.path}
+                            })
+                        }).catch(e => {
+                            // Alert.alert(e.message ? e.message : e);
+                        });
+                    }else {
+                        Permissions.request('camera').then(status=>{
+                            logMsg('申请通知权限',status)
+                            if(status !== 'authorized'){
+                                showToast('通知权限没有打开，将获取不到推送消息')
+                            }
+
+                        })
+                    }
+                })
+
+
+                break;
         }
     };
 }

@@ -18,7 +18,7 @@ import {Images, px2dp, px2sp} from "../../configs/Theme";
 import More from "./More";
 import ShareToast from "../comm/ShareToast";
 import JPushModule from 'jpush-react-native'
-
+import Permissions from 'react-native-permissions';
 
 @connect(({Main, Home}) => ({
     ...Main, ...Home
@@ -36,6 +36,7 @@ export default class Main extends Component {
     isFirst = true
 
     componentDidMount() {
+
         getTags(data => {
             this.setState({
                 tags: data.tags
@@ -54,6 +55,19 @@ export default class Main extends Component {
 
             JPushModule.addOpenNotificationLaunchAppListener(this.openNotice)
         }
+
+        Permissions.check('notification').then(ret=>{
+            logMsg('通知权限',ret)
+            if(ret !== 'authorized' && !__DEV__){
+                Permissions.request('notification').then(status=>{
+                    logMsg('申请通知权限',status)
+                    if(status !== 'authorized'){
+                        showToast('通知权限没有打开，将获取不到推送消息')
+                    }
+
+                })
+            }
+        })
 
     }
 

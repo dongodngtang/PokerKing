@@ -41,8 +41,9 @@ export default class Root extends Component {
       console.log('Status:' + status);
       this.handleConnectivityChange(status)
     });
+
     //监听网络状态改变
-    NetInfo.addEventListener('connectionChange', this.handleConnectivityChange);
+    NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectivityChange);
 
   }
 
@@ -51,6 +52,7 @@ export default class Root extends Component {
     //监听第一次改变后, 可以取消监听.或者在componentUnmount中取消监听
     // NetInfo.removeEventListener('change', this.handleConnectivityChange);
     if(!isConnected){
+
       alert('请在设置中允许App使用网络或检查手机网络是否打开')
     }
 
@@ -81,7 +83,6 @@ export default class Root extends Component {
       updateDialog: false,
       installMode: codePush.InstallMode.ON_NEXT_RESUME
     })
-
   }
 
   onBackAndroid = () => {
@@ -106,7 +107,7 @@ export default class Root extends Component {
 
   componentWillUnmount() {
     console.log("componentWillUnMount");
-    NetInfo.removeEventListener('change', this.handleConnectivityChange);
+    NetInfo.isConnected.removeEventListener('connectionChange', this.handleConnectivityChange);
   }
 
 

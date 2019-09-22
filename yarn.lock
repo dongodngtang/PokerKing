@@ -4791,6 +4791,11 @@ react-native-pdf@^5.0.11:
     crypto-js "^3.1.9-1"
     prop-types "^15.5.10"
 
+react-native-permissions@1.1.1:
+  version "1.1.1"
+  resolved "https://registry.npm.taobao.org/react-native-permissions/download/react-native-permissions-1.1.1.tgz#4876004681ff8556454613d85249b01baff9b35b"
+  integrity sha1-SHYARoH/hVZFRhPYUkmwG6/5s1s=
+
 react-native-picker@^4.3.7:
   version "4.3.7"
   resolved "http://registry.npm.taobao.org/react-native-picker/download/react-native-picker-4.3.7.tgz#9842e8c62ff0d8b676e9514d9f9172413c0518a8"
