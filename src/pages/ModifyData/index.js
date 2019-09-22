@@ -249,7 +249,7 @@ export default class ModifyData extends Component {
                         Permissions.request('camera').then(status=>{
                             logMsg('申请照相权限',status)
                             if(status !== 'authorized'){
-                                showToast(global.lang.t('alert_message'))
+                                // showToast(global.lang.t('alert_message'))
                             }
 
                         })
@@ -258,7 +258,7 @@ export default class ModifyData extends Component {
 
                 break;
             case 2:
-                Permissions.check('camera').then(ret=>{
+                Permissions.check('mediaLibrary').then(ret=>{
                     logMsg('通知权限',ret)
                     if(ret === 'authorized' || ret === 'undetermined'){
                         ImagePicker.openPicker(picker).then(image => {
@@ -270,10 +270,10 @@ export default class ModifyData extends Component {
                         });
                     }else {
                         showToast(global.lang.t('photo_message'))
-                        Permissions.request('camera').then(status=>{
+                        Permissions.request('mediaLibrary').then(status=>{
                             logMsg('申请通知权限',status)
                             if(status !== 'authorized'){
-                                showToast(global.lang.t('alert_message'))
+                                // showToast(global.lang.t('alert_message'))
                             }
 
                         })
