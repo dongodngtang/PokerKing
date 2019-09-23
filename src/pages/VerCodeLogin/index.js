@@ -216,15 +216,29 @@ export default class VerCodeLogin extends Component {
                                     showToast(global.lang.t('please_input_phone'))
                                     return
                                 }
-                                postCode({
-                                    mobile: iphone,
-                                    country_code: ext,
-                                    option_type: 'login',
-                                    vcode_type: "mobile",
-                                }, data => {
-                                    counting(true)
+                                // 查询该账户是否被注册过
+                                verify({
+                                    account: iphone,
+                                    country_code: ext
+                                }, ret => {
+                                    if (ret && ret.exist && ret.exist === 1) {
+                                        postCode({
+                                            mobile: iphone,
+                                            country_code: ext,
+                                            option_type: 'login',
+                                            vcode_type: "mobile",
+                                        }, data => {
+                                            counting(true)
+                                        }, err => {
+                                            showToast(err)
+                                        })
+                                    } else {
+                                        // 注册
+                                        showToast(global.lang.t('not_mobile'));
+                                    }
+
                                 }, err => {
-                                    showToast(err)
+
                                 })
 
                             }}/>
