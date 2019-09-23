@@ -45,7 +45,6 @@ export default class CollectBtn extends Component {
 
     refresh = () => {
         const {item, type} = this.props
-        logMsg('上课地方',item,type,collectInfos)
         let show_collect = false
         if (type === 'info') {
             show_collect = collectInfos.has(item.id)
