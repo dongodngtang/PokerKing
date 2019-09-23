@@ -101,7 +101,6 @@
 			</dict>
 		</dict>
 	</dict>
-
 	<key>NSCalendarsUsageDescription</key>
 	<string>需要您的同意访问日历，用以添加日程</string>
 	<key>NSCameraUsageDescription</key>
