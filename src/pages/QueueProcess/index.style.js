@@ -6,8 +6,9 @@ export default StyleSheet.create({
         height: 40,
         width: Metrics.screenWidth,
         backgroundColor: "#1A1B1F",
+        flexDirection:'row',
         alignItems: 'center',
-        justifyContent: 'center',
+        // justifyContent: 'center',
         borderBottomWidth: 1,
         borderBottomColor: "#736C5B"
     },

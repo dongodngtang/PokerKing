@@ -47,7 +47,15 @@ export default class QueueProcess extends Component {
     topName = () => {
         return (
             <View style={styles.topName_view}>
-                <Text style={styles.room_waiting}>{global.lang.t('room_waiting')}</Text>
+                <View style={{flex: 1}}/>
+                <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                    <Text style={styles.room_waiting}>{global.lang.t('room_waiting')}</Text>
+                </View>
+                <TouchableOpacity style={{flex: 1,flexDirection:'row-reverse',alignItems:'center'}} onPress={() => {
+                    this._onRefresh()
+                }}>
+                    <Text style={[styles.room_waiting, {marginRight: 17}]}>{global.lang.t('refresh')}</Text>
+                </TouchableOpacity>
             </View>
         )
     }
@@ -69,11 +77,17 @@ export default class QueueProcess extends Component {
                     </View>
                     <View style={[styles.left_bottom_view, {marginTop: 4}]}>
                         <Text style={styles.table_numbers_text}>{`${global.lang.t('table_number')}`}</Text>
-                        <Text style={[styles.table_numbers_text,{marginLeft:5,fontWeight:'bold'}]}>{table_numbers}</Text>
+                        <Text style={[styles.table_numbers_text, {
+                            marginLeft: 5,
+                            fontWeight: 'bold'
+                        }]}>{table_numbers}</Text>
                     </View>
                     <View style={[styles.left_bottom_view, {marginTop: 6}]}>
                         <Text style={styles.table_numbers_text}>{`${global.lang.t('waiting_number')}`}</Text>
-                        <Text style={[styles.table_numbers_text,{marginLeft:5,fontWeight:'bold'}]}>{cash_queue_members_count}</Text>
+                        <Text style={[styles.table_numbers_text, {
+                            marginLeft: 5,
+                            fontWeight: 'bold'
+                        }]}>{cash_queue_members_count}</Text>
                     </View>
                 </View>
                 <View style={styles.right_view}>
@@ -90,7 +104,7 @@ export default class QueueProcess extends Component {
                         onPress={() => {
                             if (isStrNull(apply_index)) {
                                 this.clearSign()
-                                this.signChange(this.state.signedList[index],index)
+                                this.signChange(this.state.signedList[index], index)
                                 this.PopAction && this.PopAction.toggle()
                             } else {
                                 this.cancelId = id
@@ -142,14 +156,14 @@ export default class QueueProcess extends Component {
 
 
     getUnread = () => {
-        needLogin(()=>{
+        needLogin(() => {
             getUnread(getUserId())
         })
 
     }
 
-    clearSign = ()=>{
-        this.state.signedList.forEach(x=>{
+    clearSign = () => {
+        this.state.signedList.forEach(x => {
             x.signed = false
         })
         this.setState({
@@ -261,12 +275,12 @@ export default class QueueProcess extends Component {
                         style={{
                             alignItems: 'center',
                             justifyContent: 'center',
-                            marginTop:0,
-                            marginBottom:0,
-                            marginLeft:0,
-                            marginRight:0,
-                            width:Metrics.screenWidth,
-                            height:Metrics.screenHeight
+                            marginTop: 0,
+                            marginBottom: 0,
+                            marginLeft: 0,
+                            marginRight: 0,
+                            width: Metrics.screenWidth,
+                            height: Metrics.screenHeight
                         }}>
                         <Text style={{color: '#FFE9AD', fontSize: 18, marginHorizontal: px2dp(34)}}
                         >{`${global.lang.t('rank')}${this.state.applySuccessBlind}`}</Text>
