@@ -122,22 +122,16 @@ export default class InstantList extends Component {
                                 style={[styles.time, {marginLeft: px2dp(28)}]}>{this.getTime(item.info.created_at, "MM DD,YYYY")}</Text>
                             <View style={{flex: 1}}/>
 
-                            <TouchableOpacity onPress={() => {
-                                this.toCollect(item.info)
-                            }}>
-                                {/*<Image style={{height: px2dp(46), width: px2dp(46), marginRight: px2dp(36)}}*/}
-                                {/*source={Images.collection_gray}/>*/}
-                                <CollectBtn item={item}
-                                            collect_gray={true}
-                                            type={'info'}
-                                            btnStyle={{
-                                                height: px2dp(44),
-                                                width: px2dp(44),
-                                                marginRight: 18,
-                                                alignSelf: 'flex-end'
-                                            }}
-                                />
-                            </TouchableOpacity>
+                            <CollectBtn item={item}
+                                        collect_gray={true}
+                                        type={'info'}
+                                        btnStyle={{
+                                            height: px2dp(44),
+                                            width: px2dp(44),
+                                            marginRight: 18,
+                                            alignSelf: 'flex-end'
+                                        }}
+                            />
 
                             <TouchableOpacity onPress={()=>{
                                 this.share(item.info)
