@@ -161,32 +161,33 @@ export default class Feedback extends Component {
                     <TouchableOpacity
                         activeOpacity={1}
                         onPress={() => {
-                            let count = 0
-                            images.forEach(item => {
-                                if (strNotNull(item)) {
-                                    count++
+
+                            Permissions.check('photo').then(ret=>{
+
+                                if(ret === 'authorized' || ret === 'undetermined'){
+                                    let count = 0
+                                    images.forEach(item => {
+                                        if (strNotNull(item)) {
+                                            count++
+                                        }
+                                    })
+                                    if (count < 3) {
+                                        ImagePicker.openPicker(picker).then(image => {
+                                            images.push(image.path)
+                                            this.setState({
+                                                images
+                                            })
+
+                                        }).catch(e => {
+                                            // Alert.alert(e.message ? e.message : e);
+                                        });
+                                    } else {
+                                        showToast(global.lang.t('upload_up'))
+                                    }
+                                }else {
+                                    showToast(global.lang.t('photo_message'))
                                 }
                             })
-                            if (count < 3) {
-
-                                Permissions.request('mediaLibrary').then(status => {
-                                    if(status !== 'authorized' || status !== 'undetermined') {
-                                        showToast(global.lang.t('photo_message'))
-                                    }
-
-                                })
-                                ImagePicker.openPicker(picker).then(image => {
-                                    images.push(image.path)
-                                    this.setState({
-                                        images
-                                    })
-
-                                }).catch(e => {
-                                    // Alert.alert(e.message ? e.message : e);
-                                });
-                            }else {
-                                showToast(global.lang.t('upload_up'))
-                            }
                         }}
                     style={styles.browse_documents_btn}>
                     <Text style={styles.browse_documents}>{global.lang.t('browse_documents')}</Text>

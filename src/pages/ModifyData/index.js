@@ -258,7 +258,7 @@ export default class ModifyData extends Component {
 
                 break;
             case 2:
-                Permissions.check('mediaLibrary').then(ret=>{
+                Permissions.check('photo').then(ret=>{
                     logMsg('通知权限',ret)
                     if(ret === 'authorized' || ret === 'undetermined'){
                         ImagePicker.openPicker(picker).then(image => {
@@ -270,7 +270,7 @@ export default class ModifyData extends Component {
                         });
                     }else {
                         showToast(global.lang.t('photo_message'))
-                        Permissions.request('mediaLibrary').then(status=>{
+                        Permissions.request('photo').then(status=>{
                             logMsg('申请通知权限',status)
                             if(status !== 'authorized'){
                                 // showToast(global.lang.t('alert_message'))
