@@ -167,6 +167,7 @@ export function isCollect(body, resolve, reject) {
 export function postCollect(body, resolve, reject) {
     post(api.collect_item(), body, ret => {
         resolve(ret.data)
+        getCollectionList({})
     }, reject)
 }
 
@@ -174,6 +175,7 @@ export function postCollect(body, resolve, reject) {
 export function postCancelCollect(body, resolve, reject) {
     post(api.cancel_collect(), body, ret => {
         resolve(ret.data)
+        getCollectionList({})
     }, reject)
 }
 

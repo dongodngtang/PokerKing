@@ -122,7 +122,7 @@ export default class InstantList extends Component {
                                 style={[styles.time, {marginLeft: px2dp(28)}]}>{this.getTime(item.info.created_at, "MM DD,YYYY")}</Text>
                             <View style={{flex: 1}}/>
 
-                            <CollectBtn item={item}
+                            <CollectBtn item={item.info}
                                         collect_gray={true}
                                         type={'info'}
                                         btnStyle={{
