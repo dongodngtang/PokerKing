@@ -127,7 +127,7 @@ export default class RankList extends Component {
     getTime = (created_at, type) => {
         let month = unix_format(created_at,'MM')
         let race_start_time = global.localLanguage === 'en' ? `${global.lang.t(`month${month}`)}` + unix_format(created_at, type) :
-            unix_format(created_at, `YYYY${global.lang.t('year')}MM${global.lang.t('month')}DD${global.lang.t('day2')}`);
+            unix_format(created_at, `YYYY${global.lang.t('year')}MM${global.lang.t('month')}DD${global.lang.t('day2')} HH:mm`);
         return race_start_time;
     }
 
@@ -147,7 +147,7 @@ export default class RankList extends Component {
                 alignItems: 'center',
                 marginTop: 20
             }}>
-                <Text style={styles.time_text}>{this.getTime(item.created_at, `MM DD,YYYY hh:mm`)}</Text>
+                <Text style={styles.time_text}>{this.getTime(item.created_at, ` DD,YYYY HH:mm`)}</Text>
                 <View
                     key={`rank_list${index}`}
                     style={styles.item}>

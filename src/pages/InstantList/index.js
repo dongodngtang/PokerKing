@@ -108,7 +108,7 @@ export default class InstantList extends Component {
     _renderItem = (item, index) => {
         return (
             <View style={{flexDirection: 'column', alignItems: 'center',marginTop:20}}>
-                <Text style={styles.time_text}>{this.getTime(item.created_at, `DD,YYYY`)}</Text>
+                <Text style={styles.time_text}>{this.getTime(item.created_at, ` DD,YYYY`)}</Text>
                 <TouchableOpacity
                     key={`instants_list${index}`}
                     style={styles.item}>
@@ -119,7 +119,7 @@ export default class InstantList extends Component {
                         <View style={{flexDirection: 'row', alignItems: 'center', width: '100%', marginTop: 5}}>
                             <Text style={[styles.time, {marginLeft: px2dp(14)}]}>{`#TPTS`}</Text>
                             <Text
-                                style={[styles.time, {marginLeft: px2dp(28)}]}>{this.getTime(item.info.created_at, "MM DD,YYYY")}</Text>
+                                style={[styles.time, {marginLeft: px2dp(28)}]}>{this.getTime(item.info.created_at, " DD,YYYY")}</Text>
                             <View style={{flex: 1}}/>
 
                             <CollectBtn item={item.info}
