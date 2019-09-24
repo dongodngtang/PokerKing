@@ -68,7 +68,7 @@ class TypeSelect extends PureComponent {
             }}
             key={`type${index}`}
             style={{
-                ...wh(176, 56), marginTop: px2dp(24), backgroundColor: '#383A41',
+                paddingTop:px2dp(8),paddingBottom:px2dp(8),paddingLeft:px2dp(32),paddingRight:px2dp(32),marginTop: px2dp(24), backgroundColor: '#383A41',
                 alignItems: 'center', justifyContent: 'center', borderRadius: px2dp(28),
                 marginRight: px2dp(24)
             }}>
