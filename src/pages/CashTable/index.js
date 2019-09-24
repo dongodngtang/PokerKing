@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import styles from './index.style';
 import {Images, px2dp} from "../../configs/Theme";
 import {getCashGames, getCashQueuesNumber} from "../../services/cashTableDao";
-import {getBg, isEmpty, isEmptyObject, logMsg} from "../../utils/utils";
+import {getBg, isEmpty, isEmptyObject, isStrNull, logMsg} from "../../utils/utils";
 import {Metrics} from "../../configs/Theme";
 import UltimateFlatList from '../../components/ultimate/UltimateFlatList';
 import NotData from "../comm/NotData";
@@ -60,13 +60,19 @@ export default class CashTable extends Component {
 
     getLang=(item)=>{
         const {image_complex,image_en, image} = item;
+        let img = ''
         let lang = global.localLanguage;
         if(lang === 'en'){
-            return image_en
+            img =  image_en
         }else if(lang === 'zh-e'){
-            return image_complex
+            img = image_complex
         }else {
-            return image
+            img = image
+        }
+        if(isStrNull(img)){
+            return Images.empty_bg
+        }else{
+            return {uri:img}
         }
     };
 
@@ -76,7 +82,7 @@ export default class CashTable extends Component {
             <TouchableOpacity key={index} activeOpacity={1} onPress={() => {
                 router.toQueueProcess(item)
             }}>
-                <ImageBackground source={getBg(img)} style={[styles.jinsha, {
+                <ImageBackground source={img} style={[styles.jinsha, {
                     flexDirection: "column-reverse"
                 }]}>
                     <TouchableOpacity activeOpacity={1}  style={[styles.txt_view,{backgroundColor:'#101010',opacity:0.78}]}>
