@@ -47,13 +47,14 @@ export default class QueueProcess extends Component {
     topName = () => {
         return (
             <View style={styles.topName_view}>
+                <View style={{width:67}}/>
                 <View style={{flex: 1}}/>
-                <Text style={[styles.room_waiting,{alignSelf:'center',marginLeft:17}]}>{global.lang.t('room_waiting')}</Text>
+                <Text style={[styles.room_waiting,{alignSelf:'center',maxWidth:200}]}>{global.lang.t('room_waiting')}</Text>
                 <View style={{flex: 1}}/>
-                <TouchableOpacity style={{marginRight: 17}} onPress={() => {
+                <TouchableOpacity style={{flexDirection:'row-reverse',width:80}} onPress={() => {
                     this._onRefresh()
                 }}>
-                    <Text style={styles.room_waiting}>{global.lang.t('refresh')}</Text>
+                    <Text style={[styles.room_waiting,{marginRight: 17}]}>{global.lang.t('refresh')}</Text>
                 </TouchableOpacity>
             </View>
         )
