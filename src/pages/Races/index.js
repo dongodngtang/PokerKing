@@ -314,13 +314,21 @@ class Card extends Component {
 
     }
 
+    getImg = (img) =>{
+        if(strNotNull(img)){
+            return {uri:img}
+        }else{
+            return Images.empty_bg
+        }
+    }
+
 
     render() {
         const {description} = this.props.recent_event;
         const {begin_time, end_time, id, logo, name, location} = this.props.item;
         let month = unix_format(begin_time, `MM`);
         const {snapToPrev, snapToNext} = this.props
-
+        let img = this.getImg(logo)
         let race_start_time = global.localLanguage === 'en' ? `${global.lang.t(`month${month}`)}` + unix_format(begin_time, `DD,YYYY`) :
             unix_format(begin_time, `YYYY${global.lang.t('year')}MM${global.lang.t('month')}DD${global.lang.t('day2')}`);
 
@@ -343,7 +351,7 @@ class Card extends Component {
 
                     <Image
                         style={styles.slide_img}
-                        source={getBg(logo)}/>
+                        source={img}/>
                     {this.state.index === -1 ? <View style={styles.slide_top_view_1}>
                         <Text
                             style={styles.race_time_txt_1}>{global.lang.t('race_over')}</Text>
