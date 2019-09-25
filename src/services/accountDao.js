@@ -4,7 +4,7 @@ import {isEmpty, logMsg, isEmptyObject, getUserId, APP_VERSION} from '../utils/u
 import dva from '../utils/dva'
 import JPushModule from 'jpush-react-native'
 import {initCollects} from "../pages/comm/CollectBtn";
-import {Alert, DeviceEventEmitter,Platform,Linking} from 'react-native';
+import {Alert, DeviceEventEmitter, Platform, Linking} from 'react-native';
 
 global.loginUser = {}
 
@@ -26,7 +26,8 @@ export function storageLoginUser(loginUser) {
 
         getUnread(loginUser.user_id)
     } else {
-        JPushModule.deleteAlias(ret=>{})
+        JPushModule.deleteAlias(ret => {
+        })
         initCollects(null)
         //推出登录时，消息清除
         dva.getDispatch()({type: 'MinePage/setUnread', params: {}})
@@ -113,6 +114,13 @@ export function verify_code(body, resolve, reject) {
 export function getProfile(resolve, reject) {
     if (global.loginUser && global.loginUser.user_id) {
         get(api.profile(), {}, ret => {
+            let refreshLoginUser = Object.assign(global.loginUser, ret.data)
+            logMsg('刷新登录User',refreshLoginUser)
+            global.storage.save({
+                key: 'LoginUser',
+                data: refreshLoginUser
+            })
+            global.loginUser = refreshLoginUser
             resolve && resolve(ret.data)
             dva.getDispatch()({type: 'MinePage/setProfile', params: ret.data})
 
@@ -145,7 +153,7 @@ export function postFeedBacks(body, resolve, reject) {
 }
 
 /*扑克房反馈*/
-export function postFeedBacksCash(cash_game,body, resolve, reject) {
+export function postFeedBacksCash(cash_game, body, resolve, reject) {
     post(api.feed_backs_cash(cash_game), body, ret => {
         resolve(ret.data)
     }, reject)
@@ -199,11 +207,6 @@ export function postBindAccount(body, resolve, reject) {
         resolve(ret.data)
         if (body.notLogin) {
             getProfile()
-            if(ret.data && ret.data.mobile){
-                let loginUser = global.loginUser
-                loginUser.mobile = ret.data.mobile
-                storageLoginUser(loginUser)
-            }
         } else {
             setLoginEmpty(true)
         }
@@ -225,12 +228,18 @@ export function postNotifications(body, resolve, reject) {
 
 export function postNotify(body, resolve, reject) {
     post(api.post_notify, body, ret => {
+        if (ret.code === 0) {
+            getProfile()
+        }
         resolve(ret.data)
     }, reject)
 }
 
 export function postOffNotify(body, resolve, reject) {
     post(api.post_off_notify, body, ret => {
+        if (ret.code === 0) {
+            getProfile()
+        }
         resolve(ret.data)
     }, reject)
 }
@@ -241,13 +250,15 @@ export function getNotices(resolve, reject) {
         resolve(ret.data)
     }, reject)
 }
-export function getUnread(user_id = getUserId(),resolve, reject) {
+
+export function getUnread(user_id = getUserId(), resolve, reject) {
     get(api.unread(user_id), {}, ret => {
         dva.getDispatch()({type: 'MinePage/setUnread', params: ret.data})
-        DeviceEventEmitter.emit('NoticeTab',ret.data)
-        if(ret && ret.data ){
-            if(ret.data.unread_count === 0){
-              JPushModule.setBadge(0,ret=>{})
+        DeviceEventEmitter.emit('NoticeTab', ret.data)
+        if (ret && ret.data) {
+            if (ret.data.unread_count === 0) {
+                JPushModule.setBadge(0, ret => {
+                })
             }
         }
         resolve && resolve(ret.data)
@@ -261,35 +272,36 @@ export function shortUrl(body, resolve, reject) {
 }
 
 export function getTags(resolve, reject) {
-    get(api.info_tag,{page:1},ret=>{
+    get(api.info_tag, {page: 1}, ret => {
         resolve(ret.data)
     })
 }
+
 //Jpush删除消息
-export function delCancelNoti(body,resolve, reject) {
-    del(api.cancel_noti(body),body,ret=>{
+export function delCancelNoti(body, resolve, reject) {
+    del(api.cancel_noti(body), body, ret => {
         resolve(ret.data)
-    },reject)
+    }, reject)
 }
 
 export function getAppVersion() {
-    get(api.app_versions,{},ret=>{
-        if(ret && ret.data){
-            const {ios_platform,android_platform} = ret.data
-            let info = Platform.OS ==='ios'?ios_platform:android_platform
-          if(info.version !== APP_VERSION){
-            let buttons = [{
-              text: '取消',
-              style: 'cancel'
-            }, {
-              text: '确定',
-              onPress: () => {
-                Linking.openURL(info.download_url);
-              }
-            }]
-            let cancelable = !info.force_upgrade
-            Alert.alert(info.title, info.content,buttons,{cancelable} )
-          }
+    get(api.app_versions, {}, ret => {
+        if (ret && ret.data) {
+            const {ios_platform, android_platform} = ret.data
+            let info = Platform.OS === 'ios' ? ios_platform : android_platform
+            if (info.version !== APP_VERSION) {
+                let buttons = [{
+                    text: '取消',
+                    style: 'cancel'
+                }, {
+                    text: '确定',
+                    onPress: () => {
+                        Linking.openURL(info.download_url);
+                    }
+                }]
+                let cancelable = !info.force_upgrade
+                Alert.alert(info.title, info.content, buttons, {cancelable})
+            }
 
 
         }

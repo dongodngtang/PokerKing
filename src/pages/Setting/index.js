@@ -116,16 +116,20 @@ export default class Setting extends Component {
                         postOffNotify({'type': "event"}, data => {
                             logMsg("event_off", data)
                             showToast(`${global.lang.t('race_notice')}${global.lang.t('off')}`)
+                            this.setState({
+                                race_notice: !this.state.race_notice
+                            })
                         })
                     } else {
                         postNotify({'type': "event"}, data => {
                             logMsg("event", data)
                             showToast(`${global.lang.t('race_notice')}${global.lang.t('open')}`)
+                            this.setState({
+                                race_notice: !this.state.race_notice
+                            })
                         })
                     }
-                    this.setState({
-                        race_notice: !this.state.race_notice
-                    })
+
                 }}>
                     <Image style={styles.img}
                            source={this.state.race_notice ? Images.setOpen : Images.setClose}/></TouchableOpacity>, null) : null}
@@ -137,16 +141,20 @@ export default class Setting extends Component {
                             postOffNotify({'type': "apply"}, data => {
                                 logMsg("apply_off", data)
                                 showToast(`${global.lang.t('rank_notice')}${global.lang.t('off')}`)
+                                this.setState({
+                                    rank_notice: !this.state.rank_notice
+                                })
                             })
                         } else {
                             postNotify({'type': "apply"}, data => {
                                 logMsg("apply", data)
                                 showToast(`${global.lang.t('rank_notice')}${global.lang.t('open')}`)
+                                this.setState({
+                                    rank_notice: !this.state.rank_notice
+                                })
                             })
                         }
-                        this.setState({
-                            rank_notice: !this.state.rank_notice
-                        })
+
                     }}
                     style={styles.right_btn}>
                     <Image style={styles.img} source={this.state.rank_notice ? Images.setOpen : Images.setClose}/>
