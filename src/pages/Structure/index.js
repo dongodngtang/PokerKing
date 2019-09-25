@@ -19,10 +19,10 @@ export default class Structure extends Component {
 
     getLastType = (pdf) => {
 
-        let index = pdf.indexOf("."); //（考虑严谨用lastIndexOf(".")得到）得到"."在第几位
+        let index = pdf.lastIndexOf("."); //（考虑严谨用lastIndexOf(".")得到）得到"."在第几位
         let last_string = pdf.substring(index); //截断"."之前的，得到后缀
-        if (last_string === ".gif") {  //根据后缀，判断是否符合图片格式
-            return "gif"
+        if (last_string === ".pdf") {  //根据后缀，判断是否符合图片格式
+            return "pdf"
         } else if (last_string === ".png" || last_string === ".jpg" || last_string === ".jpeg") {
             return "other"
         }
@@ -37,7 +37,7 @@ export default class Structure extends Component {
             const source = {uri: this.props.params.pdf, cache: true};
             return (
                 <View style={styles.container}>
-                    {last_type === "gif" ? <Pdf
+                    {last_type === "pdf" ? <Pdf
                             source={source}
                             loadProgress={(p => {
                                 logMsg(p)
