@@ -31,10 +31,6 @@ export function storageLoginUser(loginUser) {
         //推出登录时，消息清除
         dva.getDispatch()({type: 'MinePage/setUnread', params: {}})
     }
-
-    getAppVersion()
-
-
 }
 
 export function initLoginUser(callback) {

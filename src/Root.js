@@ -18,7 +18,7 @@ import JShareModule from 'jshare-react-native';
 import {logMsg, showToast} from "./utils/utils";
 import {Actions} from 'react-native-router-flux';
 import codePush from "react-native-code-push";
-import {initLoginUser} from "./services/accountDao";
+import {getAppVersion, initLoginUser} from "./services/accountDao";
 import JPushModule from 'jpush-react-native'
 
 @connect(({common}) => ({
@@ -53,7 +53,7 @@ export default class Root extends Component {
     // NetInfo.removeEventListener('change', this.handleConnectivityChange);
     if(!isConnected){
 
-      alert('请在设置中允许App使用网络或检查手机网络是否打开')
+      alert(global.lang.t('open_net'))
     }
 
   }
@@ -62,6 +62,7 @@ export default class Root extends Component {
   componentDidMount() {
     initLoginUser(() => {
       SplashScreen.hide();
+      getAppVersion()
     })
 
     if (Platform.OS === 'ios') {

@@ -288,7 +288,8 @@
   "alert_message":"通知权限没有打开，将获取不到推送消息",
   "photo_message":"访问相册权限被关闭，请在设置中打开相册权限",
   "again_exit":"再按一次退出应用",
-  "mobile_zhuce":"手机号已被注册"
+  "mobile_zhuce":"手机号已被注册",
+  "open_net":"请在设置中允许App使用网络或检查手机网络是否打开"
 }
 
 
