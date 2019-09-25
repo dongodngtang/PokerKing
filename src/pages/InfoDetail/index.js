@@ -80,7 +80,7 @@ export default class InfoDetail extends Component {
                         html={info_detail.description}/>
                 </View>
 
-                {this._head()}
+                {!isEmptyObject(hot_infos) ? this._head() : null}
 
                 {!isEmptyObject(hot_infos) ? <FlatList data={hot_infos}
                                                        style={{
@@ -90,7 +90,7 @@ export default class InfoDetail extends Component {
                                                            paddingBottom: 20
                                                        }}
                                                        ItemSeparatorComponent={this._separator}
-                                                       keyExtractor={(item, index) => index+'sd'}
+                                                       keyExtractor={(item, index) => index + 'sd'}
                                                        renderItem={this._renderItem}
                 /> : null}
 
