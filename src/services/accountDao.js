@@ -203,6 +203,11 @@ export function postBindAccount(body, resolve, reject) {
         resolve(ret.data)
         if (body.notLogin) {
             getProfile()
+            if(ret.data && ret.data.mobile){
+                let loginUser = global.loginUser
+                loginUser.mobile = ret.data.mobile
+                storageLoginUser(loginUser)
+            }
         } else {
             setLoginEmpty(true)
         }

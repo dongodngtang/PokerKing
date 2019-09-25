@@ -242,7 +242,7 @@ export default class BindingMobile extends Component {
                     account: iphone,
                     code: vcode,
                     country_code: ext,
-                    notLogin:true
+                    notLogin:true,//不是从登录界面
                 }
                 postBindAccount(body,ret=>{
                     showToast(global.lang.t('bind_success'))
