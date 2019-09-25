@@ -8,6 +8,7 @@ import {isStrNull, getCurrentDate, isEmptyObject, getAvatar, logMsg, showToast} 
 import {ActionSheet} from '../../components';
 import {putProfile, uploadAvatar} from "../../services/accountDao";
 import Permissions from "react-native-permissions";
+import Loading from "../comm/Loading";
 
 const picker = {
     width: 500,
@@ -61,20 +62,29 @@ export default class ModifyData extends Component {
                 if (profile.email !== this.inputMail) {
                     edit.email = this.inputMail
                 }
-                edit.gender = this.gender
+                if(profile.gender !== this.gender.toString()){
+                    edit.gender = this.gender
+                }
+
 
                 if(this.state.avatar && this.state.avatar.uri && !this.state.avatar.uri.includes("http")){
+                    this.loading && this.loading.open()
                     this._update(this.state.avatar.uri)
                 }
-                putProfile(edit, ret => {
-                    if (profile.nickname !== this.inputNick || profile.email !== this.inputMail ||
-                        this.state.gender_modify || this.state.avatar_modify) {
-                        showToast(global.lang.t('successfully_modified'))
-                        router.pop();
-                    }
-                }, err => {
+                if(!isEmptyObject(edit)){
+                    this.loading && this.loading.open()
+                    putProfile(edit, ret => {
+                        this.loading && this.loading.close()
+                        if (profile.nickname !== this.inputNick || profile.email !== this.inputMail ||
+                            this.state.gender_modify || this.state.avatar_modify) {
+                            showToast(global.lang.t('successfully_modified'))
+                            router.pop();
+                        }
+                    }, err => {
+                        this.loading && this.loading.close()
+                    })
+                }
 
-                })
 
 
             }
@@ -102,9 +112,12 @@ export default class ModifyData extends Component {
             file.type = 'image/jpeg'
         formData.append("avatar", file);
         uploadAvatar(formData, ret => {
+            this.loading && this.loading.close()
             this.setState({
                 avatar: {uri: ret.avatar},
                 avatar_modify: true
+            },err=>{
+                this.loading && this.loading.close()
             })
         });
     }
@@ -226,6 +239,9 @@ export default class ModifyData extends Component {
                     destructiveButtonIndex={2}
                     onPress={this._getGender}
                 />
+
+                <Loading
+                    ref={ref => this.loading = ref}/>
 
             </View>
         )
