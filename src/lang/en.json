@@ -223,7 +223,7 @@
   "nameormobile":"Username/phone number",
   "psd":"Password",
   "zhuce":"Register",
-  "set_name":"Account settings (5-15 characters, begin with alphabets)",
+  "set_name":"Account (5-15 characters, begin with alphabets)",
   "set_psd":"Password Setting",
   "set_mobile":"Connect with your phone number to this account",
   "mobile_prompt":"Reminder: Please connect with your phone number in order to use the line up function.",

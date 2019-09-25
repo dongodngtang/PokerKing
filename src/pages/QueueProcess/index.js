@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {View, Text, SafeAreaView, Image, TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
 import {
-    getLoginUser, getUserId, isEmptyObject, isStrNull, logMsg, moneyFormat, needLogin,
-    showToast
+    getLoginUser, getUserId, isEmptyObject, isLogin, isStrNull, logMsg, moneyFormat, needLogin,
+    showToast, strNotNull
 } from "../../utils/utils";
 import styles from './index.style';
 import {Metrics, Images, px2dp} from "../../configs/Theme";
@@ -102,13 +102,17 @@ export default class QueueProcess extends Component {
                         activeOpacity={1}
                         style={[styles.right_mid_view, {backgroundColor: isStrNull(apply_index) ? '#1A1B1F' : "#303236"}]}
                         onPress={() => {
-                            if (isStrNull(apply_index)) {
-                                this.clearSign()
-                                this.signChange(this.state.signedList[index], index)
-                                this.PopAction && this.PopAction.toggle()
-                            } else {
-                                this.cancelId = id
-                                this.popCancel && this.popCancel.toggle()
+                            if(isLogin() && global.loginUser &&  strNotNull(global.loginUser.mobile)){
+                                if (isStrNull(apply_index)) {
+                                    this.clearSign()
+                                    this.signChange(this.state.signedList[index], index)
+                                    this.PopAction && this.PopAction.toggle()
+                                } else {
+                                    this.cancelId = id
+                                    this.popCancel && this.popCancel.toggle()
+                                }
+                            }else{
+                                router.toBindingMobile()
                             }
 
                         }}>

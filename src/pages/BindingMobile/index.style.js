@@ -54,7 +54,7 @@ export default StyleSheet.create({
         backgroundColor:"#303236"
     },
     down_bind_txt:{
-        fontSize:16,
+        fontSize:14,
         color:"#1E1E1E"
     },
     bind_text:{

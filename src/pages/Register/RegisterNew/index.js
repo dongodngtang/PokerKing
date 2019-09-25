@@ -44,7 +44,7 @@ export default class RegisterNew extends Component {
                                     paddingBottom: 0,
                                     width: '85%',
                                     height: 50,
-                                    fontSize: 14,
+                                    fontSize: global.localLanguage === 'en' ? 12 : 14,
                                     color: '#999999'
                                 }}
                                 numberOfLines={1}
