@@ -69,7 +69,7 @@ export default class Drawer extends Component {
                     let param = {
                         shareTitle: 'Kings Live',
                         shareText: 'Kings Live',
-                        shareImage: 'http://cdn-upyun.deshpro.com/deshpro_public/pokerking2.png',
+                        shareImage: 'http://cdn-upyun.deshpro.com/deshpro_public/kingslive.png',
                         shareLink: `${shareHost()}/loadApp`
                     };
                     shareTo(param)
