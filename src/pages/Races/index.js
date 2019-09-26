@@ -160,16 +160,6 @@ export default class Races extends Component {
     render() {
         const {shareParam} = this.props;
         const {events, recent_event, all_events} = this.state;
-        if(isEmptyObject(all_events)){
-            this.loading && this.loading.open()
-            return (
-                <View style={styles.race_view}>
-                    <Loading
-                        ref={ref => this.loading = ref}/>
-                </View>
-            )
-        }
-        this.loading && this.loading.close()
         return (
             <View style={styles.race_view}>
                 {this.topBar(recent_event)}
@@ -198,7 +188,7 @@ export default class Races extends Component {
                         backgroundColor: "#736C5B", width: Metrics.screenWidth - 34, height: 1,
                         borderRadius: 2, marginTop: 16
                     }}/>
-                </View> : null}
+                </View> : <View style={[styles.carousel_view,{height: px2dp(302)}]}/>}
 
 
                 <View style={{

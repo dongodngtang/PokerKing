@@ -1922,7 +1922,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.pokerkinglive;
+				PRODUCT_BUNDLE_IDENTIFIER = com.deshpro;
 				PRODUCT_NAME = PokerKing;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1964,7 +1964,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.pokerkinglive;
+				PRODUCT_BUNDLE_IDENTIFIER = com.deshpro;
 				PRODUCT_NAME = PokerKing;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
