@@ -30,7 +30,7 @@ export default class ModifyData extends Component {
         super(props)
 
         let {profile} = props
-         profile = profile || {}
+        profile = profile || {}
         let avatar = isEmptyObject(profile) ? Images.home_avatar : isStrNull(profile.avatar) ? Images.home_avatar
             : {uri: profile.avatar}
 
@@ -56,40 +56,48 @@ export default class ModifyData extends Component {
             },
             onRight: () => {
                 let edit = {}
+                let next = false
                 if (profile.nickname !== this.inputNick) {
                     edit.nickname = this.inputNick
                 }
                 if (profile.email !== this.inputMail) {
                     edit.email = this.inputMail
                 }
-                if(profile.gender !== this.gender.toString()){
+                if (profile.gender !== this.gender.toString()) {
                     edit.gender = this.gender
                 }
 
-
-                if(this.state.avatar && this.state.avatar.uri && !this.state.avatar.uri.includes("http")){
-                    this.loading && this.loading.open()
-                    this._update(this.state.avatar.uri)
+                if(isEmptyObject(edit)){
+                    if (this.state.avatar && this.state.avatar.uri && !this.state.avatar.uri.includes("http")) {
+                        this.loading && this.loading.open()
+                        this._update(this.state.avatar.uri,{})
+                    }
+                }else{
+                    if (this.state.avatar && this.state.avatar.uri && !this.state.avatar.uri.includes("http")) {
+                        this.loading && this.loading.open()
+                        this._update(this.state.avatar.uri,edit)
+                    }else{
+                        this.putProfile(edit)
+                    }
                 }
-                if(!isEmptyObject(edit)){
-                    this.loading && this.loading.open()
-                    putProfile(edit, ret => {
-                        this.loading && this.loading.close()
-                        if (profile.nickname !== this.inputNick || profile.email !== this.inputMail ||
-                            this.state.gender_modify || this.state.avatar_modify) {
-                            showToast(global.lang.t('successfully_modified'))
-                            router.pop();
-                        }
-                    }, err => {
-                        this.loading && this.loading.close()
-                    })
-                }
-
-
 
             }
         });
 
+    }
+
+    putProfile = (edit) => {
+        const {profile} = this.props;
+        putProfile(edit, ret => {
+            if (profile.email !== this.inputMail ||
+                this.state.gender_modify) {
+                this.loading && this.loading.close()
+                showToast(global.lang.t('successfully_modified'))
+                router.pop();
+            }
+        }, err => {
+            this.loading && this.loading.close()
+        })
     }
 
     _getGender = (gender) => {
@@ -102,24 +110,33 @@ export default class ModifyData extends Component {
         }
     }
 
-    _update = (path) => {
+    _update = (path,edit) => {
         let formData = new FormData();
         let file = {
             uri: path,
             name: this._fileName(path)
         };
-        if(Platform.OS === 'android')
+        if (Platform.OS === 'android')
             file.type = 'image/jpeg'
         formData.append("avatar", file);
         uploadAvatar(formData, ret => {
-            this.loading && this.loading.close()
             this.setState({
                 avatar: {uri: ret.avatar},
                 avatar_modify: true
-            },err=>{
-                this.loading && this.loading.close()
+            }, () => {
+
             })
+            if(isEmptyObject(edit)){
+                this.loading && this.loading.close()
+                showToast(global.lang.t('successfully_modified'))
+                router.pop();
+            }else{
+                this.putProfile(edit)
+            }
+        }, err => {
+            this.loading && this.loading.close()
         });
+        // this.loading && this.loading.close()
     }
 
     _fileName = (o) => {
@@ -250,21 +267,21 @@ export default class ModifyData extends Component {
     handlePress = (i) => {
         switch (i) {
             case 1:
-                Permissions.check('camera').then(ret=>{
-                    logMsg('照相权限',ret)
-                    if(ret === 'authorized' || ret === 'undetermined'){
+                Permissions.check('camera').then(ret => {
+                    logMsg('照相权限', ret)
+                    if (ret === 'authorized' || ret === 'undetermined') {
                         ImagePicker.openCamera(picker).then(image => {
                             this.setState({
-                                avatar:{uri:image.path}
+                                avatar: {uri: image.path}
                             })
                         }).catch(e => {
                             // Alert.alert(e.message ? e.message : e);
                         });
-                    }else {
+                    } else {
                         showToast(global.lang.t('photo_message'))
-                        Permissions.request('camera').then(status=>{
-                            logMsg('申请照相权限',status)
-                            if(status !== 'authorized'){
+                        Permissions.request('camera').then(status => {
+                            logMsg('申请照相权限', status)
+                            if (status !== 'authorized') {
                                 // showToast(global.lang.t('alert_message'))
                             }
 
@@ -274,21 +291,21 @@ export default class ModifyData extends Component {
 
                 break;
             case 2:
-                Permissions.check('photo').then(ret=>{
-                    logMsg('通知权限',ret)
-                    if(ret === 'authorized' || ret === 'undetermined'){
+                Permissions.check('photo').then(ret => {
+                    logMsg('通知权限', ret)
+                    if (ret === 'authorized' || ret === 'undetermined') {
                         ImagePicker.openPicker(picker).then(image => {
                             this.setState({
-                                avatar:{uri:image.path}
+                                avatar: {uri: image.path}
                             })
                         }).catch(e => {
                             // Alert.alert(e.message ? e.message : e);
                         });
-                    }else {
+                    } else {
                         showToast(global.lang.t('photo_message'))
-                        Permissions.request('photo').then(status=>{
-                            logMsg('申请通知权限',status)
-                            if(status !== 'authorized'){
+                        Permissions.request('photo').then(status => {
+                            logMsg('申请通知权限', status)
+                            if (status !== 'authorized') {
                                 // showToast(global.lang.t('alert_message'))
                             }
 
