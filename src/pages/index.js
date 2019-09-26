@@ -412,11 +412,9 @@ export class NavBar extends PureComponent {
                 <TouchableOpacity
                     activeOpacity={1}
                     onLongPress={() => {
-                        if (__DEV__)
-                        // alert(title + pageMsg)
-                            if (middle_title) {
-                                router.toSwitchApi();
-                            }
+                        if (middle_title) {
+                            router.toSwitchApi();
+                        }
                     }}
                     style={Styles.navTitle}>
                     <Text
