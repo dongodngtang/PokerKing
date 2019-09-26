@@ -1,19 +1,27 @@
 import React, {Component} from 'react';
-import {View, Text, TouchableOpacity, Image, ImageBackground, StatusBar} from 'react-native';
+import {View, Text, TouchableOpacity, Image, ImageBackground, StatusBar, Platform} from 'react-native';
 import {connect} from 'react-redux';
 import styles from './index.style';
 import {Images, px2dp} from "../../configs/Theme";
 import {getCashGames, getCashQueuesNumber} from "../../services/cashTableDao";
-import {getBg, isEmpty, isEmptyObject, isStrNull, logMsg} from "../../utils/utils";
+import {getBg, isEmpty, isEmptyObject, isStrNull, logMsg, strNotNull, turn2MapMark} from "../../utils/utils";
 import {Metrics} from "../../configs/Theme";
 import UltimateFlatList from '../../components/ultimate/UltimateFlatList';
 import NotData from "../comm/NotData";
 import {initLoginUser} from "../../services/accountDao";
+import PopAction from "../comm/PopAction";
+
+
+const list = [{id: 0, name: global.lang.t('Gaode'), type: 'gaode'}, {id: 1, name: global.lang.t('iphone_map'), type: 'pingguo'}];
 
 @connect(({CashTable}) => ({
     ...CashTable,
 }))
 export default class CashTable extends Component {
+
+    state = {
+        current_item: {}
+    }
 
 
     topBar = () => {
@@ -26,8 +34,8 @@ export default class CashTable extends Component {
                     }}
                     style={styles.left2}>
                     {/*<Image*/}
-                        {/*style={{height: px2dp(48), width: px2dp(120)}}*/}
-                        {/*source={Images.puke_icon}*/}
+                    {/*style={{height: px2dp(48), width: px2dp(120)}}*/}
+                    {/*source={Images.puke_icon}*/}
                     {/*/>*/}
 
                 </View>
@@ -58,39 +66,51 @@ export default class CashTable extends Component {
         )
     };
 
-    getLang=(item)=>{
-        const {image_complex,image_en, image} = item;
+    getLang = (item) => {
+        const {image_complex, image_en, image} = item;
         let img = ''
         let lang = global.localLanguage;
-        if(lang === 'en'){
-            img =  image_en
-        }else if(lang === 'zh-e'){
+        if (lang === 'en') {
+            img = image_en
+        } else if (lang === 'zh-e') {
             img = image_complex
-        }else {
+        } else {
             img = image
         }
-        if(isStrNull(img)){
+        if (isStrNull(img)) {
             return Images.empty_bg
-        }else{
-            return {uri:img}
+        } else {
+            return {uri: img}
         }
     };
 
     _renderItem = (item, index) => {
         let img = this.getLang(item);
+        const {amap_location, amap_navigation_url, amap_poiid, location, name} = item;
         return (
             <TouchableOpacity key={index} activeOpacity={1} onPress={() => {
-                router.toQueueProcess(item)
+                // router.toQueueProcess(item)
+                this.setState({
+                    current_item: item
+                })
+                if (Platform.OS === 'ios') {
+                    this.popAction && this.popAction.toggle();
+                } else {
+                    if (strNotNull(amap_navigation_url))
+                        turn2MapMark(amap_location, amap_navigation_url, amap_poiid, location, name, '')
+
+                }
             }}>
                 <ImageBackground source={img} style={[styles.jinsha, {
                     flexDirection: "column-reverse"
                 }]}>
-                    <TouchableOpacity activeOpacity={1}  style={[styles.txt_view,{backgroundColor:'#101010',opacity:0.78}]}>
+                    <TouchableOpacity activeOpacity={1}
+                                      style={[styles.txt_view, {backgroundColor: '#101010', opacity: 0.78}]}>
                         <Text style={styles.txt1} numberOfLines={1}>{item.name}</Text>
-                        <View style={{flex:1}}/>
+                        <View style={{flex: 1}}/>
                         {/*<Image*/}
-                            {/*style={{height: px2dp(48), width: px2dp(40),marginRight:17}}*/}
-                            {/*source={Images.location}*/}
+                        {/*style={{height: px2dp(48), width: px2dp(40),marginRight:17}}*/}
+                        {/*source={Images.location}*/}
                         {/*/>*/}
                     </TouchableOpacity>
                 </ImageBackground>
@@ -117,6 +137,9 @@ export default class CashTable extends Component {
                     emptyView={() => <NotData/>}
                 />
 
+                <PopAction
+                    ref={ref => this.popAction = ref}
+                    btnArray={this.popActions()}/>
             </View>
         )
     }
@@ -139,5 +162,30 @@ export default class CashTable extends Component {
         } catch (err) {
             abortFetch();
         }
+    };
+
+    popActions = () => {
+        const {name, location, amap_poiid, amap_navigation_url, amap_location} = this.state.current_item;
+        let reportList = list;
+        let resultArray = [];
+        reportList.forEach((data, index) => {
+            let item = {
+                name: data.name, txtStyle: {color: '#4A90E2'}, onPress: () => {
+                    if (strNotNull(amap_navigation_url)) {
+                        this.popAction.toggle();
+                        turn2MapMark(amap_location, amap_navigation_url, amap_poiid, location, name, data.type)
+                    }
+
+                }
+            };
+            resultArray.push(item);
+        });
+        resultArray.push({
+            name: global.lang.t('cancel'),
+            txtStyle: {color: "#AAAAAA"},
+            onPress: () => this.popAction.toggle()
+        });
+
+        return resultArray;
     };
 }

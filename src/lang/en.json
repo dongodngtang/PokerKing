@@ -289,5 +289,7 @@
   "photo_message":"Album permissions is Closed, please open album permissions in settings",
   "again_exit":"Press again to exit the app",
   "mobile_zhuce":"This number has already been used",
-  "open_net":"Please allow the app to use the network or check if the phone network is open in the settings."
+  "open_net":"Please allow the app to use the network or check if the phone network is open in the settings.",
+  "Gaode":"Gaode Map",
+  "iphone_map":"Apple map"
 }
