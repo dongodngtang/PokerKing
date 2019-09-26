@@ -291,10 +291,10 @@ export function getAppVersion() {
             let info = Platform.OS === 'ios' ? ios_platform : android_platform
             if (info.version !== APP_VERSION) {
                 let buttons = [{
-                    text: '取消',
+                    text: global.lang.t('cancel'),
                     style: 'cancel'
                 }, {
-                    text: '确定',
+                    text: global.lang.t('determine'),
                     onPress: () => {
                         Linking.openURL(info.download_url);
                     }
