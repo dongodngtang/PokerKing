@@ -65,7 +65,6 @@ export default class Collections extends Component {
                     renderHiddenItem={(data, rowMap) => (
                         <TouchableOpacity style={styles.rowBack} onPress={() => {
                             let item = data.item;
-                            console.log('连锁酒店',rowMap)
                             alertOrder(global.lang.t('delete_confirm'), () => {
                                 this.closeRow(rowMap,item.key)
                                 postCancelCollect({
