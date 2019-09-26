@@ -12,7 +12,7 @@ import {initLoginUser} from "../../services/accountDao";
 import PopAction from "../comm/PopAction";
 
 
-const list = [{id: 0, name: global.lang.t('Gaode'), type: 'gaode'}, {id: 1, name: global.lang.t('iphone_map'), type: 'pingguo'}];
+
 
 @connect(({CashTable}) => ({
     ...CashTable,
@@ -138,6 +138,7 @@ export default class CashTable extends Component {
                 />
 
                 <PopAction
+                    btnShow={true}
                     ref={ref => this.popAction = ref}
                     btnArray={this.popActions()}/>
             </View>
@@ -166,7 +167,7 @@ export default class CashTable extends Component {
 
     popActions = () => {
         const {name, location, amap_poiid, amap_navigation_url, amap_location} = this.state.current_item;
-        let reportList = list;
+        let reportList  = [{id: 0, name: global.lang.t('Gaode'), type: 'gaode'}, {id: 1, name: global.lang.t('iphone_map'), type: 'pingguo'}];
         let resultArray = [];
         reportList.forEach((data, index) => {
             let item = {
