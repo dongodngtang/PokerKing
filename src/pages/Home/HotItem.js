@@ -40,15 +40,25 @@ export default class HotItem extends Component {
     }
 
     render() {
-        const {type, item} = this.props;
+        const {type, item,collect} = this.props;
         const {id, image, title, source, created_at, hot} = item;
         return (
             <TouchableOpacity style={styles.event_view}
                               onPress={() => {
                                   if (type && type === 'event') {
-                                      router.toEventDetail(id, this.props.event_id)
+                                      if(collect){
+                                          router.toRaceMessage(id)
+                                      }else{
+                                          router.toEventDetail(id, this.props.event_id)
+                                      }
+
                                   } else if (type && type === 'main_event') {
-                                      router.toEventDetail(item.main_event.id, 0)
+                                      if(collect){
+                                          router.toRaceMessage(item.main_event.id)
+                                      }else{
+                                          router.toEventDetail(item.main_event.id, 0)
+                                      }
+
                                   } else if (type && type === 'info') {
                                       router.toInfoDetail(item.info.id)
                                   } else {

@@ -134,7 +134,7 @@ export default class Collections extends Component {
 
         return (
             <View style={{backgroundColor: '#303236'}}>
-                <HotItem item={item} type={item.target_type}/>
+                <HotItem item={item} collect={true} type={item.target_type}/>
                 {this._separator()}
             </View>
         )
