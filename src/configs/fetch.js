@@ -17,7 +17,7 @@ let TAG = 'Http:';
 
 // define the api
 const client = create({
-  baseURL: api.test,
+  baseURL: api.production,
   timeout: 20000
 });
 
