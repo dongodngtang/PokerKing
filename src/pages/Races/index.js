@@ -16,6 +16,8 @@ import RaceMessage from "../RaceMessage";
 import {isCollect, postCancelCollect, postCollect} from "../../services/accountDao";
 import ShareToast from "../comm/ShareToast";
 import CollectBtn from "../comm/CollectBtn";
+import NotData from "../comm/NotData";
+import Loading from "../comm/Loading";
 
 @connect(({Races}) => ({
     ...Races,
@@ -158,6 +160,16 @@ export default class Races extends Component {
     render() {
         const {shareParam} = this.props;
         const {events, recent_event, all_events} = this.state;
+        if(isEmptyObject(all_events)){
+            this.loading && this.loading.open()
+            return (
+                <View style={styles.race_view}>
+                    <Loading
+                        ref={ref => this.loading = ref}/>
+                </View>
+            )
+        }
+        this.loading && this.loading.close()
         return (
             <View style={styles.race_view}>
                 {this.topBar(recent_event)}
