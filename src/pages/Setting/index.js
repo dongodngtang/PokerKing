@@ -89,7 +89,7 @@ export default class Setting extends Component {
     };
 
     change_version = () => {
-        router.toSwitchApi();
+        router.toCurrentVersion();
     };
 
     toAccount = () => {

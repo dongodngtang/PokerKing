@@ -127,7 +127,7 @@ export default class Home extends Component {
                 <TouchableOpacity
                     activeOpacity={1}
                     onLongPress={() => {
-                        router.toSwitchApi();
+                        router.toCurrentVersion();
                     }}
                     style={styles.home_nav_title}>
                     <Text

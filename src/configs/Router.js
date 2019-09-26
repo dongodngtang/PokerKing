@@ -10,6 +10,7 @@ import EventDetail from "../pages/EventDetail";
 import Structure from "../pages/Structure";
 import ProtocolPage from "../pages/ProtocolPage";
 import {needLogin} from "../utils/utils";
+import CurrentVersion from "../pages/CurrentVersion";
 
 export default class Router {
     popTo({sceneKey, params}) {
@@ -126,6 +127,12 @@ export default class Router {
     toSwitchApi() {
         this.push({
             sceneKey: 'SwitchApi'
+        })
+    }
+
+    toCurrentVersion() {
+        this.push({
+            sceneKey: 'CurrentVersion'
         })
     }
 

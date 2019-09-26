@@ -53,6 +53,7 @@ import ModifyPWDToMobile from "./ModifyPWDToMobile";
 import VerCodeLogin from "./VerCodeLogin";
 import BindingMobile from "./BindingMobile";
 import PwdFound from "./PwdFound";
+import CurrentVersion from "./CurrentVersion";
 
 export const scenes = () => {
     return <Scene key="root"
@@ -177,7 +178,13 @@ export const scenes = () => {
         <Scene key="SwitchApi"
                component={SwitchApi}
                {...TopNav({
-                   title: global.lang.t('about_version')
+                   title: '环境切换'
+               })}/>
+        <Scene key="CurrentVersion"
+               component={CurrentVersion}
+               {...TopNav({
+                   title: global.lang.t('about_version'),
+                   middle_title: true
                })}/>
         <Scene key="QueueList"
                component={QueueList}
@@ -281,8 +288,8 @@ export const scenes = () => {
         <Scene key="ChangePhone"
                component={ChangePhone}
                {...TopNav({
-                   bgd:true,
-                   bg_color:'#090909',
+                   bgd: true,
+                   bg_color: '#090909',
                    title: global.lang.t('iphone')
                })}/>
         <Scene key="Collections"
@@ -298,36 +305,36 @@ export const scenes = () => {
         <Scene key="ModifyPWD"
                component={ModifyPWD}
                {...TopNav({
-                   bgd:true,
-                   bg_color:'#090909',
+                   bgd: true,
+                   bg_color: '#090909',
                    title: global.lang.t('change_pwd')
                })}/>
         <Scene key="ModifyPWDToMobile"
                component={ModifyPWDToMobile}
                {...TopNav({
-                   bgd:true,
-                   bg_color:'#090909',
+                   bgd: true,
+                   bg_color: '#090909',
                    title: global.lang.t('change_pwd')
                })}/>
         <Scene key="VerCodeLogin"
                component={VerCodeLogin}
                {...TopNav({
-                   bgd:true,
+                   bgd: true,
                    rightTitle: global.lang.t('home_language'),
-                   bg_color:'#212223',
+                   bg_color: '#212223',
                    title: global.lang.t('mobile_ver')
                })}/>
         <Scene key="PwdFound"
                component={PwdFound}
                {...TopNav({
-                   bg_color:'#212223',
+                   bg_color: '#212223',
                    title: global.lang.t('forget_pwd')
                })}/>
         <Scene key="BindingMobile"
                component={BindingMobile}
                {...TopNav({
-                   bgd:true,
-                   bg_color:'#090909',
+                   bgd: true,
+                   bg_color: '#090909',
                    title: global.lang.t('bind_mobile')
                })}/>
         <Scene key="MobileRegister"
@@ -379,7 +386,7 @@ export class NavBar extends PureComponent {
     }
 
     render() {
-        const {bgd, bg_color,component, title, rightTitle, onLeft, hideLeft, middle_title} = this.props;
+        const {bgd, bg_color, component, title, rightTitle, onLeft, hideLeft, middle_title} = this.props;
 
         let pageMsg = `在page/index查找${component && component.displayName}`;
         return <View style={{backgroundColor: bgd ? bg_color : '#1A1B1F'}}>
