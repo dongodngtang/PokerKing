@@ -67,7 +67,8 @@ export default class Races extends Component {
         })
     };
 
-    topBar = () => {
+    topBar = (recent_event) => {
+        const {name}  = recent_event;
         return (
             <View style={styles.navTop}>
                 <StatusBar barStyle={'light-content'}/>
@@ -90,7 +91,7 @@ export default class Races extends Component {
                     }}>
                     <Text
                         style={{fontSize: 17, color: '#FFE9AD', maxWidth: '90%'}}
-                        numberOfLines={1}>{this.state.recent_event.name}</Text>
+                        numberOfLines={1}>{name}</Text>
                     <Image style={{width: 12, height: 6, marginLeft: 10}}
                            source={this.state.list_show ? Images.top : Images.bottom}/>
                 </TouchableOpacity>
@@ -115,13 +116,14 @@ export default class Races extends Component {
         return (
             <View style={styles.time_view}>
                 <View style={{width: 17}}/>
-                <Image
+                {isStrNull(begin_time) || isStrNull(end_time) ? null : <Image
                     style={{height: px2dp(36), width: px2dp(36), marginRight: 4}}
                     source={Images.date}
-                />
-                <Text numberOfLines={1} style={styles.date_text}>
+                />}
+
+                {isStrNull(begin_time) || isStrNull(end_time) ? null : <Text numberOfLines={1} style={styles.date_text}>
                     {`${unix_format(begin_time, "YYYY/MM/DD")}-${unix_format(end_time, "YYYY/MM/DD")}`}
-                </Text>
+                </Text>}
                 <View style={{width: 17}}/>
             </View>
         )
@@ -158,7 +160,7 @@ export default class Races extends Component {
         const {events, recent_event, all_events} = this.state;
         return (
             <View style={styles.race_view}>
-                {this.topBar()}
+                {this.topBar(recent_event)}
                 {this.timeSelect(recent_event)}
                 {all_events && all_events.length > 0 ? <View style={styles.carousel_view}>
                     <Carousel
@@ -195,9 +197,9 @@ export default class Races extends Component {
                     alignItems: 'center'
                 }}>
                     {/*{this._item(styles.item_view, Images.location_gary, styles.img_dy,*/}
-                        {/*global.lang.t('race_location'), () => {*/}
-                    
-                        {/*})}*/}
+                    {/*global.lang.t('race_location'), () => {*/}
+
+                    {/*})}*/}
 
                     {this._item(styles.item_view, Images.event_intro, styles.img_dy1,
                         `${global.lang.t('race_intro')}`, () => {
@@ -214,7 +216,7 @@ export default class Races extends Component {
                         })}
                     {this._item(styles.item_view_last, Images.live, styles.img_dy4,
                         global.lang.t('race_live'), () => {
-                        let url = recent_event.live_url
+                            let url = recent_event.live_url
                             if (strNotNull(url)) {
                                 router.toWebViewPage(this.props, url)
                             } else {
@@ -314,10 +316,10 @@ class Card extends Component {
 
     }
 
-    getImg = (img) =>{
-        if(strNotNull(img)){
-            return {uri:img}
-        }else{
+    getImg = (img) => {
+        if (strNotNull(img)) {
+            return {uri: img}
+        } else {
             return Images.empty_bg
         }
     }
