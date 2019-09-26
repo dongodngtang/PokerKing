@@ -5,7 +5,7 @@ import styles from './index.style'
 import {Metrics} from "../../configs/Theme";
 import RenderHtml from '../comm/RenderHtml';
 import {getEventInfo} from "../../services/eventsDao";
-import {isEmptyObject, isStrNull, logMsg} from "../../utils/utils";
+import {isEmptyObject, isStrNull, logMsg, shareHost, shareTo} from "../../utils/utils";
 import NotData from "../comm/NotData";
 
 @connect(({RaceMessage}) => ({
@@ -20,6 +20,21 @@ export default class RaceMessage extends Component {
     componentDidMount() {
         getEventInfo({id: this.props.params.id}, data => {
             logMsg("event_info", data);
+            this.props.navigation.setParams({
+                title: data.event.name,
+                onRight: () => {
+                    let param = {
+                        shareTitle: data.event.name,
+                        shareText: data.event.name,
+                        shareImage: data.event.logo,
+                        shareLink: `${shareHost()}/main_events/${this.props.params.id}`
+                    };
+                    shareTo(param)
+                    logMsg('分享')
+
+                }
+            });
+
             this.setState({
                 event_info: data.event
             })

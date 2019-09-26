@@ -213,6 +213,9 @@ export const scenes = () => {
         <Scene key="RaceMessage"
                component={RaceMessage}
                {...TopNav({
+                   right_img_show: true,
+                   right_img: Images.share_img,
+                   right_img_size: {height: 19, width: 19},
                    title: global.lang.t('race_message')
                })}
         />
