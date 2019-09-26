@@ -71,14 +71,46 @@ export function OnSafePress(callback = () => {}, times = 1000) {
         callback()
     }
 }
+export function turn2MapMark(amap_location, amap_navigation_url, amap_poiid, location, title, targetAppName) {
 
-/**
- * 已关注
- * @param ids
- */
-export function setFollowerIds(ids) {
-  logMsg('已关注用户IDs:', ids)
-  following_ids = ids;
+    let lat = '', lon = '', appUri = ''
+    if (strNotNull(amap_location)) {
+        let arr = amap_location.split(',')
+        if (arr.length === 2) {
+            lon = arr[0]
+            lat = arr[1]
+        }
+    }
+
+    if (Platform.OS === 'ios') {
+        if (targetAppName === 'gaode') {
+            appUri = `iosamap://path?sourceApplication=macuahike&slat=&slon=&sname=&dlat=${lat}&dlon=${lon}&dname=${title}&dev=0&m=0&t=0`
+        } else if (targetAppName === 'pingguo') {
+            // http:maps.apple.com/?daddr=${lon},${lat},${title}
+            appUri = `http://maps.apple.com/?daddr=${title}&ll=${amap_location}`
+        }
+    } else {
+        appUri = `amapuri://route/plan/?dlat=${lat}&dlon=${lon}&dname=${title}&dev=0&t=0`
+        // appUri = `uri.amap.com/navigation?to=${amap_location},endpoint&via=midwaypoint&mode=car&policy=1&src=mypage&coordinate=gaode&callnative=0`
+    }
+
+    if (strNotNull(lon) && strNotNull(lat))
+        Linking.openURL(appUri).catch(e => {
+            console.warn(e)
+            if (strNotNull(amap_navigation_url)) {
+                if (Platform.OS === 'ios')
+                    router.toWebViewPage('', amap_navigation_url)
+                else
+                    Linking.openURL(amap_navigation_url)
+            }
+
+        });
+    else if (strNotNull(amap_navigation_url))
+        if (Platform.OS === 'ios')
+            router.toWebViewPage('', amap_navigation_url)
+        else
+            Linking.openURL(amap_navigation_url)
+
 }
 
 /**
