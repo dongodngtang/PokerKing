@@ -208,10 +208,10 @@ export default class Races extends Component {
                             this.debouncePress(recent_event.id)
                         })}
 
-                    {this._item(styles.item_view, Images.event_dynamics, styles.img_dy2,
-                        global.lang.t('race_schedule'), () => {
-                            router.toRaceSchedule(recent_event);
-                        })}
+                    {/*{this._item(styles.item_view, Images.event_dynamics, styles.img_dy2,*/}
+                        {/*global.lang.t('race_schedule'), () => {*/}
+                            {/*router.toRaceSchedule(recent_event);*/}
+                        {/*})}*/}
                     {this._item(styles.item_view, Images.news_info, styles.img_dy3,
                         global.lang.t('race_news'), () => {
                             router.toRaceNew(recent_event.id);
