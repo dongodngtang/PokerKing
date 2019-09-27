@@ -19,6 +19,10 @@ export function getCashQueuesNumber(body,resolve, reject) {
     }, reject)
 }
 
+export function postHotSwitch(resolve, reject) {
+    post(api.hot_switch,{},resolve,reject)
+}
+
 export function postCancelApply(body,resolve, reject) {
     post(api.cancelapply(body),{},resolve,reject)
 }

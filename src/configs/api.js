@@ -49,7 +49,8 @@ const api = {
     scanapplystatus: 'cash_queues/scanapplystatus',
     info_tag: 'infos/tags',
     cancel_noti: cancel_noti,//Jpush删除消息
-    app_versions:'app_versions'
+    app_versions:'app_versions',
+    hot_switch:'hot_switch'//热更新显示房间开关
 }
 
 function cancelapply(body) {

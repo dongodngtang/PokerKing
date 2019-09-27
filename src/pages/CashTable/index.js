@@ -3,7 +3,7 @@ import {View, Text, TouchableOpacity, Image, ImageBackground, StatusBar, Platfor
 import {connect} from 'react-redux';
 import styles from './index.style';
 import {Images, px2dp} from "../../configs/Theme";
-import {getCashGames, getCashQueuesNumber} from "../../services/cashTableDao";
+import {getCashGames, postHotSwitch} from "../../services/cashTableDao";
 import {getBg, isEmpty, isEmptyObject, isStrNull, logMsg, strNotNull, turn2MapMark} from "../../utils/utils";
 import {Metrics} from "../../configs/Theme";
 import UltimateFlatList from '../../components/ultimate/UltimateFlatList';
@@ -12,15 +12,24 @@ import {initLoginUser} from "../../services/accountDao";
 import PopAction from "../comm/PopAction";
 
 
-
-
 @connect(({CashTable}) => ({
     ...CashTable,
 }))
 export default class CashTable extends Component {
 
     state = {
-        current_item: {}
+        current_item: {},
+        show_room: false
+    }
+
+    componentDidMount() {
+        postHotSwitch(ret => {
+            this.setState({
+                show_room: true
+            })
+        }, err => {
+
+        })
     }
 
 
@@ -89,23 +98,27 @@ export default class CashTable extends Component {
         const {amap_location, amap_navigation_url, amap_poiid, location, name} = item;
         return (
             <TouchableOpacity key={index} activeOpacity={1} onPress={() => {
-                // router.toQueueProcess(item)
-                this.setState({
-                    current_item: item
-                })
-                if (Platform.OS === 'ios') {
-                    this.popAction && this.popAction.toggle();
+                if (this.state.show_room) {
+                    router.toQueueProcess(item)
                 } else {
-                    if (strNotNull(amap_navigation_url))
-                        turn2MapMark(amap_location, amap_navigation_url, amap_poiid, location, name, '')
+                    this.setState({
+                        current_item: item
+                    })
+                    if (Platform.OS === 'ios') {
+                        this.popAction && this.popAction.toggle();
+                    } else {
+                        if (strNotNull(amap_navigation_url))
+                            turn2MapMark(amap_location, amap_navigation_url, amap_poiid, location, name, '')
 
+                    }
                 }
+
             }}>
                 <ImageBackground source={img} style={[styles.jinsha, {
                     flexDirection: "column-reverse"
                 }]}>
                     <View activeOpacity={1}
-                                      style={[styles.txt_view, {backgroundColor: '#101010', opacity: 0.78}]}>
+                          style={[styles.txt_view, {backgroundColor: '#101010', opacity: 0.78}]}>
                         <Text style={styles.txt1} numberOfLines={1}>{item.name}</Text>
                         <View style={{flex: 1}}/>
                         {/*<Image*/}
@@ -167,7 +180,11 @@ export default class CashTable extends Component {
 
     popActions = () => {
         const {name, location, amap_poiid, amap_navigation_url, amap_location} = this.state.current_item;
-        let reportList  = [{id: 0, name: global.lang.t('Gaode'), type: 'gaode'}, {id: 1, name: global.lang.t('iphone_map'), type: 'pingguo'}];
+        let reportList = [{id: 0, name: global.lang.t('Gaode'), type: 'gaode'}, {
+            id: 1,
+            name: global.lang.t('iphone_map'),
+            type: 'pingguo'
+        }];
         let resultArray = [];
         reportList.forEach((data, index) => {
             let item = {
