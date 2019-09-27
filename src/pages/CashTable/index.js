@@ -53,7 +53,7 @@ export default class CashTable extends Component {
                     style={styles.navTitle}>
                     <Text
                         style={{fontSize: 17, color: '#FFE9AD'}}
-                        numberOfLines={1}>{this.state.show_room ? global.lang.t('room') : global.lang.t('locations')}</Text>
+                        numberOfLines={1}>{global.lang.t('room')}</Text>
                 </View>
                 <TouchableOpacity
                     onPress={() => {
