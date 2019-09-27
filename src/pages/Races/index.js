@@ -18,6 +18,7 @@ import ShareToast from "../comm/ShareToast";
 import CollectBtn from "../comm/CollectBtn";
 import NotData from "../comm/NotData";
 import Loading from "../comm/Loading";
+import {postHotSwitch} from "../../services/cashTableDao";
 
 @connect(({Races}) => ({
     ...Races,
@@ -28,7 +29,8 @@ export default class Races extends Component {
         list_show: false,
         events: [],
         recent_event: {},
-        all_events: []
+        all_events: [],
+        show_race: false
     };
 
     componentDidMount() {
@@ -46,6 +48,15 @@ export default class Races extends Component {
                 recent_event: data.recent_event,
                 all_events: all
             })
+        })
+
+        postHotSwitch(data => {
+            logMsg("房间开关", data)
+            this.setState({
+                show_race: data.data.hot_switch
+            })
+        }, err => {
+
         })
     }
 
@@ -70,7 +81,7 @@ export default class Races extends Component {
     };
 
     topBar = (recent_event) => {
-        const {name}  = recent_event;
+        const {name} = recent_event;
         return (
             <View style={styles.navTop}>
                 <StatusBar barStyle={'light-content'}/>
@@ -188,7 +199,7 @@ export default class Races extends Component {
                         backgroundColor: "#736C5B", width: Metrics.screenWidth - 34, height: 1,
                         borderRadius: 2, marginTop: 16
                     }}/>
-                </View> : <View style={[styles.carousel_view,{height: px2dp(302)}]}/>}
+                </View> : <View style={[styles.carousel_view, {height: px2dp(302)}]}/>}
 
 
                 <View style={{
@@ -208,10 +219,10 @@ export default class Races extends Component {
                             this.debouncePress(recent_event.id)
                         })}
 
-                    {/*{this._item(styles.item_view, Images.event_dynamics, styles.img_dy2,*/}
-                        {/*global.lang.t('race_schedule'), () => {*/}
-                            {/*router.toRaceSchedule(recent_event);*/}
-                        {/*})}*/}
+                    {this.state.show_race ? this._item(styles.item_view, Images.event_dynamics, styles.img_dy2,
+                        global.lang.t('race_schedule'), () => {
+                            router.toRaceSchedule(recent_event);
+                        }) : null}
                     {this._item(styles.item_view, Images.news_info, styles.img_dy3,
                         global.lang.t('race_news'), () => {
                             router.toRaceNew(recent_event.id);
