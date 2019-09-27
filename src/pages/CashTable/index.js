@@ -23,9 +23,10 @@ export default class CashTable extends Component {
     }
 
     componentDidMount() {
-        postHotSwitch(ret => {
+        postHotSwitch(data => {
+            logMsg("房间开关",data)
             this.setState({
-                show_room: true
+                show_room: data.data.hot_switch
             })
         }, err => {
 
