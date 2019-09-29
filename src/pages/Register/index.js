@@ -5,14 +5,30 @@ import styles from "./index.style";
 import {Images, Metrics} from "../../configs/Theme";
 import {ActionSheet} from '../../components';
 import {register} from "../../services/accountDao";
-import ImagePicker from "react-native-image-crop-picker";
 import {isStrNull, logMsg, showToast} from "../../utils/utils";
-
+import CountryPicker, {getAllCountries} from 'react-native-country-picker-modal'
+import DeviceInfo from 'react-native-device-info'
 
 
 export default class Register extends Component {
     constructor(props) {
         super(props)
+
+      let userLocaleCountryCode = DeviceInfo.getDeviceCountry()
+      const userCountryData = getAllCountries()
+        .filter(country => country.cca2 === userLocaleCountryCode)
+        .pop()
+      let callingCode = '86'
+      let areaName = 'China'
+      let cca2 = userLocaleCountryCode
+      if (!cca2 || !userCountryData) {
+        cca2 = 'CN'
+        callingCode = '86'
+      } else {
+        callingCode = userCountryData.callingCode
+        areaName = userCountryData.name.common
+      }
+
         this.state = {
             name_show: false,
             email_show: false,
@@ -21,7 +37,8 @@ export default class Register extends Component {
             username: '',
             uploadTxt:'',
             birthTxt:'',
-            countryTxt:''
+            countryTxt:'',
+            cca2:cca2
         }
         this.user_name = ''
         this.email = ''
@@ -147,6 +164,7 @@ export default class Register extends Component {
                     <View style={[styles.textView, {height: 50}]}>
                         <TouchableOpacity style={{width: '100%', flexDirection: 'row', alignItems: 'center'}}
                                           onPress={() => {
+                                            this.areaAction && this.areaAction.openModal();
                                           }}>
                             <Text style={{
                                 color: '#CCCCCC',
@@ -225,6 +243,29 @@ export default class Register extends Component {
                     destructiveButtonIndex={2}
                     onPress={this._getGender}
                 />
+
+              <CountryPicker
+                styles={{
+                  touchFlag: {
+                    marginBottom: 12
+                  }
+                }}
+                ref={ref => this.areaAction = ref}
+                filterable
+                closeable
+                showCallingCode={false}
+                onChange={value => {
+                  logMsg(value)
+                  this.setState({
+                    countryTxt: value.name,
+                    cca2: value.cca2
+                  })
+                }}
+                translation="eng"
+                cca2={this.state.cca2}
+              >
+                <View/>
+              </CountryPicker>
             </View>
         )
     }
