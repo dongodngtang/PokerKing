@@ -54,6 +54,7 @@ import VerCodeLogin from "./VerCodeLogin";
 import BindingMobile from "./BindingMobile";
 import PwdFound from "./PwdFound";
 import CurrentVersion from "./CurrentVersion";
+import UploadDocument from "./UploadDocument";
 
 export const scenes = () => {
     return <Scene key="root"
@@ -156,6 +157,11 @@ export const scenes = () => {
                component={CashTable}
                {...TopNav({
                    title: global.lang.t('cash_table')
+               })}/>
+        <Scene key="UploadDocument"
+               component={UploadDocument}
+               {...TopNav({
+                   title: global.lang.t('document_upload')
                })}/>
         <Scene key="QueueProcess"
                component={QueueProcess}

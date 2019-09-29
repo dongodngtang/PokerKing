@@ -16,9 +16,12 @@ export default class Register extends Component {
         this.state = {
             name_show: false,
             email_show: false,
-            genderTxt: global.lang.t('gender'),
+            genderTxt: '',
             nickStr: '',
-            username: ''
+            username: '',
+            uploadTxt:'',
+            birthTxt:'',
+            countryTxt:''
         }
         this.user_name = ''
         this.email = ''
@@ -81,11 +84,36 @@ export default class Register extends Component {
                                               this.actionGender && this.actionGender.show()
                                           }}>
                             <Text style={{
-                                color: this.state.genderTxt === global.lang.t('gender') ? '#CCCCCC' : '#444444',
+                                color: '#CCCCCC',
                                 marginLeft: 8,
                                 fontSize: 16
-                            }}>{this.state.genderTxt}</Text>
+                            }}>{global.lang.t('gender')}</Text>
                             <View style={{flex: 1}}/>
+                            <Text style={{
+                                color: '#444444',
+                                marginRight: 14,
+                                fontSize: 16
+                            }}>{this.state.genderTxt}</Text>
+                            <Image style={{width: 6, height: 16, marginRight: 10}} source={Images.is_right}/>
+                        </TouchableOpacity>
+                    </View>
+
+                    {/*出生日期*/}
+                    <View style={[styles.textView, {height: 50}]}>
+                        <TouchableOpacity style={{width: '100%', flexDirection: 'row', alignItems: 'center'}}
+                                          onPress={() => {
+                                          }}>
+                            <Text style={{
+                                color: '#CCCCCC',
+                                marginLeft: 8,
+                                fontSize: 16
+                            }}>{global.lang.t('birth')}</Text>
+                            <View style={{flex: 1}}/>
+                            <Text style={{
+                                color: '#444444',
+                                marginRight: 14,
+                                fontSize: 16
+                            }}>{this.state.birthTxt}</Text>
                             <Image style={{width: 6, height: 16, marginRight: 10}} source={Images.is_right}/>
                         </TouchableOpacity>
                     </View>
@@ -114,6 +142,48 @@ export default class Register extends Component {
                         />
                         <View style={{flex: 1}}/>
                     </View>
+
+                    {/*国籍*/}
+                    <View style={[styles.textView, {height: 50}]}>
+                        <TouchableOpacity style={{width: '100%', flexDirection: 'row', alignItems: 'center'}}
+                                          onPress={() => {
+                                          }}>
+                            <Text style={{
+                                color: '#CCCCCC',
+                                marginLeft: 8,
+                                fontSize: 16
+                            }}>{global.lang.t('country')}</Text>
+                            <View style={{flex: 1}}/>
+                            <Text style={{
+                                color: '#444444',
+                                marginRight: 14,
+                                fontSize: 16
+                            }}>{this.state.countryTxt}</Text>
+                            <Image style={{width: 6, height: 16, marginRight: 10}} source={Images.is_right}/>
+                        </TouchableOpacity>
+                    </View>
+
+                    {/*证件上传*/}
+                    <View style={[styles.textView, {height: 50}]}>
+                        <TouchableOpacity style={{width: '100%', flexDirection: 'row', alignItems: 'center'}}
+                                          onPress={() => {
+                                              router.toUploadDocument()
+                                          }}>
+                            <Text style={{
+                                color: '#CCCCCC',
+                                marginLeft: 8,
+                                fontSize: 16
+                            }}>{global.lang.t('document_upload')}</Text>
+                            <View style={{flex: 1}}/>
+                            <Text style={{
+                                color: '#444444',
+                                marginRight: 14,
+                                fontSize: 16
+                            }}>{this.state.uploadTxt}</Text>
+                            <Image style={{width: 6, height: 16, marginRight: 10}} source={Images.is_right}/>
+                        </TouchableOpacity>
+                    </View>
+
                 </KeyboardAvoidingView>
 
                 <Text style={{

@@ -245,6 +245,13 @@ export default class Router {
 
     }
 
+    toUploadDocument() {
+        this.push({
+            sceneKey: 'UploadDocument'
+        })
+
+    }
+
     toProtocolPage() {
         this.push({
             sceneKey: 'ProtocolPage'

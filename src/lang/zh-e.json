@@ -292,6 +292,12 @@
   "mobile_zhuce":"手機號已被註冊",
   "open_net":"請在設置中允許App使用網絡或檢查手機網絡是否打開",
   "Gaode":"高德地圖",
-  "iphone_map":"蘋果地圖"
+  "iphone_map":"蘋果地圖",
+  "birth":"出生日期",
+  "country":"国籍",
+  "document_upload":"证件上传",
+  "upload_text":"请上传您的证件信息",
+  "example":"示例：",
+  "upload":"提交"
 
 }

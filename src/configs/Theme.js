@@ -219,7 +219,10 @@ export const Images = {
     set_exclamation: require('../asserts/new/set_exclamation.png'),
     left_returnpng: require('../asserts/new/left_returnpng.png'),
     right_close: require('../asserts/new/right_close.png'),
-    delete_collect: require('../asserts/new/delete_collect.png')
+    delete_collect: require('../asserts/new/delete_collect.png'),
+    example_upload: require('../asserts/new/example_upload.png'),
+    example_upload2: require('../asserts/new/example_upload2.png'),
+
 }
 
 

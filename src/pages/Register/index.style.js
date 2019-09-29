@@ -14,8 +14,7 @@ export default StyleSheet.create({
         flexDirection:'row',
         alignItems:'center',
         borderBottomColor:'#ECECEE',
-        borderBottomWidth:1,
-        marginTop:15
+        borderBottomWidth:1
     },
     confirm_btn:{
         marginTop:50,

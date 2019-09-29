@@ -292,7 +292,13 @@
   "mobile_zhuce":"手机号已被注册",
   "open_net":"请在设置中允许App使用网络或检查手机网络是否打开",
   "Gaode":"高德地图",
-  "iphone_map":"苹果地图"
+  "iphone_map":"苹果地图",
+  "birth":"出生日期",
+  "country":"国籍",
+  "document_upload":"证件上传",
+  "upload_text":"请上传您的证件信息",
+  "example":"示例：",
+  "upload":"提交"
 }
 
 

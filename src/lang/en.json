@@ -292,5 +292,11 @@
   "mobile_zhuce":"This number has already been used",
   "open_net":"Please allow the app to use the network or check if the phone network is open in the settings.",
   "Gaode":"Gaode Map",
-  "iphone_map":"Apple Map"
+  "iphone_map":"Apple Map",
+  "birth":"出生日期",
+  "country":"国籍",
+  "document_upload":"证件上传",
+  "upload_text":"请上传您的证件信息",
+  "example":"示例：",
+  "upload":"提交"
 }
