@@ -8,6 +8,8 @@ import {register} from "../../services/accountDao";
 import {isStrNull, logMsg, showToast} from "../../utils/utils";
 import CountryPicker, {getAllCountries} from 'react-native-country-picker-modal'
 import DeviceInfo from 'react-native-device-info'
+import DateTimePicker from '../../components/DatePicker'
+import moment from 'moment'
 
 
 export default class Register extends Component {
@@ -38,15 +40,31 @@ export default class Register extends Component {
             uploadTxt:'',
             birthTxt:'',
             countryTxt:'',
-            cca2:cca2
+            cca2:cca2,
+          isDateTimePickerVisible:false
         }
         this.user_name = ''
         this.email = ''
         this.gender = 0
     }
 
+  handleDatePicked = date => {
+    let birthTxt = moment(date).format('YYYY-MM-DD')
 
-    _getGender = (gender) => {
+    this.setState({ isDateTimePickerVisible: false,
+      birthTxt});
+  };
+
+  showDateTimePicker = () => {
+    this.setState({ isDateTimePickerVisible: true });
+  };
+
+  hideDateTimePicker = () => {
+    this.setState({ isDateTimePickerVisible: false });
+  };
+
+
+  _getGender = (gender) => {
         logMsg(gender)
         if (gender !== 0) {
             this.gender = gender
@@ -119,6 +137,7 @@ export default class Register extends Component {
                     <View style={[styles.textView, {height: 50}]}>
                         <TouchableOpacity style={{width: '100%', flexDirection: 'row', alignItems: 'center'}}
                                           onPress={() => {
+                                            this.showDateTimePicker()
                                           }}>
                             <Text style={{
                                 color: '#CCCCCC',
@@ -266,6 +285,12 @@ export default class Register extends Component {
               >
                 <View/>
               </CountryPicker>
+
+              <DateTimePicker
+                isVisible={this.state.isDateTimePickerVisible}
+                onConfirm={this.handleDatePicked}
+                onCancel={this.hideDateTimePicker}
+              />
             </View>
         )
     }
