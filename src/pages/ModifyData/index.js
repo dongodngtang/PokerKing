@@ -3,7 +3,7 @@ import {View, Text, TextInput, TouchableOpacity, Image, Platform} from 'react-na
 import {connect} from 'react-redux';
 import styles from './index.style';
 import ImagePicker from 'react-native-image-crop-picker';
-import {Images} from "../../configs/Theme";
+import {Images, px2dp} from "../../configs/Theme";
 import {isStrNull, getCurrentDate, isEmptyObject, getAvatar, logMsg, showToast} from "../../utils/utils";
 import {ActionSheet} from '../../components';
 import {putProfile, uploadAvatar} from "../../services/accountDao";
@@ -38,13 +38,19 @@ export default class ModifyData extends Component {
         if (profile.gender === '0')
             genderTxt = global.lang.t('gender')
 
-        this.inputNick = profile ? profile.nickname : '';
+        this.inputNick = profile ? profile.account : '';
+        this.inputBith = profile ? profile.birthday : '';
+        this.inputCountry = profile ? profile.country : '';
+        this.inputCertNo = profile ? profile.cert_no : '';
         this.inputMail = profile ? profile.email : ''
         this.gender = profile.gender
         this.state = {
             avatar,
             genderTxt: genderTxt,
-            nickname: this.inputNick,
+            user_account: this.inputNick,
+            user_birth: this.inputBith,
+            user_country: this.inputCountry,
+            user_cert_no: this.inputCertNo,
             email: this.inputMail,
             avatar_modify: false,
             gender_modify: false
@@ -57,8 +63,8 @@ export default class ModifyData extends Component {
             onRight: () => {
                 let edit = {}
                 let next = false
-                if (profile.nickname !== this.inputNick) {
-                    edit.nickname = this.inputNick
+                if (profile.user_account !== this.inputNick) {
+                    edit.user_account = this.inputNick
                 }
                 if (profile.email !== this.inputMail) {
                     edit.email = this.inputMail
@@ -152,7 +158,9 @@ export default class ModifyData extends Component {
 
 
     render() {
-        const {avatar, genderTxt, nickname, email} = this.state
+        const {profile} = this.props;
+        const {nickname} = profile;
+        const {avatar, genderTxt, user_account, email,user_birth,user_country,user_cert_no} = this.state
         return (
             <View style={styles.modifyData_view}>
                 <View style={{paddingLeft: 20, paddingRight: 17, backgroundColor: "#FFFFFF"}}>
@@ -165,7 +173,7 @@ export default class ModifyData extends Component {
                         <View style={{flex: 1}}/>
                         <View style={{
                             height: 64, width: 64, alignItems: 'center', justifyContent: 'center',
-                            marginRight: 35
+                            marginRight: px2dp(35)
                         }}>
                             <Image style={{
                                 height: 64, width: 64,
@@ -182,29 +190,52 @@ export default class ModifyData extends Component {
 
 
                     </TouchableOpacity>
-                    {/*<View style={styles.line2}/>*/}
-                    {/*<View style={styles.item_view}>*/}
 
-                    {/*<Text style={styles.text_label}>{global.lang.t('nick')}</Text>*/}
-                    {/*<TextInput style={[styles.text_value, {marginRight: 17}]}*/}
-                    {/*clearTextOnFocus={true}*/}
-                    {/*maxLength={8}*/}
-                    {/*returnKeyType={'done'}*/}
-                    {/*placeholderTextColor={"#666666"}*/}
-                    {/*underlineColorAndroid='transparent'*/}
-                    {/*onChangeText={text => {*/}
-                    {/*this.inputNick = text*/}
-                    {/*}}*/}
-                    {/*placeholder={nickname}*/}
-                    {/*testID="input_nick"/>*/}
+                    {/*昵称 不可修改*/}
+                    <View style={styles.line2}/>
+                    <View style={styles.item_view}>
+                        <Text style={styles.text_label}>{global.lang.t('username_EC')}</Text>
+                        <View style={{flex: 1}}/>
+                        <Text style={styles.text_value2}>{nickname}</Text>
+                    </View>
 
-                    {/*<Image style={{height: 20, width: 10}}*/}
-                    {/*source={Images.right_gray}/>*/}
+                    {/*账号 可修改*/}
+                    <View style={styles.line2}/>
+                    <View style={styles.item_view}>
 
-                    {/*</View>*/}
+                        <Text style={styles.text_label}>{global.lang.t('userName')}</Text>
+                        <View style={{flex: 1}}/>
+                        <TextInput style={[styles.text_value, {marginRight: 17}]}
+                                   clearTextOnFocus={true}
+                                   maxLength={8}
+                                   returnKeyType={'done'}
+                                   placeholderTextColor={"#666666"}
+                                   underlineColorAndroid='transparent'
+                                   onChangeText={text => {
+                                       this.inputNick = text
+                                   }}
+                                   placeholder={user_account}
+                                   testID="input_nick"/>
+
+                        <Image style={{height: 20, width: 10}}
+                               source={Images.right_gray}/>
+
+                    </View>
+
+                    {/*出生日期 可修改*/}
+                    <View style={styles.line2}/>
+                    <TouchableOpacity activeOpacity={1} style={styles.item_view}>
+
+                        <Text style={styles.text_label}>{global.lang.t('birth')}</Text>
+                        <Text style={styles.text_label}>{this.state.user_birth}</Text>
+
+                        <View style={{flex: 1}}/>
+                        <Image style={{height: 20, width: 10}}
+                               source={Images.right_gray}/>
+
+                    </TouchableOpacity>
 
                     <View style={styles.line2}/>
-
                     <TouchableOpacity activeOpacity={1}
                                       style={styles.item_view}
                                       onPress={() => {
@@ -212,13 +243,13 @@ export default class ModifyData extends Component {
                                       }}
                     >
                         <Text style={styles.text_label}>{global.lang.t('gender')}</Text>
-                        <Text style={styles.text_label}>{this.state.genderTxt}</Text>
-
                         <View style={{flex: 1}}/>
+                        <Text style={[styles.text_label,{marginRight:17}]}>{this.state.genderTxt}</Text>
                         <Image style={{height: 20, width: 10}}
                                source={Images.right_gray}/>
                     </TouchableOpacity>
 
+                    {/*邮箱 可修改*/}
                     <View style={styles.line2}/>
                     <View style={styles.item_view}>
 
@@ -238,6 +269,33 @@ export default class ModifyData extends Component {
                                source={Images.right_gray}/>
 
                     </View>
+
+                    {/*国籍 可修改*/}
+                    <View style={styles.line2}/>
+                    <TouchableOpacity activeOpacity={1} style={styles.item_view}>
+
+                        <Text style={styles.text_label}>{global.lang.t('country')}</Text>
+                        <Text style={styles.text_label}>{this.state.user_country}</Text>
+
+                        <View style={{flex: 1}}/>
+                        <Image style={{height: 20, width: 10}}
+                               source={Images.right_gray}/>
+
+                    </TouchableOpacity>
+
+                    {/*实名信息 不可修改*/}
+                    <View style={styles.line2}/>
+                    <TouchableOpacity activeOpacity={1} style={styles.item_view}>
+
+                        <Text style={styles.text_label}>{global.lang.t('cert_message')}</Text>
+                        <Text style={styles.text_label}>{this.state.user_cert_no}</Text>
+
+                        <View style={{flex: 1}}/>
+                        <Image style={{height: 20, width: 10}}
+                               source={Images.right_gray}/>
+
+                    </TouchableOpacity>
+
                 </View>
 
                 <ActionSheet

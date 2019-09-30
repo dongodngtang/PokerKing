@@ -21,11 +21,22 @@ export default StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row'
     },
+    item_view2: {
+        height: Metrics.reallySize(54),
+        alignItems: 'center',
+        flexDirection: 'row'
+    },
     text_value: {
         color: "#666666",
         fontSize: Metrics.reallySize(15),
         height:40,
-        flex:1
+        flex:1,
+        textAlign:'right'
+    },
+    text_value2: {
+        fontWeight:'bold',
+        color: "#666666",
+        fontSize: Metrics.reallySize(15)
     }
 })
 
