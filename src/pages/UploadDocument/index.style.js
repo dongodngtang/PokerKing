@@ -3,17 +3,15 @@ import {Metrics, px2dp} from "../../configs/Theme";
 
 export default StyleSheet.create({
     upload_text: {
-        marginTop: 96,
-        marginLeft: 34,
-        marginBottom: 34,
+        marginTop: px2dp(48),
+        marginLeft: px2dp(34),
+        marginBottom: px2dp(34),
         color: "#AAAAAA",
         fontSize: px2dp(28)
     },
     upload_text2: {
-        marginLeft: 34,
         color: "#AAAAAA",
-        fontSize: px2dp(28),
-        marginRight:4
+        fontSize: px2dp(28)
     },
     example_view: {
         width: px2dp(412),
@@ -22,7 +20,7 @@ export default StyleSheet.create({
         marginBottom: 50
     },
     example_img: {
-        width: px2dp(412),
+        width: px2dp(414),
         height: px2dp(256),
         alignSelf: 'center'
     },
@@ -33,7 +31,27 @@ export default StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: "#161718",
-        marginTop: px2dp(138)
+        marginTop: px2dp(42)
+    },
+    message_view:{
+        marginTop:px2dp(16),
+        width:Metrics.screenWidth,
+        height:px2dp(96),
+        flexDirection:'row',
+        alignItems:'center',
+        backgroundColor:"#FFFFFF"
+    },
+    message_text:{
+        marginLeft: px2dp(34),
+        color: "#333333",
+        fontWeight:'bold',
+        fontSize: px2dp(30)
+    },
+    upload_text3:{
+        marginLeft: px2dp(34),
+        marginTop:px2dp(42),
+        color: "#AAAAAA",
+        fontSize: px2dp(20)
     }
 })
 

@@ -298,7 +298,12 @@
   "document_upload":"证件上传",
   "upload_text":"请上传您的证件信息",
   "example":"示例：",
-  "upload":"提交"
+  "upload":"提交",
+  "truth_name":"真实姓名：",
+  "input_truth_name":"请输入您的真实姓名",
+  "cer_no":"证件号码：",
+  "input_cer_no":"请输入您的证件号码",
+  "upload_prompt":"*照片中需要能看清姓名、护照号码等信息，确保审核顺利通过"
 }
 
 
