@@ -30,7 +30,7 @@ export default class Races extends Component {
         events: [],
         recent_event: {},
         all_events: [],
-        show_race: false
+        show_race: true
     };
 
     componentDidMount() {
@@ -50,14 +50,14 @@ export default class Races extends Component {
             })
         })
 
-        postHotSwitch(data => {
-            logMsg("房间开关", data)
-            this.setState({
-                show_race: data.data.hot_switch
-            })
-        }, err => {
-
-        })
+        // postHotSwitch(data => {
+        //     logMsg("房间开关", data)
+        //     this.setState({
+        //         show_race: data.data.hot_switch
+        //     })
+        // }, err => {
+        //
+        // })
     }
 
     change_recent_event = (recent_event) => {

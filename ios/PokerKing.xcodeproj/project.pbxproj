@@ -1894,7 +1894,7 @@
 				CODE_SIGN_ENTITLEMENTS = PokerKing/PokerKing.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 71;
+				CURRENT_PROJECT_VERSION = 72;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = KZCC4Q9822;
 				HEADER_SEARCH_PATHS = (
@@ -1937,7 +1937,7 @@
 				CODE_SIGN_ENTITLEMENTS = PokerKing/PokerKing.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 71;
+				CURRENT_PROJECT_VERSION = 72;
 				DEVELOPMENT_TEAM = KZCC4Q9822;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
