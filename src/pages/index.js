@@ -493,12 +493,15 @@ export class NavBarQueue extends PureComponent {
             onLeft ? onLeft() : router.pop()
 
           }}
-          style={Styles.left}>
+          style={{height: 44,
+            justifyContent: 'center',
+            width: 60,
+            paddingRight: 10,
+            paddingLeft: 17
+          }}>
           {this.left_img()}
 
         </TouchableOpacity>
-          <View style={Styles.left}/>
-
 
         <TouchableOpacity
           activeOpacity={1}
@@ -516,9 +519,13 @@ export class NavBarQueue extends PureComponent {
           onPress={() => {
             this.props.onRight1 && this.props.onRight1()
           }}
-          style={Styles.right}>
+          style={{
+            height: 44,
+            justifyContent: 'center',
+            width: 44
+          }}>
           <Image
-            style={{height:px2dp(38),width:px2dp(38)}}
+            style={{height:px2dp(33),width:px2dp(27)}}
             source={Images.location}
           />
 
@@ -527,7 +534,11 @@ export class NavBarQueue extends PureComponent {
           onPress={() => {
             this.props.onRight && this.props.onRight()
           }}
-          style={Styles.right}>
+          style={{
+            height: 44,
+            justifyContent: 'center',
+            width: 44
+          }}>
           {this.left_content()}
 
         </TouchableOpacity>
