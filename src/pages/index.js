@@ -158,11 +158,8 @@ export const scenes = () => {
                    title: global.lang.t('cash_table')
                })}/>
         <Scene key="QueueProcess"
-               component={{
-                 ...props,
-                 navBar: NavBarQueue
-               }}
-               {...TopNav({
+               component={QueueProcess}
+               {...TopNavQueue({
                    right_img_show: true,
                    right_img: Images.message,
                    right_img_size: {height: px2dp(34), width: px2dp(45)}
@@ -354,6 +351,14 @@ const TopNav = (props) => {
         ...props,
         navBar: NavBar
     }
+};
+
+const TopNavQueue = (props) => {
+
+  return {
+    ...props,
+    navBar: NavBarQueue
+  }
 };
 
 export class NavBar extends PureComponent {
