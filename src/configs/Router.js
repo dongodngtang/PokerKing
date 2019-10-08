@@ -146,13 +146,11 @@ export default class Router {
     }
 
     toInfoDetail(id) {
-        needLogin(() => {
-            this.push({
-                sceneKey: 'InfoDetail',
-                params: {
-                    id
-                }
-            })
+        this.push({
+            sceneKey: 'InfoDetail',
+            params: {
+                id
+            }
         })
 
     }

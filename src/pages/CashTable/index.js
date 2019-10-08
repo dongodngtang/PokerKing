@@ -19,19 +19,19 @@ export default class CashTable extends Component {
 
     state = {
         current_item: {},
-        show_room: false
+        show_room: true
     }
 
-    componentDidMount() {
-        postHotSwitch(data => {
-            logMsg("房间开关", data)
-            this.setState({
-                show_room: data.data.hot_switch
-            })
-        }, err => {
-
-        })
-    }
+    // componentDidMount() {
+    //     postHotSwitch(data => {
+    //         logMsg("房间开关", data)
+    //         this.setState({
+    //             show_room: data.data.hot_switch
+    //         })
+    //     }, err => {
+    //
+    //     })
+    // }
 
 
     topBar = () => {
