@@ -9,7 +9,6 @@ import {Metrics} from "../../configs/Theme";
 import UltimateFlatList from '../../components/ultimate/UltimateFlatList';
 import NotData from "../comm/NotData";
 import {initLoginUser} from "../../services/accountDao";
-import PopAction from "../comm/PopAction";
 
 
 @connect(({CashTable}) => ({
@@ -96,24 +95,10 @@ export default class CashTable extends Component {
 
     _renderItem = (item, index) => {
         let img = this.getLang(item);
-        const {amap_location, amap_navigation_url, amap_poiid, location, name} = item;
+
         return (
             <TouchableOpacity key={index} activeOpacity={1} onPress={() => {
-                if (this.state.show_room) {
-                    router.toQueueProcess(item)
-                } else {
-                    this.setState({
-                        current_item: item
-                    })
-                    if (Platform.OS === 'ios') {
-                        this.popAction && this.popAction.toggle();
-                    } else {
-                        if (strNotNull(amap_navigation_url))
-                            turn2MapMark(amap_location, amap_navigation_url, amap_poiid, location, name, '')
-
-                    }
-                }
-
+              router.toQueueProcess(item)
             }}>
                 <ImageBackground source={img} style={[styles.jinsha, {
                     flexDirection: "column-reverse"
@@ -151,10 +136,7 @@ export default class CashTable extends Component {
                     emptyView={() => <NotData/>}
                 />
 
-                <PopAction
-                    btnShow={true}
-                    ref={ref => this.popAction = ref}
-                    btnArray={this.popActions()}/>
+
             </View>
         )
     }
@@ -179,32 +161,5 @@ export default class CashTable extends Component {
         }
     };
 
-    popActions = () => {
-        const {name, location, amap_poiid, amap_navigation_url, amap_location} = this.state.current_item;
-        let reportList = [{id: 0, name: global.lang.t('Gaode'), type: 'gaode'}, {
-            id: 1,
-            name: global.lang.t('iphone_map'),
-            type: 'pingguo'
-        }];
-        let resultArray = [];
-        reportList.forEach((data, index) => {
-            let item = {
-                name: data.name, txtStyle: {color: '#4A90E2'}, onPress: () => {
-                    if (strNotNull(amap_navigation_url)) {
-                        this.popAction.toggle();
-                        turn2MapMark(amap_location, amap_navigation_url, amap_poiid, location, name, data.type)
-                    }
 
-                }
-            };
-            resultArray.push(item);
-        });
-        resultArray.push({
-            name: global.lang.t('cancel'),
-            txtStyle: {color: "#AAAAAA"},
-            onPress: () => this.popAction.toggle()
-        });
-
-        return resultArray;
-    };
 }
