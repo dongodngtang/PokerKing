@@ -6,6 +6,7 @@ import {Images, Metrics, px2dp} from "../../../configs/Theme";
 import md5 from "react-native-md5";
 import {showToast} from "../../../utils/utils";
 import {postCode, verify} from "../../../services/accountDao";
+import LinearGradient from 'react-native-linear-gradient'
 
 const reg = /^[a-zA-Z][a-zA-z0-9_@]{4,15}$/;
 
@@ -108,7 +109,9 @@ export default class RegisterNew extends Component {
                     </KeyboardAvoidingView>
                 </View>
 
-                <TouchableOpacity style={styles.next_btn} onPress={() => {
+                <TouchableOpacity
+                    style={{marginTop: 54}}
+                    onPress={() => {
                     let account = this.login_name.trim()
                     let password = this.state.password.trim()
                     if(!reg.test(account)){
@@ -138,7 +141,10 @@ export default class RegisterNew extends Component {
 
 
                 }}>
-                    <Text style={{color: '#FFE9AD', fontSize: 17}}>{global.lang.t('login_continue')}</Text>
+                    <LinearGradient style={styles.next_btn}
+                                    colors={['#E1BB8D', '#8B6941']}>
+                    <Text style={{color: '#FFF', fontSize: 17}}>{global.lang.t('login_continue')}</Text>
+                    </LinearGradient>
                 </TouchableOpacity>
             </View>
         )

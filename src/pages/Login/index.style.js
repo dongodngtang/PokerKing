@@ -52,11 +52,9 @@ export default StyleSheet.create({
         marginRight: 17,
         paddingTop: 12,
         paddingBottom: 12,
-        backgroundColor: '#FFE9AD',
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 4,
-        marginTop: 54
+        borderRadius: 4
     },
     down_txt: {
         fontSize: 14,

@@ -10,7 +10,7 @@ import CountryPicker, {getAllCountries} from 'react-native-country-picker-modal'
 import DeviceInfo from 'react-native-device-info'
 import DateTimePicker from '../../components/DatePicker'
 import moment from 'moment'
-
+import LinearGradient from 'react-native-linear-gradient'
 
 export default class Register extends Component {
     constructor(props) {
@@ -232,7 +232,9 @@ export default class Register extends Component {
                     maxWidth:Metrics.screenWidth - 34
                 }}>{global.lang.t('prompt')}</Text>
 
-                <TouchableOpacity style={styles.btn} onPress={() => {
+                <TouchableOpacity
+                    style={{  marginTop:54}}
+                    onPress={() => {
                     let body = this.props.params;
                     body.nickname = this.user_name;
                     body.gender = this.gender;
@@ -251,7 +253,10 @@ export default class Register extends Component {
                         })
                     }
                 }}>
-                    <Text style={{color: '#FFE9AD', fontSize: 18}}>{global.lang.t('determine')}</Text>
+                    <LinearGradient colors={['#E1BB8D', '#8B6941']}
+                                    style={styles.btn}>
+                    <Text style={{color: '#FFF', fontSize: 18}}>{global.lang.t('determine')}</Text>
+                    </LinearGradient>
                 </TouchableOpacity>
 
                 <ActionSheet

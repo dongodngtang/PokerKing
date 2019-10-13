@@ -8,7 +8,7 @@ import {getAvatar, isStrNull, showToast} from "../../utils/utils";
 import {login} from "../../services/accountDao";
 import SelectPiker from "../comm/SelectPiker";
 import md5 from "react-native-md5";
-
+import LinearGradient from 'react-native-linear-gradient'
 
 @connect(({Login}) => ({
     ...Login,
@@ -122,10 +122,17 @@ export default class Login extends Component {
                     </View>
                 </KeyboardAvoidingView>
 
-                <TouchableOpacity style={styles.btn} onPress={() => {
+                <TouchableOpacity
+                    style={{
+                        marginTop: 54}}
+                    onPress={() => {
                     this._next();
                 }}>
-                    <Text style={{color: '#303236', fontSize: 17}}>{global.lang.t('login')}</Text>
+                    <LinearGradient  colors={['#E1BB8D', '#8B6941']}
+                                     style={styles.btn}>
+                        <Text style={{color: '#FFF', fontSize: 17}}>{global.lang.t('login')}</Text>
+                    </LinearGradient>
+
                 </TouchableOpacity>
 
                 <View style={{marginTop: 20, flexDirection: 'row', marginLeft: 17, marginRight: 17}}>

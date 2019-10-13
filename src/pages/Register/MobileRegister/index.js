@@ -10,7 +10,7 @@ import CountDownButton from '../../../components/CountDownButton'
 import SelectPiker from "../../comm/SelectPiker";
 import CountryPicker, {getAllCountries} from 'react-native-country-picker-modal'
 import DeviceInfo from 'react-native-device-info'
-
+import LinearGradient from 'react-native-linear-gradient'
 
 export default class MobileRegister extends Component {
     constructor(props) {
@@ -238,10 +238,17 @@ export default class MobileRegister extends Component {
                     width: Metrics.screenWidth - 34,
                     backgroundColor: "#ECECEE"
                 }}/>
-                <TouchableOpacity style={styles.complete} onPress={() => {
+                <TouchableOpacity
+                    style={{
+                        marginTop: 54}}
+                    onPress={() => {
                     this._next();
                 }}>
-                    <Text style={{color: '#DAB68A', fontSize: 17}}>{global.lang.t('complete')}</Text>
+                    <LinearGradient
+                        style={styles.complete}
+                        colors={['#E1BB8D', '#8B6941']}>
+                    <Text style={{color: '#FFF', fontSize: 17}}>{global.lang.t('complete')}</Text>
+                    </LinearGradient>
                 </TouchableOpacity>
 
                 <View
