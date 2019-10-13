@@ -7,8 +7,8 @@ import {Images} from "../../configs/Theme";
 const styles = StyleSheet.create({
     contains: {
         height: 30,
-        width: '65%',
-        backgroundColor: '#2C2D33',
+        width: '70%',
+        backgroundColor: '#6A543B',
         borderRadius: 6,
         flexDirection: 'row',
         alignItems: 'center'

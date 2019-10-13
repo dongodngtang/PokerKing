@@ -6,7 +6,7 @@ import SearchBar from '../../comm/SearchBar';
 import {logMsg} from "../../../utils/utils";
 import SearchResultList from "./SearchResultList";
 import {historySearch, removeHistorySearch} from "../../../services/raceDao";
-import {del} from "../../../configs/fetch";
+import LinearGradient from 'react-native-linear-gradient'
 
 
 export default class SearchNews extends Component {
@@ -32,7 +32,9 @@ export default class SearchNews extends Component {
 
     topBar = () => {
         return (
-            <View style={styles.navBar}>
+            <LinearGradient
+                colors={['#E1BB8D', '#8B6941']}
+                style={styles.navBar}>
                 <TouchableOpacity
                     style={styles.btn_search}
                     onPress={() => {
@@ -50,13 +52,13 @@ export default class SearchNews extends Component {
                         this.searchByKeyword(keyword)
                     }}/>
                 {this.state.hideHistory ? <TouchableOpacity
-                    style={[styles.btn_search2, {marginLeft: 17}]}
+                    style={[styles.btn_search2]}
                     onPress={this.clearInput}>
                     <Text style={styles.cancel_text}>{global.lang.t('cancel')}</Text>
 
-                </TouchableOpacity> : <View style={[styles.btn_search2, {marginLeft: 17}]}/>}
+                </TouchableOpacity> : <View style={[styles.btn_search2]}/>}
 
-            </View>
+            </LinearGradient>
         )
     };
 

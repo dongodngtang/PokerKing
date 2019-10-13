@@ -17,14 +17,14 @@ export default StyleSheet.create({
         alignItems: 'center'
     },
     btn_search2: {
-        width: 60,
-        height: 40,
+        flex:1,
         flexDirection: "row-reverse",
-        alignItems: 'center'
+        alignItems: 'center',
+        justifyContent:'center'
     },
     cancel_text: {
         fontSize: 17,
-        color: '#FFE9AD'
+        color: '#FFFFFF'
     },
     title: {
         fontSize: 12,
