@@ -6,6 +6,7 @@
 
 import React, {PureComponent} from 'react'
 import {View, TouchableOpacity, Text, Image, StatusBar, SafeAreaView} from 'react-native'
+import LinearGradient from 'react-native-linear-gradient';
 import {Scene, Drawer, Actions} from 'react-native-router-flux'
 import {Images, Styles, Colors, px2dp, px2sp, Metrics} from '../configs/Theme';
 import {isStrNull} from "../utils/utils";
@@ -395,7 +396,8 @@ export class NavBar extends PureComponent {
         const {bgd, bg_color, component, title, rightTitle, onLeft, hideLeft, middle_title} = this.props;
 
         let pageMsg = `在page/index查找${component && component.displayName}`;
-        return <View style={{backgroundColor: bgd ? bg_color : '#1A1B1F'}}>
+        return <LinearGradient
+            colors={['#E1BB8D', '#8B6941']}>
             <SafeAreaView/>
             <View style={{
                 width: Metrics.screenWidth,
@@ -424,7 +426,7 @@ export class NavBar extends PureComponent {
                     }}
                     style={Styles.navTitle}>
                     <Text
-                        style={{fontSize: 17, color: '#FFE9AD', alignSelf: 'center'}} numberOfLines={1}>{title}</Text>
+                        style={{fontSize: 17, color: '#fff', alignSelf: 'center'}} numberOfLines={1}>{title}</Text>
 
                 </TouchableOpacity>
 
@@ -438,6 +440,6 @@ export class NavBar extends PureComponent {
                 </TouchableOpacity>
 
             </View>
-        </View>
+        </LinearGradient>
     }
 }

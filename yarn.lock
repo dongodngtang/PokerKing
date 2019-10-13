@@ -4779,6 +4779,11 @@ react-native-image-zoom-viewer@^2.2.25:
   dependencies:
     react-native-image-pan-zoom "^2.1.9"
 
+react-native-linear-gradient@2.5.3:
+  version "2.5.3"
+  resolved "https://registry.npm.taobao.org/react-native-linear-gradient/download/react-native-linear-gradient-2.5.3.tgz#d90cf19a13fcccfa8bb32025ac40a15ae1b49e99"
+  integrity sha1-2QzxmhP8zPqLsyAlrEChWuG0npk=
+
 react-native-md5@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npm.taobao.org/react-native-md5/download/react-native-md5-1.0.0.tgz#2320be24d674938ae5ef4f492698edbbfa0e0205"
