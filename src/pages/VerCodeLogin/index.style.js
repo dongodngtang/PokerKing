@@ -39,16 +39,12 @@ export default StyleSheet.create({
         borderBottomWidth: 1
     },
     btn: {
-        width:'90%',
-        marginLeft: 17,
-        marginRight: 17,
+        width: Metrics.screenWidth - 34,
         paddingTop: 17,
         paddingBottom: 17,
-        backgroundColor: '#212223',
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius:4,
-        marginTop:54
     },
     down_txt2: {
         fontSize: 14,

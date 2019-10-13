@@ -10,7 +10,7 @@ import CountDownButton from '../../components/CountDownButton'
 import SelectPiker from "../comm/SelectPiker";
 import CountryPicker,{getAllCountries} from 'react-native-country-picker-modal'
 import DeviceInfo from 'react-native-device-info'
-
+import LinearGradient from 'react-native-linear-gradient'
 
 @connect(({VerCodeLogin}) => ({
     ...VerCodeLogin,
@@ -246,10 +246,13 @@ export default class VerCodeLogin extends Component {
                     </View>
                 </KeyboardAvoidingView>
 
-                <TouchableOpacity style={styles.btn} onPress={() => {
+                <TouchableOpacity style={{marginTop:54}} onPress={() => {
                     this._next();
                 }}>
-                    <Text style={{color: '#FFE9AD', fontSize: 18}}>{global.lang.t('login')}</Text>
+                    <LinearGradient colors={['#E1BB8D', '#8B6941']}
+                                    style={styles.btn}>
+                    <Text style={{color: '#FFF', fontSize: 18}}>{global.lang.t('login')}</Text>
+                    </LinearGradient>
                 </TouchableOpacity>
 
                 <TouchableOpacity

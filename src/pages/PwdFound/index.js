@@ -17,6 +17,7 @@ import CountDownButton from '../../components/CountDownButton'
 import CountryPicker, {getAllCountries} from 'react-native-country-picker-modal'
 import DeviceInfo from 'react-native-device-info'
 import md5 from "react-native-md5";
+import LinearGradient from 'react-native-linear-gradient'
 
 @connect(({PwdFound}) => ({
   ...PwdFound,
@@ -222,10 +223,15 @@ export default class PwdFound extends Component {
                     width: Metrics.screenWidth - 34,
                     backgroundColor: "#ECECEE"
                 }}/>
-                <TouchableOpacity style={styles.complete} onPress={() => {
+                <TouchableOpacity
+                    style={{marginTop:54}}
+                    onPress={() => {
                     this._next();
                 }}>
-                    <Text style={{color: '#FFE9AD', fontSize: 17}}>{global.lang.t('determine')}</Text>
+                    <LinearGradient colors={['#E1BB8D', '#8B6941']}
+                                    style={styles.complete}>
+                    <Text style={{color: '#FFF', fontSize: 17}}>{global.lang.t('determine')}</Text>
+                    </LinearGradient>
                 </TouchableOpacity>
 
             </View>
