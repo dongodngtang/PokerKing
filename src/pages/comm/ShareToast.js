@@ -11,7 +11,7 @@ import {
     Modal,
 } from 'react-native';
 import ShareItem from "./ShareItem";
-import {Images} from '../../configs/Theme';
+import {Images, px2dp} from '../../configs/Theme';
 import LinearGradient from 'react-native-linear-gradient'
 
 const DEVICE_HEIGHT = Dimensions.get('window').height;
@@ -108,7 +108,9 @@ export default class ShareToast extends Component {
                 </View>
 
                 {/*取消分享*/}
-                <TouchableOpacity onPress={this.hiddenShare}>
+                <TouchableOpacity
+                    activeOpacity={1}
+                    onPress={this.hiddenShare}>
                     <LinearGradient style={styles.closeView}
                                     colors={['#E1BB8D', '#8B6941']}>
                         <Text style={{fontSize: 14,color:"#FFF"}}>{global.lang.t('cancel')}</Text>
@@ -142,7 +144,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#eaeff3",
     },
     closeView: {
-        height: 60,
+        height: px2dp(100),
         width: DEVICE_WIDTH,
         alignItems: "center",
         justifyContent: "center",
