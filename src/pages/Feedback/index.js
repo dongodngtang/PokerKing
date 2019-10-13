@@ -6,8 +6,9 @@ import {postFeedBacks, postFeedBacksCash} from '../../services/accountDao'
 import {logMsg, showToast, strNotNull, isStrNull, fileName} from "../../utils/utils";
 import ImagePicker from 'react-native-image-crop-picker';
 import ImageLoad from "../../components/ImageLoad";
-import {Images} from "../../configs/Theme";
+import {Images, Metrics} from "../../configs/Theme";
 import Permissions from "react-native-permissions";
+import LinearGradient from 'react-native-linear-gradient'
 
 const picker = {
     compressImageMaxWidth: 800,
@@ -158,40 +159,47 @@ export default class Feedback extends Component {
                         marginBottom: 7
                     }]}>{global.lang.t('upload_photos')}</Text>
 
-                    <TouchableOpacity
-                        activeOpacity={1}
-                        onPress={() => {
+                    <LinearGradient
+                        colors={['#E1BB8D', '#8B6941']}
+                        style={{ width: Metrics.reallySize(113),
+                        height: Metrics.reallySize(32),
+                            borderRadius: 4}}>
+                        <TouchableOpacity
+                            activeOpacity={1}
+                            onPress={() => {
 
-                            Permissions.check('photo').then(ret=>{
+                                Permissions.check('photo').then(ret=>{
 
-                                if(ret === 'authorized' || ret === 'undetermined'){
-                                    let count = 0
-                                    images.forEach(item => {
-                                        if (strNotNull(item)) {
-                                            count++
+                                    if(ret === 'authorized' || ret === 'undetermined'){
+                                        let count = 0
+                                        images.forEach(item => {
+                                            if (strNotNull(item)) {
+                                                count++
+                                            }
+                                        })
+                                        if (count < 3) {
+                                            ImagePicker.openPicker(picker).then(image => {
+                                                images.push(image.path)
+                                                this.setState({
+                                                    images
+                                                })
+
+                                            }).catch(e => {
+                                                // Alert.alert(e.message ? e.message : e);
+                                            });
+                                        } else {
+                                            showToast(global.lang.t('upload_up'))
                                         }
-                                    })
-                                    if (count < 3) {
-                                        ImagePicker.openPicker(picker).then(image => {
-                                            images.push(image.path)
-                                            this.setState({
-                                                images
-                                            })
-
-                                        }).catch(e => {
-                                            // Alert.alert(e.message ? e.message : e);
-                                        });
-                                    } else {
-                                        showToast(global.lang.t('upload_up'))
+                                    }else {
+                                        showToast(global.lang.t('photo_message'))
                                     }
-                                }else {
-                                    showToast(global.lang.t('photo_message'))
-                                }
-                            })
-                        }}
-                    style={styles.browse_documents_btn}>
-                    <Text style={styles.browse_documents}>{global.lang.t('browse_documents')}</Text>
-                </TouchableOpacity>
+                                })
+                            }}
+                            style={styles.browse_documents_btn}>
+                            <Text style={styles.browse_documents}>{global.lang.t('browse_documents')}</Text>
+                        </TouchableOpacity>
+                    </LinearGradient>
+
 
                 <View style={{height: 80, flexDirection: 'row', alignItems: 'center', marginTop: 5}}>
                     {images.length > 0 && images.map((img, index) => {
@@ -217,12 +225,18 @@ export default class Feedback extends Component {
 
                 </View>
             </View>
-
+                <LinearGradient
+                    colors={['#E1BB8D', '#8B6941']}
+                    style={{ width: Metrics.screenWidth - 34,
+                        height: Metrics.reallySize(40),
+                        borderRadius: 4,
+                        marginBottom:34,  alignSelf:'center'}}>
         <TouchableOpacity style={styles.bottom_btn} onPress={() => {
             this._check()
         }}>
             <Text style={[styles.browse_documents, {fontSize: 14}]}>{global.lang.t("send_feedback")}</Text>
         </TouchableOpacity>
+                </LinearGradient>
     </ScrollView>
     )
     }

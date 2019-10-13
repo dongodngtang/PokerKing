@@ -42,17 +42,11 @@ export default StyleSheet.create({
         width: Metrics.reallySize(113),
         height: Metrics.reallySize(32),
         justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: "#212223",
-        borderRadius: 4
+        alignItems: 'center'
     },
     bottom_btn: {
         width: Metrics.screenWidth - 34,
         height: Metrics.reallySize(40),
-        borderRadius: 4,
-        marginBottom:34,
-        backgroundColor:"#212223",
-        alignSelf:'center',
         justifyContent:'center',
         alignItems:'center'
     },
