@@ -60,7 +60,7 @@ export default class MobileRegister extends Component {
                 </TouchableOpacity>
                 <View style={styles.navTitle}>
                     <Text
-                        style={{fontSize: 17, color: '#FFE9AD', maxWidth: '90%'}}
+                        style={{fontSize: 17, color: '#DAB68A', maxWidth: '90%'}}
                         numberOfLines={1}>{global.lang.t('set_mobile')}</Text>
                 </View>
                 <TouchableOpacity
@@ -71,7 +71,7 @@ export default class MobileRegister extends Component {
                         })
                     }}
                     style={styles.right2}>
-                    <Text style={{color:"#FFE9AD",fontSize:14}}>{global.lang.t("jump")}</Text>
+                    <Text style={{color:"#DAB68A",fontSize:14}}>{global.lang.t("jump")}</Text>
 
                 </TouchableOpacity>
             </View>
@@ -241,7 +241,7 @@ export default class MobileRegister extends Component {
                 <TouchableOpacity style={styles.complete} onPress={() => {
                     this._next();
                 }}>
-                    <Text style={{color: '#FFE9AD', fontSize: 17}}>{global.lang.t('complete')}</Text>
+                    <Text style={{color: '#DAB68A', fontSize: 17}}>{global.lang.t('complete')}</Text>
                 </TouchableOpacity>
 
                 <View

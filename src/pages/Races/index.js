@@ -402,15 +402,18 @@ class Card extends Component {
                     <Image
                         style={styles.slide_img}
                         source={img}/>
-                    {this.state.index === -1 ? <View style={styles.slide_top_view_1}>
+                    {this.state.index === -1 ? <View
+                        style={styles.slide_top_view_1}>
                         <Text
                             style={styles.race_time_txt_1}>{global.lang.t('race_over')}</Text>
                         <Text style={styles.race_time_txt2_1}>{this.state.countTime}</Text>
-                    </View> : <View style={styles.slide_top_view}>
+                    </View> : <LinearGradient
+                        colors={['#E1BB8D', '#8B6941']}
+                        style={styles.slide_top_view}>
                         <Text
                             style={styles.race_time_txt}>{global.lang.t('race_time')}</Text>
                         <Text style={styles.race_time_txt2}>{this.state.countTime}</Text>
-                    </View>}
+                    </LinearGradient>}
 
                     <Text style={styles.card_name}>{name}</Text>
                     <View style={styles.card_bottom_view}>

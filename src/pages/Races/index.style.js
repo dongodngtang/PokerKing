@@ -53,7 +53,7 @@ export default StyleSheet.create({
     },
     date_text: {
         alignSelf: 'center',
-        color: "#FFE9AD",
+        color: "#DAB68A",
         fontSize: 15,
         maxWidth: '70%'
     },
@@ -62,7 +62,7 @@ export default StyleSheet.create({
     },
     slide_top_view_1: {
         width: Metrics.screenWidth - 60,
-        backgroundColor: "#343638",
+        backgroundColor: "#6C6C6C",
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -74,7 +74,7 @@ export default StyleSheet.create({
     },
     slide_top_view: {
         width: Metrics.screenWidth - 60,
-        backgroundColor: "#FFE9AD",
+        backgroundColor: "#DAB68A",
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -93,16 +93,16 @@ export default StyleSheet.create({
         fontSize: 16
     },
     race_time_txt: {
-        color: "#1A1B1F",
+        color: "#FFF",
         fontSize: 16
     },
     race_time_txt2: {
-        color: "#1A1B1F",
+        color: "#FFF",
         fontSize: 16,
         maxWidth: '60%'
     },
     card_name: {
-        color: "#FFE9AD",
+        color: "#DAB68A",
         fontSize: 14,
         marginTop: 12,
         maxWidth:Metrics.screenWidth - 60
@@ -133,7 +133,7 @@ export default StyleSheet.create({
     },
     personalText: {
         fontSize: 12,
-        color: '#FFE9AD',
+        color: '#DAB68A',
         marginTop: 7
     },
     personalImg: {

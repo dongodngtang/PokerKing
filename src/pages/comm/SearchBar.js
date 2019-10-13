@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
         paddingTop: 4,
         paddingBottom: 4,
         width: '90%',
-        color: '#FFE9AD',
+        color: '#DAB68A',
         fontSize: 16,
         marginLeft: 8
     }
