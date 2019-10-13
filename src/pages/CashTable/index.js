@@ -9,6 +9,7 @@ import {Metrics} from "../../configs/Theme";
 import UltimateFlatList from '../../components/ultimate/UltimateFlatList';
 import NotData from "../comm/NotData";
 import {initLoginUser} from "../../services/accountDao";
+import LinearGradient from 'react-native-linear-gradient';
 
 
 @connect(({CashTable}) => ({
@@ -35,7 +36,8 @@ export default class CashTable extends Component {
 
     topBar = () => {
         return (
-            <View style={styles.navTop}>
+            <LinearGradient colors={['#E1BB8D', '#8B6941']}
+                style={styles.navTop}>
                 <StatusBar barStyle={'light-content'}/>
                 <View
                     onPress={() => {
@@ -51,7 +53,7 @@ export default class CashTable extends Component {
                 <View
                     style={styles.navTitle}>
                     <Text
-                        style={{fontSize: 17, color: '#FFE9AD'}}
+                        style={{fontSize: 17, color: '#FFF'}}
                         numberOfLines={1}>{global.lang.t('room')}</Text>
                 </View>
                 <TouchableOpacity
@@ -65,7 +67,7 @@ export default class CashTable extends Component {
                     />
 
                 </TouchableOpacity>
-            </View>
+            </LinearGradient>
         )
     };
 

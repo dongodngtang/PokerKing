@@ -222,6 +222,8 @@ export const Images = {
     delete_collect: require('../asserts/new/delete_collect.png'),
     example_upload: require('../asserts/new/example_upload.png'),
     example_upload2: require('../asserts/new/example_upload2.png'),
+    race_right:require('../asserts/races/race_right.png'),
+    race_left:require('../asserts/races/race_left.png'),
 
 }
 

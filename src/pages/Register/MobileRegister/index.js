@@ -54,7 +54,7 @@ export default class MobileRegister extends Component {
                     }}
                     style={styles.left2}>
                     <Image
-                        style={{height: 17, width: 9}}
+                        style={{height: 17, width: 11}}
                         source={Images.left}
                     />
                 </TouchableOpacity>

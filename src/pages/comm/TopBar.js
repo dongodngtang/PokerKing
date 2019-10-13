@@ -4,13 +4,16 @@ import {
     StyleSheet, Image, Text, KeyboardAvoidingView, FlatList, Modal,StatusBar
 } from 'react-native';
 import {Images, Metrics, px2dp} from "../../configs/Theme";
+import LinearGradient from 'react-native-linear-gradient'
 
 export default class TopBar extends Component {
 
     render(){
         const {left_img,narTitle,right_img,left_btn,mid_btn,right_btn} = this.props;
         return(
-            <View style={styles.navTop}>
+            <LinearGradient
+                colors={['#E1BB8D', '#8B6941']}
+                style={styles.navTop}>
                 <StatusBar barStyle={'light-content'}/>
                 <TouchableOpacity
                     onPress={() => {
@@ -28,7 +31,7 @@ export default class TopBar extends Component {
                     onPress={() => {
                     }}>
                     <Text
-                        style={{fontSize: 17, color: '#FFE9AD', maxWidth: '90%'}}
+                        style={{fontSize: 17, color: '#FFF', maxWidth: '90%'}}
                         numberOfLines={1}>{narTitle}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
@@ -42,7 +45,7 @@ export default class TopBar extends Component {
                     />
 
                 </TouchableOpacity>
-            </View>
+            </LinearGradient>
         )
     }
 }
@@ -50,7 +53,6 @@ const styles = StyleSheet.create({
     navTop: {
         height: Metrics.navBarHeight,
         width: Metrics.screenWidth,
-        backgroundColor: '#1A1B1F',
         flexDirection: 'row',
         alignItems: 'center',
         paddingTop: Metrics.statusBarHeight

@@ -4,7 +4,7 @@
  *功能：
  */
 
-import React, {PureComponent} from 'react'
+import React, {PureComponent, Component} from 'react'
 import {View, TouchableOpacity, Text, Image, StatusBar, SafeAreaView} from 'react-native'
 import LinearGradient from 'react-native-linear-gradient';
 import {Scene, Drawer, Actions} from 'react-native-router-flux'
@@ -57,6 +57,61 @@ import PwdFound from "./PwdFound";
 import CurrentVersion from "./CurrentVersion";
 import UploadDocument from "./UploadDocument";
 
+class TabBar extends PureComponent {
+
+    render() {
+
+        const {navigation: {state: {routes, index}}, inactiveTintColor, activeTintColor,jumpTo} = this.props
+        return <LinearGradient colors={['#E1BB8D', '#8B6941']} style={{height: px2dp(100), flexDirection: 'row'}}>
+            {routes.map((item, i) => {
+                let focused = index === i
+
+                let txtColor = focused ? activeTintColor : inactiveTintColor
+                return <TouchableOpacity
+                    onPress={()=>jumpTo(item.key)}
+                    activeOpacity={1}
+                    key={item.key}
+                    style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+                    {this.renderTabIcon(i,focused)}
+                    <Text style={{color: txtColor, fontSize: px2sp(24), marginTop: px2dp(6)}}>{item.key}</Text>
+                </TouchableOpacity>
+            })}
+
+
+        </LinearGradient>
+    }
+
+    renderTabIcon = (i, focused) => {
+        switch (i) {
+            case 0:
+                return <TabBarItem
+                    iconStyle={{height: px2dp(48), width: px2dp(36)}}
+                    focused={focused}
+                    normalImage={Images.news_gray}
+                    selectedImage={Images.news}/>
+            case 1:
+                return <TabBarItem
+                    iconStyle={{height: px2dp(48), width: px2dp(48)}}
+                    focused={focused}
+                    normalImage={Images.event_gray}
+                    selectedImage={Images.event}/>
+            case 2:
+                return <TabBarItem
+                    iconStyle={{height: px2dp(48), width: px2dp(44)}}
+                    focused={focused}
+                    normalImage={Images.room_gray}
+                    selectedImage={Images.room}/>
+            case 3:
+                return <TabBarItem
+                    redDot={true}
+                    iconStyle={{height: px2dp(48), width: px2dp(48)}}
+                    focused={focused}
+                    normalImage={Images.mine_gray}
+                    selectedImage={Images.mine}/>
+        }
+    }
+}
+
 export const scenes = () => {
     return <Scene key="root"
                   headerMode={'screen'}>
@@ -67,52 +122,23 @@ export const scenes = () => {
                hideNavBar
                animationEnabled={false}
                tabBarPosition={'bottom'}
-               tabBarStyle={{backgroundColor: '#1A1B1F', paddingBottom: 3}}
-               activeTintColor={'#FFE9AD'}
-               inactiveTintColor={'#736C5B'}
+               tabBarComponent={TabBar}
+               activeTintColor={'#FFFFFF'}
+               inactiveTintColor={'#51412E'}
                labelStyle={{fontSize: px2sp(24)}}
                tabs>
-            <Scene key="Home"
-                   tabBarLabel={global.lang.t('news')}
-                   tabBarIcon={({focused}) => (
-                       <TabBarItem
-                           iconStyle={{height: px2dp(48), width: px2dp(36)}}
-                           focused={focused}
-                           normalImage={Images.news_gray}
-                           selectedImage={Images.news}/>
-                   )}
-                   component={Main}
-                   hideNavBar/>
+            <Scene
+                key={global.lang.t('news')}
+                component={Main}
+                hideNavBar/>
             <Scene key={global.lang.t('race')}
                    component={Races}
-                   tabBarIcon={({focused}) => (
-                       <TabBarItem
-                           iconStyle={{height: px2dp(48), width: px2dp(48)}}
-                           focused={focused}
-                           normalImage={Images.event_gray}
-                           selectedImage={Images.event}/>
-                   )}
                    hideNavBar/>
             <Scene key={global.lang.t('room')}
                    component={CashTable}
-                   tabBarIcon={({focused}) => (
-                       <TabBarItem
-                           iconStyle={{height: px2dp(48), width: px2dp(44)}}
-                           focused={focused}
-                           normalImage={Images.room_gray}
-                           selectedImage={Images.room}/>
-                   )}
                    hideNavBar/>
             <Scene key={global.lang.t('mine')}
                    component={MinePage}
-                   tabBarIcon={({focused}) => (
-                       <TabBarItem
-                           redDot={true}
-                           iconStyle={{height: px2dp(48), width: px2dp(48)}}
-                           focused={focused}
-                           normalImage={Images.mine_gray}
-                           selectedImage={Images.mine}/>
-                   )}
                    hideNavBar/>
         </Scene>
 
@@ -362,10 +388,10 @@ const TopNav = (props) => {
 
 const TopNavQueue = (props) => {
 
-  return {
-    ...props,
-    navBar: NavBarQueue
-  }
+    return {
+        ...props,
+        navBar: NavBarQueue
+    }
 };
 
 export class NavBar extends PureComponent {
@@ -381,7 +407,7 @@ export class NavBar extends PureComponent {
             />
         } else {
             return <Image
-                style={{height: 17, width: 9}}
+                style={{height: 17, width: 11}}
                 source={Images.left}
             />
         }
@@ -451,107 +477,109 @@ export class NavBar extends PureComponent {
         </LinearGradient>
     }
 }
+
 export class NavBarQueue extends PureComponent {
 
-  left_img = () => {
-    const {left_definition, left_img, hideLeft, img_size} = this.props;
-    if (hideLeft) {
-      return null;
-    } else if (left_definition) {
-      return <Image
-        style={img_size}
-        source={left_img}
-      />
-    } else {
-      return <Image
-        style={{height: 17, width: 9}}
-        source={Images.left}
-      />
+    left_img = () => {
+        const {left_definition, left_img, hideLeft, img_size} = this.props;
+        if (hideLeft) {
+            return null;
+        } else if (left_definition) {
+            return <Image
+                style={img_size}
+                source={left_img}
+            />
+        } else {
+            return <Image
+                style={{height: 17, width: 11}}
+                source={Images.left}
+            />
+        }
+    };
+
+    left_content = () => {
+        const {rightTitle, right_img_show, right_img, right_img_size} = this.props;
+        if (rightTitle) {
+            return <Text
+                style={{fontSize: 15, color: '#FFE9AD'}}>{rightTitle}</Text>
+        } else if (right_img_show) {
+            return <Image
+                style={right_img_size}
+                source={right_img}
+            />
+        }
     }
-  };
 
-  left_content = () => {
-    const {rightTitle, right_img_show, right_img, right_img_size} = this.props;
-    if (rightTitle) {
-      return <Text
-        style={{fontSize: 15, color: '#FFE9AD'}}>{rightTitle}</Text>
-    } else if (right_img_show) {
-      return <Image
-        style={right_img_size}
-        source={right_img}
-      />
+    render() {
+        const {bgd, bg_color, component, title, rightTitle, onLeft, hideLeft, middle_title} = this.props;
+
+        let pageMsg = `在page/index查找${component && component.displayName}`;
+        return <LinearGradient colors={['#E1BB8D', '#8B6941']}>
+            <SafeAreaView/>
+            <View style={{
+                width: Metrics.screenWidth,
+                flexDirection: 'row',
+                alignItems: 'center',
+                height: 44
+            }}>
+                <StatusBar barStyle={'light-content'}/>
+                <TouchableOpacity
+                    onPress={() => {
+                        onLeft ? onLeft() : router.pop()
+
+                    }}
+                    style={{
+                        height: 44,
+                        justifyContent: 'center',
+                        width: 60,
+                        paddingRight: 10,
+                        paddingLeft: 17
+                    }}>
+                    {this.left_img()}
+
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    activeOpacity={1}
+                    onLongPress={() => {
+                        if (middle_title) {
+                            router.toSwitchApi();
+                        }
+                    }}
+                    style={Styles.navTitle}>
+                    <Text
+                        style={{fontSize: 17, color: '#FFE9AD', alignSelf: 'center'}} numberOfLines={1}>{title}</Text>
+
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => {
+                        this.props.onRight1 && this.props.onRight1()
+                    }}
+                    style={{
+                        height: 44,
+                        justifyContent: 'center',
+                        width: 44
+                    }}>
+                    <Image
+                        style={{height: px2dp(33), width: px2dp(27)}}
+                        source={Images.location}
+                    />
+
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => {
+                        this.props.onRight && this.props.onRight()
+                    }}
+                    style={{
+                        height: 44,
+                        justifyContent: 'center',
+                        width: 44
+                    }}>
+                    {this.left_content()}
+
+                </TouchableOpacity>
+
+            </View>
+        </LinearGradient>
     }
-  }
-
-  render() {
-    const {bgd, bg_color, component, title, rightTitle, onLeft, hideLeft, middle_title} = this.props;
-
-    let pageMsg = `在page/index查找${component && component.displayName}`;
-    return <View style={{backgroundColor: bgd ? bg_color : '#1A1B1F'}}>
-      <SafeAreaView/>
-      <View style={{
-        width: Metrics.screenWidth,
-        flexDirection: 'row',
-        alignItems: 'center',
-        height: 44
-      }}>
-        <StatusBar barStyle={'light-content'}/>
-        <TouchableOpacity
-          onPress={() => {
-            onLeft ? onLeft() : router.pop()
-
-          }}
-          style={{height: 44,
-            justifyContent: 'center',
-            width: 60,
-            paddingRight: 10,
-            paddingLeft: 17
-          }}>
-          {this.left_img()}
-
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          activeOpacity={1}
-          onLongPress={() => {
-            if (middle_title) {
-              router.toSwitchApi();
-            }
-          }}
-          style={Styles.navTitle}>
-          <Text
-            style={{fontSize: 17, color: '#FFE9AD', alignSelf: 'center'}} numberOfLines={1}>{title}</Text>
-
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            this.props.onRight1 && this.props.onRight1()
-          }}
-          style={{
-            height: 44,
-            justifyContent: 'center',
-            width: 44
-          }}>
-          <Image
-            style={{height:px2dp(33),width:px2dp(27)}}
-            source={Images.location}
-          />
-
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            this.props.onRight && this.props.onRight()
-          }}
-          style={{
-            height: 44,
-            justifyContent: 'center',
-            width: 44
-          }}>
-          {this.left_content()}
-
-        </TouchableOpacity>
-
-      </View>
-    </View>
-  }
 }

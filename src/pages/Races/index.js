@@ -11,9 +11,7 @@ import {
   getBg, logMsg, unix_format, getRemainTime, isStrNull, mul, showToast, shareHost,
   shareTo, isEmptyObject, strNotNull, turn2MapMark
 } from "../../utils/utils";
-import ImageLoad from "../../components/ImageLoad";
-import RaceMessage from "../RaceMessage";
-import {isCollect, postCancelCollect, postCollect} from "../../services/accountDao";
+import LinearGradient from 'react-native-linear-gradient';
 import ShareToast from "../comm/ShareToast";
 import CollectBtn from "../comm/CollectBtn";
 import NotData from "../comm/NotData";
@@ -84,7 +82,8 @@ export default class Races extends Component {
     topBar = (recent_event) => {
         const {name} = recent_event;
         return (
-            <View style={styles.navTop}>
+            <LinearGradient colors={['#E1BB8D', '#8B6941']}
+                            style={styles.navTop}>
                 <StatusBar barStyle={'light-content'}/>
                 <View
                     onPress={() => {
@@ -104,9 +103,9 @@ export default class Races extends Component {
                         this.change_list_show()
                     }}>
                     <Text
-                        style={{fontSize: 17, color: '#FFE9AD', maxWidth: '90%'}}
+                        style={{fontSize: 17, color: '#FFF', maxWidth: '90%'}}
                         numberOfLines={1}>{name}</Text>
-                    <Image style={{width: 12, height: 6, marginLeft: 10}}
+                    <Image style={{width: 10, height: 6, marginLeft: 10}}
                            source={this.state.list_show ? Images.top : Images.bottom}/>
                 </TouchableOpacity>
                 <TouchableOpacity
@@ -121,7 +120,7 @@ export default class Races extends Component {
                     />
 
                 </TouchableOpacity>
-            </View>
+            </LinearGradient>
         )
     };
 
@@ -391,8 +390,8 @@ class Card extends Component {
                         height: px2dp(302), width: px2dp(60),
                         justifyContent: 'center'
                     }}>
-                    <Image style={{height: px2dp(34), width: px2dp(20), marginLeft: px2dp(24)}}
-                           source={Images.left}/>
+                    <Image style={{height: 17, width: 11, marginLeft: px2dp(24)}}
+                           source={Images.race_left}/>
                 </TouchableOpacity>
                 <TouchableOpacity
                     activeOpacity={1}
@@ -437,7 +436,7 @@ class Card extends Component {
                         alignItems: 'center'
                     }}>
                     <Image style={{height: px2dp(34), width: px2dp(20), marginRight: px2dp(24)}}
-                           source={Images.right}/>
+                           source={Images.race_right}/>
                 </TouchableOpacity>
             </View>
         )

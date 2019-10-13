@@ -1,11 +1,12 @@
 import React from "react";
 import {Image, Text, TouchableOpacity, View, StyleSheet, SafeAreaView} from "react-native";
 import {Images, Metrics, px2dp, Styles} from "../../configs/Theme";
-import {isEmptyObject} from "../../utils/utils";
+import LinearGradient from 'react-native-linear-gradient';
 
 
 const NavigationBar = ({title, profile,leftOnPress, rightOnPress, index}) => (
-    <View style={Styles.navTop}>
+    <LinearGradient colors={['#E1BB8D', '#8B6941']}
+        style={Styles.navTop}>
         <TouchableOpacity
             onPress={() => leftOnPress && leftOnPress()}
             style={styles.left2}>
@@ -17,10 +18,10 @@ const NavigationBar = ({title, profile,leftOnPress, rightOnPress, index}) => (
         </TouchableOpacity>
         <TouchableOpacity
             style={[styles.navTitle, {alignItems: index === 0 ? 'flex-end' : 'center'}]}>
-            {index === 0 ? <Image style={{height: px2dp(44), width: px2dp(32), marginRight: 5}}
-                                  source={Images.hot_races}/> : null}
+            {/*{index === 0 ? <Image style={{height: px2dp(44), width: px2dp(32), marginRight: 5}}*/}
+                                  {/*source={Images.hot_races}/> : null}*/}
             <Text
-                style={{fontSize: 17, color: '#FFE9AD'}}
+                style={{fontSize: 17, color: '#fff'}}
                 numberOfLines={1}>{title}</Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -34,7 +35,7 @@ const NavigationBar = ({title, profile,leftOnPress, rightOnPress, index}) => (
             />
 
         </TouchableOpacity>
-    </View>
+    </LinearGradient>
 )
 
 const styles = StyleSheet.create({

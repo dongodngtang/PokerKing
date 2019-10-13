@@ -40,7 +40,7 @@ export default class SearchNews extends Component {
                     }}>
 
                     <Image
-                        style={{height: 19, width: 11, marginLeft: 17, marginRight: 17}}
+                        style={{height: 17, width: 11, marginLeft: 17, marginRight: 17}}
                         source={Images.left}/>
 
                 </TouchableOpacity>
