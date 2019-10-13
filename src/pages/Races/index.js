@@ -8,8 +8,8 @@ import {Metrics} from "../../configs/Theme";
 import RaceModal from './RaceModal';
 import {mainEvents} from "../../services/eventsDao";
 import {
-    getBg, logMsg, unix_format, getRemainTime, isStrNull, mul, showToast, shareHost,
-    shareTo, isEmptyObject, strNotNull
+  getBg, logMsg, unix_format, getRemainTime, isStrNull, mul, showToast, shareHost,
+  shareTo, isEmptyObject, strNotNull, turn2MapMark
 } from "../../utils/utils";
 import ImageLoad from "../../components/ImageLoad";
 import RaceMessage from "../RaceMessage";
@@ -19,6 +19,7 @@ import CollectBtn from "../comm/CollectBtn";
 import NotData from "../comm/NotData";
 import Loading from "../comm/Loading";
 import {postHotSwitch} from "../../services/cashTableDao";
+import PopAction from "../comm/PopAction";
 
 @connect(({Races}) => ({
     ...Races,
@@ -171,6 +172,7 @@ export default class Races extends Component {
     render() {
         const {shareParam} = this.props;
         const {events, recent_event, all_events} = this.state;
+        let selectEventHasMap = strNotNull(recent_event.amap_location) || strNotNull(recent_event.amap_navigation_url)
         return (
             <View style={styles.race_view}>
                 {this.topBar(recent_event)}
@@ -209,10 +211,10 @@ export default class Races extends Component {
                     flexWrap: 'wrap',
                     alignItems: 'center'
                 }}>
-                    {/*{this._item(styles.item_view, Images.location_gary, styles.img_dy,*/}
-                    {/*global.lang.t('race_location'), () => {*/}
-
-                    {/*})}*/}
+                    {this._item(styles.item_view, selectEventHasMap?Images.location:Images.location_gary, styles.img_dy,
+                    global.lang.t('race_location'), () => {
+                        selectEventHasMap && this.mapAction && this.mapAction.toggle()
+                    })}
 
                     {this._item(styles.item_view, Images.event_intro, styles.img_dy1,
                         `${global.lang.t('race_intro')}`, () => {
@@ -252,9 +254,43 @@ export default class Races extends Component {
                                                           shareLink={shareParam.shareLink}
                                                           shareImage={shareParam.shareImage}
                                                           shareType={shareParam.shareType}/> : null}
+
+              <PopAction
+                btnShow={true}
+                ref={ref => this.mapAction = ref}
+                btnArray={this.popActions()}/>
             </View>
         )
     }
+
+  popActions = () => {
+    const {name, location, amap_poiid, amap_navigation_url, amap_location} = this.state.recent_event;
+    let reportList = [{id: 0, name: global.lang.t('Gaode'), type: 'gaode'}, {
+      id: 1,
+      name: global.lang.t('iphone_map'),
+      type: 'pingguo'
+    }];
+    let resultArray = [];
+    reportList.forEach((data, index) => {
+      let item = {
+        name: data.name, txtStyle: {color: '#4A90E2'}, onPress: () => {
+          if (strNotNull(amap_navigation_url)) {
+            this.mapAction.toggle();
+            turn2MapMark(amap_location, amap_navigation_url, amap_poiid, location, name, data.type)
+          }
+
+        }
+      };
+      resultArray.push(item);
+    });
+    resultArray.push({
+      name: global.lang.t('cancel'),
+      txtStyle: {color: "#AAAAAA"},
+      onPress: () => this.mapAction.toggle()
+    });
+
+    return resultArray;
+  };
 
     _item = (itemStyle, img, imgStyle, title, onPress) => {
         const {profile} = this.props;

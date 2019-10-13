@@ -166,7 +166,7 @@ export const scenes = () => {
                })}/>
         <Scene key="QueueProcess"
                component={QueueProcess}
-               {...TopNav({
+               {...TopNavQueue({
                    right_img_show: true,
                    right_img: Images.message,
                    right_img_size: {height: px2dp(34), width: px2dp(45)}
@@ -360,6 +360,14 @@ const TopNav = (props) => {
     }
 };
 
+const TopNavQueue = (props) => {
+
+  return {
+    ...props,
+    navBar: NavBarQueue
+  }
+};
+
 export class NavBar extends PureComponent {
 
     left_img = () => {
@@ -442,4 +450,108 @@ export class NavBar extends PureComponent {
             </View>
         </LinearGradient>
     }
+}
+export class NavBarQueue extends PureComponent {
+
+  left_img = () => {
+    const {left_definition, left_img, hideLeft, img_size} = this.props;
+    if (hideLeft) {
+      return null;
+    } else if (left_definition) {
+      return <Image
+        style={img_size}
+        source={left_img}
+      />
+    } else {
+      return <Image
+        style={{height: 17, width: 9}}
+        source={Images.left}
+      />
+    }
+  };
+
+  left_content = () => {
+    const {rightTitle, right_img_show, right_img, right_img_size} = this.props;
+    if (rightTitle) {
+      return <Text
+        style={{fontSize: 15, color: '#FFE9AD'}}>{rightTitle}</Text>
+    } else if (right_img_show) {
+      return <Image
+        style={right_img_size}
+        source={right_img}
+      />
+    }
+  }
+
+  render() {
+    const {bgd, bg_color, component, title, rightTitle, onLeft, hideLeft, middle_title} = this.props;
+
+    let pageMsg = `在page/index查找${component && component.displayName}`;
+    return <View style={{backgroundColor: bgd ? bg_color : '#1A1B1F'}}>
+      <SafeAreaView/>
+      <View style={{
+        width: Metrics.screenWidth,
+        flexDirection: 'row',
+        alignItems: 'center',
+        height: 44
+      }}>
+        <StatusBar barStyle={'light-content'}/>
+        <TouchableOpacity
+          onPress={() => {
+            onLeft ? onLeft() : router.pop()
+
+          }}
+          style={{height: 44,
+            justifyContent: 'center',
+            width: 60,
+            paddingRight: 10,
+            paddingLeft: 17
+          }}>
+          {this.left_img()}
+
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          activeOpacity={1}
+          onLongPress={() => {
+            if (middle_title) {
+              router.toSwitchApi();
+            }
+          }}
+          style={Styles.navTitle}>
+          <Text
+            style={{fontSize: 17, color: '#FFE9AD', alignSelf: 'center'}} numberOfLines={1}>{title}</Text>
+
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            this.props.onRight1 && this.props.onRight1()
+          }}
+          style={{
+            height: 44,
+            justifyContent: 'center',
+            width: 44
+          }}>
+          <Image
+            style={{height:px2dp(33),width:px2dp(27)}}
+            source={Images.location}
+          />
+
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            this.props.onRight && this.props.onRight()
+          }}
+          style={{
+            height: 44,
+            justifyContent: 'center',
+            width: 44
+          }}>
+          {this.left_content()}
+
+        </TouchableOpacity>
+
+      </View>
+    </View>
+  }
 }
