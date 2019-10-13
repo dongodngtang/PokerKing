@@ -13,6 +13,7 @@ import UltimateFlatList from '../../components/ultimate/UltimateFlatList';
 import {getUnread, initLoginUser, shortUrl} from "../../services/accountDao";
 import QRCodeModal from "./QRCodeModal";
 import PopAction from "../comm/PopAction";
+import LinearGradient from 'react-native-linear-gradient'
 
 @connect(({QueueProcess}) => ({
   ...QueueProcess,
@@ -108,28 +109,36 @@ export default class QueueProcess extends Component {
             </Text>
           </View>
 
-          <TouchableOpacity
-            activeOpacity={1}
-            style={[styles.right_mid_view, {backgroundColor: isStrNull(apply_index) ? '#1A1B1F' : "#303236"}]}
-            onPress={() => {
-              if (isLogin() && global.loginUser && strNotNull(global.loginUser.mobile)) {
-                if (isStrNull(apply_index)) {
-                  this.clearSign()
-                  this.signChange(this.state.signedList[index], index)
-                  this.PopAction && this.PopAction.toggle()
-                } else {
-                  this.cancelId = id
-                  this.popCancel && this.popCancel.toggle()
-                }
-              } else {
-                router.toBindingMobile()
-              }
+          <LinearGradient
+              style={{ height:px2dp(54),width:px2dp(210),alignSelf:'center'}}
+              colors={isStrNull(apply_index)?['#E1BB8D', '#8B6941']:['#303236','#303236']}>
+              <TouchableOpacity
+                  activeOpacity={1}
+                  style={[styles.right_mid_view, isStrNull(apply_index)?{}:{backgroundColor:"#303236",
+                      borderColor: "#998E72",
+                      borderWidth: 1,
+                      borderRadius: 4}]}
+                  onPress={() => {
+                      if (isLogin() && global.loginUser && strNotNull(global.loginUser.mobile)) {
+                          if (isStrNull(apply_index)) {
+                              this.clearSign()
+                              this.signChange(this.state.signedList[index], index)
+                              this.PopAction && this.PopAction.toggle()
+                          } else {
+                              this.cancelId = id
+                              this.popCancel && this.popCancel.toggle()
+                          }
+                      } else {
+                          router.toBindingMobile()
+                      }
 
-            }}>
-            <Text
-              style={styles.application_wait}
-            >{isStrNull(apply_index) ? global.lang.t('application_wait') : global.lang.t('cancel_wait')}</Text>
-          </TouchableOpacity>
+                  }}>
+                  <Text
+                      style={[styles.application_wait,{color:isStrNull(apply_index)?'#FFFFFF':'#DAB68A'}]}
+                  >{isStrNull(apply_index) ? global.lang.t('application_wait') : global.lang.t('cancel_wait')}</Text>
+              </TouchableOpacity>
+          </LinearGradient>
+
         </View>
         <PopAction
           key={'cancel'}

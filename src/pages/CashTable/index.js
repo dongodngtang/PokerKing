@@ -106,7 +106,7 @@ export default class CashTable extends Component {
                     flexDirection: "column-reverse"
                 }]}>
                     <View activeOpacity={1}
-                          style={[styles.txt_view, {backgroundColor: '#101010', opacity: 0.78}]}>
+                          style={[styles.txt_view, {backgroundColor: 'rgba(26, 27, 31, 0.7)'}]}>
                         <Text style={styles.txt1} numberOfLines={1}>{item.name}</Text>
                         <View style={{flex: 1}}/>
                         {/*<Image*/}

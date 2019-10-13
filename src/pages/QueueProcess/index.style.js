@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {Metrics} from "../../configs/Theme";
+import {Metrics, px2dp} from "../../configs/Theme";
 
 export default StyleSheet.create({
     topName_view: {
@@ -81,19 +81,10 @@ export default StyleSheet.create({
         marginBottom:7
     },
     right_mid_view: {
-        alignSelf:'center',
-        marginTop:4,
-        flexDirection: 'column',
+        height:px2dp(54),
+        width:px2dp(210),
         alignItems: 'center',
         justifyContent: 'center',
-        paddingTop: 5,
-        paddingLeft: 28,
-        paddingBottom: 5,
-        paddingRight: 28,
-        borderColor: "#998E72",
-        borderWidth: 1,
-        borderRadius: 4
-
     },
     application_wait: {
         color: "#FFE9AD",

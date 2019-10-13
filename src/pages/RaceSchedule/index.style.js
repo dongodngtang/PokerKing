@@ -88,22 +88,22 @@ export default StyleSheet.create({
         marginTop:4
     },
     day_txt:{
-        color:Colors._998,
+        color:'#998E72',
         fontSize:px2sp(28),
         lineHeight:18
     },
     week_txt:{
-        color:Colors._998,
+        color:'#998E72',
         fontSize:px2sp(24),
         lineHeight:18
     },
     day_txt_light:{
-        color:Colors._FFE,
+        color:'#DAB68A',
         fontSize:px2sp(28),
         lineHeight:18
     },
     week_txt_light:{
-        color:Colors._FFE,
+        color:'#DAB68A',
         fontSize:px2sp(24),
         lineHeight:18
     },
