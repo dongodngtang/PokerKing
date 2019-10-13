@@ -6,6 +6,7 @@ import {Images, px2dp} from "../../configs/Theme";
 import {showToast, strNotNull} from "../../utils/utils";
 import {change_password} from "../../services/accountDao";
 import md5 from "react-native-md5";
+import LinearGradient from 'react-native-linear-gradient'
 
 @connect(({ModifyPWD}) => ({
     ...ModifyPWD,
@@ -16,8 +17,8 @@ export default class ModifyPWD extends Component {
         this.state = {
             new_show: true,
             old_show: true,
-            old_pwd:'',
-            new_pwd:''
+            old_pwd: '',
+            new_pwd: ''
         }
     }
 
@@ -26,7 +27,7 @@ export default class ModifyPWD extends Component {
     }
 
     render() {
-        const {new_pwd,new_show,old_pwd,old_show} = this.state
+        const {new_pwd, new_show, old_pwd, old_show} = this.state
         return (
             <View style={{flex: 1, backgroundColor: "#161718"}}>
                 <KeyboardAvoidingView behavior='position' keyboardVerticalOffset={20}>
@@ -51,7 +52,7 @@ export default class ModifyPWD extends Component {
                             value={old_pwd}
                             onChange={txt => {
                                 this.setState({
-                                    old_pwd:txt.nativeEvent.text
+                                    old_pwd: txt.nativeEvent.text
                                 })
 
                             }}
@@ -59,7 +60,7 @@ export default class ModifyPWD extends Component {
                         <View style={{flex: 1}}/>
                         {old_pwd ?
                             <TouchableOpacity activeOpacity={1} style={{marginLeft: 28}} onPress={() => {
-                               this.setState({old_pwd:''})
+                                this.setState({old_pwd: ''})
                             }}>
                                 <Image style={{width: px2dp(32), height: px2dp(32)}}
                                        source={Images.delete_pwd}/>
@@ -96,15 +97,15 @@ export default class ModifyPWD extends Component {
                             value={new_pwd}
                             onChange={txt => {
                                 this.setState({
-                                    new_pwd:txt.nativeEvent.text
+                                    new_pwd: txt.nativeEvent.text
                                 })
 
                             }}
                         />
                         <View style={{flex: 1}}/>
-                        {new_pwd?
+                        {new_pwd ?
                             <TouchableOpacity activeOpacity={1} style={{marginLeft: 28}} onPress={() => {
-                               this.setState({new_pwd:''})
+                                this.setState({new_pwd: ''})
                             }}>
                                 <Image style={{width: px2dp(32), height: px2dp(32)}}
                                        source={Images.delete_pwd}/>
@@ -121,13 +122,21 @@ export default class ModifyPWD extends Component {
 
 
                 </KeyboardAvoidingView>
-                <TouchableOpacity activeOpacity={1} style={styles.confirm_view} onPress={()=>{
-                    this._nextPwd()
-                }}>
-                    <Text style={styles.determine}>{global.lang.t('determine')}</Text>
+
+                <TouchableOpacity activeOpacity={1}
+                                  style={{marginTop: 61}}
+                                  onPress={() => {
+                                      this._nextPwd()
+                                  }}>
+                    <LinearGradient
+                        colors={['#E1BB8D', '#8B6941']}
+                        style={styles.confirm_view}>
+                        <Text style={styles.determine}>{global.lang.t('determine')}</Text>
+                    </LinearGradient>
                 </TouchableOpacity>
 
-                <TouchableOpacity activeOpacity={1} style={styles.iphone_pwd} onPress={()=>{
+
+                <TouchableOpacity activeOpacity={1} style={styles.iphone_pwd} onPress={() => {
                     router.toModifyPWDToMobile()
                 }}>
                     <Text style={styles.iphone_change}>{global.lang.t('iphone_change')}</Text>
@@ -136,14 +145,14 @@ export default class ModifyPWD extends Component {
         )
     }
 
-    _nextPwd=()=>{
+    _nextPwd = () => {
 
-        const {old_pwd,new_pwd} = this.state
+        const {old_pwd, new_pwd} = this.state
         if (old_pwd.length > 1 && new_pwd.length > 1) {
             // 登录
             change_password({
                 type: "pwd",
-                old_pwd:md5.hex_md5(old_pwd),
+                old_pwd: md5.hex_md5(old_pwd),
                 new_pwd: md5.hex_md5(new_pwd)
             }, ret => {
                 showToast(global.lang.t('change_pwd_success'))

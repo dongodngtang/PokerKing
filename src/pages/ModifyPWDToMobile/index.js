@@ -7,6 +7,7 @@ import {isStrNull, showToast, strNotNull} from "../../utils/utils";
 import {change_password, postCode} from "../../services/accountDao";
 import CountDownButton from "../../components/CountDownButton";
 import md5 from "react-native-md5";
+import LinearGradient from 'react-native-linear-gradient'
 
 @connect(({ModifyPWDToMobile}) => ({
     ...ModifyPWDToMobile
@@ -140,10 +141,15 @@ export default class ModifyPWDToMobile extends Component {
                     </View>
                 </KeyboardAvoidingView>
 
-                <TouchableOpacity activeOpacity={1} style={styles.confirm_view} onPress={()=>{
+                <TouchableOpacity activeOpacity={1} style={{
+                    marginTop: 61}} onPress={()=>{
                     this._determine()
                 }}>
+                    <LinearGradient
+                        colors={['#E1BB8D', '#8B6941']}
+                        style={styles.confirm_view}>
                     <Text style={styles.determine}>{global.lang.t('determine')}</Text>
+                    </LinearGradient>
                 </TouchableOpacity>
 
                 <TouchableOpacity activeOpacity={1} style={styles.iphone_pwd} onPress={() => {

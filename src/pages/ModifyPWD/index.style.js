@@ -15,8 +15,8 @@ export default StyleSheet.create({
         marginLeft: 17
     },
     determine: {
-        color: '#212325',
-        fontSize: 14
+        color: '#FFF',
+        fontSize: 17
     },
     iphone_change: {
         color: '#AAAAAA',
@@ -30,7 +30,6 @@ export default StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: '#FFE9AD',
         borderRadius: 4,
-        marginTop: 61
     },
     iphone_pwd:{
         position:'absolute',

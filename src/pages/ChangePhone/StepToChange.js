@@ -6,7 +6,7 @@ import {logMsg, showToast} from "../../utils/utils";
 import {postChangeAccount, postCode, verify_code} from "../../services/accountDao";
 import CountryPicker, {getAllCountries} from "react-native-country-picker-modal";
 import DeviceInfo from "react-native-device-info";
-
+import LinearGradient from 'react-native-linear-gradient'
 
 export default class StepToChange extends Component {
     state = {
@@ -385,18 +385,21 @@ class InputCodeCard extends Component {
             <TouchableOpacity
                 disabled={count < 60}
                 onPress={() => {
-
                     this.counting()
                 }}
-                style={{
-                    backgroundColor: '#998E72',paddingTop:px2dp(14),
-                    paddingBottom:px2dp(14),paddingLeft:px2dp(48),paddingRight:px2dp(48),
-                    alignItems: 'center', justifyContent: 'center', borderRadius: px2dp(4)
-                }}>
-                <Text style={{
-                    color: '#fff',
-                    fontSize: px2sp(28)
-                }}>{count < 60 ? `${count}${global.lang.t('time_begin')}` : global.lang.t('again_send')}</Text>
+                >
+                <LinearGradient colors={['#E1BB8D', '#8B6941']}
+                                style={{
+                                    paddingTop:px2dp(14),
+                                    paddingBottom:px2dp(14),paddingLeft:px2dp(48),paddingRight:px2dp(48),
+                                    alignItems: 'center', justifyContent: 'center', borderRadius: px2dp(4)
+                                }}>
+                    <Text style={{
+                        color: '#fff',
+                        fontSize: px2sp(28)
+                    }}>{count < 60 ? `${count}${global.lang.t('time_begin')}` : global.lang.t('again_send')}</Text>
+                </LinearGradient>
+
             </TouchableOpacity>
 
             <View style={{marginTop: px2dp(30), height: px2dp(88)}}>

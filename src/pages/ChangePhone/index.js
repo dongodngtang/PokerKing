@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import Base from "../Base";
 import {Colors, px2dp, px2sp} from "../../configs/Theme";
 import StepToChange from "./StepToChange";
-
+import LinearGradient from 'react-native-linear-gradient'
 
 @connect(({ChangePhone}) => ({
     ...ChangePhone,
@@ -33,10 +33,12 @@ export default class ChangePhone extends Component {
                 <Text style={[styles.txtPhone, {marginTop: px2dp(328)}]}>{global.lang.t('iphone_text')}{mobile}</Text>
                 <Text style={[styles.txtPhone, {marginTop: px2dp(14)}]}>{global.lang.t('iphone_text2')}</Text>
 
-                <TouchableOpacity
-                    onPress={this.toggle}
-                    style={[styles.btnChange, {marginTop: px2dp(178)}]}>
-                    <Text style={styles.txtChange}>{global.lang.t('change_mobile')}</Text>
+                <TouchableOpacity  onPress={this.toggle}>
+                    <LinearGradient
+                        colors={['#E1BB8D', '#8B6941']}
+                        style={[styles.btnChange, {marginTop: px2dp(178)}]}>
+                        <Text style={styles.txtChange}>{global.lang.t('change_mobile')}</Text>
+                    </LinearGradient>
                 </TouchableOpacity>
 
                 <StepToChange
@@ -70,6 +72,6 @@ const styles = StyleSheet.create({
     },
     txtChange: {
         fontSize: px2sp(34),
-        color: Colors._1A1
+        color: '#FFF'
     }
 })
