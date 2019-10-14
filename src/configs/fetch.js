@@ -42,7 +42,7 @@ export function initBaseUrl() {
     storage.load({
         key: 'BaseApiType'
     }).then(ret => {
-       typeUrl = type
+       typeUrl = ret
         if(ret === 'test')
             client.setBaseURL(api.test)
         else
