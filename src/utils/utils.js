@@ -13,7 +13,7 @@ import moment from 'moment'
 import Toast from '../components/toast';
 import {Images} from "../configs/Theme";
 import dva from "./dva";
-import {getBaseUrl} from "../configs/fetch";
+import {baseUrlType, getBaseUrl} from "../configs/fetch";
 
 export const YYYYMMDD = 'YYYY-MM-DD';
 
@@ -42,7 +42,7 @@ export function showToast(msg) {
   }
 }
 export function shareHost() {
-    if (getBaseUrl() === 'test')
+    if (baseUrlType() === 'test')
         return THOST;
     else
         return HOST;

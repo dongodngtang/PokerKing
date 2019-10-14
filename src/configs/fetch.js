@@ -33,10 +33,16 @@ if (__DEV__) {
   })
 }
 
+let typeUrl = 'production'
+export function baseUrlType() {
+  return typeUrl
+}
+
 export function initBaseUrl() {
     storage.load({
         key: 'BaseApiType'
     }).then(ret => {
+       typeUrl = type
         if(ret === 'test')
             client.setBaseURL(api.test)
         else
@@ -49,7 +55,6 @@ export function initBaseUrl() {
 export function getBaseUrl(){
     return client.getBaseURL();
 }
-
 export function setBaseUrl(type) {
   logMsg('当前环境为：'+type)
     storage.save({
