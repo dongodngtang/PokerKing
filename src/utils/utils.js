@@ -42,7 +42,7 @@ export function showToast(msg) {
   }
 }
 export function shareHost() {
-    if (baseUrlType() === 'test')
+    if (baseUrlType() === 'production')
         return THOST;
     else
         return HOST;
