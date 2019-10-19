@@ -46,7 +46,9 @@ export default class MobileRegister extends Component {
 
     topBar = () => {
         return (
-            <View style={styles.navTop}>
+            <LinearGradient
+                colors={['#E1BB8D', '#8B6941']}
+                style={styles.navTop}>
                 <StatusBar barStyle={'light-content'}/>
                 <TouchableOpacity
                     onPress={() => {
@@ -60,7 +62,7 @@ export default class MobileRegister extends Component {
                 </TouchableOpacity>
                 <View style={styles.navTitle}>
                     <Text
-                        style={{fontSize: 17, color: '#DAB68A', maxWidth: '90%'}}
+                        style={{fontSize: 17, color: '#FFF', maxWidth: '90%'}}
                         numberOfLines={1}>{global.lang.t('set_mobile')}</Text>
                 </View>
                 <TouchableOpacity
@@ -71,10 +73,10 @@ export default class MobileRegister extends Component {
                         })
                     }}
                     style={styles.right2}>
-                    <Text style={{color:"#DAB68A",fontSize:14}}>{global.lang.t("jump")}</Text>
+                    <Text style={{color:"#FFF",fontSize:14}}>{global.lang.t("jump")}</Text>
 
                 </TouchableOpacity>
-            </View>
+            </LinearGradient>
         )
     };
 

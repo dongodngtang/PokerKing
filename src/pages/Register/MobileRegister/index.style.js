@@ -5,7 +5,6 @@ export default StyleSheet.create({
     navTop: {
         height: Metrics.navBarHeight,
         width: Metrics.screenWidth,
-        backgroundColor: '#1A1B1F',
         flexDirection: 'row',
         alignItems: 'center',
         paddingTop: Metrics.statusBarHeight
