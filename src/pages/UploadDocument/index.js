@@ -48,7 +48,6 @@ export default class UploadDocument extends Component {
                                 clearTextOnFocus={true}
                                 underlineColorAndroid={'transparent'}
                                 value={truth_name.trim()}
-                                secureTextEntry={this.state.truth_name}
                                 onChange={txt => {
                                     this.setState({
                                         truth_name: txt.nativeEvent.text
@@ -76,7 +75,6 @@ export default class UploadDocument extends Component {
                                 clearTextOnFocus={true}
                                 underlineColorAndroid={'transparent'}
                                 value={cer_no.trim()}
-                                secureTextEntry={this.state.cer_no}
                                 onChange={txt => {
                                     this.setState({
                                         cer_no: txt.nativeEvent.text
