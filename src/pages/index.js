@@ -97,7 +97,7 @@ class TabBar extends PureComponent {
                     selectedImage={Images.event}/>
             case 2:
                 return <TabBarItem
-                    iconStyle={{height: px2dp(48), width: px2dp(44)}}
+                    iconStyle={{height: px2dp(48), width: px2dp(46)}}
                     focused={focused}
                     normalImage={Images.room_gray}
                     selectedImage={Images.room}/>
