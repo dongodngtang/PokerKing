@@ -210,7 +210,11 @@ export default class Main extends Component {
 
         return (
             <Base>
-                <NavigationBar title={this.state.activeTab} index={this.state.index}/>
+                <NavigationBar title={this.state.activeTab}
+                               index={this.state.index}
+                               leftOnPress={()=>{
+                                   router.pop()
+                               }}/>
                 <ScrollableTab
                     onChangeTab={this.onChangeTab}
                     scrollWithoutAnimation={true}

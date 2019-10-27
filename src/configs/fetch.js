@@ -42,7 +42,8 @@ export function initBaseUrl() {
     storage.load({
         key: 'BaseApiType'
     }).then(ret => {
-       typeUrl = type
+        logMsg('当前环境为：'+ret)
+       typeUrl = ret
         if(ret === 'test')
             client.setBaseURL(api.test)
         else

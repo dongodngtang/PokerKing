@@ -34,19 +34,21 @@ export default class Drawer extends Component {
                 <TouchableOpacity style={styles.safe_area_view} activeOpacity={1} onPress={() => {
                     if (isEmptyObject(profile)) {
                         router.toLogin();
+                    }else {
+                        router.toModifyData()
                     }
                 }}>
                     <Image source={getAvatar(avatar)} style={styles.person_img}/>
                     <Text style={styles.person_txt}>{nick_name.toUpperCase()}</Text>
                 </TouchableOpacity>
                 <View style={{height: 45}}/>
-                {this._item(styles.select_btn, Images.xiugaiziliao, styles.change_img, global.lang.t('modifyData'), () => {
-                    if (isEmptyObject(profile)) {
-                        router.toLogin();
-                    } else {
-                        router.toModifyData()
-                    }
-                })}
+                {/*{this._item(styles.select_btn, Images.xiugaiziliao, styles.change_img, global.lang.t('modifyData'), () => {*/}
+                    {/*if (isEmptyObject(profile)) {*/}
+                        {/*router.toLogin();*/}
+                    {/*} else {*/}
+                        {/*router.toModifyData()*/}
+                    {/*}*/}
+                {/*})}*/}
                 {this._item(styles.select_btn, Images.wenti, styles.change_img, global.lang.t('common_problem'), () => {
                     router.toFAQ();
                 })}

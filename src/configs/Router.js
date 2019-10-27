@@ -52,7 +52,7 @@ export default class Router {
 
     toHotRaceList() {
         this.push({
-            sceneKey: 'HotNewsList'
+            sceneKey: 'Main'
         })
     }
 
@@ -243,9 +243,12 @@ export default class Router {
 
     }
 
-    toUploadDocument() {
+    toUploadDocument(certObjChange) {
         this.push({
-            sceneKey: 'UploadDocument'
+            sceneKey: 'UploadDocument',
+            params:{
+                certObjChange
+            }
         })
 
     }
