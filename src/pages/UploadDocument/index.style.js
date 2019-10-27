@@ -25,13 +25,11 @@ export default StyleSheet.create({
         alignSelf: 'center'
     },
     confirm_btn2: {
+        height: px2dp(88),
         width: Metrics.screenWidth - 34,
         alignSelf:'center',
-        height: px2dp(88),
         alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: "#161718",
-        marginTop: px2dp(42)
+        justifyContent: 'center'
     },
     message_view:{
         marginTop:px2dp(16),

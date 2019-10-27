@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import {View, Text, Button, KeyboardAvoidingView, TextInput, TouchableOpacity, Image} from 'react-native';
+import {View, Text, Button, KeyboardAvoidingView, TextInput, TouchableOpacity, Image, Platform} from 'react-native';
 import {connect} from 'react-redux';
 import styles from "./index.style";
 import {Images, Metrics} from "../../configs/Theme";
 import {ActionSheet} from '../../components';
 import {register} from "../../services/accountDao";
-import {isStrNull, logMsg, showToast} from "../../utils/utils";
+import {isEmptyObject, isStrNull, logMsg, showToast} from "../../utils/utils";
 import CountryPicker, {getAllCountries} from 'react-native-country-picker-modal'
 import DeviceInfo from 'react-native-device-info'
 import DateTimePicker from '../../components/DatePicker'
@@ -46,6 +46,7 @@ export default class Register extends Component {
         this.user_name = ''
         this.email = ''
         this.gender = 0
+        this.certObj = null
     }
 
   handleDatePicked = date => {
@@ -78,6 +79,60 @@ export default class Register extends Component {
 
     trimNumber = (str) => {
         return str.replace(/\d+/g, '');
+    }
+
+    certObjChange = (obj)=>{
+      this.certObj = obj
+    }
+    _fileName = (o) => {
+        let pos = o.lastIndexOf("/")
+        return o.substring(pos + 1);
+    }
+    registerClick = ()=>{
+        if(isStrNull(this.user_name)){
+            showToast(global.lang.t('input_nick_name'))
+            return
+        }
+        if (this.gender === 0) {
+            showToast(global.lang.t('select_gender'))
+            return
+        }
+        if (isStrNull(this.email)) {
+            showToast(global.lang.t('input_email'))
+            return
+        }
+
+
+        let formData = new FormData();
+
+        let body = this.props.params;
+        body.nickname = this.user_name;
+        body.gender = this.gender;
+        body.email = this.email;
+        body.country = this.state.countryTxt
+        if(!isEmptyObject(this.certObj)){
+            let path = this.certObj.avatar.uri
+            let file = {
+                uri: path,
+                name: this._fileName(path)
+            };
+            if (Platform.OS === 'android')
+                file.type = 'image/jpeg'
+            formData.append("img_front", file);
+            formData.append("cert_no",this.certObj.cert_no);
+            formData.append("realname",this.certObj.realname)
+        }
+
+        for(let key in body){
+            formData.append(key,body[key])
+        }
+
+        register(formData, ret => {
+            showToast(global.lang.t('register_success'))
+            this.props.navigation.popToTop()
+        }, err => {
+
+        })
     }
 
 
@@ -204,7 +259,7 @@ export default class Register extends Component {
                     <View style={[styles.textView, {height: 50}]}>
                         <TouchableOpacity style={{width: '100%', flexDirection: 'row', alignItems: 'center'}}
                                           onPress={() => {
-                                              router.toUploadDocument()
+                                              router.toUploadDocument(this.certObjChange)
                                           }}>
                             <Text style={{
                                 color: '#CCCCCC',
@@ -234,25 +289,7 @@ export default class Register extends Component {
 
                 <TouchableOpacity
                     style={{  marginTop:54}}
-                    onPress={() => {
-                    let body = this.props.params;
-                    body.nickname = this.user_name;
-                    body.gender = this.gender;
-                    body.email = this.email;
-
-                    if (this.gender === 0) {
-                        showToast(global.lang.t('select_gender'))
-                    } else if (isStrNull(this.email)) {
-                        showToast(global.lang.t('input_email'))
-                    } else {
-                        register(body, ret => {
-                            showToast(global.lang.t('register_success'))
-                            this.props.navigation.popToTop()
-                        }, err => {
-
-                        })
-                    }
-                }}>
+                    onPress={this.registerClick}>
                     <LinearGradient colors={['#E1BB8D', '#8B6941']}
                                     style={styles.btn}>
                     <Text style={{color: '#FFF', fontSize: 18}}>{global.lang.t('determine')}</Text>
