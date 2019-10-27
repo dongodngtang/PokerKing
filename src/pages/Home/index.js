@@ -132,7 +132,7 @@ export default class Home extends Component {
                             left_btn={()=>{
                                 this.drawer && this.drawer.toggle()
                             }}
-                            letIconStyle={{height: px2dp(34), width: px2dp(42)}}
+                            showSearch={true}
                             narTitle={global.lang.t('app_name')}
                             right_img={Images.setting}/>
                     <MainBanner home_banners={this.state.home_banners}/>
