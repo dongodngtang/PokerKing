@@ -9,6 +9,10 @@ import {ActionSheet} from '../../components';
 import {putProfile, uploadAvatar} from "../../services/accountDao";
 import Permissions from "react-native-permissions";
 import Loading from "../comm/Loading";
+import DateTimePicker from '../../components/DatePicker'
+import moment from 'moment'
+import CountryPicker, {getAllCountries} from 'react-native-country-picker-modal'
+import DeviceInfo from "react-native-device-info";
 
 const picker = {
     width: 500,
@@ -37,6 +41,20 @@ export default class ModifyData extends Component {
         let genderTxt = profile.gender === '1' ? global.lang.t('male') : global.lang.t('female')
         if (profile.gender === '0')
             genderTxt = global.lang.t('gender')
+      let userLocaleCountryCode = DeviceInfo.getDeviceCountry()
+      const userCountryData = getAllCountries()
+        .filter(country => country.cca2 === userLocaleCountryCode)
+        .pop()
+      let callingCode = '86'
+      let areaName = 'China'
+      let cca2 = userLocaleCountryCode
+      if (!cca2 || !userCountryData) {
+        cca2 = 'CN'
+        callingCode = '86'
+      } else {
+        callingCode = userCountryData.callingCode
+        areaName = userCountryData.name.common
+      }
 
         this.inputNick = profile ? profile.account : '';
         this.inputBith = profile ? profile.birthday : '';
@@ -48,12 +66,14 @@ export default class ModifyData extends Component {
             avatar,
             genderTxt: genderTxt,
             user_account: this.inputNick,
-            user_birth: this.inputBith,
-            user_country: this.inputCountry,
+            birthTxt: this.inputBith,
+            countryTxt: this.inputCountry,
             user_cert_no: this.inputCertNo,
             email: this.inputMail,
             avatar_modify: false,
-            gender_modify: false
+            gender_modify: false,
+            cca2:cca2,
+            isDateTimePickerVisible:false
         }
 
         props.navigation.setParams({
@@ -91,6 +111,21 @@ export default class ModifyData extends Component {
         });
 
     }
+
+  handleDatePicked = date => {
+    let birthTxt = moment(date).format('YYYY-MM-DD')
+
+    this.setState({ isDateTimePickerVisible: false,
+      birthTxt});
+  };
+
+  showDateTimePicker = () => {
+    this.setState({ isDateTimePickerVisible: true });
+  };
+
+  hideDateTimePicker = () => {
+    this.setState({ isDateTimePickerVisible: false });
+  };
 
     putProfile = (edit) => {
         const {profile} = this.props;
@@ -160,7 +195,7 @@ export default class ModifyData extends Component {
     render() {
         const {profile} = this.props;
         const {nickname} = profile;
-        const {avatar, genderTxt, user_account, email,user_birth,user_country,user_cert_no} = this.state
+        const {avatar, genderTxt, user_account, email,birthTxt,countryTxt,user_cert_no} = this.state
         return (
             <View style={styles.modifyData_view}>
                 <View style={{paddingLeft: 20, paddingRight: 17, backgroundColor: "#FFFFFF"}}>
@@ -224,10 +259,13 @@ export default class ModifyData extends Component {
 
                     {/*出生日期 可修改*/}
                     <View style={styles.line2}/>
-                    <TouchableOpacity activeOpacity={1} style={styles.item_view}>
+                    <TouchableOpacity activeOpacity={1} style={styles.item_view}
+                                      onPress={() => {
+                                        this.showDateTimePicker()
+                                      }}>
 
                         <Text style={styles.text_label}>{global.lang.t('birth')}</Text>
-                        <Text style={styles.text_label}>{this.state.user_birth}</Text>
+                        <Text style={styles.text_label}>{birthTxt}</Text>
 
                         <View style={{flex: 1}}/>
                         <Image style={{height: 20, width: 10}}
@@ -272,10 +310,13 @@ export default class ModifyData extends Component {
 
                     {/*国籍 可修改*/}
                     <View style={styles.line2}/>
-                    <TouchableOpacity activeOpacity={1} style={styles.item_view}>
+                    <TouchableOpacity activeOpacity={1} style={styles.item_view}
+                                      onPress={() => {
+                                        this.areaAction && this.areaAction.openModal();
+                                      }}>
 
                         <Text style={styles.text_label}>{global.lang.t('country')}</Text>
-                        <Text style={styles.text_label}>{this.state.user_country}</Text>
+                        <Text style={styles.text_label}>{countryTxt}</Text>
 
                         <View style={{flex: 1}}/>
                         <Image style={{height: 20, width: 10}}
@@ -285,7 +326,10 @@ export default class ModifyData extends Component {
 
                     {/*实名信息 不可修改*/}
                     <View style={styles.line2}/>
-                    <TouchableOpacity activeOpacity={1} style={styles.item_view}>
+                    <TouchableOpacity activeOpacity={1} style={styles.item_view}
+                                      onPress={() => {
+                                        router.toUploadDocument()
+                                      }}>
 
                         <Text style={styles.text_label}>{global.lang.t('cert_message')}</Text>
                         <Text style={styles.text_label}>{this.state.user_cert_no}</Text>
@@ -314,7 +358,34 @@ export default class ModifyData extends Component {
                     destructiveButtonIndex={2}
                     onPress={this._getGender}
                 />
+              <CountryPicker
+                styles={{
+                  touchFlag: {
+                    marginBottom: 12
+                  }
+                }}
+                ref={ref => this.areaAction = ref}
+                filterable
+                closeable
+                showCallingCode={false}
+                onChange={value => {
+                  logMsg(value)
+                  this.setState({
+                    countryTxt: value.name,
+                    cca2: value.cca2
+                  })
+                }}
+                translation="eng"
+                cca2={this.state.cca2}
+              >
+                <View/>
+              </CountryPicker>
 
+              <DateTimePicker
+                isVisible={this.state.isDateTimePickerVisible}
+                onConfirm={this.handleDatePicked}
+                onCancel={this.hideDateTimePicker}
+              />
                 <Loading
                     ref={ref => this.loading = ref}/>
 

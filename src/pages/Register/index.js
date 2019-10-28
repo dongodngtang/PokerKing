@@ -110,6 +110,7 @@ export default class Register extends Component {
         body.gender = this.gender;
         body.email = this.email;
         body.country = this.state.countryTxt
+        body.birthday = this.state.birthTxt
         if(!isEmptyObject(this.certObj)){
             let path = this.certObj.avatar.uri
             let file = {
