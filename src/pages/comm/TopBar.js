@@ -9,7 +9,7 @@ import LinearGradient from 'react-native-linear-gradient'
 export default class TopBar extends Component {
 
     render(){
-        const {left_img,narTitle,right_img,left_btn,mid_btn,right_btn} = this.props;
+        const {left_img,narTitle,right_img,left_btn,mid_btn,showLeftIcon,showSearch} = this.props;
         return(
             <LinearGradient
                 colors={['#E1BB8D', '#8B6941']}
@@ -17,30 +17,44 @@ export default class TopBar extends Component {
                 <StatusBar barStyle={'light-content'}/>
                 <TouchableOpacity
                     onPress={() => {
-
+                        left_btn && left_btn()
                     }}
                     style={styles.left22}>
-                    {/*<Image*/}
-                        {/*style={{height: px2dp(48), width: px2dp(120)}}*/}
-                        {/*source={left_img}*/}
-                    {/*/>*/}
+                    {showLeftIcon?<Image
+                        style={{height: px2dp(34), width: px2dp(42)}}
+                        source={left_img}
+                    />:null}
 
                 </TouchableOpacity>
+                {showSearch?<View style={styles.search}/>:null}
                 <TouchableOpacity
                     style={styles.navTitle}
                     onPress={() => {
+                        mid_btn && mid_btn()
                     }}>
                     <Text
                         style={{fontSize: 17, color: '#FFF', maxWidth: '90%'}}
                         numberOfLines={1}>{narTitle}</Text>
                 </TouchableOpacity>
+                {showSearch?  <TouchableOpacity
+                    onPress={() => {
+                        router.toSearchNews()
+                    }}
+                    style={styles.search}>
+                    <Image
+                        style={{height: px2dp(40), width: px2dp(40)}}
+                        source={Images.home_search}
+                    />
+
+                </TouchableOpacity>:null}
+
                 <TouchableOpacity
                     onPress={() => {
                         router.toSetting()
                     }}
                     style={styles.right2}>
                     <Image
-                        style={{height: px2dp(38), width: px2dp(36)}}
+                        style={{height: px2dp(52), width: px2dp(52)}}
                         source={right_img}
                     />
 
@@ -59,11 +73,17 @@ const styles = StyleSheet.create({
     },
     left22: {
         paddingLeft: 17,
-        width:60,
+        width:40,
         justifyContent: 'center'
     },
     right2: {
-        width:60,
+        width:40,
+        flexDirection: 'row-reverse',
+        alignItems: 'center',
+        paddingLeft: 17
+    },
+    search: {
+        width:px2dp(50),
         flexDirection: 'row-reverse',
         alignItems: 'center',
         paddingLeft: 17

@@ -5,7 +5,7 @@ import {isEmptyObject, logMsg} from "../../utils/utils";
 import MainBanner from './MainBanner';
 import styles from './index.style';
 import UltimateFlatList from '../../components/ultimate/UltimateFlatList';
-import {Images, Metrics, Styles} from "../../configs/Theme";
+import {Images, Metrics, px2dp, Styles} from "../../configs/Theme";
 import SelectPiker from "../comm/SelectPiker";
 import HotItem from "./HotItem";
 import {Actions} from "react-native-router-flux";
@@ -17,6 +17,9 @@ import NotData from "../comm/NotData";
 import FoundBeauti from "../FoundBeauti";
 import ControlPanel from "./Drawer";
 import Drawer from 'react-native-drawer'
+import TopBar from "../comm/TopBar";
+import CountTime from "./CountTime";
+import QueueJoin from "./QueueJoin";
 
 const WIDTH = Metrics.screenWidth;
 const HEIGHT = Metrics.screenHeight;
@@ -41,15 +44,7 @@ export default class Home extends Component {
             info_list: [],
             isRefreshing: false
         };
-        // props.navigation.setParams({
-        //     onRight: () => {
-        //         this.selectPiker && this.selectPiker.toggle()
-        //         this.drawer && this.drawer.close()
-        //     },
-        //     onLeft: () => {
-        //         this.drawer && this.drawer.toggle()
-        //     }
-        // })
+
         this.count = 0
     };
 
@@ -79,74 +74,36 @@ export default class Home extends Component {
 
     header = () => {
         return (
-            <View style={styles.header_view}>
-                <Text style={styles.hot_race_txt}>{global.lang.t('hot_race')}</Text>
-                <View style={{flex: 1}}/>
-                <TouchableOpacity onPress={() => {
-                    router.toHotRaceList();
-                }}
-                                  style={{flexDirection: 'row', alignItems: 'center'}}>
-                    <Text style={styles.more_txt}>{global.lang.t('more')}</Text>
-                    <Image style={{width: 6, height: 12, marginLeft: 8}} source={Images.is_right}/>
-                </TouchableOpacity>
-            </View>
+           <View>
+               <View style={styles.header_view}>
+                   <Text style={styles.hot_race_txt}>{global.lang.t('hot_race')}</Text>
+                   <View style={{flex: 1}}/>
+                   <TouchableOpacity onPress={() => {
+                       router.toHotRaceList();
+                   }}
+                                     style={{flexDirection: 'row', alignItems: 'center'}}>
+                       <Text style={styles.more_txt}>{global.lang.t('more')}></Text>
+
+                   </TouchableOpacity>
+               </View>
+               {this._separator()}
+           </View>
 
 
         )
     };
     _renderItem = (item, index) => {
         return (
-            <View style={{backgroundColor: '#252527'}}>
-                <HotItem item={item} type={'hot'}/>
-            </View>
+            <HotItem item={item} type={'hot'}/>
         )
     };
 
     _separator = () => {
         return (
             <View
-                style={{height: 1, backgroundColor: "#484848", width: Metrics.screenWidth - 34, alignSelf: 'center'}}/>
+                style={{height: 1, backgroundColor: "#998E72", width: Metrics.screenWidth - 34, alignSelf: 'center'}}/>
         )
     }
-
-    topHomeBar = () => {
-        return (
-            <View style={styles.home_navTop}>
-                <StatusBar barStyle={'light-content'}/>
-                <TouchableOpacity
-                    onPress={() => {
-                        this.drawer && this.drawer.toggle()
-                    }}
-                    style={styles.home_left}>
-                    <Image
-                        style={{height: 16, width: 20}}
-                        source={Images.homepage_side}
-                    />
-
-                </TouchableOpacity>
-                <TouchableOpacity
-                    activeOpacity={1}
-                    onLongPress={() => {
-                        router.toCurrentVersion();
-                    }}
-                    style={styles.home_nav_title}>
-                    <Text
-                        style={{fontSize: 18, color: '#FFE9AD',alignSelf: 'center'}}
-                        numberOfLines={1}>{global.lang.t('app_name')}</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={() => {
-                        this.selectPiker && this.selectPiker.toggle()
-                        this.drawer && this.drawer.close()
-                    }}
-                    style={styles.home_right}>
-                    <Text
-                        style={{fontSize: 15, color: '#FFE9AD'}}>{global.lang.t('home_language')}</Text>
-
-                </TouchableOpacity>
-            </View>
-        )
-    };
 
     _drawerClose = ()=>{
         this.drawer && this.drawer.close()
@@ -170,45 +127,20 @@ export default class Home extends Component {
                         refreshing={this.state.isRefreshing}
                         onRefresh={this._onRefresh}
                     />}>
-                    {this.topHomeBar()}
+                    <TopBar left_img={Images.homepage_side}
+                            showLeftIcon={true}
+                            left_btn={()=>{
+                                this.drawer && this.drawer.toggle()
+                            }}
+                            showSearch={true}
+                            narTitle={global.lang.t('app_name')}
+                            right_img={Images.setting}/>
                     <MainBanner home_banners={this.state.home_banners}/>
                     <View style={styles.active_type_view}>
-                        <TouchableOpacity activeOpacity={1} onPress={() => {
-                            if (isEmptyObject(global.loginUser)) {
-                                router.toLogin();
-                                // router.toRegister()
-                            } else {
-                                router.toRaces();
-                            }
-                        }} style={styles.active_btn}>
-                            {/*<ImageBackground source={Images.touanament_bg} style={styles.active_btn}>*/}
-                            <Image source={Images.touanament_bg}
-                                   style={styles.touanament_img}/>
-                            <Text style={styles.active_txt}>{global.lang.t('race')}</Text>
-                            {/*</ImageBackground>*/}
-                        </TouchableOpacity>
-                        <TouchableOpacity activeOpacity={1} onPress={() => {
-                            if (isEmptyObject(global.loginUser)) {
-                                router.toLogin();
-                            } else {
-                                router.toCashTable();
-                            }
-                        }} style={styles.active_btn}>
-                            {/*<ImageBackground source={Images.cash_bg} style={styles.active_btn}>*/}
-                            <Image source={Images.cash_bg}
-                                   style={styles.touanament_img}/>
-                            <Text style={styles.active_txt}>{global.lang.t('cash_table')}</Text>
-                            {/*</ImageBackground>*/}
-                        </TouchableOpacity>
+
+                        <Text style={{color:'#E0BA8C',fontSize:15,marginBottom:px2dp(12)}}>UPCOMING EVENT</Text>
+                        <CountTime/>
                     </View>
-                    {/*<TouchableOpacity activeOpacity={1} onPress={()=>{*/}
-                    {/*router.toFoundBeauti()*/}
-                    {/*}}>*/}
-                    {/*<ImageBackground style={styles.middle_view} source={Images.other_more}>*/}
-                    {/*<Text style={styles.into_poker_txt}>{global.lang.t('into_poker')}</Text>*/}
-                    {/*<Text style={styles.found_beauti_txt}>{global.lang.t('found_beauti')}</Text>*/}
-                    {/*</ImageBackground>*/}
-                    {/*</TouchableOpacity>*/}
 
                     <UltimateFlatList
                         header={this.header}
@@ -222,14 +154,15 @@ export default class Home extends Component {
                         dateTitle={global.lang.t('last_refresh')}
                         allLoadedText={global.lang.t('no_more')}
                         waitingSpinnerText={global.lang.t('loading')}
+                        pagination={false}
                         emptyView={() => <NotData/>}
                     />
 
-                    <SelectPiker
-                        ref={ref => this.selectPiker = ref}
-                        onPickerSelect={this.onPickerSelect}
-                        selectedItem={this.state.selectedItem}
-                        itemList={this.state.itemList}/>
+                    <View style={[styles.active_type_view,{marginBottom:px2dp(116)}]}>
+
+                        <Text style={{color:'#E0BA8C',fontSize:15,marginBottom:px2dp(12)}}>JOIN OUR WAITING LIST</Text>
+                        <QueueJoin/>
+                    </View>
 
                     {!isEmptyObject(shareParam) ? <ShareToast hiddenShareAction={() => {
                         this.props.dispatch({type: 'Home/closeShare'})

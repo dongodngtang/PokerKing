@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {View, Text, Button, TouchableOpacity, Image, Modal} from 'react-native';
 import {Metrics} from "../../configs/Theme";
 import Picker from 'react-native-wheel-picker'
+import LinearGradient from 'react-native-linear-gradient'
 
 let PickerItem = Picker.Item;
 
@@ -44,25 +45,26 @@ export default class SelectPiker extends Component {
                     this.toggle();
                 }}/>
 
-                <View style={{
+                <LinearGradient
+                    colors={['#E1BB8D', '#8B6941']}
+                    style={{
                     width: Metrics.screenWidth,
-                    backgroundColor: 'white',
-                    borderWidth: 0.5,
-                    borderColor: "#AAAAAA",
                     position: 'absolute',
                     bottom: 0
                 }}>
-                    <View style={{
-                        marginTop: 24,
+                    <LinearGradient
+                        colors={['#E1BB8D', '#8B6941']}
+                        style={{
+                        height:50,
                         flexDirection: 'row',
-                        marginLeft: 17,
-                        marginRight: 17,
+                        paddingLeft: 17,
+                        paddingRight: 17,
                         alignItems: 'center'
                     }}>
                         <TouchableOpacity onPress={() => {
                             this.toggle();
                         }}>
-                            <Text style={{color: "#444444", fontSize: 18}}>{global.lang.t('cancel')}</Text>
+                            <Text style={{color: "#FFF", fontSize: 18}}>{global.lang.t('cancel')}</Text>
                         </TouchableOpacity>
                         <View style={{flex: 1}}/>
                         <TouchableOpacity onPress={() => {
@@ -78,13 +80,13 @@ export default class SelectPiker extends Component {
                             }
                             this.toggle();
                         }}>
-                            <Text style={{color: "#444444", fontSize: 18}}>{global.lang.t('determine')}</Text>
+                            <Text style={{color: "#FFF", fontSize: 18}}>{global.lang.t('determine')}</Text>
                         </TouchableOpacity>
 
-                    </View>
+                    </LinearGradient>
                     <Picker style={{width: Metrics.screenWidth,height: 180}}
                             selectedValue={this.props.selectedItem}
-                            itemStyle={{color: "#444444", fontSize: 20,borderWidth:0}}
+                            itemStyle={{color: "#FFF", fontSize: 20,borderWidth:0}}
                             onValueChange={(index) => {
                                 this.props.onPickerSelect(index);
                                 this.setState({
@@ -93,11 +95,11 @@ export default class SelectPiker extends Component {
                             }}>
                         {this.props.itemList.map((value, i) => (
                             <PickerItem label={value} value={i} key={value}
-                                        color={i === this.state.index ? "#333333" : "#888888"}/>
+                                        color={i === this.state.index ? "#FFF" : "#333"}/>
                         ))}
                     </Picker>
                     <View style={{height: 40}}/>
-                </View>
+                </LinearGradient>
             </Modal>
 
         )

@@ -9,16 +9,13 @@ const HEIGHT = Metrics.screenHeight;
 export default StyleSheet.create({
     home_view:{
         flex:1,
-        backgroundColor:'#252527'
+        backgroundColor:'#1A1B1F'
     },
     active_type_view:{
         marginLeft:17,
         marginRight:17,
         paddingTop:12,
         paddingBottom:12,
-        flexDirection:'row',
-        alignItems:'center',
-        justifyContent:'space-between'
     },
     home_navTop:{
         height: isIphoneX ? Metrics.navBarHeight + 10 : Metrics.navBarHeight,
@@ -81,18 +78,15 @@ export default StyleSheet.create({
         paddingBottom:10,
         flexDirection:'row',
         paddingLeft:17,
-        paddingRight:17,
-        borderBottomWidth:1,
-        borderBottomColor:'#484848',
-        backgroundColor:'#252527'
+        paddingRight:17
     },
     hot_race_txt:{
-        color:"#ECECEE",
-        fontSize:16,
+        color:"#E0BA8C",
+        fontSize:15,
         fontWeight:'bold'
     },
     more_txt:{
-        color:"#888888",
+        color:"#CCCCCC",
         fontSize:14
     },
     item_view:{
@@ -108,7 +102,6 @@ export default StyleSheet.create({
         paddingLeft:17,
         paddingRight:17,
         flexDirection:'row',
-        backgroundColor:"#303236"
     },
     race_img:{
         width:122,

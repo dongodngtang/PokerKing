@@ -224,6 +224,7 @@ export const Images = {
     example_upload2: require('../asserts/new/example_upload2.png'),
     race_right:require('../asserts/races/race_right.png'),
     race_left:require('../asserts/races/race_left.png'),
+    home_search:require('../asserts/home/home_search.png')
 
 }
 

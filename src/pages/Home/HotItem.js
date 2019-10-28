@@ -70,7 +70,7 @@ export default class HotItem extends Component {
                 <View style={styles.right_view}>
                     <Text style={[styles.race_content_txt, {
                         maxWidth: Number(mul(WIDTH, 0.56)),
-                        color: type && type === 'hot' ? '#DDDDDD' : "#FFE9AD"
+                        color: "#FFE9AD"
                     }]}
                           numberOfLines={2}>{this.getTitle(type, item)}</Text>
                     {type && (type === 'event' || type === 'info' || type === 'main_event') ?
@@ -88,7 +88,7 @@ export default class HotItem extends Component {
                                     borderColor: "#EA5163",
                                     marginRight: 10
                                 }}>
-                                    <Text style={{color: "#EA5163", fontSize: 12}}>{global.lang.t('hot')}</Text>
+                                    <Text style={{color: "#998E72", fontSize: 12}}>{global.lang.t('hot')}</Text>
                                 </View> : null}
                             {strNotNull(source) ?
                                 <Text numberOfLines={1} style={[styles.bottom_txt, {

@@ -62,7 +62,7 @@ export default class CashTable extends Component {
                     }}
                     style={styles.right2}>
                     <Image
-                        style={{height: px2dp(38), width: px2dp(36)}}
+                        style={{height: px2dp(52), width: px2dp(52)}}
                         source={Images.setting}
                     />
 

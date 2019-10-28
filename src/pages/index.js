@@ -62,23 +62,25 @@ class TabBar extends PureComponent {
     render() {
 
         const {navigation: {state: {routes, index}}, inactiveTintColor, activeTintColor,jumpTo} = this.props
-        return <LinearGradient colors={['#E1BB8D', '#8B6941']} style={{height: px2dp(100), flexDirection: 'row'}}>
-            {routes.map((item, i) => {
-                let focused = index === i
+        return <SafeAreaView style={{backgroundColor:'#8B6941'}}>
+            <LinearGradient colors={['#E1BB8D', '#8B6941']} style={{height: px2dp(100), flexDirection: 'row'}}>
+                {routes.map((item, i) => {
+                    let focused = index === i
 
-                let txtColor = focused ? activeTintColor : inactiveTintColor
-                return <TouchableOpacity
-                    onPress={()=>jumpTo(item.key)}
-                    activeOpacity={1}
-                    key={item.key}
-                    style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                    {this.renderTabIcon(i,focused)}
-                    <Text style={{color: txtColor, fontSize: px2sp(24), marginTop: px2dp(6)}}>{item.key}</Text>
-                </TouchableOpacity>
-            })}
+                    let txtColor = focused ? activeTintColor : inactiveTintColor
+                    return <TouchableOpacity
+                        onPress={()=>jumpTo(item.key)}
+                        activeOpacity={1}
+                        key={item.key}
+                        style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+                        {this.renderTabIcon(i,focused)}
+                        <Text style={{color: txtColor, fontSize: px2sp(24), marginTop: px2dp(6)}}>{item.key}</Text>
+                    </TouchableOpacity>
+                })}
 
 
-        </LinearGradient>
+            </LinearGradient>
+        </SafeAreaView>
     }
 
     renderTabIcon = (i, focused) => {
@@ -97,7 +99,7 @@ class TabBar extends PureComponent {
                     selectedImage={Images.event}/>
             case 2:
                 return <TabBarItem
-                    iconStyle={{height: px2dp(48), width: px2dp(44)}}
+                    iconStyle={{height: px2dp(48), width: px2dp(46)}}
                     focused={focused}
                     normalImage={Images.room_gray}
                     selectedImage={Images.room}/>
@@ -129,7 +131,7 @@ export const scenes = () => {
                tabs>
             <Scene
                 key={global.lang.t('news')}
-                component={Main}
+                component={Home}
                 hideNavBar/>
             <Scene key={global.lang.t('race')}
                    component={Races}
@@ -142,7 +144,9 @@ export const scenes = () => {
                    hideNavBar/>
         </Scene>
 
-
+        <Scene key="Main"
+               component={Main}
+               hideNavBar/>
         <Scene key="Detail"
                component={Detail}
                {...TopNav({

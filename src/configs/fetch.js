@@ -42,16 +42,12 @@ export function initBaseUrl() {
     storage.load({
         key: 'BaseApiType'
     }).then(ret => {
-
-        if(ret === 'test'){
-          typeUrl = 'test'
-          client.setBaseURL(api.test)
-        }
-        else{
-          typeUrl = 'production'
-          client.setBaseURL(api.production)
-        }
-
+        logMsg('当前环境为：'+ret)
+       typeUrl = ret
+        if(ret === 'test')
+            client.setBaseURL(api.test)
+        else
+            client.setBaseURL(api.production)
     }).catch(err => {
 
     })
