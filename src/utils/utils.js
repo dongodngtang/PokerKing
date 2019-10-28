@@ -265,6 +265,21 @@ export function getRemainTime(endTime){
     }
 }
 
+export function getSubTime(startTime,endTime){
+  let t = endTime - startTime
+  let seconds = Math.floor((t / 1000) % 60)
+  let minutes = Math.floor((t / 1000 / 60) % 60)
+  let hours = Math.floor((t / (1000 * 60 * 60)) % 24)
+  let days = Math.floor(t / (1000 * 60 * 60 * 24))
+  return {
+    'total': t,
+    'days': days,
+    'hours': hours,
+    'minutes': minutes,
+    'seconds': seconds
+  }
+}
+
 export function alertOrder(str, callback,cancel) {
     Alert.alert(str, '', [{
         text: `${global.lang.t('cancel')}`, onPress: () => {
