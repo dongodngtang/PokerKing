@@ -7,23 +7,46 @@ import PercentageCircle from "./PercentageCircle";
 export default class CountTime extends Component{
 
     render(){
+        const {recentEvent} = this.props
         return (
             <LinearGradient
                 colors={['#E1BB8D', '#8B6941']}
                 style={styles.container}>
-                <Text style={styles.title}>澳门扑克王杯-2019/09/23</Text>
+                <Text style={styles.title} numberOfLines={1} ellipsizeMode={'tail'}>{recentEvent.name}</Text>
                 <View style={{flexDirection:'row',alignItems:'center',marginTop:px2dp(14)}}>
-                    {[1,2,3,5].map((item,i)=>(
-                        <View
-                            key={`circle${i}`}
-                            style={{alignItems:'center',marginLeft:i===0?0:px2dp(30)}}>
-                            <PercentageCircle radius={30} percent={40} color={"#FFF"} innerColor={'#B28F64'} bgcolor={'#4C4530'}>
-                                <Text style={styles.lbNum}>30</Text>
+                  <View
+                    style={{alignItems:'center'}}>
+                    <PercentageCircle radius={30} percent={40} color={"#FFF"} innerColor={'#B28F64'} bgcolor={'#4C4530'}>
+                      <Text style={styles.lbNum}>30</Text>
 
-                            </PercentageCircle>
-                            <Text style={styles.lbTime}>DAYS</Text>
-                        </View>
-                    ))}
+                    </PercentageCircle>
+                    <Text style={styles.lbTime}>{global.lang.t('day')}</Text>
+                  </View>
+                  <View
+                    style={{alignItems:'center',marginLeft:px2dp(30)}}>
+                    <PercentageCircle radius={30} percent={40} color={"#FFF"} innerColor={'#B28F64'} bgcolor={'#4C4530'}>
+                      <Text style={styles.lbNum}>30</Text>
+
+                    </PercentageCircle>
+                    <Text style={styles.lbTime}>{global.lang.t('time')}</Text>
+                  </View>
+                  <View
+                    style={{alignItems:'center',marginLeft:px2dp(30)}}>
+                    <PercentageCircle radius={30} percent={40} color={"#FFF"} innerColor={'#B28F64'} bgcolor={'#4C4530'}>
+                      <Text style={styles.lbNum}>30</Text>
+
+                    </PercentageCircle>
+                    <Text style={styles.lbTime}>{global.lang.t('minute')}</Text>
+                  </View>
+                  <View
+                    style={{alignItems:'center',marginLeft:px2dp(30)}}>
+                    <PercentageCircle radius={30} percent={40} color={"#FFF"} innerColor={'#B28F64'} bgcolor={'#4C4530'}>
+                      <Text style={styles.lbNum}>30</Text>
+
+                    </PercentageCircle>
+                    <Text style={styles.lbTime}>{global.lang.t('second')}</Text>
+                  </View>
+
                 </View>
 
             </LinearGradient>

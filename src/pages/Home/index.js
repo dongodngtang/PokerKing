@@ -20,6 +20,7 @@ import Drawer from 'react-native-drawer'
 import TopBar from "../comm/TopBar";
 import CountTime from "./CountTime";
 import QueueJoin from "./QueueJoin";
+import {mainEvents} from "../../services/eventsDao";
 
 const WIDTH = Metrics.screenWidth;
 const HEIGHT = Metrics.screenHeight;
@@ -42,7 +43,8 @@ export default class Home extends Component {
             itemList: ['English', '简体中文', '繁体中文'],
             home_banners: [],
             info_list: [],
-            isRefreshing: false
+            isRefreshing: false,
+            recent_event:{}
         };
 
         this.count = 0
@@ -57,12 +59,19 @@ export default class Home extends Component {
     };
 
     componentDidMount() {
+      mainEvents(data => {
+        logMsg('主赛', data);
 
+        this.setState({
+          recent_event: data.recent_event,
+        })
+      })
         codePush.disallowRestart()
         codePush.sync({
             updateDialog: false,
             installMode: codePush.InstallMode.ON_NEXT_RESUME
         })
+
     };
 
     onPickerSelect = (index) => {
@@ -139,7 +148,8 @@ export default class Home extends Component {
                     <View style={styles.active_type_view}>
 
                         <Text style={{color:'#E0BA8C',fontSize:15,marginBottom:px2dp(12)}}>UPCOMING EVENT</Text>
-                        <CountTime/>
+                      {isEmptyObject(this.state.recent_event)?null:<CountTime recentEvent={this.state.recent_event}/>}
+
                     </View>
 
                     <UltimateFlatList
