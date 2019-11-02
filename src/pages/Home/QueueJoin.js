@@ -7,25 +7,33 @@ import {Metrics, px2dp} from "../../configs/Theme";
 export default class QueueJoin extends Component{
 
     render(){
-        return (<View>
-            {[1,2,4].map((item,i)=>(
-                <LinearGradient
-                    key={`join${i}`}
-                    colors={['#E1BB8D', '#8B6941']}
-                    style={[styles.container]}>
+        const {games} = this.props
+        if(games && games.length>0){
+            return (<View>
+                {games.map((item,i)=>(
+                    <LinearGradient
+                        key={`join${i}`}
+                        colors={['#E1BB8D', '#8B6941']}
+                        style={[styles.container]}>
 
-                    <View>
-                        <Text style={styles.name}>Macau-The Venetian</Text>
-                        <Text style={styles.lbNum}>Your Number # - -</Text>
-                    </View>
+                        <View>
+                            <Text style={styles.name}>{item.name}</Text>
+                            <Text style={styles.lbNum}>Your Number # - -</Text>
+                        </View>
 
-                    <TouchableOpacity style={styles.btn}>
-                        <Text style={styles.lbNum}>排队</Text>
-                    </TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={()=> router.toQueueProcess(item)}
+                            style={styles.btn}>
+                            <Text style={styles.lbNum}>排队</Text>
+                        </TouchableOpacity>
 
-                </LinearGradient>
-            ))}
-        </View>)
+                    </LinearGradient>
+                ))}
+            </View>)
+        }else{
+            return <View/>
+        }
+
     }
 }
 

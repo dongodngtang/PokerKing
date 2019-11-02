@@ -6,21 +6,18 @@ import MainBanner from './MainBanner';
 import styles from './index.style';
 import UltimateFlatList from '../../components/ultimate/UltimateFlatList';
 import {Images, Metrics, px2dp, Styles} from "../../configs/Theme";
-import SelectPiker from "../comm/SelectPiker";
 import HotItem from "./HotItem";
-import {Actions} from "react-native-router-flux";
 import {getHomeBanners, getInfoList, initLoginUser} from '../../services/accountDao'
-import CustomModal from "../../components/CustomModal";
 import codePush from "react-native-code-push";
 import ShareToast from "../comm/ShareToast";
 import NotData from "../comm/NotData";
-import FoundBeauti from "../FoundBeauti";
 import ControlPanel from "./Drawer";
 import Drawer from 'react-native-drawer'
 import TopBar from "../comm/TopBar";
 import CountTime from "./CountTime";
 import QueueJoin from "./QueueJoin";
 import {mainEvents} from "../../services/eventsDao";
+import {getCashGames} from '../../services/cashTableDao'
 
 const WIDTH = Metrics.screenWidth;
 const HEIGHT = Metrics.screenHeight;
@@ -44,7 +41,8 @@ export default class Home extends Component {
             home_banners: [],
             info_list: [],
             isRefreshing: false,
-            recent_event:{}
+            recent_event: {},
+            games: []
         };
 
         this.count = 0
@@ -53,19 +51,29 @@ export default class Home extends Component {
     _onRefresh = () => {
         this.setState({isRefreshing: true});
         setTimeout(() => {
+            this.getEventGame()
             this.listView && this.listView.refresh();
             this.setState({isRefreshing: false});
         }, 1000)
     };
 
-    componentDidMount() {
-      mainEvents(data => {
-        logMsg('主赛', data);
-
-        this.setState({
-          recent_event: data.recent_event,
+    getEventGame = () => {
+        mainEvents(data => {
+            this.setState({
+                recent_event: data.recent_event,
+            })
         })
-      })
+        getCashGames({page: 1, page_size: 20}, data => {
+            if (data && data.data) {
+                this.setState({
+                    games: data.data.items
+                })
+            }
+        })
+    }
+
+    componentDidMount() {
+        this.getEventGame()
         codePush.disallowRestart()
         codePush.sync({
             updateDialog: false,
@@ -83,20 +91,20 @@ export default class Home extends Component {
 
     header = () => {
         return (
-           <View>
-               <View style={styles.header_view}>
-                   <Text style={styles.hot_race_txt}>{global.lang.t('hot_race')}</Text>
-                   <View style={{flex: 1}}/>
-                   <TouchableOpacity onPress={() => {
-                       router.toHotRaceList();
-                   }}
-                                     style={{flexDirection: 'row', alignItems: 'center'}}>
-                       <Text style={styles.more_txt}>{global.lang.t('more')}></Text>
+            <View>
+                <View style={styles.header_view}>
+                    <Text style={styles.hot_race_txt}>{global.lang.t('hot_race')}</Text>
+                    <View style={{flex: 1}}/>
+                    <TouchableOpacity onPress={() => {
+                        router.toHotRaceList();
+                    }}
+                                      style={{flexDirection: 'row', alignItems: 'center'}}>
+                        <Text style={styles.more_txt}>{global.lang.t('more')}></Text>
 
-                   </TouchableOpacity>
-               </View>
-               {this._separator()}
-           </View>
+                    </TouchableOpacity>
+                </View>
+                {this._separator()}
+            </View>
 
 
         )
@@ -114,7 +122,7 @@ export default class Home extends Component {
         )
     }
 
-    _drawerClose = ()=>{
+    _drawerClose = () => {
         this.drawer && this.drawer.close()
     }
 
@@ -138,7 +146,7 @@ export default class Home extends Component {
                     />}>
                     <TopBar left_img={Images.homepage_side}
                             showLeftIcon={true}
-                            left_btn={()=>{
+                            left_btn={() => {
                                 this.drawer && this.drawer.toggle()
                             }}
                             showSearch={true}
@@ -147,8 +155,9 @@ export default class Home extends Component {
                     <MainBanner home_banners={this.state.home_banners}/>
                     <View style={styles.active_type_view}>
 
-                        <Text style={{color:'#E0BA8C',fontSize:15,marginBottom:px2dp(12)}}>UPCOMING EVENT</Text>
-                      {isEmptyObject(this.state.recent_event)?null:<CountTime recentEvent={this.state.recent_event}/>}
+                        <Text style={{color: '#E0BA8C', fontSize: 15, marginBottom: px2dp(12)}}>UPCOMING EVENT</Text>
+                        {isEmptyObject(this.state.recent_event) ? null :
+                            <CountTime recentEvent={this.state.recent_event}/>}
 
                     </View>
 
@@ -168,10 +177,11 @@ export default class Home extends Component {
                         emptyView={() => <NotData/>}
                     />
 
-                    <View style={[styles.active_type_view,{marginBottom:px2dp(116)}]}>
+                    <View style={[styles.active_type_view, {marginBottom: px2dp(116)}]}>
 
-                        <Text style={{color:'#E0BA8C',fontSize:15,marginBottom:px2dp(12)}}>JOIN OUR WAITING LIST</Text>
-                        <QueueJoin/>
+                        <Text style={{color: '#E0BA8C', fontSize: 15, marginBottom: px2dp(12)}}>JOIN OUR WAITING
+                            LIST</Text>
+                        <QueueJoin games={this.state.games}/>
                     </View>
 
                     {!isEmptyObject(shareParam) ? <ShareToast hiddenShareAction={() => {
