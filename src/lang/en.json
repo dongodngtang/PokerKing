@@ -305,5 +305,6 @@
   "input_cer_no":"请输入您的证件号码",
   "upload_prompt":"*照片中需要能看清姓名、护照号码等信息，确保审核顺利通过",
   "userName":"Account",
-  "cert_message":"实名信息"
+  "cert_message":"实名信息",
+  "cert_success":"添加实名信息成功"
 }

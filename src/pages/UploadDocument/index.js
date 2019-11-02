@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, Image, TouchableOpacity, ScrollView, KeyboardAvoidingView, TextInput} from 'react-native';
+import {View, Text, Image, TouchableOpacity, ScrollView, KeyboardAvoidingView, TextInput, Platform} from 'react-native';
 import {connect} from 'react-redux';
 import styles from './index.style'
 import {Images, Metrics, px2dp} from "../../configs/Theme";
@@ -7,7 +7,8 @@ import LinearGradient from 'react-native-linear-gradient'
 import {ActionSheet} from '../../components';
 import Permissions from "react-native-permissions";
 import ImagePicker from 'react-native-image-crop-picker';
-import {isEmptyObject, logMsg, showToast, strNotNull} from "../../utils/utils";
+import {isEmptyObject, logMsg, showToast, strNotNull, OnSafePress, fileName} from "../../utils/utils";
+import {postCertify, putCertify} from "../../services/accountDao";
 
 const picker = {
     width: 800,
@@ -24,11 +25,27 @@ const picker = {
 }))
 export default class UploadDocument extends Component {
 
-    state = {
-        realname: '',
-        cert_no: '',
-        avatar:{}
+    constructor(props){
+        super(props)
+        const data = props.params.data
+        let real_name = !isEmptyObject(data)?data.real_name:''
+        let cert_no = !isEmptyObject(data)?data.cert_no:''
+        let avatar = !isEmptyObject(data)?{uri:data.img_front}:{}
+        let type = 'register'
+        if(typeof(data) === 'object'){
+            type = isEmptyObject(data)?'add':'edit'
+        }
+
+        this.state = {
+            real_name: real_name,
+            cert_no: cert_no,
+            avatar:avatar,
+            type:type
+        }
+
     }
+
+
 
 
     handlePress = (i) => {
@@ -86,8 +103,8 @@ export default class UploadDocument extends Component {
     };
 
     comfirm =()=>{
-        const {realname,cert_no,avatar} = this.state;
-       if(!strNotNull(realname)){
+        const {real_name,cert_no,avatar,type} = this.state;
+       if(!strNotNull(real_name)){
            showToast('真实姓名不能为空！')
            return
        }
@@ -101,16 +118,57 @@ export default class UploadDocument extends Component {
        }
        const {certObjChange} = this.props.params
         let obj = {
-           realname,
+            real_name,
             cert_no,
             avatar
         }
+        let formData = new FormData()
+
+        formData.append('real_name',real_name);
+        formData.append('cert_no',cert_no);
+
         certObjChange && certObjChange(obj)
-        router.pop()
+        if(type === 'add'){
+            let path = avatar.uri
+            let file = {
+                uri: path,
+                name: fileName(path)
+            };
+            if (Platform.OS === 'android')
+                file.type = 'image/jpeg'
+            formData.append('img_front',file)
+           postCertify(formData,data=>{
+               showToast(global.lang.t('cert_success'))
+               certObjChange && certObjChange(data.user_extra)
+               router.pop()
+           })
+        }else if(type === 'edit'){
+            const {img_front,id} = this.props.params.data
+            if(img_front !== avatar.uri){
+                let path = avatar.uri
+                let file = {
+                    uri: path,
+                    name:fileName(path)
+                };
+                if (Platform.OS === 'android')
+                    file.type = 'image/jpeg'
+                formData.append('img_front',file)
+            }
+            putCertify(id,formData,data=>{
+                showToast(global.lang.t('successfully_modified'))
+                certObjChange && certObjChange(data.user_extra)
+                router.pop()
+            })
+        }else{
+            router.pop()
+        }
+
+
+
     }
 
     render() {
-        const {realname,cert_no,avatar} = this.state;
+        const {real_name,cert_no,avatar} = this.state;
         return (
             <View style={{flex: 1, backgroundColor: "#ECECEE", flexDirection: 'column'}}>
                 <ScrollView style={{flex: 1, backgroundColor: "#ECECEE", flexDirection: 'column'}}>
@@ -134,10 +192,10 @@ export default class UploadDocument extends Component {
                                 placeholder={global.lang.t('input_truth_name')}
                                 clearTextOnFocus={true}
                                 underlineColorAndroid={'transparent'}
-                                value={realname.trim()}
+                                value={real_name.trim()}
                                 onChange={txt => {
                                     this.setState({
-                                        realname: txt.nativeEvent.text
+                                        real_name: txt.nativeEvent.text
                                     })
 
                                 }}
@@ -192,7 +250,9 @@ export default class UploadDocument extends Component {
                     <LinearGradient
                         colors={['#E1BB8D', '#8B6941']}
                         style={[{marginTop: px2dp(42)},styles.confirm_btn2]}>
-                        <TouchableOpacity style={styles.confirm_btn2} onPress={this.comfirm}>
+                        <TouchableOpacity style={styles.confirm_btn2} onPress={()=>{
+                            OnSafePress(this.comfirm)
+                        }}>
                             <Text style={{color: '#FFF', fontSize: 17}}>{global.lang.t('upload')}</Text>
                         </TouchableOpacity>
                     </LinearGradient>

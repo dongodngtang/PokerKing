@@ -243,11 +243,12 @@ export default class Router {
 
     }
 
-    toUploadDocument(certObjChange) {
+    toUploadDocument(certObjChange,data) {
         this.push({
             sceneKey: 'UploadDocument',
             params:{
-                certObjChange
+                certObjChange,
+                data
             }
         })
 

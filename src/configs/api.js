@@ -50,7 +50,12 @@ const api = {
     info_tag: 'infos/tags',
     cancel_noti: cancel_noti,//Jpush删除消息
     app_versions:'app_versions',
-    hot_switch:'hot_switch'//热更新显示房间开关
+    hot_switch:'hot_switch',//热更新显示房间开关
+    certification:getCertify,//
+}
+
+function getCertify(user_extra_id) {
+    return `account/users/${getUserId()}/certification${user_extra_id}`
 }
 
 function cancelapply(body) {

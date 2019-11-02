@@ -121,7 +121,7 @@ export default class Register extends Component {
                 file.type = 'image/jpeg'
             formData.append("img_front", file);
             formData.append("cert_no",this.certObj.cert_no);
-            formData.append("realname",this.certObj.realname)
+            formData.append("realname",this.certObj.real_name)
         }
 
         for(let key in body){

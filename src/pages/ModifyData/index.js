@@ -6,7 +6,7 @@ import ImagePicker from 'react-native-image-crop-picker';
 import {Images, px2dp} from "../../configs/Theme";
 import {isStrNull, getCurrentDate, isEmptyObject, getAvatar, logMsg, showToast} from "../../utils/utils";
 import {ActionSheet} from '../../components';
-import {putProfile, uploadAvatar} from "../../services/accountDao";
+import {getCertify, putProfile, uploadAvatar} from "../../services/accountDao";
 import Permissions from "react-native-permissions";
 import Loading from "../comm/Loading";
 import DateTimePicker from '../../components/DatePicker'
@@ -73,7 +73,8 @@ export default class ModifyData extends Component {
             avatar_modify: false,
             gender_modify: false,
             cca2:cca2,
-            isDateTimePickerVisible:false
+            isDateTimePickerVisible:false,
+            certifyObj:{}
         }
 
         props.navigation.setParams({
@@ -194,11 +195,22 @@ export default class ModifyData extends Component {
         this.ActionSheet.show()
     };
 
+    componentDidMount(){
+        getCertify(data=>{
+           this.certObjChange(data.user_extra)
+        })
+    }
+
+    certObjChange = (obj)=>{
+        this.setState({
+            certifyObj:obj
+        })
+    }
 
     render() {
         const {profile} = this.props;
         const {nickname} = profile;
-        const {avatar, genderTxt, user_account, email,birthTxt,countryTxt,user_cert_no} = this.state
+        const {avatar, genderTxt, user_account, email,birthTxt,countryTxt,certifyObj} = this.state
         return (
             <View style={styles.modifyData_view}>
                 <View style={{paddingLeft: 20, paddingRight: 17, backgroundColor: "#FFFFFF"}}>
@@ -329,7 +341,7 @@ export default class ModifyData extends Component {
                     <View style={styles.line2}/>
                     <TouchableOpacity activeOpacity={1} style={styles.item_view}
                                       onPress={() => {
-                                        router.toUploadDocument()
+                                        router.toUploadDocument(this.certObjChange,certifyObj)
                                       }}>
 
                         <Text style={styles.text_label}>{global.lang.t('cert_message')}</Text>

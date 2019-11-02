@@ -309,3 +309,21 @@ export function getAppVersion() {
     })
 
 }
+
+export function getCertify(resolve,reject) {
+    get(api.certification(''),{},ret=>{
+        resolve && resolve(ret.data)
+    },reject)
+}
+
+export function postCertify(body,resolve,reject) {
+    post(api.certification(''),body,ret=>{
+        resolve && resolve(ret.data)
+    },reject)
+}
+
+export function putCertify(user_extra_id,body,resolve,reject) {
+    put(api.certification(`/${user_extra_id}`),body,ret=>{
+        resolve && resolve(ret.data)
+    },reject)
+}
