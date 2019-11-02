@@ -9,7 +9,7 @@ export default StyleSheet.create({
     text_label: {
         color: "#333333",
         fontSize: Metrics.reallySize(17),
-        marginRight: Metrics.reallySize(27)
+        marginRight: Metrics.reallySize(17)
     },
     line2: {
         height: 1,
@@ -27,7 +27,7 @@ export default StyleSheet.create({
         flexDirection: 'row'
     },
     text_value: {
-        color: "#666666",
+        color: "#333333",
         fontSize: Metrics.reallySize(15),
         height:40,
         flex:1,
@@ -35,7 +35,7 @@ export default StyleSheet.create({
     },
     text_value2: {
         fontWeight:'bold',
-        color: "#666666",
+        color: "#333333",
         fontSize: Metrics.reallySize(15)
     }
 })

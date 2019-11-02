@@ -82,9 +82,9 @@ export default class ModifyData extends Component {
             },
             onRight: () => {
                 let edit = {}
-                let next = false
-                if (profile.user_account !== this.inputNick) {
-                    edit.user_account = this.inputNick
+
+                if (profile.nickname !== this.inputNick) {
+                    edit.nickname = this.inputNick
                 }
                 if (profile.email !== this.inputMail) {
                     edit.email = this.inputMail
@@ -92,6 +92,13 @@ export default class ModifyData extends Component {
                 if (profile.gender !== this.gender.toString()) {
                     edit.gender = this.gender
                 }
+                if(profile.country !== this.state.countryTxt){
+                    edit.country =  this.state.countryTxt
+                }
+                if(profile.birthday !== this.state.birthTxt){
+                    edit.birthday = this.state.birthTxt
+                }
+
 
                 if(isEmptyObject(edit)){
                     if (this.state.avatar && this.state.avatar.uri && !this.state.avatar.uri.includes("http")) {
@@ -103,7 +110,7 @@ export default class ModifyData extends Component {
                         this.loading && this.loading.open()
                         this._update(this.state.avatar.uri,edit)
                     }else{
-                        this.putProfile(edit)
+                        this._putProfile(edit)
                     }
                 }
 
@@ -127,15 +134,11 @@ export default class ModifyData extends Component {
     this.setState({ isDateTimePickerVisible: false });
   };
 
-    putProfile = (edit) => {
+    _putProfile = (edit) => {
         const {profile} = this.props;
         putProfile(edit, ret => {
-            if (profile.email !== this.inputMail ||
-                this.state.gender_modify) {
-                this.loading && this.loading.close()
-                showToast(global.lang.t('successfully_modified'))
-                router.pop();
-            }
+            this.loading && this.loading.close()
+            showToast(global.lang.t('successfully_modified'))
         }, err => {
             this.loading && this.loading.close()
         })
@@ -172,7 +175,7 @@ export default class ModifyData extends Component {
                 showToast(global.lang.t('successfully_modified'))
                 router.pop();
             }else{
-                this.putProfile(edit)
+                this._putProfile(edit)
             }
         }, err => {
             this.loading && this.loading.close()
@@ -229,16 +232,16 @@ export default class ModifyData extends Component {
                     {/*昵称 不可修改*/}
                     <View style={styles.line2}/>
                     <View style={styles.item_view}>
-                        <Text style={styles.text_label}>{global.lang.t('username_EC')}</Text>
+                        <Text style={styles.text_label}>{global.lang.t('userName')}</Text>
+
                         <View style={{flex: 1}}/>
-                        <Text style={styles.text_value2}>{nickname}</Text>
+                        <Text style={[styles.text_value2, {marginRight: 27}]}>{user_account}</Text>
                     </View>
 
                     {/*账号 可修改*/}
                     <View style={styles.line2}/>
                     <View style={styles.item_view}>
-
-                        <Text style={styles.text_label}>{global.lang.t('userName')}</Text>
+                        <Text style={styles.text_label}>{global.lang.t('username_EC')}</Text>
                         <View style={{flex: 1}}/>
                         <TextInput style={[styles.text_value, {marginRight: 17}]}
                                    clearTextOnFocus={true}
@@ -249,7 +252,7 @@ export default class ModifyData extends Component {
                                    onChangeText={text => {
                                        this.inputNick = text
                                    }}
-                                   placeholder={user_account}
+                                   placeholder={nickname}
                                    testID="input_nick"/>
 
                         <Image style={{height: 20, width: 10}}
@@ -265,9 +268,8 @@ export default class ModifyData extends Component {
                                       }}>
 
                         <Text style={styles.text_label}>{global.lang.t('birth')}</Text>
-                        <Text style={styles.text_label}>{birthTxt}</Text>
-
                         <View style={{flex: 1}}/>
+                        <Text style={styles.text_label}>{birthTxt}</Text>
                         <Image style={{height: 20, width: 10}}
                                source={Images.right_gray}/>
 
@@ -316,9 +318,8 @@ export default class ModifyData extends Component {
                                       }}>
 
                         <Text style={styles.text_label}>{global.lang.t('country')}</Text>
-                        <Text style={styles.text_label}>{countryTxt}</Text>
-
                         <View style={{flex: 1}}/>
+                        <Text style={styles.text_label}>{countryTxt}</Text>
                         <Image style={{height: 20, width: 10}}
                                source={Images.right_gray}/>
 
