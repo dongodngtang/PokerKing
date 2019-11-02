@@ -69,7 +69,7 @@ export default class CountTime extends Component{
                 <View style={{flexDirection:'row',alignItems:'center',marginTop:px2dp(14)}}>
                   <View
                     style={{alignItems:'center'}}>
-                    <PercentageCircle radius={30} percent={dayTotal} color={"#FFF"} innerColor={'#B28F64'} bgcolor={'#4C4530'}>
+                    <PercentageCircle radius={px2dp(60)} percent={dayTotal} color={"#FFF"} innerColor={'#B28F64'} bgcolor={'#4C4530'}>
                       <Text style={styles.lbNum}>{day}</Text>
 
                     </PercentageCircle>
@@ -77,7 +77,7 @@ export default class CountTime extends Component{
                   </View>
                   <View
                     style={{alignItems:'center',marginLeft:px2dp(30)}}>
-                    <PercentageCircle radius={30} percent={houP} color={"#FFF"} innerColor={'#B28F64'} bgcolor={'#4C4530'}>
+                    <PercentageCircle radius={px2dp(60)} percent={houP} color={"#FFF"} innerColor={'#B28F64'} bgcolor={'#4C4530'}>
                       <Text style={styles.lbNum}>{hours}</Text>
 
                     </PercentageCircle>
@@ -85,7 +85,7 @@ export default class CountTime extends Component{
                   </View>
                   <View
                     style={{alignItems:'center',marginLeft:px2dp(30)}}>
-                    <PercentageCircle radius={30} percent={minP} color={"#FFF"} innerColor={'#B28F64'} bgcolor={'#4C4530'}>
+                    <PercentageCircle radius={px2dp(60)} percent={minP} color={"#FFF"} innerColor={'#B28F64'} bgcolor={'#4C4530'}>
                       <Text style={styles.lbNum}>{minutes}</Text>
 
                     </PercentageCircle>
@@ -93,7 +93,7 @@ export default class CountTime extends Component{
                   </View>
                   <View
                     style={{alignItems:'center',marginLeft:px2dp(30)}}>
-                    <PercentageCircle radius={30} percent={secP} color={"#FFF"} innerColor={'#B28F64'} bgcolor={'#4C4530'}>
+                    <PercentageCircle radius={px2dp(60)} percent={secP} color={"#FFF"} innerColor={'#B28F64'} bgcolor={'#4C4530'}>
                       <Text style={styles.lbNum}>{seconds}</Text>
 
                     </PercentageCircle>
