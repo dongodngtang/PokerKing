@@ -99,7 +99,7 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.pokerking"
+        applicationId "com.pokerkinglive"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 101
@@ -109,7 +109,7 @@ android {
             abiFilters "armeabi-v7a", "x86"
         }
          manifestPlaceholders = [
-              JPUSH_APPKEY: "2c643e3244a45c9fae519e9b",	        // <--    在此替换你的APPKey
+              JPUSH_APPKEY: "d6fdfa612a00252ed381d778",	        // <--    在此替换你的APPKey
               JPUSH_CHANNEL: "developer-default",		// <--    应用渠道号, 默认即可
             ]
     }

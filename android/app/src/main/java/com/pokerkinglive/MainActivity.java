@@ -1,4 +1,4 @@
-package com.pokerking;
+package com.pokerkinglive;
 
 import com.facebook.react.ReactActivity;
 import org.devio.rn.splashscreen.SplashScreen;

@@ -1945,7 +1945,7 @@
 				CODE_SIGN_ENTITLEMENTS = PokerKing/PokerKing.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 73;
+				CURRENT_PROJECT_VERSION = 74;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = KZCC4Q9822;
 				HEADER_SEARCH_PATHS = (
@@ -1974,7 +1974,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.deshpro;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pokerkinglive;
 				PRODUCT_NAME = PokerKing;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1989,7 +1989,7 @@
 				CODE_SIGN_ENTITLEMENTS = PokerKing/PokerKing.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 73;
+				CURRENT_PROJECT_VERSION = 74;
 				DEVELOPMENT_TEAM = KZCC4Q9822;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2017,7 +2017,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.deshpro;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pokerkinglive;
 				PRODUCT_NAME = PokerKing;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";

@@ -1,4 +1,4 @@
-package com.pokerking;
+package com.pokerkinglive;
 
 import android.app.Application;
 

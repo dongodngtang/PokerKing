@@ -18,7 +18,7 @@ export default class QueueJoin extends Component{
 
                         <View>
                             <Text style={styles.name}>{item.name}</Text>
-                            <Text style={styles.lbNum}>Your Number # - -</Text>
+                            <Text style={styles.lbNum}>{`Tables #${item.cash_queue_numbers}`}</Text>
                         </View>
 
                         <TouchableOpacity
