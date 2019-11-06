@@ -5,7 +5,7 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, BackHandler, NetInfo} from 'react-native'
+import {Platform, BackHandler, NetInfo, DeviceEventEmitter} from 'react-native'
 import {Router} from 'react-native-router-flux';
 import {scenes} from './pages'
 import RouterO from './configs/Router';
@@ -15,11 +15,12 @@ import './configs/StorageConfig'
 import {initBaseUrl} from "./configs/fetch";
 import SplashScreen from 'react-native-splash-screen'
 import JShareModule from 'jshare-react-native';
-import {logMsg, showToast} from "./utils/utils";
+import {getUserId, isLogin, logMsg, OnSafePress, showToast} from "./utils/utils";
 import {Actions} from 'react-native-router-flux';
 import codePush from "react-native-code-push";
-import {getAppVersion, initLoginUser} from "./services/accountDao";
+import {getAppVersion, getUnread, initLoginUser} from "./services/accountDao";
 import JPushModule from 'jpush-react-native'
+import Permissions from "react-native-permissions";
 
 @connect(({common}) => ({
   ...common
@@ -44,6 +45,32 @@ export default class Root extends Component {
 
     //监听网络状态改变
     NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectivityChange);
+    JPushModule.addReceiveNotificationListener(this.receiveNotice)
+    JPushModule.addReceiveOpenNotificationListener(this.openNotice)
+    if (Platform.OS === 'android') {
+
+      this.receivePushMsg = DeviceEventEmitter.addListener('receivePushMsg', this.receiveNotice)
+
+      JPushModule.notifyJSDidLoad((resultCode) => {
+        logMsg('jpush设置极光', resultCode)
+      });
+    }else{
+
+      JPushModule.addOpenNotificationLaunchAppListener(this.openNotice)
+    }
+
+    Permissions.check('notification').then(ret=>{
+      logMsg('通知权限',ret)
+      if(ret !== 'authorized' && !__DEV__){
+        Permissions.request('notification').then(status=>{
+          logMsg('申请通知权限',status)
+          if(status !== 'authorized'){
+            // showToast(global.lang.t('alert_message'))
+          }
+
+        })
+      }
+    })
 
   }
 
@@ -109,6 +136,43 @@ export default class Root extends Component {
   componentWillUnmount() {
     console.log("componentWillUnMount");
     NetInfo.isConnected.removeEventListener('connectionChange', this.handleConnectivityChange);
+    JPushModule.removeReceiveNotificationListener(this.receiveNotice);
+    JPushModule.removeReceiveOpenNotificationListener(this.openNotice)
+    if (Platform.OS === 'android') {
+      DeviceEventEmitter.removeSubscription(this.receivePushMsg)
+
+    }else{
+
+      JPushModule.removeOpenNotificationLaunchAppEventListener(this.openNotice)
+    }
+  }
+
+  openNotice = (e) => {
+    logMsg('点击通知', e)
+    try{
+      JPushModule.setBadge(0,ret=>{})
+      if (isLogin()) {
+        OnSafePress(() => {
+          router.toNotices(() => {
+            getUnread(getUserId())
+          })
+        })
+
+        JPushModule.clearAllNotifications()
+      }
+    }catch (e) {
+
+    }
+
+  }
+  receiveNotice = (msg) => {
+    logMsg('推送消息', msg)
+    if (isLogin()) {
+      OnSafePress(()=>{
+        getUnread()
+      })
+
+    }
   }
 
 

@@ -17,8 +17,7 @@ import Hot from "./Hot";
 import {Images, px2dp, px2sp} from "../../configs/Theme";
 import More from "./More";
 import ShareToast from "../comm/ShareToast";
-import JPushModule from 'jpush-react-native'
-import Permissions from 'react-native-permissions';
+
 
 @connect(({Main, Home}) => ({
     ...Main, ...Home
@@ -42,74 +41,6 @@ export default class Main extends Component {
                 tags: data.tags
             })
         })
-        JPushModule.addReceiveNotificationListener(this.receiveNotice)
-        JPushModule.addReceiveOpenNotificationListener(this.openNotice)
-        if (Platform.OS === 'android') {
-
-            this.receivePushMsg = DeviceEventEmitter.addListener('receivePushMsg', this.receiveNotice)
-
-            JPushModule.notifyJSDidLoad((resultCode) => {
-                logMsg('jpush设置极光', resultCode)
-            });
-        }else{
-
-            JPushModule.addOpenNotificationLaunchAppListener(this.openNotice)
-        }
-
-        Permissions.check('notification').then(ret=>{
-            logMsg('通知权限',ret)
-            if(ret !== 'authorized' && !__DEV__){
-                Permissions.request('notification').then(status=>{
-                    logMsg('申请通知权限',status)
-                    if(status !== 'authorized'){
-                        // showToast(global.lang.t('alert_message'))
-                    }
-
-                })
-            }
-        })
-
-    }
-
-    componentWillUnmount() {
-        JPushModule.removeReceiveNotificationListener(this.receiveNotice);
-        JPushModule.removeReceiveOpenNotificationListener(this.openNotice)
-        if (Platform.OS === 'android') {
-            DeviceEventEmitter.removeSubscription(this.receivePushMsg)
-
-        }else{
-
-            JPushModule.removeOpenNotificationLaunchAppEventListener(this.openNotice)
-        }
-    }
-
-    openNotice = (e) => {
-        logMsg('点击通知', e)
-       try{
-         JPushModule.setBadge(0,ret=>{})
-         if (isLogin()) {
-           OnSafePress(() => {
-             router.toNotices(() => {
-               getUnread(getUserId())
-             })
-           })
-
-           JPushModule.clearAllNotifications()
-         }
-       }catch (e) {
-
-       }
-
-    }
-
-    receiveNotice = (msg) => {
-        logMsg('推送消息', msg)
-        if (isLogin()) {
-            OnSafePress(()=>{
-                getUnread()
-            })
-
-        }
     }
 
     onFetch = (page = 1, startFetch, abortFetch) => {
