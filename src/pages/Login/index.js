@@ -43,7 +43,7 @@ export default class Login extends Component {
     }
 
     _next = () => {
-        let account = this.userName
+        let account = this.userName.trim()
         let password = this.pwd
         if (account.length > 1 && password.length > 1) {
             // 登录

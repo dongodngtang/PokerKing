@@ -196,7 +196,7 @@ export default class MobileRegister extends Component {
                             textStyle={styles.down_txt}
                             enable
                             onClick={counting => {
-                                let iphone = this.iphone
+                                let iphone = this.iphone.trim()
                                 if (isStrNull(iphone)) {
                                     showToast(global.lang.t('please_input_phone'))
                                     return
@@ -270,7 +270,7 @@ export default class MobileRegister extends Component {
 
     _next = () => {
         const {ext} = this.state;
-        let iphone = this.iphone
+        let iphone = this.iphone.trim()
         let vcode = this.vcode
 
         if (iphone.length > 1 && vcode.length > 1 && !isStrNull(ext)) {
