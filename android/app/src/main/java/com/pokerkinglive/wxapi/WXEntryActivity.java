@@ -1,4 +1,4 @@
-package com.pokerking.wxapi;
+package com.pokerkinglive.wxapi;
 
 
 import cn.jiguang.share.wechat.WeChatHandleActivity;
