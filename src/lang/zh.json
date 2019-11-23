@@ -306,7 +306,8 @@
   "upload_prompt":"*照片中需要能看清姓名、护照号码等信息，确保审核顺利通过",
   "userName":"账号",
   "cert_message":"实名信息",
-  "cert_success":"添加实名信息成功"
+  "cert_success":"添加实名信息成功",
+  "cant_not_empty_nick":"昵称不能为空！"
 }
 
 

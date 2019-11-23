@@ -82,8 +82,12 @@ export default class ModifyData extends Component {
                 router.pop();
             },
             onRight: () => {
-                let edit = {}
+                if(isStrNull(this.inputNick)){
+                    showToast(global.lang.t('cant_not_empty_nick'))
+                    return
+                }
 
+                let edit = {}
                 if (profile.nickname !== this.inputNick) {
                     edit.nickname = this.inputNick
                 }

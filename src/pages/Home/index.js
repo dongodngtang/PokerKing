@@ -27,8 +27,8 @@ const drawerStyles = {
     main: {paddingLeft: 3},
 }
 
-@connect(({Home}) => ({
-    ...Home
+@connect(({Home,MinePage}) => ({
+    ...Home,...MinePage
 }))
 @codePush
 export default class Home extends Component {
@@ -127,7 +127,7 @@ export default class Home extends Component {
     }
 
     render() {
-        const {shareParam} = this.props;
+       
         return (
             <Drawer
                 tapToClose
@@ -183,16 +183,6 @@ export default class Home extends Component {
                             LIST</Text>
                         <QueueJoin games={this.state.games}/>
                     </View>
-
-                    {!isEmptyObject(shareParam) ? <ShareToast hiddenShareAction={() => {
-                        this.props.dispatch({type: 'Home/closeShare'})
-                    }}
-
-                                                              shareTitle={shareParam.shareTitle}
-                                                              shareText={shareParam.shareText}
-                                                              shareLink={shareParam.shareLink}
-                                                              shareImage={shareParam.shareImage}
-                                                              shareType={shareParam.shareType}/> : null}
 
                 </ScrollView>
 
