@@ -1,16 +1,16 @@
-import React,{Component} from 'react'
-import {connect} from 'react-redux';
-import {SafeAreaView,Text,TouchableOpacity} from 'react-native'
-import ShareToast from './comm/ShareToast';
-import { isEmptyObject } from '../utils/utils';
-import TabBarItem from './navigation/TabBarItem';
-import LinearGradient from "react-native-linear-gradient";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 import {
-  Images,
-  px2dp,
-  px2sp
-} from "../configs/Theme";
-
+  SafeAreaView,
+  Text,
+  TouchableOpacity,
+  DeviceEventEmitter
+} from "react-native";
+import ShareToast from "./comm/ShareToast";
+import { isEmptyObject } from "../utils/utils";
+import TabBarItem from "./navigation/TabBarItem";
+import LinearGradient from "react-native-linear-gradient";
+import { Images, px2dp, px2sp } from "../configs/Theme";
 
 @connect(({ Home }) => ({
   ...Home
@@ -38,7 +38,10 @@ class TabBar extends Component {
             let txtColor = focused ? activeTintColor : inactiveTintColor;
             return (
               <TouchableOpacity
-                onPress={() => jumpTo(item.key)}
+                onPress={() => {
+                  jumpTo(item.key);
+                  DeviceEventEmitter.emit("SwitchTab",item.key);
+                }}
                 activeOpacity={1}
                 key={item.key}
                 style={{
@@ -55,7 +58,7 @@ class TabBar extends Component {
                     marginTop: px2dp(6)
                   }}
                 >
-                  {item.key}
+                  {global.lang.t(item.key)}
                 </Text>
               </TouchableOpacity>
             );
@@ -120,4 +123,4 @@ class TabBar extends Component {
   };
 }
 
-export default TabBar
+export default TabBar;

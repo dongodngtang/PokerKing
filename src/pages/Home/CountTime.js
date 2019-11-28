@@ -22,6 +22,10 @@ export default class CountTime extends Component{
 
   }
 
+  componentWillUnmount(){
+    clearInterval(this.intervalTimer)
+  }
+
   counting = (startTime, endTime) => {
 
     this.intervalTimer = setInterval(() => {

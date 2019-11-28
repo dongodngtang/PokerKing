@@ -90,10 +90,10 @@ export const scenes = () => {
         labelStyle={{ fontSize: px2sp(24) }}
         tabs
       >
-        <Scene key={global.lang.t("news")} component={Home} hideNavBar />
-        <Scene key={global.lang.t("race")} component={Races} hideNavBar />
-        <Scene key={global.lang.t("room")} component={CashTable} hideNavBar />
-        <Scene key={global.lang.t("mine")} component={MinePage} hideNavBar />
+        <Scene key={"news"} component={Home} hideNavBar />
+        <Scene key={"race"} component={Races} hideNavBar />
+        <Scene key={"room"} component={CashTable} hideNavBar />
+        <Scene key={"mine"} component={MinePage} hideNavBar />
       </Scene>
 
       <Scene key="Main" component={Main} hideNavBar />

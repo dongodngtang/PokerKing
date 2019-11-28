@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, Button, TouchableOpacity, Image, ScrollView, RefreshControl, StatusBar} from 'react-native';
+import {View, Text, DeviceEventEmitter, TouchableOpacity, Image, ScrollView, RefreshControl, StatusBar} from 'react-native';
 import {connect} from 'react-redux';
 import {isEmptyObject, logMsg} from "../../utils/utils";
 import MainBanner from './MainBanner';
@@ -79,8 +79,17 @@ export default class Home extends Component {
             updateDialog: false,
             installMode: codePush.InstallMode.ON_NEXT_RESUME
         })
-
+        this.subscription =DeviceEventEmitter.addListener('SwitchTab',data=>{
+            if(data === 'news'){
+            this.getEventGame()
+            this.listView && this.listView.refresh();
+            }
+        })
     };
+
+    componentWillUnmount(){
+        this.subscription.remove()
+    }
 
     onPickerSelect = (index) => {
         this.setState({
