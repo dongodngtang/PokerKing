@@ -5,6 +5,7 @@
  */
 import {logMsg} from "../utils/utils";
 import dva from '../utils/dva'
+import { setLang } from "../configs/fetch";
 
 
 export default class Language {
@@ -40,6 +41,7 @@ export default class Language {
         }else {
             this.langObj = require('./zh.json')
         }
+        setLang(language ==='zh-e'?'tc':language)
         global.localLanguage = language
         dva.getDispatch()({type:'common/switchLang',params:language})
 
