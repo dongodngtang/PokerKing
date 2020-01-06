@@ -102,8 +102,8 @@ android {
         applicationId "com.pokerkinglive"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 101
-        versionName "10.1"
+        versionCode 1
+        versionName "1.1"
         vectorDrawables.useSupportLibrary = true
         ndk {
             abiFilters "armeabi-v7a", "x86"
