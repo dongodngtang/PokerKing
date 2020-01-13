@@ -181,22 +181,22 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-linear-gradient')
-    compile project(':jpush-react-native')
-    compile project(':react-native-code-push')
-    compile project(':react-native-device-info')
-    compile project(':react-native-fs')
-    compile project(':react-native-image-resizer')
-    compile project(':react-native-wheel-picker')
-    compile project(':react-native-splash-screen')
-    compile project(':react-native-pdf')
-    compile project(':rn-fetch-blob')
-    compile project(':react-native-add-calendar-event')
-    compile project(':react-native-image-crop-picker')
-    compile project(':jshare-react-native')
-    compile project(':jcore-react-native')
+    implementation project(':@gregfrench_react-native-wheel-picker')
+    implementation project(':rn-fetch-blob')
+    implementation project(':react-native-linear-gradient')
+    implementation project(':jpush-react-native')
+    implementation project(':react-native-code-push')
+    implementation project(':react-native-device-info')
+    implementation project(':react-native-fs')
+    implementation project(':react-native-image-resizer')
+    implementation project(':react-native-splash-screen')
+    implementation project(':react-native-pdf')
+    implementation project(':react-native-add-calendar-event')
+    implementation project(':react-native-image-crop-picker')
+    implementation project(':jshare-react-native')
+    implementation project(':jcore-react-native')
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
+    implementation 'androidx.appcompat:appcompat:1.0.0'
     implementation "com.facebook.react:react-native:+"  // From node_modules
 }
 

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, Button, TouchableOpacity, Image, Modal} from 'react-native';
 import {Metrics} from "../../configs/Theme";
-import Picker from 'react-native-wheel-picker'
+import Picker from '@gregfrench/react-native-wheel-picker'
 import LinearGradient from 'react-native-linear-gradient'
 
 let PickerItem = Picker.Item;

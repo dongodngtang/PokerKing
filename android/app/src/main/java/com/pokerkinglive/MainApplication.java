@@ -3,6 +3,8 @@ package com.pokerkinglive;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.zyu.ReactNativeWheelPickerPackage;
+import com.RNFetchBlob.RNFetchBlobPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 
 import cn.jpush.android.api.JPushInterface;
@@ -11,10 +13,8 @@ import com.microsoft.codepush.react.CodePush;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.rnfs.RNFSPackage;
 import fr.bamlab.rnimageresizer.ImageResizerPackage;
-import com.zyu.ReactNativeWheelPickerPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import org.wonday.pdf.RCTPdfView;
-import com.RNFetchBlob.RNFetchBlobPackage;
 import com.vonovak.AddCalendarEventPackage;
 import com.reactnative.ivpusic.imagepicker.PickerPackage;
 import cn.jiguang.share.reactnative.JSharePackage;
@@ -51,16 +51,16 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new ReactNativeWheelPickerPackage(),
+            new RNFetchBlobPackage(),
             new LinearGradientPackage(),
             new JPushPackage(!BuildConfig.DEBUG, !BuildConfig.DEBUG),
             new CodePush(getResources().getString(R.string.reactNativeCodePush_androidDeploymentKey), getApplicationContext(), BuildConfig.DEBUG),
             new RNDeviceInfo(),
             new RNFSPackage(),
             new ImageResizerPackage(),
-            new ReactNativeWheelPickerPackage(),
             new SplashScreenReactPackage(),
             new RCTPdfView(),
-            new RNFetchBlobPackage(),
             new AddCalendarEventPackage(),
             new PickerPackage(),
             new JSharePackage(SHUTDOWN_TOAST, SHUTDOWN_LOG)
