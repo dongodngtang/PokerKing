@@ -13,7 +13,7 @@ export default class Language {
     langObj = require('./zh.json')
 
     constructor(){
-
+      global.localLanguage = 'zh'
       storage.load({
         key: 'Language'
       }).then(ret=>{

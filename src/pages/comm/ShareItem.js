@@ -121,7 +121,7 @@ export default class ShareItem extends Component {
         let message = {
             platform: platform,
             type: "link",
-            url: this.props.shareLink,
+            url: this.props.shareLink+`?lang=${global.localLanguage}`,
             title: this.props.shareTitle,
             text: this.props.shareText,
             imagePath: imagePath,
