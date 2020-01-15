@@ -11,6 +11,7 @@ import {Provider} from 'react-redux'
 import Root from './src/Root'
 import dva from './src/utils/dva'
 import models from './src/models'
+import 'react-native-gesture-handler';
 
 const dvaApp = dva.createApp({
     initialState: {},

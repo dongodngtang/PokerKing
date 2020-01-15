@@ -1,4 +1,12 @@
 rootProject.name = 'PokerKing'
+include ':react-native-safe-area-context'
+project(':react-native-safe-area-context').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-safe-area-context/android')
+include ':react-native-screens'
+project(':react-native-screens').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-screens/android')
+include ':react-native-gesture-handler'
+project(':react-native-gesture-handler').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-gesture-handler/android')
+include ':react-native-reanimated'
+project(':react-native-reanimated').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-reanimated/android')
 include ':@gregfrench_react-native-wheel-picker'
 project(':@gregfrench_react-native-wheel-picker').projectDir = new File(rootProject.projectDir, '../node_modules/@gregfrench/react-native-wheel-picker/android')
 include ':rn-fetch-blob'

@@ -65,6 +65,9 @@ export default class CountTime extends Component{
         let secP = (seconds/60)*100
         let minP = (minutes/60)*100
         let houP = (hours/60)*100
+        houP = houP?houP:0
+        minP = minP?minP:0
+        secP = secP?secP:0
         return (
             <LinearGradient
                 colors={['#E1BB8D', '#8B6941']}

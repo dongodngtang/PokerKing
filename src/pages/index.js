@@ -77,6 +77,7 @@ import TabBar from "./TabBar";
 export const scenes = () => {
   return (
     <Scene key="root" headerMode={"screen"}>
+        <Scene key={"first"} initial component={Home} hideNavBar />
       <Scene
         key="first"
         initial
