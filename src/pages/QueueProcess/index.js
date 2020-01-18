@@ -80,7 +80,14 @@ export default class QueueProcess extends Component {
     };
 
     _renderItem = (item, index) => {
-        const {id, small_blind, big_blind, table_numbers, cash_queue_members_count, buy_in, apply_index} = item;
+        const {id, small_blind, big_blind, table_numbers, cash_queue_members_count, buy_in, apply_index,apply_status} = item;
+        let applyTex = global.lang.t('application_wait')
+        if(apply_status === 'pending'){
+            applyTex = global.lang.t('rank_pending')
+        }
+        if(apply_status === 'success'){
+            applyTex = global.lang.t('cancel_wait')
+        }
 
         return (
             <View style={styles.item_view}>
@@ -125,11 +132,11 @@ export default class QueueProcess extends Component {
                             }]}
                             onPress={() => {
                                 if (isLogin() && global.loginUser && strNotNull(global.loginUser.mobile)) {
-                                    if (isStrNull(apply_index)) {
+                                    if (apply_status === 'none') {
                                         this.clearSign()
                                         this.signChange(this.state.signedList[index], index)
                                         this.PopAction && this.PopAction.toggle()
-                                    } else {
+                                    } else if(apply_status === 'success') {
                                         this.cancelId = id
                                         this.popCancel && this.popCancel.toggle()
                                     }
@@ -140,7 +147,7 @@ export default class QueueProcess extends Component {
                             }}>
                             <Text
                                 style={[styles.application_wait, {color: isStrNull(apply_index) ? '#FFFFFF' : '#DAB68A'}]}
-                            >{isStrNull(apply_index) ? global.lang.t('application_wait') : global.lang.t('cancel_wait')}</Text>
+                            >{applyTex}</Text>
                         </TouchableOpacity>
                     </LinearGradient>
 

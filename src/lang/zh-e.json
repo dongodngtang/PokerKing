@@ -307,6 +307,7 @@
   "userName":"帳號",
   "cert_message":"实名信息",
   "cert_success":"添加实名信息成功",
-  "cant_not_empty_nick":"昵称不能为空！"
+  "cant_not_empty_nick":"昵称不能为空！",
+  "rank_pending":"申請中"
 
 }

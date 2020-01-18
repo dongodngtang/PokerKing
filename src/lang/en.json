@@ -307,5 +307,6 @@
   "userName":"Account",
   "cert_message":"Real name",
   "cert_success":"Added real name information successfully",
-  "cant_not_empty_nick":"Nickname should be filled"
+  "cant_not_empty_nick":"Nickname should be filled",
+  "rank_pending":"Pending"
 }
